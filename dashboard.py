@@ -28,6 +28,15 @@ from command_intel import risk_scoring, alert_system, strategy_panel
 from command_intel import historical_revisions, manual_entry, change_log, bug_tracker
 import api_dashboard
 
+# --- PDF EXPORT SYSTEM ---
+try:
+    from pdf_export_bar import render_export_bar, inject_print_css
+    _PDF_BAR_OK = True
+except Exception:
+    _PDF_BAR_OK = False
+    def render_export_bar(*a, **kw): pass
+    def inject_print_css(): pass
+
 # --- SYSTEM STARTUP: init logging + auto health scheduler (runs once per process) ---
 try:
     from api_manager import init_system, start_auto_health
@@ -395,6 +404,7 @@ with st.sidebar:
         "─── 🏢 TECHNOLOGY & SYSTEMS ───",
         "🌐 API Dashboard",
         "⚙️ Dev & System Activity",
+        "📁 PDF Archive",
         "🔔 Change Notifications",
         "🐞 Bug Tracker",
         "👥 Ecosystem Management",
@@ -437,6 +447,23 @@ tab11 = st.empty()
 tab12_sos = st.empty()
 
 
+# ── Universal Print CSS + Export Bar ────────────────────────────────────────
+# Inject @media print CSS once per session (hides sidebar on browser print)
+inject_print_css()
+
+# Skip export bar for section-header items and PDF Archive (which has its own)
+_NAV_HEADERS = {
+    "─── 🏢 SALES & REVENUE ───", "─── 🏢 OPERATIONS & PROCUREMENT ───",
+    "─── 🏢 FINANCE & PROFITABILITY ───", "─── 🏢 LEGAL & COMPLIANCE ───",
+    "─── 🏢 STRATEGY & INTELLIGENCE ───", "─── 🏢 TECHNOLOGY & SYSTEMS ───",
+    "─── 🏢 KNOWLEDGE & SUPPORT ───", "─── 🏢 MARKET INTELLIGENCE ───",
+    "📁 PDF Archive",
+}
+if selected_page not in _NAV_HEADERS:
+    render_export_bar(
+        page_title=selected_page,
+        role="Admin",
+    )
 
 
 # Main Layout: 3 Columns (Selection | Analysis | Detailed Slip)
@@ -2393,6 +2420,10 @@ if selected_page == "🌐 API Dashboard":
     api_dashboard.render()
 elif selected_page == "⚙️ Dev & System Activity":
     st.info("ℹ️ **Department Head:** CTO / Technology\n\n📌 Full audit trail of API changes, auto-repairs, errors, deployments, and system events. All timestamps in IST.")
+elif selected_page == "📁 PDF Archive":
+    st.info("ℹ️ **Department Head:** Admin / CTO\n\n📌 All PDFs generated from dashboard pages — download, view metadata, or delete. Auto-saved whenever you use ⬇ PDF on any page.")
+    from command_intel import pdf_archive
+    pdf_archive.render()
     from command_intel import dev_activity
     dev_activity.render()
 elif selected_page == "─── 🏢 SALES & REVENUE ───":
