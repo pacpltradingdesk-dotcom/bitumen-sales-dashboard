@@ -81,14 +81,15 @@ st.set_page_config(
     layout="wide",
 )
 
-# ── Corporate Vastu Design System v3.0 ─────────────────────────────────────
+# ── Corporate Vastu Design System v3.1 ─────────────────────────────────────
 st.markdown("""
 <style>
 /* =========================================================================
-   PPS ANANTAM ECO AGENTIC AI SYSTEM — Corporate Vastu Design System v3.0
+   PPS ANANTAM ECO AGENTIC AI SYSTEM — Corporate Vastu Design System v3.1
    Palette: Soft ivory/sandal backgrounds · Navy headings · Vastu green/gold
    Typography: Inter / Segoe UI — clean, readable, corporate
    Mobile-first responsive + @media print
+   Full UI/UX Audit: 8px numerology grid · Soft status palette · CSS tokens
    ========================================================================= */
 
 /* ── 0. Google Fonts import ─────────────────────────────────────────────── */
@@ -584,7 +585,7 @@ st.markdown("""
         PPS Anantam Eco Agentic AI System
       </div>
       <div style="font-size:0.68rem;color:#93c5fd;letter-spacing:0.4px;margin-top:2px;">
-        PPS Anantam Logistics AI – All Locations &nbsp;|&nbsp; Enterprise AI v3.0
+        PPS Anantam Logistics AI – All Locations &nbsp;|&nbsp; Enterprise AI v3.1
       </div>
     </div>
   </div>
@@ -621,7 +622,7 @@ if optimizer is None:
 # --- TABS Interface ---
 # --- SIDEBAR NAVIGATION (REFACTORED) ---
 
-# ── Sidebar CSS — Corporate Vastu v3.0 ──────────────────────────────────────
+# ── Sidebar CSS — Corporate Vastu v3.1 ──────────────────────────────────────
 st.markdown("""
 <style>
 /* ── Sidebar container ────────────────────────────────────────────────────── */
@@ -792,7 +793,7 @@ with st.sidebar:
     )
     st.markdown(
         '<div style="font-size:0.65rem;color:#94a3b8;padding:2px 4px 0 4px;">'
-        'v3.0.0 &nbsp;|&nbsp; 01-03-2026 &nbsp;|&nbsp; Production'
+        'v3.1.0 &nbsp;|&nbsp; 01-03-2026 &nbsp;|&nbsp; Production'
         '</div>',
         unsafe_allow_html=True,
     )
@@ -844,7 +845,7 @@ if selected_page == "🏠 Home":
         '<h1 style="margin-bottom:4px;">🏠 Welcome to PPS Anantam Eco Agentic AI System</h1>',
         unsafe_allow_html=True,
     )
-    st.caption("PPS Anantam Logistics AI – All Locations  |  Enterprise AI v3.0  |  01-03-2026")
+    st.caption("PPS Anantam Logistics AI – All Locations  |  Enterprise AI v3.1  |  01-03-2026")
     st.markdown("---")
 
     home_c1, home_c2, home_c3 = st.columns([2, 1.8, 1.4])
@@ -3053,7 +3054,7 @@ st.markdown("""
     </span>
   </div>
   <div style="font-size:0.73rem;color:#94a3b8;display:flex;gap:14px;flex-wrap:wrap;">
-    <span>Version v3.0.0</span>
+    <span>Version v3.1.0</span>
     <span>Build: 01-03-2026</span>
     <span>Environment: Production</span>
     <span style="color:#c9a84c;font-weight:600;">GST: 24AAHCV1611L2ZD</span>
