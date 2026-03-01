@@ -133,6 +133,38 @@ st.markdown("""
   /* Shadows */
   --shadow-card:   0 2px 10px rgba(30,58,95,0.07), 0 1px 3px rgba(0,0,0,0.04);
   --shadow-hover:  0 6px 20px rgba(30,58,95,0.12), 0 2px 6px rgba(0,0,0,0.06);
+
+  /* ── 8px Numerology Spacing Grid ─────────────────────────────────────── */
+  --sp-1:  8px;   /* baseline unit */
+  --sp-2: 16px;   /* 2× */
+  --sp-3: 24px;   /* 3× */
+  --sp-4: 32px;   /* 4× */
+  --sp-6: 48px;   /* 6× */
+  --sp-8: 64px;   /* 8× */
+
+  /* ── Border radius (multiples of 8px / harmonised) ──────────────────── */
+  --radius-xs:  4px;
+  --radius-sm:  8px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+
+  /* ── Vastu-compliant soft status colours ────────────────────────────── */
+  --status-success-bg:  #f0fdf4;
+  --status-success-bdr: #22c55e;
+  --status-success-txt: #15803d;
+  --status-warning-bg:  #fffbeb;
+  --status-warning-bdr: #f59e0b;
+  --status-warning-txt: #b45309;
+  --status-error-bg:    #fff1f2;
+  --status-error-bdr:   #f43f5e;
+  --status-error-txt:   #be123c;
+  --status-info-bg:     #eff6ff;
+  --status-info-bdr:    #3b82f6;
+  --status-info-txt:    #1d4ed8;
+  --status-neutral-bg:  #f8fafc;
+  --status-neutral-bdr: #94a3b8;
+  --status-neutral-txt: #475569;
 }
 
 /* ── 2. Global Typography ────────────────────────────────────────────────── */
@@ -187,10 +219,10 @@ div[data-testid="stExpanderDetails"] {
 
 /* ── 5. Tabs ─────────────────────────────────────────────────────────────── */
 .stTabs [data-baseweb="tab-list"] {
-  gap: 6px !important;
-  padding: 8px 8px !important;
+  gap: 8px !important;
+  padding: 8px !important;
   background: var(--cream) !important;
-  border-radius: 12px !important;
+  border-radius: var(--radius-lg) !important;
   border: 1px solid var(--sandal) !important;
   display: flex !important;
   flex-wrap: wrap !important;
@@ -199,17 +231,17 @@ div[data-testid="stExpanderDetails"] {
   height: auto !important;
 }
 .stTabs [data-baseweb="tab"] {
-  height: 36px !important;
+  height: 32px !important;
   min-width: fit-content !important;
   flex: 1 1 auto !important;
-  border-radius: 8px !important;
+  border-radius: var(--radius-sm) !important;
   background: #ffffff !important;
   border: 1px solid var(--sandal) !important;
   color: var(--steel) !important;
   font-weight: 600 !important;
   font-size: 0.82rem !important;
-  padding: 0 12px !important;
-  margin-bottom: 4px !important;
+  padding: 0 16px !important;
+  margin-bottom: 0 !important;
   transition: all 0.18s ease !important;
 }
 .stTabs [data-baseweb="tab"]:hover {
@@ -229,10 +261,10 @@ div[data-testid="stExpanderDetails"] {
 /* ── 6. Metrics ──────────────────────────────────────────────────────────── */
 div[data-testid="stMetric"] {
   background: #ffffff !important;
-  border-radius: 10px !important;
-  padding: 14px 16px !important;
+  border-radius: var(--radius-md) !important;
+  padding: 16px !important;
   border: 1px solid var(--sandal) !important;
-  border-left: 5px solid var(--vastu-green) !important;
+  border-left: 4px solid var(--vastu-green) !important;
   box-shadow: var(--shadow-card) !important;
   transition: box-shadow 0.2s !important;
 }
@@ -245,13 +277,14 @@ div[data-testid="stMetricDelta"] { font-size: 0.8rem !important; font-weight: 60
 .stButton > button {
   background: #ffffff !important;
   border: 1px solid var(--sandal) !important;
-  border-radius: 8px !important;
+  border-radius: var(--radius-sm) !important;
   color: var(--charcoal) !important;
   font-weight: 600 !important;
   font-size: 0.875rem !important;
-  padding: 0.4rem 1rem !important;
+  padding: 8px 16px !important;
   box-shadow: 0 1px 4px rgba(30,58,95,0.08) !important;
   transition: all 0.15s ease !important;
+  min-height: 36px !important;
 }
 .stButton > button:hover {
   background: var(--sandal-light) !important;
@@ -307,22 +340,34 @@ th {
   background: var(--navy) !important;
   color: #ffffff !important;
   font-weight: 700 !important;
-  padding: 8px 10px !important;
+  padding: 8px 12px !important;
   position: sticky !important; top: 0 !important; z-index: 1 !important;
 }
-td { padding: 7px 10px !important; border-bottom: 1px solid var(--cream) !important; color: var(--charcoal) !important; }
+td { padding: 8px 12px !important; border-bottom: 1px solid var(--cream) !important; color: var(--charcoal) !important; }
 tr:nth-child(even) td { background: var(--ivory-deep) !important; }
 tr:hover td { background: var(--sandal-light) !important; }
 
 /* ── 10. Info / Warning / Success / Error boxes ─────────────────────────── */
 div[data-testid="stAlert"] {
-  border-radius: 10px !important;
+  border-radius: var(--radius-md) !important;
   border-left-width: 4px !important;
   font-size: 0.875rem !important;
+  padding: 12px 16px !important;
+  margin-bottom: 8px !important;
+}
+/* Info — calm blue */
+div[data-testid="stAlert"][data-baseweb="notification"] {
+  border-left-color: var(--status-info-bdr) !important;
+}
+/* Soft colour overlays per type by targeting the icon wrapper colour */
+div[data-testid="stAlert"] > div:first-child {
+  font-size: 0.875rem !important;
+  line-height: 1.55 !important;
 }
 
 /* ── 11. Dividers ────────────────────────────────────────────────────────── */
-hr { border-color: var(--sandal) !important; border-width: 1px 0 0 0 !important; margin: 1rem 0 !important; }
+hr { border-color: var(--sandal) !important; border-width: 1px 0 0 0 !important; margin: 16px 0 !important; }
+[data-testid="stDivider"] { margin: 12px 0 !important; }
 
 /* ── 12. Scrollbars (webkit) ─────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -330,20 +375,128 @@ hr { border-color: var(--sandal) !important; border-width: 1px 0 0 0 !important;
 ::-webkit-scrollbar-thumb { background: var(--sandal); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--steel-light); }
 
-/* ── 13. Mobile responsive ───────────────────────────────────────────────── */
+/* ── 13. Streamlit element-level spacing tightening ─────────────────────── */
+/* Reduce natural Streamlit vertical whitespace between blocks */
+.main .block-container > div > div > div > div[data-testid="stVerticalBlock"] {
+  gap: 0 !important;
+}
+div[data-testid="stVerticalBlock"] > div[data-testid="element-container"] {
+  padding-bottom: 4px !important;
+}
+/* Caption / small text compact */
+div[data-testid="stCaptionContainer"] {
+  margin-top: 2px !important;
+  margin-bottom: 4px !important;
+}
+/* Remove extra top gap on first element per page */
+section.main > div > div > div:first-child { margin-top: 0 !important; }
+
+/* ── 14. Utility / Helper Classes — Vastu Design Tokens ─────────────────── */
+/* Section title label */
+.pps-section-title {
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.09em !important;
+  color: var(--steel) !important;
+  padding: 8px 0 4px 0 !important;
+  border-bottom: 1px solid var(--cream) !important;
+  margin-bottom: 8px !important;
+  display: block !important;
+}
+/* Consistent status badges */
+.pps-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 3px 10px !important;
+  border-radius: 20px !important;
+  font-size: 0.71rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.03em !important;
+  line-height: 1.4 !important;
+  white-space: nowrap !important;
+}
+.pps-badge-success { background: var(--status-success-bg) !important; color: var(--status-success-txt) !important; border: 1px solid #bbf7d0 !important; }
+.pps-badge-warning { background: var(--status-warning-bg) !important; color: var(--status-warning-txt) !important; border: 1px solid #fde68a !important; }
+.pps-badge-error   { background: var(--status-error-bg)   !important; color: var(--status-error-txt)   !important; border: 1px solid #fecdd3 !important; }
+.pps-badge-info    { background: var(--status-info-bg)    !important; color: var(--status-info-txt)    !important; border: 1px solid #bfdbfe !important; }
+.pps-badge-neutral { background: var(--status-neutral-bg) !important; color: var(--status-neutral-txt) !important; border: 1px solid #e2e8f0 !important; }
+.pps-badge-gold    { background: var(--vastu-gold-lt)      !important; color: var(--vastu-earth)        !important; border: 1px solid var(--sandal) !important; }
+
+/* KPI summary card (inline HTML cards) */
+.pps-kpi-card {
+  background: #ffffff !important;
+  border: 1px solid var(--sandal) !important;
+  border-left: 4px solid var(--vastu-green) !important;
+  border-radius: var(--radius-md) !important;
+  padding: 16px !important;
+  box-shadow: var(--shadow-card) !important;
+}
+.pps-kpi-card.gold { border-left-color: var(--vastu-gold) !important; }
+.pps-kpi-card.fire { border-left-color: var(--vastu-fire) !important; }
+.pps-kpi-label {
+  font-size: 0.71rem !important; font-weight: 600 !important;
+  color: var(--steel) !important; text-transform: uppercase !important;
+  letter-spacing: 0.05em !important; margin-bottom: 4px !important;
+}
+.pps-kpi-value {
+  font-size: 1.35rem !important; font-weight: 800 !important;
+  color: var(--navy) !important; line-height: 1.2 !important;
+}
+.pps-kpi-delta {
+  font-size: 0.78rem !important; font-weight: 600 !important; margin-top: 4px !important;
+}
+
+/* Page header (dark navy gradient) */
+.pps-page-header {
+  background: linear-gradient(135deg, var(--navy) 0%, #0f2744 100%) !important;
+  border-radius: var(--radius-md) !important;
+  padding: 16px 24px !important;
+  margin-bottom: 16px !important;
+  border-bottom: 2px solid var(--vastu-gold) !important;
+  box-shadow: 0 4px 16px rgba(30,58,95,0.25) !important;
+}
+
+/* Compact table override */
+.pps-compact-table table { font-size: 0.79rem !important; }
+.pps-compact-table th    { padding: 6px 10px !important; font-size: 0.75rem !important; }
+.pps-compact-table td    { padding: 6px 10px !important; }
+
+/* Card grid: auto-fit 2/4 column layouts on grid */
+.pps-card-grid-2 { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 16px !important; }
+.pps-card-grid-4 { display: grid !important; grid-template-columns: repeat(4, 1fr) !important; gap: 16px !important; }
+
+/* ── 15. Mobile responsive ───────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .pps-card-grid-4 { grid-template-columns: repeat(2, 1fr) !important; }
+}
 @media (max-width: 768px) {
-  .main .block-container { padding: 0.4rem !important; }
-  h1, .stMarkdown h1 { font-size: 1.2rem !important; }
+  .main .block-container {
+    padding: 8px !important;
+  }
+  h1, .stMarkdown h1 { font-size: 1.2rem !important; line-height: 1.35 !important; }
   h2, .stMarkdown h2 { font-size: 1.0rem !important; }
-  div[data-testid="stMetric"] { padding: 10px 12px !important; }
-  div[data-testid="stMetricValue"] { font-size: 1.15rem !important; }
-  .stTabs [data-baseweb="tab"] { font-size: 0.73rem !important; padding: 0 7px !important; height: 30px !important; }
-  .stButton > button { font-size: 0.8rem !important; padding: 0.3rem 0.7rem !important; }
-  table { font-size: 0.72rem !important; }
+  h3, .stMarkdown h3 { font-size: 0.92rem !important; }
+  div[data-testid="stMetric"] {
+    padding: 12px !important;
+    min-width: 0 !important;
+  }
+  div[data-testid="stMetricValue"] { font-size: 1.1rem !important; }
+  div[data-testid="stMetricLabel"] { font-size: 0.72rem !important; }
+  .stTabs [data-baseweb="tab-list"] { gap: 4px !important; padding: 6px !important; }
+  .stTabs [data-baseweb="tab"] { font-size: 0.73rem !important; padding: 0 8px !important; height: 28px !important; }
+  .stButton > button { font-size: 0.8rem !important; padding: 8px 12px !important; min-height: 32px !important; }
+  table { font-size: 0.75rem !important; }
+  th { padding: 6px 8px !important; }
+  td { padding: 6px 8px !important; }
   div[data-testid="stDataFrame"] { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
+  .pps-card-grid-2 { grid-template-columns: 1fr !important; }
+  .pps-card-grid-4 { grid-template-columns: 1fr !important; }
 }
 @media (max-width: 480px) {
-  .main .block-container { padding: 0.25rem !important; }
+  .main .block-container { padding: 4px !important; }
+  h1, .stMarkdown h1 { font-size: 1.05rem !important; }
+  div[data-testid="stMetric"] { padding: 10px 8px !important; }
 }
 </style>
 """, unsafe_allow_html=True)
