@@ -1,4 +1,15 @@
+try:
+    from india_localization import format_inr, format_inr_short, format_date, format_datetime_ist, get_financial_year, get_fy_quarter
+except ImportError:
+    import sys
+    import os
+    sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+    try:
+        from india_localization import format_inr, format_inr_short, format_date, format_datetime_ist, get_financial_year, get_fy_quarter
+    except:
+        pass
 import streamlit as st
+from ui_badges import display_badge
 import pandas as pd
 import numpy as np
 import urllib.parse
@@ -9,6 +20,13 @@ from source_master import SOURCE_CATEGORIES, INDIAN_REFINERIES, IMPORT_TERMINALS
 from feasibility_engine import get_feasibility_assessment, get_comparison_table, DESTINATION_COORDS, get_live_prices, save_live_prices
 import os
 import sales_workspace
+
+# --- COMMAND INTELLIGENCE SYSTEM ---
+from command_intel import price_prediction, import_cost_model, supply_chain
+from command_intel import demand_analytics, financial_intel, gst_legal_monitor
+from command_intel import risk_scoring, alert_system, strategy_panel
+from command_intel import historical_revisions, manual_entry, change_log, bug_tracker
+import api_dashboard
 
 
 # --- MOCK CUSTOMER DATABASE (For "Search by Name" feature) ---
@@ -44,145 +62,145 @@ st.set_page_config(page_title="Logistics Pricing AI", page_icon="🚛", layout="
 
 # Custom Styling
 st.markdown("""
-    <style>
-    /* =================================================================================
-       VASTU-COMPLIANT 3D GLASSMORPHISM DESIGN SYSTEM
-       North (Green): Money/Opportunity | South-East (Fire): Cash Flow | West (Blue): Gains
-       ================================================================================= */
-    
-    :root {
-        /* VASTU PALETTE */
-        --vastu-north-green: #059669;  /* Growth/Pricing */
-        --vastu-se-fire: #ea580c;      /* Action/Sales/Fire */
-        --vastu-west-blue: #2563eb;    /* Gains/Logistics */
-        --vastu-sw-earth: #ca8a04;     /* Stability/Store */
-        
-        /* BACKGROUNDS */
-        --bg-main: #f8fafc;
-        --glass-bg: rgba(255, 255, 255, 0.7);
-        --glass-border: rgba(255, 255, 255, 0.4);
-        
-        /* SHADOWS (Deep 3D) */
-        --shadow-3d: 
-            8px 8px 16px rgba(166, 171, 189, 0.5), 
-            -8px -8px 16px rgba(255, 255, 255, 0.8);
-        --shadow-inner: 
-            inset 4px 4px 8px rgba(166, 171, 189, 0.2), 
-            inset -4px -4px 8px rgba(255, 255, 255, 0.8);
-    }
+<style>
+/* =================================================================================
+VASTU-COMPLIANT 3D GLASSMORPHISM DESIGN SYSTEM
+North (Green): Money/Opportunity | South-East (Fire): Cash Flow | West (Blue): Gains
+================================================================================= */
 
-    /* GLOBAL APP STYLE */
-    .stApp {
-        background: radial-gradient(circle at top left, #f1f5f9, #e2e8f0);
-    }
+:root {
+/* VASTU PALETTE */
+--vastu-north-green: #059669;  /* Growth/Pricing */
+--vastu-se-fire: #ea580c;      /* Action/Sales/Fire */
+--vastu-west-blue: #2563eb;    /* Gains/Logistics */
+--vastu-sw-earth: #ca8a04;     /* Stability/Store */
 
-    /* ---------------------------------------------------------------------------------
-       3D GLASSMORPHIC CARDS
-       --------------------------------------------------------------------------------- */
-    .stCard, div[data-testid="stExpander"], div[data-testid="stForm"] {
-        background: var(--glass-bg);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border-radius: 20px;
-        border: 1px solid var(--glass-border);
-        box-shadow: var(--shadow-3d);
-        padding: 20px;
-        margin-bottom: 20px;
-        transition: transform 0.3s ease;
-    }
-    
-    /* ---------------------------------------------------------------------------------
-       3D TABS - FIXED WRAPPING (No Horizontal Scroll)
-       --------------------------------------------------------------------------------- */
-    .stTabs [data-baseweb="tab-list"] {
-        gap: 8px;
-        padding: 10px;
-        background: rgba(255, 255, 255, 0.3);
-        border-radius: 20px;
-        box-shadow: inset 2px 2px 5px rgba(0,0,0,0.05);
-        display: flex;
-        flex-wrap: wrap !important;     /* FORCE WRAP */
-        white-space: normal !important; /* ALLOW TEXT WRAP */
-        overflow: visible !important;   /* NO SCROLL */
-        height: auto !important;
-    }
+/* BACKGROUNDS */
+--bg-main: #f8fafc;
+--glass-bg: rgba(255, 255, 255, 0.7);
+--glass-border: rgba(255, 255, 255, 0.4);
 
-    .stTabs [data-baseweb="tab"] {
-        height: 40px;                   /* Smaller height for compact rows */
-        min-width: fit-content;
-        flex: 1 1 auto;                 /* Grow to fill space */
-        border-radius: 10px;            /* Pill shape */
-        background-color: #e2e8f0;
-        box-shadow: var(--shadow-3d);
-        border: 1px solid white;
-        color: #64748b;
-        font-weight: 700;
-        padding: 0 15px;
-        margin-bottom: 5px;             /* Space between wrapped rows */
-        transition: all 0.2s ease;
-    }
+/* SHADOWS (Deep 3D) */
+--shadow-3d: 
+8px 8px 16px rgba(166, 171, 189, 0.5), 
+-8px -8px 16px rgba(255, 255, 255, 0.8);
+--shadow-inner: 
+inset 4px 4px 8px rgba(166, 171, 189, 0.2), 
+inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+}
 
-    .stTabs [data-baseweb="tab"]:hover {
-        transform: translateY(-3px);
-        color: var(--vastu-west-blue);
-    }
+/* GLOBAL APP STYLE */
+.stApp {
+background: radial-gradient(circle at top left, #f1f5f9, #e2e8f0);
+}
 
-    /* ACTIVE TAB - GLOWING GRADIENT */
-    .stTabs [data-baseweb="tab"][aria-selected="true"] {
-        background: linear-gradient(135deg, #1e40af, #3b82f6);
-        color: white !important;
-        box-shadow: 
-            0 10px 20px rgba(37, 99, 235, 0.3),
-            inset 0 0 0 1px rgba(255,255,255,0.3);
-        transform: scale(1.05);
-    }
+/* ---------------------------------------------------------------------------------
+3D GLASSMORPHIC CARDS
+--------------------------------------------------------------------------------- */
+.stCard, div[data-testid="stExpander"], div[data-testid="stForm"] {
+background: var(--glass-bg);
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+border-radius: 20px;
+border: 1px solid var(--glass-border);
+box-shadow: var(--shadow-3d);
+padding: 20px;
+margin-bottom: 20px;
+transition: transform 0.3s ease;
+}
 
-    /* ---------------------------------------------------------------------------------
-       VASTU COLOR METRICS (North/Money = Green)
-       --------------------------------------------------------------------------------- */
-    div[data-testid="stMetric"] {
-        background: linear-gradient(145deg, #ffffff, #f0fdf4);
-        border-radius: 15px;
-        padding: 15px;
-        box-shadow: var(--shadow-3d);
-        border-left: 6px solid var(--vastu-north-green);
-    }
-    
-    div[data-testid="stMetricLabel"] { color: #64748b; font-weight: 600; }
-    div[data-testid="stMetricValue"] { 
-        color: var(--vastu-north-green); 
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-    }
+/* ---------------------------------------------------------------------------------
+3D TABS - FIXED WRAPPING (No Horizontal Scroll)
+--------------------------------------------------------------------------------- */
+.stTabs [data-baseweb="tab-list"] {
+gap: 8px;
+padding: 10px;
+background: rgba(255, 255, 255, 0.3);
+border-radius: 20px;
+box-shadow: inset 2px 2px 5px rgba(0,0,0,0.05);
+display: flex;
+flex-wrap: wrap !important;     /* FORCE WRAP */
+white-space: normal !important; /* ALLOW TEXT WRAP */
+overflow: visible !important;   /* NO SCROLL */
+height: auto !important;
+}
 
-    /* ---------------------------------------------------------------------------------
-       BUTTONS - PRESSABLE 3D
-       --------------------------------------------------------------------------------- */
-    .stButton button {
-        background: linear-gradient(145deg, #ffffff, #e2e8f0);
-        box-shadow: var(--shadow-3d);
-        border-radius: 12px;
-        color: #1e293b;
-        font-weight: 700;
-        border: 1px solid rgba(255,255,255,0.8);
-    }
-    
-    .stButton button:hover {
-        transform: translateY(-2px);
-    }
-    
-    .stButton button:active {
-        box-shadow: var(--shadow-inner);
-        transform: translateY(2px);
-    }
+.stTabs [data-baseweb="tab"] {
+height: 40px;                   /* Smaller height for compact rows */
+min-width: fit-content;
+flex: 1 1 auto;                 /* Grow to fill space */
+border-radius: 10px;            /* Pill shape */
+background-color: #e2e8f0;
+box-shadow: var(--shadow-3d);
+border: 1px solid white;
+color: #64748b;
+font-weight: 700;
+padding: 0 15px;
+margin-bottom: 5px;             /* Space between wrapped rows */
+transition: all 0.2s ease;
+}
 
-    /* Primary Action - Fire/Sales (South-East) */
-    .stButton button[kind="primary"] {
-        background: linear-gradient(135deg, #ea580c, #f97316);
-        color: white;
-        box-shadow: 0 10px 20px rgba(234, 88, 12, 0.4);
-        border: none;
-    }
-    </style>
+.stTabs [data-baseweb="tab"]:hover {
+transform: translateY(-3px);
+color: var(--vastu-west-blue);
+}
+
+/* ACTIVE TAB - GLOWING GRADIENT */
+.stTabs [data-baseweb="tab"][aria-selected="true"] {
+background: linear-gradient(135deg, #1e40af, #3b82f6);
+color: white !important;
+box-shadow: 
+0 10px 20px rgba(37, 99, 235, 0.3),
+inset 0 0 0 1px rgba(255,255,255,0.3);
+transform: scale(1.05);
+}
+
+/* ---------------------------------------------------------------------------------
+VASTU COLOR METRICS (North/Money = Green)
+--------------------------------------------------------------------------------- */
+div[data-testid="stMetric"] {
+background: linear-gradient(145deg, #ffffff, #f0fdf4);
+border-radius: 15px;
+padding: 15px;
+box-shadow: var(--shadow-3d);
+border-left: 6px solid var(--vastu-north-green);
+}
+
+div[data-testid="stMetricLabel"] { color: #64748b; font-weight: 600; }
+div[data-testid="stMetricValue"] { 
+color: var(--vastu-north-green); 
+text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* ---------------------------------------------------------------------------------
+BUTTONS - PRESSABLE 3D
+--------------------------------------------------------------------------------- */
+.stButton button {
+background: linear-gradient(145deg, #ffffff, #e2e8f0);
+box-shadow: var(--shadow-3d);
+border-radius: 12px;
+color: #1e293b;
+font-weight: 700;
+border: 1px solid rgba(255,255,255,0.8);
+}
+
+.stButton button:hover {
+transform: translateY(-2px);
+}
+
+.stButton button:active {
+box-shadow: var(--shadow-inner);
+transform: translateY(2px);
+}
+
+/* Primary Action - Fire/Sales (South-East) */
+.stButton button[kind="primary"] {
+background: linear-gradient(135deg, #ea580c, #f97316);
+color: white;
+box-shadow: 0 10px 20px rgba(234, 88, 12, 0.4);
+border: none;
+}
+</style>
 """, unsafe_allow_html=True)
 
 # Import Sales Calendar Helper Functions
@@ -209,24 +227,24 @@ mkt = get_cached_market_data(api_active)
 
 st.markdown(f"""
 <div style="
-    background-color: #0f172a; 
-    color: #cbd5e1; 
-    padding: 8px 15px; 
-    font-family: 'Inter', sans-serif; 
-    font-size: 0.85rem; 
-    border-bottom: 1px solid #1e293b;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+background-color: #0f172a; 
+color: #cbd5e1; 
+padding: 8px 15px; 
+font-family: 'Inter', sans-serif; 
+font-size: 0.85rem; 
+border-bottom: 1px solid #1e293b;
+display: flex;
+justify-content: space-between;
+align-items: center;
 ">
-    <div style="display:flex; gap: 20px;">
-        <span>🛢️ <b>Brent:</b> {mkt['brent']['value']} <span style="font-size:0.75rem; color:#94a3b8;">(7d: {mkt['brent']['value_7d']})</span> <span style="color:{mkt['brent']['color']}">{mkt['brent']['change']}</span></span>
-        <span>🛢️ <b>WTI:</b> {mkt['wti']['value']} <span style="font-size:0.75rem; color:#94a3b8;">(7d: {mkt['wti']['value_7d']})</span> <span style="color:{mkt['wti']['color']}">{mkt['wti']['change']}</span></span>
-        <span>💵 <b>USD/INR:</b> {mkt['usdinr']['value']} <span style="font-size:0.75rem; color:#94a3b8;">(7d: {mkt['usdinr']['value_7d']})</span> <span style="color:{mkt['usdinr']['color']}">{mkt['usdinr']['change']}</span></span>
-    </div>
-    <div style="font-size: 0.75rem; color: #64748b;">
-        ⏱️ Live as of {mkt['timestamp']}
-    </div>
+<div style="display:flex; gap: 20px;">
+<span>🛢️ <b>Brent:</b> {mkt['brent']['value']} <span style="font-size:0.75rem; color:#94a3b8;">(7d: {mkt['brent']['value_7d']})</span> <span style="color:{mkt['brent']['color']}">{mkt['brent']['change']}</span></span>
+<span>🛢️ <b>WTI:</b> {mkt['wti']['value']} <span style="font-size:0.75rem; color:#94a3b8;">(7d: {mkt['wti']['value_7d']})</span> <span style="color:{mkt['wti']['color']}">{mkt['wti']['change']}</span></span>
+<span>💵 <b>USD/INR:</b> {mkt['usdinr']['value']} <span style="font-size:0.75rem; color:#94a3b8;">(7d: {mkt['usdinr']['value_7d']})</span> <span style="color:{mkt['usdinr']['color']}">{mkt['usdinr']['change']}</span></span>
+</div>
+<div style="font-size: 0.75rem; color: #64748b;">
+⏱️ Live as of {mkt['timestamp']}
+</div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -235,35 +253,35 @@ st.markdown(f"""
 # Header Section (Enterprise 3D Style - Deep Steel Blue)
 st.markdown("""
 <div style="
-    background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
-    padding: 12px 25px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 25px;
-    box-shadow: 0 10px 25px -5px rgba(30, 58, 138, 0.4);
-    border-bottom: 2px solid #3b82f6;
+background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+padding: 12px 25px;
+border-radius: 8px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-bottom: 25px;
+box-shadow: 0 10px 25px -5px rgba(30, 58, 138, 0.4);
+border-bottom: 2px solid #3b82f6;
 ">
-    <div style="display: flex; align-items: center; gap: 15px;">
-         <span style="font-size: 1.4rem; font-weight: 800; background: -webkit-linear-gradient(eee, white); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-            PPS Anantams
-         </span>
-         <span style="border-left: 1px solid rgba(255,255,255,0.2); height: 25px;"></span>
-         <div style="display: flex; flex-direction: column;">
-            <span style="font-size: 0.9rem; color: #e0e7ff; font-weight: 500; letter-spacing: 0.5px;">LANDING COST SYSTEM</span>
-            <span style="font-size: 0.65rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px;">Enterprise Edition V2.0</span>
-         </div>
-    </div>
-    <div style="text-align: right; display: flex; gap: 20px; align-items: center;">
-        <div style="background: rgba(255,255,255,0.1); padding: 5px 12px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
-            <span style="color: #cbd5e1; font-size: 0.75rem;">📍 Vadodara HQ</span>
-        </div>
-        <div style="text-align: right;">
-            <div style="font-size: 0.8rem; color: #e2e8f0; font-weight: 600;">GST: 24AAHCV1611L2ZD</div>
-            <div style="font-size: 0.7rem; color: #64748b;">Auth: Director Finance</div>
-        </div>
-    </div>
+<div style="display: flex; align-items: center; gap: 15px;">
+<span style="font-size: 1.4rem; font-weight: 800; background: -webkit-linear-gradient(eee, white); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+PPS Anantams
+</span>
+<span style="border-left: 1px solid rgba(255,255,255,0.2); height: 25px;"></span>
+<div style="display: flex; flex-direction: column;">
+<span style="font-size: 0.9rem; color: #e0e7ff; font-weight: 500; letter-spacing: 0.5px;">LANDING COST SYSTEM</span>
+<span style="font-size: 0.65rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px;">Enterprise Edition V2.0</span>
+</div>
+</div>
+<div style="text-align: right; display: flex; gap: 20px; align-items: center;">
+<div style="background: rgba(255,255,255,0.1); padding: 5px 12px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+<span style="color: #cbd5e1; font-size: 0.75rem;">📍 Vadodara HQ</span>
+</div>
+<div style="text-align: right;">
+<div style="font-size: 0.8rem; color: #e2e8f0; font-weight: 600;">GST: 24AAHCV1611L2ZD</div>
+<div style="font-size: 0.7rem; color: #64748b;">Auth: Director Finance</div>
+</div>
+</div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -291,39 +309,39 @@ if optimizer is None:
 # CSS for Premium Sidebar
 st.markdown("""
 <style>
-    section[data-testid="stSidebar"] {
-        background-color: #ffffff;
-        box-shadow: 2px 0 15px rgba(0,0,0,0.05);
-    }
-    .nav-header {
-        font-size: 0.75rem;
-        font-weight: 700;
-        color: #94a3b8;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-top: 20px;
-        margin-bottom: 10px;
-        padding-left: 10px;
-    }
-    div.row-widget.stRadio > div {
-        gap: 5px;
-    }
-    div.row-widget.stRadio > div > label {
-        background-color: transparent;
-        border: none;
-        margin-bottom: 2px;
-        padding: 8px 10px;
-        border-radius: 8px;
-        transition: all 0.2s;
-    }
-    div.row-widget.stRadio > div > label:hover {
-        background-color: #f1f5f9;
-    }
-    div.row-widget.stRadio > div > label[data-baseweb="radio"] {
-         background-color: #eff6ff;
-         color: #1d4ed8;
-         font-weight: 600;
-    }
+section[data-testid="stSidebar"] {
+background-color: #ffffff;
+box-shadow: 2px 0 15px rgba(0,0,0,0.05);
+}
+.nav-header {
+font-size: 0.75rem;
+font-weight: 700;
+color: #94a3b8;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+margin-top: 20px;
+margin-bottom: 10px;
+padding-left: 10px;
+}
+div.row-widget.stRadio > div {
+gap: 5px;
+}
+div.row-widget.stRadio > div > label {
+background-color: transparent;
+border: none;
+margin-bottom: 2px;
+padding: 8px 10px;
+border-radius: 8px;
+transition: all 0.2s;
+}
+div.row-widget.stRadio > div > label:hover {
+background-color: #f1f5f9;
+}
+div.row-widget.stRadio > div > label[data-baseweb="radio"] {
+background-color: #eff6ff;
+color: #1d4ed8;
+font-weight: 600;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -334,26 +352,61 @@ with st.sidebar:
     
     st.markdown('<div class="nav-header">PLAN & SELL</div>', unsafe_allow_html=True)
     
-    # We use a single radio for state, but simulate groups visually
-    # Because Streamlit radio is one block, we list them in order
-    
-    nav_options = [
-        "🧮 Pricing Calculator",
+    # Single combined radio for all navigation, grouped by Department
+    all_nav_options = [
+        "─── 🏢 SALES & REVENUE ───",
         "💼 Sales Workspace",
-        "🏭 Feasibility",
         "🎯 CRM & Tasks",
         "📅 Sales Calendar",
-        "📋 Source Directory",
-        "🛠️ Data Manager",
+        "🧮 Pricing Calculator",
         "🚨 SPECIAL PRICE (SOS)",
+        "📋 Source Directory",
+        
+        "─── 🏢 OPERATIONS & PROCUREMENT ───",
+        "🏭 Feasibility",
+        "📦 Import Cost Model",
+        "🚢 Supply Chain",
+        "🛠️ Data Manager",
+
+        "─── 🏢 FINANCE & PROFITABILITY ───",
+        "💰 Financial Intelligence",
+        "👷 Demand Analytics",
         "📤 Reports",
+
+        "─── 🏢 LEGAL & COMPLIANCE ───",
+        "🛡️ GST & Legal Monitor",
+        "⚡ Risk Scoring",
+
+        "─── 🏢 STRATEGY & INTELLIGENCE ───",
+        "🔮 Price Prediction",
+        "⏳ Past Predictions",
+        "📝 Manual Price Entry",
+        "🎯 Strategy Panel",
+        "🔔 Alert System",
+
+        "─── 🏢 TECHNOLOGY & SYSTEMS ───",
+        "🌐 API Dashboard",
+        "⚙️ Dev & System Activity",
+        "🔔 Change Notifications",
+        "🐞 Bug Tracker",
         "👥 Ecosystem Management",
+        "⚙️ Settings",
+
+        "─── 🏢 KNOWLEDGE & SUPPORT ───",
+        "🔄 AI Fallback Engine",
+        "🧠 AI Dashboard Assistant",
         "🤖 AI Assistant",
         "📚 Knowledge Base",
-        "⚙️ Settings"
+        "🏛️ Business Intelligence",
+
+        "─── 🏢 MARKET INTELLIGENCE ───",
+        "📰 News Intelligence",
+        "🕵️ Competitor Intelligence",
+        "🔭 Contractor OSINT",
+        "🛣️ Road Budget & Demand",
     ]
     
-    selected_page = st.radio("Navigate", nav_options, label_visibility="collapsed")
+    selected_page = st.radio("Navigate", all_nav_options, label_visibility="collapsed")
     
     st.divider()
     st.caption("Logged in as: Sales Manager")
@@ -380,6 +433,7 @@ tab12_sos = st.empty()
 
 # Main Layout: 3 Columns (Selection | Analysis | Detailed Slip)
 if selected_page == "🧮 Pricing Calculator":
+    display_badge("calculated")
     col_left, col_mid, col_right = st.columns([1.2, 1.3, 2.0])
 
     # --- COLUMN 1: SELECTION PANEL & SALES CONTEXT ---
@@ -435,17 +489,17 @@ if selected_page == "🧮 Pricing Calculator":
             
             # --- SALES CARD ---
             st.markdown(f"""
-            <div style="border: 1px solid #ddd; border-radius: 8px; padding: 10px; background-color: #fff; margin: 10px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-                <div style="font-weight: bold; color: #444; margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 3px;">
-                    🗣️ Sales Insights for {selected_city}
-                </div>
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                    <span style="font-size: 0.85em; color: #666;">Season:</span>
-                    <span style="background-color: {season_info['color']}; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.8em; font-weight: bold;">
-                        {season_info['label'].replace('✅ ', '').replace('❌ ', '').replace('⚠️ ', '')}
-                    </span>
-                </div>
-            """, unsafe_allow_html=True)
+<div style="border: 1px solid #ddd; border-radius: 8px; padding: 10px; background-color: #fff; margin: 10px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+<div style="font-weight: bold; color: #444; margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 3px;">
+🗣️ Sales Insights for {selected_city}
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+<span style="font-size: 0.85em; color: #666;">Season:</span>
+<span style="background-color: {season_info['color']}; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.8em; font-weight: bold;">
+{season_info['label'].replace('✅ ', '').replace('❌ ', '').replace('⚠️ ', '')}
+</span>
+</div>
+""", unsafe_allow_html=True)
 
             # Holidays Integration
             if holidays:
@@ -461,10 +515,10 @@ if selected_page == "🧮 Pricing Calculator":
                 
                 if holiday_msg:
                     st.markdown(f"""
-                    <div style="background-color: #fce4ec; color: #c2185b; padding: 6px; border-radius: 4px; font-size: 0.8em; margin-bottom: 5px;">
-                        {holiday_msg}
-                    </div>
-                    """, unsafe_allow_html=True)
+<div style="background-color: #fce4ec; color: #c2185b; padding: 6px; border-radius: 4px; font-size: 0.8em; margin-bottom: 5px;">
+{holiday_msg}
+</div>
+""", unsafe_allow_html=True)
             else:
                 st.caption("No major holidays this month.")
             
@@ -510,7 +564,7 @@ if selected_page == "🧮 Pricing Calculator":
                 drum = assessment.get('drum_direct')
                 if drum:
                     price_options.append({
-                        'label': f"🛢️ {drum['source']} - ₹{drum['landed_cost']:,.0f}",
+                        'label': f"🛢️ {drum['source']} - {format_inr(drum['landed_cost'])}",
                         'source': drum['source'],
                         'price': drum['landed_cost'],
                         'base': drum.get('base_price', 0),
@@ -519,19 +573,19 @@ if selected_page == "🧮 Pricing Calculator":
                         'type': 'Drum'
                     })
                     st.markdown(f'''
-                    <div style="background-color:#FADBD8; padding:10px; border-radius:5px; margin-bottom:5px; border-left:5px solid #C0392B;">
-                        <b style="font-size:1.1em;">{drum['source']}</b><br>
-                        <span style="font-weight:bold; font-size:1.3em; color:#C0392B;">🛢️ ₹ {drum['landed_cost']:,.0f} PMT</span>
-                        <small style="color:#666;"> ({drum['distance_km']:.0f} km)</small>
-                    </div>
-                    ''', unsafe_allow_html=True)
+<div style="background-color:#FADBD8; padding:10px; border-radius:5px; margin-bottom:5px; border-left:5px solid #C0392B;">
+<b style="font-size:1.1em;">{drum['source']}</b><br>
+<span style="font-weight:bold; font-size:1.3em; color:#C0392B;">🛢️ {format_inr(drum['landed_cost'])} PMT</span>
+<small style="color:#666;"> ({drum['distance_km']:.0f} km)</small>
+</div>
+''', unsafe_allow_html=True)
                 
                 # --- 2. LOCAL DECANTER BULK ---
                 st.markdown("#### 🔄 Decanter Bulk")
                 dec = assessment.get('local_decanter')
                 if dec:
                     price_options.append({
-                        'label': f"🔄 {dec['source']} - ₹{dec['landed_cost']:,.0f}",
+                        'label': f"🔄 {dec['source']} - {format_inr(dec['landed_cost'])}",
                         'source': dec['source'],
                         'price': dec['landed_cost'],
                         'base': dec.get('drum_base_price', 0),
@@ -540,18 +594,18 @@ if selected_page == "🧮 Pricing Calculator":
                         'type': 'Decanter Bulk'
                     })
                     st.markdown(f'''
-                    <div style="background-color:#FCF3CF; padding:8px; border-radius:5px; margin-bottom:5px; border-left:5px solid #9A7D0A;">
-                        <small><b>{dec['source']}</b></small><br>
-                        <small>From: {dec.get('drum_source', 'N/A')} | Conv: ₹{dec.get('conversion_cost', 500)}</small><br>
-                        <span style="font-weight:bold; font-size:1.1em; color:#9A7D0A;">🟢 ₹ {dec['landed_cost']:,.0f} PMT</span>
-                    </div>
-                    ''', unsafe_allow_html=True)
+<div style="background-color:#FCF3CF; padding:8px; border-radius:5px; margin-bottom:5px; border-left:5px solid #9A7D0A;">
+<small><b>{dec['source']}</b></small><br>
+<small>From: {dec.get('drum_source', 'N/A')} | Conv: {dec.get('conversion_cost', 500)}</small><br>
+<span style="font-weight:bold; font-size:1.1em; color:#9A7D0A;">🟢 {format_inr(dec['landed_cost'])} PMT</span>
+</div>
+''', unsafe_allow_html=True)
                 
                 # --- 3. IMPORT BULK ---
                 st.markdown("#### 🚢 Import Bulk")
                 for i, opt in enumerate(assessment['imports'][:2]):
                     price_options.append({
-                        'label': f"🚢 {opt['source']} - ₹{opt['landed_cost']:,.0f}",
+                        'label': f"🚢 {opt['source']} - {format_inr(opt['landed_cost'])}",
                         'source': opt['source'],
                         'price': opt['landed_cost'],
                         'base': opt.get('base_price', 0),
@@ -562,18 +616,18 @@ if selected_page == "🧮 Pricing Calculator":
                     bg_color = "#D6EAF8" if i == 0 else "#EBF5FB"
                     border = "#21618C" if i == 0 else "#AED6F1"
                     st.markdown(f'''
-                    <div style="background-color:{bg_color}; padding:8px; border-radius:5px; margin-bottom:5px; border-left:5px solid {border};">
-                        <small><b>{opt['source']}</b></small><br>
-                        <span style="font-weight:bold; font-size:1.1em; color:{border};">₹ {opt['landed_cost']:,.0f} PMT</span>
-                        <small style="color:#666;"> ({opt['distance_km']:.0f} km)</small>
-                    </div>
-                    ''', unsafe_allow_html=True)
+<div style="background-color:{bg_color}; padding:8px; border-radius:5px; margin-bottom:5px; border-left:5px solid {border};">
+<small><b>{opt['source']}</b></small><br>
+<span style="font-weight:bold; font-size:1.1em; color:{border};">{format_inr(opt['landed_cost'])} PMT</span>
+<small style="color:#666;"> ({opt['distance_km']:.0f} km)</small>
+</div>
+''', unsafe_allow_html=True)
                 
                 # --- 4. PSU REFINERIES (Last) ---
                 st.markdown("#### 🏭 PSU Refinery Bulk")
                 for i, opt in enumerate(assessment['refineries'][:2]):
                     price_options.append({
-                        'label': f"🏭 {opt['source']} - ₹{opt['landed_cost']:,.0f}",
+                        'label': f"🏭 {opt['source']} - {format_inr(opt['landed_cost'])}",
                         'source': opt['source'],
                         'price': opt['landed_cost'],
                         'base': opt.get('base_price', 0),
@@ -584,12 +638,12 @@ if selected_page == "🧮 Pricing Calculator":
                     bg_color = "#D4EFDF" if i == 0 else "#EAFAF1"
                     border = "#196F3D" if i == 0 else "#A9DFBF"
                     st.markdown(f'''
-                    <div style="background-color:{bg_color}; padding:8px; border-radius:5px; margin-bottom:5px; border-left:5px solid {border};">
-                        <small><b>{opt['source']}</b></small><br>
-                        <span style="font-weight:bold; font-size:1.1em; color:{border};">₹ {opt['landed_cost']:,.0f} PMT</span>
-                        <small style="color:#666;"> ({opt['distance_km']:.0f} km)</small>
-                    </div>
-                    ''', unsafe_allow_html=True)
+<div style="background-color:{bg_color}; padding:8px; border-radius:5px; margin-bottom:5px; border-left:5px solid {border};">
+<small><b>{opt['source']}</b></small><br>
+<span style="font-weight:bold; font-size:1.1em; color:{border};">{format_inr(opt['landed_cost'])} PMT</span>
+<small style="color:#666;"> ({opt['distance_km']:.0f} km)</small>
+</div>
+''', unsafe_allow_html=True)
                 
                 # --- SELECT PRICE FOR PDF ---
                 st.markdown("---")
@@ -606,7 +660,7 @@ if selected_page == "🧮 Pricing Calculator":
                 # Store in session state for PDF
                 if selected_option:
                     st.session_state['selected_price_option'] = selected_option
-                    st.success(f"✅ Selected: {selected_option['source']} @ ₹{selected_option['price']:,.0f}")
+                    st.success(f"✅ Selected: {selected_option['source']} @ {format_inr(selected_option['price'])}")
                 
                 # Set result for the right panel
                 result = {
@@ -635,11 +689,11 @@ if selected_page == "🧮 Pricing Calculator":
                         bg_color = "#EAFAF1" if idx == 0 else "#FADBD8"
                         
                         st.markdown(f"""
-                        <div style="background-color:{bg_color}; padding:8px; border-radius:5px; margin-bottom:5px; border-left: 5px solid {text_color};">
-                            <small><b>{row['source_location']}</b></small><br>
-                            <span style="color:{text_color}; font-weight:bold; font-size:1.1em;">{icon} ₹ {row['final_price']:,.0f} PMT</span>
-                        </div>
-                        """, unsafe_allow_html=True)
+<div style="background-color:{bg_color}; padding:8px; border-radius:5px; margin-bottom:5px; border-left: 5px solid {text_color};">
+<small><b>{row['source_location']}</b></small><br>
+<span style="color:{text_color}; font-weight:bold; font-size:1.1em;">{icon} {format_inr(row['final_price'])} PMT</span>
+</div>
+""", unsafe_allow_html=True)
                         
             if not result:
                 st.warning("No Data Found.")
@@ -663,10 +717,10 @@ if selected_page == "🧮 Pricing Calculator":
             
             # Header Box
             st.markdown(f"""
-            <div style="background-color:#F5B041; padding:5px; text-align:center; font-weight:bold;">
-            {load_type.upper()} ENQUIRY DETAILS (2-2-2026)
-            </div>
-            """, unsafe_allow_html=True)
+<div style="background-color:#F5B041; padding:5px; text-align:center; font-weight:bold;">
+{load_type.upper()} ENQUIRY DETAILS (2-2-2026)
+</div>
+""", unsafe_allow_html=True)
             
             # Details Table Logic using Columns
             d1, d2 = st.columns([2, 1])
@@ -685,23 +739,23 @@ if selected_page == "🧮 Pricing Calculator":
                 final_cost = best_opt.get('final_landed_cost', 0)
                 distance = best_opt.get('distance_km', 0)
                 
-                st.write(f"Basic Rate: ₹ {base_price:,.2f} PMT")
-                st.write(f"Discount: - ₹ {discount:,.2f}")
+                st.write(f"Basic Rate: {format_inr(base_price)} PMT")
+                st.write(f"Discount: - {format_inr(discount)}")
                 
                 tax_val = base_price * 0.18
-                st.write(f"GST 18%: + ₹ {tax_val:,.2f}")
+                st.write(f"GST 18%: + {format_inr(tax_val)}")
                 
                 net_start = base_price + tax_val - discount
-                st.markdown(f"**Ex-Refinery Price: ₹ {net_start:,.2f} PMT**")
+                st.markdown(f"**Ex-Refinery Price: {format_inr(net_start)} PMT**")
                 
-                st.info(f"➕ Transport: ₹ {transport:,.2f}")
+                st.info(f"➕ Transport: {format_inr(transport)}")
                 
                 # Show Mileage if available
                 if distance > 0:
                     rate_km = transport / distance if distance > 0 else 0
                     st.caption(f"📏 Distance: {distance:.0f} KM | Rate: ₹ {rate_km:.2f}/KM")
             
-                st.success(f"**FINAL LANDING COST: ₹ {final_cost:,.2f} PMT**")
+                st.success(f"**FINAL LANDING COST: {format_inr(final_cost)} PMT**")
 
             with d2:
                 st.markdown("**Terms & Conditions**")
@@ -844,7 +898,7 @@ Product: {product_name}
 Best Source: {source_name}
 Est. Distance: {distance:.0f} KM
 
-*Final Landed Rate: ₹ {final_cost:,.2f} PMT*
+*Final Landed Rate: {format_inr(final_cost)} PMT*
 
 _Terms: 100% Advance. Valid for 24 Hrs._
 """
@@ -852,12 +906,12 @@ _Terms: 100% Advance. Valid for 24 Hrs._
             wa_link = f"https://wa.me/?text={encoded_wa}"
             
             st.markdown(f"""
-            <a href="{wa_link}" target="_blank" style="text-decoration:none;">
-                <button style="width:100%; border:none; background-color:#25D366; color:white; padding:10px; border-radius:5px; margin-top:5px; font-weight:bold; cursor:pointer;">
-                    💬 Share via WhatsApp
-                </button>
-            </a>
-            """, unsafe_allow_html=True)
+<a href="{wa_link}" target="_blank" style="text-decoration:none;">
+<button style="width:100%; border:none; background-color:#25D366; color:white; padding:10px; border-radius:5px; margin-top:5px; font-weight:bold; cursor:pointer;">
+💬 Share via WhatsApp
+</button>
+</a>
+""", unsafe_allow_html=True)
         elif selected_city:
             st.info("Select configuration and click 'Calculate Cost' to see detailed information.")
         else:
@@ -865,6 +919,7 @@ _Terms: 100% Advance. Valid for 24 Hrs._
 
 # --- TAB: SALES WORKSPACE (NEW) ---
 if selected_page == "💼 Sales Workspace":
+    display_badge("historical")
     sales_workspace.render_deal_room()
 
 # --- TAB 2: SALES CALENDAR ---
@@ -902,11 +957,11 @@ if selected_page == "📅 Sales Calendar":
         current_season = get_season_status(cal_city, today.month)
         
         st.markdown(f"""
-        <div style="background-color:{current_season['color']}; color:white; padding:15px; border-radius:10px; text-align:center;">
-            <b style="font-size:1.3em;">Current Status</b><br>
-            <span style="font-size:1.5em;">{current_season['label']}</span>
-        </div>
-        """, unsafe_allow_html=True)
+<div style="background-color:{current_season['color']}; color:white; padding:15px; border-radius:10px; text-align:center;">
+<b style="font-size:1.3em;">Current Status</b><br>
+<span style="font-size:1.5em;">{current_season['label']}</span>
+</div>
+""", unsafe_allow_html=True)
     
     with cal_col3:
         remarks = get_city_remarks(cal_city)
@@ -934,11 +989,11 @@ if selected_page == "📅 Sales Calendar":
                 m_data = yearly[month_idx]
                 with col:
                     st.markdown(f"""
-                    <div style="background-color:{m_data['color']}; color:white; padding:10px; border-radius:8px; text-align:center; margin:2px;">
-                        <b>{m_data['month_name']}</b><br>
-                        <small>{m_data['label'].replace('✅ ', '').replace('❌ ', '').replace('⚠️ ', '')}</small>
-                    </div>
-                    """, unsafe_allow_html=True)
+<div style="background-color:{m_data['color']}; color:white; padding:10px; border-radius:8px; text-align:center; margin:2px;">
+<b>{m_data['month_name']}</b><br>
+<small>{m_data['label'].replace('✅ ', '').replace('❌ ', '').replace('⚠️ ', '')}</small>
+</div>
+""", unsafe_allow_html=True)
                 month_idx += 1
     
     st.markdown("---")
@@ -965,10 +1020,10 @@ if selected_page == "📅 Sales Calendar":
     
     # Season banner
     st.markdown(f"""
-    <div style="background-color:{month_season['color']}; color:white; padding:10px; border-radius:8px; text-align:center; margin-bottom:10px;">
-        <b>{MONTH_NAMES[selected_month]} 2026</b> - {month_season['label']}
-    </div>
-    """, unsafe_allow_html=True)
+<div style="background-color:{month_season['color']}; color:white; padding:10px; border-radius:8px; text-align:center; margin-bottom:10px;">
+<b>{MONTH_NAMES[selected_month]} 2026</b> - {month_season['label']}
+</div>
+""", unsafe_allow_html=True)
     
     # Calendar grid with days
     st.markdown("##### 📅 Calendar")
@@ -979,9 +1034,9 @@ if selected_page == "📅 Sales Calendar":
     for i, day_name in enumerate(day_names):
         bg = "#E74C3C" if day_name == "Sun" else "#2C3E50"
         header_cols[i].markdown(f"""
-        <div style="background-color:{bg}; color:white; padding:5px; text-align:center; border-radius:5px;">
-            <b>{day_name}</b>
-        </div>
+<div style="background-color:{bg}; color:white; padding:5px; text-align:center; border-radius:5px;">
+<b>{day_name}</b>
+</div>
         """, unsafe_allow_html=True)
     
     # Calendar weeks
@@ -1011,10 +1066,10 @@ if selected_page == "📅 Sales Calendar":
                     holiday_indicator = "🎉" if is_holiday else ""
                     
                     st.markdown(f"""
-                    <div style="background-color:{bg}; color:{txt}; padding:8px; text-align:center; border-radius:5px; margin:1px; min-height:40px;">
-                        <b>{day}</b> {holiday_indicator}
-                    </div>
-                    """, unsafe_allow_html=True)
+<div style="background-color:{bg}; color:{txt}; padding:8px; text-align:center; border-radius:5px; margin:1px; min-height:40px;">
+<b>{day}</b> {holiday_indicator}
+</div>
+""", unsafe_allow_html=True)
     
     # Holidays List
     st.markdown("---")
@@ -1025,10 +1080,10 @@ if selected_page == "📅 Sales Calendar":
             type_color = "#E74C3C" if h['type'] == 'national' else "#9B59B6" if h['type'] == 'festival' else "#3498DB"
             type_label = "🇮🇳 National" if h['type'] == 'national' else "🎉 Festival" if h['type'] == 'festival' else "🏛️ State"
             st.markdown(f"""
-            <div style="background-color:#FFF; border-left:4px solid {type_color}; padding:8px; margin:5px 0; border-radius:3px;">
-                <b>{h['date'].day} {MONTH_NAMES[selected_month]}</b> - {h['name']} <small>({type_label})</small>
-            </div>
-            """, unsafe_allow_html=True)
+<div style="background-color:#FFF; border-left:4px solid {type_color}; padding:8px; margin:5px 0; border-radius:3px;">
+<b>{h['date'].day} {MONTH_NAMES[selected_month]}</b> - {h['name']} <small>({type_label})</small>
+</div>
+""", unsafe_allow_html=True)
     else:
         st.info("No major holidays this month.")
     
@@ -1632,8 +1687,24 @@ if selected_page == "👥 Ecosystem Management":
                 else:
                     st.warning("No sales parties to export")
 
+# --- AI FALLBACK ENGINE (Multi-Provider: OpenAI→Ollama→HuggingFace→GPT4All→Claude) ---
+if selected_page == "🔄 AI Fallback Engine":
+    from command_intel import ai_fallback_dashboard
+    ai_fallback_dashboard.render()
+
+# --- AI DASHBOARD ASSISTANT (Full Data-Connected AI) ---
+elif selected_page == "🧠 AI Dashboard Assistant":
+    st.info(
+        "ℹ️ **Department Head:** All Departments\n\n"
+        "📌 AI assistant connected to ALL dashboard data — prices, APIs, competitors, "
+        "contractors, demand, bugs, change log, forecasts. Role-based access control. "
+        "Powered by Claude (Anthropic)."
+    )
+    from command_intel import ai_dashboard_assistant
+    ai_dashboard_assistant.render()
+
 # --- TAB 4: AI SALES ASSISTANT ---
-if selected_page == "🤖 AI Assistant":
+elif selected_page == "🤖 AI Assistant":
     st.header("🤖 AI Sales Training & Assistant")
     st.caption("Instant answers, objection handling, and training manual.")
     
@@ -1738,7 +1809,7 @@ if selected_page == "🤖 AI Assistant":
     with c1:
         st.subheader("Daily Broadcast")
         st.date_input("Select Date for Broadcast")
-        st.text_area("Message Template", "Hello {name}, Great greetings! Today's best rate for {product} is ₹{price}. Source: {source}.")
+        st.text_area("Message Template", "Hello {name}, Great greetings! Today's best rate for {product} is {price}. Source: {source}.")
         st.button("🚀 Send Daily Updates (WhatsApp/SMS)")
         
     with c2:
@@ -1864,7 +1935,7 @@ if selected_page == "🛠️ Data Manager":
                 curr_drum_cost = float(curr_route.get('transport_drum', 0))
                 new_drum_cost = col_d3.number_input("🛢️ Drum One-Way Charge", value=curr_drum_cost)
                 
-                st.caption(f"Calculated Bulk Freight: {new_dist} km * {new_rate_bulk} = ₹ {new_dist * new_rate_bulk:,.2f}")
+                st.caption(f"Calculated Bulk Freight: {new_dist} km * {new_rate_bulk} = {format_inr(new_dist * new_rate_bulk)}")
                 
                 if st.button("💾 Save Logistics Updates"):
                      success = optimizer.update_route_logistics(l_src, l_dest, new_dist, new_rate_bulk, new_drum_cost)
@@ -2027,13 +2098,13 @@ if selected_page == "🏭 Feasibility":
                     border_color = "#196F3D" if i == 0 else "#A9DFBF"
                     
                     st.markdown(f'''
-                    <div style="background-color:{bg_color}; border:2px solid {border_color}; color:#1e293b; padding:10px; border-radius:8px; margin-bottom:10px;">
-                        <strong>#{i+1} {opt['source']}</strong><br>
-                        <small>📏 {opt['distance_km']:.0f} KM</small><br>
-                        <small>Base: ₹{opt['base_price']:,}</small><br>
-                        <span style="font-size:1.1em; font-weight:bold; color:#196F3D;">₹{opt['landed_cost']:,.0f}</span>
-                    </div>
-                    ''', unsafe_allow_html=True)
+<div style="background-color:{bg_color}; border:2px solid {border_color}; color:#1e293b; padding:10px; border-radius:8px; margin-bottom:10px;">
+<strong>#{i+1} {opt['source']}</strong><br>
+<small>📏 {opt['distance_km']:.0f} KM</small><br>
+<small>Base: {format_inr(opt['base_price'])}</small><br>
+<span style="font-size:1.1em; font-weight:bold; color:#196F3D;">{format_inr(opt['landed_cost'])}</span>
+</div>
+''', unsafe_allow_html=True)
             
             # --- IMPORT TERMINALS ---
             with col_imp:
@@ -2043,13 +2114,13 @@ if selected_page == "🏭 Feasibility":
                     border_color = "#21618C" if i == 0 else "#AED6F1"
                     
                     st.markdown(f'''
-                    <div style="background-color:{bg_color}; border:2px solid {border_color}; color:#1e293b; padding:10px; border-radius:8px; margin-bottom:10px;">
-                        <strong>#{i+1} {opt['source']}</strong><br>
-                        <small>📏 {opt['distance_km']:.0f} KM</small><br>
-                        <small>Base: ₹{opt['base_price']:,}</small><br>
-                        <span style="font-size:1.1em; font-weight:bold; color:#21618C;">₹{opt['landed_cost']:,.0f}</span>
-                    </div>
-                    ''', unsafe_allow_html=True)
+<div style="background-color:{bg_color}; border:2px solid {border_color}; color:#1e293b; padding:10px; border-radius:8px; margin-bottom:10px;">
+<strong>#{i+1} {opt['source']}</strong><br>
+<small>📏 {opt['distance_km']:.0f} KM</small><br>
+<small>Base: {format_inr(opt['base_price'])}</small><br>
+<span style="font-size:1.1em; font-weight:bold; color:#21618C;">{format_inr(opt['landed_cost'])}</span>
+</div>
+''', unsafe_allow_html=True)
                     
             # --- LOCAL DECANTER ---
             with col_dec:
@@ -2057,13 +2128,13 @@ if selected_page == "🏭 Feasibility":
                 dec = assessment.get('local_decanter')
                 if dec:
                     st.markdown(f'''
-                    <div style="background-color:#FCF3CF; border:2px solid #9A7D0A; padding:10px; border-radius:8px; margin-bottom:10px;">
-                        <strong>{dec['source']}</strong><br>
-                        <small>From: {dec.get('drum_source', 'N/A')}</small><br>
-                        <small>Conv: ₹{dec.get('conversion_cost', 500)}</small><br>
-                        <span style="font-size:1.1em; font-weight:bold; color:#9A7D0A;">₹{dec['landed_cost']:,.0f}</span>
-                    </div>
-                    ''', unsafe_allow_html=True)
+<div style="background-color:#FCF3CF; border:2px solid #9A7D0A; padding:10px; border-radius:8px; margin-bottom:10px;">
+<strong>{dec['source']}</strong><br>
+<small>From: {dec.get('drum_source', 'N/A')}</small><br>
+<small>Conv: {dec.get('conversion_cost', 500)}</small><br>
+<span style="font-size:1.1em; font-weight:bold; color:#9A7D0A;">{format_inr(dec['landed_cost'])}</span>
+</div>
+''', unsafe_allow_html=True)
             
             # --- DRUM DIRECT ---
             with col_drum:
@@ -2071,19 +2142,19 @@ if selected_page == "🏭 Feasibility":
                 drum = assessment.get('drum_direct')
                 if drum:
                     st.markdown(f'''
-                    <div style="background-color:#FADBD8; border:2px solid #C0392B; padding:10px; border-radius:8px; margin-bottom:10px;">
-                        <strong>{drum['source']}</strong><br>
-                        <small>📏 {drum['distance_km']:.0f} KM</small><br>
-                        <small>Base: ₹{drum['base_price']:,}</small><br>
-                        <span style="font-size:1.1em; font-weight:bold; color:#C0392B;">₹{drum['landed_cost']:,.0f}</span>
-                    </div>
-                    ''', unsafe_allow_html=True)
+<div style="background-color:#FADBD8; border:2px solid #C0392B; padding:10px; border-radius:8px; margin-bottom:10px;">
+<strong>{drum['source']}</strong><br>
+<small>📏 {drum['distance_km']:.0f} KM</small><br>
+<small>Base: {format_inr(drum['base_price'])}</small><br>
+<span style="font-size:1.1em; font-weight:bold; color:#C0392B;">{format_inr(drum['landed_cost'])}</span>
+</div>
+''', unsafe_allow_html=True)
             
             # Best Overall
             st.markdown("---")
             best = assessment['best_overall']
             if best:
-                st.success(f"🏆 **BEST BULK OPTION**: {best['source']} @ **₹{best['landed_cost']:,.0f}** PMT")
+                st.success(f"🏆 **BEST BULK OPTION**: {best['source']} @ **{format_inr(best['landed_cost'])}** PMT")
             
             # Full Comparison Table
             st.markdown("### 📋 Complete Comparison Table")
@@ -2095,9 +2166,9 @@ if selected_page == "🏭 Feasibility":
             st.markdown("### 💰 Current Drum Prices")
             live = assessment.get('live_prices', {})
             col_p1, col_p2, col_p3 = st.columns(3)
-            col_p1.metric("Mumbai Drum", f"₹{live.get('drum_mumbai', 'N/A'):,}")
-            col_p2.metric("Kandla Drum", f"₹{live.get('drum_kandla', 'N/A'):,}")
-            col_p3.metric("Decanter Cost", f"₹{live.get('decanter_cost', 'N/A')}")
+            col_p1.metric("Mumbai Drum", f"{format_inr(live.get('drum_mumbai', 'N/A'))}")
+            col_p2.metric("Kandla Drum", f"{format_inr(live.get('drum_kandla', 'N/A'))}")
+            col_p3.metric("Decanter Cost", f"{live.get('decanter_cost', 'N/A')}")
         else:
             st.warning("Destination not found in database.")
 
@@ -2247,8 +2318,8 @@ if selected_page == "🚨 SPECIAL PRICE (SOS)":
                 
                 # Metrics
                 m1, m2, m3, m4 = st.columns(4)
-                m1.metric("📉 New Price", f"₹{opp['new_price']:,}")
-                m2.metric("💰 Saving", f"₹{opp['saving']:,}", delta="Price Drop", delta_color="normal")
+                m1.metric("📉 New Price", f"{format_inr(opp['new_price'])}")
+                m2.metric("💰 Saving", f"{format_inr(opp['saving'])}", delta="Price Drop", delta_color="normal")
                 m3.metric("⏳ Valid Until", opp['valid_until'].split(' ')[1]) # Time only
                 m4.metric("👥 Targets", len(opp['target_customers']))
                 
@@ -2304,4 +2375,92 @@ if selected_page == "📤 Reports":
             st.markdown(user_guide_content)
         except FileNotFoundError:
             st.error("User Manual file not found.")
+
+# ========================================================================================
+# COMMAND INTELLIGENCE SYSTEM — PANEL ROUTING
+# ========================================================================================
+
+if selected_page == "🌐 API Dashboard":
+    display_badge("real-time")
+    api_dashboard.render()
+elif selected_page == "⚙️ Dev & System Activity":
+    st.info("ℹ️ **Department Head:** CTO / Technology\n\n📌 Full audit trail of API changes, auto-repairs, errors, deployments, and system events. All timestamps in IST.")
+    from command_intel import dev_activity
+    dev_activity.render()
+elif selected_page == "─── 🏢 SALES & REVENUE ───":
+    st.info("ℹ️ **Department Head:** Sales Director\n\n📌 *Please select a specific module below (e.g., Sales Workspace, Pricing Calculator).*")
+elif selected_page == "─── 🏢 OPERATIONS & PROCUREMENT ───":
+    st.info("ℹ️ **Department Head:** Operations Head\n\n📌 *Please select a specific module below (e.g., Feasibility, Supply Chain).*")
+elif selected_page == "─── 🏢 FINANCE & PROFITABILITY ───":
+    st.info("ℹ️ **Department Head:** CFO\n\n📌 *Please select a specific module below (e.g., Financial Intelligence, Reports).*")
+elif selected_page == "─── 🏢 LEGAL & COMPLIANCE ───":
+    st.info("ℹ️ **Department Head:** Legal Head\n\n📌 *Please select a specific module below (e.g., GST & Legal Monitor, Risk Scoring).*")
+elif selected_page == "─── 🏢 STRATEGY & INTELLIGENCE ───":
+    st.info("ℹ️ **Department Head:** Strategy Director\n\n📌 *Please select a specific module below (e.g., Price Prediction, Alert System).*")
+elif selected_page == "─── 🏢 TECHNOLOGY & SYSTEMS ───":
+    st.info("ℹ️ **Department Head:** CTO\n\n📌 *Please select a specific module below (e.g., API Dashboard, Settings).*")
+elif selected_page == "─── 🏢 KNOWLEDGE & SUPPORT ───":
+    st.info("ℹ️ **Department Head:** Admin / HR Head\n\n📌 *Please select a specific module below (e.g., AI Assistant, Knowledge Base).*")
+elif selected_page == "🔮 Price Prediction":
+    st.info("ℹ️ **UX Note:** Predicts global/local price trends focusing on the core 1st & 16th Indian cycles.")
+    price_prediction.render()
+elif selected_page == "⏳ Past Predictions":
+    st.info("ℹ️ **UX Note:** 10-Year historical truth table validating the quantitative MLR-DL model performance.")
+    historical_revisions.render()
+elif selected_page == "📝 Manual Price Entry":
+    st.info("ℹ️ **UX Note:** B2B override grid for field CRM quotes and real-time market entries.")
+    manual_entry.render()
+elif selected_page == "🔔 Change Notifications":
+    st.info("ℹ️ **UX Note:** Complete, immutable timeline log of every number change or API fallback occurrence.")
+    change_log.render()
+elif selected_page == "🐞 Bug Tracker":
+    st.info("ℹ️ **UX Note:** Health tracker for failed APIs, broken data models, and Dev-Ops diagnostics.")
+    bug_tracker.render()
+elif selected_page == "📦 Import Cost Model":
+    st.info("ℹ️ **UX Note:** Shows granular breakdowns of import duties, logistics, and conversion costs from Port to Decanter.")
+    import_cost_model.render()
+elif selected_page == "🚢 Supply Chain":
+    st.info("ℹ️ **UX Note:** Tracks voyage ships, transit times, and potential local stock availability constraints.")
+    supply_chain.render()
+elif selected_page == "👷 Demand Analytics":
+    st.info("ℹ️ **UX Note:** Analyzes government and private contractor demand cycles based on infrastructure projects.")
+    demand_analytics.render()
+elif selected_page == "💰 Financial Intelligence":
+    st.info("ℹ️ **UX Note:** Provides insights on buyer credit, rolling capital management, and payment cycles.")
+    financial_intel.render()
+elif selected_page == "🛡️ GST & Legal Monitor":
+    st.info("ℹ️ **UX Note:** Updates on regulatory changes, e-way bills, and compliance risk related to Bitumen sales.")
+    gst_legal_monitor.render()
+elif selected_page == "⚡ Risk Scoring":
+    st.info("ℹ️ **UX Note:** Gives an AI-driven composite Risk Score (1-100) combining counterparty defaults and market volatility.")
+    risk_scoring.render()
+elif selected_page == "🔔 Alert System":
+    st.info("ℹ️ **UX Note:** Configurable notifications for price drops, supply shocks, and new opportunities.")
+    alert_system.render()
+elif selected_page == "🎯 Strategy Panel":
+    st.info("ℹ️ **UX Note:** High-level strategic synthesis and \"What-If\" scenarios for volume purchasing.")
+    strategy_panel.render()
+elif selected_page == "🏛️ Business Intelligence":
+    st.info("ℹ️ **Department Head:** All Departments\n\n📌 Complete guide for every dashboard tab — for employees, partners, investors, and auditors.")
+    from business_knowledge_base import render as biz_kb_render
+    biz_kb_render()
+elif selected_page == "📰 News Intelligence":
+    st.info("ℹ️ **Department Head:** Strategy Director / Business Intelligence\n\n📌 Live news aggregator — 14 sources (RSS + API), auto-classified by keywords, impact-scored 0–100. Breaking alerts for score ≥ 80.")
+    from command_intel import news_dashboard as _nd
+    _nd.render()
+elif selected_page == "🕵️ Competitor Intelligence":
+    st.info("ℹ️ **Department Head:** Strategy Director / Sales Head\n\n📌 Daily forecasts from Multi Energy Enterprises (MEE, Mumbai) — cross-verified against IOCL/HPCL circulars, international bitumen FOB prices, India consumption/production stats, and industry news.")
+    import competitor_intelligence
+    competitor_intelligence.render()
+elif selected_page == "🔭 Contractor OSINT":
+    st.info("ℹ️ **Department Head:** Sales Director / Business Development\n\n📌 Track road contractors — project awards, bitumen demand (MT), monthly heatmap, risk flags, CRM export. Last 6 months only.")
+    import contractor_osint
+    contractor_osint.render()
+elif selected_page == "🛣️ Road Budget & Demand":
+    st.info("ℹ️ **Department Head:** Strategy Director\n\n📌 India road budget analysis, state-wise bitumen demand forecast, and construction seasonality.")
+    from command_intel import road_budget_demand
+    road_budget_demand.render()
+elif selected_page == "─── 🏢 MARKET INTELLIGENCE ───":
+    st.info("ℹ️ **Department Head:** Strategy Director\n\n📌 *Select Road Budget & Demand for national infrastructure intelligence.*")
+
 

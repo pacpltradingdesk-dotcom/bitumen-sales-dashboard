@@ -37,9 +37,9 @@ def create_sos_opportunity(location, product, old_price, new_price):
         "old_price": old_price,
         "new_price": new_price,
         "saving": saving,
-        "valid_until": (datetime.datetime.now() + timedelta(hours=48)).strftime("%Y-%m-%d %H:%M"),
+        "valid_until": (datetime.datetime.now() + timedelta(hours=48)).strftime("%d-%m-%Y %H:%M"),
         "status": "Active",
-        "created_at": datetime.datetime.now().strftime("%Y-%m-%d %H:%M"),
+        "created_at": datetime.datetime.now().strftime("%d-%m-%Y %H:%M"),
         "target_customers": find_matching_customers(location, product)
     }
     
@@ -81,9 +81,9 @@ def get_active_sos():
 
 def generate_sos_script(cust_name, saving, new_price, valid_until):
     return {
-        "call_script": f"Hi {cust_name}, quick update. Rates dropped by ₹{saving} just now for your location. Current landing cost is ₹{new_price}. This is valid only till {valid_until}. Should I book 1 tanker?",
-        "whatsapp": f"🚨 *PRICE DROP ALERT* 🚨\n\nHi {cust_name},\n\nGood news! Bitumen rates down by *₹{saving}/MT*.\n\n📉 New Price: *₹{new_price}*\n⏳ Valid until: {valid_until}\n\nStrictly limited slots. Reply YES to block.",
-        "email_subject": f"URGENT: Price Drop Alert - Save ₹{saving}/MT Today"
+        "call_script": f"Hi {cust_name}, quick update. Rates dropped by {saving} just now for your location. Current landing cost is {new_price}. This is valid only till {valid_until}. Should I book 1 tanker?",
+        "whatsapp": f"🚨 *PRICE DROP ALERT* 🚨\n\nHi {cust_name},\n\nGood news! Bitumen rates down by *{saving}/MT*.\n\n📉 New Price: *{new_price}*\n⏳ Valid until: {valid_until}\n\nStrictly limited slots. Reply YES to block.",
+        "email_subject": f"URGENT: Price Drop Alert - Save {saving}/MT Today"
     }
 
 # --- MOCK DATA ---
@@ -97,9 +97,9 @@ def init_mock_sos():
                 "old_price": 42500,
                 "new_price": 41800,
                 "saving": 700,
-                "valid_until": (datetime.datetime.now() + timedelta(hours=24)).strftime("%Y-%m-%d %H:%M"),
+                "valid_until": (datetime.datetime.now() + timedelta(hours=24)).strftime("%d-%m-%Y %H:%M"),
                 "status": "Active",
-                "created_at": datetime.datetime.now().strftime("%Y-%m-%d %H:%M"),
+                "created_at": datetime.datetime.now().strftime("%d-%m-%Y %H:%M"),
                 "target_customers": [
                    {"name": "Patel Infra", "contact": "9898012345", "last_price": 42400, "priority": "High"},
                    {"name": "Ganesh Construction", "contact": "9825012345", "last_price": 42500, "priority": "Medium"}

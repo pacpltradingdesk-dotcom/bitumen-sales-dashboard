@@ -348,7 +348,7 @@ def generate_custom_reply(customer_name, topic, key_points):
     Generates a contextual reply based on topic.
     """
     if topic == "Price Negotiation":
-        return f"Dear {customer_name},\n\nThank you for your offer. However, our current price of ₹{key_points} is the best possible workable rate given the current international crude prices. We ensure premium quality and timely delivery which cheaper alternatives may not guarantee."
+        return f"Dear {customer_name},\n\nThank you for your offer. However, our current price of {key_points} is the best possible workable rate given the current international crude prices. We ensure premium quality and timely delivery which cheaper alternatives may not guarantee."
     elif topic == "Supply Delay":
         return f"Dear {customer_name},\n\nWe apologize for the delay in the vehicle reaching your site. This is due to {key_points}. We are constantly tracking the vehicle and it should reach by [Time]."
     return f"Dear {customer_name},\n\nRegarding {topic}: {key_points}\n\nLet us know how to proceed."
