@@ -28,6 +28,14 @@ from command_intel import risk_scoring, alert_system, strategy_panel
 from command_intel import historical_revisions, manual_entry, change_log, bug_tracker
 import api_dashboard
 
+# --- SYSTEM STARTUP: init logging + auto health scheduler (runs once per process) ---
+try:
+    from api_manager import init_system, start_auto_health
+    init_system()
+    start_auto_health()          # background thread: health check every 30 min
+except Exception:
+    pass
+
 
 # --- MOCK CUSTOMER DATABASE (For "Search by Name" feature) ---
 customer_city_map = {

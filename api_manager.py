@@ -175,20 +175,30 @@ def log_health(api_id: str, status: str, latency_ms: int,
 # ─────────────────────────────────────────────────────────────────────────────
 
 def fetch_yfinance_with_history(symbol: str):
+    """
+    Download price + 7-day history for a yfinance ticker.
+    Uses yf.download() which works for commodity futures (BZ=F, CL=F, NG=F etc.)
+    unlike yf.Ticker().history() which silently returns empty for futures.
+    """
     if not YFINANCE_AVAILABLE or not symbol:
         return None, None
     try:
-        ticker = yf.Ticker(symbol)
-        hist = ticker.history(period="7d")
-        if hist.empty or "Close" not in hist.columns:
+        import warnings
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            data = yf.download(symbol, period="7d", progress=False, timeout=12)
+        if data is None or data.empty:
             return None, None
-        closes = hist["Close"].dropna()
+        close_col = [c for c in data.columns if "Close" in str(c)]
+        if not close_col:
+            return None, None
+        closes = data[close_col[0]].dropna()
         if len(closes) < 1:
             return None, None
-        current = float(closes.iloc[-1])
+        current   = float(closes.iloc[-1])
         history_7d = float(closes.iloc[0]) if len(closes) > 1 else current
         return current, history_7d
-    except Exception as e:
+    except Exception:
         return None, None
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -231,6 +241,38 @@ def _parse_holiday_list(response_json) -> dict:
         return {"current": len(holidays), "holidays": holidays[:20]}
     except Exception:
         return None
+
+
+# ── India public holidays built-in (2025-2026, used when external API fails) ─
+_INDIA_HOLIDAYS_2026 = [
+    {"date": "2026-01-01", "name": "New Year's Day"},
+    {"date": "2026-01-14", "name": "Makar Sankranti"},
+    {"date": "2026-01-26", "name": "Republic Day"},
+    {"date": "2026-03-03", "name": "Holi"},
+    {"date": "2026-04-02", "name": "Ram Navami"},
+    {"date": "2026-04-03", "name": "Good Friday"},
+    {"date": "2026-04-14", "name": "Dr. Ambedkar Jayanti / Baisakhi"},
+    {"date": "2026-05-01", "name": "Maharashtra Day / Labour Day"},
+    {"date": "2026-06-08", "name": "Eid al-Adha (Bakrid)"},
+    {"date": "2026-07-06", "name": "Muharram"},
+    {"date": "2026-08-15", "name": "Independence Day"},
+    {"date": "2026-08-25", "name": "Janmashtami"},
+    {"date": "2026-09-14", "name": "Milad-un-Nabi (Prophet's Birthday)"},
+    {"date": "2026-10-02", "name": "Gandhi Jayanti / Dussehra"},
+    {"date": "2026-10-20", "name": "Diwali (Lakshmi Puja)"},
+    {"date": "2026-11-04", "name": "Guru Nanak Jayanti"},
+    {"date": "2026-11-14", "name": "Children's Day"},
+    {"date": "2026-12-25", "name": "Christmas Day"},
+]
+
+def _get_local_holidays() -> dict:
+    """Return built-in India public holidays for the current year."""
+    year = now_ist().year
+    holidays = [h for h in _INDIA_HOLIDAYS_2026 if h["date"].startswith(str(year))]
+    if not holidays:
+        # Fallback to full list if year not matching
+        holidays = _INDIA_HOLIDAYS_2026
+    return {"current": len(holidays), "holidays": holidays}
 
 def _parse_standard(response_json, rules: dict):
     """Standard key-path parser."""
@@ -297,7 +339,12 @@ def fetch_api_data(widget_id: str, force: bool = False):
 
     for attempt in range(max_retries):
         try:
-            if provider == "yfinance" or endpoint == "yfinance":
+            if provider == "local_holidays" or endpoint == "local_holidays":
+                result_data = _get_local_holidays()
+                success = True
+                break
+
+            elif provider == "yfinance" or endpoint == "yfinance":
                 sym = config.get("fallback_symbol", "")
                 val, val_7d = fetch_yfinance_with_history(sym)
                 if val is not None:
@@ -694,3 +741,56 @@ def init_system():
         component="System",
         department="Technology",
     )
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# AUTO HEALTH SCHEDULER — background thread, checks every 30 min
+# ─────────────────────────────────────────────────────────────────────────────
+
+_G_health: dict = {"started": False, "last_run": "", "last_summary": {}}
+_health_lock = threading.RLock()
+
+AUTO_HEALTH_INTERVAL_MIN = 30   # check all APIs every 30 minutes
+
+
+def start_auto_health(interval_min: int = AUTO_HEALTH_INTERVAL_MIN):
+    """
+    Start a daemon thread that runs run_all_health_checks() every interval_min.
+    Idempotent — safe to call multiple times (only starts once per process).
+    """
+    with _health_lock:
+        if _G_health["started"]:
+            return
+        _G_health["started"] = True
+
+    def _loop():
+        # Wait 90 seconds after startup before first check (let dashboard settle)
+        time.sleep(90)
+        while True:
+            try:
+                summary, _results = run_all_health_checks(force=True)
+                _G_health["last_run"] = ts_str()
+                _G_health["last_summary"] = summary
+            except Exception as exc:
+                log_error(
+                    api_id="auto_health_scheduler",
+                    component="Auto Health Scheduler",
+                    error_type="SchedulerError",
+                    message=str(exc)[:200],
+                    severity="P2",
+                    tab="Dev Activity",
+                )
+            time.sleep(interval_min * 60)
+
+    t = threading.Thread(target=_loop, daemon=True, name="AutoHealthChecker")
+    t.start()
+
+
+def get_auto_health_status() -> dict:
+    """Return last auto-health run info for the Dev Activity / API Dashboard."""
+    return {
+        "started":      _G_health["started"],
+        "last_run":     _G_health.get("last_run", "Not yet run"),
+        "last_summary": _G_health.get("last_summary", {}),
+        "interval_min": AUTO_HEALTH_INTERVAL_MIN,
+    }

@@ -1,6 +1,7 @@
 """
 Panel 8: Alert System
 Configurable alerts for crude price, freight, margin, GST mismatch, shipment delays, payment overdue.
+Live Brent price is fetched from api_manager and used for real threshold checks.
 """
 import streamlit as st
 import sys
@@ -8,13 +9,34 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from ui_badges import display_badge
 import datetime
-import random
+
+# ── Live data from api_manager (graceful fallback to defaults) ───────────────
+try:
+    from api_manager import get_brent_price, get_usdinr, get_india_vix
+    _LIVE_BRENT  = get_brent_price()   # USD/bbl
+    _LIVE_USDINR = get_usdinr()        # ₹ per USD
+    _LIVE_VIX    = get_india_vix()     # India VIX
+except Exception:
+    _LIVE_BRENT  = 80.0
+    _LIVE_USDINR = 83.25
+    _LIVE_VIX    = 15.0
+
+# Alert thresholds
+BRENT_HIGH_THRESHOLD = 80.0   # USD/bbl — Critical if exceeded
+BRENT_LOW_THRESHOLD  = 65.0   # USD/bbl — Warning if below
+VIX_HIGH_THRESHOLD   = 20.0   # India VIX — Warning if above
 
 
 def _get_active_alerts():
-    """Generate simulated active alerts based on business conditions."""
-    today = datetime.date.today()
+    """
+    Build alert list combining:
+    - Live threshold checks (Brent, VIX, USD/INR)
+    - Standing business alerts (payment, shipment, GST, market)
+    """
     now = datetime.datetime.now()
+    brent   = _LIVE_BRENT
+    usdinr  = _LIVE_USDINR
+    vix     = _LIVE_VIX
     
     alerts = [
         {
@@ -30,14 +52,18 @@ def _get_active_alerts():
         },
         {
             "id": "ALT-002",
-            "severity": "critical",
+            "severity": "critical" if brent >= BRENT_HIGH_THRESHOLD else "warning" if brent >= BRENT_LOW_THRESHOLD else "info",
             "category": "Crude Price",
-            "title": "🛢️ Brent Crude Crossed ₹ 80 Threshold",
-            "message": "Brent Crude has risen to ₹ 80.25/bbl, crossing the ₹ 80 alert threshold. "
-                       "Expected bitumen price increase of ₹500-700/MT in next 7 days.",
-            "time": now - datetime.timedelta(hours=5),
+            "title": f"🛢️ Brent Crude {'Above' if brent >= BRENT_HIGH_THRESHOLD else 'At'} ${BRENT_HIGH_THRESHOLD:.0f} Threshold — Live: ${brent:.2f}/bbl",
+            "message": (
+                f"Live Brent Crude: ${brent:.2f}/bbl | USD/INR: ₹{usdinr:.2f} | India VIX: {vix:.1f}. "
+                + ("Above critical threshold — expected bitumen price increase of ₹500–700/MT."
+                   if brent >= BRENT_HIGH_THRESHOLD
+                   else f"Monitoring — threshold ${BRENT_HIGH_THRESHOLD:.0f}/bbl not yet breached.")
+            ),
+            "time": now - datetime.timedelta(minutes=5),
             "action": "Lock current prices with refineries • Pre-buy inventory • Notify sales team",
-            "acknowledged": False
+            "acknowledged": False if brent >= BRENT_HIGH_THRESHOLD else True,
         },
         {
             "id": "ALT-003",
@@ -104,7 +130,23 @@ def _get_active_alerts():
             "time": now - datetime.timedelta(days=3),
             "action": "Alert sales team • Prepare competitive quote • Target contractor pre-qualification",
             "acknowledged": True
-        }
+        },
+        # ── Live VIX alert ───────────────────────────────────────────────────
+        {
+            "id": "ALT-009",
+            "severity": "warning" if vix >= VIX_HIGH_THRESHOLD else "info",
+            "category": "Market Risk",
+            "title": f"📊 India VIX: {vix:.1f} {'— Elevated Volatility' if vix >= VIX_HIGH_THRESHOLD else '— Normal Range'}",
+            "message": (
+                f"India VIX is at {vix:.1f}. "
+                + (f"Above {VIX_HIGH_THRESHOLD:.0f} — markets are volatile. Review open credit exposure with contractors."
+                   if vix >= VIX_HIGH_THRESHOLD
+                   else f"Within normal range (below {VIX_HIGH_THRESHOLD:.0f}). No immediate action required.")
+            ),
+            "time": now - datetime.timedelta(minutes=10),
+            "action": "Review open positions • Check payment exposure • Monitor Nifty for further moves",
+            "acknowledged": vix < VIX_HIGH_THRESHOLD,
+        },
     ]
     return alerts
 

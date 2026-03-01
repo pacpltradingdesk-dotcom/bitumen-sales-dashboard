@@ -8,19 +8,16 @@ reliability scores, tab-API mapping, rate limits, and auto-repair status.
 
 import streamlit as st
 import pandas as pd
-import json
-from pathlib import Path
 
 try:
     from ui_badges import display_badge
 except ImportError:
-    def display_badge(x): pass
+    def display_badge(_x): pass
 
 try:
     from api_manager import (
         load_config, load_stats, get_reliability_scores,
-        test_api_health, run_all_health_checks, get_health_log,
-        get_error_log, ts_str,
+        test_api_health, run_all_health_checks, ts_str,
     )
     AM_AVAILABLE = True
 except ImportError:
@@ -28,10 +25,8 @@ except ImportError:
     def load_config(): return {"widgets": {}, "tab_api_map": {}, "health_check_config": {}}
     def load_stats(): return {}
     def get_reliability_scores(): return {}
-    def test_api_health(x): return None
-    def run_all_health_checks(force=True): return {}, {}
-    def get_health_log(n=200): return []
-    def get_error_log(n=100): return []
+    def test_api_health(_x): return None
+    def run_all_health_checks(_force=True): return {}, {}
     def ts_str(): return "—"
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -226,8 +221,6 @@ def _render_data_centers(config: dict, stats: dict):
         dc_label = DATA_CENTER_LABELS.get(dc, dc)
         ok_count = sum(1 for a in api_list if stats.get(a, {}).get("status") == "OK")
         fail_count = len(api_list) - ok_count
-        color = "#22c55e" if fail_count == 0 else ("#f59e0b" if fail_count < len(api_list) else "#ef4444")
-
         with st.expander(f"{dc_label} — {len(api_list)} APIs | 🟢 {ok_count} healthy"):
             for a in api_list:
                 s = stats.get(a, {})
@@ -289,7 +282,23 @@ def _render_health_diagnostics(config: dict):
                     result = test_api_health(target)
                 if result:
                     st.success(f"✅ {target} — OK")
-                    st.json(result)
+                    # Show parsed values only — no raw backend JSON exposed in UI
+                    cur = result.get("current")
+                    h7d = result.get("history_7d")
+                    if cur is not None:
+                        col_a, col_b = st.columns(2)
+                        with col_a:
+                            st.metric("Current Value", f"{cur:,.4g}")
+                        with col_b:
+                            if h7d is not None and h7d != cur:
+                                delta = round(cur - h7d, 4)
+                                st.metric("7-Day Change", f"{delta:+.4g}")
+                    holidays = result.get("holidays")
+                    if holidays:
+                        st.caption(f"{len(holidays)} holidays returned")
+                    forecast = result.get("forecast_7d")
+                    if forecast:
+                        st.caption(f"7-day forecast: {len(forecast)} data points received")
                 else:
                     st.error(f"❌ {target} — All retries + fallback failed. Check error log.")
             else:
