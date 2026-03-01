@@ -400,64 +400,97 @@ def _render_filters(region: str, key_prefix: str) -> dict:
 # ══════════════════════════════════════════════════════════════════════════════
 
 def _render_card(a: dict, idx: int, region_key: str):
+    """
+    Render a single news card using native Streamlit components.
+    Avoids st.markdown(HTML) which shows raw tags in some Streamlit versions.
+    """
     score    = a.get("impact_score", 0)
     status   = a.get("status", "new")
     lang     = a.get("language", "en")
     tags     = a.get("tags", [])
     senti    = a.get("sentiment", "neutral")
-
-    # Card CSS class
-    card_cls = "news-card"
-    if score >= 80:   card_cls += " breaking-card"
-    elif status == "saved": card_cls += " saved-card"
-    elif status == "read":  card_cls += " read-card"
-
-    # Impact badge
-    ic       = _impact_color(score)
-    il       = _impact_label(score)
-    imp_html = f'<span class="impact-badge" style="background:{ic}">{il} {score}</span>'
-
-    # Sentiment
-    senti_ic = SENTIMENT_ICON.get(senti, "🔵")
-
-    # Hindi badge
-    lang_html = '<span class="lang-hi">HI</span>' if lang == "hi" else ""
-
-    # Tags
-    tag_html = "".join(_tag_badge(t) for t in tags) if tags else ""
-
-    # Dup count
-    dup = a.get("duplicate_count", 1)
-    dup_html = f'<span style="color:#f5c518;font-size:0.78em">+{dup-1} similar</span>' if dup > 1 else ""
-
     headline = a.get("headline", "—")
     url      = a.get("source_url", "#")
     src_name = a.get("source_name", "")
     pub_time = a.get("published_at_ist", "")
-    summary  = a.get("summary", "")[:280]
+    summary  = a.get("summary", "")[:300]
     art_id   = a.get("article_id", "")
+    dup      = a.get("duplicate_count", 1)
 
-    card_html = f"""
-    <div class="{card_cls}">
-        <div class="news-headline">
-            {lang_html}
-            <a href="{url}" target="_blank" rel="noopener noreferrer">{headline}</a>
-        </div>
-        <div class="news-meta">
-            {imp_html}
-            {senti_ic}
-            <span>📰 {src_name}</span>
-            <span>🕐 {pub_time}</span>
-            {dup_html}
-        </div>
-        <div class="news-tags">{tag_html}</div>
-        <div class="news-summary">{summary}</div>
-    </div>
-    """
-    st.markdown(card_html, unsafe_allow_html=True)
+    # Border color based on status/score
+    if score >= 80:
+        border = "4px solid #ff2d2d"
+        bg     = "#1a0505"
+    elif status == "saved":
+        border = "4px solid #2ea44f"
+        bg     = "#0d1117"
+    elif status == "read":
+        border = "1px solid #30363d"
+        bg     = "#0d1117"
+    else:
+        border = "1px solid #30363d"
+        bg     = "#161b22"
 
-    # Action buttons
-    b1, b2, b3, b4, _ = st.columns([1, 1, 1, 1, 4])
+    opacity = "0.65" if status == "read" else "1.0"
+
+    with st.container():
+        st.markdown(
+            f'<div style="border-left:{border};background:{bg};border-radius:8px;'
+            f'padding:14px 16px;margin-bottom:10px;opacity:{opacity};">',
+            unsafe_allow_html=True,
+        )
+
+        # Row 1: Impact badge + sentiment + language + source + time
+        il       = _impact_label(score)
+        ic       = _impact_color(score)
+        senti_ic = SENTIMENT_ICON.get(senti, "🔵")
+        lang_tag = " `HI`" if lang == "hi" else ""
+        dup_note = f"  _(+{dup-1} similar)_" if dup > 1 else ""
+
+        meta_parts = [
+            f'<span style="background:{ic};color:#fff;padding:2px 8px;border-radius:10px;'
+            f'font-size:0.75em;font-weight:700">{il} {score}</span>',
+            f'<span style="color:#8b949e;font-size:0.78em">{senti_ic} {src_name} &nbsp;|&nbsp; 🕐 {pub_time}{dup_note}</span>',
+        ]
+        if lang == "hi":
+            meta_parts.insert(1, '<span style="background:#ff9933;color:#fff;font-size:0.68em;'
+                               'padding:1px 5px;border-radius:4px;font-weight:700">HI</span>')
+
+        st.markdown(" &nbsp; ".join(meta_parts), unsafe_allow_html=True)
+
+        # Row 2: Headline as clickable link
+        st.markdown(
+            f'<p style="font-size:0.95em;font-weight:600;color:#c9d1d9;margin:6px 0 4px 0;">'
+            f'<a href="{url}" target="_blank" style="color:#58a6ff;text-decoration:none;">'
+            f'{headline}</a></p>',
+            unsafe_allow_html=True,
+        )
+
+        # Row 3: Tags as inline colored badges
+        if tags:
+            badge_parts = []
+            for t in tags:
+                color = TAG_COLORS.get(t, "#444444")
+                badge_parts.append(
+                    f'<span style="background:{color};color:#fff;padding:2px 7px;'
+                    f'border-radius:10px;font-size:0.72em;margin:1px 2px;'
+                    f'display:inline-block">{t}</span>'
+                )
+            st.markdown('<div style="margin:4px 0 6px 0">' + "".join(badge_parts) + "</div>",
+                        unsafe_allow_html=True)
+
+        # Row 4: Summary
+        if summary:
+            st.markdown(
+                f'<p style="font-size:0.82em;color:#8b949e;margin:4px 0 8px 0;line-height:1.5">'
+                f'{summary}</p>',
+                unsafe_allow_html=True,
+            )
+
+        st.markdown("</div>", unsafe_allow_html=True)
+
+    # Action buttons (outside the card div — native Streamlit)
+    b1, b2, b3, b4, _ = st.columns([1, 1, 1, 1, 3])
     with b1:
         if st.button("✅ Read", key=f"read_{region_key}_{idx}_{art_id}", use_container_width=True):
             ne.mark_article(art_id, "read")
@@ -472,6 +505,7 @@ def _render_card(a: dict, idx: int, region_key: str):
             st.rerun()
     with b4:
         st.link_button("🔗 Open Source", url, use_container_width=True)
+    st.divider()
 
 # ══════════════════════════════════════════════════════════════════════════════
 # STATS ROW

@@ -343,10 +343,10 @@
         },
 
         "shipping_freight": {
-            "name": "Baltic Dry Index (BDI) Proxy",
-            "purpose": "Ocean freight trend indicator for Gulf-to-India import cost model",
+            "name": "Dry Bulk Shipping ETF (BDRY — BDI Proxy)",
+            "purpose": "Ocean freight trend indicator for Gulf-to-India import cost model. BDRY tracks Baltic Dry Index futures.",
             "provider": "yfinance",
-            "data_center": "Yahoo Finance (US East Coast)",
+            "data_center": "Yahoo Finance — BDRY = Breakwave Dry Bulk Shipping ETF (BDI proxy)",
             "endpoint": "yfinance",
             "parse_rules": {},
             "refresh_interval_sec": 86400,
@@ -354,10 +354,10 @@
             "auth_type": "None",
             "cors_support": true,
             "fallback": "yfinance",
-            "fallback_symbol": "^BDI",
+            "fallback_symbol": "BDRY",
             "history_needed": true,
             "tabs_used": ["Import Cost Model", "Supply Chain", "Strategy Panel"],
-            "reliability_rating": "B",
+            "reliability_rating": "A",
             "auto_repair": true
         },
 

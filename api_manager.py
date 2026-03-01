@@ -274,6 +274,22 @@ def _get_local_holidays() -> dict:
         holidays = _INDIA_HOLIDAYS_2026
     return {"current": len(holidays), "holidays": holidays}
 
+def _parse_rest_countries(response_json) -> dict:
+    """REST Countries v3.1 — returns list with one country dict."""
+    try:
+        item = response_json[0] if isinstance(response_json, list) else response_json
+        return {
+            "current":    item.get("population", 0),
+            "name":       item.get("name", {}).get("common", "India"),
+            "capital":    (item.get("capital") or ["New Delhi"])[0],
+            "area":       item.get("area", 3287263),
+            "region":     item.get("region", "Asia"),
+            "currencies": list((item.get("currencies") or {}).keys()),
+        }
+    except Exception:
+        return None
+
+
 def _parse_standard(response_json, rules: dict):
     """Standard key-path parser."""
     try:
@@ -391,6 +407,12 @@ def fetch_api_data(widget_id: str, force: bool = False):
                         break
                 elif parse_type == "holiday_list":
                     parsed = _parse_holiday_list(js)
+                    if parsed:
+                        result_data = parsed
+                        success = True
+                        break
+                elif parse_type == "rest_countries":
+                    parsed = _parse_rest_countries(js)
                     if parsed:
                         result_data = parsed
                         success = True
