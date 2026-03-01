@@ -172,10 +172,10 @@ STYLES = _make_styles()
 # PAGE TEMPLATE — header + footer on every page
 # ══════════════════════════════════════════════════════════════════════════════
 
-COMPANY_NAME   = "PPS Anantams Logistics Pvt. Ltd."
+COMPANY_NAME   = "PPS Anantam Eco Agentic AI System"
 COMPANY_GST    = "GST: 24AAHCV1611L2ZD"
 COMPANY_CITY   = "Vadodara, Gujarat"
-DASHBOARD_NAME = "Logistics AI Dashboard"
+DASHBOARD_NAME = "PPS Anantam Logistics AI – All Locations"
 
 
 def _build_header_footer(canvas, doc):
@@ -228,8 +228,13 @@ def _build_header_footer(canvas, doc):
     canvas.setFont("Helvetica", 8)
     canvas.setFillColor(GREY_DARK)
     canvas.drawString(10*mm, 10*mm, f"Page {canvas.getPageNumber()}")
-    canvas.drawCentredString(W / 2, 10*mm, "CONFIDENTIAL — Internal Use Only")
-    canvas.drawRightString(W - 10*mm, 10*mm, "Data source: PPS Anantams Logistics AI")
+    ts_footer = getattr(doc, "_generated_at", _ts_ist())
+    canvas.drawCentredString(
+        W / 2, 10*mm,
+        f"PPS Anantam Eco Agentic AI System  |  PPS Anantam Logistics AI – All Locations  |  "
+        f"v3.0.0  |  {ts_footer}"
+    )
+    canvas.drawRightString(W - 10*mm, 10*mm, "CONFIDENTIAL")
 
     canvas.restoreState()
 

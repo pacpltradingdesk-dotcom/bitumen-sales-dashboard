@@ -75,147 +75,275 @@ customer_city_map = {
 }
 
 # Page Config
-st.set_page_config(page_title="Logistics Pricing AI", page_icon="🚛", layout="wide")
+st.set_page_config(
+    page_title="PPS Anantam Eco Agentic AI System",
+    page_icon="🏛️",
+    layout="wide",
+)
 
-# Custom Styling
+# ── Corporate Vastu Design System v3.0 ─────────────────────────────────────
 st.markdown("""
 <style>
-/* =================================================================================
-VASTU-COMPLIANT 3D GLASSMORPHISM DESIGN SYSTEM
-North (Green): Money/Opportunity | South-East (Fire): Cash Flow | West (Blue): Gains
-================================================================================= */
+/* =========================================================================
+   PPS ANANTAM ECO AGENTIC AI SYSTEM — Corporate Vastu Design System v3.0
+   Palette: Soft ivory/sandal backgrounds · Navy headings · Vastu green/gold
+   Typography: Inter / Segoe UI — clean, readable, corporate
+   Mobile-first responsive + @media print
+   ========================================================================= */
 
+/* ── 0. Google Fonts import ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ── 1. CSS Variables ────────────────────────────────────────────────────── */
 :root {
-/* VASTU PALETTE */
---vastu-north-green: #059669;  /* Growth/Pricing */
---vastu-se-fire: #ea580c;      /* Action/Sales/Fire */
---vastu-west-blue: #2563eb;    /* Gains/Logistics */
---vastu-sw-earth: #ca8a04;     /* Stability/Store */
+  /* Core brand colours */
+  --navy:          #1e3a5f;
+  --navy-mid:      #2c4f7c;
+  --navy-light:    #2563eb;
+  --charcoal:      #2d3142;
+  --steel:         #64748b;
+  --steel-light:   #94a3b8;
 
-/* BACKGROUNDS */
---bg-main: #f8fafc;
---glass-bg: rgba(255, 255, 255, 0.7);
---glass-border: rgba(255, 255, 255, 0.4);
+  /* Vastu warm backgrounds */
+  --ivory:         #faf7f2;
+  --ivory-deep:    #f5f0e8;
+  --cream:         #f0ebe1;
+  --sandal:        #e8dcc8;
+  --sandal-light:  #f2ece0;
 
-/* SHADOWS (Deep 3D) */
---shadow-3d: 
-8px 8px 16px rgba(166, 171, 189, 0.5), 
--8px -8px 16px rgba(255, 255, 255, 0.8);
---shadow-inner: 
-inset 4px 4px 8px rgba(166, 171, 189, 0.2), 
-inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+  /* Vastu prosperity accents */
+  --vastu-green:   #2d6a4f;
+  --vastu-green-lt:#e8f5ee;
+  --vastu-gold:    #c9a84c;
+  --vastu-gold-lt: #fdf6e3;
+  --vastu-fire:    #b85c38;
+  --vastu-fire-lt: #fdf0eb;
+  --vastu-earth:   #8c6d46;
+
+  /* Category sidebar tints */
+  --cat-sales:     rgba(45,106,79,0.07);
+  --cat-ops:       rgba(30,58,95,0.07);
+  --cat-finance:   rgba(201,168,76,0.09);
+  --cat-legal:     rgba(184,92,56,0.07);
+  --cat-strategy:  rgba(109,40,217,0.07);
+  --cat-tech:      rgba(14,116,144,0.07);
+  --cat-knowledge: rgba(120,53,15,0.07);
+  --cat-market:    rgba(15,118,110,0.07);
+
+  /* Shadows */
+  --shadow-card:   0 2px 10px rgba(30,58,95,0.07), 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-hover:  0 6px 20px rgba(30,58,95,0.12), 0 2px 6px rgba(0,0,0,0.06);
 }
 
-/* GLOBAL APP STYLE */
-.stApp {
-background: radial-gradient(circle at top left, #f1f5f9, #e2e8f0);
+/* ── 2. Global Typography ────────────────────────────────────────────────── */
+*, *::before, *::after {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif !important;
+  box-sizing: border-box;
+}
+h1, .stMarkdown h1 {
+  font-size: 1.55rem !important; font-weight: 800 !important;
+  color: var(--navy) !important; line-height: 1.3 !important;
+  letter-spacing: -0.3px !important;
+}
+h2, .stMarkdown h2 {
+  font-size: 1.2rem !important; font-weight: 700 !important;
+  color: var(--navy) !important; line-height: 1.4 !important;
+}
+h3, .stMarkdown h3 {
+  font-size: 1.0rem !important; font-weight: 600 !important;
+  color: var(--charcoal) !important;
+}
+p, li, .stMarkdown p { font-size: 0.9rem !important; line-height: 1.65 !important; color: var(--charcoal) !important; }
+.stCaption, small, caption { font-size: 0.78rem !important; color: var(--steel) !important; }
+
+/* ── 3. App Background ───────────────────────────────────────────────────── */
+.stApp, [data-testid="stApp"] {
+  background: var(--ivory) !important;
+}
+.main .block-container {
+  background: transparent !important;
+  padding-top: 0.75rem !important;
+  padding-left: 1.25rem !important;
+  padding-right: 1.25rem !important;
+  max-width: 100% !important;
 }
 
-/* ---------------------------------------------------------------------------------
-3D GLASSMORPHIC CARDS
---------------------------------------------------------------------------------- */
-.stCard, div[data-testid="stExpander"], div[data-testid="stForm"] {
-background: var(--glass-bg);
-backdrop-filter: blur(12px);
--webkit-backdrop-filter: blur(12px);
-border-radius: 20px;
-border: 1px solid var(--glass-border);
-box-shadow: var(--shadow-3d);
-padding: 20px;
-margin-bottom: 20px;
-transition: transform 0.3s ease;
+/* ── 4. Cards / Expanders / Forms ────────────────────────────────────────── */
+.stCard,
+div[data-testid="stExpander"],
+div[data-testid="stForm"] {
+  background: #ffffff !important;
+  border: 1px solid var(--sandal) !important;
+  border-radius: 12px !important;
+  box-shadow: var(--shadow-card) !important;
+  transition: box-shadow 0.2s ease !important;
+}
+div[data-testid="stExpander"]:hover {
+  box-shadow: var(--shadow-hover) !important;
+}
+div[data-testid="stExpanderDetails"] {
+  background: #ffffff !important;
 }
 
-/* ---------------------------------------------------------------------------------
-3D TABS - FIXED WRAPPING (No Horizontal Scroll)
---------------------------------------------------------------------------------- */
+/* ── 5. Tabs ─────────────────────────────────────────────────────────────── */
 .stTabs [data-baseweb="tab-list"] {
-gap: 8px;
-padding: 10px;
-background: rgba(255, 255, 255, 0.3);
-border-radius: 20px;
-box-shadow: inset 2px 2px 5px rgba(0,0,0,0.05);
-display: flex;
-flex-wrap: wrap !important;     /* FORCE WRAP */
-white-space: normal !important; /* ALLOW TEXT WRAP */
-overflow: visible !important;   /* NO SCROLL */
-height: auto !important;
+  gap: 6px !important;
+  padding: 8px 8px !important;
+  background: var(--cream) !important;
+  border-radius: 12px !important;
+  border: 1px solid var(--sandal) !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  height: auto !important;
 }
-
 .stTabs [data-baseweb="tab"] {
-height: 40px;                   /* Smaller height for compact rows */
-min-width: fit-content;
-flex: 1 1 auto;                 /* Grow to fill space */
-border-radius: 10px;            /* Pill shape */
-background-color: #e2e8f0;
-box-shadow: var(--shadow-3d);
-border: 1px solid white;
-color: #64748b;
-font-weight: 700;
-padding: 0 15px;
-margin-bottom: 5px;             /* Space between wrapped rows */
-transition: all 0.2s ease;
+  height: 36px !important;
+  min-width: fit-content !important;
+  flex: 1 1 auto !important;
+  border-radius: 8px !important;
+  background: #ffffff !important;
+  border: 1px solid var(--sandal) !important;
+  color: var(--steel) !important;
+  font-weight: 600 !important;
+  font-size: 0.82rem !important;
+  padding: 0 12px !important;
+  margin-bottom: 4px !important;
+  transition: all 0.18s ease !important;
 }
-
 .stTabs [data-baseweb="tab"]:hover {
-transform: translateY(-3px);
-color: var(--vastu-west-blue);
+  background: var(--sandal-light) !important;
+  color: var(--navy) !important;
+  transform: translateY(-1px) !important;
 }
-
-/* ACTIVE TAB - GLOWING GRADIENT */
 .stTabs [data-baseweb="tab"][aria-selected="true"] {
-background: linear-gradient(135deg, #1e40af, #3b82f6);
-color: white !important;
-box-shadow: 
-0 10px 20px rgba(37, 99, 235, 0.3),
-inset 0 0 0 1px rgba(255,255,255,0.3);
-transform: scale(1.05);
+  background: var(--navy) !important;
+  color: #ffffff !important;
+  border-color: var(--navy) !important;
+  box-shadow: 0 3px 10px rgba(30,58,95,0.25) !important;
+  transform: translateY(-1px) !important;
 }
+.stTabs [data-baseweb="tab-highlight"] { display: none !important; }
 
-/* ---------------------------------------------------------------------------------
-VASTU COLOR METRICS (North/Money = Green)
---------------------------------------------------------------------------------- */
+/* ── 6. Metrics ──────────────────────────────────────────────────────────── */
 div[data-testid="stMetric"] {
-background: linear-gradient(145deg, #ffffff, #f0fdf4);
-border-radius: 15px;
-padding: 15px;
-box-shadow: var(--shadow-3d);
-border-left: 6px solid var(--vastu-north-green);
+  background: #ffffff !important;
+  border-radius: 10px !important;
+  padding: 14px 16px !important;
+  border: 1px solid var(--sandal) !important;
+  border-left: 5px solid var(--vastu-green) !important;
+  box-shadow: var(--shadow-card) !important;
+  transition: box-shadow 0.2s !important;
+}
+div[data-testid="stMetric"]:hover { box-shadow: var(--shadow-hover) !important; }
+div[data-testid="stMetricLabel"] { color: var(--steel) !important; font-weight: 600 !important; font-size: 0.78rem !important; }
+div[data-testid="stMetricValue"] { color: var(--navy) !important; font-weight: 800 !important; font-size: 1.45rem !important; }
+div[data-testid="stMetricDelta"] { font-size: 0.8rem !important; font-weight: 600 !important; }
+
+/* ── 7. Buttons ──────────────────────────────────────────────────────────── */
+.stButton > button {
+  background: #ffffff !important;
+  border: 1px solid var(--sandal) !important;
+  border-radius: 8px !important;
+  color: var(--charcoal) !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  padding: 0.4rem 1rem !important;
+  box-shadow: 0 1px 4px rgba(30,58,95,0.08) !important;
+  transition: all 0.15s ease !important;
+}
+.stButton > button:hover {
+  background: var(--sandal-light) !important;
+  border-color: var(--navy-mid) !important;
+  color: var(--navy) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 3px 8px rgba(30,58,95,0.15) !important;
+}
+.stButton > button:active { transform: translateY(0) !important; box-shadow: none !important; }
+.stButton > button[kind="primary"] {
+  background: var(--vastu-green) !important;
+  border-color: var(--vastu-green) !important;
+  color: #ffffff !important;
+  box-shadow: 0 3px 10px rgba(45,106,79,0.3) !important;
+}
+.stButton > button[kind="primary"]:hover {
+  background: #255a42 !important;
+  border-color: #255a42 !important;
+  transform: translateY(-1px) !important;
+}
+.stButton > button[kind="secondary"] {
+  border-color: var(--navy-mid) !important;
+  color: var(--navy) !important;
 }
 
-div[data-testid="stMetricLabel"] { color: #64748b; font-weight: 600; }
-div[data-testid="stMetricValue"] { 
-color: var(--vastu-north-green); 
-text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+/* ── 8. Inputs / Selectbox / Sliders ─────────────────────────────────────── */
+div[data-testid="stTextInput"] > div > div > input,
+div[data-testid="stNumberInput"] > div > div > input,
+div[data-testid="stTextArea"] > div > textarea {
+  background: #ffffff !important;
+  border: 1px solid var(--sandal) !important;
+  border-radius: 8px !important;
+  color: var(--charcoal) !important;
+  font-size: 0.875rem !important;
+}
+div[data-testid="stSelectbox"] > div > div {
+  background: #ffffff !important;
+  border: 1px solid var(--sandal) !important;
+  border-radius: 8px !important;
+}
+div[data-testid="stSlider"] div[role="slider"] {
+  background: var(--vastu-green) !important;
 }
 
-/* ---------------------------------------------------------------------------------
-BUTTONS - PRESSABLE 3D
---------------------------------------------------------------------------------- */
-.stButton button {
-background: linear-gradient(145deg, #ffffff, #e2e8f0);
-box-shadow: var(--shadow-3d);
-border-radius: 12px;
-color: #1e293b;
-font-weight: 700;
-border: 1px solid rgba(255,255,255,0.8);
+/* ── 9. DataFrames / Tables ──────────────────────────────────────────────── */
+div[data-testid="stDataFrame"] {
+  border: 1px solid var(--sandal) !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+}
+table { font-size: 0.82rem !important; border-collapse: collapse !important; }
+th {
+  background: var(--navy) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  padding: 8px 10px !important;
+  position: sticky !important; top: 0 !important; z-index: 1 !important;
+}
+td { padding: 7px 10px !important; border-bottom: 1px solid var(--cream) !important; color: var(--charcoal) !important; }
+tr:nth-child(even) td { background: var(--ivory-deep) !important; }
+tr:hover td { background: var(--sandal-light) !important; }
+
+/* ── 10. Info / Warning / Success / Error boxes ─────────────────────────── */
+div[data-testid="stAlert"] {
+  border-radius: 10px !important;
+  border-left-width: 4px !important;
+  font-size: 0.875rem !important;
 }
 
-.stButton button:hover {
-transform: translateY(-2px);
-}
+/* ── 11. Dividers ────────────────────────────────────────────────────────── */
+hr { border-color: var(--sandal) !important; border-width: 1px 0 0 0 !important; margin: 1rem 0 !important; }
 
-.stButton button:active {
-box-shadow: var(--shadow-inner);
-transform: translateY(2px);
-}
+/* ── 12. Scrollbars (webkit) ─────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--sandal); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--steel-light); }
 
-/* Primary Action - Fire/Sales (South-East) */
-.stButton button[kind="primary"] {
-background: linear-gradient(135deg, #ea580c, #f97316);
-color: white;
-box-shadow: 0 10px 20px rgba(234, 88, 12, 0.4);
-border: none;
+/* ── 13. Mobile responsive ───────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .main .block-container { padding: 0.4rem !important; }
+  h1, .stMarkdown h1 { font-size: 1.2rem !important; }
+  h2, .stMarkdown h2 { font-size: 1.0rem !important; }
+  div[data-testid="stMetric"] { padding: 10px 12px !important; }
+  div[data-testid="stMetricValue"] { font-size: 1.15rem !important; }
+  .stTabs [data-baseweb="tab"] { font-size: 0.73rem !important; padding: 0 7px !important; height: 30px !important; }
+  .stButton > button { font-size: 0.8rem !important; padding: 0.3rem 0.7rem !important; }
+  table { font-size: 0.72rem !important; }
+  div[data-testid="stDataFrame"] { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
+}
+@media (max-width: 480px) {
+  .main .block-container { padding: 0.25rem !important; }
 }
 </style>
 """, unsafe_allow_html=True)
@@ -230,8 +358,8 @@ from sales_calendar import (
 # --- LIVE MARKET DATA (AUTO-TICKER) ---
 from market_data import get_live_market_data, get_simulated_data
 
-# Global API Switch (Sidebar)
-api_active = st.sidebar.toggle("🌐 Live Data APIs", value=False, help="Turn ON to fetch real-time data. OFF uses fast offline mode.")
+# API toggle — read from session_state so the widget can live at sidebar bottom
+api_active = st.session_state.get("_api_toggle_v3", False)
 
 @st.cache_data(ttl=120)
 def get_cached_market_data(is_active):
@@ -244,61 +372,78 @@ mkt = get_cached_market_data(api_active)
 
 st.markdown(f"""
 <div style="
-background-color: #0f172a; 
-color: #cbd5e1; 
-padding: 8px 15px; 
-font-family: 'Inter', sans-serif; 
-font-size: 0.85rem; 
-border-bottom: 1px solid #1e293b;
-display: flex;
-justify-content: space-between;
-align-items: center;
+  background: #faf7f2;
+  border-bottom: 1px solid #e8dcc8;
+  padding: 7px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-size: 0.82rem;
 ">
-<div style="display:flex; gap: 20px;">
-<span>🛢️ <b>Brent:</b> {mkt['brent']['value']} <span style="font-size:0.75rem; color:#94a3b8;">(7d: {mkt['brent']['value_7d']})</span> <span style="color:{mkt['brent']['color']}">{mkt['brent']['change']}</span></span>
-<span>🛢️ <b>WTI:</b> {mkt['wti']['value']} <span style="font-size:0.75rem; color:#94a3b8;">(7d: {mkt['wti']['value_7d']})</span> <span style="color:{mkt['wti']['color']}">{mkt['wti']['change']}</span></span>
-<span>💵 <b>USD/INR:</b> {mkt['usdinr']['value']} <span style="font-size:0.75rem; color:#94a3b8;">(7d: {mkt['usdinr']['value_7d']})</span> <span style="color:{mkt['usdinr']['color']}">{mkt['usdinr']['change']}</span></span>
-</div>
-<div style="font-size: 0.75rem; color: #64748b;">
-⏱️ Live as of {mkt['timestamp']}
-</div>
+  <div style="display:flex; gap:22px; flex-wrap:wrap;">
+    <span style="color:#1e3a5f;">
+      🛢️ <b>Brent:</b> {mkt['brent']['value']}
+      <span style="font-size:0.72rem;color:#94a3b8;"> (7d: {mkt['brent']['value_7d']})</span>
+      <span style="color:{mkt['brent']['color']};font-weight:600;"> {mkt['brent']['change']}</span>
+    </span>
+    <span style="color:#1e3a5f;">
+      🛢️ <b>WTI:</b> {mkt['wti']['value']}
+      <span style="font-size:0.72rem;color:#94a3b8;"> (7d: {mkt['wti']['value_7d']})</span>
+      <span style="color:{mkt['wti']['color']};font-weight:600;"> {mkt['wti']['change']}</span>
+    </span>
+    <span style="color:#1e3a5f;">
+      💵 <b>USD/INR:</b> {mkt['usdinr']['value']}
+      <span style="font-size:0.72rem;color:#94a3b8;"> (7d: {mkt['usdinr']['value_7d']})</span>
+      <span style="color:{mkt['usdinr']['color']};font-weight:600;"> {mkt['usdinr']['change']}</span>
+    </span>
+  </div>
+  <div style="font-size:0.72rem;color:#94a3b8;white-space:nowrap;">
+    ⏱️ Live as of {mkt['timestamp']}
+  </div>
 </div>
 """, unsafe_allow_html=True)
 
-# --- OMNIPOTENT INDUSTRIES DASHBOARD ---
+# ── Dual-stream news scrolling ticker ───────────────────────────────────────
+try:
+    from news_ticker import render_news_ticker
+    render_news_ticker()
+except Exception:
+    pass
 
-# Header Section (Enterprise 3D Style - Deep Steel Blue)
+# ── Enterprise Header — PPS Anantam Eco Agentic AI System ───────────────────
 st.markdown("""
 <div style="
-background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
-padding: 12px 25px;
-border-radius: 8px;
-display: flex;
-align-items: center;
-justify-content: space-between;
-margin-bottom: 25px;
-box-shadow: 0 10px 25px -5px rgba(30, 58, 138, 0.4);
-border-bottom: 2px solid #3b82f6;
+  background: linear-gradient(135deg, #1e3a5f 0%, #0f2744 100%);
+  padding: 11px 22px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  box-shadow: 0 6px 20px -4px rgba(30,58,95,0.35);
+  border-bottom: 2px solid #c9a84c;
 ">
-<div style="display: flex; align-items: center; gap: 15px;">
-<span style="font-size: 1.4rem; font-weight: 800; background: -webkit-linear-gradient(eee, white); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-PPS Anantams
-</span>
-<span style="border-left: 1px solid rgba(255,255,255,0.2); height: 25px;"></span>
-<div style="display: flex; flex-direction: column;">
-<span style="font-size: 0.9rem; color: #e0e7ff; font-weight: 500; letter-spacing: 0.5px;">LANDING COST SYSTEM</span>
-<span style="font-size: 0.65rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px;">Enterprise Edition V2.0</span>
-</div>
-</div>
-<div style="text-align: right; display: flex; gap: 20px; align-items: center;">
-<div style="background: rgba(255,255,255,0.1); padding: 5px 12px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
-<span style="color: #cbd5e1; font-size: 0.75rem;">📍 Vadodara HQ</span>
-</div>
-<div style="text-align: right;">
-<div style="font-size: 0.8rem; color: #e2e8f0; font-weight: 600;">GST: 24AAHCV1611L2ZD</div>
-<div style="font-size: 0.7rem; color: #64748b;">Auth: Director Finance</div>
-</div>
-</div>
+  <div style="display:flex; align-items:center; gap:14px;">
+    <span style="font-size:1.45rem;">🏛️</span>
+    <div>
+      <div style="font-size:1.05rem;font-weight:800;color:#ffffff;letter-spacing:-0.2px;line-height:1.25;">
+        PPS Anantam Eco Agentic AI System
+      </div>
+      <div style="font-size:0.68rem;color:#93c5fd;letter-spacing:0.4px;margin-top:2px;">
+        PPS Anantam Logistics AI – All Locations &nbsp;|&nbsp; Enterprise AI v3.0
+      </div>
+    </div>
+  </div>
+  <div style="display:flex; gap:16px; align-items:center;">
+    <div style="background:rgba(201,168,76,0.15);padding:4px 12px;border-radius:5px;border:1px solid rgba(201,168,76,0.3);">
+      <span style="color:#fcd34d;font-size:0.73rem;font-weight:600;">📍 Vadodara HQ</span>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-size:0.75rem;color:#e2e8f0;font-weight:600;">GST: 24AAHCV1611L2ZD</div>
+      <div style="font-size:0.65rem;color:#64748b;">Auth: Director Finance</div>
+    </div>
+  </div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -323,54 +468,107 @@ if optimizer is None:
 # --- TABS Interface ---
 # --- SIDEBAR NAVIGATION (REFACTORED) ---
 
-# CSS for Premium Sidebar
+# ── Sidebar CSS — Corporate Vastu v3.0 ──────────────────────────────────────
 st.markdown("""
 <style>
+/* ── Sidebar container ────────────────────────────────────────────────────── */
 section[data-testid="stSidebar"] {
-background-color: #ffffff;
-box-shadow: 2px 0 15px rgba(0,0,0,0.05);
+  background: #ffffff !important;
+  border-right: 1px solid #e8dcc8 !important;
+  box-shadow: 1px 0 8px rgba(30,58,95,0.06) !important;
 }
-.nav-header {
-font-size: 0.75rem;
-font-weight: 700;
-color: #94a3b8;
-text-transform: uppercase;
-letter-spacing: 0.05em;
-margin-top: 20px;
-margin-bottom: 10px;
-padding-left: 10px;
+section[data-testid="stSidebar"] > div:first-child {
+  padding-top: 0.75rem !important;
 }
-div.row-widget.stRadio > div {
-gap: 5px;
+/* Hide all horizontal dividers inside sidebar */
+section[data-testid="stSidebar"] hr { display: none !important; }
+section[data-testid="stSidebar"] [data-testid="stVerticalBlock"] > hr { display: none !important; }
+
+/* ── Nav radio items ──────────────────────────────────────────────────────── */
+section[data-testid="stSidebar"] div.row-widget.stRadio > div,
+section[data-testid="stSidebar"] [data-testid="stRadio"] > div {
+  gap: 1px !important;
+  padding-top: 0 !important;
 }
-div.row-widget.stRadio > div > label {
-background-color: transparent;
-border: none;
-margin-bottom: 2px;
-padding: 8px 10px;
-border-radius: 8px;
-transition: all 0.2s;
+section[data-testid="stSidebar"] div.row-widget.stRadio > div > label,
+section[data-testid="stSidebar"] [data-testid="stRadio"] label {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 7px !important;
+  padding: 6px 10px !important;
+  font-size: 0.83rem !important;
+  font-weight: 400 !important;
+  color: #2d3142 !important;
+  cursor: pointer !important;
+  transition: background 0.15s, color 0.15s !important;
+  line-height: 1.35 !important;
 }
-div.row-widget.stRadio > div > label:hover {
-background-color: #f1f5f9;
+section[data-testid="stSidebar"] div.row-widget.stRadio > div > label:hover,
+section[data-testid="stSidebar"] [data-testid="stRadio"] label:hover {
+  background: #f2ece0 !important;
+  color: #1e3a5f !important;
 }
-div.row-widget.stRadio > div > label[data-baseweb="radio"] {
-background-color: #eff6ff;
-color: #1d4ed8;
-font-weight: 600;
+/* Active (selected) item — soft green tint */
+section[data-testid="stSidebar"] [data-testid="stRadio"] label[data-checked="true"],
+section[data-testid="stSidebar"] div.row-widget.stRadio > div > label[data-baseweb="radio"] {
+  background: #e8f5ee !important;
+  color: #2d6a4f !important;
+  font-weight: 600 !important;
+}
+/* Hide the actual radio circle widget (we just want the label look) */
+section[data-testid="stSidebar"] [data-testid="stRadio"] [data-baseweb="radio"] { display: none !important; }
+
+/* ── Category section headers (─── 🏢 SECTION ───) ──────────────────────── */
+/* These are styled with a distinct muted look by the JS injection below */
+.pps-nav-section-label {
+  font-size: 0.68rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: #94a3b8 !important;
+  padding: 10px 10px 3px 10px !important;
+  margin-top: 4px !important;
+  display: block;
+}
+
+/* ── API toggle area at sidebar bottom ────────────────────────────────────── */
+.pps-sidebar-footer {
+  border-top: 1px solid #e8dcc8;
+  padding: 10px 4px 4px 4px;
+  margin-top: 8px;
+}
+
+/* Mobile: sidebar full-width */
+@media (max-width: 768px) {
+  section[data-testid="stSidebar"] div.row-widget.stRadio > div > label,
+  section[data-testid="stSidebar"] [data-testid="stRadio"] label {
+    font-size: 0.95rem !important;
+    padding: 8px 12px !important;
+  }
 }
 </style>
 """, unsafe_allow_html=True)
 
 with st.sidebar:
-    st.image("https://cdn-icons-png.flaticon.com/512/3523/3523063.png", width=50) # Mock Logo
-    st.markdown("### PPS Anantams")
-    st.caption("Enterprise Dashboard V2.1")
-    
-    st.markdown('<div class="nav-header">PLAN & SELL</div>', unsafe_allow_html=True)
-    
+    # ── Brand header ─────────────────────────────────────────────────────────
+    st.markdown("""
+<div style="padding:10px 10px 8px 10px;border-bottom:1px solid #e8dcc8;margin-bottom:4px;">
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:3px;">
+    <span style="font-size:1.3rem;">🏛️</span>
+    <span style="font-size:0.79rem;font-weight:800;color:#1e3a5f;line-height:1.2;">
+      PPS Anantam<br>Eco Agentic AI System
+    </span>
+  </div>
+  <div style="font-size:0.65rem;color:#94a3b8;padding-left:2px;line-height:1.3;">
+    PPS Anantam Logistics AI – All Locations
+  </div>
+</div>
+""", unsafe_allow_html=True)
+
     # Single combined radio for all navigation, grouped by Department
     all_nav_options = [
+        "🏠 Home",
+
         "─── 🏢 SALES & REVENUE ───",
         "💼 Sales Workspace",
         "🎯 CRM & Tasks",
@@ -425,9 +623,22 @@ with st.sidebar:
     ]
     
     selected_page = st.radio("Navigate", all_nav_options, label_visibility="collapsed")
-    
-    st.divider()
-    st.caption("Logged in as: Sales Manager")
+
+    # ── Sidebar bottom: API toggle + version ─────────────────────────────────
+    st.markdown('<div class="pps-sidebar-footer">', unsafe_allow_html=True)
+    _api_val = st.toggle(
+        "🌐 Live Data APIs",
+        value=st.session_state.get("_api_toggle_v3", False),
+        key="_api_toggle_v3",
+        help="ON = real-time data fetched from APIs. OFF = fast offline/simulated mode.",
+    )
+    st.markdown(
+        '<div style="font-size:0.65rem;color:#94a3b8;padding:2px 4px 0 4px;">'
+        'v3.0.0 &nbsp;|&nbsp; 01-03-2026 &nbsp;|&nbsp; Production'
+        '</div>',
+        unsafe_allow_html=True,
+    )
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # Logic: Only execute the selected page to prevent poor performance/crashes
 # We will use 'if selected_page == "...": with st.container():' structure below.
@@ -453,6 +664,7 @@ inject_print_css()
 
 # Skip export bar for section-header items and PDF Archive (which has its own)
 _NAV_HEADERS = {
+    "🏠 Home",  # Home has its own layout — no generic export bar needed
     "─── 🏢 SALES & REVENUE ───", "─── 🏢 OPERATIONS & PROCUREMENT ───",
     "─── 🏢 FINANCE & PROFITABILITY ───", "─── 🏢 LEGAL & COMPLIANCE ───",
     "─── 🏢 STRATEGY & INTELLIGENCE ───", "─── 🏢 TECHNOLOGY & SYSTEMS ───",
@@ -465,6 +677,165 @@ if selected_page not in _NAV_HEADERS:
         role="Admin",
     )
 
+
+# ── HOME PAGE ────────────────────────────────────────────────────────────────
+if selected_page == "🏠 Home":
+    import datetime as _dt
+
+    st.markdown(
+        '<h1 style="margin-bottom:4px;">🏠 Welcome to PPS Anantam Eco Agentic AI System</h1>',
+        unsafe_allow_html=True,
+    )
+    st.caption("PPS Anantam Logistics AI – All Locations  |  Enterprise AI v3.0  |  01-03-2026")
+    st.markdown("---")
+
+    home_c1, home_c2, home_c3 = st.columns([2, 1.8, 1.4])
+
+    # ── Column 1: Fortnight Price Prediction ─────────────────────────────────
+    with home_c1:
+        st.markdown("### 🔮 Next Fortnight Price Prediction")
+        try:
+            from command_intel.price_prediction import generate_forecast_calendar
+            _fc_df = generate_forecast_calendar()
+            _today = _dt.date.today()
+            _future = _fc_df[_fc_df["Date"].apply(
+                lambda x: x.date() if hasattr(x, "date") else x) > _today]
+            if not _future.empty:
+                _nr = _future.iloc[0]
+                _pred   = _nr.get("Predicted (₹/MT)", _nr.get("Predicted", 48500))
+                _lo     = _nr.get("Low Range", _pred - 400)
+                _hi     = _nr.get("High Range", _pred + 400)
+                _rdate  = _nr.get("Revision Date", "01-04-2026")
+                _status = _nr.get("Status", "Pending")
+            else:
+                _pred, _lo, _hi, _rdate, _status = 48500, 48100, 48900, "01-04-2026", "Pending"
+        except Exception:
+            _pred, _lo, _hi, _rdate, _status = 48500, 48100, 48900, "01-04-2026", "Pending"
+
+        st.markdown(f"""
+<div style="background:#ffffff;border:1px solid #e8dcc8;border-left:5px solid #c9a84c;
+            border-radius:10px;padding:18px 20px;box-shadow:0 2px 8px rgba(30,58,95,0.07);">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+    <div>
+      <div style="font-size:0.75rem;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">
+        Next Revision Date
+      </div>
+      <div style="font-size:1.45rem;font-weight:800;color:#1e3a5f;margin:2px 0 6px 0;">
+        {_rdate}
+      </div>
+    </div>
+    <span style="background:#fdf6e3;color:#c9a84c;font-size:0.72rem;font-weight:700;
+                 padding:3px 9px;border-radius:20px;border:1px solid #e8dcc8;">
+      {_status}
+    </span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;">
+    <div style="text-align:center;background:#faf7f2;border-radius:8px;padding:10px 6px;">
+      <div style="font-size:0.65rem;color:#94a3b8;font-weight:600;margin-bottom:3px;">LOW</div>
+      <div style="font-size:1.05rem;font-weight:700;color:#2d6a4f;">₹ {int(_lo):,}</div>
+    </div>
+    <div style="text-align:center;background:#1e3a5f;border-radius:8px;padding:10px 6px;">
+      <div style="font-size:0.65rem;color:#93c5fd;font-weight:600;margin-bottom:3px;">PREDICTED</div>
+      <div style="font-size:1.2rem;font-weight:800;color:#fcd34d;">₹ {int(_pred):,}</div>
+    </div>
+    <div style="text-align:center;background:#faf7f2;border-radius:8px;padding:10px 6px;">
+      <div style="font-size:0.65rem;color:#94a3b8;font-weight:600;margin-bottom:3px;">HIGH</div>
+      <div style="font-size:1.05rem;font-weight:700;color:#b85c38;">₹ {int(_hi):,}</div>
+    </div>
+  </div>
+  <div style="margin-top:12px;font-size:0.75rem;color:#64748b;display:flex;gap:16px;">
+    <span>🛢 Crude driver</span><span>💵 USD/INR driver</span><span>🏭 FO driver</span>
+  </div>
+  <div style="margin-top:6px;font-size:0.68rem;color:#94a3b8;">
+    Per MT &nbsp;|&nbsp; VG-30 Bitumen &nbsp;|&nbsp; Indian PSU Refineries (1st/16th cycle)
+  </div>
+</div>
+""", unsafe_allow_html=True)
+
+        if st.button("📊 View Full Price Prediction", key="_home_pred_btn"):
+            st.session_state["_nav_goto"] = "🔮 Price Prediction"
+            st.rerun()
+
+    # ── Column 2: Market Snapshot + Breaking News ─────────────────────────────
+    with home_c2:
+        st.markdown("### 📊 Live Market Snapshot")
+        _mc1, _mc2 = st.columns(2)
+        with _mc1:
+            _b_clr = mkt['brent'].get('color', '#2d6a4f')
+            st.metric("🛢 Brent Crude", mkt['brent']['value'], mkt['brent']['change'])
+            st.metric("💵 USD / INR",   mkt['usdinr']['value'], mkt['usdinr']['change'])
+        with _mc2:
+            st.metric("🛢 WTI Crude",   mkt['wti']['value'],    mkt['wti']['change'])
+            try:
+                _vix = mkt.get('india_vix', {})
+                if _vix:
+                    st.metric("📈 India VIX", _vix.get('value','—'), _vix.get('change',''))
+            except Exception:
+                pass
+
+        st.markdown("#### 🚨 Breaking News")
+        try:
+            from news_engine import get_breaking_news as _gbn
+            _breaking = _gbn(region="All")
+            if _breaking:
+                _bn = _breaking[0]
+                _impact = _bn.get('impact_score', 80)
+                _tag_clr = "#dc2626" if _impact >= 90 else "#c9a84c"
+                st.markdown(f"""
+<div style="background:#fff;border:1px solid #e8dcc8;border-left:4px solid {_tag_clr};
+            border-radius:8px;padding:10px 12px;font-size:0.82rem;">
+  <div style="font-weight:700;color:#1e3a5f;margin-bottom:3px;">
+    <a href="{_bn.get('source_url','#')}" target="_blank"
+       style="color:#1e3a5f;text-decoration:none;">
+      {_bn.get('headline','')[:120]}
+    </a>
+  </div>
+  <div style="color:#64748b;font-size:0.72rem;">
+    {_bn.get('source_name','')}&nbsp;&nbsp;{_bn.get('published_at_ist','')}
+  </div>
+</div>
+""", unsafe_allow_html=True)
+            else:
+                st.info("No breaking alerts at this time.")
+        except Exception:
+            st.caption("Breaking news feed not available.")
+
+    # ── Column 3: Ask PPS AI ──────────────────────────────────────────────────
+    with home_c3:
+        st.markdown("### 🧠 Ask PPS AI")
+        st.markdown("""
+<div style="background:#1e3a5f;border-radius:10px;padding:14px 16px;margin-bottom:10px;">
+  <div style="color:#93c5fd;font-size:0.72rem;font-weight:600;text-transform:uppercase;
+              letter-spacing:0.5px;margin-bottom:6px;">Quick Questions</div>
+  <div style="color:#e2e8f0;font-size:0.8rem;line-height:1.4;">
+    Click a question to open the AI Assistant with it pre-filled.
+  </div>
+</div>
+""", unsafe_allow_html=True)
+
+        _quick_qs = [
+            ("🔮 What is the next predicted price?",    "What is the next predicted bitumen price for the 1st or 16th cycle?"),
+            ("📰 Breaking news affecting crude?",       "Any breaking news affecting crude oil or bitumen prices today?"),
+            ("🗺️ Which state has highest demand?",      "Which Indian state has the highest bitumen demand this month?"),
+            ("🐛 Show open bugs & API issues",          "Show me all open bugs and API health issues in the system."),
+        ]
+        for _qlabel, _qtext in _quick_qs:
+            if st.button(_qlabel, key=f"_home_q_{_qlabel[:10]}", use_container_width=True):
+                st.session_state["_ai_prefill"] = _qtext
+                st.session_state["_nav_goto"]   = "🧠 AI Dashboard Assistant"
+                st.rerun()
+
+        st.markdown("---")
+        if st.button("💬 Open Full AI Chat", key="_home_ai_full", use_container_width=True, type="primary"):
+            st.session_state["_nav_goto"] = "🧠 AI Dashboard Assistant"
+            st.rerun()
+
+# ── Handle deferred navigation (from Home quick buttons) ─────────────────────
+if st.session_state.get("_nav_goto"):
+    _goto = st.session_state.pop("_nav_goto")
+    if _goto in all_nav_options:
+        # Streamlit radio can't be set programmatically; show guidance instead
+        st.info(f"👆 Please select **{_goto}** from the sidebar to navigate there.")
 
 # Main Layout: 3 Columns (Selection | Analysis | Detailed Slip)
 if selected_page == "🧮 Pricing Calculator":
@@ -1892,10 +2263,6 @@ if selected_page == "⚙️ Settings":
     st.subheader("🚫 Unavailability Overrides")
     st.multiselect("Mark these Ports as CURRENTLY OFFLINE:", ["Haldia", "Mumbai", "Chennai", "Kochi"])
 
-# Footer
-st.markdown("---")
-st.caption("Powered by Python Logistics AI | Phase 5 Automation Enabled")
-
 # --- TAB 6: DATA MANAGER ---
 if selected_page == "🛠️ Data Manager":
     st.header("🛠️ Data Manager")
@@ -2503,3 +2870,35 @@ elif selected_page == "─── 🏢 MARKET INTELLIGENCE ───":
     st.info("ℹ️ **Department Head:** Strategy Director\n\n📌 *Select Road Budget & Demand for national infrastructure intelligence.*")
 
 
+# ══════════════════════════════════════════════════════════════════════════════
+# GLOBAL FOOTER — PPS Anantam Eco Agentic AI System
+# ══════════════════════════════════════════════════════════════════════════════
+st.markdown("""
+<div style="
+  background: #f0ebe1;
+  border-top: 1px solid #e8dcc8;
+  padding: 10px 24px;
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+">
+  <div>
+    <span style="font-size:0.88rem;font-weight:800;color:#1e3a5f;">
+      🏛️ PPS Anantam Eco Agentic AI System
+    </span>
+    <span style="font-size:0.78rem;color:#64748b;margin-left:10px;">
+      PPS Anantam Logistics AI – All Locations
+    </span>
+  </div>
+  <div style="font-size:0.73rem;color:#94a3b8;display:flex;gap:14px;flex-wrap:wrap;">
+    <span>Version v3.0.0</span>
+    <span>Build: 01-03-2026</span>
+    <span>Environment: Production</span>
+    <span style="color:#c9a84c;font-weight:600;">GST: 24AAHCV1611L2ZD</span>
+  </div>
+</div>
+""", unsafe_allow_html=True)
