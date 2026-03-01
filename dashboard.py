@@ -515,8 +515,13 @@ section[data-testid="stSidebar"] div.row-widget.stRadio > div > label[data-basew
   color: #2d6a4f !important;
   font-weight: 600 !important;
 }
-/* Hide the actual radio circle widget (we just want the label look) */
-section[data-testid="stSidebar"] [data-testid="stRadio"] [data-baseweb="radio"] { display: none !important; }
+/* Shrink radio circle — keep it visible + clickable, just smaller */
+section[data-testid="stSidebar"] [data-testid="stRadio"] [data-baseweb="radio"],
+section[data-testid="stSidebar"] div.row-widget.stRadio [role="radio"] {
+  transform: scale(0.75) !important;
+  opacity: 0.6 !important;
+  flex-shrink: 0 !important;
+}
 
 /* ── Category section headers (─── 🏢 SECTION ───) ──────────────────────── */
 /* These are styled with a distinct muted look by the JS injection below */
