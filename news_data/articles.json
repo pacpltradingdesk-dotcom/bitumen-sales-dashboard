@@ -7080,5 +7080,51 @@
     "sentiment": "neutral",
     "status": "new",
     "language": "hi"
+  },
+  {
+    "article_id": "7a7a7ab5fe53",
+    "region": "Domestic",
+    "headline": "अमित शाह बोले-ममता ने बंगाल को घुसपैठियों का स्वर्ग बनाया:अभी उन्हें वोटर लिस्ट से बाहर किया, सत्ता में आने पर राज्य से बाहर करेंगे",
+    "summary": "केंद्रीय गृह मंत्री अमित शाह ने बंगाल में एक सभा में कहा कि राज्य की मुख्यमंत्री ममता बनर्जी ने बंगाल को घुसपैठियों का स्वर्ग बना दिया है। उन्होंने कहा कि एक बार BJP की सरकार बन जाए, तो हम बंगाल से हर घुसपैठिए की पहचान करके उसे निकाल देंगे। शाह ने आगे कहा कि अभी वोटर रोल से सिर्फ घुसपैठियों के नाम हटाए जा रहे हैं, लेकिन पश्चिम बंगाल में पार्टी के पूरी बहुमत के साथ सत्ता में आने पर उन्हें राज्य से बाहर कर देंगे। अमित शाह ने सोमवार को पश्चिम बंगाल के दक्षिण 24 परगना जिले में भारतीय जनता पार्टी(BJP",
+    "source_name": "Dainik Bhaskar (Hindi)",
+    "source_id": "bhaskar_biz_rss",
+    "source_url": "https://www.bhaskar.com/national/news/amit-shah-bengal-voter-list-infiltrators-mulluk-bahar-137339041.html",
+    "published_at_ist": "02-03-2026 17:29 IST",
+    "fetched_at_ist": "02-03-2026 17:40 IST",
+    "tags": [
+      "highway",
+      "infrastructure",
+      "nhai"
+    ],
+    "impact_score": 47,
+    "duplicate_cluster_id": null,
+    "duplicate_count": 1,
+    "similar_sources": [],
+    "sentiment": "neutral",
+    "status": "new",
+    "language": "hi"
+  },
+  {
+    "article_id": "67ec8cc0feb5",
+    "region": "Domestic",
+    "headline": "भास्कर अपडेट्स:महाराष्ट्र के पालघर जिले में केमिकल प्लांट से ओलियम गैस का रिसाव",
+    "summary": "महाराष्ट्र के पालघर जिले में स्थित एक केमिकल प्लांट से ओलियम गैस के रिसाव की घटना सामने आई है। अधिकारियों ने बताया कि सूचना मिलते ही संबंधित एजेंसियां और आपातकालीन टीमें मौके पर पहुंच गईं। फिलहाल स्थिति पर नजर रखी जा रही है और रिसाव को नियंत्रित करने के प्रयास जारी हैं। एहतियात के तौर पर आसपास के इलाके में सुरक्षा उपाय बढ़ा दिए गए हैं। घटना में किसी के हताहत होने की तत्काल कोई जानकारी नहीं मिली है।  आज की बाकी बड़ी खबरें… एयर इंडिया एक्सप्रेस के एमडी आलोक सिंह का 19 मार्च को इस्तीफा एयर इंडिया एक",
+    "source_name": "Dainik Bhaskar (Hindi)",
+    "source_id": "bhaskar_biz_rss",
+    "source_url": "https://www.bhaskar.com/g/national/news/breaking-news-live-update-headlines-2-march-rajasthan-delhi-mp-uttar-pradesh-maharashtra-mumbai-137335788.html",
+    "published_at_ist": "02-03-2026 07:27 IST",
+    "fetched_at_ist": "02-03-2026 17:40 IST",
+    "tags": [
+      "highway",
+      "infrastructure",
+      "nhai"
+    ],
+    "impact_score": 37,
+    "duplicate_cluster_id": null,
+    "duplicate_count": 1,
+    "similar_sources": [],
+    "sentiment": "neutral",
+    "status": "new",
+    "language": "hi"
   }
 ]

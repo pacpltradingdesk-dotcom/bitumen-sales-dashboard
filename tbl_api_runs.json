@@ -2398,5 +2398,45 @@
     "rows_returned": 0,
     "error_message": "API key not configured — register free at fred.stlouisfed.org",
     "url_used": ""
+  },
+  {
+    "run_time_ist": "02-03-2026 17:41:05 IST",
+    "api_name": "comtrade_hs271320",
+    "status": "FAIL (static fallback)",
+    "rows_returned": 4,
+    "error_message": "No data for period 2022",
+    "url_used": "https://comtradeapi.un.org/public/v1/preview/C/A/HS"
+  },
+  {
+    "run_time_ist": "02-03-2026 17:41:06 IST",
+    "api_name": "rbi_fx_historical",
+    "status": "OK",
+    "rows_returned": 13,
+    "error_message": "",
+    "url_used": "https://api.frankfurter.app/2025-03-02.."
+  },
+  {
+    "run_time_ist": "02-03-2026 17:41:06 IST",
+    "api_name": "ppac_proxy",
+    "status": "OK",
+    "rows_returned": 7,
+    "error_message": "",
+    "url_used": "PPAC Annual Report 2023-24 (static reference)"
+  },
+  {
+    "run_time_ist": "02-03-2026 17:41:06 IST",
+    "api_name": "data_gov_in_highways",
+    "status": "DISABLED",
+    "rows_returned": 0,
+    "error_message": "API key not configured — register free at data.gov.in",
+    "url_used": ""
+  },
+  {
+    "run_time_ist": "02-03-2026 17:41:06 IST",
+    "api_name": "fred_macro",
+    "status": "DISABLED",
+    "rows_returned": 0,
+    "error_message": "API key not configured — register free at fred.stlouisfed.org",
+    "url_used": ""
   }
 ]

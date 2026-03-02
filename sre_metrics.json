@@ -1177,5 +1177,50 @@
     "fail": 0,
     "health_pct": 96,
     "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "02-03-2026 17:38:04 IST",
+    "total": 32,
+    "ok": 31,
+    "warn": 1,
+    "fail": 0,
+    "health_pct": 96,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "02-03-2026 17:38:37 IST",
+    "total": 32,
+    "ok": 31,
+    "warn": 1,
+    "fail": 0,
+    "health_pct": 96,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "02-03-2026 17:38:37 IST",
+    "total": 32,
+    "ok": 31,
+    "warn": 1,
+    "fail": 0,
+    "health_pct": 96,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "02-03-2026 17:39:44 IST",
+    "total": 32,
+    "ok": 31,
+    "warn": 1,
+    "fail": 0,
+    "health_pct": 96,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "02-03-2026 17:44:55 IST",
+    "total": 21,
+    "ok": 20,
+    "warn": 1,
+    "fail": 0,
+    "health_pct": 95,
+    "overall": "WARN"
   }
 ]

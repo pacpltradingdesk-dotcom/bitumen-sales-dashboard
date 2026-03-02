@@ -1496,5 +1496,124 @@
     "status": "OK",
     "message": "Full refresh: 8/12 OK",
     "records_written": 0
+  },
+  {
+    "timestamp_ist": "02-03-2026 17:40:40 IST",
+    "connector_id": "eia_crude",
+    "status": "Fallback",
+    "message": "yfinance fallback: 2 records",
+    "records_written": 2
+  },
+  {
+    "timestamp_ist": "02-03-2026 17:40:43 IST",
+    "connector_id": "un_comtrade",
+    "status": "Fallback",
+    "message": "Comtrade unavailable: Empty Comtrade response. Static cache used.",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "02-03-2026 17:40:47 IST",
+    "connector_id": "openweather",
+    "status": "OK",
+    "message": "Weather: 5 city records",
+    "records_written": 5
+  },
+  {
+    "timestamp_ist": "02-03-2026 17:40:50 IST",
+    "connector_id": "newsapi",
+    "status": "Fallback",
+    "message": "Google News RSS: 30 articles",
+    "records_written": 30
+  },
+  {
+    "timestamp_ist": "02-03-2026 17:40:51 IST",
+    "connector_id": "ports_volume",
+    "status": "OK",
+    "message": "Ports volume: 5 port estimates (BDI factor=1.00)",
+    "records_written": 5
+  },
+  {
+    "timestamp_ist": "02-03-2026 17:40:52 IST",
+    "connector_id": "refinery",
+    "status": "OK",
+    "message": "Refinery: 4 records (static+EIA)",
+    "records_written": 4
+  },
+  {
+    "timestamp_ist": "02-03-2026 17:41:06 IST",
+    "connector_id": "rbi_fx_historical",
+    "status": "OK",
+    "message": "RBI FX historical: 13 monthly records",
+    "records_written": 13
+  },
+  {
+    "timestamp_ist": "02-03-2026 17:41:06 IST",
+    "connector_id": "ppac_proxy",
+    "status": "OK",
+    "message": "PPAC static proxy: 7 rows written",
+    "records_written": 7
+  },
+  {
+    "timestamp_ist": "02-03-2026 17:41:07 IST",
+    "connector_id": "govt_orchestrator",
+    "status": "OK",
+    "message": "Govt connectors: 2/5 OK",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "02-03-2026 17:41:07 IST",
+    "connector_id": "hub_orchestrator",
+    "status": "OK",
+    "message": "Full refresh: 8/12 OK",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "02-03-2026 17:43:22 IST",
+    "connector_id": "eia_crude",
+    "status": "Fallback",
+    "message": "yfinance fallback: 2 records",
+    "records_written": 2
+  },
+  {
+    "timestamp_ist": "02-03-2026 17:43:24 IST",
+    "connector_id": "un_comtrade",
+    "status": "Fallback",
+    "message": "Comtrade unavailable: Empty Comtrade response. Static cache used.",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "02-03-2026 17:43:25 IST",
+    "connector_id": "openweather",
+    "status": "OK",
+    "message": "Weather: 5 city records",
+    "records_written": 5
+  },
+  {
+    "timestamp_ist": "02-03-2026 17:43:27 IST",
+    "connector_id": "newsapi",
+    "status": "Fallback",
+    "message": "Google News RSS: 30 articles",
+    "records_written": 30
+  },
+  {
+    "timestamp_ist": "02-03-2026 17:43:28 IST",
+    "connector_id": "ports_volume",
+    "status": "OK",
+    "message": "Ports volume: 5 port estimates (BDI factor=1.00)",
+    "records_written": 5
+  },
+  {
+    "timestamp_ist": "02-03-2026 17:43:28 IST",
+    "connector_id": "refinery",
+    "status": "OK",
+    "message": "Refinery: 4 records (static+EIA)",
+    "records_written": 4
+  },
+  {
+    "timestamp_ist": "02-03-2026 17:43:29 IST",
+    "connector_id": "hub_orchestrator",
+    "status": "OK",
+    "message": "Full refresh: 6/7 OK",
+    "records_written": 0
   }
 ]
