@@ -1,0 +1,83 @@
+[
+  {
+    "datetime_ist": "02-03-2026 09:23:44 IST",
+    "api_id": "rest_countries_india",
+    "status": "OK",
+    "latency_ms": 2140,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "02-03-2026 09:23:45 IST",
+    "api_id": "rest_countries_india",
+    "status": "OK",
+    "latency_ms": 2346,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "02-03-2026 09:23:45 IST",
+    "api_id": "current_time",
+    "status": "OK",
+    "latency_ms": 2323,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "02-03-2026 09:23:45 IST",
+    "api_id": "rest_countries_india",
+    "status": "OK",
+    "latency_ms": 2377,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "02-03-2026 09:23:46 IST",
+    "api_id": "current_time",
+    "status": "OK",
+    "latency_ms": 1870,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "02-03-2026 09:23:47 IST",
+    "api_id": "current_time",
+    "status": "OK",
+    "latency_ms": 2070,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "02-03-2026 09:23:47 IST",
+    "api_id": "current_time",
+    "status": "OK",
+    "latency_ms": 2029,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "02-03-2026 09:23:48 IST",
+    "api_id": "rest_countries_india",
+    "status": "FAIL",
+    "latency_ms": 6047,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "02-03-2026 09:23:50 IST",
+    "api_id": "current_time",
+    "status": "OK",
+    "latency_ms": 1282,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  }
+]

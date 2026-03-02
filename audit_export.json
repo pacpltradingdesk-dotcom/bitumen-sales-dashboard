@@ -1,0 +1,34 @@
+{
+    "us_currency_issues": [
+        "market_data.py",
+        "market_data.py",
+        "alert_system.py",
+        "financial_intel.py",
+        "import_cost_model.py",
+        "price_prediction.py",
+        "risk_scoring.py",
+        "strategy_panel.py"
+    ],
+    "us_date_issues": [
+        "api_manager.py",
+        "crm_engine.py",
+        "sos_engine.py",
+        "crm_engine.py",
+        "sos_engine.py",
+        "price_prediction.py"
+    ],
+    "comma_grouping_issues": [
+        "dashboard.py",
+        "feasibility_engine.py",
+        "pdf_generator.py",
+        "sales_workspace.py",
+        "dashboard.py",
+        "feasibility_engine.py",
+        "pdf_generator.py",
+        "sales_workspace.py",
+        "pdf_maker.py",
+        "import_cost_model.py",
+        "price_prediction.py",
+        "pdf_maker.py"
+    ]
+}

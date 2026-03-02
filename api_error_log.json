@@ -1,0 +1,80 @@
+[
+  {
+    "datetime_ist": "01-03-2026 21:46:49 IST",
+    "api_id": "shipping_freight",
+    "component": "API Fetch",
+    "error_type": "Unknown failure",
+    "severity": "P1",
+    "message": "Baltic Dry Index (BDI) Proxy failed after 3 retries. Error: ",
+    "auto_fixed": false,
+    "manual_required": true,
+    "root_cause": "",
+    "resolution_notes": "Check endpoint URL, rate limit, and API availability. Consider replacing with alternative free API.",
+    "status": "Open"
+  },
+  {
+    "datetime_ist": "01-03-2026 21:46:53 IST",
+    "api_id": "rest_countries_india",
+    "component": "API Fetch",
+    "error_type": "Unknown failure",
+    "severity": "P1",
+    "message": "India Country Data (REST Countries) failed after 3 retries. Error: ",
+    "auto_fixed": false,
+    "manual_required": true,
+    "root_cause": "",
+    "resolution_notes": "Check endpoint URL, rate limit, and API availability. Consider replacing with alternative free API.",
+    "status": "Open"
+  },
+  {
+    "datetime_ist": "01-03-2026 22:17:09 IST",
+    "api_id": "rest_countries_india",
+    "component": "API Fetch",
+    "error_type": "Unknown failure",
+    "severity": "P1",
+    "message": "India Country Data (REST Countries) failed after 3 retries. Error: ",
+    "auto_fixed": false,
+    "manual_required": true,
+    "root_cause": "",
+    "resolution_notes": "Check endpoint URL, rate limit, and API availability. Consider replacing with alternative free API.",
+    "status": "Open"
+  },
+  {
+    "datetime_ist": "01-03-2026 22:47:23 IST",
+    "api_id": "rest_countries_india",
+    "component": "API Fetch",
+    "error_type": "Unknown failure",
+    "severity": "P1",
+    "message": "India Country Data (REST Countries) failed after 3 retries. Error: ",
+    "auto_fixed": false,
+    "manual_required": true,
+    "root_cause": "",
+    "resolution_notes": "Check endpoint URL, rate limit, and API availability. Consider replacing with alternative free API.",
+    "status": "Open"
+  },
+  {
+    "datetime_ist": "01-03-2026 23:17:37 IST",
+    "api_id": "rest_countries_india",
+    "component": "API Fetch",
+    "error_type": "Unknown failure",
+    "severity": "P1",
+    "message": "India Country Data (REST Countries) failed after 3 retries. Error: ",
+    "auto_fixed": false,
+    "manual_required": true,
+    "root_cause": "",
+    "resolution_notes": "Check endpoint URL, rate limit, and API availability. Consider replacing with alternative free API.",
+    "status": "Open"
+  },
+  {
+    "datetime_ist": "02-03-2026 09:23:48 IST",
+    "api_id": "rest_countries_india",
+    "component": "API Fetch",
+    "error_type": "Unknown failure",
+    "severity": "P1",
+    "message": "India Country Data (REST Countries) failed after 3 retries. Error: ",
+    "auto_fixed": false,
+    "manual_required": true,
+    "root_cause": "",
+    "resolution_notes": "Check endpoint URL, rate limit, and API availability. Consider replacing with alternative free API.",
+    "status": "Open"
+  }
+]
