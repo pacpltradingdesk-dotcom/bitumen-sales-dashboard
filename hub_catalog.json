@@ -30,11 +30,11 @@
     ],
     "auth_type": "API Key",
     "key_value": "",
-    "status": "Live",
+    "status": "Failing",
     "refresh_frequency": "1d",
     "cache_ttl_sec": 86400,
     "last_success_time": "02-03-2026 11:24:15 IST",
-    "last_error_message": "",
+    "last_error_message": "Empty Comtrade response",
     "fallback_api": "static_trade_cache",
     "data_output_tables": [
       "tbl_trade_imports"
@@ -96,7 +96,7 @@
     "status": "Live",
     "refresh_frequency": "1h",
     "cache_ttl_sec": 3600,
-    "last_success_time": "02-03-2026 11:24:15 IST",
+    "last_success_time": "02-03-2026 13:26:59 IST",
     "last_error_message": "",
     "fallback_api": "fawazahmed0_fx",
     "data_output_tables": [
@@ -117,7 +117,7 @@
     "status": "Live",
     "refresh_frequency": "1h",
     "cache_ttl_sec": 3600,
-    "last_success_time": "02-03-2026 11:24:16 IST",
+    "last_success_time": "02-03-2026 13:35:02 IST",
     "last_error_message": "",
     "fallback_api": "",
     "data_output_tables": [
@@ -138,7 +138,7 @@
     "status": "Live",
     "refresh_frequency": "1h",
     "cache_ttl_sec": 3600,
-    "last_success_time": "02-03-2026 11:24:17 IST",
+    "last_success_time": "02-03-2026 13:35:03 IST",
     "last_error_message": "",
     "fallback_api": "",
     "data_output_tables": [
@@ -166,5 +166,110 @@
       "tbl_fx_rates"
     ],
     "notes": "No key required. Fallback FX. Daily update from CDN."
+  },
+  "comtrade_hs271320": {
+    "api_name": "UN Comtrade — HS 271320 Country-wise Imports",
+    "category": "Trade / Govt",
+    "provider": "United Nations Statistics Division",
+    "base_url": "https://comtradeapi.un.org/",
+    "endpoints": [
+      "public/v1/preview/C/A/HS"
+    ],
+    "auth_type": "None",
+    "key_value": "",
+    "status": "Failing",
+    "refresh_frequency": "1d",
+    "cache_ttl_sec": 86400,
+    "last_success_time": null,
+    "last_error_message": "No data for period 2022",
+    "fallback_api": "static_trade_cache",
+    "data_output_tables": [
+      "tbl_imports_countrywise"
+    ],
+    "notes": "Public preview — no key. India HS 271320 imports by partner country."
+  },
+  "rbi_fx_historical": {
+    "api_name": "RBI Reference Rate — USD/INR Historical (ECB proxy)",
+    "category": "FX / Govt",
+    "provider": "Frankfurter.app (ECB data) — RBI proxy",
+    "base_url": "https://api.frankfurter.app/",
+    "endpoints": [
+      "{start_date}.."
+    ],
+    "auth_type": "None",
+    "key_value": "",
+    "status": "Live",
+    "refresh_frequency": "1d",
+    "cache_ttl_sec": 86400,
+    "last_success_time": "02-03-2026 13:35:08 IST",
+    "last_error_message": "",
+    "fallback_api": "fawazahmed0_fx",
+    "data_output_tables": [
+      "tbl_fx_rates"
+    ],
+    "notes": "12-month USD/INR history via ECB/Frankfurter. Labelled as RBI proxy."
+  },
+  "ppac_proxy": {
+    "api_name": "PPAC Refinery Production (Static Ref + EIA Proxy)",
+    "category": "Refinery / Govt",
+    "provider": "PPAC (static) + EIA (live proxy)",
+    "base_url": "https://ppac.gov.in/",
+    "endpoints": [
+      "data-statistics"
+    ],
+    "auth_type": "None",
+    "key_value": "",
+    "status": "Live",
+    "refresh_frequency": "1d",
+    "cache_ttl_sec": 86400,
+    "last_success_time": "02-03-2026 13:35:08 IST",
+    "last_error_message": "",
+    "fallback_api": "",
+    "data_output_tables": [
+      "tbl_refinery_production"
+    ],
+    "notes": "PPAC has no public API. Uses Annual Report 2023-24 as static ref."
+  },
+  "data_gov_in_highways": {
+    "api_name": "data.gov.in — NHAI Road Construction Progress",
+    "category": "Infrastructure / Govt",
+    "provider": "data.gov.in (Govt of India)",
+    "base_url": "https://api.data.gov.in/resource/",
+    "endpoints": [
+      "3b01bcb8-0b14-4abf-b6f2-c1bfd384ba69"
+    ],
+    "auth_type": "API Key",
+    "key_value": "",
+    "status": "Disabled",
+    "refresh_frequency": "1d",
+    "cache_ttl_sec": 86400,
+    "last_success_time": null,
+    "last_error_message": "API key not configured — register free at data.gov.in",
+    "fallback_api": "static_highway_ref",
+    "data_output_tables": [
+      "tbl_highway_km"
+    ],
+    "notes": "Free key: https://data.gov.in/user/register | NHAI road progress data."
+  },
+  "fred_macro": {
+    "api_name": "FRED — USD/INR + Brent Crude History",
+    "category": "Macro / Govt",
+    "provider": "Federal Reserve Bank of St. Louis",
+    "base_url": "https://api.stlouisfed.org/fred/",
+    "endpoints": [
+      "series/observations"
+    ],
+    "auth_type": "API Key",
+    "key_value": "",
+    "status": "Disabled",
+    "refresh_frequency": "1d",
+    "cache_ttl_sec": 86400,
+    "last_success_time": null,
+    "last_error_message": "API key not configured — register free at fred.stlouisfed.org",
+    "fallback_api": "frankfurter_fx",
+    "data_output_tables": [
+      "tbl_demand_proxy"
+    ],
+    "notes": "Free key: https://fred.stlouisfed.org/docs/api/api_key.html | Series: DEXINUS, DCOILBRENTEU"
   }
 }

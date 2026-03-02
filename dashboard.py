@@ -28,6 +28,9 @@ from command_intel import risk_scoring, alert_system, strategy_panel
 from command_intel import historical_revisions, manual_entry, change_log, bug_tracker
 from command_intel import sre_dashboard
 from command_intel import api_hub_dashboard
+from command_intel import govt_hub_dashboard
+from command_intel import port_tracker_dashboard
+from command_intel import correlation_dashboard
 import api_dashboard
 
 # --- PDF EXPORT SYSTEM ---
@@ -60,6 +63,13 @@ try:
     from api_hub_engine import init_hub, start_hub_scheduler
     init_hub()
     start_hub_scheduler(interval_min=60)    # background refresh every 60 min
+except Exception:
+    pass
+
+# --- PORT TRACKER: initialise port master + allocation rule tables ---
+try:
+    from port_tracker_engine import init_port_tracker
+    init_port_tracker()
 except Exception:
     pass
 
@@ -99,15 +109,16 @@ st.set_page_config(
     layout="wide",
 )
 
-# ── Corporate Vastu Design System v3.2 ─────────────────────────────────────
+# ── Corporate Vastu Design System v3.2.3 ───────────────────────────────────
 st.markdown("""
 <style>
 /* =========================================================================
-   PPS ANANTAM AGENTIC AI ECO SYSTEM — Corporate Vastu Design System v3.2
+   PPS ANANTAM AGENTIC AI ECO SYSTEM — Corporate Vastu Design System v3.2.3
    Palette: Soft ivory/sandal backgrounds · Navy headings · Vastu green/gold
    Typography: Inter / Segoe UI — clean, readable, corporate
    Mobile-first responsive + @media print
    Full UI/UX Audit: 8px numerology grid · Soft status palette · CSS tokens
+   Overlap-proof layout: scoped gap, z-index hierarchy, overflow safe
    ========================================================================= */
 
 /* ── 0. Google Fonts import ─────────────────────────────────────────────── */
@@ -120,8 +131,8 @@ st.markdown("""
   --navy-mid:      #2c4f7c;
   --navy-light:    #2563eb;
   --charcoal:      #2d3142;
-  --steel:         #64748b;
-  --steel-light:   #94a3b8;
+  --steel:         #475569;
+  --steel-light:   #64748b;
 
   /* Vastu warm backgrounds */
   --ivory:         #faf7f2;
@@ -153,13 +164,34 @@ st.markdown("""
   --shadow-card:   0 2px 10px rgba(30,58,95,0.07), 0 1px 3px rgba(0,0,0,0.04);
   --shadow-hover:  0 6px 20px rgba(30,58,95,0.12), 0 2px 6px rgba(0,0,0,0.06);
 
-  /* ── 8px Numerology Spacing Grid ─────────────────────────────────────── */
-  --sp-1:  8px;   /* baseline unit */
-  --sp-2: 16px;   /* 2× */
-  --sp-3: 24px;   /* 3× */
-  --sp-4: 32px;   /* 4× */
-  --sp-6: 48px;   /* 6× */
-  --sp-8: 64px;   /* 8× */
+  /* ── Enterprise SaaS Spacing Scale v3.2.2 ──────────────────────────────
+     Mandatory scale: 2 · 4 · 8 · 12 · 16 · 20 · 24 · 32 px
+     ─────────────────────────────────────────────────────────────────── */
+  --s2:   2px;
+  --s4:   4px;
+  --s8:   8px;
+  --s12: 12px;
+  --s16: 16px;
+  --s20: 20px;
+  --s24: 24px;
+  --s32: 32px;
+
+  /* Semantic layout aliases */
+  --page-gutter:    20px;   /* main content horizontal padding        */
+  --section-sep:    16px;   /* vertical gap between page sections     */
+  --grid-gap:       12px;   /* gap between grid/column siblings       */
+  --kpi-gap:         8px;   /* gap between KPI card siblings          */
+  --card-pad:       16px;   /* padding inside cards & metric boxes    */
+  --table-row-h:    36px;   /* minimum table row height               */
+  --sidebar-item-h: 36px;   /* minimum sidebar nav item height        */
+
+  /* Legacy aliases kept for backward-compatibility */
+  --sp-1:  var(--s8);
+  --sp-2:  var(--s16);
+  --sp-3:  var(--s24);
+  --sp-4:  var(--s32);
+  --sp-6:  48px;
+  --sp-8:  64px;
 
   /* ── Border radius (multiples of 8px / harmonised) ──────────────────── */
   --radius-xs:  4px;
@@ -185,6 +217,36 @@ st.markdown("""
   --status-neutral-bdr: #94a3b8;
   --status-neutral-txt: #475569;
 }
+
+/* ── TEXT VISIBILITY CONTRACT — DO NOT VIOLATE ───────────────────────────────
+   WCAG AA minimum: 4.5:1 contrast ratio for all normal text.
+
+   TOKEN MAP — light/white/ivory backgrounds:
+     --charcoal:    #2d3142  → 13.4:1  headings, nav buttons, strong UI text
+     --navy:        #1e3a5f  → 12.6:1  page titles, metric values
+     --steel:       #475569  →  5.5:1  labels, captions, muted text  ← MINIMUM
+     --steel-light: #64748b  →  4.6:1  secondary/tertiary text (use sparingly)
+
+   DARK NAVY backgrounds (#1e3a5f / #0f2744) — LIGHT colours CORRECT here:
+     #ffffff → 9.1:1   #e2e8f0 → 7.9:1   #93c5fd → 5.0:1
+     #86efac → 7.2:1   #fca5a5 → 5.4:1   #fcd34d → 9.6:1
+     DO NOT change these light colours — they are correct for dark backgrounds.
+
+   FORBIDDEN as text on light backgrounds:
+     ✗ #94a3b8  (2.3:1)   ✗ #9E9E9E  (4.2:1)
+     ✗ #FF9800  (4.2:1)   ✗ #FF5722  (4.5:1 borderline)
+
+   CSS HIDING RULE — most critical, caused v3.2.3 sidebar label bug:
+     ✅ CORRECT — hide SPECIFIC icon elements by their own selectors:
+        summary svg { display: none; }
+        summary [data-testid="stExpanderToggleIcon"] { display: none; }
+     ✗ WRONG — hide a CONTAINER and try to restore children:
+        summary { font-size: 0; color: transparent; }   ← destroys ALL text
+        summary p { font-size: 1rem; color: #333; }     ← fragile: only works if
+                                                            Streamlit uses <p>, not <span>
+   RULE: Never apply display:none / font-size:0 / color:transparent to a
+         container element that has text-content children.
+   ─────────────────────────────────────────────────────────────────────────── */
 
 /* ── 2. Global Typography ────────────────────────────────────────────────── */
 *, *::before, *::after {
@@ -213,10 +275,13 @@ p, li, .stMarkdown p { font-size: 0.9rem !important; line-height: 1.65 !importan
 }
 .main .block-container {
   background: transparent !important;
-  padding-top: 0.75rem !important;
-  padding-left: 1.25rem !important;
-  padding-right: 1.25rem !important;
+  padding-top: var(--s8) !important;
+  padding-bottom: var(--s16) !important;
+  padding-left: var(--page-gutter) !important;
+  padding-right: var(--page-gutter) !important;
   max-width: 100% !important;
+  position: relative !important;
+  z-index: 1 !important;
 }
 
 /* ── 4. Cards / Expanders / Forms ────────────────────────────────────────── */
@@ -238,8 +303,8 @@ div[data-testid="stExpanderDetails"] {
 
 /* ── 5. Tabs ─────────────────────────────────────────────────────────────── */
 .stTabs [data-baseweb="tab-list"] {
-  gap: 8px !important;
-  padding: 8px !important;
+  gap: var(--s4) !important;
+  padding: var(--s4) !important;
   background: var(--cream) !important;
   border-radius: var(--radius-lg) !important;
   border: 1px solid var(--sandal) !important;
@@ -250,30 +315,28 @@ div[data-testid="stExpanderDetails"] {
   height: auto !important;
 }
 .stTabs [data-baseweb="tab"] {
-  height: 32px !important;
+  height: 28px !important;
   min-width: fit-content !important;
   flex: 1 1 auto !important;
   border-radius: var(--radius-sm) !important;
   background: #ffffff !important;
   border: 1px solid var(--sandal) !important;
-  color: var(--steel) !important;
+  color: var(--charcoal) !important;
   font-weight: 600 !important;
   font-size: 0.82rem !important;
-  padding: 0 16px !important;
+  padding: 0 var(--s12) !important;
   margin-bottom: 0 !important;
   transition: all 0.18s ease !important;
 }
 .stTabs [data-baseweb="tab"]:hover {
   background: var(--sandal-light) !important;
   color: var(--navy) !important;
-  transform: translateY(-1px) !important;
 }
 .stTabs [data-baseweb="tab"][aria-selected="true"] {
   background: var(--navy) !important;
   color: #ffffff !important;
   border-color: var(--navy) !important;
-  box-shadow: 0 3px 10px rgba(30,58,95,0.25) !important;
-  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 8px rgba(30,58,95,0.20) !important;
 }
 .stTabs [data-baseweb="tab-highlight"] { display: none !important; }
 
@@ -281,7 +344,7 @@ div[data-testid="stExpanderDetails"] {
 div[data-testid="stMetric"] {
   background: #ffffff !important;
   border-radius: var(--radius-md) !important;
-  padding: 16px !important;
+  padding: var(--card-pad) !important;
   border: 1px solid var(--sandal) !important;
   border-left: 4px solid var(--vastu-green) !important;
   box-shadow: var(--shadow-card) !important;
@@ -300,19 +363,18 @@ div[data-testid="stMetricDelta"] { font-size: 0.8rem !important; font-weight: 60
   color: var(--charcoal) !important;
   font-weight: 600 !important;
   font-size: 0.875rem !important;
-  padding: 8px 16px !important;
+  padding: var(--s8) var(--card-pad) !important;
   box-shadow: 0 1px 4px rgba(30,58,95,0.08) !important;
   transition: all 0.15s ease !important;
-  min-height: 36px !important;
+  min-height: var(--table-row-h) !important;
 }
 .stButton > button:hover {
   background: var(--sandal-light) !important;
   border-color: var(--navy-mid) !important;
   color: var(--navy) !important;
-  transform: translateY(-1px) !important;
   box-shadow: 0 3px 8px rgba(30,58,95,0.15) !important;
 }
-.stButton > button:active { transform: translateY(0) !important; box-shadow: none !important; }
+.stButton > button:active { box-shadow: none !important; }
 .stButton > button[kind="primary"] {
   background: var(--vastu-green) !important;
   border-color: var(--vastu-green) !important;
@@ -359,10 +421,11 @@ th {
   background: var(--navy) !important;
   color: #ffffff !important;
   font-weight: 700 !important;
-  padding: 8px 12px !important;
+  padding: var(--s8) var(--s12) !important;
+  min-height: var(--table-row-h) !important;
   position: sticky !important; top: 0 !important; z-index: 1 !important;
 }
-td { padding: 8px 12px !important; border-bottom: 1px solid var(--cream) !important; color: var(--charcoal) !important; }
+td { padding: var(--s8) var(--s12) !important; min-height: var(--table-row-h) !important; border-bottom: 1px solid var(--cream) !important; color: var(--charcoal) !important; }
 tr:nth-child(even) td { background: var(--ivory-deep) !important; }
 tr:hover td { background: var(--sandal-light) !important; }
 
@@ -371,8 +434,8 @@ div[data-testid="stAlert"] {
   border-radius: var(--radius-md) !important;
   border-left-width: 4px !important;
   font-size: 0.875rem !important;
-  padding: 12px 16px !important;
-  margin-bottom: 8px !important;
+  padding: var(--s12) var(--card-pad) !important;
+  margin-bottom: var(--kpi-gap) !important;
 }
 /* Info — calm blue */
 div[data-testid="stAlert"][data-baseweb="notification"] {
@@ -385,8 +448,8 @@ div[data-testid="stAlert"] > div:first-child {
 }
 
 /* ── 11. Dividers ────────────────────────────────────────────────────────── */
-hr { border-color: var(--sandal) !important; border-width: 1px 0 0 0 !important; margin: 16px 0 !important; }
-[data-testid="stDivider"] { margin: 12px 0 !important; }
+hr { border-color: var(--sandal) !important; border-width: 1px 0 0 0 !important; margin: var(--section-sep) 0 !important; }
+[data-testid="stDivider"] { margin: var(--s12) 0 !important; }
 
 /* ── 12. Scrollbars (webkit) ─────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -394,21 +457,125 @@ hr { border-color: var(--sandal) !important; border-width: 1px 0 0 0 !important;
 ::-webkit-scrollbar-thumb { background: var(--sandal); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--steel-light); }
 
-/* ── 13. Streamlit element-level spacing tightening ─────────────────────── */
-/* Reduce natural Streamlit vertical whitespace between blocks */
-.main .block-container > div > div > div > div[data-testid="stVerticalBlock"] {
+/* ── 13. Streamlit internal spacing — SCOPED COMPRESSION ─────────────────
+   Scoped to section.main so sidebar retains its own natural spacing.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* 13-A  Kill gap only in main content vertical stacks (NOT sidebar) */
+section.main [data-testid="stVerticalBlock"],
+.main [data-testid="stVerticalBlock"] {
   gap: 0 !important;
 }
-div[data-testid="stVerticalBlock"] > div[data-testid="element-container"] {
-  padding-bottom: 4px !important;
+/* Sidebar vertical blocks retain a small gap between nav items */
+section[data-testid="stSidebar"] [data-testid="stVerticalBlock"] {
+  gap: var(--s2) !important;
 }
-/* Caption / small text compact */
+
+/* 13-B  Kill border-wrapper padding in main content only */
+section.main [data-testid="stVerticalBlockBorderWrapper"] {
+  padding-top:    0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* 13-C  Each element-container in main: tiny bottom-only spacing */
+section.main [data-testid="element-container"] {
+  padding-top:    0 !important;
+  padding-bottom: var(--s4) !important;
+}
+
+/* 13-D  Column containers: proper gap + no side-padding collapse */
+[data-testid="stHorizontalBlock"] {
+  gap: var(--grid-gap) !important;
+  align-items: stretch !important;
+}
+[data-testid="column"] {
+  padding-left:  0 !important;
+  padding-right: 0 !important;
+  min-width:     0 !important;
+  overflow: hidden !important;
+}
+
+/* 13-E  Markdown paragraphs: tight line spacing in main */
+section.main [data-testid="stMarkdownContainer"] > p {
+  margin-top:    0 !important;
+  margin-bottom: var(--s4) !important;
+}
+section.main [data-testid="stMarkdownContainer"] > div,
+section.main [data-testid="stMarkdownContainer"] > ul,
+section.main [data-testid="stMarkdownContainer"] > ol {
+  margin-top:    0 !important;
+  margin-bottom: var(--s4) !important;
+}
+
+/* 13-F  Widget label gaps */
+[data-testid="stWidgetLabel"],
+[data-testid="InputInstructions"] {
+  margin-bottom: var(--s2) !important;
+}
+
+/* 13-G  Form/input bottom margin */
+div[data-testid="stTextInput"],
+div[data-testid="stNumberInput"],
+div[data-testid="stSelectbox"],
+div[data-testid="stTextArea"],
+div[data-testid="stMultiSelect"],
+div[data-testid="stDateInput"] {
+  margin-bottom: var(--s4) !important;
+}
+
+/* 13-H  Caption / small text */
 div[data-testid="stCaptionContainer"] {
-  margin-top: 2px !important;
-  margin-bottom: 4px !important;
+  margin-top:    var(--s2) !important;
+  margin-bottom: var(--s4) !important;
 }
-/* Remove extra top gap on first element per page */
+
+/* 13-I  Expander header vertical padding (main content only) */
+section.main div[data-testid="stExpander"] > summary {
+  padding-top:    var(--s8) !important;
+  padding-bottom: var(--s8) !important;
+}
+
+/* 13-J  Remove top gap on first child of every page */
 section.main > div > div > div:first-child { margin-top: 0 !important; }
+
+/* 13-K  Empty placeholder divs: collapse */
+[data-testid="stEmpty"] {
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+}
+
+/* ── 13-Z. Z-Index Layering Hierarchy ────────────────────────────────────
+   Establishes explicit stacking order so no card or tab floats above header.
+   ───────────────────────────────────────────────────────────────────────── */
+header[data-testid="stHeader"]                        { z-index: 100 !important; position: relative !important; }
+section[data-testid="stSidebar"]                      { z-index: 90  !important; position: relative !important; }
+.main .block-container                                { z-index: 1   !important; }
+/* Dropdowns, tooltips, date pickers sit above all content */
+[data-baseweb="popover"],
+[data-baseweb="menu"],
+[data-baseweb="tooltip"],
+[data-testid="stDateInput"] [data-baseweb="popover"]  { z-index: 200 !important; }
+/* Metric cards and expanders: relative so they stack in normal flow */
+div[data-testid="stMetric"],
+div[data-testid="stExpander"],
+.stCard                                               { position: relative !important; z-index: 2 !important; }
+/* Tab panel content sits in normal flow */
+.stTabs [data-baseweb="tab-panel"]                    { position: relative !important; z-index: 1 !important; overflow: visible !important; }
+
+/* ── 13-OV. Overflow Safety ───────────────────────────────────────────────
+   Prevent any element from rendering outside its container boundary.
+   ───────────────────────────────────────────────────────────────────────── */
+/* Tables: horizontal scroll instead of overflow */
+div[data-testid="stDataFrame"]                        { overflow-x: auto !important; }
+/* Long metric values: truncate */
+div[data-testid="stMetricValue"]                      { overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; }
+/* Altair charts: clip to container */
+div[data-testid="stVegaLiteChart"],
+div[data-testid="stArrowVegaLiteChart"]               { overflow: hidden !important; }
+/* Section columns: prevent bleed */
+section.main [data-testid="column"]                   { overflow: hidden !important; }
 
 /* ── 14. Utility / Helper Classes — Vastu Design Tokens ─────────────────── */
 /* Section title label */
@@ -418,9 +585,9 @@ section.main > div > div > div:first-child { margin-top: 0 !important; }
   text-transform: uppercase !important;
   letter-spacing: 0.09em !important;
   color: var(--steel) !important;
-  padding: 8px 0 4px 0 !important;
+  padding: var(--s8) 0 var(--s4) 0 !important;
   border-bottom: 1px solid var(--cream) !important;
-  margin-bottom: 8px !important;
+  margin-bottom: var(--s8) !important;
   display: block !important;
 }
 /* Consistent status badges */
@@ -448,7 +615,7 @@ section.main > div > div > div:first-child { margin-top: 0 !important; }
   border: 1px solid var(--sandal) !important;
   border-left: 4px solid var(--vastu-green) !important;
   border-radius: var(--radius-md) !important;
-  padding: 16px !important;
+  padding: var(--card-pad) !important;
   box-shadow: var(--shadow-card) !important;
 }
 .pps-kpi-card.gold { border-left-color: var(--vastu-gold) !important; }
@@ -470,8 +637,8 @@ section.main > div > div > div:first-child { margin-top: 0 !important; }
 .pps-page-header {
   background: linear-gradient(135deg, var(--navy) 0%, #0f2744 100%) !important;
   border-radius: var(--radius-md) !important;
-  padding: 16px 24px !important;
-  margin-bottom: 16px !important;
+  padding: var(--card-pad) var(--s24) !important;
+  margin-bottom: var(--section-sep) !important;
   border-bottom: 2px solid var(--vastu-gold) !important;
   box-shadow: 0 4px 16px rgba(30,58,95,0.25) !important;
 }
@@ -482,137 +649,193 @@ section.main > div > div > div:first-child { margin-top: 0 !important; }
 .pps-compact-table td    { padding: 6px 10px !important; }
 
 /* Card grid: auto-fit 2/4 column layouts on grid */
-.pps-card-grid-2 { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 16px !important; }
-.pps-card-grid-4 { display: grid !important; grid-template-columns: repeat(4, 1fr) !important; gap: 16px !important; }
+.pps-card-grid-2 { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: var(--grid-gap) !important; }
+.pps-card-grid-4 { display: grid !important; grid-template-columns: repeat(4, 1fr) !important; gap: var(--grid-gap) !important; }
+/* 3-column variant */
+.pps-card-grid-3 { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: var(--grid-gap) !important; }
 
 /* ── 15. Mobile responsive ───────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .pps-card-grid-4 { grid-template-columns: repeat(2, 1fr) !important; }
 }
 @media (max-width: 768px) {
-  .main .block-container {
-    padding: 8px !important;
+  :root {
+    --page-gutter:  12px;
+    --card-pad:     12px;
+    --grid-gap:      8px;
+    --section-sep:  12px;
+    --kpi-gap:       4px;
   }
+  .main .block-container { padding: 0 var(--page-gutter) var(--s12) var(--page-gutter) !important; }
   h1, .stMarkdown h1 { font-size: 1.2rem !important; line-height: 1.35 !important; }
   h2, .stMarkdown h2 { font-size: 1.0rem !important; }
   h3, .stMarkdown h3 { font-size: 0.92rem !important; }
-  div[data-testid="stMetric"] {
-    padding: 12px !important;
-    min-width: 0 !important;
-  }
+  div[data-testid="stMetric"] { padding: var(--card-pad) !important; min-width: 0 !important; }
   div[data-testid="stMetricValue"] { font-size: 1.1rem !important; }
   div[data-testid="stMetricLabel"] { font-size: 0.72rem !important; }
-  .stTabs [data-baseweb="tab-list"] { gap: 4px !important; padding: 6px !important; }
-  .stTabs [data-baseweb="tab"] { font-size: 0.73rem !important; padding: 0 8px !important; height: 28px !important; }
-  .stButton > button { font-size: 0.8rem !important; padding: 8px 12px !important; min-height: 32px !important; }
+  .stTabs [data-baseweb="tab-list"] { gap: var(--kpi-gap) !important; padding: var(--s8) !important; }
+  .stTabs [data-baseweb="tab"] { font-size: 0.73rem !important; padding: 0 var(--s8) !important; height: 28px !important; }
+  .stButton > button { font-size: 0.8rem !important; padding: var(--s8) var(--s12) !important; min-height: 32px !important; }
   table { font-size: 0.75rem !important; }
-  th { padding: 6px 8px !important; }
-  td { padding: 6px 8px !important; }
+  th { padding: var(--s8) !important; }
+  td { padding: 6px var(--s8) !important; }
   div[data-testid="stDataFrame"] { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
   .pps-card-grid-2 { grid-template-columns: 1fr !important; }
   .pps-card-grid-4 { grid-template-columns: 1fr !important; }
+  hr { margin: var(--s12) 0 !important; }
 }
 @media (max-width: 480px) {
-  .main .block-container { padding: 4px !important; }
+  :root { --page-gutter: 8px; --card-pad: 10px; }
   h1, .stMarkdown h1 { font-size: 1.05rem !important; }
-  div[data-testid="stMetric"] { padding: 10px 8px !important; }
+  div[data-testid="stMetric"] { padding: var(--s8) !important; }
 }
 
-/* ── 16. Sidebar compact nav buttons (Zoho-style expander nav) ───────────── */
-/* Expander headers = section labels, no border/shadow */
+/* ── 16. Sidebar compact nav (Zoho-style) — v3.2.3 overlap-proof ────────────
+   TRIPLE-PROTECTION against _arrow_right text bleed:
+     Layer 1 — font-size:0 on summary          collapses raw text nodes
+     Layer 2 — color:transparent on summary    hides any survived text colour
+     Layer 3 — overflow:hidden on summary      clips anything that escapes layout
+     Layer 4 — display:none on all icon spans  kills element-carried icons
+   The <p> label is then restored with explicit colour + font-size + !important.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* 16-A  Expander container: strip card styling */
 section[data-testid="stSidebar"] div[data-testid="stExpander"] {
   border: none !important;
   box-shadow: none !important;
   background: transparent !important;
   border-radius: 0 !important;
+  overflow: visible !important;
 }
 section[data-testid="stSidebar"] div[data-testid="stExpanderDetails"] {
   padding: 0 0 0 4px !important;
   background: transparent !important;
 }
-/* Section label styling — font-size:0 hides the _arrow_right raw text node;
-   font-size is restored on the <p> child which contains the real label */
+
+/* 16-B  Summary row — triple protection */
 section[data-testid="stSidebar"] details > summary,
-section[data-testid="stSidebar"] [data-testid="stExpander"] summary {
-  font-size: 0 !important;
-  display: flex !important;
+section[data-testid="stSidebar"] [data-testid="stExpander"] > summary {
+  font-size:   0 !important;          /* Layer 1 — collapses text nodes     */
+  color:       transparent !important;/* Layer 2 — hides any surviving text */
+  overflow:    hidden !important;     /* Layer 3 — clips layout escapes     */
+  display:     flex !important;
   align-items: center !important;
-  padding: 6px 8px 4px 8px !important;
+  gap:         0 !important;
+  padding:     6px 8px 4px 8px !important;
   border-radius: 4px !important;
-  cursor: pointer !important;
-  list-style: none !important;
-  position: relative !important;
+  cursor:      pointer !important;
+  list-style:  none !important;
+  min-height:  30px !important;
+  position:    relative !important;
 }
-/* Restore readable text for the actual label paragraph only */
-section[data-testid="stSidebar"] details > summary p,
-section[data-testid="stSidebar"] [data-testid="stExpander"] summary p {
-  font-size: 0.7rem !important;
-  font-weight: 700 !important;
-  color: #64748b !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.07em !important;
-  margin: 0 !important;
-  line-height: 1.3 !important;
-}
-/* Hide Streamlit internal toggle icon (SVG/div — multiple Streamlit versions) */
-section[data-testid="stSidebar"] [data-testid="stExpanderToggleIcon"],
-section[data-testid="stSidebar"] details > summary > svg,
-section[data-testid="stSidebar"] details > summary > div:first-child > svg {
+/* Suppress the native <details> triangle marker */
+section[data-testid="stSidebar"] details > summary::-webkit-details-marker,
+section[data-testid="stSidebar"] details > summary::marker {
   display: none !important;
+  content: '' !important;
 }
-/* Custom expand arrow via ::after */
+
+/* 16-C  Layer 4 — hide ALL icon/arrow elements inside summary            */
+/*       Targets: SVGs, Material Icon spans, toggle icon divs, any spans  */
+section[data-testid="stSidebar"] details > summary svg,
+section[data-testid="stSidebar"] details > summary [data-testid="stExpanderToggleIcon"],
+section[data-testid="stSidebar"] details > summary [data-testid="stIconMaterial"],
+section[data-testid="stSidebar"] details > summary [data-testid="stIconEmoji"],
+section[data-testid="stSidebar"] details > summary > i {
+  display:    none !important;        /* Layer 4 — hide element-carried icons */
+  font-size:  0 !important;
+  width:      0 !important;
+  max-width:  0 !important;
+  overflow:   hidden !important;
+}
+
+/* 16-D  Restore the section label — covers both <p> (old Streamlit) and
+         <span> (current Streamlit). display:block overrides display:none from
+         16-C; icon spans with [data-testid] remain hidden (higher specificity). */
+section[data-testid="stSidebar"] details > summary p,
+section[data-testid="stSidebar"] details > summary span,
+section[data-testid="stSidebar"] [data-testid="stExpander"] > summary p,
+section[data-testid="stSidebar"] [data-testid="stExpander"] > summary span {
+  display:         block !important;   /* override display:none from 16-C for plain spans */
+  font-size:       0.7rem !important;
+  color:           #2d3748 !important;
+  font-weight:     700 !important;
+  text-transform:  uppercase !important;
+  letter-spacing:  0.07em !important;
+  margin:          0 !important;
+  padding:         0 !important;
+  line-height:     1.3 !important;
+  flex:            1 1 auto !important;
+  overflow:        visible !important;
+  text-overflow:   clip !important;
+  white-space:     normal !important;
+  word-break:      break-word !important;
+  max-width:       calc(100% - 20px) !important;
+}
+
+/* 16-E  Custom expand › arrow — pure CSS, zero font dependency */
 section[data-testid="stSidebar"] details > summary::after {
-  content: '›' !important;
-  font-size: 0.95rem !important;
-  color: #94a3b8 !important;
+  content:    '›' !important;
+  font-size:  0.9rem !important;
+  line-height: 1 !important;
+  color:      #475569 !important;
+  flex-shrink: 0 !important;
   margin-left: auto !important;
-  padding-left: 4px !important;
+  padding-left: 6px !important;
+  display:    inline-block !important;
   transition: transform 0.2s ease !important;
-  display: inline-block !important;
 }
 section[data-testid="stSidebar"] details[open] > summary::after {
   transform: rotate(90deg) !important;
 }
-section[data-testid="stSidebar"] details > summary:hover p,
-section[data-testid="stSidebar"] [data-testid="stExpander"] summary:hover p {
-  color: #1e3a5f !important;
-}
+
+/* 16-F  Hover state */
 section[data-testid="stSidebar"] details > summary:hover {
   background: #f2ece0 !important;
 }
-/* Nav buttons: compact, left-aligned text */
+section[data-testid="stSidebar"] details > summary:hover p,
+section[data-testid="stSidebar"] details > summary:hover span,
+section[data-testid="stSidebar"] [data-testid="stExpander"] > summary:hover p,
+section[data-testid="stSidebar"] [data-testid="stExpander"] > summary:hover span {
+  color: #1e3a5f !important;
+}
+
+/* 16-G  Nav page buttons: compact, overflow-safe */
 section[data-testid="stSidebar"] .stButton > button {
-  font-size: 0.78rem !important;
-  padding: 3px 10px !important;
-  min-height: 26px !important;
-  justify-content: flex-start !important;
-  text-align: left !important;
-  border-radius: 6px !important;
-  width: 100% !important;
-  margin-bottom: 1px !important;
+  font-size:        0.78rem !important;
+  padding:          4px 8px !important;
+  min-height:       32px !important;
+  justify-content:  flex-start !important;
+  text-align:       left !important;
+  border-radius:    6px !important;
+  width:            100% !important;
+  margin-bottom:    2px !important;
+  overflow:         hidden !important;
+  text-overflow:    ellipsis !important;
+  white-space:      nowrap !important;
 }
 section[data-testid="stSidebar"] .stButton > button[kind="primary"] {
-  background: #e8f5ee !important;
-  color: #2d6a4f !important;
-  border: 1px solid #b7dfc9 !important;
+  background:  #e8f5ee !important;
+  color:       #2d6a4f !important;
+  border:      1px solid #b7dfc9 !important;
   font-weight: 600 !important;
-  box-shadow: none !important;
+  box-shadow:  none !important;
 }
 section[data-testid="stSidebar"] .stButton > button[kind="secondary"] {
-  background: transparent !important;
-  border: none !important;
-  color: #2d3142 !important;
-  box-shadow: none !important;
+  background:  transparent !important;
+  border:      none !important;
+  color:       #2d3142 !important;
+  box-shadow:  none !important;
 }
 section[data-testid="stSidebar"] .stButton > button[kind="secondary"]:hover {
   background: #f2ece0 !important;
-  color: #1e3a5f !important;
+  color:      #1e3a5f !important;
 }
 
 /* ── 17. Zoho CRM Dashboard — Home Page Styles ───────────────────────────── */
 /* KPI bar — tighter metrics for 8-column layout */
 .kpi-bar div[data-testid="stMetric"] {
-  padding: 10px 10px !important;
+  padding: var(--s8) var(--s12) !important;
   border-left-width: 3px !important;
 }
 .kpi-bar div[data-testid="stMetricValue"] { font-size: 1.0rem !important; }
@@ -627,8 +850,8 @@ section[data-testid="stSidebar"] .stButton > button[kind="secondary"]:hover {
   letter-spacing: 0.08em !important;
   color: var(--steel) !important;
   border-bottom: 1px solid var(--sandal) !important;
-  padding-bottom: 5px !important;
-  margin-bottom: 10px !important;
+  padding-bottom: var(--s4) !important;
+  margin-bottom: var(--s8) !important;
   display: block !important;
 }
 /* Stat pill chips */
@@ -651,7 +874,7 @@ section[data-testid="stSidebar"] .stButton > button[kind="secondary"]:hover {
   background: #ffffff;
   border: 1px solid var(--sandal);
   border-radius: 10px;
-  padding: 14px 16px;
+  padding: var(--s12) var(--card-pad);
   box-shadow: var(--shadow-card);
   height: 100%;
 }
@@ -680,10 +903,15 @@ section[data-testid="stSidebar"] .stButton > button[kind="secondary"]:hover {
   overflow: hidden; margin: 6px 0 8px 0;
 }
 
-/* ── 18. Block container: zero top gap = max screen real estate ──────────── */
-.main .block-container {
-  padding-top: 0 !important;
-}
+/* ── 18. Density variant — compact mode ─────────────────────────────────── */
+/* Add class="density-compact" to a wrapper or inject via JS to switch mode */
+.density-compact .main .block-container { padding: var(--s12) var(--s16) !important; }
+.density-compact div[data-testid="stMetric"] { padding: var(--s8) var(--s12) !important; }
+.density-compact div[data-testid="stMetricValue"] { font-size: 1.1rem !important; }
+.density-compact div[data-testid="stAlert"] { padding: var(--s8) var(--s12) !important; margin-bottom: var(--s4) !important; }
+.density-compact hr { margin: var(--s8) 0 !important; }
+.density-compact .stTabs [data-baseweb="tab"] { height: 28px !important; padding: 0 var(--s12) !important; }
+.density-compact section[data-testid="stSidebar"] .stButton > button { min-height: 24px !important; padding: 2px 8px !important; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -711,33 +939,33 @@ mkt = get_cached_market_data(api_active)
 
 st.markdown(f"""
 <div style="
-  background: #faf7f2;
-  border-bottom: 1px solid #e8dcc8;
-  padding: 7px 16px;
+  background: var(--ivory,#faf7f2);
+  border-bottom: 1px solid var(--sandal,#e8dcc8);
+  padding: var(--s8,8px) var(--page-gutter,20px);
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-family: 'Inter', 'Segoe UI', sans-serif;
   font-size: 0.82rem;
 ">
-  <div style="display:flex; gap:22px; flex-wrap:wrap;">
+  <div style="display:flex; gap:var(--s20,20px); flex-wrap:wrap;">
     <span style="color:#1e3a5f;">
       🛢️ <b>Brent:</b> {mkt['brent']['value']}
-      <span style="font-size:0.72rem;color:#94a3b8;"> (7d: {mkt['brent']['value_7d']})</span>
+      <span style="font-size:0.72rem;color:#475569;"> (7d: {mkt['brent']['value_7d']})</span>
       <span style="color:{mkt['brent']['color']};font-weight:600;"> {mkt['brent']['change']}</span>
     </span>
     <span style="color:#1e3a5f;">
       🛢️ <b>WTI:</b> {mkt['wti']['value']}
-      <span style="font-size:0.72rem;color:#94a3b8;"> (7d: {mkt['wti']['value_7d']})</span>
+      <span style="font-size:0.72rem;color:#475569;"> (7d: {mkt['wti']['value_7d']})</span>
       <span style="color:{mkt['wti']['color']};font-weight:600;"> {mkt['wti']['change']}</span>
     </span>
     <span style="color:#1e3a5f;">
       💵 <b>USD/INR:</b> {mkt['usdinr']['value']}
-      <span style="font-size:0.72rem;color:#94a3b8;"> (7d: {mkt['usdinr']['value_7d']})</span>
+      <span style="font-size:0.72rem;color:#475569;"> (7d: {mkt['usdinr']['value_7d']})</span>
       <span style="color:{mkt['usdinr']['color']};font-weight:600;"> {mkt['usdinr']['change']}</span>
     </span>
   </div>
-  <div style="font-size:0.72rem;color:#94a3b8;white-space:nowrap;">
+  <div style="font-size:0.72rem;color:#475569;white-space:nowrap;">
     ⏱️ Live as of {mkt['timestamp']}
   </div>
 </div>
@@ -770,7 +998,7 @@ st.markdown("""
         PPS Anantam Agentic AI Eco System
       </div>
       <div style="font-size:0.68rem;color:#93c5fd;letter-spacing:0.4px;margin-top:2px;">
-        GST: 24AAHCV1611L2ZD &nbsp;|&nbsp; Vadodara, Gujarat &nbsp;|&nbsp; v3.2.1
+        GST: 24AAHCV1611L2ZD &nbsp;|&nbsp; Vadodara, Gujarat &nbsp;|&nbsp; v3.2.3
       </div>
     </div>
   </div>
@@ -780,7 +1008,7 @@ st.markdown("""
     </div>
     <div style="text-align:right;">
       <div style="font-size:0.75rem;color:#e2e8f0;font-weight:600;">GST: 24AAHCV1611L2ZD</div>
-      <div style="font-size:0.65rem;color:#64748b;">Auth: Director Finance</div>
+      <div style="font-size:0.65rem;color:#b0bec5;">Auth: Director Finance</div>
     </div>
   </div>
 </div>
@@ -802,14 +1030,16 @@ def _render_page_header(title: str, dept: str = "", badge: str = ""):
     )
     st.markdown(f"""
 <div style="display:flex;align-items:center;justify-content:space-between;
-            border-bottom:2px solid #e8dcc8;padding-bottom:8px;margin-bottom:14px;">
-  <div style="display:flex;align-items:baseline;gap:10px;">
-    <span style="font-size:1.12rem;font-weight:800;color:#1e3a5f;">{title}</span>
+            border-bottom:2px solid var(--sandal,#e8dcc8);
+            padding-bottom:var(--s8,8px);
+            margin-bottom:var(--section-sep,16px);">
+  <div style="display:flex;align-items:baseline;gap:var(--grid-gap,12px);">
+    <span style="font-size:1.12rem;font-weight:800;color:var(--navy,#1e3a5f);">{title}</span>
     {_dept_html}
   </div>
-  <div style="display:flex;align-items:center;gap:8px;">
+  <div style="display:flex;align-items:center;gap:var(--s8,8px);">
     {_badge_html}
-    <span style="font-size:0.68rem;color:#94a3b8;">{_today_str}</span>
+    <span style="font-size:0.68rem;color:var(--steel-light,#64748b);">{_today_str}</span>
   </div>
 </div>
 """, unsafe_allow_html=True)
@@ -897,7 +1127,7 @@ section[data-testid="stSidebar"] div.row-widget.stRadio [role="radio"] {
   font-weight: 700 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.06em !important;
-  color: #94a3b8 !important;
+  color: #475569 !important;
   padding: 10px 10px 3px 10px !important;
   margin-top: 4px !important;
   display: block;
@@ -936,7 +1166,8 @@ _NAV_SECTIONS = [
     ("🧠  Knowledge & AI",     ["🔄 AI Fallback Engine", "🧠 AI Dashboard Assistant", "🤖 AI Assistant",
                                  "📚 Knowledge Base", "🏛️ Business Intelligence"]),
     ("📰  Market Intel",       ["📰 News Intelligence", "🕵️ Competitor Intelligence",
-                                 "🔭 Contractor OSINT", "🛣️ Road Budget & Demand"]),
+                                 "🔭 Contractor OSINT", "🛣️ Road Budget & Demand",
+                                 "🏗️ Govt Data Hub", "⚓ Port Import Tracker", "📈 Demand Correlation"]),
 ]
 if 'selected_page' not in st.session_state:
     st.session_state['selected_page'] = '🏠 Home'
@@ -951,7 +1182,7 @@ with st.sidebar:
       PPS Anantam<br>Agentic AI Eco System
     </span>
   </div>
-  <div style="font-size:0.62rem;color:#94a3b8;padding-left:2px;line-height:1.3;">
+  <div style="font-size:0.62rem;color:#475569;padding-left:2px;line-height:1.3;">
     GST: 24AAHCV1611L2ZD &nbsp;·&nbsp; Vadodara HQ
   </div>
 </div>
@@ -982,8 +1213,8 @@ with st.sidebar:
         help="ON = real-time data fetched from APIs. OFF = fast offline/simulated mode.",
     )
     st.markdown(
-        '<div style="font-size:0.65rem;color:#94a3b8;padding:2px 4px 0 4px;">'
-        'v3.2.0 &nbsp;|&nbsp; 02-03-2026 &nbsp;|&nbsp; Production'
+        '<div style="font-size:0.65rem;color:#475569;padding:2px 4px 0 4px;">'
+        'v3.2.3 &nbsp;|&nbsp; 02-03-2026 &nbsp;|&nbsp; Production'
         '</div>',
         unsafe_allow_html=True,
     )
@@ -1121,7 +1352,6 @@ if selected_page == "🏠 Home":
     _k8.metric("🗺️ Routes",            "3,476")
     st.markdown('</div>', unsafe_allow_html=True)
 
-    st.markdown('<div style="height:10px"></div>', unsafe_allow_html=True)
 
     # ─────────────────────────────────────────────────────────────────────────
     # SECTION 2 — 3-column row: CRM Overview | Sales Snapshot | Price Forecast
@@ -1256,7 +1486,6 @@ if selected_page == "🏠 Home":
             st.session_state["_nav_goto"] = "🔮 Price Prediction"
             st.rerun()
 
-    st.markdown('<div style="height:10px"></div>', unsafe_allow_html=True)
 
     # ─────────────────────────────────────────────────────────────────────────
     # SECTION 3 — 2-column row: API Health | Active Alerts
@@ -1280,7 +1509,7 @@ if selected_page == "🏠 Home":
   <span class="api-dot {_dot}"></span>
   <span style="font-size:0.75rem;color:#2d3142;flex:1;font-weight:500;">{_label}</span>
   <span style="font-size:0.68rem;color:#64748b;">{_lat}ms</span>
-  <span style="font-size:0.68rem;color:#94a3b8;">{_calls} call{"s" if _calls != 1 else ""}</span>
+  <span style="font-size:0.68rem;color:#475569;">{_calls} call{"s" if _calls != 1 else ""}</span>
 </div>"""
         _health_chip_clr = "#22c55e" if _api_ok >= _api_tot * 0.8 else "#f59e0b"
         st.markdown(f"""
@@ -1325,7 +1554,7 @@ if selected_page == "🏠 Home":
      margin-bottom:4px;border-radius:4px;padding:5px 8px;">
   <span style="font-size:0.72rem;">{_ico}</span>
   <span style="font-size:0.72rem;color:#2d3142;flex:1;font-weight:500;">{_title}</span>
-  <span style="font-size:0.62rem;color:#94a3b8;white-space:nowrap;">{_time_ago}</span>
+  <span style="font-size:0.62rem;color:#475569;white-space:nowrap;">{_time_ago}</span>
 </div>"""
         if not _alert_rows_html:
             _alert_rows_html = '<div style="font-size:0.78rem;color:#64748b;padding:8px;">No active alerts.</div>'
@@ -1339,7 +1568,6 @@ if selected_page == "🏠 Home":
             st.session_state["_nav_goto"] = "🔔 Alert System"
             st.rerun()
 
-    st.markdown('<div style="height:10px"></div>', unsafe_allow_html=True)
 
     # ─────────────────────────────────────────────────────────────────────────
     # SECTION 4 — AI Assistant (full width, navy gradient)
@@ -3496,6 +3724,21 @@ elif selected_page == "🛣️ Road Budget & Demand":
     from command_intel import road_budget_demand
     road_budget_demand.render()
 
+elif selected_page == "🏗️ Govt Data Hub":
+    _render_page_header("🏗️ Govt Data Hub", "Market Intel", badge="Phase 1 Live")
+    st.info("ℹ️ **Department Head:** Strategy Director\n\n📌 Government & inter-governmental data feeds — NHAI highway progress, UN Comtrade HS 271320 imports, FX rates, PPAC reference. Excel Power Query templates included.")
+    govt_hub_dashboard.render()
+
+elif selected_page == "⚓ Port Import Tracker":
+    _render_page_header("⚓ Port Import Tracker", "Market Intel")
+    st.info("ℹ️ **Department Head:** Trade Analytics\n\n📌 Country-wise HS 271320 imports allocated to Indian ports with confidence scoring. Editable allocation rules via PORT MAPPING HUB.")
+    port_tracker_dashboard.render()
+
+elif selected_page == "📈 Demand Correlation":
+    _render_page_header("📈 Demand Correlation", "Market Intel", badge="β Model")
+    st.info("ℹ️ **Department Head:** Quantitative Strategy\n\n📌 Highway KM vs Bitumen Demand cross-correlation (Pearson, lag 0-12m) + OLS regression model. Auto-generated insights and divergence alerts.")
+    correlation_dashboard.render()
+
 
 # ══════════════════════════════════════════════════════════════════════════════
 # GLOBAL FOOTER — PPS Anantam Agentic AI Eco System
@@ -3517,12 +3760,12 @@ st.markdown("""
     <span style="font-size:0.88rem;font-weight:800;color:#1e3a5f;">
       🏛️ PPS Anantam Agentic AI Eco System
     </span>
-    <span style="font-size:0.72rem;color:#94a3b8;margin-left:10px;">
+    <span style="font-size:0.72rem;color:#475569;margin-left:10px;">
       Vadodara, Gujarat
     </span>
   </div>
-  <div style="font-size:0.73rem;color:#94a3b8;display:flex;gap:14px;flex-wrap:wrap;">
-    <span>Version v3.2.1</span>
+  <div style="font-size:0.73rem;color:#475569;display:flex;gap:14px;flex-wrap:wrap;">
+    <span>Version v3.2.3</span>
     <span>Build: 02-03-2026</span>
     <span>Environment: Production</span>
     <span style="color:#c9a84c;font-weight:600;">GST: 24AAHCV1611L2ZD</span>

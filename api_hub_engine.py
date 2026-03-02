@@ -42,6 +42,9 @@ def _now() -> datetime.datetime:
 def _ts() -> str:
     return _now().strftime("%d-%m-%Y %H:%M:%S IST")
 
+# alias used by dashboard modules
+_ist_now = _ts
+
 
 def _date_str() -> str:
     return _now().strftime("%d-%m-%Y")
@@ -218,6 +221,102 @@ DEFAULT_CATALOG: Dict[str, dict] = {
 # JSON HELPERS
 # ─────────────────────────────────────────────────────────────────────────────
 
+# ─────────────────────────────────────────────────────────────────────────────
+# GOVERNMENT DATA CATALOG (Phase 1 + Phase 2)
+# ─────────────────────────────────────────────────────────────────────────────
+
+DEFAULT_CATALOG_GOVT: Dict[str, dict] = {
+    "comtrade_hs271320": {
+        "api_name":           "UN Comtrade — HS 271320 Country-wise Imports",
+        "category":           "Trade / Govt",
+        "provider":           "United Nations Statistics Division",
+        "base_url":           "https://comtradeapi.un.org/",
+        "endpoints":          ["public/v1/preview/C/A/HS"],
+        "auth_type":          "None",
+        "key_value":          "",
+        "status":             "Live",
+        "refresh_frequency":  "1d",
+        "cache_ttl_sec":      86400,
+        "last_success_time":  None,
+        "last_error_message": "",
+        "fallback_api":       "static_trade_cache",
+        "data_output_tables": ["tbl_imports_countrywise"],
+        "notes":              "Public preview — no key. India HS 271320 imports by partner country.",
+    },
+    "rbi_fx_historical": {
+        "api_name":           "RBI Reference Rate — USD/INR Historical (ECB proxy)",
+        "category":           "FX / Govt",
+        "provider":           "Frankfurter.app (ECB data) — RBI proxy",
+        "base_url":           "https://api.frankfurter.app/",
+        "endpoints":          ["{start_date}.."],
+        "auth_type":          "None",
+        "key_value":          "",
+        "status":             "Live",
+        "refresh_frequency":  "1d",
+        "cache_ttl_sec":      86400,
+        "last_success_time":  None,
+        "last_error_message": "",
+        "fallback_api":       "fawazahmed0_fx",
+        "data_output_tables": ["tbl_fx_rates"],
+        "notes":              "12-month USD/INR history via ECB/Frankfurter. Labelled as RBI proxy.",
+    },
+    "ppac_proxy": {
+        "api_name":           "PPAC Refinery Production (Static Ref + EIA Proxy)",
+        "category":           "Refinery / Govt",
+        "provider":           "PPAC (static) + EIA (live proxy)",
+        "base_url":           "https://ppac.gov.in/",
+        "endpoints":          ["data-statistics"],
+        "auth_type":          "None",
+        "key_value":          "",
+        "status":             "Live",
+        "refresh_frequency":  "1d",
+        "cache_ttl_sec":      86400,
+        "last_success_time":  None,
+        "last_error_message": "",
+        "fallback_api":       "",
+        "data_output_tables": ["tbl_refinery_production"],
+        "notes":              "PPAC has no public API. Uses Annual Report 2023-24 as static ref.",
+    },
+    "data_gov_in_highways": {
+        "api_name":           "data.gov.in — NHAI Road Construction Progress",
+        "category":           "Infrastructure / Govt",
+        "provider":           "data.gov.in (Govt of India)",
+        "base_url":           "https://api.data.gov.in/resource/",
+        "endpoints":          ["3b01bcb8-0b14-4abf-b6f2-c1bfd384ba69"],
+        "auth_type":          "API Key",
+        "key_value":          "",
+        "status":             "Disabled",
+        "refresh_frequency":  "1d",
+        "cache_ttl_sec":      86400,
+        "last_success_time":  None,
+        "last_error_message": "API key not configured — register free at data.gov.in",
+        "fallback_api":       "static_highway_ref",
+        "data_output_tables": ["tbl_highway_km"],
+        "notes":              "Free key: https://data.gov.in/user/register | NHAI road progress data.",
+    },
+    "fred_macro": {
+        "api_name":           "FRED — USD/INR + Brent Crude History",
+        "category":           "Macro / Govt",
+        "provider":           "Federal Reserve Bank of St. Louis",
+        "base_url":           "https://api.stlouisfed.org/fred/",
+        "endpoints":          ["series/observations"],
+        "auth_type":          "API Key",
+        "key_value":          "",
+        "status":             "Disabled",
+        "refresh_frequency":  "1d",
+        "cache_ttl_sec":      86400,
+        "last_success_time":  None,
+        "last_error_message": "API key not configured — register free at fred.stlouisfed.org",
+        "fallback_api":       "frankfurter_fx",
+        "data_output_tables": ["tbl_demand_proxy"],
+        "notes":              "Free key: https://fred.stlouisfed.org/docs/api/api_key.html | Series: DEXINUS, DCOILBRENTEU",
+    },
+}
+
+# ─────────────────────────────────────────────────────────────────────────────
+# UTILITY FUNCTIONS
+# ─────────────────────────────────────────────────────────────────────────────
+
 def _load(path: Path, default: Any) -> Any:
     try:
         if path.exists():
@@ -274,8 +373,9 @@ class HubCatalog:
     @staticmethod
     def load() -> Dict[str, dict]:
         stored = _load(CATALOG_FILE, {})
-        # Merge defaults for any missing connectors
+        # Merge both default catalogs for any missing connectors
         merged = dict(DEFAULT_CATALOG)
+        merged.update(DEFAULT_CATALOG_GOVT)
         merged.update(stored)
         return merged
 
@@ -941,7 +1041,7 @@ def connect_refinery() -> dict:
 # ─────────────────────────────────────────────────────────────────────────────
 
 class NormalizedTables:
-    """Read access to all 7 normalized tables."""
+    """Read access to all normalized tables (7 original + 6 govt extension)."""
 
     @staticmethod
     def crude_prices(n: int = 100) -> List[dict]:
@@ -983,17 +1083,55 @@ class NormalizedTables:
         data = _load(HUB_LOG_FILE, [])
         return list(reversed(data[-n:]))
 
+    # ── Govt extension tables ─────────────────────────────────────────────
+    @staticmethod
+    def highway_km(n: int = 200) -> List[dict]:
+        return _load(BASE / "tbl_highway_km.json", [])[-n:]
+
+    @staticmethod
+    def demand_proxy(n: int = 200) -> List[dict]:
+        return _load(BASE / "tbl_demand_proxy.json", [])[-n:]
+
+    @staticmethod
+    def imports_countrywise(n: int = 500) -> List[dict]:
+        return _load(BASE / "tbl_imports_countrywise.json", [])[-n:]
+
+    @staticmethod
+    def imports_portwise(n: int = 500) -> List[dict]:
+        return _load(BASE / "tbl_imports_portwise.json", [])[-n:]
+
+    @staticmethod
+    def corr_results(n: int = 100) -> List[dict]:
+        return _load(BASE / "tbl_corr_results.json", [])[-n:]
+
+    @staticmethod
+    def insights(n: int = 100) -> List[dict]:
+        return _load(BASE / "tbl_insights.json", [])[-n:]
+
+    @staticmethod
+    def api_runs(n: int = 200) -> List[dict]:
+        data = _load(BASE / "tbl_api_runs.json", [])
+        return list(reversed(data[-n:]))
+
     @staticmethod
     def summary() -> dict:
+        def _cnt(name): return len(_load(BASE / name, []))
         return {
-            "tbl_crude_prices":       len(_load(TBL_CRUDE, [])),
-            "tbl_fx_rates":           len(_load(TBL_FX, [])),
-            "tbl_trade_imports":      len(_load(TBL_TRADE, [])),
-            "tbl_ports_volume":       len(_load(TBL_PORTS, [])),
-            "tbl_refinery_production": len(_load(TBL_REFINERY, [])),
-            "tbl_weather":            len(_load(TBL_WEATHER, [])),
-            "tbl_news_feed":          len(_load(TBL_NEWS, [])),
-            "last_updated":           _ts(),
+            "tbl_crude_prices":          _cnt("tbl_crude_prices.json"),
+            "tbl_fx_rates":              _cnt("tbl_fx_rates.json"),
+            "tbl_trade_imports":         _cnt("tbl_trade_imports.json"),
+            "tbl_ports_volume":          _cnt("tbl_ports_volume.json"),
+            "tbl_refinery_production":   _cnt("tbl_refinery_production.json"),
+            "tbl_weather":               _cnt("tbl_weather.json"),
+            "tbl_news_feed":             _cnt("tbl_news_feed.json"),
+            "tbl_highway_km":            _cnt("tbl_highway_km.json"),
+            "tbl_demand_proxy":          _cnt("tbl_demand_proxy.json"),
+            "tbl_imports_countrywise":   _cnt("tbl_imports_countrywise.json"),
+            "tbl_imports_portwise":      _cnt("tbl_imports_portwise.json"),
+            "tbl_corr_results":          _cnt("tbl_corr_results.json"),
+            "tbl_insights":              _cnt("tbl_insights.json"),
+            "tbl_api_runs":              _cnt("tbl_api_runs.json"),
+            "last_updated":              _ts(),
         }
 
 
@@ -1093,6 +1231,14 @@ def run_all_connectors(force: bool = False) -> dict:
             results[name] = {"ok": False, "error": str(e)[:100]}
             _hub_log(name, "FAIL", f"Connector exception: {e}")
 
+    # ── Govt connectors extension ─────────────────────────────────────────
+    try:
+        from govt_connectors import run_govt_connectors
+        govt = run_govt_connectors(force=force)
+        results.update(govt.get("results", {}))
+    except Exception as _ge:
+        _hub_log("govt_connectors", "FAIL", f"Govt connectors skipped: {_ge}")
+
     summary = {
         "timestamp_ist": _ts(),
         "total":   len(results),
@@ -1160,7 +1306,17 @@ def init_hub() -> None:
         if updated:
             _save(CATALOG_FILE, existing)
 
-    # Ensure all table files exist
+    # Also merge DEFAULT_CATALOG_GOVT into hub_catalog.json
+    existing = _load(CATALOG_FILE, {})
+    updated  = False
+    for k, v in DEFAULT_CATALOG_GOVT.items():
+        if k not in existing:
+            existing[k] = v
+            updated = True
+    if updated:
+        _save(CATALOG_FILE, existing)
+
+    # Ensure all table files exist (original 7 + 10 new govt tables)
     for f, default in [
         (TBL_CRUDE,    []),
         (TBL_FX,       []),
@@ -1171,8 +1327,19 @@ def init_hub() -> None:
         (TBL_NEWS,     []),
         (HUB_LOG_FILE, []),
         (HUB_CACHE_FILE, {}),
+        # Govt extension tables
+        (BASE / "tbl_highway_km.json",            []),
+        (BASE / "tbl_demand_proxy.json",          []),
+        (BASE / "tbl_imports_countrywise.json",   []),
+        (BASE / "tbl_ports_master.json",          []),
+        (BASE / "tbl_port_allocation_rules.json", []),
+        (BASE / "tbl_imports_portwise.json",      []),
+        (BASE / "tbl_corr_results.json",          []),
+        (BASE / "tbl_regression_coeff.json",      []),
+        (BASE / "tbl_insights.json",              []),
+        (BASE / "tbl_api_runs.json",              []),
     ]:
         if not f.exists():
             _save(f, default)
 
-    _hub_log("hub_init", "INFO", "API HUB Engine initialised", 0)
+    _hub_log("hub_init", "INFO", "API HUB Engine v3.2.3 initialised (+ govt tables)", 0)
