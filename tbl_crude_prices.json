@@ -1,0 +1,16 @@
+[
+  {
+    "date_time": "02-03-2026 11:22:39 IST",
+    "benchmark": "Brent",
+    "price": 77.59,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "02-03-2026 11:22:39 IST",
+    "benchmark": "WTI",
+    "price": 71.19,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  }
+]

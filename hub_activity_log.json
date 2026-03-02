@@ -1,0 +1,58 @@
+[
+  {
+    "timestamp_ist": "02-03-2026 11:18:05 IST",
+    "connector_id": "hub_init",
+    "status": "INFO",
+    "message": "API HUB Engine initialised",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "02-03-2026 11:18:06 IST",
+    "connector_id": "frankfurter_fx",
+    "status": "OK",
+    "message": "Frankfurter: 4 FX pairs",
+    "records_written": 4
+  },
+  {
+    "timestamp_ist": "02-03-2026 11:18:08 IST",
+    "connector_id": "openweather",
+    "status": "OK",
+    "message": "Weather: 5 city records",
+    "records_written": 5
+  },
+  {
+    "timestamp_ist": "02-03-2026 11:18:10 IST",
+    "connector_id": "newsapi",
+    "status": "Fallback",
+    "message": "Google News RSS: 30 articles",
+    "records_written": 30
+  },
+  {
+    "timestamp_ist": "02-03-2026 11:18:13 IST",
+    "connector_id": "ports_volume",
+    "status": "OK",
+    "message": "Ports volume: 5 port estimates (BDI factor=1.00)",
+    "records_written": 5
+  },
+  {
+    "timestamp_ist": "02-03-2026 11:18:13 IST",
+    "connector_id": "refinery",
+    "status": "OK",
+    "message": "Refinery: 4 records (static+EIA)",
+    "records_written": 4
+  },
+  {
+    "timestamp_ist": "02-03-2026 11:22:39 IST",
+    "connector_id": "eia_crude",
+    "status": "Fallback",
+    "message": "yfinance fallback: 2 records",
+    "records_written": 2
+  },
+  {
+    "timestamp_ist": "02-03-2026 11:22:41 IST",
+    "connector_id": "un_comtrade",
+    "status": "Fallback",
+    "message": "Comtrade unavailable: Empty Comtrade response. Static cache used.",
+    "records_written": 0
+  }
+]

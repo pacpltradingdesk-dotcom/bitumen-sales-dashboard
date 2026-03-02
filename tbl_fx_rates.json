@@ -1,0 +1,26 @@
+[
+  {
+    "date_time": "02-03-2026 11:18:06 IST",
+    "pair": "USD/EUR",
+    "rate": 0.8471,
+    "source": "Frankfurter (ECB)"
+  },
+  {
+    "date_time": "02-03-2026 11:18:06 IST",
+    "pair": "USD/GBP",
+    "rate": 0.74231,
+    "source": "Frankfurter (ECB)"
+  },
+  {
+    "date_time": "02-03-2026 11:18:06 IST",
+    "pair": "USD/INR",
+    "rate": 91.08,
+    "source": "Frankfurter (ECB)"
+  },
+  {
+    "date_time": "02-03-2026 11:18:06 IST",
+    "pair": "USD/JPY",
+    "rate": 155.98,
+    "source": "Frankfurter (ECB)"
+  }
+]

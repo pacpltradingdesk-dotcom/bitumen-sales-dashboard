@@ -27,6 +27,7 @@ from command_intel import demand_analytics, financial_intel, gst_legal_monitor
 from command_intel import risk_scoring, alert_system, strategy_panel
 from command_intel import historical_revisions, manual_entry, change_log, bug_tracker
 from command_intel import sre_dashboard
+from command_intel import api_hub_dashboard
 import api_dashboard
 
 # --- PDF EXPORT SYSTEM ---
@@ -51,6 +52,14 @@ try:
     from sre_engine import init_sre, start_sre_background
     init_sre()
     start_sre_background(interval_min=15)   # background SRE cycle every 15 min
+except Exception:
+    pass
+
+# --- API HUB ENGINE: Central data integration + normalized tables ---
+try:
+    from api_hub_engine import init_hub, start_hub_scheduler
+    init_hub()
+    start_hub_scheduler(interval_min=60)    # background refresh every 60 min
 except Exception:
     pass
 
@@ -921,9 +930,9 @@ _NAV_SECTIONS = [
     ("🛡️  Legal & Compliance", ["🛡️ GST & Legal Monitor", "⚡ Risk Scoring"]),
     ("🎯  Strategy & Intel",   ["🔮 Price Prediction", "⏳ Past Predictions", "📝 Manual Price Entry",
                                  "🎯 Strategy Panel", "🔔 Alert System"]),
-    ("🔧  Technology",         ["🌐 API Dashboard", "⚙️ Dev & System Activity", "📁 PDF Archive",
-                                 "🏥 System Health", "🔔 Change Notifications", "🐞 Bug Tracker",
-                                 "👥 Ecosystem Management", "⚙️ Settings"]),
+    ("🔧  Technology",         ["🌐 API Dashboard", "🔗 API HUB", "⚙️ Dev & System Activity",
+                                 "📁 PDF Archive", "🏥 System Health", "🔔 Change Notifications",
+                                 "🐞 Bug Tracker", "👥 Ecosystem Management", "⚙️ Settings"]),
     ("🧠  Knowledge & AI",     ["🔄 AI Fallback Engine", "🧠 AI Dashboard Assistant", "🤖 AI Assistant",
                                  "📚 Knowledge Base", "🏛️ Business Intelligence"]),
     ("📰  Market Intel",       ["📰 News Intelligence", "🕵️ Competitor Intelligence",
@@ -3393,6 +3402,9 @@ if selected_page == "🌐 API Dashboard":
     _render_page_header("🌐 API Dashboard", "Technology")
     display_badge("real-time")
     api_dashboard.render()
+elif selected_page == "🔗 API HUB":
+    _render_page_header("🔗 API HUB", "Technology", badge="Connections & Keys")
+    api_hub_dashboard.render()
 elif selected_page == "⚙️ Dev & System Activity":
     _render_page_header("⚙️ Dev & System Activity", "Technology")
     st.info("ℹ️ **Department Head:** CTO / Technology\n\n📌 Full audit trail of API changes, auto-repairs, errors, deployments, and system events. All timestamps in IST.")
