@@ -26,6 +26,7 @@ from command_intel import price_prediction, import_cost_model, supply_chain
 from command_intel import demand_analytics, financial_intel, gst_legal_monitor
 from command_intel import risk_scoring, alert_system, strategy_panel
 from command_intel import historical_revisions, manual_entry, change_log, bug_tracker
+from command_intel import sre_dashboard
 import api_dashboard
 
 # --- PDF EXPORT SYSTEM ---
@@ -42,6 +43,14 @@ try:
     from api_manager import init_system, start_auto_health
     init_system()
     start_auto_health()          # background thread: health check every 30 min
+except Exception:
+    pass
+
+# --- SRE ENGINE: Self-Healing + Auto Bug Fixing + Smart Alerts ---
+try:
+    from sre_engine import init_sre, start_sre_background
+    init_sre()
+    start_sre_background(interval_min=15)   # background SRE cycle every 15 min
 except Exception:
     pass
 
@@ -913,7 +922,8 @@ _NAV_SECTIONS = [
     ("🎯  Strategy & Intel",   ["🔮 Price Prediction", "⏳ Past Predictions", "📝 Manual Price Entry",
                                  "🎯 Strategy Panel", "🔔 Alert System"]),
     ("🔧  Technology",         ["🌐 API Dashboard", "⚙️ Dev & System Activity", "📁 PDF Archive",
-                                 "🔔 Change Notifications", "🐞 Bug Tracker", "👥 Ecosystem Management", "⚙️ Settings"]),
+                                 "🏥 System Health", "🔔 Change Notifications", "🐞 Bug Tracker",
+                                 "👥 Ecosystem Management", "⚙️ Settings"]),
     ("🧠  Knowledge & AI",     ["🔄 AI Fallback Engine", "🧠 AI Dashboard Assistant", "🤖 AI Assistant",
                                  "📚 Knowledge Base", "🏛️ Business Intelligence"]),
     ("📰  Market Intel",       ["📰 News Intelligence", "🕵️ Competitor Intelligence",
@@ -3409,6 +3419,9 @@ elif selected_page == "🔔 Change Notifications":
     _render_page_header("🔔 Change Notifications", "Technology")
     st.info("ℹ️ **UX Note:** Complete, immutable timeline log of every number change or API fallback occurrence.")
     change_log.render()
+elif selected_page == "🏥 System Health":
+    _render_page_header("🏥 System Health", "Technology", badge="SRE v1.0")
+    sre_dashboard.render()
 elif selected_page == "🐞 Bug Tracker":
     _render_page_header("🐞 Bug Tracker", "Technology")
     st.info("ℹ️ **UX Note:** Health tracker for failed APIs, broken data models, and Dev-Ops diagnostics.")
