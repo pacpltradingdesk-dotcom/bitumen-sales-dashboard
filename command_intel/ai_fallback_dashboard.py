@@ -544,7 +544,7 @@ Switches silently on failure. Restores primary every 5 min. Every response ident
 
     st.markdown(
         '<div style="color:#475569;font-size:0.76rem;text-align:center;margin-top:16px">'
-        'AI Fallback Engine v1.0 | PPS Anantams Logistics AI | '
+        'AI Fallback Engine v1.0 | PPS Anantam Logistics | '
         'Chain: OpenAI → Ollama → HuggingFace → GPT4All → Claude | '
         'Monitor: every 5 min</div>',
         unsafe_allow_html=True,

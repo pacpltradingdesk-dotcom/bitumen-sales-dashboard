@@ -76,16 +76,16 @@ customer_city_map = {
 
 # Page Config
 st.set_page_config(
-    page_title="PPS Anantam Eco Agentic AI System",
+    page_title="PPS Anantam Agentic AI Eco System",
     page_icon="🏛️",
     layout="wide",
 )
 
-# ── Corporate Vastu Design System v3.1 ─────────────────────────────────────
+# ── Corporate Vastu Design System v3.2 ─────────────────────────────────────
 st.markdown("""
 <style>
 /* =========================================================================
-   PPS ANANTAM ECO AGENTIC AI SYSTEM — Corporate Vastu Design System v3.1
+   PPS ANANTAM AGENTIC AI ECO SYSTEM — Corporate Vastu Design System v3.2
    Palette: Soft ivory/sandal backgrounds · Navy headings · Vastu green/gold
    Typography: Inter / Segoe UI — clean, readable, corporate
    Mobile-first responsive + @media print
@@ -697,7 +697,7 @@ try:
 except Exception:
     pass
 
-# ── Enterprise Header — PPS Anantam Eco Agentic AI System ───────────────────
+# ── Enterprise Header — PPS Anantam Agentic AI Eco System ───────────────────
 st.markdown("""
 <div style="
   background: linear-gradient(135deg, #1e3a5f 0%, #0f2744 100%);
@@ -714,10 +714,10 @@ st.markdown("""
     <span style="font-size:1.45rem;">🏛️</span>
     <div>
       <div style="font-size:1.05rem;font-weight:800;color:#ffffff;letter-spacing:-0.2px;line-height:1.25;">
-        PPS Anantam Eco Agentic AI System
+        PPS Anantam Agentic AI Eco System
       </div>
       <div style="font-size:0.68rem;color:#93c5fd;letter-spacing:0.4px;margin-top:2px;">
-        PPS Anantam Logistics AI – All Locations &nbsp;|&nbsp; Enterprise AI v3.2
+        GST: 24AAHCV1611L2ZD &nbsp;|&nbsp; Vadodara, Gujarat &nbsp;|&nbsp; v3.2.1
       </div>
     </div>
   </div>
@@ -729,6 +729,34 @@ st.markdown("""
       <div style="font-size:0.75rem;color:#e2e8f0;font-weight:600;">GST: 24AAHCV1611L2ZD</div>
       <div style="font-size:0.65rem;color:#64748b;">Auth: Director Finance</div>
     </div>
+  </div>
+</div>
+""", unsafe_allow_html=True)
+
+# ── Universal Page Header — consistent across all non-Home pages ─────────────
+def _render_page_header(title: str, dept: str = "", badge: str = ""):
+    """Renders a compact styled page title bar. Call at top of every page block."""
+    import datetime as _dt2
+    _today_str = _dt2.date.today().strftime("%d %b %Y")
+    _badge_html = (
+        f'<span style="background:#e8f5ee;color:#2d6a4f;font-size:0.68rem;font-weight:700;'
+        f'padding:2px 9px;border-radius:12px;border:1px solid #b7dfc9;">{badge}</span>'
+        if badge else ""
+    )
+    _dept_html = (
+        f'<span style="font-size:0.7rem;color:#64748b;font-weight:500;">{dept}</span>'
+        if dept else ""
+    )
+    st.markdown(f"""
+<div style="display:flex;align-items:center;justify-content:space-between;
+            border-bottom:2px solid #e8dcc8;padding-bottom:8px;margin-bottom:14px;">
+  <div style="display:flex;align-items:baseline;gap:10px;">
+    <span style="font-size:1.12rem;font-weight:800;color:#1e3a5f;">{title}</span>
+    {_dept_html}
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;">
+    {_badge_html}
+    <span style="font-size:0.68rem;color:#94a3b8;">{_today_str}</span>
   </div>
 </div>
 """, unsafe_allow_html=True)
@@ -866,11 +894,11 @@ with st.sidebar:
   <div style="display:flex;align-items:center;gap:7px;margin-bottom:3px;">
     <span style="font-size:1.3rem;">🏛️</span>
     <span style="font-size:0.79rem;font-weight:800;color:#1e3a5f;line-height:1.2;">
-      PPS Anantam<br>Eco Agentic AI System
+      PPS Anantam<br>Agentic AI Eco System
     </span>
   </div>
-  <div style="font-size:0.65rem;color:#94a3b8;padding-left:2px;line-height:1.3;">
-    PPS Anantam Logistics AI – All Locations
+  <div style="font-size:0.62rem;color:#94a3b8;padding-left:2px;line-height:1.3;">
+    GST: 24AAHCV1611L2ZD &nbsp;·&nbsp; Vadodara HQ
   </div>
 </div>
 """, unsafe_allow_html=True)
@@ -1358,6 +1386,7 @@ if st.session_state.get("_nav_goto"):
 
 # Main Layout: 3 Columns (Selection | Analysis | Detailed Slip)
 if selected_page == "🧮 Pricing Calculator":
+    _render_page_header("🧮 Pricing Calculator", "Sales & Revenue")
     display_badge("calculated")
     col_left, col_mid, col_right = st.columns([1.2, 1.3, 2.0])
 
@@ -1844,11 +1873,13 @@ _Terms: 100% Advance. Valid for 24 Hrs._
 
 # --- TAB: SALES WORKSPACE (NEW) ---
 if selected_page == "💼 Sales Workspace":
+    _render_page_header("💼 Sales Workspace", "Sales & Revenue")
     display_badge("historical")
     sales_workspace.render_deal_room()
 
 # --- TAB 2: SALES CALENDAR ---
 if selected_page == "📅 Sales Calendar":
+    _render_page_header("📅 Sales Calendar", "Sales & Revenue")
     st.header("📅 Sales Calendar - Season & Holiday Planner")
     st.caption("Understand peak/off seasons, holidays, and best times to contact clients by city")
     
@@ -2078,6 +2109,7 @@ if selected_page == "📅 Sales Calendar":
 # --- TAB 3: PARTY MANAGEMENT ---
 # --- TAB 3: PARTY MANAGEMENT ---
 if selected_page == "👥 Ecosystem Management":
+    _render_page_header("👥 Ecosystem Management", "Technology")
     st.header("👥 Ecosystem Management")
     st.caption("Manage Suppliers, Customers, and Logistics Partners in your ecosystem.")
     
@@ -2614,11 +2646,13 @@ if selected_page == "👥 Ecosystem Management":
 
 # --- AI FALLBACK ENGINE (Multi-Provider: OpenAI→Ollama→HuggingFace→GPT4All→Claude) ---
 if selected_page == "🔄 AI Fallback Engine":
+    _render_page_header("🔄 AI Fallback Engine", "Knowledge & AI")
     from command_intel import ai_fallback_dashboard
     ai_fallback_dashboard.render()
 
 # --- AI DASHBOARD ASSISTANT (Full Data-Connected AI) ---
 elif selected_page == "🧠 AI Dashboard Assistant":
+    _render_page_header("🧠 AI Dashboard Assistant", "Knowledge & AI")
     st.info(
         "ℹ️ **Department Head:** All Departments\n\n"
         "📌 AI assistant connected to ALL dashboard data — prices, APIs, competitors, "
@@ -2630,6 +2664,7 @@ elif selected_page == "🧠 AI Dashboard Assistant":
 
 # --- TAB 4: AI SALES ASSISTANT ---
 elif selected_page == "🤖 AI Assistant":
+    _render_page_header("🤖 AI Assistant", "Knowledge & AI")
     st.header("🤖 AI Sales Training & Assistant")
     st.caption("Instant answers, objection handling, and training manual.")
     
@@ -2746,6 +2781,7 @@ elif selected_page == "🤖 AI Assistant":
 # --- TAB 5: AUTOMATION RULES ---
 # --- TAB 5: AUTOMATION RULES & SETTINGS ---
 if selected_page == "⚙️ Settings":
+    _render_page_header("⚙️ Settings", "Technology")
     st.header("⚙️ System Settings & Integrations")
     
     st.subheader("🔗 External Integrations & API Keys")
@@ -2784,6 +2820,7 @@ if selected_page == "⚙️ Settings":
 
 # --- TAB 6: DATA MANAGER ---
 if selected_page == "🛠️ Data Manager":
+    _render_page_header("🛠️ Data Manager", "Operations")
     st.header("🛠️ Data Manager")
     st.info("Update live pricing, discounts, availability, and transport logistics.")
     
@@ -2924,6 +2961,7 @@ if selected_page == "🛠️ Data Manager":
 
 # --- TAB 7: SOURCE DIRECTORY ---
 if selected_page == "📋 Source Directory":
+    _render_page_header("📋 Source Directory", "Sales & Revenue")
     st.header("📋 Source Directory")
     st.info("Complete list of all loading points categorized by type.")
     
@@ -2993,6 +3031,7 @@ if selected_page == "📋 Source Directory":
 
 # --- TAB 8: FEASIBILITY ASSESSMENT ---
 if selected_page == "🏭 Feasibility":
+    _render_page_header("🏭 Feasibility", "Operations")
     st.header("📊 Feasibility Assessment")
     st.info("Automatic price comparison: **2 Refineries + 2 Import Terminals + 2 Decanters** for any destination")
     
@@ -3096,6 +3135,7 @@ if selected_page == "🏭 Feasibility":
 
 # --- TAB 10: KNOWLEDGE BASE ---
 if selected_page == "📚 Knowledge Base":
+    _render_page_header("📚 Knowledge Base", "Knowledge & AI")
     st.header("📚 Bitumen Sales Knowledge Base")
     st.caption("Training Manual, FAQs, and Process Guidelines")
     
@@ -3139,6 +3179,7 @@ if selected_page == "📚 Knowledge Base":
     
     # --- TAB 11: CRM & TASKS (NEW) ---
 if selected_page == "🎯 CRM & Tasks":
+    _render_page_header("🎯 CRM & Tasks", "Sales & Revenue")
     st.header("🎯 Sales CRM & Daily Worklist")
     st.caption("Never miss a follow-up. Manage calls, tasks, and client engagement.")
     
@@ -3219,6 +3260,7 @@ if selected_page == "🎯 CRM & Tasks":
 
 # --- TAB 12: SOS SPECIAL PRICE TRIGGER (NEW) ---
 if selected_page == "🚨 SPECIAL PRICE (SOS)":
+    _render_page_header("🚨 Special Price (SOS)", "Sales & Revenue", "URGENT")
     st.header("🚨 Special Price | SOS Sales Blast")
     st.caption("Active Special Price Opportunities (SPO) detected based on cost reduction.")
     
@@ -3266,6 +3308,7 @@ if selected_page == "🚨 SPECIAL PRICE (SOS)":
 # --- USER GUIDE SECTION ---
 # --- TAB 9: REPORTS ---
 if selected_page == "📤 Reports":
+    _render_page_header("📤 Reports", "Finance")
     with st.container():
         st.header("📤 Sales Reports & Analytics")
         # st.info("Visual Analytics and Exportable Reports coming in Phase 3.")
@@ -3302,95 +3345,100 @@ if selected_page == "📤 Reports":
 # ========================================================================================
 
 if selected_page == "🌐 API Dashboard":
+    _render_page_header("🌐 API Dashboard", "Technology")
     display_badge("real-time")
     api_dashboard.render()
 elif selected_page == "⚙️ Dev & System Activity":
+    _render_page_header("⚙️ Dev & System Activity", "Technology")
     st.info("ℹ️ **Department Head:** CTO / Technology\n\n📌 Full audit trail of API changes, auto-repairs, errors, deployments, and system events. All timestamps in IST.")
 elif selected_page == "📁 PDF Archive":
+    _render_page_header("📁 PDF Archive", "Technology")
     st.info("ℹ️ **Department Head:** Admin / CTO\n\n📌 All PDFs generated from dashboard pages — download, view metadata, or delete. Auto-saved whenever you use ⬇ PDF on any page.")
     from command_intel import pdf_archive
     pdf_archive.render()
     from command_intel import dev_activity
     dev_activity.render()
-elif selected_page == "─── 🏢 SALES & REVENUE ───":
-    st.info("ℹ️ **Department Head:** Sales Director\n\n📌 *Please select a specific module below (e.g., Sales Workspace, Pricing Calculator).*")
-elif selected_page == "─── 🏢 OPERATIONS & PROCUREMENT ───":
-    st.info("ℹ️ **Department Head:** Operations Head\n\n📌 *Please select a specific module below (e.g., Feasibility, Supply Chain).*")
-elif selected_page == "─── 🏢 FINANCE & PROFITABILITY ───":
-    st.info("ℹ️ **Department Head:** CFO\n\n📌 *Please select a specific module below (e.g., Financial Intelligence, Reports).*")
-elif selected_page == "─── 🏢 LEGAL & COMPLIANCE ───":
-    st.info("ℹ️ **Department Head:** Legal Head\n\n📌 *Please select a specific module below (e.g., GST & Legal Monitor, Risk Scoring).*")
-elif selected_page == "─── 🏢 STRATEGY & INTELLIGENCE ───":
-    st.info("ℹ️ **Department Head:** Strategy Director\n\n📌 *Please select a specific module below (e.g., Price Prediction, Alert System).*")
-elif selected_page == "─── 🏢 TECHNOLOGY & SYSTEMS ───":
-    st.info("ℹ️ **Department Head:** CTO\n\n📌 *Please select a specific module below (e.g., API Dashboard, Settings).*")
-elif selected_page == "─── 🏢 KNOWLEDGE & SUPPORT ───":
-    st.info("ℹ️ **Department Head:** Admin / HR Head\n\n📌 *Please select a specific module below (e.g., AI Assistant, Knowledge Base).*")
 elif selected_page == "🔮 Price Prediction":
+    _render_page_header("🔮 Price Prediction", "Strategy & Intel")
     st.info("ℹ️ **UX Note:** Predicts global/local price trends focusing on the core 1st & 16th Indian cycles.")
     price_prediction.render()
 elif selected_page == "⏳ Past Predictions":
+    _render_page_header("⏳ Past Predictions", "Strategy & Intel")
     st.info("ℹ️ **UX Note:** 10-Year historical truth table validating the quantitative MLR-DL model performance.")
     historical_revisions.render()
 elif selected_page == "📝 Manual Price Entry":
+    _render_page_header("📝 Manual Price Entry", "Strategy & Intel")
     st.info("ℹ️ **UX Note:** B2B override grid for field CRM quotes and real-time market entries.")
     manual_entry.render()
 elif selected_page == "🔔 Change Notifications":
+    _render_page_header("🔔 Change Notifications", "Technology")
     st.info("ℹ️ **UX Note:** Complete, immutable timeline log of every number change or API fallback occurrence.")
     change_log.render()
 elif selected_page == "🐞 Bug Tracker":
+    _render_page_header("🐞 Bug Tracker", "Technology")
     st.info("ℹ️ **UX Note:** Health tracker for failed APIs, broken data models, and Dev-Ops diagnostics.")
     bug_tracker.render()
 elif selected_page == "📦 Import Cost Model":
+    _render_page_header("📦 Import Cost Model", "Operations")
     st.info("ℹ️ **UX Note:** Shows granular breakdowns of import duties, logistics, and conversion costs from Port to Decanter.")
     import_cost_model.render()
 elif selected_page == "🚢 Supply Chain":
+    _render_page_header("🚢 Supply Chain", "Operations")
     st.info("ℹ️ **UX Note:** Tracks voyage ships, transit times, and potential local stock availability constraints.")
     supply_chain.render()
 elif selected_page == "👷 Demand Analytics":
+    _render_page_header("👷 Demand Analytics", "Finance")
     st.info("ℹ️ **UX Note:** Analyzes government and private contractor demand cycles based on infrastructure projects.")
     demand_analytics.render()
 elif selected_page == "💰 Financial Intelligence":
+    _render_page_header("💰 Financial Intelligence", "Finance")
     st.info("ℹ️ **UX Note:** Provides insights on buyer credit, rolling capital management, and payment cycles.")
     financial_intel.render()
 elif selected_page == "🛡️ GST & Legal Monitor":
+    _render_page_header("🛡️ GST & Legal Monitor", "Legal & Compliance")
     st.info("ℹ️ **UX Note:** Updates on regulatory changes, e-way bills, and compliance risk related to Bitumen sales.")
     gst_legal_monitor.render()
 elif selected_page == "⚡ Risk Scoring":
+    _render_page_header("⚡ Risk Scoring", "Legal & Compliance")
     st.info("ℹ️ **UX Note:** Gives an AI-driven composite Risk Score (1-100) combining counterparty defaults and market volatility.")
     risk_scoring.render()
 elif selected_page == "🔔 Alert System":
+    _render_page_header("🔔 Alert System", "Strategy & Intel")
     st.info("ℹ️ **UX Note:** Configurable notifications for price drops, supply shocks, and new opportunities.")
     alert_system.render()
 elif selected_page == "🎯 Strategy Panel":
+    _render_page_header("🎯 Strategy Panel", "Strategy & Intel")
     st.info("ℹ️ **UX Note:** High-level strategic synthesis and \"What-If\" scenarios for volume purchasing.")
     strategy_panel.render()
 elif selected_page == "🏛️ Business Intelligence":
+    _render_page_header("🏛️ Business Intelligence", "Knowledge & AI")
     st.info("ℹ️ **Department Head:** All Departments\n\n📌 Complete guide for every dashboard tab — for employees, partners, investors, and auditors.")
     from business_knowledge_base import render as biz_kb_render
     biz_kb_render()
 elif selected_page == "📰 News Intelligence":
+    _render_page_header("📰 News Intelligence", "Market Intel")
     st.info("ℹ️ **Department Head:** Strategy Director / Business Intelligence\n\n📌 Live news aggregator — 14 sources (RSS + API), auto-classified by keywords, impact-scored 0–100. Breaking alerts for score ≥ 80.")
     from command_intel import news_dashboard as _nd
     _nd.render()
 elif selected_page == "🕵️ Competitor Intelligence":
+    _render_page_header("🕵️ Competitor Intelligence", "Market Intel")
     st.info("ℹ️ **Department Head:** Strategy Director / Sales Head\n\n📌 Daily forecasts from Multi Energy Enterprises (MEE, Mumbai) — cross-verified against IOCL/HPCL circulars, international bitumen FOB prices, India consumption/production stats, and industry news.")
     import competitor_intelligence
     competitor_intelligence.render()
 elif selected_page == "🔭 Contractor OSINT":
+    _render_page_header("🔭 Contractor OSINT", "Market Intel")
     st.info("ℹ️ **Department Head:** Sales Director / Business Development\n\n📌 Track road contractors — project awards, bitumen demand (MT), monthly heatmap, risk flags, CRM export. Last 6 months only.")
     import contractor_osint
     contractor_osint.render()
 elif selected_page == "🛣️ Road Budget & Demand":
+    _render_page_header("🛣️ Road Budget & Demand", "Market Intel")
     st.info("ℹ️ **Department Head:** Strategy Director\n\n📌 India road budget analysis, state-wise bitumen demand forecast, and construction seasonality.")
     from command_intel import road_budget_demand
     road_budget_demand.render()
-elif selected_page == "─── 🏢 MARKET INTELLIGENCE ───":
-    st.info("ℹ️ **Department Head:** Strategy Director\n\n📌 *Select Road Budget & Demand for national infrastructure intelligence.*")
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# GLOBAL FOOTER — PPS Anantam Eco Agentic AI System
+# GLOBAL FOOTER — PPS Anantam Agentic AI Eco System
 # ══════════════════════════════════════════════════════════════════════════════
 st.markdown("""
 <div style="
@@ -3407,14 +3455,14 @@ st.markdown("""
 ">
   <div>
     <span style="font-size:0.88rem;font-weight:800;color:#1e3a5f;">
-      🏛️ PPS Anantam Eco Agentic AI System
+      🏛️ PPS Anantam Agentic AI Eco System
     </span>
-    <span style="font-size:0.78rem;color:#64748b;margin-left:10px;">
-      PPS Anantam Logistics AI – All Locations
+    <span style="font-size:0.72rem;color:#94a3b8;margin-left:10px;">
+      Vadodara, Gujarat
     </span>
   </div>
   <div style="font-size:0.73rem;color:#94a3b8;display:flex;gap:14px;flex-wrap:wrap;">
-    <span>Version v3.2.0</span>
+    <span>Version v3.2.1</span>
     <span>Build: 02-03-2026</span>
     <span>Environment: Production</span>
     <span style="color:#c9a84c;font-weight:600;">GST: 24AAHCV1611L2ZD</span>

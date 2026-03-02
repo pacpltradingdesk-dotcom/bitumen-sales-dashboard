@@ -512,7 +512,7 @@ All timestamps in IST (Asia/Kolkata). Data persists across sessions in JSON log 
     st.markdown("---")
     st.markdown(
         '<div style="color:#475569;font-size:0.78rem;text-align:center">'
-        'PPS Anantams Logistics AI • API Intelligence System v3.0 • '
+        'PPS Anantam Logistics • API Intelligence System v3.2 • '
         'Logs stored in: api_error_log.json | api_change_log.json | api_dev_log.json | api_health_log.json'
         '</div>',
         unsafe_allow_html=True,

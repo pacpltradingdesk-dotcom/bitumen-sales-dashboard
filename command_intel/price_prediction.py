@@ -726,7 +726,7 @@ def render():
     🔮 India Bitumen Price Prediction — 1st &amp; 16th Fortnightly Cycle
   </div>
   <div style="font-size:0.8rem; color:#93c5fd; margin-top:4px;">
-    PPS Anantam Eco Agentic AI System &nbsp;|&nbsp; MLR-DL Model
+    PPS Anantam Agentic AI Eco System &nbsp;|&nbsp; MLR-DL Model
     &nbsp;|&nbsp; Sources: Brent · USD/INR · FO · Freight · Seasonality
   </div>
 </div>

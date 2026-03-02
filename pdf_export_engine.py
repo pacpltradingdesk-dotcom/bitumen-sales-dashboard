@@ -172,10 +172,10 @@ STYLES = _make_styles()
 # PAGE TEMPLATE — header + footer on every page
 # ══════════════════════════════════════════════════════════════════════════════
 
-COMPANY_NAME   = "PPS Anantam Eco Agentic AI System"
+COMPANY_NAME   = "PPS Anantam Agentic AI Eco System"
 COMPANY_GST    = "GST: 24AAHCV1611L2ZD"
 COMPANY_CITY   = "Vadodara, Gujarat"
-DASHBOARD_NAME = "PPS Anantam Logistics AI – All Locations"
+DASHBOARD_NAME = "GST: 24AAHCV1611L2ZD  |  Vadodara, Gujarat"
 
 
 def _build_header_footer(canvas, doc):
@@ -231,8 +231,8 @@ def _build_header_footer(canvas, doc):
     ts_footer = getattr(doc, "_generated_at", _ts_ist())
     canvas.drawCentredString(
         W / 2, 10*mm,
-        f"PPS Anantam Eco Agentic AI System  |  PPS Anantam Logistics AI – All Locations  |  "
-        f"v3.0.0  |  {ts_footer}"
+        f"PPS Anantam Agentic AI Eco System  |  GST: 24AAHCV1611L2ZD  |  "
+        f"v3.2.1  |  {ts_footer}"
     )
     canvas.drawRightString(W - 10*mm, 10*mm, "CONFIDENTIAL")
 
@@ -533,8 +533,8 @@ class PDFExportEngine:
             topMargin=35*mm, bottomMargin=22*mm,
             title=self.page_title,
             author=COMPANY_NAME,
-            subject=f"PPS Anantams AI Dashboard — {self.page_title}",
-            creator="PPS Anantams Logistics AI v3.0",
+            subject=f"PPS Anantam Agentic AI Eco System — {self.page_title}",
+            creator="PPS Anantam Agentic AI Eco System v3.2",
         )
         doc._page_title    = self.page_title
         doc._generated_at  = self._generated_at
@@ -552,7 +552,7 @@ class PDFExportEngine:
         # Page title block
         story_full.append(Paragraph(self.page_title, STYLES["title"]))
         story_full.append(Paragraph(
-            f"PPS Anantams Logistics AI  |  Generated: {self._generated_at}  |  "
+            f"PPS Anantam Agentic AI Eco System  |  Generated: {self._generated_at}  |  "
             f"Role: {self.role}",
             STYLES["subtitle"],
         ))

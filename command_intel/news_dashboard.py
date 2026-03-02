@@ -766,7 +766,7 @@ def render():
     # Header
     st.markdown(
         '<h2 style="margin-bottom:4px">📰 News Intelligence</h2>'
-        '<p style="color:#8b949e;margin:0">PPS Anantams Logistics — Global & Domestic Market News</p>',
+        '<p style="color:#8b949e;margin:0">PPS Anantam — Global & Domestic Market News</p>',
         unsafe_allow_html=True,
     )
     st.markdown("---")

@@ -206,7 +206,7 @@ def render_export_bar(
 
         with opt3:
             st.caption(f"**Page:** {page_title}")
-            st.caption(f"**Company:** PPS Anantams")
+            st.caption(f"**Company:** PPS Anantam Agentic AI Eco System")
             st.caption(f"**Role:** {role}")
             st.caption("**Footer:** CONFIDENTIAL | Page X of Y")
 
