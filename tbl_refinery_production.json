@@ -4090,5 +4090,75 @@
     "source": "PPAC Annual Report 2023-24 (static ref)",
     "fetch_date_ist": "02-03-2026 17:24:17 IST",
     "date": "02-03-2026"
+  },
+  {
+    "period_label": "2024-10",
+    "refinery_or_region": "IOCL Panipat",
+    "product": "Bitumen",
+    "quantity": 95.4,
+    "unit": "TMT",
+    "source": "PPAC Annual Report 2023-24 (static ref)",
+    "fetch_date_ist": "02-03-2026 17:36:04 IST",
+    "date": "02-03-2026"
+  },
+  {
+    "period_label": "2024-10",
+    "refinery_or_region": "IOCL Mathura",
+    "product": "Bitumen",
+    "quantity": 62.1,
+    "unit": "TMT",
+    "source": "PPAC Annual Report 2023-24 (static ref)",
+    "fetch_date_ist": "02-03-2026 17:36:04 IST",
+    "date": "02-03-2026"
+  },
+  {
+    "period_label": "2024-10",
+    "refinery_or_region": "BPCL Mumbai",
+    "product": "Bitumen",
+    "quantity": 48.7,
+    "unit": "TMT",
+    "source": "PPAC Annual Report 2023-24 (static ref)",
+    "fetch_date_ist": "02-03-2026 17:36:04 IST",
+    "date": "02-03-2026"
+  },
+  {
+    "period_label": "2024-10",
+    "refinery_or_region": "HPCL Vizag",
+    "product": "Bitumen",
+    "quantity": 41.3,
+    "unit": "TMT",
+    "source": "PPAC Annual Report 2023-24 (static ref)",
+    "fetch_date_ist": "02-03-2026 17:36:04 IST",
+    "date": "02-03-2026"
+  },
+  {
+    "period_label": "2024-10",
+    "refinery_or_region": "CPCL Chennai",
+    "product": "Bitumen",
+    "quantity": 35.8,
+    "unit": "TMT",
+    "source": "PPAC Annual Report 2023-24 (static ref)",
+    "fetch_date_ist": "02-03-2026 17:36:04 IST",
+    "date": "02-03-2026"
+  },
+  {
+    "period_label": "2024-10",
+    "refinery_or_region": "NRL Guwahati",
+    "product": "Bitumen",
+    "quantity": 18.2,
+    "unit": "TMT",
+    "source": "PPAC Annual Report 2023-24 (static ref)",
+    "fetch_date_ist": "02-03-2026 17:36:04 IST",
+    "date": "02-03-2026"
+  },
+  {
+    "period_label": "2024-10",
+    "refinery_or_region": "All India Total",
+    "product": "Bitumen",
+    "quantity": 380.0,
+    "unit": "TMT",
+    "source": "PPAC Annual Report 2023-24 (static ref)",
+    "fetch_date_ist": "02-03-2026 17:36:04 IST",
+    "date": "02-03-2026"
   }
 ]
