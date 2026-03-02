@@ -1,140 +1,10 @@
 [
   {
-    "entity_type": "api",
-    "entity_name": "current_time",
-    "status": "OK",
-    "last_checked_ist": "02-03-2026 17:29:54 IST",
-    "last_ok_ist": "02-03-2026 17:29:54 IST",
-    "error_code": "",
-    "auto_fix_attempted": "N",
-    "details": "calls=12 failures=0 latency=1573ms"
-  },
-  {
-    "entity_type": "api",
-    "entity_name": "usdinr",
-    "status": "OK",
-    "last_checked_ist": "02-03-2026 17:29:54 IST",
-    "last_ok_ist": "02-03-2026 17:29:54 IST",
-    "error_code": "",
-    "auto_fix_attempted": "N",
-    "details": "calls=12 failures=0 latency=899ms"
-  },
-  {
-    "entity_type": "api",
-    "entity_name": "usdinr_frankfurter",
-    "status": "OK",
-    "last_checked_ist": "02-03-2026 17:29:54 IST",
-    "last_ok_ist": "02-03-2026 17:29:54 IST",
-    "error_code": "",
-    "auto_fix_attempted": "N",
-    "details": "calls=14 failures=0 latency=1050ms"
-  },
-  {
-    "entity_type": "api",
-    "entity_name": "brent",
-    "status": "OK",
-    "last_checked_ist": "02-03-2026 17:29:54 IST",
-    "last_ok_ist": "02-03-2026 17:29:54 IST",
-    "error_code": "",
-    "auto_fix_attempted": "N",
-    "details": "calls=13 failures=0 latency=275ms"
-  },
-  {
-    "entity_type": "api",
-    "entity_name": "wti",
-    "status": "OK",
-    "last_checked_ist": "02-03-2026 17:29:54 IST",
-    "last_ok_ist": "02-03-2026 17:29:54 IST",
-    "error_code": "",
-    "auto_fix_attempted": "N",
-    "details": "calls=11 failures=0 latency=298ms"
-  },
-  {
-    "entity_type": "api",
-    "entity_name": "natural_gas",
-    "status": "OK",
-    "last_checked_ist": "02-03-2026 17:29:54 IST",
-    "last_ok_ist": "02-03-2026 17:29:54 IST",
-    "error_code": "",
-    "auto_fix_attempted": "N",
-    "details": "calls=12 failures=0 latency=290ms"
-  },
-  {
-    "entity_type": "api",
-    "entity_name": "dxy",
-    "status": "OK",
-    "last_checked_ist": "02-03-2026 17:29:54 IST",
-    "last_ok_ist": "02-03-2026 17:29:54 IST",
-    "error_code": "",
-    "auto_fix_attempted": "N",
-    "details": "calls=13 failures=0 latency=279ms"
-  },
-  {
-    "entity_type": "api",
-    "entity_name": "sensex",
-    "status": "OK",
-    "last_checked_ist": "02-03-2026 17:29:54 IST",
-    "last_ok_ist": "02-03-2026 17:29:54 IST",
-    "error_code": "",
-    "auto_fix_attempted": "N",
-    "details": "calls=11 failures=0 latency=277ms"
-  },
-  {
-    "entity_type": "data",
-    "entity_name": "live_prices",
-    "status": "OK",
-    "last_checked_ist": "02-03-2026 17:29:54 IST",
-    "last_ok_ist": "02-03-2026 17:29:54 IST",
-    "error_code": "",
-    "auto_fix_attempted": "N",
-    "details": "7 price keys OK"
-  },
-  {
-    "entity_type": "data",
-    "entity_name": "api_cache_freshness",
-    "status": "OK",
-    "last_checked_ist": "02-03-2026 17:29:54 IST",
-    "last_ok_ist": "02-03-2026 17:29:54 IST",
-    "error_code": "",
-    "auto_fix_attempted": "N",
-    "details": "24 cached entries fresh"
-  },
-  {
-    "entity_type": "calculation",
-    "entity_name": "brent",
-    "status": "OK",
-    "last_checked_ist": "02-03-2026 17:29:54 IST",
-    "last_ok_ist": "02-03-2026 17:29:54 IST",
-    "error_code": "",
-    "auto_fix_attempted": "N",
-    "details": "brent=77.73 USD/bbl OK"
-  },
-  {
-    "entity_type": "calculation",
-    "entity_name": "wti",
-    "status": "OK",
-    "last_checked_ist": "02-03-2026 17:29:54 IST",
-    "last_ok_ist": "02-03-2026 17:29:54 IST",
-    "error_code": "",
-    "auto_fix_attempted": "N",
-    "details": "wti=71.31 USD/bbl OK"
-  },
-  {
-    "entity_type": "calculation",
-    "entity_name": "usdinr",
-    "status": "OK",
-    "last_checked_ist": "02-03-2026 17:29:54 IST",
-    "last_ok_ist": "02-03-2026 17:29:54 IST",
-    "error_code": "",
-    "auto_fix_attempted": "N",
-    "details": "usdinr=91.21 ₹/USD OK"
-  },
-  {
     "entity_type": "export",
     "entity_name": "pdf_export",
     "status": "OK",
-    "last_checked_ist": "02-03-2026 17:29:54 IST",
-    "last_ok_ist": "02-03-2026 17:29:54 IST",
+    "last_checked_ist": "02-03-2026 17:36:25 IST",
+    "last_ok_ist": "02-03-2026 17:36:25 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
     "details": "No PDF exports yet (normal on first run)"
@@ -143,17 +13,17 @@
     "entity_type": "scheduler",
     "entity_name": "auto_health_check",
     "status": "OK",
-    "last_checked_ist": "02-03-2026 17:29:55 IST",
-    "last_ok_ist": "02-03-2026 17:29:55 IST",
+    "last_checked_ist": "02-03-2026 17:36:25 IST",
+    "last_ok_ist": "02-03-2026 17:36:25 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "Last run 0.9 min ago — on schedule"
+    "details": "Last run 5.4 min ago — on schedule"
   },
   {
     "entity_type": "errors",
     "entity_name": "error_log",
     "status": "WARN",
-    "last_checked_ist": "02-03-2026 17:29:55 IST",
+    "last_checked_ist": "02-03-2026 17:36:25 IST",
     "last_ok_ist": "",
     "error_code": "",
     "auto_fix_attempted": "N",

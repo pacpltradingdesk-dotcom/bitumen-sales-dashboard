@@ -1,327 +1,27 @@
 [
   {
-    "request_id": "REQ-20260302-172124-E30F",
-    "timestamp_ist": "02-03-2026 17:21:24 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "API health checked: 24 APIs",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172124-0A99",
-    "timestamp_ist": "02-03-2026 17:21:24 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "API health checked: 24 APIs",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172124-22CE",
-    "timestamp_ist": "02-03-2026 17:21:24 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "API health checked: 24 APIs",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172124-CEA5",
-    "timestamp_ist": "02-03-2026 17:21:24 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Scheduler health: OK — Last run 5.9 min ago — on schedule",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172124-451D",
-    "timestamp_ist": "02-03-2026 17:21:24 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Data quality checked: 2 entities",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172124-29B6",
-    "timestamp_ist": "02-03-2026 17:21:24 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Calculation health: 0 checks",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172124-AF1F",
-    "timestamp_ist": "02-03-2026 17:21:24 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Export health: OK — No PDF exports yet (normal on first run)",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172125-C061",
-    "timestamp_ist": "02-03-2026 17:21:25 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Scheduler health: OK — Last run 5.9 min ago — on schedule",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172125-5958",
-    "timestamp_ist": "02-03-2026 17:21:25 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Full health run: 93% OK  fail=0 warn=2",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172125-D81A",
-    "timestamp_ist": "02-03-2026 17:21:25 IST",
+    "request_id": "REQ-20260302-173625-FE6E",
+    "timestamp_ist": "02-03-2026 17:36:25 IST",
     "severity": "INFO",
     "route": "",
     "component": "SREOrchestrator",
     "user_id": "system",
-    "message": "=== SRE CYCLE END — 0.6s  health=93%  alerts=0  bugs=0 ===",
+    "message": "=== SRE CYCLE END — 0.8s  health=96%  alerts=0  bugs=0 ===",
     "payload_hash": ""
   },
   {
-    "request_id": "REQ-20260302-172303-74DB",
-    "timestamp_ist": "02-03-2026 17:23:03 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "SREOrchestrator",
-    "user_id": "system",
-    "message": "=== SRE CYCLE START ===",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172303-F057",
-    "timestamp_ist": "02-03-2026 17:23:03 IST",
+    "request_id": "REQ-20260302-173625-48A6",
+    "timestamp_ist": "02-03-2026 17:36:25 IST",
     "severity": "INFO",
     "route": "",
     "component": "HealthCheckEngine",
     "user_id": "system",
-    "message": "API health checked: 1 APIs",
+    "message": "Scheduler health: OK — Last run 5.4 min ago — on schedule",
     "payload_hash": ""
   },
   {
-    "request_id": "REQ-20260302-172303-A7F1",
-    "timestamp_ist": "02-03-2026 17:23:03 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Data quality checked: 2 entities",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172303-CCB1",
-    "timestamp_ist": "02-03-2026 17:23:03 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Calculation health: 0 checks",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172303-DDDC",
-    "timestamp_ist": "02-03-2026 17:23:03 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Export health: OK — No PDF exports yet (normal on first run)",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172304-29F3",
-    "timestamp_ist": "02-03-2026 17:23:04 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Scheduler health: OK — Last run 0.0 min ago — on schedule",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172304-123C",
-    "timestamp_ist": "02-03-2026 17:23:04 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Full health run: 83% OK  fail=0 warn=1",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172304-EDD6",
-    "timestamp_ist": "02-03-2026 17:23:04 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "SREOrchestrator",
-    "user_id": "system",
-    "message": "=== SRE CYCLE END — 0.5s  health=83%  alerts=0  bugs=0 ===",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172335-A475",
-    "timestamp_ist": "02-03-2026 17:23:35 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "SREOrchestrator",
-    "user_id": "system",
-    "message": "=== SRE CYCLE START ===",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172336-1EEE",
-    "timestamp_ist": "02-03-2026 17:23:36 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "API health checked: 24 APIs",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172336-BC71",
-    "timestamp_ist": "02-03-2026 17:23:36 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Data quality checked: 2 entities",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172336-F894",
-    "timestamp_ist": "02-03-2026 17:23:36 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Calculation health: 0 checks",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172336-A9A4",
-    "timestamp_ist": "02-03-2026 17:23:36 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Export health: OK — No PDF exports yet (normal on first run)",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172336-B065",
-    "timestamp_ist": "02-03-2026 17:23:36 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Scheduler health: OK — Last run 0.4 min ago — on schedule",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172336-3988",
-    "timestamp_ist": "02-03-2026 17:23:36 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Full health run: 93% OK  fail=0 warn=2",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172336-E38F",
-    "timestamp_ist": "02-03-2026 17:23:36 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "SREOrchestrator",
-    "user_id": "system",
-    "message": "=== SRE CYCLE END — 1.0s  health=93%  alerts=0  bugs=0 ===",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172442-D4AF",
-    "timestamp_ist": "02-03-2026 17:24:42 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "SREOrchestrator",
-    "user_id": "system",
-    "message": "=== SRE CYCLE START ===",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172443-527D",
-    "timestamp_ist": "02-03-2026 17:24:43 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "API health checked: 24 APIs",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172443-304B",
-    "timestamp_ist": "02-03-2026 17:24:43 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Data quality checked: 2 entities",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172443-54B6",
-    "timestamp_ist": "02-03-2026 17:24:43 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Calculation health: 3 checks",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172443-BCB3",
-    "timestamp_ist": "02-03-2026 17:24:43 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Export health: OK — No PDF exports yet (normal on first run)",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172443-1F1C",
-    "timestamp_ist": "02-03-2026 17:24:43 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Scheduler health: OK — Last run 0.0 min ago — on schedule",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172443-F259",
-    "timestamp_ist": "02-03-2026 17:24:43 IST",
+    "request_id": "REQ-20260302-173625-CC94",
+    "timestamp_ist": "02-03-2026 17:36:25 IST",
     "severity": "INFO",
     "route": "",
     "component": "HealthCheckEngine",
@@ -330,93 +30,23 @@
     "payload_hash": ""
   },
   {
-    "request_id": "REQ-20260302-172443-0DB4",
-    "timestamp_ist": "02-03-2026 17:24:43 IST",
+    "request_id": "REQ-20260302-173625-302E",
+    "timestamp_ist": "02-03-2026 17:36:25 IST",
     "severity": "INFO",
     "route": "",
     "component": "SREOrchestrator",
     "user_id": "system",
-    "message": "=== SRE CYCLE END — 0.9s  health=96%  alerts=0  bugs=0 ===",
+    "message": "=== SRE CYCLE END — 0.7s  health=96%  alerts=0  bugs=0 ===",
     "payload_hash": ""
   },
   {
-    "request_id": "REQ-20260302-172953-7997",
-    "timestamp_ist": "02-03-2026 17:29:53 IST",
+    "request_id": "REQ-20260302-173625-9B1E",
+    "timestamp_ist": "02-03-2026 17:36:25 IST",
     "severity": "INFO",
     "route": "",
     "component": "SREOrchestrator",
     "user_id": "system",
-    "message": "=== SRE CYCLE START ===",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172954-7D69",
-    "timestamp_ist": "02-03-2026 17:29:54 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "API health checked: 24 APIs",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172954-6780",
-    "timestamp_ist": "02-03-2026 17:29:54 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Data quality checked: 2 entities",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172954-667D",
-    "timestamp_ist": "02-03-2026 17:29:54 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Calculation health: 3 checks",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172954-04FC",
-    "timestamp_ist": "02-03-2026 17:29:54 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Export health: OK — No PDF exports yet (normal on first run)",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172955-FD86",
-    "timestamp_ist": "02-03-2026 17:29:55 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Scheduler health: OK — Last run 0.9 min ago — on schedule",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172955-01A7",
-    "timestamp_ist": "02-03-2026 17:29:55 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Full health run: 96% OK  fail=0 warn=1",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-172955-03E4",
-    "timestamp_ist": "02-03-2026 17:29:55 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "SREOrchestrator",
-    "user_id": "system",
-    "message": "=== SRE CYCLE END — 1.1s  health=96%  alerts=0  bugs=0 ===",
+    "message": "=== SRE CYCLE END — 0.8s  health=96%  alerts=0  bugs=0 ===",
     "payload_hash": ""
   }
 ]
