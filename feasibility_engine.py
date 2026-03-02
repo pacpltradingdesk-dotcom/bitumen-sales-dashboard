@@ -1,3 +1,13 @@
+try:
+    from india_localization import format_inr, format_inr_short, format_date, format_datetime_ist, get_financial_year, get_fy_quarter
+except ImportError:
+    import sys
+    import os
+    sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+    try:
+        from india_localization import format_inr, format_inr_short, format_date, format_datetime_ist, get_financial_year, get_fy_quarter
+    except:
+        pass
 # Feasibility Assessment Engine - Updated
 # Includes: PSU Refineries, Import Bulk, Local Decanters, and Drum Pricing
 
@@ -317,9 +327,9 @@ def get_comparison_table(destination):
             "Category": "🏭 Refinery",
             "Source": opt['source'],
             "Distance (KM)": f"{opt['distance_km']:,.0f}",
-            "Base Price": f"₹{opt['base_price']:,}",
-            "Transport": f"₹{opt['transport']:,.0f}",
-            "Landed Cost": f"₹{opt['landed_cost']:,.0f}"
+            "Base Price": f"{format_inr(opt['base_price'])}",
+            "Transport": f"{format_inr(opt['transport'])}",
+            "Landed Cost": f"{format_inr(opt['landed_cost'])}"
         })
     
     # Add imports
@@ -329,9 +339,9 @@ def get_comparison_table(destination):
             "Category": "🚢 Import Bulk",
             "Source": opt['source'],
             "Distance (KM)": f"{opt['distance_km']:,.0f}",
-            "Base Price": f"₹{opt['base_price']:,}",
-            "Transport": f"₹{opt['transport']:,.0f}",
-            "Landed Cost": f"₹{opt['landed_cost']:,.0f}"
+            "Base Price": f"{format_inr(opt['base_price'])}",
+            "Transport": f"{format_inr(opt['transport'])}",
+            "Landed Cost": f"{format_inr(opt['landed_cost'])}"
         })
     
     # Add local decanter
@@ -341,9 +351,9 @@ def get_comparison_table(destination):
         "Category": "🔄 Local Decanter",
         "Source": dec['source'],
         "Distance (KM)": f"{dec['distance_km']:,.0f} (local)",
-        "Base Price": f"₹{dec['drum_base_price']:,} + ₹{dec['conversion_cost']}",
-        "Transport": f"₹{dec['drum_transport']:,.0f} + ₹{dec['local_transport']:,.0f}",
-        "Landed Cost": f"₹{dec['landed_cost']:,.0f}"
+        "Base Price": f"{format_inr(dec['drum_base_price'])} + {dec['conversion_cost']}",
+        "Transport": f"{format_inr(dec['drum_transport'])} + {format_inr(dec['local_transport'])}",
+        "Landed Cost": f"{format_inr(dec['landed_cost'])}"
     })
     
     # Add drum direct
@@ -353,9 +363,9 @@ def get_comparison_table(destination):
         "Category": "🛢️ Drum Direct",
         "Source": drum['source'],
         "Distance (KM)": f"{drum['distance_km']:,.0f}",
-        "Base Price": f"₹{drum['base_price']:,}",
-        "Transport": f"₹{drum['transport']:,.0f}",
-        "Landed Cost": f"₹{drum['landed_cost']:,.0f}"
+        "Base Price": f"{format_inr(drum['base_price'])}",
+        "Transport": f"{format_inr(drum['transport'])}",
+        "Landed Cost": f"{format_inr(drum['landed_cost'])}"
     })
     
     return rows

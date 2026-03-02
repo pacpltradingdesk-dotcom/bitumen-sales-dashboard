@@ -1,3 +1,13 @@
+try:
+    from india_localization import format_inr, format_inr_short, format_date, format_datetime_ist, get_financial_year, get_fy_quarter
+except ImportError:
+    import sys
+    import os
+    sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+    try:
+        from india_localization import format_inr, format_inr_short, format_date, format_datetime_ist, get_financial_year, get_fy_quarter
+    except:
+        pass
 
 import streamlit as st
 import pandas as pd
@@ -220,18 +230,18 @@ def render_deal_room():
             
             with cols[0]:
                 st.metric("📏 Distance", f"{dist} KM")
-                st.metric("🚛 Est. Freight", f"₹ {est_freight:,.0f}/MT")
+                st.metric("🚛 Est. Freight", f"{format_inr(est_freight)}/MT")
                 
             with cols[1]:
-                st.metric("🏭 Base Price", f"₹ {base_price:,.0f}/MT")
+                st.metric("🏭 Base Price", f"{format_inr(base_price)}/MT")
                 st.caption("Ex-Refinery, Bulk")
                 
             with cols[2]:
-                st.metric("📈 Net Margin", f"₹ {margin:,.0f}/MT", delta=f"{margin/landing_cost*100:.1f}%")
+                st.metric("📈 Net Margin", f"{format_inr(margin)}/MT", delta=f"{margin/landing_cost*100:.1f}%")
                 
                 st.markdown(f"""
                 <div style="background-color: #d4edda; padding: 10px; border-radius: 5px; text-align: center;">
-                    <h3 style="color: #155724; margin:0;">₹ {sell_price:,.0f} / MT</h3>
+                    <h3 style="color: #155724; margin:0;">{format_inr(sell_price)} / MT</h3>
                     <p style="margin:0;">Final Offer Price</p>
                 </div>
                 """, unsafe_allow_html=True)
@@ -297,7 +307,7 @@ def render_deal_room():
                     wa_msg = f"""*BITUMEN OFFER - {datetime.date.today()}*
 📍 *Client:* {selected_client}
 🏗️ *Grade:* {grade} ({qty} MT)
-💰 *Rate:* ₹{final_price:,.0f}/MT (Landed {dest_city})
+💰 *Rate:* {format_inr(final_price)}/MT (Landed {dest_city})
 
 ✅ *Why Us:* {comp_intel['our_strength']}
 🚚 *Dispatch:* {risk_data['dispatch_prob']}% Assurance (GPS Tracked)

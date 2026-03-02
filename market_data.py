@@ -38,8 +38,8 @@ def get_live_market_data():
                 
                 # Format
                 if key == "usdinr":
-                    fmt_val = f"₹{current_price:.2f}"
-                    fmt_val_7d = f"₹{price_7d_ago:.2f}"
+                    fmt_val = f"{current_price:.2f}"
+                    fmt_val_7d = f"{price_7d_ago:.2f}"
                 elif key == "dxy":
                     fmt_val = f"{current_price:.2f}"
                     fmt_val_7d = f"{price_7d_ago:.2f}"
@@ -81,7 +81,7 @@ def get_simulated_data():
     return {
         "brent": {"value": f"${brent:.2f}", "value_7d": f"${brent_7d:.2f}", "change": "+1.2%", "color": "green"},
         "wti": {"value": f"${wti:.2f}", "value_7d": f"${wti_7d:.2f}", "change": "-0.5%", "color": "red"},
-        "usdinr": {"value": f"₹{usdinr:.2f}", "value_7d": f"₹{83.05:.2f}", "change": "+0.1%", "color": "green"},
+        "usdinr": {"value": f"{usdinr:.2f}", "value_7d": f"{83.05:.2f}", "change": "+0.1%", "color": "green"},
         "dxy": {"value": f"{dxy:.2f}", "value_7d": "103.40", "change": "0.0%", "color": "grey"},
         "timestamp": datetime.datetime.now().strftime("%H:%M IST (Offline)")
     }

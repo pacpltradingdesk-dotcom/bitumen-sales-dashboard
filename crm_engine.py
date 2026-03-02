@@ -54,7 +54,7 @@ def add_task(client_name, task_type, due_date_str, priority="Medium", note="", a
         "status": "Pending",
         "priority": priority,
         "note": note,
-        "created_at": datetime.datetime.now().strftime("%Y-%m-%d %H:%M"),
+        "created_at": datetime.datetime.now().strftime("%d-%m-%Y %H:%M"),
         "automated": automated
     }
     tasks.append(new_task)
@@ -67,7 +67,7 @@ def complete_task(task_id, outcome_note=""):
         if t['id'] == task_id:
             t['status'] = "Completed"
             t['outcome'] = outcome_note
-            t['completed_at'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+            t['completed_at'] = datetime.datetime.now().strftime("%d-%m-%Y %H:%M")
             break
     save_tasks(tasks)
     # Log as activity automatically
@@ -81,7 +81,7 @@ def log_activity(client_name, act_type, details):
         "client": client_name,
         "type": act_type,
         "details": details,
-        "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+        "timestamp": datetime.datetime.now().strftime("%d-%m-%Y %H:%M")
     }
     acts.append(new_act)
     save_activities(acts)
@@ -97,22 +97,22 @@ def auto_generate_tasks(client_data, deal_stage):
 
     # Rule 1: New Lead -> Call in 15 mins
     if deal_stage == "New Enquiry":
-        due = (now + timedelta(minutes=15)).strftime("%Y-%m-%d %H:%M")
+        due = (now + timedelta(minutes=15)).strftime("%d-%m-%Y %H:%M")
         add_task(client_data['name'], "Call", due, "High", "🚀 New Enquiry: Introduction & Qualify", automated=True)
         created_tasks.append("New Lead Call")
 
     # Rule 2: Quote Sent -> Follow up in 2 hours
     elif deal_stage == "Quoted":
-        due = (now + timedelta(hours=2)).strftime("%Y-%m-%d %H:%M")
+        due = (now + timedelta(hours=2)).strftime("%d-%m-%Y %H:%M")
         add_task(client_data['name'], "WhatsApp", due, "High", "💬 Check if Quote Received", automated=True)
         
-        due_next = (now + timedelta(days=1)).strftime("%Y-%m-%d %H:%M")
+        due_next = (now + timedelta(days=1)).strftime("%d-%m-%Y %H:%M")
         add_task(client_data['name'], "Call", due_next, "Medium", "📞 Quote Follow-up / Negotiation", automated=True)
         created_tasks.append("Quote Follow-ups")
 
     # Rule 3: Payment Pending -> Daily Reminder
     elif deal_stage == "Payment Follow-up":
-        due = (now + timedelta(days=1)).strftime("%Y-%m-%d %H:%M")
+        due = (now + timedelta(days=1)).strftime("%d-%m-%Y %H:%M")
         add_task(client_data['name'], "Call", due, "High", "💰 Payment Reminder", automated=True) 
         created_tasks.append("Payment Reminder")
 
@@ -124,8 +124,8 @@ def get_due_tasks(filter_type="Today"):
     """
     all_tasks = get_tasks()
     pending = [t for t in all_tasks if t['status'] == "Pending"]
-    now_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-    today_date = datetime.datetime.now().strftime("%Y-%m-%d")
+    now_str = datetime.datetime.now().strftime("%d-%m-%Y %H:%M")
+    today_date = datetime.datetime.now().strftime("%d-%m-%Y")
     
     filtered = []
     for t in pending:
@@ -148,9 +148,9 @@ def get_due_tasks(filter_type="Today"):
 def init_mock_crm_data():
     if not os.path.exists(TASKS_FILE):
         mock_tasks = [
-            {"id": "101", "client": "L&T Construction", "type": "Call", "due_date": datetime.datetime.now().strftime("%Y-%m-%d 10:00"), "status": "Pending", "priority": "High", "note": "Negotiate Pricing for 50MT"},
-            {"id": "102", "client": "Patel Infra", "type": "WhatsApp", "due_date": datetime.datetime.now().strftime("%Y-%m-%d 14:00"), "status": "Pending", "priority": "Medium", "note": "Send revised quote"},
-            {"id": "103", "client": "Global Roadways", "type": "Email", "due_date": (datetime.datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d 09:00"), "status": "Pending", "priority": "Low", "note": "Intro email (Overdue)"}
+            {"id": "101", "client": "L&T Construction", "type": "Call", "due_date": datetime.datetime.now().strftime("%d-%m-%Y 10:00"), "status": "Pending", "priority": "High", "note": "Negotiate Pricing for 50MT"},
+            {"id": "102", "client": "Patel Infra", "type": "WhatsApp", "due_date": datetime.datetime.now().strftime("%d-%m-%Y 14:00"), "status": "Pending", "priority": "Medium", "note": "Send revised quote"},
+            {"id": "103", "client": "Global Roadways", "type": "Email", "due_date": (datetime.datetime.now() - timedelta(days=1)).strftime("%d-%m-%Y 09:00"), "status": "Pending", "priority": "Low", "note": "Intro email (Overdue)"}
         ]
         save_tasks(mock_tasks)
 

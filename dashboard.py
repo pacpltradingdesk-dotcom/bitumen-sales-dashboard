@@ -1,3 +1,13 @@
+try:
+    from india_localization import format_inr, format_inr_short, format_date, format_datetime_ist, get_financial_year, get_fy_quarter
+except ImportError:
+    import sys
+    import os
+    sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+    try:
+        from india_localization import format_inr, format_inr_short, format_date, format_datetime_ist, get_financial_year, get_fy_quarter
+    except:
+        pass
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -510,7 +520,7 @@ if selected_page == "🧮 Pricing Calculator":
                 drum = assessment.get('drum_direct')
                 if drum:
                     price_options.append({
-                        'label': f"🛢️ {drum['source']} - ₹{drum['landed_cost']:,.0f}",
+                        'label': f"🛢️ {drum['source']} - {format_inr(drum['landed_cost'])}",
                         'source': drum['source'],
                         'price': drum['landed_cost'],
                         'base': drum.get('base_price', 0),
@@ -521,7 +531,7 @@ if selected_page == "🧮 Pricing Calculator":
                     st.markdown(f'''
                     <div style="background-color:#FADBD8; padding:10px; border-radius:5px; margin-bottom:5px; border-left:5px solid #C0392B;">
                         <b style="font-size:1.1em;">{drum['source']}</b><br>
-                        <span style="font-weight:bold; font-size:1.3em; color:#C0392B;">🛢️ ₹ {drum['landed_cost']:,.0f} PMT</span>
+                        <span style="font-weight:bold; font-size:1.3em; color:#C0392B;">🛢️ {format_inr(drum['landed_cost'])} PMT</span>
                         <small style="color:#666;"> ({drum['distance_km']:.0f} km)</small>
                     </div>
                     ''', unsafe_allow_html=True)
@@ -531,7 +541,7 @@ if selected_page == "🧮 Pricing Calculator":
                 dec = assessment.get('local_decanter')
                 if dec:
                     price_options.append({
-                        'label': f"🔄 {dec['source']} - ₹{dec['landed_cost']:,.0f}",
+                        'label': f"🔄 {dec['source']} - {format_inr(dec['landed_cost'])}",
                         'source': dec['source'],
                         'price': dec['landed_cost'],
                         'base': dec.get('drum_base_price', 0),
@@ -542,8 +552,8 @@ if selected_page == "🧮 Pricing Calculator":
                     st.markdown(f'''
                     <div style="background-color:#FCF3CF; padding:8px; border-radius:5px; margin-bottom:5px; border-left:5px solid #9A7D0A;">
                         <small><b>{dec['source']}</b></small><br>
-                        <small>From: {dec.get('drum_source', 'N/A')} | Conv: ₹{dec.get('conversion_cost', 500)}</small><br>
-                        <span style="font-weight:bold; font-size:1.1em; color:#9A7D0A;">🟢 ₹ {dec['landed_cost']:,.0f} PMT</span>
+                        <small>From: {dec.get('drum_source', 'N/A')} | Conv: {dec.get('conversion_cost', 500)}</small><br>
+                        <span style="font-weight:bold; font-size:1.1em; color:#9A7D0A;">🟢 {format_inr(dec['landed_cost'])} PMT</span>
                     </div>
                     ''', unsafe_allow_html=True)
                 
@@ -551,7 +561,7 @@ if selected_page == "🧮 Pricing Calculator":
                 st.markdown("#### 🚢 Import Bulk")
                 for i, opt in enumerate(assessment['imports'][:2]):
                     price_options.append({
-                        'label': f"🚢 {opt['source']} - ₹{opt['landed_cost']:,.0f}",
+                        'label': f"🚢 {opt['source']} - {format_inr(opt['landed_cost'])}",
                         'source': opt['source'],
                         'price': opt['landed_cost'],
                         'base': opt.get('base_price', 0),
@@ -564,7 +574,7 @@ if selected_page == "🧮 Pricing Calculator":
                     st.markdown(f'''
                     <div style="background-color:{bg_color}; padding:8px; border-radius:5px; margin-bottom:5px; border-left:5px solid {border};">
                         <small><b>{opt['source']}</b></small><br>
-                        <span style="font-weight:bold; font-size:1.1em; color:{border};">₹ {opt['landed_cost']:,.0f} PMT</span>
+                        <span style="font-weight:bold; font-size:1.1em; color:{border};">{format_inr(opt['landed_cost'])} PMT</span>
                         <small style="color:#666;"> ({opt['distance_km']:.0f} km)</small>
                     </div>
                     ''', unsafe_allow_html=True)
@@ -573,7 +583,7 @@ if selected_page == "🧮 Pricing Calculator":
                 st.markdown("#### 🏭 PSU Refinery Bulk")
                 for i, opt in enumerate(assessment['refineries'][:2]):
                     price_options.append({
-                        'label': f"🏭 {opt['source']} - ₹{opt['landed_cost']:,.0f}",
+                        'label': f"🏭 {opt['source']} - {format_inr(opt['landed_cost'])}",
                         'source': opt['source'],
                         'price': opt['landed_cost'],
                         'base': opt.get('base_price', 0),
@@ -586,7 +596,7 @@ if selected_page == "🧮 Pricing Calculator":
                     st.markdown(f'''
                     <div style="background-color:{bg_color}; padding:8px; border-radius:5px; margin-bottom:5px; border-left:5px solid {border};">
                         <small><b>{opt['source']}</b></small><br>
-                        <span style="font-weight:bold; font-size:1.1em; color:{border};">₹ {opt['landed_cost']:,.0f} PMT</span>
+                        <span style="font-weight:bold; font-size:1.1em; color:{border};">{format_inr(opt['landed_cost'])} PMT</span>
                         <small style="color:#666;"> ({opt['distance_km']:.0f} km)</small>
                     </div>
                     ''', unsafe_allow_html=True)
@@ -606,7 +616,7 @@ if selected_page == "🧮 Pricing Calculator":
                 # Store in session state for PDF
                 if selected_option:
                     st.session_state['selected_price_option'] = selected_option
-                    st.success(f"✅ Selected: {selected_option['source']} @ ₹{selected_option['price']:,.0f}")
+                    st.success(f"✅ Selected: {selected_option['source']} @ {format_inr(selected_option['price'])}")
                 
                 # Set result for the right panel
                 result = {
@@ -637,7 +647,7 @@ if selected_page == "🧮 Pricing Calculator":
                         st.markdown(f"""
                         <div style="background-color:{bg_color}; padding:8px; border-radius:5px; margin-bottom:5px; border-left: 5px solid {text_color};">
                             <small><b>{row['source_location']}</b></small><br>
-                            <span style="color:{text_color}; font-weight:bold; font-size:1.1em;">{icon} ₹ {row['final_price']:,.0f} PMT</span>
+                            <span style="color:{text_color}; font-weight:bold; font-size:1.1em;">{icon} {format_inr(row['final_price'])} PMT</span>
                         </div>
                         """, unsafe_allow_html=True)
                         
@@ -685,23 +695,23 @@ if selected_page == "🧮 Pricing Calculator":
                 final_cost = best_opt.get('final_landed_cost', 0)
                 distance = best_opt.get('distance_km', 0)
                 
-                st.write(f"Basic Rate: ₹ {base_price:,.2f} PMT")
-                st.write(f"Discount: - ₹ {discount:,.2f}")
+                st.write(f"Basic Rate: {format_inr(base_price)} PMT")
+                st.write(f"Discount: - {format_inr(discount)}")
                 
                 tax_val = base_price * 0.18
-                st.write(f"GST 18%: + ₹ {tax_val:,.2f}")
+                st.write(f"GST 18%: + {format_inr(tax_val)}")
                 
                 net_start = base_price + tax_val - discount
-                st.markdown(f"**Ex-Refinery Price: ₹ {net_start:,.2f} PMT**")
+                st.markdown(f"**Ex-Refinery Price: {format_inr(net_start)} PMT**")
                 
-                st.info(f"➕ Transport: ₹ {transport:,.2f}")
+                st.info(f"➕ Transport: {format_inr(transport)}")
                 
                 # Show Mileage if available
                 if distance > 0:
                     rate_km = transport / distance if distance > 0 else 0
                     st.caption(f"📏 Distance: {distance:.0f} KM | Rate: ₹ {rate_km:.2f}/KM")
             
-                st.success(f"**FINAL LANDING COST: ₹ {final_cost:,.2f} PMT**")
+                st.success(f"**FINAL LANDING COST: {format_inr(final_cost)} PMT**")
 
             with d2:
                 st.markdown("**Terms & Conditions**")
@@ -844,7 +854,7 @@ Product: {product_name}
 Best Source: {source_name}
 Est. Distance: {distance:.0f} KM
 
-*Final Landed Rate: ₹ {final_cost:,.2f} PMT*
+*Final Landed Rate: {format_inr(final_cost)} PMT*
 
 _Terms: 100% Advance. Valid for 24 Hrs._
 """
@@ -1738,7 +1748,7 @@ if selected_page == "🤖 AI Assistant":
     with c1:
         st.subheader("Daily Broadcast")
         st.date_input("Select Date for Broadcast")
-        st.text_area("Message Template", "Hello {name}, Great greetings! Today's best rate for {product} is ₹{price}. Source: {source}.")
+        st.text_area("Message Template", "Hello {name}, Great greetings! Today's best rate for {product} is {price}. Source: {source}.")
         st.button("🚀 Send Daily Updates (WhatsApp/SMS)")
         
     with c2:
@@ -1864,7 +1874,7 @@ if selected_page == "🛠️ Data Manager":
                 curr_drum_cost = float(curr_route.get('transport_drum', 0))
                 new_drum_cost = col_d3.number_input("🛢️ Drum One-Way Charge", value=curr_drum_cost)
                 
-                st.caption(f"Calculated Bulk Freight: {new_dist} km * {new_rate_bulk} = ₹ {new_dist * new_rate_bulk:,.2f}")
+                st.caption(f"Calculated Bulk Freight: {new_dist} km * {new_rate_bulk} = {format_inr(new_dist * new_rate_bulk)}")
                 
                 if st.button("💾 Save Logistics Updates"):
                      success = optimizer.update_route_logistics(l_src, l_dest, new_dist, new_rate_bulk, new_drum_cost)
@@ -2030,8 +2040,8 @@ if selected_page == "🏭 Feasibility":
                     <div style="background-color:{bg_color}; border:2px solid {border_color}; color:#1e293b; padding:10px; border-radius:8px; margin-bottom:10px;">
                         <strong>#{i+1} {opt['source']}</strong><br>
                         <small>📏 {opt['distance_km']:.0f} KM</small><br>
-                        <small>Base: ₹{opt['base_price']:,}</small><br>
-                        <span style="font-size:1.1em; font-weight:bold; color:#196F3D;">₹{opt['landed_cost']:,.0f}</span>
+                        <small>Base: {format_inr(opt['base_price'])}</small><br>
+                        <span style="font-size:1.1em; font-weight:bold; color:#196F3D;">{format_inr(opt['landed_cost'])}</span>
                     </div>
                     ''', unsafe_allow_html=True)
             
@@ -2046,8 +2056,8 @@ if selected_page == "🏭 Feasibility":
                     <div style="background-color:{bg_color}; border:2px solid {border_color}; color:#1e293b; padding:10px; border-radius:8px; margin-bottom:10px;">
                         <strong>#{i+1} {opt['source']}</strong><br>
                         <small>📏 {opt['distance_km']:.0f} KM</small><br>
-                        <small>Base: ₹{opt['base_price']:,}</small><br>
-                        <span style="font-size:1.1em; font-weight:bold; color:#21618C;">₹{opt['landed_cost']:,.0f}</span>
+                        <small>Base: {format_inr(opt['base_price'])}</small><br>
+                        <span style="font-size:1.1em; font-weight:bold; color:#21618C;">{format_inr(opt['landed_cost'])}</span>
                     </div>
                     ''', unsafe_allow_html=True)
                     
@@ -2060,8 +2070,8 @@ if selected_page == "🏭 Feasibility":
                     <div style="background-color:#FCF3CF; border:2px solid #9A7D0A; padding:10px; border-radius:8px; margin-bottom:10px;">
                         <strong>{dec['source']}</strong><br>
                         <small>From: {dec.get('drum_source', 'N/A')}</small><br>
-                        <small>Conv: ₹{dec.get('conversion_cost', 500)}</small><br>
-                        <span style="font-size:1.1em; font-weight:bold; color:#9A7D0A;">₹{dec['landed_cost']:,.0f}</span>
+                        <small>Conv: {dec.get('conversion_cost', 500)}</small><br>
+                        <span style="font-size:1.1em; font-weight:bold; color:#9A7D0A;">{format_inr(dec['landed_cost'])}</span>
                     </div>
                     ''', unsafe_allow_html=True)
             
@@ -2074,8 +2084,8 @@ if selected_page == "🏭 Feasibility":
                     <div style="background-color:#FADBD8; border:2px solid #C0392B; padding:10px; border-radius:8px; margin-bottom:10px;">
                         <strong>{drum['source']}</strong><br>
                         <small>📏 {drum['distance_km']:.0f} KM</small><br>
-                        <small>Base: ₹{drum['base_price']:,}</small><br>
-                        <span style="font-size:1.1em; font-weight:bold; color:#C0392B;">₹{drum['landed_cost']:,.0f}</span>
+                        <small>Base: {format_inr(drum['base_price'])}</small><br>
+                        <span style="font-size:1.1em; font-weight:bold; color:#C0392B;">{format_inr(drum['landed_cost'])}</span>
                     </div>
                     ''', unsafe_allow_html=True)
             
@@ -2083,7 +2093,7 @@ if selected_page == "🏭 Feasibility":
             st.markdown("---")
             best = assessment['best_overall']
             if best:
-                st.success(f"🏆 **BEST BULK OPTION**: {best['source']} @ **₹{best['landed_cost']:,.0f}** PMT")
+                st.success(f"🏆 **BEST BULK OPTION**: {best['source']} @ **{format_inr(best['landed_cost'])}** PMT")
             
             # Full Comparison Table
             st.markdown("### 📋 Complete Comparison Table")
@@ -2095,9 +2105,9 @@ if selected_page == "🏭 Feasibility":
             st.markdown("### 💰 Current Drum Prices")
             live = assessment.get('live_prices', {})
             col_p1, col_p2, col_p3 = st.columns(3)
-            col_p1.metric("Mumbai Drum", f"₹{live.get('drum_mumbai', 'N/A'):,}")
-            col_p2.metric("Kandla Drum", f"₹{live.get('drum_kandla', 'N/A'):,}")
-            col_p3.metric("Decanter Cost", f"₹{live.get('decanter_cost', 'N/A')}")
+            col_p1.metric("Mumbai Drum", f"{format_inr(live.get('drum_mumbai', 'N/A'))}")
+            col_p2.metric("Kandla Drum", f"{format_inr(live.get('drum_kandla', 'N/A'))}")
+            col_p3.metric("Decanter Cost", f"{live.get('decanter_cost', 'N/A')}")
         else:
             st.warning("Destination not found in database.")
 
@@ -2247,8 +2257,8 @@ if selected_page == "🚨 SPECIAL PRICE (SOS)":
                 
                 # Metrics
                 m1, m2, m3, m4 = st.columns(4)
-                m1.metric("📉 New Price", f"₹{opp['new_price']:,}")
-                m2.metric("💰 Saving", f"₹{opp['saving']:,}", delta="Price Drop", delta_color="normal")
+                m1.metric("📉 New Price", f"{format_inr(opp['new_price'])}")
+                m2.metric("💰 Saving", f"{format_inr(opp['saving'])}", delta="Price Drop", delta_color="normal")
                 m3.metric("⏳ Valid Until", opp['valid_until'].split(' ')[1]) # Time only
                 m4.metric("👥 Targets", len(opp['target_customers']))
                 
