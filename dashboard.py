@@ -512,19 +512,54 @@ section[data-testid="stSidebar"] div[data-testid="stExpanderDetails"] {
   padding: 0 0 0 4px !important;
   background: transparent !important;
 }
-/* Section label styling (the summary/toggle) */
+/* Section label styling — font-size:0 hides the _arrow_right raw text node;
+   font-size is restored on the <p> child which contains the real label */
 section[data-testid="stSidebar"] details > summary,
 section[data-testid="stSidebar"] [data-testid="stExpander"] summary {
+  font-size: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 6px 8px 4px 8px !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  list-style: none !important;
+  position: relative !important;
+}
+/* Restore readable text for the actual label paragraph only */
+section[data-testid="stSidebar"] details > summary p,
+section[data-testid="stSidebar"] [data-testid="stExpander"] summary p {
   font-size: 0.7rem !important;
   font-weight: 700 !important;
   color: #64748b !important;
   text-transform: uppercase !important;
   letter-spacing: 0.07em !important;
-  padding: 6px 8px 4px 8px !important;
-  border-radius: 0 !important;
+  margin: 0 !important;
+  line-height: 1.3 !important;
+}
+/* Hide Streamlit internal toggle icon (SVG/div — multiple Streamlit versions) */
+section[data-testid="stSidebar"] [data-testid="stExpanderToggleIcon"],
+section[data-testid="stSidebar"] details > summary > svg,
+section[data-testid="stSidebar"] details > summary > div:first-child > svg {
+  display: none !important;
+}
+/* Custom expand arrow via ::after */
+section[data-testid="stSidebar"] details > summary::after {
+  content: '›' !important;
+  font-size: 0.95rem !important;
+  color: #94a3b8 !important;
+  margin-left: auto !important;
+  padding-left: 4px !important;
+  transition: transform 0.2s ease !important;
+  display: inline-block !important;
+}
+section[data-testid="stSidebar"] details[open] > summary::after {
+  transform: rotate(90deg) !important;
+}
+section[data-testid="stSidebar"] details > summary:hover p,
+section[data-testid="stSidebar"] [data-testid="stExpander"] summary:hover p {
+  color: #1e3a5f !important;
 }
 section[data-testid="stSidebar"] details > summary:hover {
-  color: #1e3a5f !important;
   background: #f2ece0 !important;
 }
 /* Nav buttons: compact, left-aligned text */
