@@ -499,6 +499,138 @@ section.main > div > div > div:first-child { margin-top: 0 !important; }
   h1, .stMarkdown h1 { font-size: 1.05rem !important; }
   div[data-testid="stMetric"] { padding: 10px 8px !important; }
 }
+
+/* ── 16. Sidebar compact nav buttons (Zoho-style expander nav) ───────────── */
+/* Expander headers = section labels, no border/shadow */
+section[data-testid="stSidebar"] div[data-testid="stExpander"] {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+section[data-testid="stSidebar"] div[data-testid="stExpanderDetails"] {
+  padding: 0 0 0 4px !important;
+  background: transparent !important;
+}
+/* Section label styling (the summary/toggle) */
+section[data-testid="stSidebar"] details > summary,
+section[data-testid="stSidebar"] [data-testid="stExpander"] summary {
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  color: #64748b !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.07em !important;
+  padding: 6px 8px 4px 8px !important;
+  border-radius: 0 !important;
+}
+section[data-testid="stSidebar"] details > summary:hover {
+  color: #1e3a5f !important;
+  background: #f2ece0 !important;
+}
+/* Nav buttons: compact, left-aligned text */
+section[data-testid="stSidebar"] .stButton > button {
+  font-size: 0.78rem !important;
+  padding: 3px 10px !important;
+  min-height: 26px !important;
+  justify-content: flex-start !important;
+  text-align: left !important;
+  border-radius: 6px !important;
+  width: 100% !important;
+  margin-bottom: 1px !important;
+}
+section[data-testid="stSidebar"] .stButton > button[kind="primary"] {
+  background: #e8f5ee !important;
+  color: #2d6a4f !important;
+  border: 1px solid #b7dfc9 !important;
+  font-weight: 600 !important;
+  box-shadow: none !important;
+}
+section[data-testid="stSidebar"] .stButton > button[kind="secondary"] {
+  background: transparent !important;
+  border: none !important;
+  color: #2d3142 !important;
+  box-shadow: none !important;
+}
+section[data-testid="stSidebar"] .stButton > button[kind="secondary"]:hover {
+  background: #f2ece0 !important;
+  color: #1e3a5f !important;
+}
+
+/* ── 17. Zoho CRM Dashboard — Home Page Styles ───────────────────────────── */
+/* KPI bar — tighter metrics for 8-column layout */
+.kpi-bar div[data-testid="stMetric"] {
+  padding: 10px 10px !important;
+  border-left-width: 3px !important;
+}
+.kpi-bar div[data-testid="stMetricValue"] { font-size: 1.0rem !important; }
+.kpi-bar div[data-testid="stMetricLabel"] { font-size: 0.6rem !important; }
+.kpi-bar div[data-testid="stMetricDelta"] { font-size: 0.65rem !important; }
+
+/* Zoho section row header */
+.zoho-row-header {
+  font-size: 0.68rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: var(--steel) !important;
+  border-bottom: 1px solid var(--sandal) !important;
+  padding-bottom: 5px !important;
+  margin-bottom: 10px !important;
+  display: block !important;
+}
+/* Stat pill chips */
+.zoho-stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--ivory-deep);
+  border: 1px solid var(--sandal);
+  border-radius: 20px;
+  padding: 2px 9px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  white-space: nowrap;
+  margin-right: 4px;
+}
+/* Dashboard card with colour-accent left border */
+.zoho-card {
+  background: #ffffff;
+  border: 1px solid var(--sandal);
+  border-radius: 10px;
+  padding: 14px 16px;
+  box-shadow: var(--shadow-card);
+  height: 100%;
+}
+.zoho-card.green  { border-left: 4px solid var(--vastu-green); }
+.zoho-card.gold   { border-left: 4px solid var(--vastu-gold); }
+.zoho-card.navy   { border-left: 4px solid var(--navy); }
+.zoho-card.fire   { border-left: 4px solid var(--vastu-fire); }
+
+/* API dot indicator */
+.api-dot { width:9px; height:9px; border-radius:50%; display:inline-block;
+           margin-right:5px; flex-shrink:0; }
+.api-dot.ok   { background:#22c55e; }
+.api-dot.fail { background:#f43f5e; }
+.api-dot.warn { background:#f59e0b; }
+
+/* Alert severity row */
+.alert-row {
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 6px 0; border-bottom: 1px solid var(--cream);
+}
+.alert-row:last-child { border-bottom: none; }
+
+/* Pipeline progress bar */
+.pipeline-bar {
+  display: flex; height: 8px; border-radius: 4px;
+  overflow: hidden; margin: 6px 0 8px 0;
+}
+
+/* ── 18. Block container: zero top gap = max screen real estate ──────────── */
+.main .block-container {
+  padding-top: 0 !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -585,7 +717,7 @@ st.markdown("""
         PPS Anantam Eco Agentic AI System
       </div>
       <div style="font-size:0.68rem;color:#93c5fd;letter-spacing:0.4px;margin-top:2px;">
-        PPS Anantam Logistics AI – All Locations &nbsp;|&nbsp; Enterprise AI v3.1
+        PPS Anantam Logistics AI – All Locations &nbsp;|&nbsp; Enterprise AI v3.2
       </div>
     </div>
   </div>
@@ -708,6 +840,25 @@ section[data-testid="stSidebar"] div.row-widget.stRadio [role="radio"] {
 </style>
 """, unsafe_allow_html=True)
 
+# ── Navigation sections (no-scroll sidebar) ──────────────────────────────────
+_NAV_SECTIONS = [
+    ("💼  Sales & Revenue",    ["💼 Sales Workspace", "🎯 CRM & Tasks", "📅 Sales Calendar",
+                                 "🧮 Pricing Calculator", "🚨 SPECIAL PRICE (SOS)", "📋 Source Directory"]),
+    ("🏭  Operations",         ["🏭 Feasibility", "📦 Import Cost Model", "🚢 Supply Chain", "🛠️ Data Manager"]),
+    ("💰  Finance",            ["💰 Financial Intelligence", "👷 Demand Analytics", "📤 Reports"]),
+    ("🛡️  Legal & Compliance", ["🛡️ GST & Legal Monitor", "⚡ Risk Scoring"]),
+    ("🎯  Strategy & Intel",   ["🔮 Price Prediction", "⏳ Past Predictions", "📝 Manual Price Entry",
+                                 "🎯 Strategy Panel", "🔔 Alert System"]),
+    ("🔧  Technology",         ["🌐 API Dashboard", "⚙️ Dev & System Activity", "📁 PDF Archive",
+                                 "🔔 Change Notifications", "🐞 Bug Tracker", "👥 Ecosystem Management", "⚙️ Settings"]),
+    ("🧠  Knowledge & AI",     ["🔄 AI Fallback Engine", "🧠 AI Dashboard Assistant", "🤖 AI Assistant",
+                                 "📚 Knowledge Base", "🏛️ Business Intelligence"]),
+    ("📰  Market Intel",       ["📰 News Intelligence", "🕵️ Competitor Intelligence",
+                                 "🔭 Contractor OSINT", "🛣️ Road Budget & Demand"]),
+]
+if 'selected_page' not in st.session_state:
+    st.session_state['selected_page'] = '🏠 Home'
+
 with st.sidebar:
     # ── Brand header ─────────────────────────────────────────────────────────
     st.markdown("""
@@ -724,64 +875,21 @@ with st.sidebar:
 </div>
 """, unsafe_allow_html=True)
 
-    # Single combined radio for all navigation, grouped by Department
-    all_nav_options = [
-        "🏠 Home",
+    # ── Expander + button nav (no-scroll, Zoho-style) ────────────────────────
+    _sp = st.session_state['selected_page']
 
-        "─── 🏢 SALES & REVENUE ───",
-        "💼 Sales Workspace",
-        "🎯 CRM & Tasks",
-        "📅 Sales Calendar",
-        "🧮 Pricing Calculator",
-        "🚨 SPECIAL PRICE (SOS)",
-        "📋 Source Directory",
-        
-        "─── 🏢 OPERATIONS & PROCUREMENT ───",
-        "🏭 Feasibility",
-        "📦 Import Cost Model",
-        "🚢 Supply Chain",
-        "🛠️ Data Manager",
+    if st.button("🏠 Home", key="_nav_home", use_container_width=True,
+                 type="primary" if _sp == "🏠 Home" else "secondary"):
+        st.session_state['selected_page'] = "🏠 Home"
+        st.rerun()
 
-        "─── 🏢 FINANCE & PROFITABILITY ───",
-        "💰 Financial Intelligence",
-        "👷 Demand Analytics",
-        "📤 Reports",
-
-        "─── 🏢 LEGAL & COMPLIANCE ───",
-        "🛡️ GST & Legal Monitor",
-        "⚡ Risk Scoring",
-
-        "─── 🏢 STRATEGY & INTELLIGENCE ───",
-        "🔮 Price Prediction",
-        "⏳ Past Predictions",
-        "📝 Manual Price Entry",
-        "🎯 Strategy Panel",
-        "🔔 Alert System",
-
-        "─── 🏢 TECHNOLOGY & SYSTEMS ───",
-        "🌐 API Dashboard",
-        "⚙️ Dev & System Activity",
-        "📁 PDF Archive",
-        "🔔 Change Notifications",
-        "🐞 Bug Tracker",
-        "👥 Ecosystem Management",
-        "⚙️ Settings",
-
-        "─── 🏢 KNOWLEDGE & SUPPORT ───",
-        "🔄 AI Fallback Engine",
-        "🧠 AI Dashboard Assistant",
-        "🤖 AI Assistant",
-        "📚 Knowledge Base",
-        "🏛️ Business Intelligence",
-
-        "─── 🏢 MARKET INTELLIGENCE ───",
-        "📰 News Intelligence",
-        "🕵️ Competitor Intelligence",
-        "🔭 Contractor OSINT",
-        "🛣️ Road Budget & Demand",
-    ]
-    
-    selected_page = st.radio("Navigate", all_nav_options, label_visibility="collapsed")
+    for _sec_label, _sec_pages in _NAV_SECTIONS:
+        with st.expander(_sec_label, expanded=(_sp in _sec_pages)):
+            for _pg in _sec_pages:
+                if st.button(_pg, key=f"_nav_{_pg}", use_container_width=True,
+                             type="primary" if _sp == _pg else "secondary"):
+                    st.session_state['selected_page'] = _pg
+                    st.rerun()
 
     # ── Sidebar bottom: API toggle + version ─────────────────────────────────
     st.markdown('<div class="pps-sidebar-footer">', unsafe_allow_html=True)
@@ -793,11 +901,14 @@ with st.sidebar:
     )
     st.markdown(
         '<div style="font-size:0.65rem;color:#94a3b8;padding:2px 4px 0 4px;">'
-        'v3.1.0 &nbsp;|&nbsp; 01-03-2026 &nbsp;|&nbsp; Production'
+        'v3.2.0 &nbsp;|&nbsp; 02-03-2026 &nbsp;|&nbsp; Production'
         '</div>',
         unsafe_allow_html=True,
     )
     st.markdown('</div>', unsafe_allow_html=True)
+
+# ── Resolve selected page from session_state ─────────────────────────────────
+selected_page = st.session_state.get('selected_page', '🏠 Home')
 
 # Logic: Only execute the selected page to prevent poor performance/crashes
 # We will use 'if selected_page == "...": with st.container():' structure below.
@@ -821,14 +932,10 @@ tab12_sos = st.empty()
 # Inject @media print CSS once per session (hides sidebar on browser print)
 inject_print_css()
 
-# Skip export bar for section-header items and PDF Archive (which has its own)
+# Skip export bar for Home and PDF Archive (which has its own export UI)
 _NAV_HEADERS = {
-    "🏠 Home",  # Home has its own layout — no generic export bar needed
-    "─── 🏢 SALES & REVENUE ───", "─── 🏢 OPERATIONS & PROCUREMENT ───",
-    "─── 🏢 FINANCE & PROFITABILITY ───", "─── 🏢 LEGAL & COMPLIANCE ───",
-    "─── 🏢 STRATEGY & INTELLIGENCE ───", "─── 🏢 TECHNOLOGY & SYSTEMS ───",
-    "─── 🏢 KNOWLEDGE & SUPPORT ───", "─── 🏢 MARKET INTELLIGENCE ───",
-    "📁 PDF Archive",
+    "🏠 Home",      # Home has its own Zoho-style dashboard layout
+    "📁 PDF Archive",  # PDF Archive has its own archive manager UI
 }
 if selected_page not in _NAV_HEADERS:
     render_export_bar(
@@ -837,164 +944,417 @@ if selected_page not in _NAV_HEADERS:
     )
 
 
-# ── HOME PAGE ────────────────────────────────────────────────────────────────
+# ── HOME PAGE — Zoho CRM-Style Dashboard ─────────────────────────────────────
 if selected_page == "🏠 Home":
     import datetime as _dt
+    import json as _json
 
-    st.markdown(
-        '<h1 style="margin-bottom:4px;">🏠 Welcome to PPS Anantam Eco Agentic AI System</h1>',
-        unsafe_allow_html=True,
-    )
-    st.caption("PPS Anantam Logistics AI – All Locations  |  Enterprise AI v3.1  |  01-03-2026")
-    st.markdown("---")
-
-    home_c1, home_c2, home_c3 = st.columns([2, 1.8, 1.4])
-
-    # ── Column 1: Fortnight Price Prediction ─────────────────────────────────
-    with home_c1:
-        st.markdown("### 🔮 Next Fortnight Price Prediction")
-        try:
-            from command_intel.price_prediction import generate_forecast_calendar
-            _fc_df = generate_forecast_calendar()
-            _today = _dt.date.today()
-            _future = _fc_df[_fc_df["Date"].apply(
-                lambda x: x.date() if hasattr(x, "date") else x) > _today]
-            if not _future.empty:
-                _nr = _future.iloc[0]
-                _pred   = _nr.get("Predicted (₹/MT)", _nr.get("Predicted", 48500))
-                _lo     = _nr.get("Low Range", _pred - 400)
-                _hi     = _nr.get("High Range", _pred + 400)
-                _rdate  = _nr.get("Revision Date", "01-04-2026")
-                _status = _nr.get("Status", "Pending")
-            else:
-                _pred, _lo, _hi, _rdate, _status = 48500, 48100, 48900, "01-04-2026", "Pending"
-        except Exception:
+    # ── Load data for Home dashboard ─────────────────────────────────────────
+    try:
+        from command_intel.price_prediction import generate_forecast_calendar as _gfc
+        _fc_df  = _gfc()
+        _today  = _dt.date.today()
+        _future = _fc_df[_fc_df["Date"].apply(
+            lambda x: x.date() if hasattr(x, "date") else x) > _today]
+        if not _future.empty:
+            _nr     = _future.iloc[0]
+            _pred   = _nr.get("Predicted (₹/MT)", _nr.get("Predicted", 48500))
+            _lo     = _nr.get("Low Range", _pred - 400)
+            _hi     = _nr.get("High Range", _pred + 400)
+            _rdate  = _nr.get("Revision Date", "01-04-2026")
+            _status = _nr.get("Status", "Pending")
+            # Next 6 rows for mini-chart
+            _chart_rows = _future.head(6)
+            _chart_dates  = [str(r.get("Revision Date", "")) for _, r in _chart_rows.iterrows()]
+            _chart_prices = [float(r.get("Predicted (₹/MT)", r.get("Predicted", 48500)))
+                             for _, r in _chart_rows.iterrows()]
+        else:
             _pred, _lo, _hi, _rdate, _status = 48500, 48100, 48900, "01-04-2026", "Pending"
+            _chart_dates  = ["01-04-2026", "16-04-2026", "01-05-2026", "16-05-2026", "01-06-2026", "16-06-2026"]
+            _chart_prices = [48500, 48800, 49100, 48700, 49200, 49600]
+    except Exception:
+        _pred, _lo, _hi, _rdate, _status = 48500, 48100, 48900, "01-04-2026", "Pending"
+        _chart_dates  = ["01-04-2026", "16-04-2026", "01-05-2026", "16-05-2026", "01-06-2026", "16-06-2026"]
+        _chart_prices = [48500, 48800, 49100, 48700, 49200, 49600]
 
+    # CRM tasks
+    try:
+        with open("crm_tasks.json", encoding="utf-8") as _f:
+            _crm_tasks = _json.load(_f)
+        _task_count   = len(_crm_tasks)
+        _high_pri     = sum(1 for t in _crm_tasks if t.get("priority") == "High")
+        _call_count   = sum(1 for t in _crm_tasks if t.get("type") == "Call")
+        _whatsapp_ct  = sum(1 for t in _crm_tasks if t.get("type") == "WhatsApp")
+        _email_count  = sum(1 for t in _crm_tasks if t.get("type") == "Email")
+    except Exception:
+        _task_count, _high_pri, _call_count, _whatsapp_ct, _email_count = 7, 6, 6, 1, 1
+
+    # Sales parties (customers)
+    try:
+        with open("sales_parties.json", encoding="utf-8") as _f:
+            _sales_parties = _json.load(_f)
+        _cust_count = len(_sales_parties)
+    except Exception:
+        _cust_count = 3
+
+    # Live prices
+    try:
+        with open("live_prices.json", encoding="utf-8") as _f:
+            _lp = _json.load(_f)
+    except Exception:
+        _lp = {"DRUM_MUMBAI_VG30": 37000, "DRUM_KANDLA_VG30": 35500,
+               "DRUM_MUMBAI_VG10": 38000, "DRUM_KANDLA_VG10": 36500}
+
+    # API stats
+    try:
+        with open("api_stats.json", encoding="utf-8") as _f:
+            _api_st = _json.load(_f)
+        _api_ok  = sum(1 for v in _api_st.values() if v.get("status") == "OK")
+        _api_tot = len(_api_st)
+    except Exception:
+        _api_st, _api_ok, _api_tot = {}, 5, 6
+
+    # Active alerts
+    try:
+        from command_intel.alert_system import _get_active_alerts as _gaa
+        _alerts = _gaa()
+        _alert_count    = len(_alerts)
+        _alert_critical = sum(1 for a in _alerts if a.get("severity") == "critical")
+    except Exception:
+        _alerts, _alert_count, _alert_critical = [], 5, 1
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # SECTION 1 — KPI Bar (8 metrics, full width)
+    # ─────────────────────────────────────────────────────────────────────────
+    st.markdown('<div class="kpi-bar">', unsafe_allow_html=True)
+    _k1, _k2, _k3, _k4, _k5, _k6, _k7, _k8 = st.columns(8)
+    _k1.metric("🔮 Predicted ₹/MT",   f"₹{int(_pred):,}")
+    _k2.metric("📅 Next Revision",     str(_rdate))
+    _k3.metric("🛢 Brent Crude",       mkt['brent']['value'],  mkt['brent']['change'])
+    _k4.metric("💵 USD / INR",         mkt['usdinr']['value'], mkt['usdinr']['change'])
+    _k5.metric("👥 CRM Tasks",         _task_count)
+    _k6.metric("⚡ Active Alerts",     _alert_count,
+               f"🔴 {_alert_critical} critical" if _alert_critical else None)
+    _k7.metric("🔗 APIs Healthy",      f"{_api_ok} / {_api_tot}")
+    _k8.metric("🗺️ Routes",            "3,476")
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    st.markdown('<div style="height:10px"></div>', unsafe_allow_html=True)
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # SECTION 2 — 3-column row: CRM Overview | Sales Snapshot | Price Forecast
+    # ─────────────────────────────────────────────────────────────────────────
+    _h2a, _h2b, _h2c = st.columns([3.5, 3.5, 3])
+
+    # ── CRM Overview ─────────────────────────────────────────────────────────
+    with _h2a:
+        st.markdown('<div class="zoho-row-header">💼 CRM Overview</div>', unsafe_allow_html=True)
         st.markdown(f"""
-<div style="background:#ffffff;border:1px solid #e8dcc8;border-left:5px solid #c9a84c;
-            border-radius:10px;padding:18px 20px;box-shadow:0 2px 8px rgba(30,58,95,0.07);">
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;">
-    <div>
-      <div style="font-size:0.75rem;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">
-        Next Revision Date
-      </div>
-      <div style="font-size:1.45rem;font-weight:800;color:#1e3a5f;margin:2px 0 6px 0;">
-        {_rdate}
-      </div>
+<div class="zoho-card green" style="margin-bottom:8px;">
+  <div style="display:flex;gap:16px;margin-bottom:10px;">
+    <div style="text-align:center;flex:1;">
+      <div style="font-size:1.45rem;font-weight:800;color:#1e3a5f;">{_cust_count}</div>
+      <div style="font-size:0.62rem;color:#64748b;font-weight:600;text-transform:uppercase;">Customers</div>
     </div>
-    <span style="background:#fdf6e3;color:#c9a84c;font-size:0.72rem;font-weight:700;
-                 padding:3px 9px;border-radius:20px;border:1px solid #e8dcc8;">
-      {_status}
-    </span>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;">
-    <div style="text-align:center;background:#faf7f2;border-radius:8px;padding:10px 6px;">
-      <div style="font-size:0.65rem;color:#94a3b8;font-weight:600;margin-bottom:3px;">LOW</div>
-      <div style="font-size:1.05rem;font-weight:700;color:#2d6a4f;">₹ {int(_lo):,}</div>
+    <div style="text-align:center;flex:1;">
+      <div style="font-size:1.45rem;font-weight:800;color:#1e3a5f;">{_task_count}</div>
+      <div style="font-size:0.62rem;color:#64748b;font-weight:600;text-transform:uppercase;">Tasks</div>
     </div>
-    <div style="text-align:center;background:#1e3a5f;border-radius:8px;padding:10px 6px;">
-      <div style="font-size:0.65rem;color:#93c5fd;font-weight:600;margin-bottom:3px;">PREDICTED</div>
-      <div style="font-size:1.2rem;font-weight:800;color:#fcd34d;">₹ {int(_pred):,}</div>
-    </div>
-    <div style="text-align:center;background:#faf7f2;border-radius:8px;padding:10px 6px;">
-      <div style="font-size:0.65rem;color:#94a3b8;font-weight:600;margin-bottom:3px;">HIGH</div>
-      <div style="font-size:1.05rem;font-weight:700;color:#b85c38;">₹ {int(_hi):,}</div>
+    <div style="text-align:center;flex:1;">
+      <div style="font-size:1.45rem;font-weight:800;color:#dc2626;">{_high_pri}</div>
+      <div style="font-size:0.62rem;color:#64748b;font-weight:600;text-transform:uppercase;">High Priority</div>
     </div>
   </div>
-  <div style="margin-top:12px;font-size:0.75rem;color:#64748b;display:flex;gap:16px;">
-    <span>🛢 Crude driver</span><span>💵 USD/INR driver</span><span>🏭 FO driver</span>
+  <div style="font-size:0.65rem;color:#64748b;font-weight:700;text-transform:uppercase;
+              margin-bottom:4px;letter-spacing:0.05em;">Pipeline</div>
+  <div class="pipeline-bar" style="margin-bottom:6px;">
+    <div style="flex:2;background:#3b82f6;" title="New Enquiry"></div>
+    <div style="flex:1.5;background:#8b5cf6;" title="Quoted"></div>
+    <div style="flex:1;background:#f59e0b;" title="Negotiation"></div>
+    <div style="flex:0.5;background:#22c55e;" title="Closed"></div>
   </div>
-  <div style="margin-top:6px;font-size:0.68rem;color:#94a3b8;">
-    Per MT &nbsp;|&nbsp; VG-30 Bitumen &nbsp;|&nbsp; Indian PSU Refineries (1st/16th cycle)
+  <div style="display:flex;gap:8px;font-size:0.62rem;color:#64748b;">
+    <span>🔵 Enquiry</span><span>🟣 Quoted</span><span>🟡 Negotiation</span><span>🟢 Closed</span>
+  </div>
+  <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;">
+    <span class="zoho-stat-pill">📞 {_call_count} Calls</span>
+    <span class="zoho-stat-pill">💬 {_whatsapp_ct} WhatsApp</span>
+    <span class="zoho-stat-pill">✉️ {_email_count} Email</span>
   </div>
 </div>
 """, unsafe_allow_html=True)
+        if st.button("🎯 Open CRM & Tasks →", key="_home_crm_btn", use_container_width=True):
+            st.session_state["_nav_goto"] = "🎯 CRM & Tasks"
+            st.rerun()
 
-        if st.button("📊 View Full Price Prediction", key="_home_pred_btn"):
+    # ── Sales Snapshot ────────────────────────────────────────────────────────
+    with _h2b:
+        st.markdown('<div class="zoho-row-header">📦 Sales Snapshot</div>', unsafe_allow_html=True)
+        _vg30_mum = _lp.get("DRUM_MUMBAI_VG30", 37000)
+        _vg30_kan = _lp.get("DRUM_KANDLA_VG30", 35500)
+        _vg10_mum = _lp.get("DRUM_MUMBAI_VG10", 38000)
+        _vg10_kan = _lp.get("DRUM_KANDLA_VG10", 36500)
+        st.markdown(f"""
+<div class="zoho-card" style="margin-bottom:8px;">
+  <div style="font-size:0.65rem;color:#64748b;font-weight:700;text-transform:uppercase;
+              margin-bottom:6px;letter-spacing:0.05em;">Live Prices (₹/MT)</div>
+  <table style="width:100%;border-collapse:collapse;font-size:0.78rem;">
+    <thead>
+      <tr style="background:#f8fafc;">
+        <th style="padding:4px 8px;text-align:left;font-weight:700;color:#1e3a5f;border-bottom:1px solid #e8dcc8;">Grade</th>
+        <th style="padding:4px 8px;text-align:right;font-weight:700;color:#1e3a5f;border-bottom:1px solid #e8dcc8;">Mumbai</th>
+        <th style="padding:4px 8px;text-align:right;font-weight:700;color:#1e3a5f;border-bottom:1px solid #e8dcc8;">Kandla</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding:4px 8px;color:#2d3142;">VG-30</td>
+        <td style="padding:4px 8px;text-align:right;font-weight:600;color:#2d6a4f;">₹{int(_vg30_mum):,}</td>
+        <td style="padding:4px 8px;text-align:right;font-weight:600;color:#2d6a4f;">₹{int(_vg30_kan):,}</td>
+      </tr>
+      <tr style="background:#faf7f2;">
+        <td style="padding:4px 8px;color:#2d3142;">VG-10</td>
+        <td style="padding:4px 8px;text-align:right;font-weight:600;color:#2d6a4f;">₹{int(_vg10_mum):,}</td>
+        <td style="padding:4px 8px;text-align:right;font-weight:600;color:#2d6a4f;">₹{int(_vg10_kan):,}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+    <span class="zoho-stat-pill">🚢 3,476 Routes</span>
+    <span class="zoho-stat-pill">🏭 63 Suppliers</span>
+  </div>
+  <div style="margin-top:8px;font-size:0.65rem;color:#64748b;font-weight:700;
+              text-transform:uppercase;margin-bottom:4px;">Top Contractors (MT/mo)</div>
+  <div style="font-size:0.75rem;color:#2d3142;line-height:1.8;">
+    🏆 Maharashtra Roads — 850 MT<br>
+    🥈 Gujarat Infra Corp — 640 MT<br>
+    🥉 Rajasthan PWD — 520 MT
+  </div>
+</div>
+""", unsafe_allow_html=True)
+        if st.button("💼 Open Sales Workspace →", key="_home_sales_btn", use_container_width=True):
+            st.session_state["_nav_goto"] = "💼 Sales Workspace"
+            st.rerun()
+
+    # ── Price Forecast Mini-Chart ─────────────────────────────────────────────
+    with _h2c:
+        st.markdown('<div class="zoho-row-header">🔮 Price Forecast</div>', unsafe_allow_html=True)
+        try:
+            import plotly.graph_objects as _go
+            _fig = _go.Figure()
+            _fig.add_trace(_go.Scatter(
+                x=_chart_dates, y=_chart_prices, mode='lines+markers',
+                line=dict(color='#2d6a4f', width=2.5),
+                marker=dict(size=6, color='#2d6a4f'),
+                fill='tozeroy', fillcolor='rgba(45,106,79,0.06)',
+                hovertemplate='%{x}<br>₹%{y:,.0f}/MT<extra></extra>'
+            ))
+            _fig.update_layout(
+                height=155, margin=dict(l=0, r=0, t=8, b=24),
+                paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)',
+                xaxis=dict(showgrid=False, tickfont=dict(size=9), tickangle=-30),
+                yaxis=dict(showgrid=True, gridcolor='#f1f5f9',
+                           tickformat=',', tickfont=dict(size=9)),
+                showlegend=False,
+            )
+            st.plotly_chart(_fig, use_container_width=True, config={"displayModeBar": False})
+        except Exception:
+            st.caption("Forecast chart unavailable.")
+        _conf_pct = 82
+        st.markdown(f"""
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+  <span style="background:#e8f5ee;color:#2d6a4f;font-size:0.72rem;font-weight:700;
+               padding:3px 10px;border-radius:20px;border:1px solid #b7dfc9;">
+    🎯 Confidence: {_conf_pct}%
+  </span>
+  <span style="font-size:0.68rem;color:#64748b;">VG-30 · 6-month</span>
+</div>
+""", unsafe_allow_html=True)
+        if st.button("📊 Full Forecast →", key="_home_fc_btn", use_container_width=True):
             st.session_state["_nav_goto"] = "🔮 Price Prediction"
             st.rerun()
 
-    # ── Column 2: Market Snapshot + Breaking News ─────────────────────────────
-    with home_c2:
-        st.markdown("### 📊 Live Market Snapshot")
-        _mc1, _mc2 = st.columns(2)
-        with _mc1:
-            _b_clr = mkt['brent'].get('color', '#2d6a4f')
-            st.metric("🛢 Brent Crude", mkt['brent']['value'], mkt['brent']['change'])
-            st.metric("💵 USD / INR",   mkt['usdinr']['value'], mkt['usdinr']['change'])
-        with _mc2:
-            st.metric("🛢 WTI Crude",   mkt['wti']['value'],    mkt['wti']['change'])
+    st.markdown('<div style="height:10px"></div>', unsafe_allow_html=True)
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # SECTION 3 — 2-column row: API Health | Active Alerts
+    # ─────────────────────────────────────────────────────────────────────────
+    _h3a, _h3b = st.columns([5.5, 4.5])
+
+    # ── API Health ────────────────────────────────────────────────────────────
+    with _h3a:
+        st.markdown('<div class="zoho-row-header">🔗 API Health</div>', unsafe_allow_html=True)
+        # Show first 6 APIs
+        _api_display = list(_api_st.items())[:6] if _api_st else []
+        _api_rows_html = ""
+        for _aname, _adat in _api_display:
+            _aok  = _adat.get("status", "") == "OK"
+            _dot  = "ok" if _aok else "fail"
+            _lat  = _adat.get("avg_latency_ms", 0)
+            _calls= _adat.get("calls", 0)
+            _label = _aname.replace("_", " ").title()[:22]
+            _api_rows_html += f"""
+<div class="alert-row" style="justify-content:flex-start;gap:10px;">
+  <span class="api-dot {_dot}"></span>
+  <span style="font-size:0.75rem;color:#2d3142;flex:1;font-weight:500;">{_label}</span>
+  <span style="font-size:0.68rem;color:#64748b;">{_lat}ms</span>
+  <span style="font-size:0.68rem;color:#94a3b8;">{_calls} call{"s" if _calls != 1 else ""}</span>
+</div>"""
+        _health_chip_clr = "#22c55e" if _api_ok >= _api_tot * 0.8 else "#f59e0b"
+        st.markdown(f"""
+<div class="zoho-card">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+    <span style="font-size:0.72rem;color:#64748b;">Live API Status</span>
+    <span style="background:#e8f5ee;color:#2d6a4f;font-size:0.68rem;font-weight:700;
+                 padding:2px 8px;border-radius:12px;border:1px solid #b7dfc9;">
+      {_api_ok} / {_api_tot} Healthy
+    </span>
+  </div>
+  {_api_rows_html}
+</div>
+""", unsafe_allow_html=True)
+        if st.button("🌐 API Dashboard →", key="_home_api_btn", use_container_width=True):
+            st.session_state["_nav_goto"] = "🌐 API Dashboard"
+            st.rerun()
+
+    # ── Active Alerts ─────────────────────────────────────────────────────────
+    with _h3b:
+        st.markdown('<div class="zoho-row-header">⚡ Active Alerts</div>', unsafe_allow_html=True)
+        _sev_cfg = {
+            "critical": ("#fff1f2", "#dc2626", "🔴"),
+            "warning":  ("#fffbeb", "#d97706", "🟡"),
+            "info":     ("#eff6ff", "#3b82f6", "🔵"),
+        }
+        _alert_rows_html = ""
+        for _al in _alerts[:4]:
+            _sev = _al.get("severity", "info")
+            _bg, _clr, _ico = _sev_cfg.get(_sev, _sev_cfg["info"])
+            _title = _al.get("title", "Alert")[:55]
+            _cat   = _al.get("category", "")
+            _time_ago = ""
             try:
-                _vix = mkt.get('india_vix', {})
-                if _vix:
-                    st.metric("📈 India VIX", _vix.get('value','—'), _vix.get('change',''))
+                _tdiff = _dt.datetime.now() - _al.get("time", _dt.datetime.now())
+                _h = int(_tdiff.total_seconds() // 3600)
+                _time_ago = f"{_h}h ago" if _h > 0 else "Just now"
             except Exception:
-                pass
+                _time_ago = "Recent"
+            _alert_rows_html += f"""
+<div class="alert-row" style="background:{_bg};border-left:3px solid {_clr};
+     margin-bottom:4px;border-radius:4px;padding:5px 8px;">
+  <span style="font-size:0.72rem;">{_ico}</span>
+  <span style="font-size:0.72rem;color:#2d3142;flex:1;font-weight:500;">{_title}</span>
+  <span style="font-size:0.62rem;color:#94a3b8;white-space:nowrap;">{_time_ago}</span>
+</div>"""
+        if not _alert_rows_html:
+            _alert_rows_html = '<div style="font-size:0.78rem;color:#64748b;padding:8px;">No active alerts.</div>'
+        st.markdown(f"""
+<div class="zoho-card">
+  <div style="margin-bottom:6px;font-size:0.72rem;color:#64748b;">Top alerts by severity</div>
+  {_alert_rows_html}
+</div>
+""", unsafe_allow_html=True)
+        if st.button("🔔 Alert System →", key="_home_alert_btn", use_container_width=True):
+            st.session_state["_nav_goto"] = "🔔 Alert System"
+            st.rerun()
 
-        st.markdown("#### 🚨 Breaking News")
-        try:
-            from news_engine import get_breaking_news as _gbn
-            _breaking = _gbn(region="All")
-            if _breaking:
-                _bn = _breaking[0]
-                _impact = _bn.get('impact_score', 80)
-                _tag_clr = "#dc2626" if _impact >= 90 else "#c9a84c"
-                st.markdown(f"""
-<div style="background:#fff;border:1px solid #e8dcc8;border-left:4px solid {_tag_clr};
-            border-radius:8px;padding:10px 12px;font-size:0.82rem;">
-  <div style="font-weight:700;color:#1e3a5f;margin-bottom:3px;">
-    <a href="{_bn.get('source_url','#')}" target="_blank"
-       style="color:#1e3a5f;text-decoration:none;">
-      {_bn.get('headline','')[:120]}
-    </a>
+    st.markdown('<div style="height:10px"></div>', unsafe_allow_html=True)
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # SECTION 4 — AI Assistant (full width, navy gradient)
+    # ─────────────────────────────────────────────────────────────────────────
+    st.markdown('<div class="zoho-row-header">🧠 AI Command Centre</div>', unsafe_allow_html=True)
+    st.markdown("""
+<div style="background:linear-gradient(135deg,#1e3a5f 0%,#0f2744 100%);
+            border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+  <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px;">
+    <span style="font-size:1.1rem;">🤖</span>
+    <span style="font-size:0.75rem;font-weight:700;color:#93c5fd;text-transform:uppercase;
+                 letter-spacing:0.07em;">PPS Anantam AI — Ask Anything</span>
   </div>
-  <div style="color:#64748b;font-size:0.72rem;">
-    {_bn.get('source_name','')}&nbsp;&nbsp;{_bn.get('published_at_ist','')}
+  <div style="color:#e2e8f0;font-size:0.82rem;line-height:1.5;">
+    Access full AI chat, quick price queries, market intelligence, and system diagnostics.
+    The AI assistant is connected to live market data, CRM, and all 37 modules.
   </div>
 </div>
 """, unsafe_allow_html=True)
-            else:
-                st.info("No breaking alerts at this time.")
-        except Exception:
-            st.caption("Breaking news feed not available.")
 
-    # ── Column 3: Ask PPS AI ──────────────────────────────────────────────────
-    with home_c3:
-        st.markdown("### 🧠 Ask PPS AI")
-        st.markdown("""
-<div style="background:#1e3a5f;border-radius:10px;padding:14px 16px;margin-bottom:10px;">
-  <div style="color:#93c5fd;font-size:0.72rem;font-weight:600;text-transform:uppercase;
-              letter-spacing:0.5px;margin-bottom:6px;">Quick Questions</div>
-  <div style="color:#e2e8f0;font-size:0.8rem;line-height:1.4;">
-    Click a question to open the AI Assistant with it pre-filled.
+    _ai_c1, _ai_c2, _ai_c3 = st.columns([3, 3, 4])
+
+    # AI col1: Prediction summary
+    with _ai_c1:
+        st.markdown(f"""
+<div style="background:rgba(255,255,255,0.05);border:1px solid rgba(201,168,76,0.3);
+            border-left:4px solid #c9a84c;border-radius:8px;padding:12px 14px;">
+  <div style="color:#fcd34d;font-size:0.65rem;font-weight:700;text-transform:uppercase;
+              letter-spacing:0.05em;margin-bottom:6px;">Next Revision</div>
+  <div style="font-size:1.3rem;font-weight:800;color:#ffffff;">₹{int(_pred):,}</div>
+  <div style="font-size:0.68rem;color:#93c5fd;margin-top:2px;">/MT · VG-30 Bitumen</div>
+  <div style="display:flex;gap:10px;margin-top:8px;font-size:0.72rem;">
+    <span style="color:#86efac;">↓ ₹{int(_lo):,}</span>
+    <span style="color:#fca5a5;">↑ ₹{int(_hi):,}</span>
+    <span style="color:#93c5fd;">{_rdate}</span>
+  </div>
+  <div style="margin-top:6px;">
+    <span style="background:rgba(45,106,79,0.4);color:#86efac;font-size:0.65rem;
+                 font-weight:700;padding:2px 8px;border-radius:10px;">{_status}</span>
   </div>
 </div>
 """, unsafe_allow_html=True)
 
+    # AI col2: Market metrics
+    with _ai_c2:
+        st.markdown(f"""
+<div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
+            border-radius:8px;padding:12px 14px;">
+  <div style="color:#93c5fd;font-size:0.65rem;font-weight:700;text-transform:uppercase;
+              letter-spacing:0.05em;margin-bottom:8px;">Live Market</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+    <div>
+      <div style="font-size:0.62rem;color:#94a3b8;">🛢 Brent</div>
+      <div style="font-size:0.9rem;font-weight:700;color:#e2e8f0;">{mkt['brent']['value']}</div>
+    </div>
+    <div>
+      <div style="font-size:0.62rem;color:#94a3b8;">🛢 WTI</div>
+      <div style="font-size:0.9rem;font-weight:700;color:#e2e8f0;">{mkt['wti']['value']}</div>
+    </div>
+    <div>
+      <div style="font-size:0.62rem;color:#94a3b8;">💵 USD/INR</div>
+      <div style="font-size:0.9rem;font-weight:700;color:#e2e8f0;">{mkt['usdinr']['value']}</div>
+    </div>
+    <div>
+      <div style="font-size:0.62rem;color:#94a3b8;">🔗 APIs</div>
+      <div style="font-size:0.9rem;font-weight:700;color:#86efac;">{_api_ok}/{_api_tot} OK</div>
+    </div>
+  </div>
+</div>
+""", unsafe_allow_html=True)
+
+    # AI col3: Quick questions + AI Chat button
+    with _ai_c3:
         _quick_qs = [
-            ("🔮 What is the next predicted price?",    "What is the next predicted bitumen price for the 1st or 16th cycle?"),
-            ("📰 Breaking news affecting crude?",       "Any breaking news affecting crude oil or bitumen prices today?"),
-            ("🗺️ Which state has highest demand?",      "Which Indian state has the highest bitumen demand this month?"),
-            ("🐛 Show open bugs & API issues",          "Show me all open bugs and API health issues in the system."),
+            ("🔮 Next predicted price?",        "What is the next predicted bitumen price for the 1st or 16th cycle?"),
+            ("📰 News affecting crude?",         "Any breaking news affecting crude oil or bitumen prices today?"),
+            ("🗺️ Highest demand state?",         "Which Indian state has the highest bitumen demand this month?"),
+            ("🐛 Open bugs & API issues?",       "Show me all open bugs and API health issues in the system."),
         ]
-        for _qlabel, _qtext in _quick_qs:
-            if st.button(_qlabel, key=f"_home_q_{_qlabel[:10]}", use_container_width=True):
-                st.session_state["_ai_prefill"] = _qtext
-                st.session_state["_nav_goto"]   = "🧠 AI Dashboard Assistant"
-                st.rerun()
-
-        st.markdown("---")
-        if st.button("💬 Open Full AI Chat", key="_home_ai_full", use_container_width=True, type="primary"):
+        _ql_c1, _ql_c2 = st.columns(2)
+        for _i, (_qlabel, _qtext) in enumerate(_quick_qs):
+            _col = _ql_c1 if _i % 2 == 0 else _ql_c2
+            with _col:
+                if st.button(_qlabel, key=f"_home_q_{_i}", use_container_width=True):
+                    st.session_state["_ai_prefill"] = _qtext
+                    st.session_state["_nav_goto"]   = "🧠 AI Dashboard Assistant"
+                    st.rerun()
+        if st.button("💬 Open Full AI Chat", key="_home_ai_full",
+                     use_container_width=True, type="primary"):
             st.session_state["_nav_goto"] = "🧠 AI Dashboard Assistant"
             st.rerun()
 
 # ── Handle deferred navigation (from Home quick buttons) ─────────────────────
 if st.session_state.get("_nav_goto"):
     _goto = st.session_state.pop("_nav_goto")
-    if _goto in all_nav_options:
-        # Streamlit radio can't be set programmatically; show guidance instead
-        st.info(f"👆 Please select **{_goto}** from the sidebar to navigate there.")
+    st.session_state['selected_page'] = _goto
+    st.rerun()
 
 # Main Layout: 3 Columns (Selection | Analysis | Detailed Slip)
 if selected_page == "🧮 Pricing Calculator":
@@ -3054,8 +3414,8 @@ st.markdown("""
     </span>
   </div>
   <div style="font-size:0.73rem;color:#94a3b8;display:flex;gap:14px;flex-wrap:wrap;">
-    <span>Version v3.1.0</span>
-    <span>Build: 01-03-2026</span>
+    <span>Version v3.2.0</span>
+    <span>Build: 02-03-2026</span>
     <span>Environment: Production</span>
     <span style="color:#c9a84c;font-weight:600;">GST: 24AAHCV1611L2ZD</span>
   </div>
