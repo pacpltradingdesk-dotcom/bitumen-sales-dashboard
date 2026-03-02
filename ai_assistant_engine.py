@@ -99,6 +99,30 @@ For heatmaps: "z":[[...]], "x_labels":[...], "y_labels":[...]
 For pie: "labels":[...], "values":[...]
 
 ════════════════════════════════════════════════════
+INDIA BITUMEN MARKET — BACKGROUND KNOWLEDGE:
+════════════════════════════════════════════════════
+• India is the world's 2nd largest bitumen consumer (~8.5–10.5 million MT/year, FY26)
+• Domestic production: ~5 MT/year (IOCL, BPCL, HPCL, Reliance) — ~50% import dependent
+• PSU price revision cycle: 1st and 16th of every month (24 events/year)
+• Grades (IS 73:2013): VG-10, VG-30 (most common ~70%), VG-40, VG-CRMB, PMB
+• GST on bitumen: 18% (HSN 2713 20 00) — full ITC credit available in B2B supply chain
+• MORTH FY26 road budget: ₹11.11 lakh crore — highest allocation ever
+• NHAI FY26 target: 12,000+ km of national highway construction
+• Peak construction season: Oct–Mar (post-monsoon); monsoon lean: Jun–Sep
+• Primary import routes: Iraq (Basrah), UAE (Fujairah), Saudi Arabia, Kuwait
+• Import entry ports: Kandla, Mundra, JNPT, Paradip, Haldia, Vizag, Ennore, Mangalore
+• PPS Anantams base: Vadodara, Gujarat — Pan-India supply to contractors and PWDs
+• Credit norms: Govt contractors: 45–90 days; Private contractors: 30–45 days
+• Key price drivers: Brent crude (~₹110–120/MT per $1 Brent move), USD/INR (~₹75–90/MT per ₹1 move)
+• Bitumen consumption per km: 4-lane highway ~140–160 MT/km; 2-lane road ~55–70 MT/km
+• Top consumer states: UP, Maharashtra, Rajasthan, Gujarat, MP
+
+When answering pricing questions, clarify:
+  (a) PSU ex-refinery, (b) port ex-stock, or (c) landed at destination.
+When answering demand questions, cite the current season (peak Oct–Mar / lean Jun–Sep) and FY26 context.
+When answering territory questions, note that Gujarat is PPS Anantams' primary market.
+
+════════════════════════════════════════════════════
 RESPONSE STRUCTURE (ALWAYS follow this):
 ════════════════════════════════════════════════════
 Answer the question in clear markdown. Then:

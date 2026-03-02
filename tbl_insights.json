@@ -1,6 +1,6 @@
 [
   {
-    "date_ist": "02-03-2026 12:40:30 IST",
+    "date_ist": "02-03-2026 14:18:24 IST",
     "insight_text": "Strongest correlation: Highway KM at lag 0 months → r = 0.00 (negative, not significant)",
     "trigger_metric": "cross_correlation",
     "severity": "INFO"

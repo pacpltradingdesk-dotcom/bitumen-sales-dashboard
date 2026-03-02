@@ -69,5 +69,16 @@
     "note": "\ud83d\ude80 New Enquiry: Introduction & Qualify",
     "created_at": "2026-02-04 12:27",
     "automated": true
+  },
+  {
+    "id": "260d64b7",
+    "client": "National Highways Authority of India",
+    "type": "Email",
+    "due_date": "2026-03-03 14:16",
+    "status": "Pending",
+    "priority": "Medium",
+    "note": "[Directory] NH construction, 4-laning, bitumen procurement for NH projects | City: New Delhi | State: Delhi | Web: https://nhai.gov.in | Conf: Medium. Follow up on NHAI bitumen procurement",
+    "created_at": "02-03-2026 14:16",
+    "automated": true
   }
 ]

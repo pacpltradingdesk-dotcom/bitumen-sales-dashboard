@@ -31,6 +31,7 @@ from command_intel import api_hub_dashboard
 from command_intel import govt_hub_dashboard
 from command_intel import port_tracker_dashboard
 from command_intel import correlation_dashboard
+from command_intel import directory_dashboard
 import api_dashboard
 
 # --- PDF EXPORT SYSTEM ---
@@ -70,6 +71,13 @@ except Exception:
 try:
     from port_tracker_engine import init_port_tracker
     init_port_tracker()
+except Exception:
+    pass
+
+# --- PROCUREMENT DIRECTORY: seed Phase 1 entries on first run ---
+try:
+    from directory_engine import init_directory
+    init_directory()
 except Exception:
     pass
 
@@ -246,6 +254,11 @@ st.markdown("""
                                                             Streamlit uses <p>, not <span>
    RULE: Never apply display:none / font-size:0 / color:transparent to a
          container element that has text-content children.
+   ✗ ALSO WRONG — color:inherit from a transparent parent:
+        button > div { color: transparent; }
+        button > div > p { color: inherit; }  ← inherits transparent → blank
+   ✅ CORRECT — always use explicit color on restored elements:
+        button > div > p { color: #2d3142 !important; }
    ─────────────────────────────────────────────────────────────────────────── */
 
 /* ── 2. Global Typography ────────────────────────────────────────────────── */
@@ -268,6 +281,17 @@ h3, .stMarkdown h3 {
 }
 p, li, .stMarkdown p { font-size: 0.9rem !important; line-height: 1.65 !important; color: var(--charcoal) !important; }
 .stCaption, small, caption { font-size: 0.78rem !important; color: var(--steel) !important; }
+
+/* ── 2-X  Material Icons universal neutralizer ───────────────────────────────
+   Permanently hides ALL stIconMaterial/stIconEmoji spans in the sidebar.
+   Uses display:none so whether the Material Icons webfont loads or not is
+   completely irrelevant — the element never appears.                         */
+section[data-testid="stSidebar"] [data-testid="stIconMaterial"],
+section[data-testid="stSidebar"] [data-testid="stIconEmoji"] {
+  display:   none !important;
+  font-size: 0 !important;
+  width:     0 !important;
+}
 
 /* ── 3. App Background ───────────────────────────────────────────────────── */
 .stApp, [data-testid="stApp"] {
@@ -323,10 +347,11 @@ div[data-testid="stExpanderDetails"] {
   border: 1px solid var(--sandal) !important;
   color: var(--charcoal) !important;
   font-weight: 600 !important;
-  font-size: 0.82rem !important;
-  padding: 0 var(--s12) !important;
+  font-size:   0.82rem !important;
+  line-height: 28px !important;         /* vertical centering within height:28px */
+  padding:     0 var(--s12) !important;
   margin-bottom: 0 !important;
-  transition: all 0.18s ease !important;
+  transition:  all 0.18s ease !important;
 }
 .stTabs [data-baseweb="tab"]:hover {
   background: var(--sandal-light) !important;
@@ -712,21 +737,21 @@ section[data-testid="stSidebar"] div[data-testid="stExpanderDetails"] {
   background: transparent !important;
 }
 
-/* 16-B  Summary row — triple protection */
+/* 16-B  Summary row — layout only. TEXT VISIBILITY CONTRACT compliant.
+   Icons are hidden by 16-C + the 2-X global neutralizer above.
+   REMOVED: font-size:0 and color:transparent (they destroyed label text). */
 section[data-testid="stSidebar"] details > summary,
 section[data-testid="stSidebar"] [data-testid="stExpander"] > summary {
-  font-size:   0 !important;          /* Layer 1 — collapses text nodes     */
-  color:       transparent !important;/* Layer 2 — hides any surviving text */
-  overflow:    hidden !important;     /* Layer 3 — clips layout escapes     */
-  display:     flex !important;
-  align-items: center !important;
-  gap:         0 !important;
-  padding:     6px 8px 4px 8px !important;
+  display:       flex !important;
+  align-items:   center !important;
+  gap:           0 !important;
+  padding:       6px 8px 4px 8px !important;
   border-radius: 4px !important;
-  cursor:      pointer !important;
-  list-style:  none !important;
-  min-height:  30px !important;
-  position:    relative !important;
+  cursor:        pointer !important;
+  list-style:    none !important;
+  min-height:    30px !important;
+  position:      relative !important;
+  overflow:      hidden !important;
 }
 /* Suppress the native <details> triangle marker */
 section[data-testid="stSidebar"] details > summary::-webkit-details-marker,
@@ -749,28 +774,27 @@ section[data-testid="stSidebar"] details > summary > i {
   overflow:   hidden !important;
 }
 
-/* 16-D  Restore the section label — covers both <p> (old Streamlit) and
-         <span> (current Streamlit). display:block overrides display:none from
-         16-C; icon spans with [data-testid] remain hidden (higher specificity). */
+/* 16-D  Section label — style only (no recovery needed; 16-B no longer zeroes).
+   Explicit color on every property — never use inherit.
+   Covers <p> (older Streamlit) and <span> (current Streamlit).            */
 section[data-testid="stSidebar"] details > summary p,
 section[data-testid="stSidebar"] details > summary span,
 section[data-testid="stSidebar"] [data-testid="stExpander"] > summary p,
 section[data-testid="stSidebar"] [data-testid="stExpander"] > summary span {
-  display:         block !important;   /* override display:none from 16-C for plain spans */
-  font-size:       0.7rem !important;
-  color:           #2d3748 !important;
-  font-weight:     700 !important;
-  text-transform:  uppercase !important;
-  letter-spacing:  0.07em !important;
-  margin:          0 !important;
-  padding:         0 !important;
-  line-height:     1.3 !important;
-  flex:            1 1 auto !important;
-  overflow:        visible !important;
-  text-overflow:   clip !important;
-  white-space:     normal !important;
-  word-break:      break-word !important;
-  max-width:       calc(100% - 20px) !important;
+  font-size:      0.7rem !important;
+  color:          #2d3748 !important;   /* explicit — never inherit */
+  font-weight:    700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.07em !important;
+  margin:         0 !important;
+  padding:        0 !important;
+  line-height:    1.3 !important;
+  flex:           1 1 auto !important;
+  overflow:       visible !important;
+  text-overflow:  clip !important;
+  white-space:    normal !important;
+  word-break:     break-word !important;
+  max-width:      calc(100% - 20px) !important;
 }
 
 /* 16-E  Custom expand › arrow — pure CSS, zero font dependency */
@@ -803,6 +827,7 @@ section[data-testid="stSidebar"] [data-testid="stExpander"] > summary:hover span
 /* 16-G  Nav page buttons: compact, overflow-safe */
 section[data-testid="stSidebar"] .stButton > button {
   font-size:        0.78rem !important;
+  color:            #2d3142 !important;   /* explicit base color — all children inherit */
   padding:          4px 8px !important;
   min-height:       32px !important;
   justify-content:  flex-start !important;
@@ -830,6 +855,56 @@ section[data-testid="stSidebar"] .stButton > button[kind="secondary"] {
 section[data-testid="stSidebar"] .stButton > button[kind="secondary"]:hover {
   background: #f2ece0 !important;
   color:      #1e3a5f !important;
+}
+
+/* ── 16-H  NAV BUTTON CLEAN RENDER — TEXT VISIBILITY CONTRACT COMPLIANT ──────
+   BUG FIXED: Previous Step 1 set color:transparent on button>div, then
+   Step 3 used color:inherit — inheriting transparent → blank labels.
+
+   CORRECT APPROACH: Target icon elements directly with display:none.
+   NEVER set font-size:0 / color:transparent on the button container.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* Kill icon elements by their own selectors (stable across Streamlit versions) */
+section[data-testid="stSidebar"] .stButton > button [data-testid="stIconMaterial"],
+section[data-testid="stSidebar"] .stButton > button [data-testid="stIconEmoji"],
+section[data-testid="stSidebar"] .stButton > button [data-testid="stExpanderToggleIcon"],
+section[data-testid="stSidebar"] .stButton > button svg,
+section[data-testid="stSidebar"] .stButton > button i {
+  display:   none !important;
+  font-size: 0 !important;
+  width:     0 !important;
+  max-width: 0 !important;
+  flex:      0 0 0 !important;
+}
+
+/* Label text — EXPLICIT color on every possible element Streamlit may use
+   (p, div, span — varies by Streamlit version).
+   NEVER use color:inherit here; transparent parent → invisible text.      */
+section[data-testid="stSidebar"] .stButton > button p,
+section[data-testid="stSidebar"] .stButton > button div,
+section[data-testid="stSidebar"] .stButton > button span,
+section[data-testid="stSidebar"] .stButton > button div > p,
+section[data-testid="stSidebar"] .stButton > button span > p {
+  display:       block !important;
+  visibility:    visible !important;
+  font-size:     0.78rem !important;
+  color:         #2d3142 !important;   /* EXPLICIT — never inherit from container */
+  white-space:   nowrap !important;
+  overflow:      hidden !important;
+  text-overflow: ellipsis !important;
+  width:         100% !important;
+  max-width:     100% !important;
+  margin:        0 !important;
+  padding:       0 !important;
+  line-height:   1.4 !important;
+  flex:          1 1 auto !important;
+}
+
+/* Selected (primary) page button: vastu green label */
+section[data-testid="stSidebar"] .stButton > button[kind="primary"] p {
+  color:       #2d6a4f !important;
+  font-weight: 600 !important;
 }
 
 /* ── 17. Zoho CRM Dashboard — Home Page Styles ───────────────────────────── */
@@ -1155,7 +1230,7 @@ section[data-testid="stSidebar"] div.row-widget.stRadio [role="radio"] {
 _NAV_SECTIONS = [
     ("💼  Sales & Revenue",    ["💼 Sales Workspace", "🎯 CRM & Tasks", "📅 Sales Calendar",
                                  "🧮 Pricing Calculator", "🚨 SPECIAL PRICE (SOS)", "📋 Source Directory"]),
-    ("🏭  Operations",         ["🏭 Feasibility", "📦 Import Cost Model", "🚢 Supply Chain", "🛠️ Data Manager"]),
+    ("🏭  Operations",         ["🏭 Feasibility", "📦 Import Cost Model", "🚢 Supply Chain", "🛠️ Data Manager", "📥 Contact Importer"]),
     ("💰  Finance",            ["💰 Financial Intelligence", "👷 Demand Analytics", "📤 Reports"]),
     ("🛡️  Legal & Compliance", ["🛡️ GST & Legal Monitor", "⚡ Risk Scoring"]),
     ("🎯  Strategy & Intel",   ["🔮 Price Prediction", "⏳ Past Predictions", "📝 Manual Price Entry",
@@ -1167,7 +1242,8 @@ _NAV_SECTIONS = [
                                  "📚 Knowledge Base", "🏛️ Business Intelligence"]),
     ("📰  Market Intel",       ["📰 News Intelligence", "🕵️ Competitor Intelligence",
                                  "🔭 Contractor OSINT", "🛣️ Road Budget & Demand",
-                                 "🏗️ Govt Data Hub", "⚓ Port Import Tracker", "📈 Demand Correlation"]),
+                                 "🏗️ Govt Data Hub", "⚓ Port Import Tracker", "📈 Demand Correlation",
+                                 "🗂️ India Procurement Directory"]),
 ]
 if 'selected_page' not in st.session_state:
     st.session_state['selected_page'] = '🏠 Home'
@@ -2929,8 +3005,12 @@ if selected_page == "👥 Ecosystem Management":
 # --- AI FALLBACK ENGINE (Multi-Provider: OpenAI→Ollama→HuggingFace→GPT4All→Claude) ---
 if selected_page == "🔄 AI Fallback Engine":
     _render_page_header("🔄 AI Fallback Engine", "Knowledge & AI")
-    from command_intel import ai_fallback_dashboard
-    ai_fallback_dashboard.render()
+    try:
+        from command_intel import ai_fallback_dashboard
+        ai_fallback_dashboard.render()
+    except Exception as _e:
+        st.error(f"⚠️ AI Fallback Engine failed to load: {_e}")
+        st.info("Try reloading the page. Ensure API keys are configured in ⚙️ Settings.")
 
 # --- AI DASHBOARD ASSISTANT (Full Data-Connected AI) ---
 elif selected_page == "🧠 AI Dashboard Assistant":
@@ -2941,19 +3021,27 @@ elif selected_page == "🧠 AI Dashboard Assistant":
         "contractors, demand, bugs, change log, forecasts. Role-based access control. "
         "Powered by Claude (Anthropic)."
     )
-    from command_intel import ai_dashboard_assistant
-    ai_dashboard_assistant.render()
+    try:
+        from command_intel import ai_dashboard_assistant
+        ai_dashboard_assistant.render()
+    except Exception as _e:
+        st.error(f"⚠️ AI Dashboard Assistant failed to load: {_e}")
+        st.info("Ensure your Anthropic API key is set in ⚙️ Settings.")
 
 # --- TAB 4: AI SALES ASSISTANT ---
 elif selected_page == "🤖 AI Assistant":
     _render_page_header("🤖 AI Assistant", "Knowledge & AI")
     st.header("🤖 AI Sales Training & Assistant")
     st.caption("Instant answers, objection handling, and training manual.")
-    
-    from sales_knowledge_base import (
-        get_chatbot_response, get_all_sections, get_section_questions,
-        get_telecalling_script, polish_email, generate_custom_reply
-    )
+
+    try:
+        from sales_knowledge_base import (
+            get_chatbot_response, get_all_sections, get_section_questions,
+            get_telecalling_script, polish_email, generate_custom_reply
+        )
+    except Exception as _e:
+        st.error(f"⚠️ AI Assistant knowledge base failed to load: {_e}")
+        st.stop()
     
     # Modes
     mode = st.radio("Select Mode", ["💡 Smart Q&A Search", "📚 Training Manual (Categorized)", "📞 Telecalling Scripts", "📧 AI Writing Helper"], horizontal=True)
@@ -3076,12 +3164,25 @@ if selected_page == "⚙️ Settings":
             st.text_input("Email SMTP Host", value="smtp.gmail.com")
             st.text_input("Email SMTP Port", value="587")
         with api_c2:
-            st.text_input("OpenAI / AI Key", type="password", help="Required for AI Script generation (Optional).")
+            try:
+                from ai_fallback_engine import get_api_key as _get_ai_key
+                _existing_openai_key = _get_ai_key("openai")
+            except Exception:
+                _existing_openai_key = ""
+            openai_key_input = st.text_input("OpenAI / AI Key", value=_existing_openai_key, type="password", help="Required for AI Script generation (Optional). Saved to ai_fallback_config.json.")
             st.text_input("Google Maps API Key", type="password", help="Required for accurate distance calculations.")
             st.text_input("Email Username/Login")
-            
+
         if st.button("💾 Save API Settings"):
-            st.toast("Settings Saved Securely (Mock)")
+            if openai_key_input.strip():
+                try:
+                    from ai_fallback_engine import save_api_key as _save_ai_key
+                    _save_ai_key("openai", openai_key_input.strip())
+                    st.toast("✅ OpenAI API key saved to ai_fallback_config.json")
+                except Exception as _ke:
+                    st.toast(f"⚠️ Could not save key: {_ke}")
+            else:
+                st.toast("Settings Saved (other settings are informational only)")
 
     st.divider()
     
@@ -3240,6 +3341,17 @@ if selected_page == "🛠️ Data Manager":
         
         st.markdown("---")
         st.caption("📍 **Drum Loading Points**: Mumbai serves South India. Kandla serves North India, Gujarat & parts of Maharashtra.")
+
+# --- CONTACT IMPORTER ---
+if selected_page == "📥 Contact Importer":
+    _render_page_header("📥 Contact Importer", "Operations")
+    st.info("ℹ️ **Department Head:** Sales / CRM Admin\n\n📌 Upload PDF, Excel, CSV, or images — AI auto-extracts contacts and fills CRM fields.")
+    try:
+        from command_intel import contact_importer
+        contact_importer.render()
+    except Exception as _e:
+        st.error(f"⚠️ Contact Importer failed to load: {_e}")
+        st.info("Try reloading the page. If this persists, check 🏥 System Health.")
 
 # --- TAB 7: SOURCE DIRECTORY ---
 if selected_page == "📋 Source Directory":
@@ -3420,10 +3532,14 @@ if selected_page == "📚 Knowledge Base":
     _render_page_header("📚 Knowledge Base", "Knowledge & AI")
     st.header("📚 Bitumen Sales Knowledge Base")
     st.caption("Training Manual, FAQs, and Process Guidelines")
-    
-    from sales_knowledge_base import (
-        TRAINING_SECTIONS, get_section_questions, get_knowledge_count
-    )
+
+    try:
+        from sales_knowledge_base import (
+            TRAINING_SECTIONS, get_section_questions, get_knowledge_count
+        )
+    except Exception as _e:
+        st.error(f"⚠️ Knowledge Base failed to load: {_e}")
+        st.stop()
     
     # Header Stats
     kb_col1, kb_col2 = st.columns([3, 1])
@@ -3629,115 +3745,228 @@ if selected_page == "📤 Reports":
 if selected_page == "🌐 API Dashboard":
     _render_page_header("🌐 API Dashboard", "Technology")
     display_badge("real-time")
-    api_dashboard.render()
+    try:
+        api_dashboard.render()
+    except Exception as _e:
+        st.error(f"⚠️ API Dashboard failed to load: {_e}")
+        st.info("Try reloading the page. If this persists, check 🏥 System Health.")
 elif selected_page == "🔗 API HUB":
     _render_page_header("🔗 API HUB", "Technology", badge="Connections & Keys")
-    api_hub_dashboard.render()
+    try:
+        api_hub_dashboard.render()
+    except Exception as _e:
+        st.error(f"⚠️ API HUB failed to load: {_e}")
+        st.info("Try reloading the page.")
 elif selected_page == "⚙️ Dev & System Activity":
     _render_page_header("⚙️ Dev & System Activity", "Technology")
     st.info("ℹ️ **Department Head:** CTO / Technology\n\n📌 Full audit trail of API changes, auto-repairs, errors, deployments, and system events. All timestamps in IST.")
+    try:
+        from command_intel import dev_activity
+        dev_activity.render()
+    except Exception as _e:
+        st.error(f"⚠️ Dev & System Activity failed to load: {_e}")
+        st.info("Try reloading the page.")
 elif selected_page == "📁 PDF Archive":
     _render_page_header("📁 PDF Archive", "Technology")
     st.info("ℹ️ **Department Head:** Admin / CTO\n\n📌 All PDFs generated from dashboard pages — download, view metadata, or delete. Auto-saved whenever you use ⬇ PDF on any page.")
-    from command_intel import pdf_archive
-    pdf_archive.render()
-    from command_intel import dev_activity
-    dev_activity.render()
+    try:
+        from command_intel import pdf_archive
+        pdf_archive.render()
+    except Exception as _e:
+        st.error(f"⚠️ PDF Archive failed to load: {_e}")
+        st.info("Try reloading the page.")
 elif selected_page == "🔮 Price Prediction":
     _render_page_header("🔮 Price Prediction", "Strategy & Intel")
     st.info("ℹ️ **UX Note:** Predicts global/local price trends focusing on the core 1st & 16th Indian cycles.")
-    price_prediction.render()
+    try:
+        price_prediction.render()
+    except Exception as _e:
+        st.error(f"⚠️ Price Prediction failed to load: {_e}")
+        st.info("Try reloading the page. If this persists, check 🏥 System Health.")
 elif selected_page == "⏳ Past Predictions":
     _render_page_header("⏳ Past Predictions", "Strategy & Intel")
     st.info("ℹ️ **UX Note:** 10-Year historical truth table validating the quantitative MLR-DL model performance.")
-    historical_revisions.render()
+    try:
+        historical_revisions.render()
+    except Exception as _e:
+        st.error(f"⚠️ Past Predictions failed to load: {_e}")
+        st.info("Try reloading the page.")
 elif selected_page == "📝 Manual Price Entry":
     _render_page_header("📝 Manual Price Entry", "Strategy & Intel")
     st.info("ℹ️ **UX Note:** B2B override grid for field CRM quotes and real-time market entries.")
-    manual_entry.render()
+    try:
+        manual_entry.render()
+    except Exception as _e:
+        st.error(f"⚠️ Manual Price Entry failed to load: {_e}")
+        st.info("Try reloading the page.")
 elif selected_page == "🔔 Change Notifications":
     _render_page_header("🔔 Change Notifications", "Technology")
     st.info("ℹ️ **UX Note:** Complete, immutable timeline log of every number change or API fallback occurrence.")
-    change_log.render()
+    try:
+        change_log.render()
+    except Exception as _e:
+        st.error(f"⚠️ Change Notifications failed to load: {_e}")
+        st.info("Try reloading the page.")
 elif selected_page == "🏥 System Health":
     _render_page_header("🏥 System Health", "Technology", badge="SRE v1.0")
-    sre_dashboard.render()
+    try:
+        sre_dashboard.render()
+    except Exception as _e:
+        st.error(f"⚠️ System Health failed to load: {_e}")
+        st.info("Try reloading the page.")
 elif selected_page == "🐞 Bug Tracker":
     _render_page_header("🐞 Bug Tracker", "Technology")
     st.info("ℹ️ **UX Note:** Health tracker for failed APIs, broken data models, and Dev-Ops diagnostics.")
-    bug_tracker.render()
+    try:
+        bug_tracker.render()
+    except Exception as _e:
+        st.error(f"⚠️ Bug Tracker failed to load: {_e}")
+        st.info("Try reloading the page.")
 elif selected_page == "📦 Import Cost Model":
     _render_page_header("📦 Import Cost Model", "Operations")
     st.info("ℹ️ **UX Note:** Shows granular breakdowns of import duties, logistics, and conversion costs from Port to Decanter.")
-    import_cost_model.render()
+    try:
+        import_cost_model.render()
+    except Exception as _e:
+        st.error(f"⚠️ Import Cost Model failed to load: {_e}")
+        st.info("Try reloading the page.")
 elif selected_page == "🚢 Supply Chain":
     _render_page_header("🚢 Supply Chain", "Operations")
     st.info("ℹ️ **UX Note:** Tracks voyage ships, transit times, and potential local stock availability constraints.")
-    supply_chain.render()
+    try:
+        supply_chain.render()
+    except Exception as _e:
+        st.error(f"⚠️ Supply Chain failed to load: {_e}")
+        st.info("Try reloading the page.")
 elif selected_page == "👷 Demand Analytics":
     _render_page_header("👷 Demand Analytics", "Finance")
     st.info("ℹ️ **UX Note:** Analyzes government and private contractor demand cycles based on infrastructure projects.")
-    demand_analytics.render()
+    try:
+        demand_analytics.render()
+    except Exception as _e:
+        st.error(f"⚠️ Demand Analytics failed to load: {_e}")
+        st.info("Try reloading the page.")
 elif selected_page == "💰 Financial Intelligence":
     _render_page_header("💰 Financial Intelligence", "Finance")
     st.info("ℹ️ **UX Note:** Provides insights on buyer credit, rolling capital management, and payment cycles.")
-    financial_intel.render()
+    try:
+        financial_intel.render()
+    except Exception as _e:
+        st.error(f"⚠️ Financial Intelligence failed to load: {_e}")
+        st.info("Try reloading the page.")
 elif selected_page == "🛡️ GST & Legal Monitor":
     _render_page_header("🛡️ GST & Legal Monitor", "Legal & Compliance")
     st.info("ℹ️ **UX Note:** Updates on regulatory changes, e-way bills, and compliance risk related to Bitumen sales.")
-    gst_legal_monitor.render()
+    try:
+        gst_legal_monitor.render()
+    except Exception as _e:
+        st.error(f"⚠️ GST & Legal Monitor failed to load: {_e}")
+        st.info("Try reloading the page.")
 elif selected_page == "⚡ Risk Scoring":
     _render_page_header("⚡ Risk Scoring", "Legal & Compliance")
     st.info("ℹ️ **UX Note:** Gives an AI-driven composite Risk Score (1-100) combining counterparty defaults and market volatility.")
-    risk_scoring.render()
+    try:
+        risk_scoring.render()
+    except Exception as _e:
+        st.error(f"⚠️ Risk Scoring failed to load: {_e}")
+        st.info("Try reloading the page.")
 elif selected_page == "🔔 Alert System":
     _render_page_header("🔔 Alert System", "Strategy & Intel")
     st.info("ℹ️ **UX Note:** Configurable notifications for price drops, supply shocks, and new opportunities.")
-    alert_system.render()
+    try:
+        alert_system.render()
+    except Exception as _e:
+        st.error(f"⚠️ Alert System failed to load: {_e}")
+        st.info("Try reloading the page.")
 elif selected_page == "🎯 Strategy Panel":
     _render_page_header("🎯 Strategy Panel", "Strategy & Intel")
     st.info("ℹ️ **UX Note:** High-level strategic synthesis and \"What-If\" scenarios for volume purchasing.")
-    strategy_panel.render()
+    try:
+        strategy_panel.render()
+    except Exception as _e:
+        st.error(f"⚠️ Strategy Panel failed to load: {_e}")
+        st.info("Try reloading the page.")
 elif selected_page == "🏛️ Business Intelligence":
     _render_page_header("🏛️ Business Intelligence", "Knowledge & AI")
     st.info("ℹ️ **Department Head:** All Departments\n\n📌 Complete guide for every dashboard tab — for employees, partners, investors, and auditors.")
-    from business_knowledge_base import render as biz_kb_render
-    biz_kb_render()
+    try:
+        from business_knowledge_base import render as biz_kb_render
+        biz_kb_render()
+    except Exception as _e:
+        st.error(f"⚠️ Business Intelligence failed to load: {_e}")
+        st.info("Try reloading the page.")
 elif selected_page == "📰 News Intelligence":
     _render_page_header("📰 News Intelligence", "Market Intel")
     st.info("ℹ️ **Department Head:** Strategy Director / Business Intelligence\n\n📌 Live news aggregator — 14 sources (RSS + API), auto-classified by keywords, impact-scored 0–100. Breaking alerts for score ≥ 80.")
-    from command_intel import news_dashboard as _nd
-    _nd.render()
+    try:
+        from command_intel import news_dashboard as _nd
+        _nd.render()
+    except Exception as _e:
+        st.error(f"⚠️ News Intelligence failed to load: {_e}")
+        st.info("Try reloading the page.")
 elif selected_page == "🕵️ Competitor Intelligence":
     _render_page_header("🕵️ Competitor Intelligence", "Market Intel")
     st.info("ℹ️ **Department Head:** Strategy Director / Sales Head\n\n📌 Daily forecasts from Multi Energy Enterprises (MEE, Mumbai) — cross-verified against IOCL/HPCL circulars, international bitumen FOB prices, India consumption/production stats, and industry news.")
-    import competitor_intelligence
-    competitor_intelligence.render()
+    try:
+        import competitor_intelligence
+        competitor_intelligence.render()
+    except Exception as _e:
+        st.error(f"⚠️ Competitor Intelligence failed to load: {_e}")
+        st.info("Try reloading the page.")
 elif selected_page == "🔭 Contractor OSINT":
     _render_page_header("🔭 Contractor OSINT", "Market Intel")
     st.info("ℹ️ **Department Head:** Sales Director / Business Development\n\n📌 Track road contractors — project awards, bitumen demand (MT), monthly heatmap, risk flags, CRM export. Last 6 months only.")
-    import contractor_osint
-    contractor_osint.render()
+    try:
+        import contractor_osint
+        contractor_osint.render()
+    except Exception as _e:
+        st.error(f"⚠️ Contractor OSINT failed to load: {_e}")
+        st.info("Try reloading the page.")
 elif selected_page == "🛣️ Road Budget & Demand":
     _render_page_header("🛣️ Road Budget & Demand", "Market Intel")
     st.info("ℹ️ **Department Head:** Strategy Director\n\n📌 India road budget analysis, state-wise bitumen demand forecast, and construction seasonality.")
-    from command_intel import road_budget_demand
-    road_budget_demand.render()
-
+    try:
+        from command_intel import road_budget_demand
+        road_budget_demand.render()
+    except Exception as _e:
+        st.error(f"⚠️ Road Budget & Demand failed to load: {_e}")
+        st.info("Try reloading the page.")
 elif selected_page == "🏗️ Govt Data Hub":
     _render_page_header("🏗️ Govt Data Hub", "Market Intel", badge="Phase 1 Live")
     st.info("ℹ️ **Department Head:** Strategy Director\n\n📌 Government & inter-governmental data feeds — NHAI highway progress, UN Comtrade HS 271320 imports, FX rates, PPAC reference. Excel Power Query templates included.")
-    govt_hub_dashboard.render()
-
+    try:
+        govt_hub_dashboard.render()
+    except Exception as _e:
+        st.error(f"⚠️ Govt Data Hub failed to load: {_e}")
+        st.info("Try reloading the page.")
 elif selected_page == "⚓ Port Import Tracker":
     _render_page_header("⚓ Port Import Tracker", "Market Intel")
     st.info("ℹ️ **Department Head:** Trade Analytics\n\n📌 Country-wise HS 271320 imports allocated to Indian ports with confidence scoring. Editable allocation rules via PORT MAPPING HUB.")
-    port_tracker_dashboard.render()
-
+    try:
+        port_tracker_dashboard.render()
+    except Exception as _e:
+        st.error(f"⚠️ Port Import Tracker failed to load: {_e}")
+        st.info("Try reloading the page.")
 elif selected_page == "📈 Demand Correlation":
     _render_page_header("📈 Demand Correlation", "Market Intel", badge="β Model")
     st.info("ℹ️ **Department Head:** Quantitative Strategy\n\n📌 Highway KM vs Bitumen Demand cross-correlation (Pearson, lag 0-12m) + OLS regression model. Auto-generated insights and divergence alerts.")
-    correlation_dashboard.render()
+    try:
+        correlation_dashboard.render()
+    except Exception as _e:
+        st.error(f"⚠️ Demand Correlation failed to load: {_e}")
+        st.info("Try reloading the page.")
+elif selected_page == "🗂️ India Procurement Directory":
+    _render_page_header("🗂️ India Procurement Directory", "Market Intel", badge="Phase 1")
+    st.info(
+        "ℹ️ Official contacts for all Central & State govt road/bitumen procurement bodies. "
+        "Phase 1: Central Ministries, NHAI Regional Offices, all State/UT PWD HQs, "
+        "and State Road Corporations. Sources: official govt websites only."
+    )
+    try:
+        directory_dashboard.render()
+    except Exception as _e:
+        st.error(f"⚠️ India Procurement Directory failed to load: {_e}")
+        st.info("Try reloading the page.")
 
 
 # ══════════════════════════════════════════════════════════════════════════════

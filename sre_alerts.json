@@ -1,32 +1,17 @@
 [
   {
-    "alert_id": "ALT-20260302-110406-8614",
+    "alert_id": "ALT-20260302-171453-E4EC",
     "severity": "P1",
-    "entity": "test_t04_110406",
-    "message": "test alert",
-    "what_happened": "test alert",
-    "where": "Test",
-    "why": "test",
-    "triggered_on_ist": "02-03-2026 11:04:06 IST",
-    "resolved_on_ist": "02-03-2026 11:04:06 IST",
-    "status": "Resolved",
+    "entity": "rest_countries_india",
+    "message": "API rest_countries_india degraded performance",
+    "what_happened": "API rest_countries_india degraded performance",
+    "where": "API Layer / rest_countries_india",
+    "why": "Latency 1117ms  Error rate 16.7%  ConsecFail 0",
+    "triggered_on_ist": "02-03-2026 17:14:53 IST",
+    "resolved_on_ist": null,
+    "status": "Open",
     "auto_fix_result": "",
-    "action_needed": "",
-    "details_json": "{\"entity\": \"test_t04_110406\", \"where\": \"Test\", \"why\": \"test\"}"
-  },
-  {
-    "alert_id": "ALT-20260302-110410-A8A1",
-    "severity": "P2",
-    "entity": "dedup_t12_110410",
-    "message": "first",
-    "what_happened": "first",
-    "where": "test",
-    "why": "test",
-    "triggered_on_ist": "02-03-2026 11:04:10 IST",
-    "resolved_on_ist": "02-03-2026 11:04:10 IST",
-    "status": "Resolved",
-    "auto_fix_result": "",
-    "action_needed": "",
-    "details_json": "{\"entity\": \"dedup_t12_110410\", \"where\": \"test\", \"why\": \"test\"}"
+    "action_needed": "Monitor latency, consider fallback if worsens",
+    "details_json": "{\"entity\": \"rest_countries_india\", \"where\": \"API Layer / rest_countries_india\", \"why\": \"Latency 1117ms  Error rate 16.7%  ConsecFail 0\"}"
   }
 ]

@@ -1,54 +1,38 @@
 {
-  "gold_xau": {
-    "timestamp": 1772423586.5845013,
-    "data": {
-      "current": 5277.89154566,
-      "history_7d": 5204.7001953125
-    },
-    "source": "Primary fetch"
-  },
-  "india_vix": {
-    "timestamp": 1772423586.2778132,
-    "data": {
-      "current": 24923.75,
-      "history_7d": 25571.25
-    },
-    "source": "Primary fetch"
-  },
   "weather_mumbai": {
-    "timestamp": 1772423596.682222,
+    "timestamp": 1772452728.3745096,
     "data": {
-      "current": 25.2,
-      "history_7d": 25.2
+      "current": 26.5,
+      "history_7d": 26.5
     },
     "source": "Primary fetch"
   },
   "weather_kandla": {
-    "timestamp": 1772423606.2011058,
+    "timestamp": 1772452729.2094355,
     "data": {
-      "current": 22.8,
-      "history_7d": 22.8
+      "current": 31.5,
+      "history_7d": 31.5
     },
     "source": "Primary fetch"
   },
   "weather_mangalore": {
-    "timestamp": 1772423608.8574865,
+    "timestamp": 1772452730.0841424,
     "data": {
-      "current": 27.2,
-      "history_7d": 27.2
+      "current": 28.3,
+      "history_7d": 28.3
     },
     "source": "Primary fetch"
   },
   "weather_delhi": {
-    "timestamp": 1772423610.755085,
+    "timestamp": 1772452730.960566,
     "data": {
-      "current": 21.0,
-      "history_7d": 21.0
+      "current": 28.6,
+      "history_7d": 28.6
     },
     "source": "Primary fetch"
   },
   "world_bank_india_gdp": {
-    "timestamp": 1772423613.0992522,
+    "timestamp": 1772452731.928295,
     "data": {
       "current": 6.49476552383821,
       "year": "2024",
@@ -57,7 +41,7 @@
     "source": "Primary fetch"
   },
   "world_bank_india_infra": {
-    "timestamp": 1772423615.3716297,
+    "timestamp": 1772452732.7525802,
     "data": {
       "current": 7.06298735847362,
       "year": "2024",
@@ -66,7 +50,7 @@
     "source": "Primary fetch"
   },
   "world_bank_cpi_india": {
-    "timestamp": 1772423617.7811937,
+    "timestamp": 1772452733.477923,
     "data": {
       "current": 4.95303550973656,
       "year": "2024",
@@ -75,37 +59,37 @@
     "source": "Primary fetch"
   },
   "opec_basket": {
-    "timestamp": 1772423619.6810057,
+    "timestamp": 1772452734.643707,
     "data": {
-      "current": 77.33000183105469,
+      "current": 77.73999786376953,
       "history_7d": 71.48999786376953
     },
     "source": "Primary fetch"
   },
   "shipping_freight": {
-    "timestamp": 1772423619.9676685,
-    "data": {
-      "current": 77.33000183105469,
-      "history_7d": 71.48999786376953
-    },
-    "source": "Primary fetch"
-  },
-  "nse_infrastructure": {
-    "timestamp": 1772423620.1083465,
+    "timestamp": 1772452734.9477177,
     "data": {
       "current": 12.069999694824219,
       "history_7d": 11.65999984741211
     },
     "source": "Primary fetch"
   },
-  "open_meteo_forecast_vadodara": {
-    "timestamp": 1772423620.2639554,
+  "nse_infrastructure": {
+    "timestamp": 1772452735.2205644,
     "data": {
-      "current": 35.6,
+      "current": 1288.9000244140625,
+      "history_7d": 1353.199951171875
+    },
+    "source": "Primary fetch"
+  },
+  "open_meteo_forecast_vadodara": {
+    "timestamp": 1772452735.5266469,
+    "data": {
+      "current": 35.8,
       "forecast_7d": [
         [
           "2026-03-02",
-          35.6,
+          35.8,
           0.0
         ],
         [
@@ -115,17 +99,17 @@
         ],
         [
           "2026-03-04",
-          38.9,
+          39.2,
           0.0
         ],
         [
           "2026-03-05",
-          39.0,
+          39.3,
           0.0
         ],
         [
           "2026-03-06",
-          39.0,
+          39.4,
           0.0
         ],
         [
@@ -143,7 +127,7 @@
     "source": "Primary fetch"
   },
   "govt_holiday_api": {
-    "timestamp": 1772423622.7698793,
+    "timestamp": 1772452736.500583,
     "data": {
       "current": 18,
       "holidays": [
@@ -224,7 +208,7 @@
     "source": "Primary fetch"
   },
   "rest_countries_india": {
-    "timestamp": 1772423622.8513677,
+    "timestamp": 1772452736.532775,
     "data": {
       "current": 1417492000,
       "name": "India",
@@ -238,9 +222,89 @@
     "source": "Primary fetch"
   },
   "current_time": {
-    "timestamp": 1772423628.8633041,
+    "timestamp": 1772452739.0011632,
     "data": {
-      "current": "09:23"
+      "current": "17:28"
+    },
+    "source": "Primary fetch"
+  },
+  "usdinr": {
+    "timestamp": 1772452724.1166668,
+    "data": {
+      "current": 91.20917467,
+      "history_7d": 91.04109954833984
+    },
+    "source": "Primary fetch"
+  },
+  "usdinr_frankfurter": {
+    "timestamp": 1772452724.7001262,
+    "data": {
+      "current": 91.08,
+      "history_7d": 91.08
+    },
+    "source": "Primary fetch"
+  },
+  "brent": {
+    "timestamp": 1772452725.65654,
+    "data": {
+      "current": 77.7300033569336,
+      "history_7d": 71.48999786376953
+    },
+    "source": "Primary fetch"
+  },
+  "wti": {
+    "timestamp": 1772452725.9304206,
+    "data": {
+      "current": 71.30999755859375,
+      "history_7d": 66.30999755859375
+    },
+    "source": "Primary fetch"
+  },
+  "natural_gas": {
+    "timestamp": 1772452726.1802857,
+    "data": {
+      "current": 2.946000099182129,
+      "history_7d": 2.984999895095825
+    },
+    "source": "Primary fetch"
+  },
+  "dxy": {
+    "timestamp": 1772452726.4839532,
+    "data": {
+      "current": 98.1969985961914,
+      "history_7d": 97.69999694824219
+    },
+    "source": "Primary fetch"
+  },
+  "nifty50": {
+    "timestamp": 1772452726.779312,
+    "data": {
+      "current": 24865.69921875,
+      "history_7d": 25571.25
+    },
+    "source": "Primary fetch"
+  },
+  "sensex": {
+    "timestamp": 1772452727.0517476,
+    "data": {
+      "current": 80238.8515625,
+      "history_7d": 82814.7109375
+    },
+    "source": "Primary fetch"
+  },
+  "india_vix": {
+    "timestamp": 1772452727.3436055,
+    "data": {
+      "current": 17.1299991607666,
+      "history_7d": 14.359999656677246
+    },
+    "source": "Primary fetch"
+  },
+  "gold_xau": {
+    "timestamp": 1772452727.6001396,
+    "data": {
+      "current": 5277.89154566,
+      "history_7d": 5204.7001953125
     },
     "source": "Primary fetch"
   }

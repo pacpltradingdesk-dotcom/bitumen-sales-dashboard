@@ -14,17 +14,19 @@ Bitumen Sales Training Manual. It is used for:
 # ============ KNOWLEDGE BASE STRUCTURE ============
 
 TRAINING_SECTIONS = {
-    "company": "Company Profile & Credibility",
-    "product": "Product Fundamentals",
-    "grades": "Bitumen Grades & Applications",
-    "pricing": "Pricing & Cost Structure",
-    "market": "Market Dynamics",
-    "territory": "Territory Logic & Product Selection",
-    "sales": "Sales Process & Customer Engagement",
-    "payment": "Payment Terms & Procedures",
-    "modified": "Modified Bitumen & Emulsions",
-    "logistics": "Logistics & Supply Chain",
-    "technical": "Technical & Consumption Metrics"
+    "company":    "Company Profile & Credibility",
+    "product":    "Product Fundamentals",
+    "grades":     "Bitumen Grades & Applications",
+    "pricing":    "Pricing & Cost Structure",
+    "market":     "Market Dynamics",
+    "territory":  "Territory Logic & Product Selection",
+    "sales":      "Sales Process & Customer Engagement",
+    "payment":    "Payment Terms & Procedures",
+    "modified":   "Modified Bitumen & Emulsions",
+    "logistics":  "Logistics & Supply Chain",
+    "technical":  "Technical & Consumption Metrics",
+    "fy26":       "FY 2025-26 Budget & Market",
+    "objections": "Sales Objection Handling",
 }
 
 # ============ COMPLETE Q&A KNOWLEDGE BASE ============
@@ -246,7 +248,167 @@ KNOWLEDGE_BASE = [
         "question": "How is Bitumen actually applied on roads?",
         "answer": "It is heated to 150-160°C to liquefy. It is then mixed with hot aggregates (stone/sand) in a Hot Mix Plant. This 'Hot Mix' is transported via dumpers, laid by a Paver finisher, and compacted by rollers before cooling.",
         "keywords": ["application", "how used", "mixing", "process", "road"]
-    }
+    },
+
+    # === SECTION 12: FY 2025-26 BUDGET & MARKET ===
+    {
+        "section": "fy26",
+        "question": "What is India's road infrastructure budget for FY 2025-26?",
+        "answer": "MORTH has allocated ₹11.11 lakh crore for road infrastructure in FY 2025-26 — the highest ever. PM GatiShakti targets 50 km/day highway construction. This directly drives bitumen demand with an estimated 8.5–10.5 million MT requirement nationally.",
+        "keywords": ["budget", "fy26", "fy2026", "morth", "infrastructure", "allocation", "11.11", "lakh crore"]
+    },
+    {
+        "section": "fy26",
+        "question": "What is the expected bitumen demand for FY 2025-26?",
+        "answer": "India's bitumen demand for FY 2025-26 is estimated at 8.5–10.5 million MT. Domestic production covers approximately 5 MT, leaving 4–5 MT to be imported. Peak demand months: October–March (post-monsoon construction window). Gujarat, Maharashtra, UP, and Rajasthan are the top-consuming states.",
+        "keywords": ["demand", "fy26", "2026", "million mt", "import gap", "consumption"]
+    },
+    {
+        "section": "fy26",
+        "question": "What is PM GatiShakti and how does it affect bitumen demand?",
+        "answer": "PM GatiShakti is a national master plan for multi-modal connectivity launched in 2021. It targets 50 km/day highway construction and integrates road, rail, port, and air connectivity. Higher highway construction pace directly increases bitumen offtake — every 1 km of 4-lane highway requires 140–160 MT of bitumen.",
+        "keywords": ["gatishakti", "gati shakti", "50 km", "highway", "nhai", "infrastructure plan"]
+    },
+    {
+        "section": "fy26",
+        "question": "Which states consume the most bitumen in India?",
+        "answer": "Top bitumen-consuming states: (1) Uttar Pradesh — largest road network, NHAI projects; (2) Maharashtra — Mumbai-Nagpur, coastal highway; (3) Rajasthan — large highway projects, state PWD; (4) Gujarat — port connectivity, industrial corridors; (5) Madhya Pradesh — Bharatmala Phase 1 projects. Gujarat is our primary territory and a top-3 consumer.",
+        "keywords": ["which state", "top state", "highest demand", "gujarat", "maharashtra", "up", "rajasthan"]
+    },
+    {
+        "section": "fy26",
+        "question": "What is the NHAI budget for FY 2025-26?",
+        "answer": "NHAI has been allocated approximately ₹1.68 lakh crore for highway construction in FY 2025-26. NHAI is targeting construction of 12,000+ km of national highways. This is the single largest driver of bulk bitumen demand from institutional buyers.",
+        "keywords": ["nhai", "national highway", "budget", "highway construction", "fy26"]
+    },
+
+    # === SECTION 13: SALES OBJECTION HANDLING ===
+    {
+        "section": "objections",
+        "question": "Customer says: Your price is too high compared to local supplier.",
+        "answer": "Response: 'Sir, I understand the comparison. But let me show you the full cost picture. Local suppliers often quote low but hide: (1) GST ITC mismatch risk — if supplier is non-compliant, you lose 18% credit; (2) Quality risk — substandard VG grade causes road failure, leading to penalty deductions; (3) No e-invoice — your audit risk increases. Our price includes IS 73-certified material, e-invoice, full ITC chain, and on-time delivery. The net cost to you is actually lower when you factor in these protections.'",
+        "keywords": ["price too high", "expensive", "local supplier cheaper", "competitor cheaper", "objection", "cost"]
+    },
+    {
+        "section": "objections",
+        "question": "Customer says: I will buy directly from IOCL.",
+        "answer": "Response: 'IOCL direct supply is excellent for large captive consumers with pre-approved lifting schedules. For project-based contractors, IOCL requires: (1) Pre-registration and credit approval (45–90 days); (2) Full advance payment or bank guarantee; (3) Fixed delivery windows — no spot flexibility; (4) Minimum lifting quantity per month. We offer same-day confirmation, 30-day credit facility, flexible quantity from 10 MT, and custom delivery scheduling — critical for project cash flow management.'",
+        "keywords": ["iocl direct", "buy direct", "refinery direct", "iocl", "bpcl direct", "objection"]
+    },
+    {
+        "section": "objections",
+        "question": "Customer says: Import bitumen quality is risky.",
+        "answer": "Response: 'This is a valid concern. Our import supply is quality-protected at three levels: (1) Origin lab test — COA (Certificate of Analysis) from Iraqi refinery before loading; (2) Port QC — independent inspection at Kandla/Mundra by accredited lab (Bureau Veritas / SGS); (3) Pre-delivery test — we can arrange BIS-accredited lab report at your site. All material meets IS 73:2013 specification for VG-30. We provide full documentation trail.'",
+        "keywords": ["import quality", "risky", "bad quality", "is 73", "certificate", "objection", "quality concern"]
+    },
+    {
+        "section": "objections",
+        "question": "Customer says: I will wait for bitumen prices to fall.",
+        "answer": "Response: 'Bitumen prices are linked to Brent crude and USD/INR — two factors that are currently moving against a price drop. Our 24-month forecast model (1st & 16th cycle) shows prices stable-to-upward for the next 3–4 months. Additionally, waiting creates project delay risk: for every 10 days of delay in bitumen arrival, a typical highway project loses 0.8–1.2 km of laying opportunity. Shall I show you the forecast data?'",
+        "keywords": ["wait", "price will fall", "prices drop", "hold off", "delay purchase", "objection"]
+    },
+    {
+        "section": "objections",
+        "question": "Customer says: Other dealers give 60-day credit.",
+        "answer": "Response: 'We understand credit terms are important. Our standard terms are 30 days for established accounts. For 45+ day credit, we require: (1) 6-month purchase history; (2) Credit limit approval by our Finance team (usually 3–5 days); (3) PDC or bank guarantee. The dealers offering 60-day credit typically build a 2–3% higher margin into their price to offset the risk. Net-net, you may pay more. Shall we calculate the effective cost comparison?'",
+        "keywords": ["60 day credit", "45 day", "payment terms", "credit period", "other dealers", "objection"]
+    },
+    {
+        "section": "objections",
+        "question": "Customer says: Why 100% advance payment?",
+        "answer": "Response: 'For first-time orders or new accounts, 100% advance protects both parties — it confirms your order is firm and allows us to reserve allocation from the refinery/port stock. For repeat customers with good payment history, we move to 50% advance + 50% on delivery, and eventually to credit terms. Think of it as building a banking relationship — creditworthiness is established through transaction history. We want to grow with you.'",
+        "keywords": ["advance payment", "100% advance", "why advance", "upfront payment", "prepayment", "objection"]
+    },
+
+    # === SECTION 14: ADVANCED PRICING ===
+    {
+        "section": "pricing",
+        "question": "How is import parity price calculated for bitumen?",
+        "answer": "Import parity = FOB price (Iraq/UAE, USD/MT) × USD/INR exchange rate + Ocean freight ($30–45/MT) × USD/INR + Insurance (0.5% of CIF value) + Customs duty (2.5% of CIF) + Port charges ₹75–150/MT + GST 18% of (CIF + Customs + Port). At Brent ~$75/bbl, FOB Iraq bitumen is approximately $380–400/MT. Typical landed cost at Kandla: ₹47,000–49,500/MT before dealer margin.",
+        "keywords": ["import parity", "landed cost", "how calculated", "fob", "cif", "customs duty", "formula"]
+    },
+    {
+        "section": "pricing",
+        "question": "How does Brent crude price affect Indian bitumen price?",
+        "answer": "Every $1 increase in Brent crude price increases Indian bitumen price by approximately ₹100–120/MT. This is because: (1) Bitumen feedstock cost is directly linked to crude; (2) PSU refineries revise prices to maintain margins; (3) Import parity recalculates with new FOB price. Example: Brent moves from $70 to $75 (+$5) → bitumen price rises by ₹500–600/MT at PSU level and ₹600–700/MT for import material (additional FX exposure).",
+        "keywords": ["brent effect", "crude price impact", "how crude affects", "brent to bitumen", "price calculation"]
+    },
+    {
+        "section": "pricing",
+        "question": "How does USD/INR exchange rate affect bitumen prices?",
+        "answer": "Every ₹1 depreciation in USD/INR increases imported bitumen landed cost by approximately ₹75–90/MT. Example: USD/INR moves from 84 to 85 (₹1 weaker) → import cost rises ₹380 × 1 = ₹380/MT at FOB level, plus freight escalation ≈ ₹35/MT × 1 → total impact ~₹415/MT on CIF, after adding duties/GST ≈ ₹75–90/MT net impact on final price. PSU prices are less directly affected but follow import parity trend.",
+        "keywords": ["usd inr", "exchange rate", "rupee depreciation", "forex effect", "dollar rate impact"]
+    },
+    {
+        "section": "pricing",
+        "question": "What is decanting and when is it cheaper than buying bulk bitumen?",
+        "answer": "Decanting is the process of converting drum bitumen into bulk liquid form using a decanter machine (steam-heated tank). It is cheaper than bulk when: (1) Destination is far from a bulk terminal (>600 km); (2) Order quantity is small (<200 MT — below minimum bulk tanker load); (3) Site has no bulk storage facility. Typical decanting cost: ₹450–600/MT conversion + drum price premium of ₹2,000–3,500/MT over bulk. It becomes viable when bulk transport cost exceeds drum + decanting cost.",
+        "keywords": ["decanting", "decanter", "drum to bulk", "when cheaper", "drum conversion", "bulk vs drum"]
+    },
+    {
+        "section": "pricing",
+        "question": "What is the 1st and 16th pricing cycle for bitumen?",
+        "answer": "PSU refineries (IOCL, BPCL, HPCL) revise bitumen prices on the 1st and 16th of every month, creating 24 pricing events per year. Notification is issued 2–3 days before effective date. Import parity players adjust simultaneously. Key implication for sales: (1) If price is expected to rise on 1st, push customers to book before month-end; (2) If prices fall on 16th, offer post-revision pricing for future deliveries; (3) Our dashboard's price prediction shows the next 24 months of 1st/16th forecasts.",
+        "keywords": ["1st 16th", "pricing cycle", "revision cycle", "monthly revision", "when prices change"]
+    },
+
+    # === SECTION 15: TECHNICAL DEPTH ===
+    {
+        "section": "technical",
+        "question": "What is PMB (Polymer Modified Bitumen) and when is it used?",
+        "answer": "PMB is VG-40 base bitumen modified with SBS (Styrene Butadiene Styrene) or EVA polymer at 3–4% dosage. Benefits: (1) Higher softening point → better rutting resistance at high temperatures; (2) Lower ductility at low temperatures → better crack resistance; (3) Extended road life (2–3× vs standard VG-30). Required by IRC SP:53 for: highways with >10 mSA traffic loading, bus depots, toll plazas, bridge deck waterproofing. Price premium: ₹8,000–12,000/MT over VG-30.",
+        "keywords": ["pmb", "polymer modified", "sbs", "eva", "modified bitumen", "rutting", "when use pmb"]
+    },
+    {
+        "section": "technical",
+        "question": "How much bitumen is needed per kilometre of road?",
+        "answer": "Approximate consumption per km: (1) 4-lane highway (7m wide, 50mm thickness DBM + 25mm BC): 140–160 MT/km; (2) 2-lane road (3.5m wide, 40mm thickness): 55–70 MT/km; (3) Urban road (surface dressing, 10mm chip): 8–12 MT/km; (4) Pothole repair / patch work: 0.5–2 MT/km. Actual consumption varies by mix design, traffic loading, and compaction efficiency. Use these for quick project demand estimation.",
+        "keywords": ["bitumen per km", "consumption per km", "how much bitumen", "quantity per km", "mt per km", "highway consumption"]
+    },
+    {
+        "section": "technical",
+        "question": "What is the difference between VG-30 and VG-40?",
+        "answer": "VG-30 (Viscosity Grade 30): Kinematic viscosity 2400–3600 cSt at 60°C. Used for: normal traffic roads, city roads, feeder roads, rural highways. Most common grade in India (~70% of market). VG-40 (Viscosity Grade 40): Kinematic viscosity 3200–4800 cSt at 60°C. Stiffer, higher softening point. Used for: heavy traffic highways (>10 mSA), bus terminals, urban arterials in hot climates. VG-40 premium: ₹1,500–2,500/MT over VG-30. Recommendation: Use VG-30 as default; upgrade to VG-40 for heavy commercial vehicle routes.",
+        "keywords": ["vg30 vs vg40", "difference vg30 vg40", "which grade", "vg40 uses", "viscosity grade"]
+    },
+    {
+        "section": "technical",
+        "question": "What is CRMB (Crumb Rubber Modified Bitumen)?",
+        "answer": "CRMB is bitumen modified with crumb rubber from waste tyres at 15–20% dosage. Mandated by IRC SP:107 for surface course on National Highways since 2018. Benefits: (1) Improved elasticity and fatigue resistance; (2) Reduces road noise; (3) Environmentally friendly — uses waste tyres. Grades: CRMB-50, CRMB-55, CRMB-60 (softening point). Price: ₹5,000–8,000/MT premium over VG-30. Note: Mandated for NHS in India; many state PWDs are also adopting it.",
+        "keywords": ["crmb", "crumb rubber", "rubber modified", "waste tyre", "crmb 55", "crmb 60", "irc 107"]
+    },
+    {
+        "section": "technical",
+        "question": "How do you read a bitumen test report (COA)?",
+        "answer": "Key parameters in a bitumen COA (Certificate of Analysis): (1) Penetration at 25°C (dmm) — VG-30 range: not specified (consistency grade); (2) Softening Point (°C) — VG-30 minimum: 47°C; higher is better for hot climates; (3) Viscosity at 60°C (Poise) — VG-30: 2400–3600 Poise; (4) Ductility at 27°C (cm) — minimum 75 cm; (5) Flash Point (°C) — minimum 220°C (safety); (6) Specific Gravity — ~1.01–1.05. If softening point < 47°C or ductility < 75 cm, the batch fails IS 73:2013 spec.",
+        "keywords": ["test report", "coa", "certificate of analysis", "penetration", "softening point", "viscosity", "ductility", "is 73"]
+    },
+
+    # === SECTION 16: TERRITORY & LOGISTICS ===
+    {
+        "section": "territory",
+        "question": "Which PSU refinery serves Gujarat and Rajasthan?",
+        "answer": "Primary: IOCL Koyali (Vadodara, Gujarat) — closest to our HQ, best logistics for Central/North Gujarat. Secondary: IOCL Mathura (UP) — serves North Rajasthan, Haryana. BPCL Mumbai (Mahul) — serves South Gujarat, Surat corridor. For import: Kandla Port (Kutch) and Mundra Port (Kutch) serve all of Gujarat and Rajasthan with competitive landed costs. PPS Anantams is positioned optimally near IOCL Koyali — shortest supply chain for Gujarat buyers.",
+        "keywords": ["gujarat refinery", "rajasthan refinery", "which refinery", "iocl koyali", "territory", "state refinery"]
+    },
+    {
+        "section": "territory",
+        "question": "Which ports handle bitumen imports for South India?",
+        "answer": "South India import ports: (1) Ennore (Chennai) — Tamil Nadu, Andhra Pradesh; (2) Vizag (Visakhapatnam) — Andhra Pradesh, Odisha; (3) Mangalore (MRPL terminal) — Karnataka, Kerala. West coast: (4) Kandla — Gujarat, Rajasthan; (5) Mundra — Gujarat, MP; (6) JNPT (Nhava Sheva) — Maharashtra, South India secondary. East coast: (7) Paradip — Odisha, WB; (8) Haldia — West Bengal, Bihar.",
+        "keywords": ["south india ports", "import port", "ennore", "vizag", "mangalore", "which port", "south india bitumen"]
+    },
+    {
+        "section": "territory",
+        "question": "When to recommend drum bitumen vs bulk bitumen to a customer?",
+        "answer": "Recommend DRUMS when: (1) Order < 100 MT — below minimum bulk tanker capacity; (2) Customer site has no bulk storage/decanting facility; (3) Remote location (>700 km from port/refinery) where bulk tanker logistics are complex; (4) Customer needs multiple small deliveries spread over months. Recommend BULK when: (1) Order > 200 MT at one delivery; (2) Customer has storage tank or decanter; (3) Customer near major city or port. Drum premium: ₹2,000–3,500/MT — if decanting cost < this, bulk wins.",
+        "keywords": ["drum vs bulk", "when drum", "drum supply", "bulk supply", "recommend drum", "small order"]
+    },
+    {
+        "section": "territory",
+        "question": "How does distance affect the PSU vs import feasibility decision?",
+        "answer": "Rule of thumb: (1) Within 400 km of a PSU refinery → PSU supply is cheaper (lower transport cost offsets PSU premium); (2) 400–700 km → depends on specific refinery and port prices — use our Feasibility page for exact comparison; (3) > 700 km from any PSU + within 300 km of a port → import is usually cheaper. Gujarat is unique: near both IOCL Koyali AND Kandla/Mundra ports, creating strong competition. Use the dashboard's Feasibility page to enter exact destination and get real-time rank comparison.",
+        "keywords": ["distance feasibility", "psu vs import", "when import cheaper", "when psu cheaper", "feasibility", "break even distance"]
+    },
 ]
 
 # ============ CHATBOT FUNCTIONS ============

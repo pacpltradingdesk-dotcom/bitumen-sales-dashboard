@@ -38,5 +38,3005 @@
     "rain_mm": 0.0,
     "humidity": 84,
     "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 11:26:42 IST",
+    "location": "Mumbai",
+    "temp": 26.0,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 11:26:43 IST",
+    "location": "Kandla",
+    "temp": 28.2,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 11:26:43 IST",
+    "location": "Mangalore",
+    "temp": 27.6,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 11:26:43 IST",
+    "location": "Delhi",
+    "temp": 25.9,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 11:26:43 IST",
+    "location": "Vadodara",
+    "temp": 31.2,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 11:42:29 IST",
+    "location": "Mumbai",
+    "temp": 26.1,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 11:42:29 IST",
+    "location": "Kandla",
+    "temp": 28.7,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 11:42:29 IST",
+    "location": "Mangalore",
+    "temp": 27.6,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 11:42:29 IST",
+    "location": "Delhi",
+    "temp": 26.4,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 11:42:30 IST",
+    "location": "Vadodara",
+    "temp": 31.7,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 11:48:14 IST",
+    "location": "Mumbai",
+    "temp": 26.1,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 11:48:15 IST",
+    "location": "Kandla",
+    "temp": 29.2,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 11:48:15 IST",
+    "location": "Mangalore",
+    "temp": 27.6,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 11:48:15 IST",
+    "location": "Delhi",
+    "temp": 26.9,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 11:48:15 IST",
+    "location": "Vadodara",
+    "temp": 32.2,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:07:45 IST",
+    "location": "Mumbai",
+    "temp": 26.1,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:07:45 IST",
+    "location": "Kandla",
+    "temp": 29.6,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:07:46 IST",
+    "location": "Mangalore",
+    "temp": 27.7,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:07:46 IST",
+    "location": "Delhi",
+    "temp": 27.4,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:07:46 IST",
+    "location": "Vadodara",
+    "temp": 32.7,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:26:49 IST",
+    "location": "Mumbai",
+    "temp": 26.1,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:26:49 IST",
+    "location": "Kandla",
+    "temp": 30.0,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:26:49 IST",
+    "location": "Mangalore",
+    "temp": 27.7,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:26:49 IST",
+    "location": "Delhi",
+    "temp": 27.8,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:26:49 IST",
+    "location": "Vadodara",
+    "temp": 33.2,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:36:34 IST",
+    "location": "Mumbai",
+    "temp": 26.1,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:36:34 IST",
+    "location": "Kandla",
+    "temp": 30.2,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:36:34 IST",
+    "location": "Mangalore",
+    "temp": 27.7,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:36:34 IST",
+    "location": "Delhi",
+    "temp": 28.1,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:36:34 IST",
+    "location": "Vadodara",
+    "temp": 33.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:42:34 IST",
+    "location": "Mumbai",
+    "temp": 26.1,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:42:34 IST",
+    "location": "Kandla",
+    "temp": 30.2,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:42:35 IST",
+    "location": "Mangalore",
+    "temp": 27.7,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:42:35 IST",
+    "location": "Delhi",
+    "temp": 28.1,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:42:35 IST",
+    "location": "Vadodara",
+    "temp": 33.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:46:38 IST",
+    "location": "Mumbai",
+    "temp": 26.1,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:46:38 IST",
+    "location": "Kandla",
+    "temp": 30.3,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:46:39 IST",
+    "location": "Mangalore",
+    "temp": 27.7,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:46:39 IST",
+    "location": "Delhi",
+    "temp": 28.4,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:46:39 IST",
+    "location": "Vadodara",
+    "temp": 33.9,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:48:19 IST",
+    "location": "Mumbai",
+    "temp": 26.1,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:48:19 IST",
+    "location": "Kandla",
+    "temp": 30.3,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:48:19 IST",
+    "location": "Mangalore",
+    "temp": 27.7,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:48:19 IST",
+    "location": "Delhi",
+    "temp": 28.4,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:48:20 IST",
+    "location": "Vadodara",
+    "temp": 33.9,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:53:56 IST",
+    "location": "Mumbai",
+    "temp": 26.1,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:53:56 IST",
+    "location": "Kandla",
+    "temp": 30.3,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:53:56 IST",
+    "location": "Mangalore",
+    "temp": 27.7,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:53:57 IST",
+    "location": "Delhi",
+    "temp": 28.4,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 12:53:57 IST",
+    "location": "Vadodara",
+    "temp": 33.9,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:07:55 IST",
+    "location": "Mumbai",
+    "temp": 26.2,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:07:55 IST",
+    "location": "Kandla",
+    "temp": 30.3,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:07:56 IST",
+    "location": "Mangalore",
+    "temp": 27.8,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:07:56 IST",
+    "location": "Delhi",
+    "temp": 28.7,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:07:56 IST",
+    "location": "Vadodara",
+    "temp": 34.2,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:23:43 IST",
+    "location": "Mumbai",
+    "temp": 26.2,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:23:43 IST",
+    "location": "Kandla",
+    "temp": 30.3,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:23:43 IST",
+    "location": "Mangalore",
+    "temp": 27.8,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:23:43 IST",
+    "location": "Delhi",
+    "temp": 28.9,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:23:44 IST",
+    "location": "Vadodara",
+    "temp": 34.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:26:55 IST",
+    "location": "Mumbai",
+    "temp": 26.2,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:26:55 IST",
+    "location": "Kandla",
+    "temp": 30.3,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:26:56 IST",
+    "location": "Mangalore",
+    "temp": 27.8,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:26:56 IST",
+    "location": "Delhi",
+    "temp": 28.9,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:26:56 IST",
+    "location": "Vadodara",
+    "temp": 34.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:35:01 IST",
+    "location": "Mumbai",
+    "temp": 26.2,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:35:01 IST",
+    "location": "Kandla",
+    "temp": 30.3,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:35:01 IST",
+    "location": "Mangalore",
+    "temp": 27.9,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:35:01 IST",
+    "location": "Delhi",
+    "temp": 29.0,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:35:02 IST",
+    "location": "Vadodara",
+    "temp": 34.7,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:36:42 IST",
+    "location": "Mumbai",
+    "temp": 26.2,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:36:42 IST",
+    "location": "Kandla",
+    "temp": 30.3,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:36:42 IST",
+    "location": "Mangalore",
+    "temp": 27.9,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:36:42 IST",
+    "location": "Delhi",
+    "temp": 29.0,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:36:42 IST",
+    "location": "Vadodara",
+    "temp": 34.7,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:40:08 IST",
+    "location": "Mumbai",
+    "temp": 26.2,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:40:09 IST",
+    "location": "Kandla",
+    "temp": 30.3,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:40:10 IST",
+    "location": "Mangalore",
+    "temp": 27.9,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:40:10 IST",
+    "location": "Delhi",
+    "temp": 29.0,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:40:11 IST",
+    "location": "Vadodara",
+    "temp": 34.7,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:42:40 IST",
+    "location": "Mumbai",
+    "temp": 26.2,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:42:40 IST",
+    "location": "Kandla",
+    "temp": 30.3,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:42:40 IST",
+    "location": "Mangalore",
+    "temp": 27.9,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:42:40 IST",
+    "location": "Delhi",
+    "temp": 29.0,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:42:40 IST",
+    "location": "Vadodara",
+    "temp": 34.7,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:46:45 IST",
+    "location": "Mumbai",
+    "temp": 26.3,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:46:45 IST",
+    "location": "Kandla",
+    "temp": 30.3,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:46:45 IST",
+    "location": "Mangalore",
+    "temp": 27.9,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:46:46 IST",
+    "location": "Delhi",
+    "temp": 29.1,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:46:46 IST",
+    "location": "Vadodara",
+    "temp": 35.0,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:48:24 IST",
+    "location": "Mumbai",
+    "temp": 26.3,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:48:24 IST",
+    "location": "Kandla",
+    "temp": 30.3,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:48:24 IST",
+    "location": "Mangalore",
+    "temp": 27.9,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:48:24 IST",
+    "location": "Delhi",
+    "temp": 29.1,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:48:25 IST",
+    "location": "Vadodara",
+    "temp": 35.0,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:54:06 IST",
+    "location": "Mumbai",
+    "temp": 26.3,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:54:06 IST",
+    "location": "Kandla",
+    "temp": 30.3,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:54:06 IST",
+    "location": "Mangalore",
+    "temp": 27.9,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:54:06 IST",
+    "location": "Delhi",
+    "temp": 29.1,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 13:54:06 IST",
+    "location": "Vadodara",
+    "temp": 35.0,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:08:05 IST",
+    "location": "Mumbai",
+    "temp": 26.3,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:08:05 IST",
+    "location": "Kandla",
+    "temp": 30.3,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:08:05 IST",
+    "location": "Mangalore",
+    "temp": 28.0,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:08:05 IST",
+    "location": "Delhi",
+    "temp": 29.2,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:08:05 IST",
+    "location": "Vadodara",
+    "temp": 35.2,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:16:41 IST",
+    "location": "Mumbai",
+    "temp": 26.3,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:16:41 IST",
+    "location": "Kandla",
+    "temp": 30.4,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:16:42 IST",
+    "location": "Mangalore",
+    "temp": 28.0,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:16:42 IST",
+    "location": "Delhi",
+    "temp": 29.3,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:16:42 IST",
+    "location": "Vadodara",
+    "temp": 35.3,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:16:46 IST",
+    "location": "Mumbai",
+    "temp": 26.3,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:16:46 IST",
+    "location": "Kandla",
+    "temp": 30.4,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:16:46 IST",
+    "location": "Mangalore",
+    "temp": 28.0,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:16:47 IST",
+    "location": "Delhi",
+    "temp": 29.3,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:16:47 IST",
+    "location": "Vadodara",
+    "temp": 35.3,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:16:52 IST",
+    "location": "Mumbai",
+    "temp": 26.3,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:16:52 IST",
+    "location": "Kandla",
+    "temp": 30.4,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:16:53 IST",
+    "location": "Mangalore",
+    "temp": 28.0,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:16:53 IST",
+    "location": "Delhi",
+    "temp": 29.3,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:16:53 IST",
+    "location": "Vadodara",
+    "temp": 35.3,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:17:01 IST",
+    "location": "Mumbai",
+    "temp": 26.3,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:17:01 IST",
+    "location": "Kandla",
+    "temp": 30.4,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:17:01 IST",
+    "location": "Mangalore",
+    "temp": 28.0,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:17:01 IST",
+    "location": "Delhi",
+    "temp": 29.3,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:17:02 IST",
+    "location": "Vadodara",
+    "temp": 35.3,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:23:44 IST",
+    "location": "Mumbai",
+    "temp": 26.3,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:23:44 IST",
+    "location": "Kandla",
+    "temp": 30.4,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:23:44 IST",
+    "location": "Mangalore",
+    "temp": 28.0,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:23:44 IST",
+    "location": "Delhi",
+    "temp": 29.3,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:23:44 IST",
+    "location": "Vadodara",
+    "temp": 35.3,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:23:54 IST",
+    "location": "Mumbai",
+    "temp": 26.3,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:23:54 IST",
+    "location": "Kandla",
+    "temp": 30.4,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:23:54 IST",
+    "location": "Mangalore",
+    "temp": 28.0,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:23:54 IST",
+    "location": "Delhi",
+    "temp": 29.3,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:23:55 IST",
+    "location": "Vadodara",
+    "temp": 35.3,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:27:02 IST",
+    "location": "Mumbai",
+    "temp": 26.3,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:27:02 IST",
+    "location": "Kandla",
+    "temp": 30.4,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:27:03 IST",
+    "location": "Mangalore",
+    "temp": 28.0,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:27:03 IST",
+    "location": "Delhi",
+    "temp": 29.3,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:27:03 IST",
+    "location": "Vadodara",
+    "temp": 35.3,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:35:11 IST",
+    "location": "Mumbai",
+    "temp": 26.4,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:35:11 IST",
+    "location": "Kandla",
+    "temp": 30.4,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:35:11 IST",
+    "location": "Mangalore",
+    "temp": 28.0,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:35:11 IST",
+    "location": "Delhi",
+    "temp": 29.3,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:35:12 IST",
+    "location": "Vadodara",
+    "temp": 35.4,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:36:47 IST",
+    "location": "Mumbai",
+    "temp": 26.4,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:36:47 IST",
+    "location": "Kandla",
+    "temp": 30.4,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:36:47 IST",
+    "location": "Mangalore",
+    "temp": 28.0,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:36:48 IST",
+    "location": "Delhi",
+    "temp": 29.3,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:36:48 IST",
+    "location": "Vadodara",
+    "temp": 35.4,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:40:19 IST",
+    "location": "Mumbai",
+    "temp": 26.4,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:40:19 IST",
+    "location": "Kandla",
+    "temp": 30.4,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:40:19 IST",
+    "location": "Mangalore",
+    "temp": 28.0,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:40:19 IST",
+    "location": "Delhi",
+    "temp": 29.3,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:40:19 IST",
+    "location": "Vadodara",
+    "temp": 35.4,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:42:45 IST",
+    "location": "Mumbai",
+    "temp": 26.4,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:42:45 IST",
+    "location": "Kandla",
+    "temp": 30.4,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:42:46 IST",
+    "location": "Mangalore",
+    "temp": 28.0,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:42:46 IST",
+    "location": "Delhi",
+    "temp": 29.3,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:42:46 IST",
+    "location": "Vadodara",
+    "temp": 35.4,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:48:25 IST",
+    "location": "Mumbai",
+    "temp": 26.4,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:48:26 IST",
+    "location": "Kandla",
+    "temp": 30.6,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:48:26 IST",
+    "location": "Mangalore",
+    "temp": 28.1,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:48:26 IST",
+    "location": "Delhi",
+    "temp": 29.3,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:48:26 IST",
+    "location": "Vadodara",
+    "temp": 35.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:48:31 IST",
+    "location": "Mumbai",
+    "temp": 26.4,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:48:31 IST",
+    "location": "Kandla",
+    "temp": 30.6,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:48:31 IST",
+    "location": "Mangalore",
+    "temp": 28.1,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:48:32 IST",
+    "location": "Delhi",
+    "temp": 29.3,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:48:32 IST",
+    "location": "Vadodara",
+    "temp": 35.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:54:15 IST",
+    "location": "Mumbai",
+    "temp": 26.4,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:54:15 IST",
+    "location": "Kandla",
+    "temp": 30.6,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:54:15 IST",
+    "location": "Mangalore",
+    "temp": 28.1,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:54:15 IST",
+    "location": "Delhi",
+    "temp": 29.3,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 14:54:16 IST",
+    "location": "Vadodara",
+    "temp": 35.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:08:16 IST",
+    "location": "Mumbai",
+    "temp": 26.4,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:08:16 IST",
+    "location": "Kandla",
+    "temp": 30.9,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:08:16 IST",
+    "location": "Mangalore",
+    "temp": 28.2,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:08:16 IST",
+    "location": "Delhi",
+    "temp": 29.8,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:08:17 IST",
+    "location": "Vadodara",
+    "temp": 35.9,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:21:27 IST",
+    "location": "Mumbai",
+    "temp": 26.4,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:21:27 IST",
+    "location": "Kandla",
+    "temp": 31.1,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:21:27 IST",
+    "location": "Mangalore",
+    "temp": 28.2,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:21:27 IST",
+    "location": "Delhi",
+    "temp": 29.8,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:21:27 IST",
+    "location": "Vadodara",
+    "temp": 35.8,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:21:26 IST",
+    "location": "Mumbai",
+    "temp": 26.4,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:21:27 IST",
+    "location": "Kandla",
+    "temp": 31.1,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:21:27 IST",
+    "location": "Mangalore",
+    "temp": 28.2,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:21:27 IST",
+    "location": "Delhi",
+    "temp": 29.8,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:21:27 IST",
+    "location": "Vadodara",
+    "temp": 35.8,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:21:27 IST",
+    "location": "Mumbai",
+    "temp": 26.4,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:21:27 IST",
+    "location": "Kandla",
+    "temp": 31.1,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:21:27 IST",
+    "location": "Mangalore",
+    "temp": 28.2,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:21:27 IST",
+    "location": "Delhi",
+    "temp": 29.8,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:21:27 IST",
+    "location": "Vadodara",
+    "temp": 35.8,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:21:27 IST",
+    "location": "Mumbai",
+    "temp": 26.4,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:21:27 IST",
+    "location": "Kandla",
+    "temp": 31.1,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:21:27 IST",
+    "location": "Mangalore",
+    "temp": 28.2,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:21:28 IST",
+    "location": "Delhi",
+    "temp": 29.8,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:21:28 IST",
+    "location": "Vadodara",
+    "temp": 35.8,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:23:55 IST",
+    "location": "Mumbai",
+    "temp": 26.4,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:23:55 IST",
+    "location": "Kandla",
+    "temp": 31.1,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:23:56 IST",
+    "location": "Mangalore",
+    "temp": 28.2,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:23:56 IST",
+    "location": "Delhi",
+    "temp": 29.8,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:23:56 IST",
+    "location": "Vadodara",
+    "temp": 35.8,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:23:58 IST",
+    "location": "Mumbai",
+    "temp": 26.4,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:23:58 IST",
+    "location": "Kandla",
+    "temp": 31.1,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:23:59 IST",
+    "location": "Mangalore",
+    "temp": 28.2,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:23:59 IST",
+    "location": "Delhi",
+    "temp": 29.8,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:23:59 IST",
+    "location": "Vadodara",
+    "temp": 35.8,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:27:10 IST",
+    "location": "Mumbai",
+    "temp": 26.4,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:27:10 IST",
+    "location": "Kandla",
+    "temp": 31.1,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:27:11 IST",
+    "location": "Mangalore",
+    "temp": 28.2,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:27:11 IST",
+    "location": "Delhi",
+    "temp": 29.8,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:27:11 IST",
+    "location": "Vadodara",
+    "temp": 35.8,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:35:21 IST",
+    "location": "Mumbai",
+    "temp": 26.4,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:35:21 IST",
+    "location": "Kandla",
+    "temp": 31.3,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:35:21 IST",
+    "location": "Mangalore",
+    "temp": 28.3,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:35:22 IST",
+    "location": "Delhi",
+    "temp": 29.7,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:35:22 IST",
+    "location": "Vadodara",
+    "temp": 35.8,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:36:55 IST",
+    "location": "Mumbai",
+    "temp": 26.4,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:36:55 IST",
+    "location": "Kandla",
+    "temp": 31.3,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:36:55 IST",
+    "location": "Mangalore",
+    "temp": 28.3,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:36:55 IST",
+    "location": "Delhi",
+    "temp": 29.7,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:36:55 IST",
+    "location": "Vadodara",
+    "temp": 35.8,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:40:26 IST",
+    "location": "Mumbai",
+    "temp": 26.4,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:40:26 IST",
+    "location": "Kandla",
+    "temp": 31.3,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:40:26 IST",
+    "location": "Mangalore",
+    "temp": 28.3,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:40:27 IST",
+    "location": "Delhi",
+    "temp": 29.7,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:40:27 IST",
+    "location": "Vadodara",
+    "temp": 35.8,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:43:11 IST",
+    "location": "Mumbai",
+    "temp": 26.4,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:43:11 IST",
+    "location": "Kandla",
+    "temp": 31.3,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:43:11 IST",
+    "location": "Mangalore",
+    "temp": 28.3,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:43:12 IST",
+    "location": "Delhi",
+    "temp": 29.7,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:43:12 IST",
+    "location": "Vadodara",
+    "temp": 35.8,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:48:39 IST",
+    "location": "Mumbai",
+    "temp": 26.4,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:48:40 IST",
+    "location": "Kandla",
+    "temp": 31.5,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:48:40 IST",
+    "location": "Mangalore",
+    "temp": 28.3,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:48:40 IST",
+    "location": "Delhi",
+    "temp": 29.6,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:48:40 IST",
+    "location": "Vadodara",
+    "temp": 35.8,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:48:56 IST",
+    "location": "Mumbai",
+    "temp": 26.4,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:48:56 IST",
+    "location": "Kandla",
+    "temp": 31.5,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:48:57 IST",
+    "location": "Mangalore",
+    "temp": 28.3,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:48:57 IST",
+    "location": "Delhi",
+    "temp": 29.6,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:48:57 IST",
+    "location": "Vadodara",
+    "temp": 35.8,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:54:25 IST",
+    "location": "Mumbai",
+    "temp": 26.4,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:54:25 IST",
+    "location": "Kandla",
+    "temp": 31.5,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:54:25 IST",
+    "location": "Mangalore",
+    "temp": 28.3,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:54:25 IST",
+    "location": "Delhi",
+    "temp": 29.6,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 15:54:25 IST",
+    "location": "Vadodara",
+    "temp": 35.8,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:08:26 IST",
+    "location": "Mumbai",
+    "temp": 26.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:08:26 IST",
+    "location": "Kandla",
+    "temp": 31.6,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:08:26 IST",
+    "location": "Mangalore",
+    "temp": 28.3,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:08:26 IST",
+    "location": "Delhi",
+    "temp": 29.4,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:08:27 IST",
+    "location": "Vadodara",
+    "temp": 35.7,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:21:38 IST",
+    "location": "Mumbai",
+    "temp": 26.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:21:38 IST",
+    "location": "Kandla",
+    "temp": 31.7,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:21:38 IST",
+    "location": "Mangalore",
+    "temp": 28.2,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:21:38 IST",
+    "location": "Delhi",
+    "temp": 29.2,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:21:38 IST",
+    "location": "Vadodara",
+    "temp": 35.6,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:21:39 IST",
+    "location": "Mumbai",
+    "temp": 26.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:21:39 IST",
+    "location": "Kandla",
+    "temp": 31.7,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:21:39 IST",
+    "location": "Mangalore",
+    "temp": 28.2,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:21:39 IST",
+    "location": "Delhi",
+    "temp": 29.2,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:21:39 IST",
+    "location": "Vadodara",
+    "temp": 35.6,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:21:39 IST",
+    "location": "Mumbai",
+    "temp": 26.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:21:39 IST",
+    "location": "Kandla",
+    "temp": 31.7,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:21:40 IST",
+    "location": "Mangalore",
+    "temp": 28.2,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:21:40 IST",
+    "location": "Delhi",
+    "temp": 29.2,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:21:40 IST",
+    "location": "Vadodara",
+    "temp": 35.6,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:21:39 IST",
+    "location": "Mumbai",
+    "temp": 26.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:21:39 IST",
+    "location": "Kandla",
+    "temp": 31.7,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:21:40 IST",
+    "location": "Mangalore",
+    "temp": 28.2,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:21:40 IST",
+    "location": "Delhi",
+    "temp": 29.2,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:21:40 IST",
+    "location": "Vadodara",
+    "temp": 35.6,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:24:02 IST",
+    "location": "Mumbai",
+    "temp": 26.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:24:02 IST",
+    "location": "Kandla",
+    "temp": 31.7,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:24:02 IST",
+    "location": "Mangalore",
+    "temp": 28.2,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:24:02 IST",
+    "location": "Delhi",
+    "temp": 29.2,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:24:02 IST",
+    "location": "Vadodara",
+    "temp": 35.6,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:24:03 IST",
+    "location": "Mumbai",
+    "temp": 26.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:24:03 IST",
+    "location": "Kandla",
+    "temp": 31.7,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:24:03 IST",
+    "location": "Mangalore",
+    "temp": 28.2,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:24:03 IST",
+    "location": "Delhi",
+    "temp": 29.2,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:24:03 IST",
+    "location": "Vadodara",
+    "temp": 35.6,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:27:17 IST",
+    "location": "Mumbai",
+    "temp": 26.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:27:17 IST",
+    "location": "Kandla",
+    "temp": 31.7,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:27:17 IST",
+    "location": "Mangalore",
+    "temp": 28.2,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:27:17 IST",
+    "location": "Delhi",
+    "temp": 29.2,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:27:18 IST",
+    "location": "Vadodara",
+    "temp": 35.6,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:35:48 IST",
+    "location": "Mumbai",
+    "temp": 26.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:35:48 IST",
+    "location": "Kandla",
+    "temp": 31.8,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:35:48 IST",
+    "location": "Mangalore",
+    "temp": 28.2,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:35:49 IST",
+    "location": "Delhi",
+    "temp": 29.0,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:35:49 IST",
+    "location": "Vadodara",
+    "temp": 35.6,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:37:02 IST",
+    "location": "Mumbai",
+    "temp": 26.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:37:02 IST",
+    "location": "Kandla",
+    "temp": 31.8,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:37:03 IST",
+    "location": "Mangalore",
+    "temp": 28.2,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:37:03 IST",
+    "location": "Delhi",
+    "temp": 29.0,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:37:03 IST",
+    "location": "Vadodara",
+    "temp": 35.6,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:40:33 IST",
+    "location": "Mumbai",
+    "temp": 26.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:40:33 IST",
+    "location": "Kandla",
+    "temp": 31.8,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:40:34 IST",
+    "location": "Mangalore",
+    "temp": 28.2,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:40:34 IST",
+    "location": "Delhi",
+    "temp": 29.0,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:40:34 IST",
+    "location": "Vadodara",
+    "temp": 35.6,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:43:17 IST",
+    "location": "Mumbai",
+    "temp": 26.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:43:17 IST",
+    "location": "Kandla",
+    "temp": 31.8,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:43:17 IST",
+    "location": "Mangalore",
+    "temp": 28.2,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:43:17 IST",
+    "location": "Delhi",
+    "temp": 29.0,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:43:18 IST",
+    "location": "Vadodara",
+    "temp": 35.6,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:48:49 IST",
+    "location": "Mumbai",
+    "temp": 26.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:48:49 IST",
+    "location": "Kandla",
+    "temp": 31.7,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:48:49 IST",
+    "location": "Mangalore",
+    "temp": 28.2,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:48:49 IST",
+    "location": "Delhi",
+    "temp": 28.6,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:48:50 IST",
+    "location": "Vadodara",
+    "temp": 35.3,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:49:05 IST",
+    "location": "Mumbai",
+    "temp": 26.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:49:05 IST",
+    "location": "Kandla",
+    "temp": 31.7,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:49:06 IST",
+    "location": "Mangalore",
+    "temp": 28.2,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:49:06 IST",
+    "location": "Delhi",
+    "temp": 28.6,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:49:06 IST",
+    "location": "Vadodara",
+    "temp": 35.3,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:51:38 IST",
+    "location": "Mumbai",
+    "temp": 26.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:51:38 IST",
+    "location": "Kandla",
+    "temp": 31.7,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:51:38 IST",
+    "location": "Mangalore",
+    "temp": 28.2,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:51:38 IST",
+    "location": "Delhi",
+    "temp": 28.6,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:51:38 IST",
+    "location": "Vadodara",
+    "temp": 35.3,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:54:48 IST",
+    "location": "Mumbai",
+    "temp": 26.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:54:49 IST",
+    "location": "Kandla",
+    "temp": 31.7,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:54:49 IST",
+    "location": "Mangalore",
+    "temp": 28.2,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:54:49 IST",
+    "location": "Delhi",
+    "temp": 28.6,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 16:54:49 IST",
+    "location": "Vadodara",
+    "temp": 35.3,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:08:35 IST",
+    "location": "Mumbai",
+    "temp": 26.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:08:35 IST",
+    "location": "Kandla",
+    "temp": 31.6,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:08:36 IST",
+    "location": "Mangalore",
+    "temp": 28.2,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:08:36 IST",
+    "location": "Delhi",
+    "temp": 28.1,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:08:36 IST",
+    "location": "Vadodara",
+    "temp": 35.0,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:09:18 IST",
+    "location": "Mumbai",
+    "temp": 26.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:09:18 IST",
+    "location": "Kandla",
+    "temp": 31.6,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:09:18 IST",
+    "location": "Mangalore",
+    "temp": 28.2,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:09:19 IST",
+    "location": "Delhi",
+    "temp": 28.1,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:09:19 IST",
+    "location": "Vadodara",
+    "temp": 35.0,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:21:47 IST",
+    "location": "Mumbai",
+    "temp": 26.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:21:48 IST",
+    "location": "Kandla",
+    "temp": 31.5,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:21:48 IST",
+    "location": "Mangalore",
+    "temp": 28.3,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:21:48 IST",
+    "location": "Delhi",
+    "temp": 27.6,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:21:48 IST",
+    "location": "Vadodara",
+    "temp": 34.7,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:21:47 IST",
+    "location": "Mumbai",
+    "temp": 26.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:21:48 IST",
+    "location": "Kandla",
+    "temp": 31.5,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:21:48 IST",
+    "location": "Mangalore",
+    "temp": 28.3,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:21:48 IST",
+    "location": "Delhi",
+    "temp": 27.6,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:21:48 IST",
+    "location": "Vadodara",
+    "temp": 34.7,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:21:48 IST",
+    "location": "Mumbai",
+    "temp": 26.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:21:48 IST",
+    "location": "Kandla",
+    "temp": 31.5,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:21:48 IST",
+    "location": "Mangalore",
+    "temp": 28.3,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:21:48 IST",
+    "location": "Delhi",
+    "temp": 27.6,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:21:48 IST",
+    "location": "Vadodara",
+    "temp": 34.7,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:21:47 IST",
+    "location": "Mumbai",
+    "temp": 26.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:21:47 IST",
+    "location": "Kandla",
+    "temp": 31.5,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:21:48 IST",
+    "location": "Mangalore",
+    "temp": 28.3,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:21:48 IST",
+    "location": "Delhi",
+    "temp": 27.6,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:21:49 IST",
+    "location": "Vadodara",
+    "temp": 34.7,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:24:10 IST",
+    "location": "Mumbai",
+    "temp": 26.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:24:10 IST",
+    "location": "Kandla",
+    "temp": 31.5,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:24:11 IST",
+    "location": "Mangalore",
+    "temp": 28.3,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:24:11 IST",
+    "location": "Delhi",
+    "temp": 27.6,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:24:11 IST",
+    "location": "Vadodara",
+    "temp": 34.7,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:24:11 IST",
+    "location": "Mumbai",
+    "temp": 26.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:24:11 IST",
+    "location": "Kandla",
+    "temp": 31.5,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:24:11 IST",
+    "location": "Mangalore",
+    "temp": 28.3,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:24:11 IST",
+    "location": "Delhi",
+    "temp": 27.6,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:24:11 IST",
+    "location": "Vadodara",
+    "temp": 34.7,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:27:26 IST",
+    "location": "Mumbai",
+    "temp": 26.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:27:26 IST",
+    "location": "Kandla",
+    "temp": 31.5,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:27:26 IST",
+    "location": "Mangalore",
+    "temp": 28.3,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:27:26 IST",
+    "location": "Delhi",
+    "temp": 27.6,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:27:27 IST",
+    "location": "Vadodara",
+    "temp": 34.7,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
   }
 ]

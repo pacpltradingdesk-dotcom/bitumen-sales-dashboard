@@ -33,7 +33,7 @@
     "status": "Failing",
     "refresh_frequency": "1d",
     "cache_ttl_sec": 86400,
-    "last_success_time": "02-03-2026 11:24:15 IST",
+    "last_success_time": null,
     "last_error_message": "Empty Comtrade response",
     "fallback_api": "static_trade_cache",
     "data_output_tables": [
@@ -96,7 +96,7 @@
     "status": "Live",
     "refresh_frequency": "1h",
     "cache_ttl_sec": 3600,
-    "last_success_time": "02-03-2026 13:26:59 IST",
+    "last_success_time": "02-03-2026 17:27:31 IST",
     "last_error_message": "",
     "fallback_api": "fawazahmed0_fx",
     "data_output_tables": [
@@ -117,7 +117,7 @@
     "status": "Live",
     "refresh_frequency": "1h",
     "cache_ttl_sec": 3600,
-    "last_success_time": "02-03-2026 13:35:02 IST",
+    "last_success_time": "02-03-2026 17:27:27 IST",
     "last_error_message": "",
     "fallback_api": "",
     "data_output_tables": [
@@ -138,7 +138,7 @@
     "status": "Live",
     "refresh_frequency": "1h",
     "cache_ttl_sec": 3600,
-    "last_success_time": "02-03-2026 13:35:03 IST",
+    "last_success_time": "02-03-2026 17:27:29 IST",
     "last_error_message": "",
     "fallback_api": "",
     "data_output_tables": [
@@ -159,7 +159,7 @@
     "status": "Live",
     "refresh_frequency": "1d",
     "cache_ttl_sec": 86400,
-    "last_success_time": "02-03-2026 11:24:17 IST",
+    "last_success_time": null,
     "last_error_message": "",
     "fallback_api": "",
     "data_output_tables": [
@@ -201,7 +201,7 @@
     "status": "Live",
     "refresh_frequency": "1d",
     "cache_ttl_sec": 86400,
-    "last_success_time": "02-03-2026 13:35:08 IST",
+    "last_success_time": "02-03-2026 17:24:17 IST",
     "last_error_message": "",
     "fallback_api": "fawazahmed0_fx",
     "data_output_tables": [
@@ -222,7 +222,7 @@
     "status": "Live",
     "refresh_frequency": "1d",
     "cache_ttl_sec": 86400,
-    "last_success_time": "02-03-2026 13:35:08 IST",
+    "last_success_time": "02-03-2026 17:24:17 IST",
     "last_error_message": "",
     "fallback_api": "",
     "data_output_tables": [

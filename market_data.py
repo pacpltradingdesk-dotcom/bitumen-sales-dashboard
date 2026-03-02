@@ -68,19 +68,24 @@ def get_live_market_data():
     return data
 
 def get_simulated_data():
-    """Fallback if internet is completely down."""
-    brent = 78.50 + random.uniform(-0.5, 0.5)
-    wti = 73.20 + random.uniform(-0.5, 0.5)
-    usdinr = 83.15 + random.uniform(-0.1, 0.1)
-    dxy = 103.4
-    
-    brent_7d = brent / 1.012
-    wti_7d = wti / 0.995
-    
+    """Fallback if internet is completely down. Baselines updated Q1 2026."""
+    brent  = 75.50 + random.uniform(-0.5, 0.5)
+    wti    = 71.50 + random.uniform(-0.5, 0.5)
+    usdinr = 86.80 + random.uniform(-0.15, 0.15)
+    dxy    = 104.2
+
+    brent_7d  = brent  / 1.008
+    wti_7d    = wti    / 0.994
+    usdinr_7d = usdinr / 1.003
+
+    chg_b = f"{((brent  - brent_7d)  / brent_7d  * 100):+.2f}%"
+    chg_w = f"{((wti    - wti_7d)    / wti_7d    * 100):+.2f}%"
+    chg_fx = f"{((usdinr - usdinr_7d) / usdinr_7d * 100):+.2f}%"
+
     return {
-        "brent": {"value": f"${brent:.2f}", "value_7d": f"${brent_7d:.2f}", "change": "+1.2%", "color": "green"},
-        "wti": {"value": f"${wti:.2f}", "value_7d": f"${wti_7d:.2f}", "change": "-0.5%", "color": "red"},
-        "usdinr": {"value": f"{usdinr:.2f}", "value_7d": f"{83.05:.2f}", "change": "+0.1%", "color": "green"},
-        "dxy": {"value": f"{dxy:.2f}", "value_7d": "103.40", "change": "0.0%", "color": "grey"},
-        "timestamp": datetime.datetime.now().strftime("%H:%M IST (Offline)")
+        "brent":  {"value": f"${brent:.2f}",   "value_7d": f"${brent_7d:.2f}",   "change": chg_b,  "color": "green" if brent  > brent_7d  else "red"},
+        "wti":    {"value": f"${wti:.2f}",     "value_7d": f"${wti_7d:.2f}",     "change": chg_w,  "color": "green" if wti    > wti_7d    else "red"},
+        "usdinr": {"value": f"{usdinr:.2f}",   "value_7d": f"{usdinr_7d:.2f}",   "change": chg_fx, "color": "green" if usdinr > usdinr_7d else "red"},
+        "dxy":    {"value": f"{dxy:.2f}",      "value_7d": "104.20",             "change": "0.0%", "color": "grey"},
+        "timestamp": datetime.datetime.now().strftime("%H:%M IST (Offline)"),
     }

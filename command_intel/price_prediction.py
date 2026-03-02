@@ -233,8 +233,8 @@ def generate_forecast_calendar() -> pd.DataFrame:
         brent_stable = True
         fx_stable = True
     except Exception:
-        brent_now = 72.5
-        usdinr_now = 86.5
+        brent_now  = 75.5   # Q1 2026 approximate
+        usdinr_now = 86.8   # Q1 2026 approximate
         brent_stable = True
         fx_stable = True
 

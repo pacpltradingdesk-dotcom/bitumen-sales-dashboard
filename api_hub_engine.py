@@ -65,6 +65,18 @@ TBL_REFINERY   = BASE / "tbl_refinery_production.json"
 TBL_WEATHER    = BASE / "tbl_weather.json"
 TBL_NEWS       = BASE / "tbl_news_feed.json"
 
+# ── Contact import tables ──────────────────────────────────────────────────────
+TBL_CONTACTS    = BASE / "tbl_contacts.json"
+TBL_IMPORT_HIST = BASE / "tbl_import_history.json"
+
+# ── Directory tables ───────────────────────────────────────────────────────────
+TBL_DIR_ORGS    = BASE / "tbl_dir_orgs.json"
+TBL_DIR_SOURCES = BASE / "tbl_dir_sources.json"
+TBL_DIR_CHANGES = BASE / "tbl_dir_changes.json"
+TBL_DIR_FETCHES = BASE / "tbl_dir_fetch_logs.json"
+TBL_DIR_BUGS    = BASE / "tbl_dir_bugs.json"
+TBL_DIR_GEO     = BASE / "tbl_dir_geo.json"
+
 # Cache file (keyed by connector_id)
 HUB_CACHE_FILE = BASE / "hub_cache.json"
 
@@ -1113,6 +1125,32 @@ class NormalizedTables:
         data = _load(BASE / "tbl_api_runs.json", [])
         return list(reversed(data[-n:]))
 
+    # ── Directory tables ──────────────────────────────────────────────────────
+    @staticmethod
+    def dir_orgs(n: int = 500) -> List[dict]:
+        return _load(BASE / "tbl_dir_orgs.json", [])[-n:]
+
+    @staticmethod
+    def dir_sources(n: int = 200) -> List[dict]:
+        return _load(BASE / "tbl_dir_sources.json", [])[-n:]
+
+    # ── Contact import tables ─────────────────────────────────────────────────
+    @staticmethod
+    def get_contacts() -> List[dict]:
+        return _load(TBL_CONTACTS, [])
+
+    @staticmethod
+    def save_contacts(records: list) -> None:
+        _save(TBL_CONTACTS, records)
+
+    @staticmethod
+    def get_import_history() -> List[dict]:
+        return _load(TBL_IMPORT_HIST, [])
+
+    @staticmethod
+    def save_import_history(records: list) -> None:
+        _save(TBL_IMPORT_HIST, records)
+
     @staticmethod
     def summary() -> dict:
         def _cnt(name): return len(_load(BASE / name, []))
@@ -1338,8 +1376,18 @@ def init_hub() -> None:
         (BASE / "tbl_regression_coeff.json",      []),
         (BASE / "tbl_insights.json",              []),
         (BASE / "tbl_api_runs.json",              []),
+        # Directory tables
+        (BASE / "tbl_dir_orgs.json",             []),
+        (BASE / "tbl_dir_sources.json",          []),
+        (BASE / "tbl_dir_changes.json",          []),
+        (BASE / "tbl_dir_fetch_logs.json",       []),
+        (BASE / "tbl_dir_bugs.json",             []),
+        (BASE / "tbl_dir_geo.json",              []),
+        # Contact import tables
+        (TBL_CONTACTS,    []),
+        (TBL_IMPORT_HIST, []),
     ]:
         if not f.exists():
             _save(f, default)
 
-    _hub_log("hub_init", "INFO", "API HUB Engine v3.2.3 initialised (+ govt tables)", 0)
+    _hub_log("hub_init", "INFO", "API HUB Engine v3.2.3 initialised (+ govt tables + directory)", 0)

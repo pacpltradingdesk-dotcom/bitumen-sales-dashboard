@@ -214,23 +214,51 @@ def get_provider_status() -> list[dict]:
 # ══════════════════════════════════════════════════════════════════════════════
 
 def _query_openai(question: str, context: str, key: str) -> str:
-    import openai
-    client = openai.OpenAI(api_key=key)
-    resp = client.chat.completions.create(
-        model=OPENAI_MODEL,
-        messages=[
-            {"role": "system", "content": (
-                "You are a Bitumen Sales Dashboard AI assistant for PPS Anantams Logistics. "
-                "Answer ONLY from the dashboard data provided. Use Indian number formatting "
-                "(₹ crore/lakh). Dates: DD-MM-YYYY. Be concise but complete.\n\n"
-                f"LIVE DASHBOARD DATA:\n{context[:6000]}"
-            )},
-            {"role": "user", "content": question},
-        ],
-        max_tokens=MAX_TOKENS,
-        temperature=0.3,
+    """Query OpenAI GPT-4o-mini. Tries SDK first, then falls back to requests.post."""
+    messages = [
+        {"role": "system", "content": (
+            "You are a Bitumen Sales Dashboard AI assistant for PPS Anantams Logistics. "
+            "Answer ONLY from the dashboard data provided. Use Indian number formatting "
+            "(₹ crore/lakh). Dates: DD-MM-YYYY. Be concise but complete.\n\n"
+            f"LIVE DASHBOARD DATA:\n{context[:6000]}"
+        )},
+        {"role": "user", "content": question},
+    ]
+
+    # --- Try OpenAI SDK (if installed) ---
+    try:
+        import openai as _oai
+        client = _oai.OpenAI(api_key=key)
+        resp = client.chat.completions.create(
+            model=OPENAI_MODEL,
+            messages=messages,
+            max_tokens=MAX_TOKENS,
+            temperature=0.3,
+        )
+        return resp.choices[0].message.content.strip()
+    except ImportError:
+        pass  # SDK not installed — fall through to requests
+
+    # --- HTTP requests fallback (no SDK needed) ---
+    import requests as _req
+    headers = {
+        "Authorization": f"Bearer {key}",
+        "Content-Type":  "application/json",
+    }
+    payload = {
+        "model":       OPENAI_MODEL,
+        "messages":    messages,
+        "max_tokens":  MAX_TOKENS,
+        "temperature": 0.3,
+    }
+    r = _req.post(
+        "https://api.openai.com/v1/chat/completions",
+        headers=headers,
+        json=payload,
+        timeout=30,
     )
-    return resp.choices[0].message.content.strip()
+    r.raise_for_status()
+    return r.json()["choices"][0]["message"]["content"].strip()
 
 
 def _query_ollama(question: str, context: str) -> str:
