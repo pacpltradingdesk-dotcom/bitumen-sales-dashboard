@@ -3577,5 +3577,96 @@
     "pair": "USD/INR",
     "rate": 90.7655,
     "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "02-03-2026 17:37:11 IST",
+    "period_label": "2025-02",
+    "pair": "USD/INR",
+    "rate": 87.38,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "02-03-2026 17:37:11 IST",
+    "period_label": "2025-03",
+    "pair": "USD/INR",
+    "rate": 86.52,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "02-03-2026 17:37:11 IST",
+    "period_label": "2025-04",
+    "pair": "USD/INR",
+    "rate": 85.5845,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "02-03-2026 17:37:11 IST",
+    "period_label": "2025-05",
+    "pair": "USD/INR",
+    "rate": 85.249,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "02-03-2026 17:37:11 IST",
+    "period_label": "2025-06",
+    "pair": "USD/INR",
+    "rate": 85.9486,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "02-03-2026 17:37:11 IST",
+    "period_label": "2025-07",
+    "pair": "USD/INR",
+    "rate": 86.1617,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "02-03-2026 17:37:11 IST",
+    "period_label": "2025-08",
+    "pair": "USD/INR",
+    "rate": 87.5571,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "02-03-2026 17:37:11 IST",
+    "period_label": "2025-09",
+    "pair": "USD/INR",
+    "rate": 88.3045,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "02-03-2026 17:37:11 IST",
+    "period_label": "2025-10",
+    "pair": "USD/INR",
+    "rate": 88.4191,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "02-03-2026 17:37:11 IST",
+    "period_label": "2025-11",
+    "pair": "USD/INR",
+    "rate": 88.8485,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "02-03-2026 17:37:11 IST",
+    "period_label": "2025-12",
+    "pair": "USD/INR",
+    "rate": 90.029,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "02-03-2026 17:37:11 IST",
+    "period_label": "2026-01",
+    "pair": "USD/INR",
+    "rate": 90.8795,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "02-03-2026 17:37:11 IST",
+    "period_label": "2026-02",
+    "pair": "USD/INR",
+    "rate": 90.7655,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
   }
 ]

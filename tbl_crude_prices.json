@@ -1020,5 +1020,19 @@
     "price": 71.99,
     "currency": "USD/bbl",
     "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:37:06 IST",
+    "benchmark": "Brent",
+    "price": 5396.5,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:37:06 IST",
+    "benchmark": "WTI",
+    "price": 78.35,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
   }
 ]

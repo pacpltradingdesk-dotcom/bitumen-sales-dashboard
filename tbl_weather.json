@@ -3078,5 +3078,45 @@
     "rain_mm": 0.0,
     "humidity": 84,
     "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:37:08 IST",
+    "location": "Mumbai",
+    "temp": 26.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:37:08 IST",
+    "location": "Kandla",
+    "temp": 31.4,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:37:08 IST",
+    "location": "Mangalore",
+    "temp": 28.3,
+    "rain_mm": 0.0,
+    "humidity": 79,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:37:08 IST",
+    "location": "Delhi",
+    "temp": 27.3,
+    "rain_mm": 0.0,
+    "humidity": 91,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "02-03-2026 17:37:09 IST",
+    "location": "Vadodara",
+    "temp": 34.5,
+    "rain_mm": 0.0,
+    "humidity": 84,
+    "source": "Open-Meteo (OpenWeather fallback)"
   }
 ]
