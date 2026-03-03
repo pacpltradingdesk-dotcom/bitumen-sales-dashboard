@@ -3414,5 +3414,13 @@
     "rain_mm": 0.0,
     "humidity": 83,
     "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:51:47 IST",
+    "location": "Mumbai",
+    "temp": 27.8,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
   }
 ]

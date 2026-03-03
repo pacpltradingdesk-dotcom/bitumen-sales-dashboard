@@ -1258,5 +1258,140 @@
     "http_code": 0,
     "error_detail": "",
     "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:51:46 IST",
+    "api_id": "gold_xau",
+    "status": "OK",
+    "latency_ms": 731,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:51:47 IST",
+    "api_id": "weather_mumbai",
+    "status": "OK",
+    "latency_ms": 935,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:51:48 IST",
+    "api_id": "weather_kandla",
+    "status": "OK",
+    "latency_ms": 816,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:51:49 IST",
+    "api_id": "weather_mangalore",
+    "status": "OK",
+    "latency_ms": 895,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:51:50 IST",
+    "api_id": "weather_delhi",
+    "status": "OK",
+    "latency_ms": 1019,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:51:51 IST",
+    "api_id": "world_bank_india_gdp",
+    "status": "OK",
+    "latency_ms": 819,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:51:52 IST",
+    "api_id": "world_bank_india_infra",
+    "status": "OK",
+    "latency_ms": 787,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:51:53 IST",
+    "api_id": "world_bank_cpi_india",
+    "status": "OK",
+    "latency_ms": 1026,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:51:53 IST",
+    "api_id": "opec_basket",
+    "status": "OK",
+    "latency_ms": 195,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:51:53 IST",
+    "api_id": "shipping_freight",
+    "status": "OK",
+    "latency_ms": 271,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:51:54 IST",
+    "api_id": "nse_infrastructure",
+    "status": "OK",
+    "latency_ms": 285,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:51:55 IST",
+    "api_id": "open_meteo_forecast_vadodara",
+    "status": "OK",
+    "latency_ms": 834,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:51:55 IST",
+    "api_id": "govt_holiday_api",
+    "status": "OK",
+    "latency_ms": 0,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:51:56 IST",
+    "api_id": "rest_countries_india",
+    "status": "OK",
+    "latency_ms": 962,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:51:57 IST",
+    "api_id": "current_time",
+    "status": "OK",
+    "latency_ms": 1013,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
   }
 ]

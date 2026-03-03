@@ -388,5 +388,25 @@
     "user_id": "system",
     "message": "=== SRE CYCLE END — 0.3s  health=90%  alerts=0  bugs=0 ===",
     "payload_hash": ""
+  },
+  {
+    "request_id": "REQ-20260303-175232-C29D",
+    "timestamp_ist": "03-03-2026 17:52:32 IST",
+    "severity": "INFO",
+    "route": "",
+    "component": "SREOrchestrator",
+    "user_id": "system",
+    "message": "SRE Engine initialised",
+    "payload_hash": ""
+  },
+  {
+    "request_id": "REQ-20260303-175244-4DDE",
+    "timestamp_ist": "03-03-2026 17:52:44 IST",
+    "severity": "INFO",
+    "route": "",
+    "component": "SREOrchestrator",
+    "user_id": "system",
+    "message": "SRE Engine initialised",
+    "payload_hash": ""
   }
 ]
