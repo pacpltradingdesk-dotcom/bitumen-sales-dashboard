@@ -120,6 +120,27 @@ DEFAULT_SETTINGS = {
     "infra_demand_enabled": True,
     "gdelt_sync_interval_min": 120,
     "infra_backfill_months": 24,
+
+    # Role-Based Access Control
+    "rbac_enabled": False,
+    "rbac_default_role": "viewer",
+    "rbac_session_timeout_min": 480,
+
+    # Universal Action Bar
+    "action_bar_enabled": True,
+    "action_bar_show_email": True,
+    "action_bar_show_whatsapp": True,
+    "action_bar_show_pdf": True,
+    "action_bar_show_print": True,
+    "action_bar_show_excel": True,
+    "action_bar_show_share": True,
+
+    # Ops Monitoring
+    "ops_monitoring_enabled": True,
+
+    # Export Settings
+    "excel_export_include_metadata": True,
+    "csv_export_encoding": "utf-8-sig",
 }
 
 

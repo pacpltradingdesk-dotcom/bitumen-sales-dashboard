@@ -401,6 +401,74 @@ _TABLES = {
             acted_by            TEXT
         );
     """,
+
+    # ── Phase C: Universal Action + RBAC tables ────────────────────────────
+
+    "users": """
+        CREATE TABLE IF NOT EXISTS users (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            username        TEXT NOT NULL UNIQUE,
+            display_name    TEXT,
+            role            TEXT NOT NULL DEFAULT 'viewer',
+            pin_hash        TEXT NOT NULL,
+            email           TEXT,
+            whatsapp_number TEXT,
+            is_active       INTEGER DEFAULT 1,
+            last_login      TEXT,
+            created_at      TEXT,
+            updated_at      TEXT
+        );
+    """,
+
+    "audit_log": """
+        CREATE TABLE IF NOT EXISTS audit_log (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id         INTEGER,
+            username        TEXT,
+            action          TEXT NOT NULL,
+            resource        TEXT,
+            details         TEXT,
+            ip_address      TEXT,
+            created_at      TEXT,
+            FOREIGN KEY (user_id) REFERENCES users(id)
+        );
+    """,
+
+    "recipient_lists": """
+        CREATE TABLE IF NOT EXISTS recipient_lists (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            list_name       TEXT NOT NULL,
+            list_type       TEXT DEFAULT 'email',
+            recipients      TEXT NOT NULL,
+            created_by      TEXT,
+            is_active       INTEGER DEFAULT 1,
+            created_at      TEXT,
+            updated_at      TEXT
+        );
+    """,
+
+    "source_registry": """
+        CREATE TABLE IF NOT EXISTS source_registry (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            source_key      TEXT NOT NULL UNIQUE,
+            source_name     TEXT NOT NULL,
+            category        TEXT,
+            provider        TEXT,
+            api_url         TEXT,
+            auth_type       TEXT DEFAULT 'none',
+            status          TEXT DEFAULT 'active',
+            refresh_minutes INTEGER DEFAULT 60,
+            keywords        TEXT,
+            state_mapping   TEXT,
+            last_success    TEXT,
+            last_error      TEXT,
+            error_count     INTEGER DEFAULT 0,
+            output_tables   TEXT,
+            notes           TEXT,
+            created_at      TEXT,
+            updated_at      TEXT
+        );
+    """,
 }
 
 # Indexes for common query patterns
@@ -436,6 +504,15 @@ _INDEXES = [
     "CREATE INDEX IF NOT EXISTS idx_alerts_status         ON alerts(status);",
     "CREATE INDEX IF NOT EXISTS idx_alerts_priority       ON alerts(priority);",
     "CREATE INDEX IF NOT EXISTS idx_alerts_type           ON alerts(alert_type);",
+    # Phase C: RBAC + Action + Ops indexes
+    "CREATE INDEX IF NOT EXISTS idx_users_username          ON users(username);",
+    "CREATE INDEX IF NOT EXISTS idx_users_role              ON users(role);",
+    "CREATE INDEX IF NOT EXISTS idx_audit_user              ON audit_log(user_id);",
+    "CREATE INDEX IF NOT EXISTS idx_audit_action            ON audit_log(action);",
+    "CREATE INDEX IF NOT EXISTS idx_audit_created           ON audit_log(created_at);",
+    "CREATE INDEX IF NOT EXISTS idx_recip_name              ON recipient_lists(list_name);",
+    "CREATE INDEX IF NOT EXISTS idx_source_reg_key          ON source_registry(source_key);",
+    "CREATE INDEX IF NOT EXISTS idx_source_reg_status       ON source_registry(status);",
 ]
 
 
@@ -483,6 +560,7 @@ _VALID_TABLES = {
     "inventory", "communications", "opportunities", "sync_logs",
     "missing_inputs", "email_queue", "whatsapp_queue", "whatsapp_sessions",
     "whatsapp_incoming", "director_briefings", "daily_logs", "alerts",
+    "users", "audit_log", "recipient_lists", "source_registry",
 }
 
 import re
@@ -1441,6 +1519,109 @@ def update_alert_status(alert_id: int, status: str, **kwargs):
     data = {"status": status}
     data.update(kwargs)
     _update_row("alerts", alert_id, data)
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# PHASE C: USERS / AUDIT / RECIPIENTS / SOURCE REGISTRY
+# ═══════════════════════════════════════════════════════════════════════════
+
+def insert_user(data: dict) -> int:
+    data.setdefault("created_at", _now_ist())
+    data.setdefault("updated_at", _now_ist())
+    return _insert_row("users", data)
+
+def get_user_by_username(username: str):
+    conn = _get_conn()
+    try:
+        row = conn.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
+        return _row_to_dict(row) if row else None
+    finally:
+        conn.close()
+
+def get_all_users() -> list:
+    return _select_all("users", order="username")
+
+def update_user(user_id: int, data: dict):
+    data["updated_at"] = _now_ist()
+    _update_row("users", user_id, data)
+
+def insert_audit_log(data: dict) -> int:
+    data.setdefault("created_at", _now_ist())
+    return _insert_row("audit_log", data)
+
+def get_audit_logs(limit: int = 200, action_filter: str = None, user_filter: str = None) -> list:
+    conn = _get_conn()
+    try:
+        sql = "SELECT * FROM audit_log WHERE 1=1"
+        params = []
+        if action_filter:
+            sql += " AND action = ?"
+            params.append(action_filter)
+        if user_filter:
+            sql += " AND username = ?"
+            params.append(user_filter)
+        sql += " ORDER BY created_at DESC LIMIT ?"
+        params.append(limit)
+        rows = conn.execute(sql, params).fetchall()
+        return _rows_to_list(rows)
+    finally:
+        conn.close()
+
+def insert_recipient_list(data: dict) -> int:
+    data.setdefault("created_at", _now_ist())
+    data.setdefault("updated_at", _now_ist())
+    return _insert_row("recipient_lists", data)
+
+def get_recipient_lists(list_type: str = None) -> list:
+    conn = _get_conn()
+    try:
+        if list_type:
+            rows = conn.execute(
+                "SELECT * FROM recipient_lists WHERE is_active = 1 AND list_type = ? ORDER BY list_name",
+                (list_type,),
+            ).fetchall()
+        else:
+            rows = conn.execute(
+                "SELECT * FROM recipient_lists WHERE is_active = 1 ORDER BY list_name"
+            ).fetchall()
+        return _rows_to_list(rows)
+    finally:
+        conn.close()
+
+def update_recipient_list(list_id: int, data: dict):
+    data["updated_at"] = _now_ist()
+    _update_row("recipient_lists", list_id, data)
+
+def delete_recipient_list(list_id: int):
+    _update_row("recipient_lists", list_id, {"is_active": 0, "updated_at": _now_ist()})
+
+def insert_source_registry(data: dict) -> int:
+    data.setdefault("created_at", _now_ist())
+    data.setdefault("updated_at", _now_ist())
+    return _insert_row("source_registry", data)
+
+def get_all_sources() -> list:
+    return _select_all("source_registry", order="source_name")
+
+def get_source_by_key(key: str):
+    conn = _get_conn()
+    try:
+        row = conn.execute("SELECT * FROM source_registry WHERE source_key = ?", (key,)).fetchone()
+        return _row_to_dict(row) if row else None
+    finally:
+        conn.close()
+
+def update_source_registry(source_id: int, data: dict):
+    data["updated_at"] = _now_ist()
+    _update_row("source_registry", source_id, data)
+
+def delete_source_registry(source_id: int):
+    conn = _get_conn()
+    try:
+        conn.execute("DELETE FROM source_registry WHERE id = ?", (source_id,))
+        conn.commit()
+    finally:
+        conn.close()
 
 
 # ═══════════════════════════════════════════════════════════════════════════

@@ -47,6 +47,25 @@ except Exception:
     def render_export_bar(*a, **kw): pass
     def inject_print_css(): pass
 
+# --- UNIVERSAL ACTION BAR (Phase C) ---
+try:
+    from command_intel.action_bar import render_action_bar
+    _ACTION_BAR_OK = True
+except Exception:
+    _ACTION_BAR_OK = False
+    def render_action_bar(*a, **kw): pass
+
+# --- ROLE ENGINE (Phase C) ---
+try:
+    from role_engine import render_login_form, get_current_role, check_role, init_roles
+    init_roles()
+    _ROLE_OK = True
+except Exception:
+    _ROLE_OK = False
+    def render_login_form(): return True
+    def get_current_role(): return "admin"
+    def check_role(r): return True
+
 # --- SYSTEM STARTUP: init logging + auto health scheduler (runs once per process) ---
 try:
     from api_manager import init_system, start_auto_health
@@ -1317,7 +1336,7 @@ _NAV_SECTIONS = [
                                  "🚨 SPECIAL PRICE (SOS)", "📝 Manual Price Entry"]),
     ("💼  Sales & CRM",        ["💼 Sales Workspace", "🎯 CRM & Tasks", "📅 Sales Calendar",
                                  "💬 Communication Hub", "🤝 Negotiation Assistant",
-                                 "📧 Email Engine", "📱 WhatsApp Engine", "📓 Daily Log"]),
+                                 "📧 Email Setup", "📱 WhatsApp Setup", "📓 Daily Log"]),
     ("🚚  Logistics",          ["🏭 Feasibility", "🚢 Supply Chain", "📋 Source Directory",
                                  "👥 Ecosystem Management"]),
     ("🧠  Intelligence",       ["🔍 Opportunities", "📰 News Intelligence", "🕵️ Competitor Intelligence",
@@ -1328,7 +1347,9 @@ _NAV_SECTIONS = [
     ("📊  Reports",            ["💰 Financial Intelligence", "📤 Reports", "🎯 Strategy Panel",
                                  "⏳ Past Predictions", "🛣️ Road Budget & Demand"]),
     ("⚙️  System",             ["🌐 API Dashboard", "🔗 API HUB", "🏥 System Health",
-                                 "🔄 Sync Status", "⚙️ Dev & System Activity",
+                                 "🔄 Sync Status", "🖥️ Ops Dashboard",
+                                 "📦 System Requirements",
+                                 "⚙️ Dev & System Activity",
                                  "🔔 Alert System", "🚨 Alert Center",
                                  "🔔 Change Notifications",
                                  "🐞 Bug Tracker", "📁 PDF Archive", "⚙️ Settings"]),
@@ -1414,20 +1435,26 @@ tab11 = st.empty()
 tab12_sos = st.empty()
 
 
-# ── Universal Print CSS + Export Bar ────────────────────────────────────────
-# Inject @media print CSS once per session (hides sidebar on browser print)
+# ── Universal Print CSS + Action Bar (Phase C upgrade) ─────────────────────
 inject_print_css()
 
-# Skip export bar for Home and PDF Archive (which has its own export UI)
+# Skip action bar for Home and PDF Archive (which have their own layouts)
 _NAV_HEADERS = {
-    "🏠 Home",      # Home has its own Zoho-style dashboard layout
-    "📁 PDF Archive",  # PDF Archive has its own archive manager UI
+    "🏠 Home",
+    "📁 PDF Archive",
 }
 if selected_page not in _NAV_HEADERS:
-    render_export_bar(
-        page_title=selected_page,
-        role="Admin",
-    )
+    if _ACTION_BAR_OK:
+        render_action_bar(
+            page_name=selected_page,
+            context_fn=None,
+            role=get_current_role(),
+        )
+    elif _PDF_BAR_OK:
+        render_export_bar(
+            page_title=selected_page,
+            role="Admin",
+        )
 
 
 # ── HOME PAGE — Executive Intelligence Dashboard ─────────────────────────────
@@ -4607,147 +4634,21 @@ elif selected_page == "📋 Director Briefing":
     except Exception as _e:
         st.error(f"Director Briefing failed to load: {_e}")
 
-elif selected_page == "📧 Email Engine":
-    _render_page_header("📧 Email Engine", "Sales & CRM", badge="SMTP Queue")
-    st.info("Queue-first email engine with smart triggers, rate limiting, and scheduled reports.")
+elif selected_page in ("📧 Email Setup", "📧 Email Engine"):
+    _render_page_header("📧 Email Setup", "Sales & CRM", badge="SMTP Queue")
     try:
-        from email_engine import EmailEngine, EmailCredentialManager
-
-        _email_tabs = st.tabs(["Email Queue", "Send Email", "Delivery Stats", "SMTP Config"])
-
-        with _email_tabs[0]:
-            st.subheader("Email Queue")
-            from database import get_email_queue
-            _eq_status = st.selectbox("Filter by status", ["pending", "draft", "sent", "failed", "all"], key="eq_filter")
-            _eq_list = get_email_queue(status=None if _eq_status == "all" else _eq_status, limit=50)
-            if _eq_list:
-                _eq_df = pd.DataFrame(_eq_list)
-                _display_cols = [c for c in ["id", "to_email", "subject", "email_type", "status", "created_at", "sent_at"] if c in _eq_df.columns]
-                st.dataframe(_eq_df[_display_cols] if _display_cols else _eq_df, use_container_width=True, hide_index=True)
-            else:
-                st.caption("No emails in queue.")
-
-        with _email_tabs[1]:
-            st.subheader("Compose & Queue Email")
-            _ee = EmailEngine()
-            _ec1, _ec2 = st.columns(2)
-            with _ec1:
-                _e_to = st.text_input("To Email", key="email_to")
-                _e_subj = st.text_input("Subject", key="email_subj")
-            with _ec2:
-                _e_type = st.selectbox("Email Type", ["offer", "followup", "reactivation", "payment_reminder", "custom"], key="email_type")
-                _e_cc = st.text_input("CC (optional)", key="email_cc")
-            _e_body = st.text_area("Body", height=200, key="email_body")
-            if st.button("Queue Email", type="primary", key="queue_email_btn"):
-                if _e_to and _e_subj and _e_body:
-                    _qid = _ee.queue_email(_e_to, _e_subj, _e_body, email_type=_e_type, cc=_e_cc or None)
-                    st.success(f"Email queued (ID: {_qid}). Will be sent in next processing cycle.")
-                else:
-                    st.warning("Please fill To, Subject, and Body.")
-
-        with _email_tabs[2]:
-            st.subheader("Delivery Statistics")
-            _ee2 = EmailEngine()
-            _stats = _ee2.get_delivery_stats()
-            _sc1, _sc2, _sc3, _sc4 = st.columns(4)
-            _sc1.metric("Total Sent", _stats.get("sent", 0))
-            _sc2.metric("Delivered", _stats.get("delivered", 0))
-            _sc3.metric("Failed", _stats.get("failed", 0))
-            _sc4.metric("Pending", _stats.get("pending", 0))
-
-        with _email_tabs[3]:
-            st.subheader("SMTP Configuration")
-            _ecm = EmailCredentialManager()
-            _existing_creds = _ecm.load_credentials()
-            _smtp_host = st.text_input("SMTP Host", value=_existing_creds.get("smtp_host", "smtp.gmail.com"), key="smtp_host")
-            _smtp_port = st.number_input("SMTP Port", value=int(_existing_creds.get("smtp_port", 587)), key="smtp_port")
-            _smtp_user = st.text_input("Username/Email", value=_existing_creds.get("username", ""), key="smtp_user")
-            _smtp_pass = st.text_input("Password / App Password", type="password", key="smtp_pass")
-            _smtp_from = st.text_input("From Name", value=_existing_creds.get("from_name", "PPS Anantam"), key="smtp_from")
-            if st.button("Save & Test SMTP", type="primary", key="save_smtp_btn"):
-                _ecm.save_credentials(_smtp_host, int(_smtp_port), _smtp_user, _smtp_pass, _smtp_from)
-                st.success("SMTP credentials saved.")
-                _test_ok, _test_msg = _ecm.test_connection()
-                if _test_ok:
-                    st.success(f"Connection test passed: {_test_msg}")
-                else:
-                    st.error(f"Connection test failed: {_test_msg}")
-
+        from command_intel import email_setup_dashboard
+        email_setup_dashboard.render()
     except Exception as _e:
-        st.error(f"Email Engine failed to load: {_e}")
+        st.error(f"Email Setup failed to load: {_e}")
 
-elif selected_page == "📱 WhatsApp Engine":
-    _render_page_header("📱 WhatsApp Engine", "Sales & CRM", badge="360dialog")
-    st.info("WhatsApp Business automation via 360dialog — template messages, session messages, and broadcasts.")
+elif selected_page in ("📱 WhatsApp Setup", "📱 WhatsApp Engine"):
+    _render_page_header("📱 WhatsApp Setup", "Sales & CRM", badge="360dialog")
     try:
-        from whatsapp_engine import WhatsAppEngine, WhatsAppCredentialManager, WhatsAppTemplateManager
-
-        _wa_tabs = st.tabs(["Message Queue", "Send Message", "Templates", "API Config"])
-
-        with _wa_tabs[0]:
-            st.subheader("WhatsApp Queue")
-            from database import get_wa_queue
-            _wq_status = st.selectbox("Filter", ["pending", "sent", "delivered", "read", "failed", "all"], key="wq_filter")
-            _wq_list = get_wa_queue(status=None if _wq_status == "all" else _wq_status, limit=50)
-            if _wq_list:
-                _wq_df = pd.DataFrame(_wq_list)
-                _display_cols = [c for c in ["id", "to_number", "message_type", "template_name", "status", "created_at", "sent_at"] if c in _wq_df.columns]
-                st.dataframe(_wq_df[_display_cols] if _display_cols else _wq_df, use_container_width=True, hide_index=True)
-            else:
-                st.caption("No messages in queue.")
-
-        with _wa_tabs[1]:
-            st.subheader("Send WhatsApp Message")
-            _we = WhatsAppEngine()
-            _wa_to = st.text_input("Phone Number (Indian mobile)", placeholder="9876543210", key="wa_to")
-            _wa_mode = st.radio("Mode", ["Template Message", "Session Text"], horizontal=True, key="wa_mode")
-            if _wa_mode == "Template Message":
-                _wa_tmpl = st.selectbox("Template", ["bitumen_offer_v1", "bitumen_followup_v1", "payment_reminder_v1", "price_drop_alert_v1"], key="wa_tmpl")
-                _wa_params = st.text_input("Parameters (comma-separated)", key="wa_params")
-                if st.button("Queue Template Message", type="primary", key="wa_send_tmpl"):
-                    if _wa_to:
-                        params = [p.strip() for p in _wa_params.split(",")] if _wa_params else []
-                        _qid = _we.queue_message(_wa_to, "template", template_name=_wa_tmpl, template_params=params)
-                        st.success(f"Template message queued (ID: {_qid})")
-                    else:
-                        st.warning("Enter a phone number.")
-            else:
-                _wa_text = st.text_area("Message Text", key="wa_text")
-                if st.button("Queue Session Message", type="primary", key="wa_send_sess"):
-                    if _wa_to and _wa_text:
-                        _qid = _we.queue_message(_wa_to, "session", session_text=_wa_text)
-                        st.success(f"Session message queued (ID: {_qid})")
-                    else:
-                        st.warning("Enter phone number and message text.")
-
-        with _wa_tabs[2]:
-            st.subheader("WhatsApp Templates")
-            _wtm = WhatsAppTemplateManager()
-            _tmpls = _wtm.get_all_templates()
-            if _tmpls:
-                for _tn, _tv in _tmpls.items():
-                    with st.expander(f"{_tn} ({_tv.get('language', 'en')})"):
-                        st.write(f"**Namespace:** {_tv.get('namespace', 'N/A')}")
-                        st.write(f"**Parameters:** {_tv.get('parameters', [])}")
-                        st.write(f"**Business Action:** {_tv.get('business_action', 'N/A')}")
-
-        with _wa_tabs[3]:
-            st.subheader("360dialog API Configuration")
-            _wcm = WhatsAppCredentialManager()
-            _wa_creds = _wcm.load_credentials()
-            _wa_key = st.text_input("360dialog API Key", value=_wa_creds.get("api_key", ""), type="password", key="wa_api_key")
-            _wa_url = st.text_input("API Base URL", value=_wa_creds.get("api_base_url", "https://waba.360dialog.io/v1"), key="wa_api_url")
-            if st.button("Save & Test", type="primary", key="save_wa_btn"):
-                _wcm.save_credentials(_wa_key, _wa_url)
-                st.success("WhatsApp credentials saved.")
-                _test_ok, _test_msg = _wcm.test_connection()
-                if _test_ok:
-                    st.success(f"Connection test passed: {_test_msg}")
-                else:
-                    st.error(f"Connection test failed: {_test_msg}")
-
+        from command_intel import whatsapp_setup_dashboard
+        whatsapp_setup_dashboard.render()
     except Exception as _e:
-        st.error(f"WhatsApp Engine failed to load: {_e}")
+        st.error(f"WhatsApp Setup failed to load: {_e}")
 
 elif selected_page == "📓 Daily Log":
     _render_page_header("📓 Daily Log", "Sales & CRM", badge="Team Notes")
@@ -4762,6 +4663,22 @@ elif selected_page == "🚨 Alert Center":
         cmd_alert_center.render()
     except Exception as _e:
         st.error(f"Alert Center failed to load: {_e}")
+
+elif selected_page == "🖥️ Ops Dashboard":
+    _render_page_header("🖥️ Ops Dashboard", "System", badge="Live")
+    try:
+        from command_intel import ops_dashboard
+        ops_dashboard.render()
+    except Exception as _e:
+        st.error(f"Ops Dashboard failed to load: {_e}")
+
+elif selected_page == "📦 System Requirements":
+    _render_page_header("📦 System Requirements", "System", badge="Info")
+    try:
+        from command_intel import system_requirements_dashboard
+        system_requirements_dashboard.render()
+    except Exception as _e:
+        st.error(f"System Requirements failed to load: {_e}")
 
 elif selected_page == "🤖 AI Learning":
     _render_page_header("🤖 AI Learning", "AI & Knowledge", badge="Continuous")

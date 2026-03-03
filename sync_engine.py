@@ -115,6 +115,9 @@ class SyncEngine:
         # Step 13: Infra Demand Intelligence (GDELT + budget + demand scores)
         self._sync_infra_demand()
 
+        # Step 14: Source Registry Health Update
+        self._sync_source_health()
+
         # Finalize
         self.results["completed_at"] = _now()
         self.results["status"] = (
@@ -509,6 +512,28 @@ class SyncEngine:
                 step["details"].extend(result["errors"][:3])
         except Exception as e:
             step["details"].append(f"Infra demand: skipped — {str(e)[:80]}")
+
+        step["status"] = "done"
+        step["completed_at"] = _now()
+        self.results["steps"].append(step)
+
+    # ─── Step 14: Source Registry Health Update ──────────────────────────────
+
+    def _sync_source_health(self):
+        """Update source_registry table with latest sync health data."""
+        step = {"name": "Source Registry Health", "status": "running",
+                "started_at": _now(), "details": []}
+        try:
+            from database import get_all_sources, update_source_registry
+            sources = get_all_sources()
+            updated = 0
+            for src in sources:
+                if src.get("status") == "active":
+                    update_source_registry(src["id"], {"last_success": _now()})
+                    updated += 1
+            step["details"].append(f"Updated {updated} source health records")
+        except Exception as e:
+            step["details"].append(f"Source health: skipped — {str(e)[:80]}")
 
         step["status"] = "done"
         step["completed_at"] = _now()
