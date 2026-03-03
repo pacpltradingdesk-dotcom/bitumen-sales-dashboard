@@ -733,5 +733,35 @@
     "auto_fix_result": "",
     "action_needed": "Monitor latency, consider fallback if worsens",
     "details_json": "{\"entity\": \"usdinr_frankfurter\", \"where\": \"API Layer / usdinr_frankfurter\", \"why\": \"Latency 15337ms  Error rate 0.0%  ConsecFail 0\"}"
+  },
+  {
+    "alert_id": "ALT-20260303-153238-5195",
+    "severity": "P0",
+    "entity": "rest_countries_india",
+    "message": "API rest_countries_india is DOWN",
+    "what_happened": "API rest_countries_india is DOWN",
+    "where": "API Layer / rest_countries_india",
+    "why": "Consecutive failures: 1  Error rate: 100.0%",
+    "triggered_on_ist": "03-03-2026 15:32:38 IST",
+    "resolved_on_ist": null,
+    "status": "Open",
+    "auto_fix_result": "",
+    "action_needed": "Check API endpoint, rotate if needed, or activate fallback manually",
+    "details_json": "{\"entity\": \"rest_countries_india\", \"where\": \"API Layer / rest_countries_india\", \"why\": \"Consecutive failures: 1  Error rate: 100.0%\"}"
+  },
+  {
+    "alert_id": "ALT-20260303-153945-74EB",
+    "severity": "P1",
+    "entity": "rest_countries_india",
+    "message": "API rest_countries_india degraded performance",
+    "what_happened": "API rest_countries_india degraded performance",
+    "where": "API Layer / rest_countries_india",
+    "why": "Latency 986ms  Error rate 33.3%  ConsecFail 0",
+    "triggered_on_ist": "03-03-2026 15:39:45 IST",
+    "resolved_on_ist": null,
+    "status": "Open",
+    "auto_fix_result": "",
+    "action_needed": "Monitor latency, consider fallback if worsens",
+    "details_json": "{\"entity\": \"rest_countries_india\", \"where\": \"API Layer / rest_countries_india\", \"why\": \"Latency 986ms  Error rate 33.3%  ConsecFail 0\"}"
   }
 ]

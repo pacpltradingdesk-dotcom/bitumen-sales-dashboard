@@ -10830,5 +10830,55 @@
     "sentiment": "neutral",
     "status": "new",
     "language": "hi"
+  },
+  {
+    "article_id": "858f81831002",
+    "region": "Domestic",
+    "headline": "Quote of the Day by Shah Rukh Khan on money: ‘Don’t become a philosopher before…’",
+    "summary": "Shah Rukh Khan stresses the importance of financial stability before pursuing philosophical thoughts. His advice prioritises survival and skill-building.",
+    "source_name": "Mint — Top News",
+    "source_id": "mint_rss",
+    "source_url": "https://www.livemint.com/news/trends/quote-of-the-day-3-march-2026-shah-rukh-khan-money-success-11772531452661.html",
+    "published_at_ist": "03-03-2026 15:29 IST",
+    "fetched_at_ist": "03-03-2026 15:34 IST",
+    "tags": [
+      "logistics",
+      "highway",
+      "budget",
+      "nhai",
+      "tender"
+    ],
+    "impact_score": 63,
+    "duplicate_cluster_id": null,
+    "duplicate_count": 1,
+    "similar_sources": [],
+    "sentiment": "neutral",
+    "status": "new",
+    "language": "en"
+  },
+  {
+    "article_id": "56e3dfaf7f3b",
+    "region": "International",
+    "headline": "U.S. Not Planning To Tap Strategic Petroleum Reserve Immediately",
+    "summary": "The United States does not plan an immediate release crude from the Strategic Petroleum Reserve (SPR) as a means to mitigate the effect of the Iran war on global oil prices and domestic fuel prices, a source with knowledge of the matter has told Bloomberg.  Late on Monday, U.S. Secretary of State Marco Rubio said the United States would unveil on Tuesday a phased plan to mitigate the spike in oil prices amid the ongoing conflict in Iran and the wider Middle East.  The U.S. knew that oil prices w",
+    "source_name": "OilPrice.com",
+    "source_id": "oilprice_rss",
+    "source_url": "https://oilprice.com/Latest-Energy-News/World-News/US-Not-Planning-To-Tap-Strategic-Petroleum-Reserve-Immediately.html",
+    "published_at_ist": "03-03-2026 15:44 IST",
+    "fetched_at_ist": "03-03-2026 15:44 IST",
+    "tags": [
+      "crude_oil",
+      "middle_east",
+      "wti",
+      "brent",
+      "opec"
+    ],
+    "impact_score": 83,
+    "duplicate_cluster_id": null,
+    "duplicate_count": 1,
+    "similar_sources": [],
+    "sentiment": "neutral",
+    "status": "new",
+    "language": "en"
   }
 ]

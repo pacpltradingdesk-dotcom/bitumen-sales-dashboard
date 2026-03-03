@@ -1419,5 +1419,89 @@
     "price": 81.8,
     "currency": "USD/bbl",
     "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 15:29:38 IST",
+    "benchmark": "Brent",
+    "price": 81.91,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 15:29:38 IST",
+    "benchmark": "WTI",
+    "price": 75.15,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 15:29:55 IST",
+    "benchmark": "Brent",
+    "price": 5279.0,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 15:29:55 IST",
+    "benchmark": "WTI",
+    "price": 81.94,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 15:29:56 IST",
+    "benchmark": "Brent",
+    "price": 75.18,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 15:29:56 IST",
+    "benchmark": "WTI",
+    "price": 81.94,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 15:30:22 IST",
+    "benchmark": "Brent",
+    "price": 80238.85,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 15:30:22 IST",
+    "benchmark": "WTI",
+    "price": 17.13,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 15:33:28 IST",
+    "benchmark": "Brent",
+    "price": 82.32,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 15:33:28 IST",
+    "benchmark": "WTI",
+    "price": 75.51,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 15:34:54 IST",
+    "benchmark": "Brent",
+    "price": 82.27,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 15:34:54 IST",
+    "benchmark": "WTI",
+    "price": 75.51,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
   }
 ]

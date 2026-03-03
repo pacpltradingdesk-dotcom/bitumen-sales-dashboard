@@ -54,5 +54,516 @@
     "status": "OK",
     "message": "Weather: 5 city records",
     "records_written": 5
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:29:02 IST",
+    "connector_id": "newsapi",
+    "status": "Fallback",
+    "message": "Google News RSS: 30 articles",
+    "records_written": 30
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:29:04 IST",
+    "connector_id": "ports_volume",
+    "status": "OK",
+    "message": "Ports volume: 5 port estimates (BDI factor=1.00)",
+    "records_written": 5
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:29:04 IST",
+    "connector_id": "refinery",
+    "status": "OK",
+    "message": "Refinery: 4 records (static+EIA)",
+    "records_written": 4
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:29:05 IST",
+    "connector_id": "rbi_fx_historical",
+    "status": "OK",
+    "message": "RBI FX historical: 13 monthly records",
+    "records_written": 13
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:29:05 IST",
+    "connector_id": "ppac_proxy",
+    "status": "OK",
+    "message": "PPAC static proxy: 7 rows written",
+    "records_written": 7
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:29:05 IST",
+    "connector_id": "govt_orchestrator",
+    "status": "OK",
+    "message": "Govt connectors: 2/5 OK",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:29:05 IST",
+    "connector_id": "hub_orchestrator",
+    "status": "OK",
+    "message": "Full refresh: 8/12 OK",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:29:38 IST",
+    "connector_id": "eia_crude",
+    "status": "Fallback",
+    "message": "yfinance fallback: 2 records",
+    "records_written": 2
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:29:39 IST",
+    "connector_id": "un_comtrade",
+    "status": "Fallback",
+    "message": "Comtrade unavailable: Empty Comtrade response. Static cache used.",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:29:41 IST",
+    "connector_id": "openweather",
+    "status": "OK",
+    "message": "Weather: 5 city records",
+    "records_written": 5
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:29:41 IST",
+    "connector_id": "newsapi",
+    "status": "Fallback",
+    "message": "Google News RSS: 30 articles",
+    "records_written": 30
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:29:43 IST",
+    "connector_id": "ports_volume",
+    "status": "OK",
+    "message": "Ports volume: 5 port estimates (BDI factor=1.00)",
+    "records_written": 5
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:29:43 IST",
+    "connector_id": "refinery",
+    "status": "OK",
+    "message": "Refinery: 4 records (static+EIA)",
+    "records_written": 4
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:29:43 IST",
+    "connector_id": "hub_orchestrator",
+    "status": "OK",
+    "message": "Full refresh: 6/7 OK",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:29:55 IST",
+    "connector_id": "eia_crude",
+    "status": "Fallback",
+    "message": "yfinance fallback: 2 records",
+    "records_written": 2
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:29:56 IST",
+    "connector_id": "eia_crude",
+    "status": "Fallback",
+    "message": "yfinance fallback: 2 records",
+    "records_written": 2
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:29:57 IST",
+    "connector_id": "un_comtrade",
+    "status": "Fallback",
+    "message": "Comtrade unavailable: Empty Comtrade response. Static cache used.",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:29:57 IST",
+    "connector_id": "un_comtrade",
+    "status": "Fallback",
+    "message": "Comtrade unavailable: Empty Comtrade response. Static cache used.",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:29:59 IST",
+    "connector_id": "openweather",
+    "status": "OK",
+    "message": "Weather: 5 city records",
+    "records_written": 5
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:29:59 IST",
+    "connector_id": "openweather",
+    "status": "OK",
+    "message": "Weather: 5 city records",
+    "records_written": 5
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:30:00 IST",
+    "connector_id": "newsapi",
+    "status": "Fallback",
+    "message": "Google News RSS: 30 articles",
+    "records_written": 30
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:30:00 IST",
+    "connector_id": "ports_volume",
+    "status": "OK",
+    "message": "Ports volume: 5 port estimates (BDI factor=1.15)",
+    "records_written": 5
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:30:00 IST",
+    "connector_id": "refinery",
+    "status": "OK",
+    "message": "Refinery: 4 records (static+EIA)",
+    "records_written": 4
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:30:00 IST",
+    "connector_id": "newsapi",
+    "status": "Fallback",
+    "message": "Google News RSS: 30 articles",
+    "records_written": 30
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:30:01 IST",
+    "connector_id": "rbi_fx_historical",
+    "status": "OK",
+    "message": "RBI FX historical: 13 monthly records",
+    "records_written": 13
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:30:01 IST",
+    "connector_id": "ppac_proxy",
+    "status": "OK",
+    "message": "PPAC static proxy: 7 rows written",
+    "records_written": 7
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:30:01 IST",
+    "connector_id": "govt_orchestrator",
+    "status": "OK",
+    "message": "Govt connectors: 2/5 OK",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:30:01 IST",
+    "connector_id": "hub_orchestrator",
+    "status": "OK",
+    "message": "Full refresh: 8/12 OK",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:30:01 IST",
+    "connector_id": "ports_volume",
+    "status": "OK",
+    "message": "Ports volume: 5 port estimates (BDI factor=1.00)",
+    "records_written": 5
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:30:01 IST",
+    "connector_id": "refinery",
+    "status": "OK",
+    "message": "Refinery: 4 records (static+EIA)",
+    "records_written": 4
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:30:02 IST",
+    "connector_id": "rbi_fx_historical",
+    "status": "OK",
+    "message": "RBI FX historical: 13 monthly records",
+    "records_written": 13
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:30:02 IST",
+    "connector_id": "ppac_proxy",
+    "status": "OK",
+    "message": "PPAC static proxy: 7 rows written",
+    "records_written": 7
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:30:02 IST",
+    "connector_id": "govt_orchestrator",
+    "status": "OK",
+    "message": "Govt connectors: 2/5 OK",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:30:02 IST",
+    "connector_id": "hub_orchestrator",
+    "status": "OK",
+    "message": "Full refresh: 8/12 OK",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:30:22 IST",
+    "connector_id": "eia_crude",
+    "status": "Fallback",
+    "message": "yfinance fallback: 2 records",
+    "records_written": 2
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:30:24 IST",
+    "connector_id": "un_comtrade",
+    "status": "Fallback",
+    "message": "Comtrade unavailable: Empty Comtrade response. Static cache used.",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:30:26 IST",
+    "connector_id": "openweather",
+    "status": "OK",
+    "message": "Weather: 5 city records",
+    "records_written": 5
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:30:28 IST",
+    "connector_id": "newsapi",
+    "status": "Fallback",
+    "message": "Google News RSS: 30 articles",
+    "records_written": 30
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:30:29 IST",
+    "connector_id": "ports_volume",
+    "status": "OK",
+    "message": "Ports volume: 5 port estimates (BDI factor=1.02)",
+    "records_written": 5
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:30:29 IST",
+    "connector_id": "refinery",
+    "status": "OK",
+    "message": "Refinery: 4 records (static+EIA)",
+    "records_written": 4
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:30:29 IST",
+    "connector_id": "rbi_fx_historical",
+    "status": "OK",
+    "message": "RBI FX historical: 13 monthly records",
+    "records_written": 13
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:30:29 IST",
+    "connector_id": "ppac_proxy",
+    "status": "OK",
+    "message": "PPAC static proxy: 7 rows written",
+    "records_written": 7
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:30:30 IST",
+    "connector_id": "govt_orchestrator",
+    "status": "OK",
+    "message": "Govt connectors: 2/5 OK",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:30:30 IST",
+    "connector_id": "hub_orchestrator",
+    "status": "OK",
+    "message": "Full refresh: 8/12 OK",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:33:24 IST",
+    "connector_id": "hub_init",
+    "status": "INFO",
+    "message": "API HUB Engine v3.2.3 initialised (+ govt tables + directory)",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:33:24 IST",
+    "connector_id": "hub_scheduler",
+    "status": "INFO",
+    "message": "Hub scheduler started (interval=60min)",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:33:26 IST",
+    "connector_id": "hub_init",
+    "status": "INFO",
+    "message": "API HUB Engine v3.2.3 initialised (+ govt tables + directory)",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:33:28 IST",
+    "connector_id": "eia_crude",
+    "status": "Fallback",
+    "message": "yfinance fallback: 2 records",
+    "records_written": 2
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:33:29 IST",
+    "connector_id": "un_comtrade",
+    "status": "Fallback",
+    "message": "Comtrade unavailable: Empty Comtrade response. Static cache used.",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:33:30 IST",
+    "connector_id": "openweather",
+    "status": "OK",
+    "message": "Weather: 5 city records",
+    "records_written": 5
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:33:32 IST",
+    "connector_id": "newsapi",
+    "status": "Fallback",
+    "message": "Google News RSS: 30 articles",
+    "records_written": 30
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:33:34 IST",
+    "connector_id": "ports_volume",
+    "status": "OK",
+    "message": "Ports volume: 5 port estimates (BDI factor=1.00)",
+    "records_written": 5
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:33:34 IST",
+    "connector_id": "refinery",
+    "status": "OK",
+    "message": "Refinery: 4 records (static+EIA)",
+    "records_written": 4
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:33:37 IST",
+    "connector_id": "rbi_fx_historical",
+    "status": "OK",
+    "message": "RBI FX historical: 13 monthly records",
+    "records_written": 13
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:33:37 IST",
+    "connector_id": "ppac_proxy",
+    "status": "OK",
+    "message": "PPAC static proxy: 7 rows written",
+    "records_written": 7
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:33:37 IST",
+    "connector_id": "govt_orchestrator",
+    "status": "OK",
+    "message": "Govt connectors: 2/5 OK",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:33:37 IST",
+    "connector_id": "hub_orchestrator",
+    "status": "OK",
+    "message": "Full refresh: 8/12 OK",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:33:43 IST",
+    "connector_id": "hub_init",
+    "status": "INFO",
+    "message": "API HUB Engine v3.2.3 initialised (+ govt tables + directory)",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:33:43 IST",
+    "connector_id": "hub_init",
+    "status": "INFO",
+    "message": "API HUB Engine v3.2.3 initialised (+ govt tables + directory)",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:33:43 IST",
+    "connector_id": "hub_init",
+    "status": "INFO",
+    "message": "API HUB Engine v3.2.3 initialised (+ govt tables + directory)",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:33:49 IST",
+    "connector_id": "hub_init",
+    "status": "INFO",
+    "message": "API HUB Engine v3.2.3 initialised (+ govt tables + directory)",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:34:28 IST",
+    "connector_id": "hub_init",
+    "status": "INFO",
+    "message": "API HUB Engine v3.2.3 initialised (+ govt tables + directory)",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:34:33 IST",
+    "connector_id": "hub_init",
+    "status": "INFO",
+    "message": "API HUB Engine v3.2.3 initialised (+ govt tables + directory)",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:34:54 IST",
+    "connector_id": "eia_crude",
+    "status": "Fallback",
+    "message": "yfinance fallback: 2 records",
+    "records_written": 2
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:34:55 IST",
+    "connector_id": "un_comtrade",
+    "status": "Fallback",
+    "message": "Comtrade unavailable: Empty Comtrade response. Static cache used.",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:34:57 IST",
+    "connector_id": "openweather",
+    "status": "OK",
+    "message": "Weather: 5 city records",
+    "records_written": 5
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:34:59 IST",
+    "connector_id": "newsapi",
+    "status": "Fallback",
+    "message": "Google News RSS: 30 articles",
+    "records_written": 30
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:34:59 IST",
+    "connector_id": "ports_volume",
+    "status": "OK",
+    "message": "Ports volume: 5 port estimates (BDI factor=1.00)",
+    "records_written": 5
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:34:59 IST",
+    "connector_id": "refinery",
+    "status": "OK",
+    "message": "Refinery: 4 records (static+EIA)",
+    "records_written": 4
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:35:00 IST",
+    "connector_id": "rbi_fx_historical",
+    "status": "OK",
+    "message": "RBI FX historical: 13 monthly records",
+    "records_written": 13
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:35:00 IST",
+    "connector_id": "ppac_proxy",
+    "status": "OK",
+    "message": "PPAC static proxy: 7 rows written",
+    "records_written": 7
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:35:00 IST",
+    "connector_id": "govt_orchestrator",
+    "status": "OK",
+    "message": "Govt connectors: 2/5 OK",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:35:00 IST",
+    "connector_id": "hub_orchestrator",
+    "status": "OK",
+    "message": "Full refresh: 8/12 OK",
+    "records_written": 0
   }
 ]
