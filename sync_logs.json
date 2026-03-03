@@ -888,5 +888,607 @@
     "apis_succeeded": 4,
     "records_updated": 37,
     "errors": []
+  },
+  {
+    "started_at": "03-03-2026 14:46:36 IST",
+    "completed_at": "03-03-2026 14:49:43 IST",
+    "status": "success",
+    "steps": [
+      {
+        "name": "Market Data",
+        "status": "done",
+        "started_at": "03-03-2026 14:46:36 IST",
+        "details": [
+          "Crude: 2 records from yfinance fallback",
+          "FX: 0 records",
+          "Weather: 5 records"
+        ],
+        "completed_at": "03-03-2026 14:46:39 IST"
+      },
+      {
+        "name": "News Feeds",
+        "status": "done",
+        "started_at": "03-03-2026 14:46:39 IST",
+        "details": [
+          "News: 30 articles"
+        ],
+        "completed_at": "03-03-2026 14:46:41 IST"
+      },
+      {
+        "name": "Trade Data",
+        "status": "done",
+        "started_at": "03-03-2026 14:46:41 IST",
+        "details": [],
+        "completed_at": "03-03-2026 14:46:42 IST"
+      },
+      {
+        "name": "Validation",
+        "status": "done",
+        "started_at": "03-03-2026 14:46:42 IST",
+        "details": [
+          "Health check: 32 entities, 2 issues",
+          "  errors/error_log: WARN — 40 P1 open errors (threshold ≥5)",
+          "  api/rest_countries_india: WARN — calls=3 failures=1 latency=1120ms"
+        ],
+        "completed_at": "03-03-2026 14:46:42 IST"
+      },
+      {
+        "name": "Calculations",
+        "status": "done",
+        "started_at": "03-03-2026 14:46:42 IST",
+        "details": [
+          "Correlation: 0 results"
+        ],
+        "completed_at": "03-03-2026 14:46:42 IST"
+      },
+      {
+        "name": "Opportunities",
+        "status": "done",
+        "started_at": "03-03-2026 14:46:42 IST",
+        "details": [
+          "Found 3 new opportunities",
+          "  cheapest_route_change: Route Optimization: Bhopal — Save ₹1,807.00/MT",
+          "  cheapest_route_change: Route Optimization: Hyderabad — Save ₹516.50/MT",
+          "  cheapest_route_change: Route Optimization: Pune — Save ₹1,848.00/MT"
+        ],
+        "completed_at": "03-03-2026 14:46:42 IST"
+      },
+      {
+        "name": "CRM Updates",
+        "status": "done",
+        "started_at": "03-03-2026 14:46:42 IST",
+        "details": [
+          "CRM: 0 profiles updated via database"
+        ],
+        "completed_at": "03-03-2026 14:46:42 IST"
+      },
+      {
+        "name": "Alerts",
+        "status": "done",
+        "started_at": "03-03-2026 14:46:42 IST",
+        "details": [
+          "ALERT: 8 pending CRM tasks"
+        ],
+        "completed_at": "03-03-2026 14:46:42 IST"
+      },
+      {
+        "name": "Communication Triggers",
+        "status": "done",
+        "started_at": "03-03-2026 14:46:42 IST",
+        "details": [
+          "No communication triggers fired"
+        ],
+        "completed_at": "03-03-2026 14:46:42 IST"
+      },
+      {
+        "name": "Director Briefing",
+        "status": "done",
+        "started_at": "03-03-2026 14:46:42 IST",
+        "details": [
+          "Briefing generated for today"
+        ],
+        "completed_at": "03-03-2026 14:46:42 IST"
+      },
+      {
+        "name": "AI Learning",
+        "status": "done",
+        "started_at": "03-03-2026 14:46:42 IST",
+        "details": [
+          "Daily learn: accuracy=92.8%"
+        ],
+        "completed_at": "03-03-2026 14:46:42 IST"
+      },
+      {
+        "name": "Smart Alerts",
+        "status": "done",
+        "started_at": "03-03-2026 14:46:42 IST",
+        "details": [
+          "Alert scan: 0 new alerts generated"
+        ],
+        "completed_at": "03-03-2026 14:46:42 IST"
+      },
+      {
+        "name": "Infra Demand Intelligence",
+        "status": "done",
+        "started_at": "03-03-2026 14:46:42 IST",
+        "details": [
+          "GDELT: 0 new articles, 102 scores, 1 alerts",
+          "GDELT: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=%28highway+OR+%22road+construction%22+OR+NHAI+OR+%22national+highway%22+OR+expressway+O"
+        ],
+        "completed_at": "03-03-2026 14:49:43 IST"
+      }
+    ],
+    "apis_called": 5,
+    "apis_succeeded": 4,
+    "records_updated": 37,
+    "errors": []
+  },
+  {
+    "started_at": "03-03-2026 14:58:51 IST",
+    "completed_at": "03-03-2026 14:58:57 IST",
+    "status": "success",
+    "steps": [
+      {
+        "name": "Market Data",
+        "status": "done",
+        "started_at": "03-03-2026 14:58:51 IST",
+        "details": [
+          "Crude: 2 records from yfinance fallback",
+          "FX: 0 records",
+          "Weather: 5 records"
+        ],
+        "completed_at": "03-03-2026 14:58:53 IST"
+      },
+      {
+        "name": "News Feeds",
+        "status": "done",
+        "started_at": "03-03-2026 14:58:53 IST",
+        "details": [
+          "News: 30 articles"
+        ],
+        "completed_at": "03-03-2026 14:58:55 IST"
+      },
+      {
+        "name": "Trade Data",
+        "status": "done",
+        "started_at": "03-03-2026 14:58:55 IST",
+        "details": [],
+        "completed_at": "03-03-2026 14:58:57 IST"
+      },
+      {
+        "name": "Validation",
+        "status": "done",
+        "started_at": "03-03-2026 14:58:57 IST",
+        "details": [
+          "Health check: 32 entities, 3 issues",
+          "  errors/error_log: WARN — 40 P1 open errors (threshold ≥5)",
+          "  api/rest_countries_india: WARN — calls=5 failures=1 latency=1334ms",
+          "  api/usdinr_frankfurter: WARN — calls=4 failures=0 latency=25549ms"
+        ],
+        "completed_at": "03-03-2026 14:58:57 IST"
+      },
+      {
+        "name": "Calculations",
+        "status": "done",
+        "started_at": "03-03-2026 14:58:57 IST",
+        "details": [
+          "Correlation: 0 results"
+        ],
+        "completed_at": "03-03-2026 14:58:57 IST"
+      },
+      {
+        "name": "Opportunities",
+        "status": "done",
+        "started_at": "03-03-2026 14:58:57 IST",
+        "details": [
+          "Found 3 new opportunities",
+          "  cheapest_route_change: Route Optimization: Bhopal — Save ₹1,807.00/MT",
+          "  cheapest_route_change: Route Optimization: Hyderabad — Save ₹516.50/MT",
+          "  cheapest_route_change: Route Optimization: Pune — Save ₹1,848.00/MT"
+        ],
+        "completed_at": "03-03-2026 14:58:57 IST"
+      },
+      {
+        "name": "CRM Updates",
+        "status": "done",
+        "started_at": "03-03-2026 14:58:57 IST",
+        "details": [
+          "CRM: 0 profiles updated via database"
+        ],
+        "completed_at": "03-03-2026 14:58:57 IST"
+      },
+      {
+        "name": "Alerts",
+        "status": "done",
+        "started_at": "03-03-2026 14:58:57 IST",
+        "details": [
+          "ALERT: Brent moved +13.0% ($81.45 -> $92.05)",
+          "ALERT: 8 pending CRM tasks"
+        ],
+        "completed_at": "03-03-2026 14:58:57 IST"
+      }
+    ],
+    "apis_called": 5,
+    "apis_succeeded": 4,
+    "records_updated": 37,
+    "errors": []
+  },
+  {
+    "started_at": "03-03-2026 14:59:24 IST",
+    "completed_at": "03-03-2026 14:59:29 IST",
+    "status": "success",
+    "steps": [
+      {
+        "name": "Market Data",
+        "status": "done",
+        "started_at": "03-03-2026 14:59:24 IST",
+        "details": [
+          "Crude: 1 records from yfinance fallback",
+          "FX: 0 records",
+          "Weather: 5 records"
+        ],
+        "completed_at": "03-03-2026 14:59:28 IST"
+      },
+      {
+        "name": "News Feeds",
+        "status": "done",
+        "started_at": "03-03-2026 14:59:28 IST",
+        "details": [
+          "News: 30 articles"
+        ],
+        "completed_at": "03-03-2026 14:59:28 IST"
+      },
+      {
+        "name": "Trade Data",
+        "status": "done",
+        "started_at": "03-03-2026 14:59:28 IST",
+        "details": [],
+        "completed_at": "03-03-2026 14:59:28 IST"
+      },
+      {
+        "name": "Validation",
+        "status": "done",
+        "started_at": "03-03-2026 14:59:28 IST",
+        "details": [
+          "Health check: 32 entities, 3 issues",
+          "  errors/error_log: WARN — 40 P1 open errors (threshold ≥5)",
+          "  api/rest_countries_india: WARN — calls=5 failures=1 latency=1334ms",
+          "  api/usdinr_frankfurter: WARN — calls=4 failures=0 latency=25549ms"
+        ],
+        "completed_at": "03-03-2026 14:59:28 IST"
+      },
+      {
+        "name": "Calculations",
+        "status": "done",
+        "started_at": "03-03-2026 14:59:28 IST",
+        "details": [
+          "Correlation: 0 results"
+        ],
+        "completed_at": "03-03-2026 14:59:28 IST"
+      },
+      {
+        "name": "Opportunities",
+        "status": "done",
+        "started_at": "03-03-2026 14:59:28 IST",
+        "details": [
+          "Found 3 new opportunities",
+          "  cheapest_route_change: Route Optimization: Bhopal — Save ₹1,807.00/MT",
+          "  cheapest_route_change: Route Optimization: Hyderabad — Save ₹516.50/MT",
+          "  cheapest_route_change: Route Optimization: Pune — Save ₹1,848.00/MT"
+        ],
+        "completed_at": "03-03-2026 14:59:28 IST"
+      },
+      {
+        "name": "CRM Updates",
+        "status": "done",
+        "started_at": "03-03-2026 14:59:28 IST",
+        "details": [
+          "CRM: 0 profiles updated via database"
+        ],
+        "completed_at": "03-03-2026 14:59:28 IST"
+      },
+      {
+        "name": "Alerts",
+        "status": "done",
+        "started_at": "03-03-2026 14:59:28 IST",
+        "details": [
+          "ALERT: Brent moved +13.0% ($81.45 -> $92.05)",
+          "ALERT: 8 pending CRM tasks"
+        ],
+        "completed_at": "03-03-2026 14:59:28 IST"
+      },
+      {
+        "name": "Communication Triggers",
+        "status": "done",
+        "started_at": "03-03-2026 14:59:28 IST",
+        "details": [
+          "Email triggers: skipped — EmailEngine.on_opportunity_scan() missing 1 required positional argument: 'oppor",
+          "WhatsApp triggers: skipped — WhatsAppEngine.on_opportunity_scan() missing 1 required positional argument: 'op"
+        ],
+        "completed_at": "03-03-2026 14:59:28 IST"
+      },
+      {
+        "name": "Director Briefing",
+        "status": "done",
+        "started_at": "03-03-2026 14:59:28 IST",
+        "details": [
+          "Briefing generated for today"
+        ],
+        "completed_at": "03-03-2026 14:59:29 IST"
+      },
+      {
+        "name": "AI Learning",
+        "status": "done",
+        "started_at": "03-03-2026 14:59:29 IST",
+        "details": [
+          "Daily learn: accuracy=82.0%"
+        ],
+        "completed_at": "03-03-2026 14:59:29 IST"
+      },
+      {
+        "name": "Smart Alerts",
+        "status": "done",
+        "started_at": "03-03-2026 14:59:29 IST",
+        "details": [
+          "Alert scan: 1 new alerts generated"
+        ],
+        "completed_at": "03-03-2026 14:59:29 IST"
+      }
+    ],
+    "apis_called": 5,
+    "apis_succeeded": 4,
+    "records_updated": 36,
+    "errors": []
+  },
+  {
+    "started_at": "03-03-2026 15:07:37 IST",
+    "completed_at": "03-03-2026 15:07:42 IST",
+    "status": "success",
+    "steps": [
+      {
+        "name": "Market Data",
+        "status": "done",
+        "started_at": "03-03-2026 15:07:37 IST",
+        "details": [
+          "Crude: 2 records from yfinance fallback",
+          "FX: 0 records",
+          "Weather: 5 records"
+        ],
+        "completed_at": "03-03-2026 15:07:39 IST"
+      },
+      {
+        "name": "News Feeds",
+        "status": "done",
+        "started_at": "03-03-2026 15:07:39 IST",
+        "details": [
+          "News: 30 articles"
+        ],
+        "completed_at": "03-03-2026 15:07:41 IST"
+      },
+      {
+        "name": "Trade Data",
+        "status": "done",
+        "started_at": "03-03-2026 15:07:41 IST",
+        "details": [],
+        "completed_at": "03-03-2026 15:07:42 IST"
+      },
+      {
+        "name": "Validation",
+        "status": "done",
+        "started_at": "03-03-2026 15:07:42 IST",
+        "details": [
+          "Health check: 32 entities, 8 issues",
+          "  errors/error_log: WARN — 41 P1 open errors (threshold ≥5)",
+          "  api/weather_mumbai: WARN — calls=1 failures=0 latency=7837ms",
+          "  api/weather_kandla: WARN — calls=1 failures=0 latency=5852ms",
+          "  api/weather_mangalore: WARN — calls=1 failures=0 latency=4356ms",
+          "  api/weather_delhi: WARN — calls=2 failures=0 latency=6276ms"
+        ],
+        "completed_at": "03-03-2026 15:07:42 IST"
+      },
+      {
+        "name": "Calculations",
+        "status": "done",
+        "started_at": "03-03-2026 15:07:42 IST",
+        "details": [
+          "Correlation: 0 results"
+        ],
+        "completed_at": "03-03-2026 15:07:42 IST"
+      },
+      {
+        "name": "Opportunities",
+        "status": "done",
+        "started_at": "03-03-2026 15:07:42 IST",
+        "details": [
+          "Found 3 new opportunities",
+          "  cheapest_route_change: Route Optimization: Bhopal — Save ₹1,807.00/MT",
+          "  cheapest_route_change: Route Optimization: Hyderabad — Save ₹516.50/MT",
+          "  cheapest_route_change: Route Optimization: Pune — Save ₹1,848.00/MT"
+        ],
+        "completed_at": "03-03-2026 15:07:42 IST"
+      },
+      {
+        "name": "CRM Updates",
+        "status": "done",
+        "started_at": "03-03-2026 15:07:42 IST",
+        "details": [
+          "CRM: 0 profiles updated via database"
+        ],
+        "completed_at": "03-03-2026 15:07:42 IST"
+      },
+      {
+        "name": "Alerts",
+        "status": "done",
+        "started_at": "03-03-2026 15:07:42 IST",
+        "details": [
+          "ALERT: Brent moved -11.2% ($92.05 -> $81.77)",
+          "ALERT: 8 pending CRM tasks"
+        ],
+        "completed_at": "03-03-2026 15:07:42 IST"
+      },
+      {
+        "name": "Communication Triggers",
+        "status": "done",
+        "started_at": "03-03-2026 15:07:42 IST",
+        "details": [
+          "No communication triggers fired"
+        ],
+        "completed_at": "03-03-2026 15:07:42 IST"
+      },
+      {
+        "name": "Director Briefing",
+        "status": "done",
+        "started_at": "03-03-2026 15:07:42 IST",
+        "details": [
+          "Briefing generated for today"
+        ],
+        "completed_at": "03-03-2026 15:07:42 IST"
+      },
+      {
+        "name": "AI Learning",
+        "status": "done",
+        "started_at": "03-03-2026 15:07:42 IST",
+        "details": [
+          "Daily learn: accuracy=92.3%"
+        ],
+        "completed_at": "03-03-2026 15:07:42 IST"
+      },
+      {
+        "name": "Smart Alerts",
+        "status": "done",
+        "started_at": "03-03-2026 15:07:42 IST",
+        "details": [
+          "Alert scan: 1 new alerts generated"
+        ],
+        "completed_at": "03-03-2026 15:07:42 IST"
+      }
+    ],
+    "apis_called": 5,
+    "apis_succeeded": 4,
+    "records_updated": 37,
+    "errors": []
+  },
+  {
+    "started_at": "03-03-2026 15:12:34 IST",
+    "completed_at": "03-03-2026 15:12:43 IST",
+    "status": "success",
+    "steps": [
+      {
+        "name": "Market Data",
+        "status": "done",
+        "started_at": "03-03-2026 15:12:34 IST",
+        "details": [
+          "Crude: 2 records from yfinance fallback",
+          "FX: 0 records",
+          "Weather: 5 records"
+        ],
+        "completed_at": "03-03-2026 15:12:40 IST"
+      },
+      {
+        "name": "News Feeds",
+        "status": "done",
+        "started_at": "03-03-2026 15:12:40 IST",
+        "details": [
+          "News: 30 articles"
+        ],
+        "completed_at": "03-03-2026 15:12:42 IST"
+      },
+      {
+        "name": "Trade Data",
+        "status": "done",
+        "started_at": "03-03-2026 15:12:42 IST",
+        "details": [],
+        "completed_at": "03-03-2026 15:12:43 IST"
+      },
+      {
+        "name": "Validation",
+        "status": "done",
+        "started_at": "03-03-2026 15:12:43 IST",
+        "details": [
+          "Health check: 4 entities, 1 issues",
+          "  errors/error_log: WARN — 41 P1 open errors (threshold ≥5)"
+        ],
+        "completed_at": "03-03-2026 15:12:43 IST"
+      },
+      {
+        "name": "Calculations",
+        "status": "done",
+        "started_at": "03-03-2026 15:12:43 IST",
+        "details": [
+          "Correlation: 0 results"
+        ],
+        "completed_at": "03-03-2026 15:12:43 IST"
+      },
+      {
+        "name": "Opportunities",
+        "status": "done",
+        "started_at": "03-03-2026 15:12:43 IST",
+        "details": [
+          "Found 3 new opportunities",
+          "  cheapest_route_change: Route Optimization: Bhopal — Save ₹1,807.00/MT",
+          "  cheapest_route_change: Route Optimization: Hyderabad — Save ₹516.50/MT",
+          "  cheapest_route_change: Route Optimization: Pune — Save ₹1,848.00/MT"
+        ],
+        "completed_at": "03-03-2026 15:12:43 IST"
+      },
+      {
+        "name": "CRM Updates",
+        "status": "done",
+        "started_at": "03-03-2026 15:12:43 IST",
+        "details": [
+          "CRM: 0 profiles updated via database"
+        ],
+        "completed_at": "03-03-2026 15:12:43 IST"
+      },
+      {
+        "name": "Alerts",
+        "status": "done",
+        "started_at": "03-03-2026 15:12:43 IST",
+        "details": [
+          "ALERT: 8 pending CRM tasks"
+        ],
+        "completed_at": "03-03-2026 15:12:43 IST"
+      },
+      {
+        "name": "Communication Triggers",
+        "status": "done",
+        "started_at": "03-03-2026 15:12:43 IST",
+        "details": [
+          "No communication triggers fired"
+        ],
+        "completed_at": "03-03-2026 15:12:43 IST"
+      },
+      {
+        "name": "Director Briefing",
+        "status": "done",
+        "started_at": "03-03-2026 15:12:43 IST",
+        "details": [
+          "Briefing generated for today"
+        ],
+        "completed_at": "03-03-2026 15:12:43 IST"
+      },
+      {
+        "name": "AI Learning",
+        "status": "done",
+        "started_at": "03-03-2026 15:12:43 IST",
+        "details": [
+          "Daily learn: accuracy=92.4%"
+        ],
+        "completed_at": "03-03-2026 15:12:43 IST"
+      },
+      {
+        "name": "Smart Alerts",
+        "status": "done",
+        "started_at": "03-03-2026 15:12:43 IST",
+        "details": [
+          "Alert scan: 0 new alerts generated"
+        ],
+        "completed_at": "03-03-2026 15:12:43 IST"
+      }
+    ],
+    "apis_called": 5,
+    "apis_succeeded": 4,
+    "records_updated": 37,
+    "errors": []
   }
 ]
