@@ -2221,5 +2221,77 @@
     "new_value": "U.S. Not Planning To Tap Strategic Petroleum Reserve Immediately",
     "reason": "Fetched from OilPrice.com",
     "actor": "System"
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:46 IST",
+    "change_type": "added",
+    "article_id": "ec69214688f1",
+    "old_value": "",
+    "new_value": "इजराइल-ईरान जंग;दुबई से 149 यात्री दिल्ली और 217 चेन्नई लौटे:दिल्ली से 80+ इंटरनेशनल फ्लाइट कैंसिल; जम्मू-कश्मीर में खामेनेई की मौत पर प्रदर्शन",
+    "reason": "Fetched from Dainik Bhaskar (Hindi)",
+    "actor": "System"
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:46 IST",
+    "change_type": "added",
+    "article_id": "ec69214688f1",
+    "old_value": "",
+    "new_value": "इजराइल-ईरान जंग;दुबई से 149 यात्री दिल्ली और 217 चेन्नई लौटे:दिल्ली से 80+ इंटरनेशनल फ्लाइट कैंसिल; जम्मू-कश्मीर में खामेनेई की मौत पर प्रदर्शन",
+    "reason": "Fetched from Dainik Bhaskar (Hindi)",
+    "actor": "System"
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:55 IST",
+    "change_type": "added",
+    "article_id": "827126f547a1",
+    "old_value": "",
+    "new_value": "जीपीएस कार निकोबार में मछुआरा समुदाय का जीवन बदल रहा है",
+    "reason": "Fetched from PIB India — Infrastructure",
+    "actor": "System"
+  },
+  {
+    "timestamp_ist": "03-03-2026 15:55 IST",
+    "change_type": "added",
+    "article_id": "713adb3e2d7b",
+    "old_value": "",
+    "new_value": "ईरान-इजराइल युद्ध में बेतिया के कैप्टन आशीष लापता:1 मार्च को जहाज पर गिरी थी मिसाइल; पत्नी को एजेंसी ने फोन कर दी जानकारी",
+    "reason": "Fetched from Dainik Bhaskar (Hindi)",
+    "actor": "System"
+  },
+  {
+    "timestamp_ist": "03-03-2026 16:05 IST",
+    "change_type": "added",
+    "article_id": "69404d002e90",
+    "old_value": "",
+    "new_value": "Chevron Completes Third Gathering Pipeline for Israel's Leviathan",
+    "reason": "Fetched from Rigzone",
+    "actor": "System"
+  },
+  {
+    "timestamp_ist": "03-03-2026 16:06 IST",
+    "change_type": "added",
+    "article_id": "156cbb9d8453",
+    "old_value": "",
+    "new_value": "India sits on 100 mn barrels of crude oil stock amid Strait of Hormuz shutdown fears — here's how long it will last",
+    "reason": "Fetched from Mint — Top News",
+    "actor": "System"
+  },
+  {
+    "timestamp_ist": "03-03-2026 16:18 IST",
+    "change_type": "added",
+    "article_id": "f6e90cc6ead8",
+    "old_value": "",
+    "new_value": "हिमाचल में राज्यसभा प्रत्याशी पर सस्पेंस:सुप्रिया श्रीनेत का नया नाम चर्चा में, CM ने हाईकमान पर छोड़ा फैसला, 5 को विधायक दल मीटिंग",
+    "reason": "Fetched from Dainik Bhaskar (Hindi)",
+    "actor": "System"
+  },
+  {
+    "timestamp_ist": "03-03-2026 16:18 IST",
+    "change_type": "added",
+    "article_id": "f6e90cc6ead8",
+    "old_value": "",
+    "new_value": "हिमाचल में राज्यसभा प्रत्याशी पर सस्पेंस:सुप्रिया श्रीनेत का नया नाम चर्चा में, CM ने हाईकमान पर छोड़ा फैसला, 5 को विधायक दल मीटिंग",
+    "reason": "Fetched from Dainik Bhaskar (Hindi)",
+    "actor": "System"
   }
 ]

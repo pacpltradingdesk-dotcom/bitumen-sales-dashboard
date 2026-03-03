@@ -508,5 +508,12 @@
     "pair": "USD/INR",
     "rate": 86.52,
     "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "03-03-2026 16:13:42 IST",
+    "period_label": "2025-03",
+    "pair": "USD/INR",
+    "rate": 86.52,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
   }
 ]

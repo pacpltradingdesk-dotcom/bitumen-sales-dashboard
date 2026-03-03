@@ -544,5 +544,18 @@
     "root_cause": "",
     "resolution_notes": "Check endpoint URL, rate limit, and API availability. Consider replacing with alternative free API.",
     "status": "Open"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:02:23 IST",
+    "api_id": "rest_countries_india",
+    "component": "API Fetch",
+    "error_type": "Unknown failure",
+    "severity": "P1",
+    "message": "India Country Data (REST Countries) failed after 3 retries. Error: ",
+    "auto_fixed": false,
+    "manual_required": true,
+    "root_cause": "",
+    "resolution_notes": "Check endpoint URL, rate limit, and API availability. Consider replacing with alternative free API.",
+    "status": "Open"
   }
 ]

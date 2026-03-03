@@ -219,5 +219,115 @@
     "accuracy_scores": {
       "price_7d": 92.4
     }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-03 15:46:58",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.23,
+        "error_pct": 8.18
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.23,
+        "error_pct": 8.18
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 91.8
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-03 15:50:25",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.36,
+        "error_pct": 8.33
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.36,
+        "error_pct": 8.33
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 91.7
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-03 15:59:43",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.44,
+        "error_pct": 8.42
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.44,
+        "error_pct": 8.42
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 91.6
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-03 16:08:02",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.72,
+        "error_pct": 8.73
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.72,
+        "error_pct": 8.73
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 91.3
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-03 16:12:59",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.75,
+        "error_pct": 8.76
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.75,
+        "error_pct": 8.76
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 91.2
+    }
   }
 ]

@@ -1503,5 +1503,131 @@
     "price": 75.51,
     "currency": "USD/bbl",
     "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 15:46:49 IST",
+    "benchmark": "Brent",
+    "price": 82.23,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 15:46:49 IST",
+    "benchmark": "WTI",
+    "price": 75.44,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 15:48:17 IST",
+    "benchmark": "Brent",
+    "price": 82.36,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 15:48:17 IST",
+    "benchmark": "WTI",
+    "price": 75.56,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 15:49:08 IST",
+    "benchmark": "Brent",
+    "price": 82.37,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 15:49:08 IST",
+    "benchmark": "WTI",
+    "price": 75.55,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 15:50:23 IST",
+    "benchmark": "Brent",
+    "price": 82.36,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 15:50:23 IST",
+    "benchmark": "WTI",
+    "price": 75.54,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 15:59:10 IST",
+    "benchmark": "Brent",
+    "price": 82.44,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 15:59:10 IST",
+    "benchmark": "WTI",
+    "price": 75.61,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:07:54 IST",
+    "benchmark": "Brent",
+    "price": 82.72,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:07:54 IST",
+    "benchmark": "WTI",
+    "price": 75.9,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:09:40 IST",
+    "benchmark": "Brent",
+    "price": 82.68,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:09:40 IST",
+    "benchmark": "WTI",
+    "price": 75.92,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:12:55 IST",
+    "benchmark": "Brent",
+    "price": 82.75,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:12:55 IST",
+    "benchmark": "WTI",
+    "price": 75.98,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:13:35 IST",
+    "benchmark": "Brent",
+    "price": 82.68,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:13:35 IST",
+    "benchmark": "WTI",
+    "price": 75.94,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)"
   }
 ]

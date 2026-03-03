@@ -826,5 +826,65 @@
     "affected_tab": "",
     "affected_api": "usdinr_frankfurter",
     "user_id": "System"
+  },
+  {
+    "datetime_ist": "03-03-2026 15:45:40 IST",
+    "component": "usdinr_frankfurter",
+    "what_changed": "Data source switched to fallback",
+    "old_value": "Primary: https://api.frankfurter.app/latest?from=USD&to=INR",
+    "new_value": "Fallback: yfinance(INR=X)",
+    "reason": "Primary failed: Timeout (>8s)",
+    "trigger": "Auto",
+    "affected_tab": "",
+    "affected_api": "usdinr_frankfurter",
+    "user_id": "System"
+  },
+  {
+    "datetime_ist": "03-03-2026 15:48:47 IST",
+    "component": "usdinr_frankfurter",
+    "what_changed": "Data source switched to fallback",
+    "old_value": "Primary: https://api.frankfurter.app/latest?from=USD&to=INR",
+    "new_value": "Fallback: yfinance(INR=X)",
+    "reason": "Primary failed: Timeout (>8s)",
+    "trigger": "Auto",
+    "affected_tab": "",
+    "affected_api": "usdinr_frankfurter",
+    "user_id": "System"
+  },
+  {
+    "datetime_ist": "03-03-2026 15:50:06 IST",
+    "component": "usdinr_frankfurter",
+    "what_changed": "Data source switched to fallback",
+    "old_value": "Primary: https://api.frankfurter.app/latest?from=USD&to=INR",
+    "new_value": "Fallback: yfinance(INR=X)",
+    "reason": "Primary failed: Timeout (>8s)",
+    "trigger": "Auto",
+    "affected_tab": "",
+    "affected_api": "usdinr_frankfurter",
+    "user_id": "System"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:02:41 IST",
+    "component": "rest_countries_india",
+    "what_changed": "auto_heal_fetch",
+    "old_value": "FAIL",
+    "new_value": "OK",
+    "reason": "SRE auto-heal attempt 1 succeeded",
+    "trigger": "Auto",
+    "affected_tab": "",
+    "affected_api": "rest_countries_india",
+    "user_id": "System"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:10:37 IST",
+    "component": "usdinr_frankfurter",
+    "what_changed": "Data source switched to fallback",
+    "old_value": "Primary: https://api.frankfurter.app/latest?from=USD&to=INR",
+    "new_value": "Fallback: yfinance(INR=X)",
+    "reason": "Primary failed: Timeout (>8s)",
+    "trigger": "Auto",
+    "affected_tab": "",
+    "affected_api": "usdinr_frankfurter",
+    "user_id": "System"
   }
 ]

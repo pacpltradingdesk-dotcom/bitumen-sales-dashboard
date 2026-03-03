@@ -1854,5 +1854,77 @@
     "rain_mm": 0.0,
     "humidity": 83,
     "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "03-03-2026 15:46:51 IST",
+    "location": "Mumbai",
+    "temp": 27.3,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "03-03-2026 15:48:19 IST",
+    "location": "Mumbai",
+    "temp": 27.3,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "03-03-2026 15:49:11 IST",
+    "location": "Mumbai",
+    "temp": 27.3,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "03-03-2026 15:50:23 IST",
+    "location": "Mumbai",
+    "temp": 27.3,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "03-03-2026 15:59:11 IST",
+    "location": "Mumbai",
+    "temp": 27.3,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:07:56 IST",
+    "location": "Mumbai",
+    "temp": 27.4,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:09:42 IST",
+    "location": "Mumbai",
+    "temp": 27.4,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:12:56 IST",
+    "location": "Mumbai",
+    "temp": 27.4,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:13:38 IST",
+    "location": "Mumbai",
+    "temp": 27.4,
+    "rain_mm": 0.0,
+    "humidity": 83,
+    "source": "Open-Meteo (OpenWeather fallback)"
   }
 ]
