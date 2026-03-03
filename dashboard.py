@@ -35,6 +35,7 @@ from command_intel import directory_dashboard
 from command_intel import director_dashboard as cmd_director_dashboard
 from command_intel import daily_log_panel as cmd_daily_log
 from command_intel import alert_center as cmd_alert_center
+from command_intel import infra_demand_dashboard as cmd_infra_demand
 import api_dashboard
 
 # --- PDF EXPORT SYSTEM ---
@@ -1321,7 +1322,8 @@ _NAV_SECTIONS = [
                                  "👥 Ecosystem Management"]),
     ("🧠  Intelligence",       ["🔍 Opportunities", "📰 News Intelligence", "🕵️ Competitor Intelligence",
                                  "🔭 Contractor OSINT", "👷 Demand Analytics",
-                                 "📈 Demand Correlation", "🗂️ India Procurement Directory"]),
+                                 "📈 Demand Correlation", "🗂️ India Procurement Directory",
+                                 "🏗️ Infra Demand Intelligence"]),
     ("🛡️  Compliance",         ["🛡️ GST & Legal Monitor", "⚡ Risk Scoring", "🏗️ Govt Data Hub"]),
     ("📊  Reports",            ["💰 Financial Intelligence", "📤 Reports", "🎯 Strategy Panel",
                                  "⏳ Past Predictions", "🛣️ Road Budget & Demand"]),
@@ -4811,6 +4813,13 @@ elif selected_page == "🤖 AI Learning":
 
     except Exception as _e:
         st.error(f"AI Learning failed to load: {_e}")
+
+elif selected_page == "🏗️ Infra Demand Intelligence":
+    _render_page_header("🏗️ Infra Demand Intelligence", "Intelligence", badge="GDELT + Budget")
+    try:
+        cmd_infra_demand.render()
+    except Exception as _e:
+        st.error(f"Infra Demand Intelligence failed to load: {_e}")
 
 
 # ══════════════════════════════════════════════════════════════════════════════

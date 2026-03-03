@@ -112,6 +112,9 @@ class SyncEngine:
         # Step 12: Smart Alert Scan
         self._generate_smart_alerts()
 
+        # Step 13: Infra Demand Intelligence (GDELT + budget + demand scores)
+        self._sync_infra_demand()
+
         # Finalize
         self.results["completed_at"] = _now()
         self.results["status"] = (
@@ -475,6 +478,37 @@ class SyncEngine:
             step["details"].append(f"Alert scan: {count} new alerts generated")
         except Exception as e:
             step["details"].append(f"Smart alerts: skipped — {str(e)[:80]}")
+
+        step["status"] = "done"
+        step["completed_at"] = _now()
+        self.results["steps"].append(step)
+
+    # ─── Step 13: Infra Demand Intelligence ─────────────────────────────────
+
+    def _sync_infra_demand(self):
+        """Run GDELT live update + demand scoring."""
+        step = {"name": "Infra Demand Intelligence", "status": "running",
+                "started_at": _now(), "details": []}
+        try:
+            from settings_engine import load_settings
+            settings = load_settings()
+            if not settings.get("infra_demand_enabled", True):
+                step["details"].append("Infra demand: disabled in settings")
+                step["status"] = "skipped"
+                self.results["steps"].append(step)
+                return
+
+            from infra_demand_engine import run_live_update
+            result = run_live_update()
+            step["details"].append(
+                f"GDELT: {result.get('articles_inserted', 0)} new articles, "
+                f"{result.get('scores_computed', 0)} scores, "
+                f"{result.get('alerts_generated', 0)} alerts"
+            )
+            if result.get("errors"):
+                step["details"].extend(result["errors"][:3])
+        except Exception as e:
+            step["details"].append(f"Infra demand: skipped — {str(e)[:80]}")
 
         step["status"] = "done"
         step["completed_at"] = _now()

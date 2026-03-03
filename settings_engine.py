@@ -115,6 +115,11 @@ DEFAULT_SETTINGS = {
     "ai_learning_daily": True,
     "ai_learning_weekly": True,
     "ai_learning_monthly": True,
+
+    # Infra Demand Intelligence
+    "infra_demand_enabled": True,
+    "gdelt_sync_interval_min": 120,
+    "infra_backfill_months": 24,
 }
 
 

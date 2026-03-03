@@ -466,6 +466,13 @@ def init_db():
     finally:
         conn.close()
 
+    # Initialize infra demand intelligence tables
+    try:
+        from infra_demand_engine import init_infra_tables
+        init_infra_tables()
+    except Exception:
+        pass
+
 
 # ═══════════════════════════════════════════════════════════════════════════
 # GENERIC HELPERS (private)
