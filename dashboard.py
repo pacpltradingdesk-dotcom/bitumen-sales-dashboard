@@ -1246,6 +1246,39 @@ section[data-testid="stSidebar"] div.row-widget.stRadio [role="radio"] {
   flex-shrink: 0 !important;
 }
 
+/* ── Sidebar expander headers — single line, no wrap ─────────────────────── */
+section[data-testid="stSidebar"] [data-testid="stExpander"] summary,
+section[data-testid="stSidebar"] [data-testid="stExpander"] summary span,
+section[data-testid="stSidebar"] [data-testid="stExpander"] summary p,
+section[data-testid="stSidebar"] [data-testid="stExpander"] details > summary > span {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  color: #1e3a5f !important;
+}
+/* Nav buttons inside expanders — single line */
+section[data-testid="stSidebar"] button[kind="secondary"],
+section[data-testid="stSidebar"] button[kind="primary"] {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  font-size: 0.8rem !important;
+  padding: 4px 8px !important;
+  min-height: 2rem !important;
+}
+/* Sidebar min-width to prevent squishing */
+section[data-testid="stSidebar"] {
+  min-width: 260px !important;
+  width: 280px !important;
+}
+section[data-testid="stSidebar"] > div:first-child {
+  width: 100% !important;
+}
+
 /* ── Category section headers (─── 🏢 SECTION ───) ──────────────────────── */
 /* These are styled with a distinct muted look by the JS injection below */
 .pps-nav-section-label {
