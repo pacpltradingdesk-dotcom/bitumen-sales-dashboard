@@ -448,5 +448,14 @@
     "fail": 0,
     "health_pct": 90,
     "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "03-03-2026 17:53:06 IST",
+    "total": 32,
+    "ok": 29,
+    "warn": 3,
+    "fail": 0,
+    "health_pct": 90,
+    "overall": "WARN"
   }
 ]
