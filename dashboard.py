@@ -32,6 +32,9 @@ from command_intel import govt_hub_dashboard
 from command_intel import port_tracker_dashboard
 from command_intel import correlation_dashboard
 from command_intel import directory_dashboard
+from command_intel import director_dashboard as cmd_director_dashboard
+from command_intel import daily_log_panel as cmd_daily_log
+from command_intel import alert_center as cmd_alert_center
 import api_dashboard
 
 # --- PDF EXPORT SYSTEM ---
@@ -73,6 +76,24 @@ try:
     if "sync_engine_started" not in st.session_state:
         _start_sync_sched(interval_minutes=60)
         st.session_state["sync_engine_started"] = True
+except Exception:
+    pass
+
+# --- EMAIL ENGINE: Background queue processor + scheduled reports ---
+try:
+    from email_engine import start_email_scheduler as _start_email_sched
+    if "email_engine_started" not in st.session_state:
+        _start_email_sched()
+        st.session_state["email_engine_started"] = True
+except Exception:
+    pass
+
+# --- WHATSAPP ENGINE: Background queue processor ---
+try:
+    from whatsapp_engine import start_whatsapp_scheduler as _start_wa_sched
+    if "whatsapp_engine_started" not in st.session_state:
+        _start_wa_sched()
+        st.session_state["whatsapp_engine_started"] = True
 except Exception:
     pass
 
@@ -1261,7 +1282,8 @@ _NAV_SECTIONS = [
     ("💰  Pricing",            ["🧮 Pricing Calculator", "🔮 Price Prediction", "📦 Import Cost Model",
                                  "🚨 SPECIAL PRICE (SOS)", "📝 Manual Price Entry"]),
     ("💼  Sales & CRM",        ["💼 Sales Workspace", "🎯 CRM & Tasks", "📅 Sales Calendar",
-                                 "💬 Communication Hub", "🤝 Negotiation Assistant"]),
+                                 "💬 Communication Hub", "🤝 Negotiation Assistant",
+                                 "📧 Email Engine", "📱 WhatsApp Engine", "📓 Daily Log"]),
     ("🚚  Logistics",          ["🏭 Feasibility", "🚢 Supply Chain", "📋 Source Directory",
                                  "👥 Ecosystem Management"]),
     ("🧠  Intelligence",       ["🔍 Opportunities", "📰 News Intelligence", "🕵️ Competitor Intelligence",
@@ -1272,11 +1294,12 @@ _NAV_SECTIONS = [
                                  "⏳ Past Predictions", "🛣️ Road Budget & Demand"]),
     ("⚙️  System",             ["🌐 API Dashboard", "🔗 API HUB", "🏥 System Health",
                                  "🔄 Sync Status", "⚙️ Dev & System Activity",
-                                 "🔔 Alert System", "🔔 Change Notifications",
+                                 "🔔 Alert System", "🚨 Alert Center",
+                                 "🔔 Change Notifications",
                                  "🐞 Bug Tracker", "📁 PDF Archive", "⚙️ Settings"]),
     ("🧠  AI & Knowledge",     ["🔄 AI Fallback Engine", "🧠 AI Dashboard Assistant", "🤖 AI Assistant",
                                  "📚 Knowledge Base", "🏛️ Business Intelligence",
-                                 "📥 Contact Importer", "🛠️ Data Manager",
+                                 "🤖 AI Learning", "📥 Contact Importer", "🛠️ Data Manager",
                                  "⚓ Port Import Tracker"]),
 ]
 if 'selected_page' not in st.session_state:
@@ -1304,6 +1327,11 @@ with st.sidebar:
     if st.button("🏠 Home", key="_nav_home", use_container_width=True,
                  type="primary" if _sp == "🏠 Home" else "secondary"):
         st.session_state['selected_page'] = "🏠 Home"
+        st.rerun()
+
+    if st.button("📋 Director Briefing", key="_nav_director", use_container_width=True,
+                 type="primary" if _sp == "📋 Director Briefing" else "secondary"):
+        st.session_state['selected_page'] = "📋 Director Briefing"
         st.rerun()
 
     for _sec_label, _sec_pages in _NAV_SECTIONS:
@@ -1524,6 +1552,15 @@ if selected_page == "🏠 Home":
   </div>
 </div>
 """, unsafe_allow_html=True)
+
+    # ─── P0 Alert Banner (if any critical alerts) ──────────────────────────
+    try:
+        from command_intel.alert_center import get_p0_alert_banner as _get_p0
+        _p0_html = _get_p0()
+        if _p0_html:
+            st.markdown(_p0_html, unsafe_allow_html=True)
+    except Exception:
+        pass
 
     # ─────────────────────────────────────────────────────────────────────────
     # SECTION 2 — KPI Metrics (6 key metrics)
@@ -3341,29 +3378,54 @@ if selected_page == "⚙️ Settings":
     with st.expander("🔑 API Configuration", expanded=True):
         api_c1, api_c2 = st.columns(2)
         with api_c1:
-            st.text_input("WhatsApp API Key (Twilio/Meta)", type="password", help="Required for sending automated WhatsApp messages.")
-            st.text_input("Email SMTP Host", value="smtp.gmail.com")
-            st.text_input("Email SMTP Port", value="587")
-        with api_c2:
             try:
                 from ai_fallback_engine import get_api_key as _get_ai_key
                 _existing_openai_key = _get_ai_key("openai")
             except Exception:
                 _existing_openai_key = ""
-            openai_key_input = st.text_input("OpenAI / AI Key", value=_existing_openai_key, type="password", help="Required for AI Script generation (Optional). Saved to ai_fallback_config.json.")
+            openai_key_input = st.text_input("OpenAI / AI Key", value=_existing_openai_key, type="password", help="Required for AI Script generation (Optional).")
             st.text_input("Google Maps API Key", type="password", help="Required for accurate distance calculations.")
-            st.text_input("Email Username/Login")
+        with api_c2:
+            st.caption("Email & WhatsApp configuration has moved to dedicated pages:")
+            st.markdown("📧 **Email Engine** → SMTP Config tab")
+            st.markdown("📱 **WhatsApp Engine** → API Config tab")
 
         if st.button("💾 Save API Settings"):
             if openai_key_input.strip():
                 try:
                     from ai_fallback_engine import save_api_key as _save_ai_key
                     _save_ai_key("openai", openai_key_input.strip())
-                    st.toast("✅ OpenAI API key saved to ai_fallback_config.json")
+                    st.toast("OpenAI API key saved to ai_fallback_config.json")
                 except Exception as _ke:
-                    st.toast(f"⚠️ Could not save key: {_ke}")
+                    st.toast(f"Could not save key: {_ke}")
             else:
-                st.toast("Settings Saved (other settings are informational only)")
+                st.toast("Settings Saved")
+
+    with st.expander("📧 Email & WhatsApp Automation", expanded=False):
+        try:
+            from settings_engine import load_settings as _load_s, save_settings as _save_s
+            _sett = _load_s()
+            _set_c1, _set_c2 = st.columns(2)
+            with _set_c1:
+                st.markdown("**Email Engine**")
+                _sett["email_enabled"] = st.toggle("Enable Email Engine", value=_sett.get("email_enabled", False), key="set_email_en")
+                _sett["email_auto_send_offer"] = st.toggle("Auto-send Offer Emails", value=_sett.get("email_auto_send_offer", False), key="set_email_offer")
+                _sett["email_auto_send_followup"] = st.toggle("Auto-send Followup Emails", value=_sett.get("email_auto_send_followup", False), key="set_email_fu")
+                _sett["email_auto_send_payment_reminder"] = st.toggle("Auto-send Payment Reminders", value=_sett.get("email_auto_send_payment_reminder", False), key="set_email_pay")
+                _sett["email_director_report_enabled"] = st.toggle("Director Daily Report", value=_sett.get("email_director_report_enabled", False), key="set_email_dir")
+                _sett["email_director_report_to"] = st.text_input("Director Report To", value=_sett.get("email_director_report_to", ""), key="set_email_dir_to")
+            with _set_c2:
+                st.markdown("**WhatsApp Engine**")
+                _sett["whatsapp_enabled"] = st.toggle("Enable WhatsApp Engine", value=_sett.get("whatsapp_enabled", False), key="set_wa_en")
+                _sett["whatsapp_auto_send_offer"] = st.toggle("Auto-send Offer Messages", value=_sett.get("whatsapp_auto_send_offer", False), key="set_wa_offer")
+                _sett["whatsapp_auto_send_followup"] = st.toggle("Auto-send Followup Messages", value=_sett.get("whatsapp_auto_send_followup", False), key="set_wa_fu")
+                _sett["whatsapp_auto_send_payment_reminder"] = st.toggle("Auto-send Payment Reminders (WA)", value=_sett.get("whatsapp_auto_send_payment_reminder", False), key="set_wa_pay")
+                _sett["whatsapp_rate_limit_per_minute"] = st.number_input("Rate Limit (msgs/min)", value=_sett.get("whatsapp_rate_limit_per_minute", 20), key="set_wa_rate")
+            if st.button("💾 Save Automation Settings", key="save_auto_settings"):
+                _save_s(_sett)
+                st.toast("Automation settings saved!")
+        except Exception as _se:
+            st.caption(f"Settings engine unavailable: {_se}")
 
     st.divider()
     
@@ -4498,6 +4560,224 @@ elif selected_page == "🔄 Sync Status":
 
     except Exception as _e:
         st.error(f"Sync Status failed to load: {_e}")
+
+
+# ── NEW PAGES: Director Briefing, Email Engine, WhatsApp Engine, Daily Log,
+#    Alert Center, AI Learning ─────────────────────────────────────────────────
+
+elif selected_page == "📋 Director Briefing":
+    _render_page_header("📋 Director Briefing", "Executive", badge="Daily Intel")
+    try:
+        cmd_director_dashboard.render()
+    except Exception as _e:
+        st.error(f"Director Briefing failed to load: {_e}")
+
+elif selected_page == "📧 Email Engine":
+    _render_page_header("📧 Email Engine", "Sales & CRM", badge="SMTP Queue")
+    st.info("Queue-first email engine with smart triggers, rate limiting, and scheduled reports.")
+    try:
+        from email_engine import EmailEngine, EmailCredentialManager
+
+        _email_tabs = st.tabs(["Email Queue", "Send Email", "Delivery Stats", "SMTP Config"])
+
+        with _email_tabs[0]:
+            st.subheader("Email Queue")
+            from database import get_email_queue
+            _eq_status = st.selectbox("Filter by status", ["pending", "draft", "sent", "failed", "all"], key="eq_filter")
+            _eq_list = get_email_queue(status=None if _eq_status == "all" else _eq_status, limit=50)
+            if _eq_list:
+                _eq_df = pd.DataFrame(_eq_list)
+                _display_cols = [c for c in ["id", "to_email", "subject", "email_type", "status", "created_at", "sent_at"] if c in _eq_df.columns]
+                st.dataframe(_eq_df[_display_cols] if _display_cols else _eq_df, use_container_width=True, hide_index=True)
+            else:
+                st.caption("No emails in queue.")
+
+        with _email_tabs[1]:
+            st.subheader("Compose & Queue Email")
+            _ee = EmailEngine()
+            _ec1, _ec2 = st.columns(2)
+            with _ec1:
+                _e_to = st.text_input("To Email", key="email_to")
+                _e_subj = st.text_input("Subject", key="email_subj")
+            with _ec2:
+                _e_type = st.selectbox("Email Type", ["offer", "followup", "reactivation", "payment_reminder", "custom"], key="email_type")
+                _e_cc = st.text_input("CC (optional)", key="email_cc")
+            _e_body = st.text_area("Body", height=200, key="email_body")
+            if st.button("Queue Email", type="primary", key="queue_email_btn"):
+                if _e_to and _e_subj and _e_body:
+                    _qid = _ee.queue_email(_e_to, _e_subj, _e_body, email_type=_e_type, cc=_e_cc or None)
+                    st.success(f"Email queued (ID: {_qid}). Will be sent in next processing cycle.")
+                else:
+                    st.warning("Please fill To, Subject, and Body.")
+
+        with _email_tabs[2]:
+            st.subheader("Delivery Statistics")
+            _ee2 = EmailEngine()
+            _stats = _ee2.get_delivery_stats()
+            _sc1, _sc2, _sc3, _sc4 = st.columns(4)
+            _sc1.metric("Total Sent", _stats.get("sent", 0))
+            _sc2.metric("Delivered", _stats.get("delivered", 0))
+            _sc3.metric("Failed", _stats.get("failed", 0))
+            _sc4.metric("Pending", _stats.get("pending", 0))
+
+        with _email_tabs[3]:
+            st.subheader("SMTP Configuration")
+            _ecm = EmailCredentialManager()
+            _existing_creds = _ecm.load_credentials()
+            _smtp_host = st.text_input("SMTP Host", value=_existing_creds.get("smtp_host", "smtp.gmail.com"), key="smtp_host")
+            _smtp_port = st.number_input("SMTP Port", value=int(_existing_creds.get("smtp_port", 587)), key="smtp_port")
+            _smtp_user = st.text_input("Username/Email", value=_existing_creds.get("username", ""), key="smtp_user")
+            _smtp_pass = st.text_input("Password / App Password", type="password", key="smtp_pass")
+            _smtp_from = st.text_input("From Name", value=_existing_creds.get("from_name", "PPS Anantam"), key="smtp_from")
+            if st.button("Save & Test SMTP", type="primary", key="save_smtp_btn"):
+                _ecm.save_credentials(_smtp_host, int(_smtp_port), _smtp_user, _smtp_pass, _smtp_from)
+                st.success("SMTP credentials saved.")
+                _test_ok, _test_msg = _ecm.test_connection()
+                if _test_ok:
+                    st.success(f"Connection test passed: {_test_msg}")
+                else:
+                    st.error(f"Connection test failed: {_test_msg}")
+
+    except Exception as _e:
+        st.error(f"Email Engine failed to load: {_e}")
+
+elif selected_page == "📱 WhatsApp Engine":
+    _render_page_header("📱 WhatsApp Engine", "Sales & CRM", badge="360dialog")
+    st.info("WhatsApp Business automation via 360dialog — template messages, session messages, and broadcasts.")
+    try:
+        from whatsapp_engine import WhatsAppEngine, WhatsAppCredentialManager, WhatsAppTemplateManager
+
+        _wa_tabs = st.tabs(["Message Queue", "Send Message", "Templates", "API Config"])
+
+        with _wa_tabs[0]:
+            st.subheader("WhatsApp Queue")
+            from database import get_wa_queue
+            _wq_status = st.selectbox("Filter", ["pending", "sent", "delivered", "read", "failed", "all"], key="wq_filter")
+            _wq_list = get_wa_queue(status=None if _wq_status == "all" else _wq_status, limit=50)
+            if _wq_list:
+                _wq_df = pd.DataFrame(_wq_list)
+                _display_cols = [c for c in ["id", "to_number", "message_type", "template_name", "status", "created_at", "sent_at"] if c in _wq_df.columns]
+                st.dataframe(_wq_df[_display_cols] if _display_cols else _wq_df, use_container_width=True, hide_index=True)
+            else:
+                st.caption("No messages in queue.")
+
+        with _wa_tabs[1]:
+            st.subheader("Send WhatsApp Message")
+            _we = WhatsAppEngine()
+            _wa_to = st.text_input("Phone Number (Indian mobile)", placeholder="9876543210", key="wa_to")
+            _wa_mode = st.radio("Mode", ["Template Message", "Session Text"], horizontal=True, key="wa_mode")
+            if _wa_mode == "Template Message":
+                _wa_tmpl = st.selectbox("Template", ["bitumen_offer_v1", "bitumen_followup_v1", "payment_reminder_v1", "price_drop_alert_v1"], key="wa_tmpl")
+                _wa_params = st.text_input("Parameters (comma-separated)", key="wa_params")
+                if st.button("Queue Template Message", type="primary", key="wa_send_tmpl"):
+                    if _wa_to:
+                        params = [p.strip() for p in _wa_params.split(",")] if _wa_params else []
+                        _qid = _we.queue_message(_wa_to, "template", template_name=_wa_tmpl, template_params=params)
+                        st.success(f"Template message queued (ID: {_qid})")
+                    else:
+                        st.warning("Enter a phone number.")
+            else:
+                _wa_text = st.text_area("Message Text", key="wa_text")
+                if st.button("Queue Session Message", type="primary", key="wa_send_sess"):
+                    if _wa_to and _wa_text:
+                        _qid = _we.queue_message(_wa_to, "session", session_text=_wa_text)
+                        st.success(f"Session message queued (ID: {_qid})")
+                    else:
+                        st.warning("Enter phone number and message text.")
+
+        with _wa_tabs[2]:
+            st.subheader("WhatsApp Templates")
+            _wtm = WhatsAppTemplateManager()
+            _tmpls = _wtm.get_all_templates()
+            if _tmpls:
+                for _tn, _tv in _tmpls.items():
+                    with st.expander(f"{_tn} ({_tv.get('language', 'en')})"):
+                        st.write(f"**Namespace:** {_tv.get('namespace', 'N/A')}")
+                        st.write(f"**Parameters:** {_tv.get('parameters', [])}")
+                        st.write(f"**Business Action:** {_tv.get('business_action', 'N/A')}")
+
+        with _wa_tabs[3]:
+            st.subheader("360dialog API Configuration")
+            _wcm = WhatsAppCredentialManager()
+            _wa_creds = _wcm.load_credentials()
+            _wa_key = st.text_input("360dialog API Key", value=_wa_creds.get("api_key", ""), type="password", key="wa_api_key")
+            _wa_url = st.text_input("API Base URL", value=_wa_creds.get("api_base_url", "https://waba.360dialog.io/v1"), key="wa_api_url")
+            if st.button("Save & Test", type="primary", key="save_wa_btn"):
+                _wcm.save_credentials(_wa_key, _wa_url)
+                st.success("WhatsApp credentials saved.")
+                _test_ok, _test_msg = _wcm.test_connection()
+                if _test_ok:
+                    st.success(f"Connection test passed: {_test_msg}")
+                else:
+                    st.error(f"Connection test failed: {_test_msg}")
+
+    except Exception as _e:
+        st.error(f"WhatsApp Engine failed to load: {_e}")
+
+elif selected_page == "📓 Daily Log":
+    _render_page_header("📓 Daily Log", "Sales & CRM", badge="Team Notes")
+    try:
+        cmd_daily_log.render()
+    except Exception as _e:
+        st.error(f"Daily Log failed to load: {_e}")
+
+elif selected_page == "🚨 Alert Center":
+    _render_page_header("🚨 Alert Center", "System", badge="P0/P1/P2")
+    try:
+        cmd_alert_center.render()
+    except Exception as _e:
+        st.error(f"Alert Center failed to load: {_e}")
+
+elif selected_page == "🤖 AI Learning":
+    _render_page_header("🤖 AI Learning", "AI & Knowledge", badge="Continuous")
+    st.info("AI learning engine — daily/weekly/monthly cycles that improve prediction accuracy over time.")
+    try:
+        from ai_learning_engine import AILearningEngine
+
+        _ai_eng = AILearningEngine()
+        _ai_tabs = st.tabs(["Model Status", "Run Learning", "Learning History", "Weights"])
+
+        with _ai_tabs[0]:
+            st.subheader("Model Accuracy")
+            _acc = _ai_eng.get_model_accuracy()
+            _ac1, _ac2, _ac3 = st.columns(3)
+            _ac1.metric("Price Accuracy (7d)", f"{_acc.get('price_7d', 50)}%")
+            _ac2.metric("Total Learning Cycles", _acc.get("total_cycles", 0))
+            _ac3.metric("Last Updated", _acc.get("last_updated", "Never"))
+
+        with _ai_tabs[1]:
+            st.subheader("Manual Learning Trigger")
+            _lc1, _lc2, _lc3 = st.columns(3)
+            with _lc1:
+                if st.button("Run Daily Learn", type="primary", use_container_width=True, key="ai_daily"):
+                    _result = _ai_eng.daily_learn()
+                    st.json(_result)
+            with _lc2:
+                if st.button("Run Weekly Learn", use_container_width=True, key="ai_weekly"):
+                    _result = _ai_eng.weekly_learn()
+                    st.json(_result)
+            with _lc3:
+                if st.button("Run Monthly Learn", use_container_width=True, key="ai_monthly"):
+                    _result = _ai_eng.monthly_learn()
+                    st.json(_result)
+
+        with _ai_tabs[2]:
+            st.subheader("Learning History")
+            _hist = _ai_eng.get_learning_history(limit=30)
+            if _hist:
+                _hist_df = pd.DataFrame(_hist)
+                st.dataframe(_hist_df, use_container_width=True, hide_index=True)
+            else:
+                st.caption("No learning cycles recorded yet. Run a sync or trigger manually.")
+
+        with _ai_tabs[3]:
+            st.subheader("Learned Factor Weights")
+            _weights = _ai_eng.get_learned_weights()
+            for _wk, _wv in _weights.items():
+                st.progress(min(1.0, _wv), text=f"{_wk}: {_wv:.3f}")
+
+    except Exception as _e:
+        st.error(f"AI Learning failed to load: {_e}")
 
 
 # ══════════════════════════════════════════════════════════════════════════════

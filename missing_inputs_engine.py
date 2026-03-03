@@ -21,6 +21,7 @@ IST = pytz.timezone("Asia/Kolkata")
 BASE = Path(__file__).parent
 
 MISSING_INPUTS_FILE = BASE / "missing_inputs.json"
+INPUT_USAGE_STATS_FILE = BASE / "input_usage_stats.json"
 
 
 def _now() -> str:
@@ -129,10 +130,15 @@ SCAN_FIELDS = [
 class MissingInputsEngine:
     """Scans for data gaps and generates input requests."""
 
+    def __init__(self):
+        self.usage_stats = _load_json(INPUT_USAGE_STATS_FILE, {})
+        if not isinstance(self.usage_stats, dict):
+            self.usage_stats = {}
+
     def scan_all_gaps(self) -> List[dict]:
         """
         Scan entire system for missing/stale data.
-        Returns prioritized list of input requests.
+        Returns prioritized list of input requests with smart ordering.
         """
         gaps = []
 
@@ -148,6 +154,9 @@ class MissingInputsEngine:
         # Check empty data tables
         gaps += self._check_empty_tables()
 
+        # Check active deal inputs
+        gaps += self._check_active_deal_inputs()
+
         # Add standing daily questions
         gaps += self._daily_questions()
 
@@ -160,9 +169,12 @@ class MissingInputsEngine:
                 seen.add(key)
                 unique_gaps.append(g)
 
-        # Sort by priority
-        priority_order = {"High": 0, "Medium": 1, "Low": 2}
-        unique_gaps.sort(key=lambda x: priority_order.get(x.get("priority", "Low"), 3))
+        # Smart priority ordering:
+        # 1. Inputs affecting today's deals first
+        # 2. Active negotiations second
+        # 3. General data quality third
+        # Also: suppress consistently-skipped questions
+        unique_gaps = self._apply_smart_ordering(unique_gaps)
 
         return unique_gaps
 
@@ -276,6 +288,45 @@ class MissingInputsEngine:
                 })
         return gaps
 
+    def _check_active_deal_inputs(self) -> list:
+        """Check for inputs needed by today's active deals."""
+        gaps = []
+        try:
+            from database import get_all_deals
+            deals = get_all_deals()
+            active = [d for d in deals if d.get("status") == "active"]
+            for d in active:
+                # Missing delivery date
+                if not d.get("delivery_date"):
+                    gaps.append({
+                        "field": f"deal_delivery_{d.get('deal_number', 'N/A')}",
+                        "label": f"Delivery date missing: {d.get('deal_number', 'N/A')}",
+                        "reason": "Cannot schedule dispatch without delivery date",
+                        "priority": "High",
+                        "input_type": "date",
+                        "placeholder": "DD-MM-YYYY",
+                        "entity_type": "deal",
+                        "context": "active_deal",
+                        "created_at": _now(),
+                    })
+                # Missing payment date with outstanding balance
+                outstanding = (d.get("total_value_inr") or 0) - (d.get("payment_received_inr") or 0)
+                if outstanding > 0 and not d.get("payment_date"):
+                    gaps.append({
+                        "field": f"deal_payment_{d.get('deal_number', 'N/A')}",
+                        "label": f"Payment date missing: {d.get('deal_number', 'N/A')}",
+                        "reason": f"Outstanding: Rs {outstanding:,.0f}",
+                        "priority": "High",
+                        "input_type": "date",
+                        "placeholder": "DD-MM-YYYY",
+                        "entity_type": "deal",
+                        "context": "active_deal",
+                        "created_at": _now(),
+                    })
+        except Exception:
+            pass
+        return gaps[:5]
+
     def _daily_questions(self) -> list:
         """Standing daily input questions."""
         return [
@@ -294,8 +345,39 @@ class MissingInputsEngine:
             )
         ]
 
+    def _apply_smart_ordering(self, gaps: list) -> list:
+        """
+        Smart priority ordering:
+        1. Active deal inputs first (context == 'active_deal')
+        2. Active negotiations second (context == 'negotiation')
+        3. General data quality third
+        Also suppress consistently-skipped fields.
+        """
+        # Filter out fields that have been skipped 5+ times without use
+        filtered = []
+        for g in gaps:
+            field = g.get("field", "")
+            stats = self.usage_stats.get(field, {})
+            skip_count = stats.get("skipped", 0)
+            use_count = stats.get("used", 0)
+            # Suppress if skipped 5+ times and never used
+            if skip_count >= 5 and use_count == 0:
+                continue
+            filtered.append(g)
+
+        # Sort: context priority, then priority level
+        context_order = {"active_deal": 0, "negotiation": 1}
+        priority_order = {"High": 0, "Medium": 1, "Low": 2}
+
+        filtered.sort(key=lambda x: (
+            context_order.get(x.get("context", ""), 2),
+            priority_order.get(x.get("priority", "Low"), 3),
+        ))
+
+        return filtered
+
     def save_collected_input(self, field: str, value: str) -> None:
-        """Save a collected input value."""
+        """Save a collected input value and track usage."""
         existing = _load_json(MISSING_INPUTS_FILE, [])
         existing.append({
             "field": field,
@@ -306,6 +388,40 @@ class MissingInputsEngine:
         if len(existing) > 1000:
             existing = existing[-1000:]
         _save_json(MISSING_INPUTS_FILE, existing)
+
+        # Track usage
+        self._track_usage(field, "used")
+
+        # Feed into AI learning engine
+        self._feed_ai_learning(field, value)
+
+    def skip_input(self, field: str) -> None:
+        """Record that a field was skipped (dismissed without filling)."""
+        self._track_usage(field, "skipped")
+
+    def _track_usage(self, field: str, action: str):
+        """Track input usage stats for feedback loop."""
+        if field not in self.usage_stats:
+            self.usage_stats[field] = {"used": 0, "skipped": 0, "last_action": ""}
+        self.usage_stats[field][action] = self.usage_stats[field].get(action, 0) + 1
+        self.usage_stats[field]["last_action"] = _now()
+        _save_json(INPUT_USAGE_STATS_FILE, self.usage_stats)
+
+    def _feed_ai_learning(self, field: str, value: str):
+        """Feed collected inputs into AI learning engine."""
+        try:
+            if field == "competitor_price" and value:
+                from ai_learning_engine import AILearningEngine
+                engine = AILearningEngine()
+                engine.log_prediction("competitor_price_intel", float(value),
+                                      _today(), {"source": "manual_input"})
+            elif field == "deal_closed_price" and value:
+                from ai_learning_engine import AILearningEngine
+                engine = AILearningEngine()
+                engine.log_prediction("deal_outcome", float(value),
+                                      _today(), {"source": "manual_input"})
+        except Exception:
+            pass
 
     def should_show_popup(self) -> bool:
         """Check if popup should be shown (once per day)."""

@@ -100,6 +100,18 @@ class SyncEngine:
         # Step 8: Generate Alerts
         self._generate_alerts()
 
+        # Step 9: Communication Triggers (email/WhatsApp)
+        self._process_communication_triggers()
+
+        # Step 10: Director Briefing
+        self._generate_director_briefing()
+
+        # Step 11: AI Learning
+        self._run_ai_learning()
+
+        # Step 12: Smart Alert Scan
+        self._generate_smart_alerts()
+
         # Finalize
         self.results["completed_at"] = _now()
         self.results["status"] = (
@@ -325,6 +337,144 @@ class SyncEngine:
 
         except Exception as e:
             step["details"].append(f"Alerts: error — {str(e)[:80]}")
+
+        step["status"] = "done"
+        step["completed_at"] = _now()
+        self.results["steps"].append(step)
+
+    # ─── Step 9: Communication Triggers ──────────────────────────────────────
+
+    def _process_communication_triggers(self):
+        """Trigger email/WhatsApp engines based on sync results."""
+        step = {"name": "Communication Triggers", "status": "running", "started_at": _now(), "details": []}
+
+        # Gather opportunities and overdue deals
+        opportunities = []
+        overdue_deals = []
+        try:
+            from opportunity_engine import get_all_opportunities
+            opportunities = get_all_opportunities(status="new") or []
+        except Exception:
+            pass
+        try:
+            from database import get_all_deals
+            today = datetime.datetime.now(IST).strftime("%Y-%m-%d")
+            for d in get_all_deals():
+                if d.get("status") != "active":
+                    continue
+                outstanding = (d.get("total_value_inr") or 0) - (d.get("payment_received_inr") or 0)
+                payment_date = d.get("payment_date") or d.get("delivery_date")
+                if outstanding > 0 and payment_date and payment_date < today:
+                    overdue_deals.append(d)
+        except Exception:
+            pass
+
+        # Email triggers
+        try:
+            from email_engine import EmailEngine
+            email_eng = EmailEngine()
+            queued = email_eng.on_opportunity_scan(opportunities)
+            if queued > 0:
+                step["details"].append(f"Email: {queued} messages queued from opportunities")
+            overdue_queued = email_eng.on_payment_overdue(overdue_deals)
+            if overdue_queued > 0:
+                step["details"].append(f"Email: {overdue_queued} payment reminders queued")
+        except Exception as e:
+            step["details"].append(f"Email triggers: skipped — {str(e)[:80]}")
+
+        # WhatsApp triggers
+        try:
+            from whatsapp_engine import WhatsAppEngine
+            wa_eng = WhatsAppEngine()
+            wa_queued = wa_eng.on_opportunity_scan(opportunities)
+            if wa_queued > 0:
+                step["details"].append(f"WhatsApp: {wa_queued} messages queued from opportunities")
+            wa_overdue = wa_eng.on_payment_overdue(overdue_deals)
+            if wa_overdue > 0:
+                step["details"].append(f"WhatsApp: {wa_overdue} payment reminders queued")
+        except Exception as e:
+            step["details"].append(f"WhatsApp triggers: skipped — {str(e)[:80]}")
+
+        if not step["details"]:
+            step["details"].append("No communication triggers fired")
+
+        step["status"] = "done"
+        step["completed_at"] = _now()
+        self.results["steps"].append(step)
+
+    # ─── Step 10: Director Briefing ───────────────────────────────────────────
+
+    def _generate_director_briefing(self):
+        """Auto-generate and store daily briefing."""
+        step = {"name": "Director Briefing", "status": "running", "started_at": _now(), "details": []}
+
+        try:
+            from director_briefing_engine import DirectorBriefingEngine
+            engine = DirectorBriefingEngine()
+            briefing = engine.generate_briefing()
+            engine.save_briefing_to_db(briefing)
+            step["details"].append(f"Briefing generated for {briefing.get('date', 'today')}")
+        except Exception as e:
+            step["details"].append(f"Briefing: skipped — {str(e)[:80]}")
+
+        step["status"] = "done"
+        step["completed_at"] = _now()
+        self.results["steps"].append(step)
+
+    # ─── Step 11: AI Learning ─────────────────────────────────────────────────
+
+    def _run_ai_learning(self):
+        """Run daily AI learning cycle, weekly/monthly if due."""
+        step = {"name": "AI Learning", "status": "running", "started_at": _now(), "details": []}
+
+        try:
+            from ai_learning_engine import AILearningEngine
+            engine = AILearningEngine()
+
+            # Daily learning (always)
+            daily_result = engine.daily_learn()
+            if daily_result.get("status") != "disabled":
+                acc = daily_result.get("accuracy_scores", {}).get("price_7d", "N/A")
+                step["details"].append(f"Daily learn: accuracy={acc}%")
+            else:
+                step["details"].append("Daily learning: disabled in settings")
+
+            # Weekly learning (check if Monday)
+            now = datetime.datetime.now(IST)
+            if now.weekday() == 0:  # Monday
+                weekly_result = engine.weekly_learn()
+                if weekly_result.get("status") != "disabled":
+                    step["details"].append(
+                        f"Weekly learn: {weekly_result.get('customer_score_updates', 0)} CRM updates"
+                    )
+
+            # Monthly learning (check if 1st of month)
+            if now.day == 1:
+                monthly_result = engine.monthly_learn()
+                if monthly_result.get("status") != "disabled":
+                    step["details"].append(
+                        f"Monthly learn: v{monthly_result.get('model_version', '?')}"
+                    )
+
+        except Exception as e:
+            step["details"].append(f"AI Learning: skipped — {str(e)[:80]}")
+
+        step["status"] = "done"
+        step["completed_at"] = _now()
+        self.results["steps"].append(step)
+
+    # ─── Step 12: Smart Alert Scan ────────────────────────────────────────────
+
+    def _generate_smart_alerts(self):
+        """Run the upgraded P0/P1/P2 alert engine."""
+        step = {"name": "Smart Alerts", "status": "running", "started_at": _now(), "details": []}
+
+        try:
+            from command_intel.alert_center import run_alert_scan
+            count = run_alert_scan()
+            step["details"].append(f"Alert scan: {count} new alerts generated")
+        except Exception as e:
+            step["details"].append(f"Smart alerts: skipped — {str(e)[:80]}")
 
         step["status"] = "done"
         step["completed_at"] = _now()

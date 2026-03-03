@@ -109,7 +109,8 @@ def save_services(parties):
 
 # ============ ADD FUNCTIONS ============
 
-def add_supplier(name, category, city, contact="", gstin="", details=""):
+def add_supplier(name, category, city, contact="", gstin="", details="",
+                  email="", whatsapp_number=""):
     parties = load_suppliers()
     new_party = {
         "name": name,
@@ -119,18 +120,21 @@ def add_supplier(name, category, city, contact="", gstin="", details=""):
         "gstin": gstin,
         "details": details, # For extra info like loading person
         "marked_for_purchase": True,
-        "qty_mt": 0 # Default
+        "qty_mt": 0, # Default
+        "email": email,
+        "whatsapp_number": whatsapp_number,
     }
     parties.append(new_party)
     save_suppliers(parties)
     return new_party
 
-def add_customer(name, category, city, state, contact="", gstin="", address=""):
+def add_customer(name, category, city, state, contact="", gstin="", address="",
+                 email="", whatsapp_number=""):
     parties = load_customers()
-    
+
     # Check if exists
     existing = next((p for p in parties if p['name'].lower() == name.lower().strip()), None)
-    
+
     if existing:
         # Update existing
         existing['category'] = category
@@ -139,6 +143,8 @@ def add_customer(name, category, city, state, contact="", gstin="", address=""):
         if contact: existing['contact'] = contact
         if gstin: existing['gstin'] = gstin
         if address: existing['address'] = address
+        if email: existing['email'] = email
+        if whatsapp_number: existing['whatsapp_number'] = whatsapp_number
         save_customers(parties)
         return existing
     else:
@@ -151,6 +157,8 @@ def add_customer(name, category, city, state, contact="", gstin="", address=""):
             "contact": contact,
             "gstin": gstin,
             "address": address,
+            "email": email,
+            "whatsapp_number": whatsapp_number,
             "active": True
         }
         parties.append(new_party)

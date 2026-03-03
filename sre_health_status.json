@@ -1,42 +1,102 @@
 [
   {
-    "entity_type": "data",
-    "entity_name": "api_cache_freshness",
-    "status": "OK",
-    "last_checked_ist": "03-03-2026 10:44:45 IST",
-    "last_ok_ist": "03-03-2026 10:44:45 IST",
+    "entity_type": "errors",
+    "entity_name": "error_log",
+    "status": "WARN",
+    "last_checked_ist": "03-03-2026 13:54:49 IST",
+    "last_ok_ist": "",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "18 cached entries fresh"
+    "details": "37 P1 open errors (threshold ≥5)"
   },
   {
     "entity_type": "scheduler",
     "entity_name": "auto_health_check",
     "status": "OK",
-    "last_checked_ist": "03-03-2026 10:44:45 IST",
-    "last_ok_ist": "03-03-2026 10:44:45 IST",
+    "last_checked_ist": "03-03-2026 13:54:49 IST",
+    "last_ok_ist": "03-03-2026 13:54:49 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "Last run 6.0 min ago — on schedule"
+    "details": "Last run 15.0 min ago — on schedule"
   },
   {
     "entity_type": "export",
     "entity_name": "pdf_export",
     "status": "OK",
-    "last_checked_ist": "03-03-2026 10:44:45 IST",
-    "last_ok_ist": "03-03-2026 10:44:45 IST",
+    "last_checked_ist": "03-03-2026 13:54:49 IST",
+    "last_ok_ist": "03-03-2026 13:54:49 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
     "details": "No PDF exports yet (normal on first run)"
   },
   {
-    "entity_type": "errors",
-    "entity_name": "error_log",
-    "status": "WARN",
-    "last_checked_ist": "03-03-2026 10:44:45 IST",
-    "last_ok_ist": "",
+    "entity_type": "api",
+    "entity_name": "world_bank_cpi_india",
+    "status": "OK",
+    "last_checked_ist": "03-03-2026 13:54:49 IST",
+    "last_ok_ist": "03-03-2026 13:54:49 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "33 P1 open errors (threshold ≥5)"
+    "details": "calls=1 failures=0 latency=2188ms"
+  },
+  {
+    "entity_type": "api",
+    "entity_name": "open_meteo_forecast_vadodara",
+    "status": "WARN",
+    "last_checked_ist": "03-03-2026 13:54:49 IST",
+    "last_ok_ist": "",
+    "error_code": "Latency 9596ms  Error rate 0.0%  ConsecFail 0",
+    "auto_fix_attempted": "N",
+    "details": "calls=1 failures=0 latency=9596ms"
+  },
+  {
+    "entity_type": "api",
+    "entity_name": "govt_holiday_api",
+    "status": "OK",
+    "last_checked_ist": "03-03-2026 13:54:49 IST",
+    "last_ok_ist": "03-03-2026 13:54:49 IST",
+    "error_code": "",
+    "auto_fix_attempted": "N",
+    "details": "calls=3 failures=0 latency=0ms"
+  },
+  {
+    "entity_type": "api",
+    "entity_name": "rest_countries_india",
+    "status": "WARN",
+    "last_checked_ist": "03-03-2026 13:54:49 IST",
+    "last_ok_ist": "",
+    "error_code": "Latency 4616ms  Error rate 50.0%  ConsecFail 0",
+    "auto_fix_attempted": "N",
+    "details": "calls=2 failures=1 latency=4616ms"
+  },
+  {
+    "entity_type": "api",
+    "entity_name": "current_time",
+    "status": "WARN",
+    "last_checked_ist": "03-03-2026 13:54:49 IST",
+    "last_ok_ist": "",
+    "error_code": "Latency 3205ms  Error rate 0.0%  ConsecFail 0",
+    "auto_fix_attempted": "N",
+    "details": "calls=2 failures=0 latency=3205ms"
+  },
+  {
+    "entity_type": "data",
+    "entity_name": "live_prices",
+    "status": "OK",
+    "last_checked_ist": "03-03-2026 13:54:49 IST",
+    "last_ok_ist": "03-03-2026 13:54:49 IST",
+    "error_code": "",
+    "auto_fix_attempted": "N",
+    "details": "7 price keys OK"
+  },
+  {
+    "entity_type": "data",
+    "entity_name": "api_cache_freshness",
+    "status": "OK",
+    "last_checked_ist": "03-03-2026 13:54:49 IST",
+    "last_ok_ist": "03-03-2026 13:54:49 IST",
+    "error_code": "",
+    "auto_fix_attempted": "N",
+    "details": "3 cached entries fresh"
   }
 ]

@@ -427,5 +427,83 @@
     "root_cause": "",
     "resolution_notes": "Check endpoint URL, rate limit, and API availability. Consider replacing with alternative free API.",
     "status": "Open"
+  },
+  {
+    "datetime_ist": "03-03-2026 11:08:05 IST",
+    "api_id": "rest_countries_india",
+    "component": "API Fetch",
+    "error_type": "Unknown failure",
+    "severity": "P1",
+    "message": "India Country Data (REST Countries) failed after 3 retries. Error: ",
+    "auto_fixed": false,
+    "manual_required": true,
+    "root_cause": "",
+    "resolution_notes": "Check endpoint URL, rate limit, and API availability. Consider replacing with alternative free API.",
+    "status": "Open"
+  },
+  {
+    "datetime_ist": "03-03-2026 11:38:36 IST",
+    "api_id": "rest_countries_india",
+    "component": "API Fetch",
+    "error_type": "Unknown failure",
+    "severity": "P1",
+    "message": "India Country Data (REST Countries) failed after 3 retries. Error: ",
+    "auto_fixed": false,
+    "manual_required": true,
+    "root_cause": "",
+    "resolution_notes": "Check endpoint URL, rate limit, and API availability. Consider replacing with alternative free API.",
+    "status": "Open"
+  },
+  {
+    "datetime_ist": "03-03-2026 12:09:02 IST",
+    "api_id": "rest_countries_india",
+    "component": "API Fetch",
+    "error_type": "Unknown failure",
+    "severity": "P1",
+    "message": "India Country Data (REST Countries) failed after 3 retries. Error: ",
+    "auto_fixed": false,
+    "manual_required": true,
+    "root_cause": "",
+    "resolution_notes": "Check endpoint URL, rate limit, and API availability. Consider replacing with alternative free API.",
+    "status": "Open"
+  },
+  {
+    "datetime_ist": "03-03-2026 13:26:48 IST",
+    "api_id": "rest_countries_india",
+    "component": "API Fetch",
+    "error_type": "Unknown failure",
+    "severity": "P1",
+    "message": "India Country Data (REST Countries) failed after 3 retries. Error: ",
+    "auto_fixed": false,
+    "manual_required": true,
+    "root_cause": "",
+    "resolution_notes": "Check endpoint URL, rate limit, and API availability. Consider replacing with alternative free API.",
+    "status": "Open"
+  },
+  {
+    "datetime_ist": "03-03-2026 13:58:04 IST",
+    "api_id": "weather_mumbai",
+    "component": "API Fetch",
+    "error_type": "Connection error (no internet or host unreachable)",
+    "severity": "P1",
+    "message": "Weather — Mumbai (Port HQ) failed after 3 retries. Error: Connection error (no internet or host unreachable)",
+    "auto_fixed": false,
+    "manual_required": true,
+    "root_cause": "Connection error (no internet or host unreachable)",
+    "resolution_notes": "Check endpoint URL, rate limit, and API availability. Consider replacing with alternative free API.",
+    "status": "Open"
+  },
+  {
+    "datetime_ist": "03-03-2026 13:58:50 IST",
+    "api_id": "rest_countries_india",
+    "component": "API Fetch",
+    "error_type": "Unknown failure",
+    "severity": "P1",
+    "message": "India Country Data (REST Countries) failed after 3 retries. Error: ",
+    "auto_fixed": false,
+    "manual_required": true,
+    "root_cause": "",
+    "resolution_notes": "Check endpoint URL, rate limit, and API availability. Consider replacing with alternative free API.",
+    "status": "Open"
   }
 ]

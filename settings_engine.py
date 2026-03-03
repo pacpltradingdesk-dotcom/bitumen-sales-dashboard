@@ -82,6 +82,39 @@ DEFAULT_SETTINGS = {
     "max_news_articles": 5000,
     "max_sync_logs": 1000,
     "max_communication_records": 10000,
+
+    # Email Engine
+    "email_enabled": False,
+    "email_rate_limit_per_hour": 50,
+    "email_auto_send_offer": False,
+    "email_auto_send_followup": False,
+    "email_auto_send_reactivation": False,
+    "email_auto_send_payment_reminder": False,
+    "email_director_report_enabled": False,
+    "email_director_report_time": "08:30",
+    "email_director_report_to": "",
+    "email_weekly_summary_enabled": False,
+    "email_weekly_summary_day": "Monday",
+    "email_weekly_summary_time": "09:00",
+    "email_weekly_summary_to": "",
+    "email_max_retries": 3,
+    "email_retry_delay_minutes": 15,
+
+    # WhatsApp Engine (360dialog)
+    "whatsapp_enabled": False,
+    "whatsapp_auto_send_offer": False,
+    "whatsapp_auto_send_followup": False,
+    "whatsapp_auto_send_reactivation": False,
+    "whatsapp_auto_send_payment_reminder": False,
+    "whatsapp_rate_limit_per_minute": 20,
+    "whatsapp_rate_limit_per_day": 1000,
+    "whatsapp_session_message_enabled": True,
+
+    # AI Learning
+    "ai_learning_enabled": True,
+    "ai_learning_daily": True,
+    "ai_learning_weekly": True,
+    "ai_learning_monthly": True,
 }
 
 

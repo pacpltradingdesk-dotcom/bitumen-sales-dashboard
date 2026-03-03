@@ -272,6 +272,135 @@ _TABLES = {
             created_at      TEXT
         );
     """,
+
+    "email_queue": """
+        CREATE TABLE IF NOT EXISTS email_queue (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            to_email        TEXT NOT NULL,
+            cc              TEXT,
+            bcc             TEXT,
+            subject         TEXT NOT NULL,
+            body_html       TEXT,
+            body_text       TEXT,
+            email_type      TEXT,
+            customer_id     INTEGER,
+            deal_id         INTEGER,
+            attachments     TEXT,
+            status          TEXT DEFAULT 'draft',
+            error_message   TEXT,
+            smtp_message_id TEXT,
+            retry_count     INTEGER DEFAULT 0,
+            max_retries     INTEGER DEFAULT 3,
+            scheduled_at    TEXT,
+            sent_at         TEXT,
+            created_at      TEXT,
+            updated_at      TEXT,
+            FOREIGN KEY (customer_id) REFERENCES customers(id)
+        );
+    """,
+
+    "whatsapp_queue": """
+        CREATE TABLE IF NOT EXISTS whatsapp_queue (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            to_number       TEXT NOT NULL,
+            message_type    TEXT NOT NULL,
+            template_name   TEXT,
+            template_params TEXT,
+            session_text    TEXT,
+            customer_id     INTEGER,
+            deal_id         INTEGER,
+            broadcast_id    TEXT,
+            status          TEXT DEFAULT 'draft',
+            wa_message_id   TEXT,
+            error_message   TEXT,
+            error_code      TEXT,
+            retry_count     INTEGER DEFAULT 0,
+            max_retries     INTEGER DEFAULT 3,
+            scheduled_at    TEXT,
+            sent_at         TEXT,
+            delivered_at    TEXT,
+            read_at         TEXT,
+            created_at      TEXT,
+            updated_at      TEXT,
+            FOREIGN KEY (customer_id) REFERENCES customers(id)
+        );
+    """,
+
+    "whatsapp_sessions": """
+        CREATE TABLE IF NOT EXISTS whatsapp_sessions (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            phone_number    TEXT NOT NULL UNIQUE,
+            session_start   TEXT NOT NULL,
+            session_expires TEXT NOT NULL,
+            customer_id     INTEGER,
+            last_message    TEXT,
+            created_at      TEXT,
+            FOREIGN KEY (customer_id) REFERENCES customers(id)
+        );
+    """,
+
+    "whatsapp_incoming": """
+        CREATE TABLE IF NOT EXISTS whatsapp_incoming (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            from_number     TEXT NOT NULL,
+            message_type    TEXT,
+            message_text    TEXT,
+            media_url       TEXT,
+            wa_message_id   TEXT,
+            customer_id     INTEGER,
+            processed       INTEGER DEFAULT 0,
+            received_at     TEXT,
+            FOREIGN KEY (customer_id) REFERENCES customers(id)
+        );
+    """,
+
+    "director_briefings": """
+        CREATE TABLE IF NOT EXISTS director_briefings (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            briefing_date   TEXT,
+            generated_at    TEXT,
+            briefing_data   TEXT,
+            sent_email      INTEGER DEFAULT 0,
+            sent_whatsapp   INTEGER DEFAULT 0,
+            created_at      TEXT
+        );
+    """,
+
+    "daily_logs": """
+        CREATE TABLE IF NOT EXISTS daily_logs (
+            id                  INTEGER PRIMARY KEY AUTOINCREMENT,
+            log_date            TEXT,
+            author              TEXT,
+            entry_type          TEXT,
+            customer_name       TEXT,
+            channel             TEXT,
+            notes               TEXT,
+            outcome             TEXT,
+            followup_date       TEXT,
+            intel_source        TEXT,
+            intel_confidence    TEXT,
+            metadata            TEXT,
+            created_at          TEXT
+        );
+    """,
+
+    "alerts": """
+        CREATE TABLE IF NOT EXISTS alerts (
+            id                  INTEGER PRIMARY KEY AUTOINCREMENT,
+            alert_type          TEXT,
+            priority            TEXT,
+            title               TEXT,
+            description         TEXT,
+            data                TEXT,
+            recommended_action  TEXT,
+            action_template     TEXT,
+            status              TEXT DEFAULT 'new',
+            snoozed_until       TEXT,
+            created_at          TEXT,
+            acted_at            TEXT,
+            acted_by            TEXT
+        );
+    """,
 }
 
 # Indexes for common query patterns
@@ -289,6 +418,24 @@ _INDEXES = [
     "CREATE INDEX IF NOT EXISTS idx_suppliers_active  ON suppliers(is_active);",
     "CREATE INDEX IF NOT EXISTS idx_customers_active  ON customers(is_active);",
     "CREATE INDEX IF NOT EXISTS idx_inventory_grade   ON inventory(grade);",
+    # Email queue indexes
+    "CREATE INDEX IF NOT EXISTS idx_email_queue_status    ON email_queue(status);",
+    "CREATE INDEX IF NOT EXISTS idx_email_queue_type      ON email_queue(email_type);",
+    "CREATE INDEX IF NOT EXISTS idx_email_queue_customer  ON email_queue(customer_id);",
+    "CREATE INDEX IF NOT EXISTS idx_email_queue_scheduled ON email_queue(scheduled_at);",
+    # WhatsApp queue indexes
+    "CREATE INDEX IF NOT EXISTS idx_wa_queue_status       ON whatsapp_queue(status);",
+    "CREATE INDEX IF NOT EXISTS idx_wa_queue_customer     ON whatsapp_queue(customer_id);",
+    "CREATE INDEX IF NOT EXISTS idx_wa_queue_type         ON whatsapp_queue(message_type);",
+    "CREATE INDEX IF NOT EXISTS idx_wa_session_phone      ON whatsapp_sessions(phone_number);",
+    "CREATE INDEX IF NOT EXISTS idx_wa_incoming_from      ON whatsapp_incoming(from_number);",
+    # Director / Daily log / Alert indexes
+    "CREATE INDEX IF NOT EXISTS idx_briefings_date        ON director_briefings(briefing_date);",
+    "CREATE INDEX IF NOT EXISTS idx_daily_logs_date       ON daily_logs(log_date);",
+    "CREATE INDEX IF NOT EXISTS idx_daily_logs_type       ON daily_logs(entry_type);",
+    "CREATE INDEX IF NOT EXISTS idx_alerts_status         ON alerts(status);",
+    "CREATE INDEX IF NOT EXISTS idx_alerts_priority       ON alerts(priority);",
+    "CREATE INDEX IF NOT EXISTS idx_alerts_type           ON alerts(alert_type);",
 ]
 
 
@@ -308,6 +455,13 @@ def init_db():
             cur.execute(ddl)
         for idx_sql in _INDEXES:
             cur.execute(idx_sql)
+        # Migrations: add columns if missing
+        for tbl in ("customers", "suppliers"):
+            for col, col_type in [("email", "TEXT"), ("whatsapp_number", "TEXT")]:
+                try:
+                    cur.execute(f"ALTER TABLE {tbl} ADD COLUMN {col} {col_type}")
+                except sqlite3.OperationalError:
+                    pass  # Column already exists
         conn.commit()
     finally:
         conn.close()
@@ -320,7 +474,8 @@ def init_db():
 _VALID_TABLES = {
     "suppliers", "customers", "deals", "price_history", "fx_history",
     "inventory", "communications", "opportunities", "sync_logs",
-    "missing_inputs",
+    "missing_inputs", "email_queue", "whatsapp_queue", "whatsapp_sessions",
+    "whatsapp_incoming", "director_briefings", "daily_logs", "alerts",
 }
 
 import re
@@ -1092,6 +1247,193 @@ def get_dashboard_stats() -> dict:
         return stats
     finally:
         conn.close()
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# EMAIL QUEUE
+# ═══════════════════════════════════════════════════════════════════════════
+
+def insert_email_queue(data: dict) -> int:
+    """Insert a new email into the queue. Returns queue_id."""
+    data = dict(data)
+    data.setdefault("created_at", _now_ist())
+    data.setdefault("updated_at", _now_ist())
+    return _insert_row("email_queue", data)
+
+
+def get_email_queue(status: str = None, limit: int = 50) -> list:
+    """Return email queue items, optionally filtered by status."""
+    if status:
+        return _select_all("email_queue", where="status = ?",
+                           params=(status,), order="created_at DESC")[:limit]
+    return _select_all("email_queue", order="created_at DESC")[:limit]
+
+
+def update_email_status(queue_id: int, status: str, **kwargs):
+    """Update email queue item status and optional fields."""
+    data = {"status": status, "updated_at": _now_ist()}
+    data.update(kwargs)
+    _update_row("email_queue", queue_id, data)
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# WHATSAPP QUEUE
+# ═══════════════════════════════════════════════════════════════════════════
+
+def insert_wa_queue(data: dict) -> int:
+    """Insert a new WhatsApp message into the queue. Returns queue_id."""
+    data = dict(data)
+    data.setdefault("created_at", _now_ist())
+    data.setdefault("updated_at", _now_ist())
+    return _insert_row("whatsapp_queue", data)
+
+
+def get_wa_queue(status: str = None, limit: int = 50) -> list:
+    """Return WhatsApp queue items, optionally filtered by status."""
+    if status:
+        return _select_all("whatsapp_queue", where="status = ?",
+                           params=(status,), order="created_at DESC")[:limit]
+    return _select_all("whatsapp_queue", order="created_at DESC")[:limit]
+
+
+def update_wa_status(queue_id: int, status: str, **kwargs):
+    """Update WhatsApp queue item status and optional fields."""
+    data = {"status": status, "updated_at": _now_ist()}
+    data.update(kwargs)
+    _update_row("whatsapp_queue", queue_id, data)
+
+
+def get_active_wa_session(phone_number: str) -> dict | None:
+    """Return active session for a phone number, or None."""
+    conn = _get_conn()
+    try:
+        row = conn.execute(
+            "SELECT * FROM whatsapp_sessions WHERE phone_number = ? "
+            "AND session_expires > ? LIMIT 1",
+            (phone_number, _now_ist()),
+        ).fetchone()
+        return _row_to_dict(row) if row else None
+    finally:
+        conn.close()
+
+
+def upsert_wa_session(phone_number: str, customer_id: int = None,
+                      last_message: str = "") -> int:
+    """Create or update a WhatsApp session (24h window)."""
+    now = _now_ist()
+    expires = (datetime.now(IST) + timedelta(hours=24)).strftime("%Y-%m-%d %H:%M:%S")
+    conn = _get_conn()
+    try:
+        existing = conn.execute(
+            "SELECT id FROM whatsapp_sessions WHERE phone_number = ?",
+            (phone_number,),
+        ).fetchone()
+        if existing:
+            conn.execute(
+                "UPDATE whatsapp_sessions SET session_start = ?, session_expires = ?, "
+                "last_message = ?, customer_id = ? WHERE id = ?",
+                (now, expires, last_message, customer_id, existing["id"]),
+            )
+            conn.commit()
+            return existing["id"]
+        else:
+            cur = conn.cursor()
+            cur.execute(
+                "INSERT INTO whatsapp_sessions (phone_number, session_start, "
+                "session_expires, customer_id, last_message, created_at) "
+                "VALUES (?, ?, ?, ?, ?, ?)",
+                (phone_number, now, expires, customer_id, last_message, now),
+            )
+            conn.commit()
+            return cur.lastrowid
+    finally:
+        conn.close()
+
+
+def insert_wa_incoming(data: dict) -> int:
+    """Insert an incoming WhatsApp message. Returns row id."""
+    data = dict(data)
+    data.setdefault("received_at", _now_ist())
+    return _insert_row("whatsapp_incoming", data)
+
+
+def get_wa_incoming(processed: int = None, limit: int = 50) -> list:
+    """Return incoming WhatsApp messages."""
+    if processed is not None:
+        return _select_all("whatsapp_incoming", where="processed = ?",
+                           params=(processed,), order="received_at DESC")[:limit]
+    return _select_all("whatsapp_incoming", order="received_at DESC")[:limit]
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# DIRECTOR BRIEFINGS
+# ═══════════════════════════════════════════════════════════════════════════
+
+def insert_director_briefing(data: dict) -> int:
+    """Insert a generated director briefing."""
+    data = dict(data)
+    data.setdefault("created_at", _now_ist())
+    return _insert_row("director_briefings", data)
+
+
+def get_director_briefings(limit: int = 30) -> list:
+    """Return recent director briefings."""
+    return _select_all("director_briefings",
+                       order="briefing_date DESC")[:limit]
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# DAILY LOGS
+# ═══════════════════════════════════════════════════════════════════════════
+
+def insert_daily_log(data: dict) -> int:
+    """Insert a daily log entry."""
+    data = dict(data)
+    data.setdefault("created_at", _now_ist())
+    return _insert_row("daily_logs", data)
+
+
+def get_daily_logs(log_date: str = None, limit: int = 50) -> list:
+    """Return daily logs, optionally filtered by date."""
+    if log_date:
+        return _select_all("daily_logs", where="log_date = ?",
+                           params=(log_date,),
+                           order="created_at DESC")[:limit]
+    return _select_all("daily_logs", order="created_at DESC")[:limit]
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# ALERTS
+# ═══════════════════════════════════════════════════════════════════════════
+
+def insert_alert(data: dict) -> int:
+    """Insert a new alert. Returns alert id."""
+    data = dict(data)
+    data.setdefault("created_at", _now_ist())
+    data.setdefault("status", "new")
+    return _insert_row("alerts", data)
+
+
+def get_alerts(status: str = None, priority: str = None, limit: int = 100) -> list:
+    """Return alerts, optionally filtered by status and/or priority."""
+    where_parts = []
+    params = []
+    if status:
+        where_parts.append("status = ?")
+        params.append(status)
+    if priority:
+        where_parts.append("priority = ?")
+        params.append(priority)
+    where = " AND ".join(where_parts) if where_parts else ""
+    return _select_all("alerts", where=where, params=tuple(params),
+                       order="created_at DESC")[:limit]
+
+
+def update_alert_status(alert_id: int, status: str, **kwargs):
+    """Update alert status and optional fields (acted_at, acted_by, snoozed_until)."""
+    data = {"status": status}
+    data.update(kwargs)
+    _update_row("alerts", alert_id, data)
 
 
 # ═══════════════════════════════════════════════════════════════════════════
