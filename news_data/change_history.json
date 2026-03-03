@@ -2068,5 +2068,41 @@
     "new_value": "आधार कार्ड में बायोमेट्रिक अपडेट को अनिवार्य बनाने के लिए यूआईडीएआई के विशेष अभियान के अंतर्गत 100,000 से अधिक स्कूली बच्चों को प्रशिक्षित किया गया जिससे लाखों बच्चों को इससे लाभ मिला",
     "reason": "Fetched from PIB India — Infrastructure",
     "actor": "System"
+  },
+  {
+    "timestamp_ist": "03-03-2026 14:20 IST",
+    "change_type": "added",
+    "article_id": "60a4c5d16932",
+    "old_value": "",
+    "new_value": "प्रधानमंत्री श्री नरेन्द्र मोदी ने “आर्थिक विकास बरकरार रखने और मजबूत करने” के विषय पर बजट के बाद आयोजित वेबिनार को संबोधित किया",
+    "reason": "Fetched from PIB India — Infrastructure",
+    "actor": "System"
+  },
+  {
+    "timestamp_ist": "03-03-2026 14:20 IST",
+    "change_type": "added",
+    "article_id": "993e2a0a63bc",
+    "old_value": "",
+    "new_value": "भारतीय नौसेना के लिए 04 X 500 टन स्व-चालित ईंधन नौकाओं के लिए मैसर्स शोफ्ट शिपयार्ड प्राइवेट लिमिटेड, ठाणे के साथ अनुबंध",
+    "reason": "Fetched from PIB India — Infrastructure",
+    "actor": "System"
+  },
+  {
+    "timestamp_ist": "03-03-2026 14:31 IST",
+    "change_type": "added",
+    "article_id": "0febaf0d782d",
+    "old_value": "",
+    "new_value": "Petronas Sees No Disruption from Mideast War for Now",
+    "reason": "Fetched from Rigzone",
+    "actor": "System"
+  },
+  {
+    "timestamp_ist": "03-03-2026 14:41 IST",
+    "change_type": "added",
+    "article_id": "b3bdff567a07",
+    "old_value": "",
+    "new_value": "China Pressures Iran to Keep Strait of Hormuz Open to Oil and Gas Flows",
+    "reason": "Fetched from OilPrice.com",
+    "actor": "System"
   }
 ]

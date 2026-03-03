@@ -159,5 +159,126 @@
     "pair": "USD/INR",
     "rate": 86.52,
     "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "03-03-2026 14:08:36 IST",
+    "period_label": "2025-03",
+    "pair": "USD/INR",
+    "rate": 86.52,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "03-03-2026 14:13:26 IST",
+    "period_label": "2025-03",
+    "pair": "USD/INR",
+    "rate": 86.52,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "03-03-2026 14:25:43 IST",
+    "pair": "USD/EUR",
+    "rate": 0.85485,
+    "source": "Frankfurter (ECB)"
+  },
+  {
+    "date_time": "03-03-2026 14:25:43 IST",
+    "pair": "USD/GBP",
+    "rate": 0.74705,
+    "source": "Frankfurter (ECB)"
+  },
+  {
+    "date_time": "03-03-2026 14:25:43 IST",
+    "pair": "USD/INR",
+    "rate": 91.74,
+    "source": "Frankfurter (ECB)"
+  },
+  {
+    "date_time": "03-03-2026 14:25:43 IST",
+    "pair": "USD/JPY",
+    "rate": 157.45,
+    "source": "Frankfurter (ECB)"
+  },
+  {
+    "date_time": "03-03-2026 14:26:10 IST",
+    "period_label": "2025-03",
+    "pair": "USD/INR",
+    "rate": 86.52,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "03-03-2026 14:26:42 IST",
+    "pair": "USD/EUR",
+    "rate": 0.85485,
+    "source": "Frankfurter (ECB)"
+  },
+  {
+    "date_time": "03-03-2026 14:26:42 IST",
+    "pair": "USD/GBP",
+    "rate": 0.74705,
+    "source": "Frankfurter (ECB)"
+  },
+  {
+    "date_time": "03-03-2026 14:26:42 IST",
+    "pair": "USD/INR",
+    "rate": 91.74,
+    "source": "Frankfurter (ECB)"
+  },
+  {
+    "date_time": "03-03-2026 14:26:42 IST",
+    "pair": "USD/JPY",
+    "rate": 157.45,
+    "source": "Frankfurter (ECB)"
+  },
+  {
+    "date_time": "03-03-2026 14:26:42 IST",
+    "pair": "USD/EUR",
+    "rate": 0.85485,
+    "source": "Frankfurter (ECB)"
+  },
+  {
+    "date_time": "03-03-2026 14:26:42 IST",
+    "pair": "USD/GBP",
+    "rate": 0.74705,
+    "source": "Frankfurter (ECB)"
+  },
+  {
+    "date_time": "03-03-2026 14:26:42 IST",
+    "pair": "USD/INR",
+    "rate": 91.74,
+    "source": "Frankfurter (ECB)"
+  },
+  {
+    "date_time": "03-03-2026 14:26:42 IST",
+    "pair": "USD/JPY",
+    "rate": 157.45,
+    "source": "Frankfurter (ECB)"
+  },
+  {
+    "date_time": "03-03-2026 14:28:57 IST",
+    "period_label": "2025-03",
+    "pair": "USD/INR",
+    "rate": 86.52,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "03-03-2026 14:29:54 IST",
+    "period_label": "2025-03",
+    "pair": "USD/INR",
+    "rate": 86.52,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "03-03-2026 14:30:21 IST",
+    "period_label": "2025-03",
+    "pair": "USD/INR",
+    "rate": 86.52,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "03-03-2026 14:33:26 IST",
+    "period_label": "2025-03",
+    "pair": "USD/INR",
+    "rate": 86.52,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
   }
 ]
