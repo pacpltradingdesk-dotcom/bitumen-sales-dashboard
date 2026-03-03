@@ -515,5 +515,486 @@
     "pair": "USD/INR",
     "rate": 86.52,
     "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "03-03-2026 16:27:24 IST",
+    "period_label": "2025-03",
+    "pair": "USD/INR",
+    "rate": 86.52,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "03-03-2026 16:28:09 IST",
+    "pair": "USD/INR",
+    "rate": 91.20917467,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:28:09 IST",
+    "pair": "USD/EUR",
+    "rate": 0.84850041,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:28:09 IST",
+    "pair": "USD/GBP",
+    "rate": 0.74391099,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:28:09 IST",
+    "pair": "USD/JPY",
+    "rate": 156.3436825,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:28:09 IST",
+    "pair": "USD/AED",
+    "rate": 3.6725,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:28:09 IST",
+    "pair": "USD/SAR",
+    "rate": 3.75,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:28:14 IST",
+    "pair": "USD/INR",
+    "rate": 91.20917467,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:28:14 IST",
+    "pair": "USD/EUR",
+    "rate": 0.84850041,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:28:14 IST",
+    "pair": "USD/GBP",
+    "rate": 0.74391099,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:28:14 IST",
+    "pair": "USD/JPY",
+    "rate": 156.3436825,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:28:14 IST",
+    "pair": "USD/AED",
+    "rate": 3.6725,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:28:14 IST",
+    "pair": "USD/SAR",
+    "rate": 3.75,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:28:19 IST",
+    "pair": "USD/INR",
+    "rate": 91.20917467,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:28:19 IST",
+    "pair": "USD/EUR",
+    "rate": 0.84850041,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:28:19 IST",
+    "pair": "USD/GBP",
+    "rate": 0.74391099,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:28:19 IST",
+    "pair": "USD/JPY",
+    "rate": 156.3436825,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:28:19 IST",
+    "pair": "USD/AED",
+    "rate": 3.6725,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:28:19 IST",
+    "pair": "USD/SAR",
+    "rate": 3.75,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:28:43 IST",
+    "pair": "USD/INR",
+    "rate": 91.20917467,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:28:43 IST",
+    "pair": "USD/EUR",
+    "rate": 0.84850041,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:28:43 IST",
+    "pair": "USD/GBP",
+    "rate": 0.74391099,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:28:43 IST",
+    "pair": "USD/JPY",
+    "rate": 156.3436825,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:28:43 IST",
+    "pair": "USD/AED",
+    "rate": 3.6725,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:28:43 IST",
+    "pair": "USD/SAR",
+    "rate": 3.75,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 16:30:08 IST",
+    "period_label": "2025-03",
+    "pair": "USD/INR",
+    "rate": 86.52,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "03-03-2026 16:33:49 IST",
+    "period_label": "2025-03",
+    "pair": "USD/INR",
+    "rate": 86.52,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "03-03-2026 16:35:05 IST",
+    "period_label": "2025-03",
+    "pair": "USD/INR",
+    "rate": 86.52,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "03-03-2026 17:29:32 IST",
+    "period_label": "2025-03",
+    "pair": "USD/INR",
+    "rate": 86.52,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "03-03-2026 17:29:54 IST",
+    "pair": "USD/INR",
+    "rate": 91.69100348,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:29:54 IST",
+    "pair": "USD/EUR",
+    "rate": 0.854899,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:29:54 IST",
+    "pair": "USD/GBP",
+    "rate": 0.74582062,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:29:54 IST",
+    "pair": "USD/JPY",
+    "rate": 157.22699631,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:29:54 IST",
+    "pair": "USD/AED",
+    "rate": 3.6725,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:29:54 IST",
+    "pair": "USD/SAR",
+    "rate": 3.75,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:29:55 IST",
+    "pair": "USD/INR",
+    "rate": 91.69100348,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:29:55 IST",
+    "pair": "USD/EUR",
+    "rate": 0.854899,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:29:55 IST",
+    "pair": "USD/GBP",
+    "rate": 0.74582062,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:29:55 IST",
+    "pair": "USD/JPY",
+    "rate": 157.22699631,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:29:55 IST",
+    "pair": "USD/AED",
+    "rate": 3.6725,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:29:55 IST",
+    "pair": "USD/SAR",
+    "rate": 3.75,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:03 IST",
+    "pair": "USD/INR",
+    "rate": 91.69100348,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:03 IST",
+    "pair": "USD/EUR",
+    "rate": 0.854899,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:03 IST",
+    "pair": "USD/GBP",
+    "rate": 0.74582062,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:03 IST",
+    "pair": "USD/JPY",
+    "rate": 157.22699631,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:03 IST",
+    "pair": "USD/AED",
+    "rate": 3.6725,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:03 IST",
+    "pair": "USD/SAR",
+    "rate": 3.75,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:04 IST",
+    "pair": "USD/INR",
+    "rate": 91.69100348,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:04 IST",
+    "pair": "USD/EUR",
+    "rate": 0.854899,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:04 IST",
+    "pair": "USD/GBP",
+    "rate": 0.74582062,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:04 IST",
+    "pair": "USD/JPY",
+    "rate": 157.22699631,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:04 IST",
+    "pair": "USD/AED",
+    "rate": 3.6725,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:04 IST",
+    "pair": "USD/SAR",
+    "rate": 3.75,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:06 IST",
+    "pair": "USD/INR",
+    "rate": 91.69100348,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:06 IST",
+    "pair": "USD/EUR",
+    "rate": 0.854899,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:06 IST",
+    "pair": "USD/GBP",
+    "rate": 0.74582062,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:06 IST",
+    "pair": "USD/JPY",
+    "rate": 157.22699631,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:06 IST",
+    "pair": "USD/AED",
+    "rate": 3.6725,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:06 IST",
+    "pair": "USD/SAR",
+    "rate": 3.75,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:06 IST",
+    "pair": "USD/INR",
+    "rate": 91.69100348,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:06 IST",
+    "pair": "USD/EUR",
+    "rate": 0.854899,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:06 IST",
+    "pair": "USD/GBP",
+    "rate": 0.74582062,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:06 IST",
+    "pair": "USD/JPY",
+    "rate": 157.22699631,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:06 IST",
+    "pair": "USD/AED",
+    "rate": 3.6725,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:06 IST",
+    "pair": "USD/SAR",
+    "rate": 3.75,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:06 IST",
+    "pair": "USD/INR",
+    "rate": 91.69100348,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:06 IST",
+    "pair": "USD/EUR",
+    "rate": 0.854899,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:06 IST",
+    "pair": "USD/GBP",
+    "rate": 0.74582062,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:06 IST",
+    "pair": "USD/JPY",
+    "rate": 157.22699631,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:06 IST",
+    "pair": "USD/AED",
+    "rate": 3.6725,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:06 IST",
+    "pair": "USD/SAR",
+    "rate": 3.75,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:23 IST",
+    "pair": "USD/INR",
+    "rate": 91.69100348,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:23 IST",
+    "pair": "USD/EUR",
+    "rate": 0.854899,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:23 IST",
+    "pair": "USD/GBP",
+    "rate": 0.74582062,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:23 IST",
+    "pair": "USD/JPY",
+    "rate": 157.22699631,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:23 IST",
+    "pair": "USD/AED",
+    "rate": 3.6725,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:30:23 IST",
+    "pair": "USD/SAR",
+    "rate": 3.75,
+    "source": "fawazahmed0 CDN (Frankfurter fallback)"
+  },
+  {
+    "date_time": "03-03-2026 17:33:59 IST",
+    "period_label": "2025-03",
+    "pair": "USD/INR",
+    "rate": 86.52,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "03-03-2026 17:35:22 IST",
+    "period_label": "2025-03",
+    "pair": "USD/INR",
+    "rate": 86.52,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
   }
 ]

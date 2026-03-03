@@ -1,0 +1,16 @@
+[
+  {
+    "insights": [
+      {
+        "title": "Anomalies detected in data",
+        "body": "Anomaly alert (warning): 4 anomalies detected, 2 high severity",
+        "severity": "action_required",
+        "category": "risk"
+      }
+    ],
+    "generated_at": "03-03-2026 17:19:33 IST",
+    "date": "2026-03-03",
+    "model": "rule",
+    "data_points_used": 6
+  }
+]

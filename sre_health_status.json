@@ -1,22 +1,82 @@
 [
   {
+    "entity_type": "data",
+    "entity_name": "live_prices",
+    "status": "OK",
+    "last_checked_ist": "03-03-2026 17:49:37 IST",
+    "last_ok_ist": "03-03-2026 17:49:37 IST",
+    "error_code": "",
+    "auto_fix_attempted": "N",
+    "details": "7 price keys OK"
+  },
+  {
+    "entity_type": "data",
+    "entity_name": "api_cache_freshness",
+    "status": "OK",
+    "last_checked_ist": "03-03-2026 17:49:37 IST",
+    "last_ok_ist": "03-03-2026 17:49:37 IST",
+    "error_code": "",
+    "auto_fix_attempted": "N",
+    "details": "24 cached entries fresh"
+  },
+  {
+    "entity_type": "calculation",
+    "entity_name": "brent",
+    "status": "OK",
+    "last_checked_ist": "03-03-2026 17:49:37 IST",
+    "last_ok_ist": "03-03-2026 17:49:37 IST",
+    "error_code": "",
+    "auto_fix_attempted": "N",
+    "details": "brent=84.34 USD/bbl OK"
+  },
+  {
+    "entity_type": "calculation",
+    "entity_name": "wti",
+    "status": "OK",
+    "last_checked_ist": "03-03-2026 17:49:37 IST",
+    "last_ok_ist": "03-03-2026 17:49:37 IST",
+    "error_code": "",
+    "auto_fix_attempted": "N",
+    "details": "wti=77.12 USD/bbl OK"
+  },
+  {
+    "entity_type": "calculation",
+    "entity_name": "usdinr",
+    "status": "OK",
+    "last_checked_ist": "03-03-2026 17:49:37 IST",
+    "last_ok_ist": "03-03-2026 17:49:37 IST",
+    "error_code": "",
+    "auto_fix_attempted": "N",
+    "details": "usdinr=91.69 ₹/USD OK"
+  },
+  {
+    "entity_type": "export",
+    "entity_name": "pdf_export",
+    "status": "OK",
+    "last_checked_ist": "03-03-2026 17:49:37 IST",
+    "last_ok_ist": "03-03-2026 17:49:37 IST",
+    "error_code": "",
+    "auto_fix_attempted": "N",
+    "details": "2 PDFs found, all ≥1024B"
+  },
+  {
     "entity_type": "scheduler",
     "entity_name": "auto_health_check",
     "status": "OK",
-    "last_checked_ist": "03-03-2026 16:24:53 IST",
-    "last_ok_ist": "03-03-2026 16:24:53 IST",
+    "last_checked_ist": "03-03-2026 17:49:37 IST",
+    "last_ok_ist": "03-03-2026 17:49:37 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "Last run 4.4 min ago — on schedule"
+    "details": "Last run 2.1 min ago — on schedule"
   },
   {
     "entity_type": "errors",
     "entity_name": "error_log",
     "status": "WARN",
-    "last_checked_ist": "03-03-2026 16:24:53 IST",
+    "last_checked_ist": "03-03-2026 17:49:37 IST",
     "last_ok_ist": "",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "43 P1 open errors (threshold ≥5)"
+    "details": "46 P1 open errors (threshold ≥5)"
   }
 ]

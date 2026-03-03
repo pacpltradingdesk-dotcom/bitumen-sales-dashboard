@@ -255,6 +255,20 @@ def ask_ai(
     """
     key = api_key or get_api_key()
 
+    # ── RAG context injection — enrich question with relevant data ──────
+    rag_context = ""
+    try:
+        from rag_engine import search as rag_search
+        rag_results = rag_search(question, top_k=3)
+        if rag_results:
+            rag_context = "\n\nRelevant dashboard data:\n" + "\n".join(
+                f"- {r['text']}" for r in rag_results
+            )
+    except Exception:
+        pass
+
+    enriched_question = question + rag_context if rag_context else question
+
     # ── Claude path (best quality — when API key available) ──────────────
     if key:
         try:
@@ -268,7 +282,7 @@ def ask_ai(
             messages: list[dict] = []
             if history:
                 messages.extend(history[-10:])
-            messages.append({"role": "user", "content": question})
+            messages.append({"role": "user", "content": enriched_question})
             try:
                 client   = anthropic.Anthropic(api_key=key)
                 response = client.messages.create(
@@ -295,7 +309,7 @@ def ask_ai(
     try:
         from ai_fallback_engine import ask_with_fallback, get_active_model_name
         context = build_system_prompt(role)
-        result = ask_with_fallback(question, context=context)
+        result = ask_with_fallback(enriched_question, context=context)
         if not result.get("error"):
             raw_text = result["answer"]
             parsed = parse_ai_response(raw_text)

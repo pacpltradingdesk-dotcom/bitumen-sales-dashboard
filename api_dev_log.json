@@ -151,5 +151,2084 @@
     "status": "Completed",
     "component": "All APIs",
     "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:26:19 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:26:24 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:26:31 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:26:31 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:28:20 IST",
+    "activity_type": "Auto-Repair",
+    "title": "Fallback activated: usdinr_frankfurter",
+    "description": "Primary API failed (Timeout (>8s)). Switched to yfinance(INR=X) fallback automatically.",
+    "status": "Completed",
+    "component": "usdinr_frankfurter",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:28:42 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:28:42 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:28:49 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:28:50 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:28:56 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:28:57 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:29:07 IST",
+    "activity_type": "Auto-Repair",
+    "title": "Fallback activated: usdinr_frankfurter",
+    "description": "Primary API failed (Timeout (>8s)). Switched to yfinance(INR=X) fallback automatically.",
+    "status": "Completed",
+    "component": "usdinr_frankfurter",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:29:35 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:29:35 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:29:52 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:29:53 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:29:59 IST",
+    "activity_type": "Auto-Repair",
+    "title": "Fallback activated: usdinr_frankfurter",
+    "description": "Primary API failed (Timeout (>8s)). Switched to yfinance(INR=X) fallback automatically.",
+    "status": "Completed",
+    "component": "usdinr_frankfurter",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:30:14 IST",
+    "activity_type": "Auto-Repair",
+    "title": "Fallback activated: usdinr_frankfurter",
+    "description": "Primary API failed (Timeout (>8s)). Switched to yfinance(INR=X) fallback automatically.",
+    "status": "Completed",
+    "component": "usdinr_frankfurter",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:30:15 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:30:16 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:30:23 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:30:24 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:30:26 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:30:26 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:30:28 IST",
+    "activity_type": "Auto-Repair",
+    "title": "Fallback activated: usdinr_frankfurter",
+    "description": "Primary API failed (Timeout (>8s)). Switched to yfinance(INR=X) fallback automatically.",
+    "status": "Completed",
+    "component": "usdinr_frankfurter",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:30:29 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:30:29 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:30:35 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:30:42 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:30:42 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:30:51 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:30:51 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:30:54 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:30:54 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:30:55 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:30:55 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:30:55 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:30:55 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:30:59 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:30:59 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:31:06 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:31:06 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:31:16 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:31:16 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:31:42 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:31:42 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:31:42 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:31:42 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:31:42 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:31:42 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:31:44 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:31:44 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:31:44 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:31:44 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:31:52 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:31:52 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:31:52 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:31:52 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:31:52 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:31:52 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:31:53 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:31:53 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:31:56 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:31:56 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:31:58 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:31:58 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:31:59 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:31:59 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:31:59 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:31:59 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:32:05 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:32:05 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:32:19 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:32:19 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:32:53 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:32:53 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:33:01 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:33:01 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:33:01 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:33:01 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:33:01 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:33:01 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:33:02 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:33:02 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:33:02 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:33:02 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:33:02 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:33:02 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:33:02 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:33:02 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:33:03 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:33:03 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:33:03 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:33:03 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:33:03 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:33:03 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:33:03 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:33:03 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:33:03 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:33:03 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:33:08 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 23/24 APIs healthy",
+    "description": "Health: 96% | Failed: 1 APIs | Run at 03-03-2026 16:33:08 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:35:41 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:35:41 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:37:23 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:37:45 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:37:52 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:37:53 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:41:13 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:41:13 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:46:28 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:46:28 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:49:43 IST",
+    "activity_type": "Auto-Repair",
+    "title": "Fallback activated: usdinr_frankfurter",
+    "description": "Primary API failed (Timeout (>8s)). Switched to yfinance(INR=X) fallback automatically.",
+    "status": "Completed",
+    "component": "usdinr_frankfurter",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:49:55 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:49:55 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:51:14 IST",
+    "activity_type": "Auto-Repair",
+    "title": "Fallback activated: usdinr_frankfurter",
+    "description": "Primary API failed (Timeout (>8s)). Switched to yfinance(INR=X) fallback automatically.",
+    "status": "Completed",
+    "component": "usdinr_frankfurter",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:51:29 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:51:29 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:52:57 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:52:57 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:58:57 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:58:57 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 16:59:56 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 16:59:56 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:00:47 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:00:47 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:00:49 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:00:49 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:00:59 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:00:59 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:01:15 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:01:15 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:01:20 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:01:20 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:01:22 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:01:22 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:01:22 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:01:22 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:01:25 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:01:25 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:01:31 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:01:31 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:01:33 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:01:33 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:01:58 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:01:58 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:01:58 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:01:58 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:01:59 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:01:59 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:02:02 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:02:02 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:02:03 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:02:03 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:02:15 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:02:15 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:02:15 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:02:15 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:02:16 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:02:16 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:02:16 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:02:16 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:02:18 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:02:18 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:02:18 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:02:18 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:02:19 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:02:19 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:02:20 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:02:20 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:02:23 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:02:23 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:02:31 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:02:31 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:03:18 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:03:18 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:03:35 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:03:35 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:03:35 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:03:35 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:03:38 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:03:38 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:03:38 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:03:38 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:03:38 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:03:38 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:03:38 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:03:38 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:03:38 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:03:38 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:03:38 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:03:38 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:03:38 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:03:38 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:03:38 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:03:38 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:03:38 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:03:38 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:03:38 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:03:38 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:03:43 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 23/24 APIs healthy",
+    "description": "Health: 96% | Failed: 1 APIs | Run at 03-03-2026 17:03:43 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:05:57 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:05:57 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:13:47 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:13:47 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:16:36 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:16:36 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:16:41 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:16:41 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:18:31 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:18:35 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:18:46 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:18:47 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:18:50 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:18:51 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:19:01 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:19:01 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:19:19 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:19:19 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:19:28 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:19:29 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:19:49 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:19:50 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:19:59 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:20:00 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:20:07 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:20:08 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:20:13 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:20:14 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:20:19 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:20:19 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:20:19 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:20:19 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:20:21 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:20:21 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:20:28 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:20:29 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:20:35 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:20:35 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:20:47 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:20:51 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:20:57 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:20:57 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:21:02 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:21:02 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:21:11 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:21:11 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:21:15 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:21:15 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:21:41 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:21:41 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:21:43 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:21:43 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:21:57 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:21:57 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:22:03 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:22:03 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:22:25 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:22:26 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:22:27 IST",
+    "activity_type": "Module Loaded",
+    "title": "Competitor Intelligence tab accessed",
+    "description": "MEE data module rendered. 14 sources, 10 verified data points.",
+    "status": "Active",
+    "component": "competitor_intelligence.py",
+    "department": "Strategy"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:24:41 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:24:45 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:24:52 IST",
+    "activity_type": "Module Loaded",
+    "title": "Contractor OSINT v2.0 accessed",
+    "description": "OSINT v2.0 rendered. Full contact CRM, site info, milestones, 11 tabs.",
+    "status": "Active",
+    "component": "contractor_osint.py",
+    "department": "Sales"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:26:30 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:26:30 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:26:41 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:26:41 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:26:45 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:26:46 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:27:19 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:27:20 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:28:42 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:28:43 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:28:48 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:28:49 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:28:56 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:28:56 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:29:12 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:29:27 IST",
+    "activity_type": "Auto-Repair",
+    "title": "Fallback activated: usdinr_frankfurter",
+    "description": "Primary API failed (Timeout (>8s)). Switched to yfinance(INR=X) fallback automatically.",
+    "status": "Completed",
+    "component": "usdinr_frankfurter",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:29:44 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:29:44 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:30:25 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:30:25 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:31:03 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:31:03 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:31:04 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:31:04 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:31:14 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:31:14 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:31:37 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:31:37 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:31:43 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:31:43 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:31:45 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:31:45 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:31:45 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:31:45 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:31:47 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:31:47 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:31:50 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:31:50 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:31:51 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:31:51 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:32:13 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:32:13 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:32:14 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:32:14 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:32:15 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:32:15 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:32:18 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:32:18 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:32:22 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:32:22 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:32:37 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:32:37 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:32:39 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:32:39 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:32:40 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:32:40 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:32:40 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:32:40 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:32:41 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:32:41 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:32:41 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:32:41 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:32:42 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:32:42 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:32:43 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:32:43 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:32:45 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:32:45 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:32:49 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:32:49 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:33:38 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:33:38 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:34:13 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:34:13 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:34:14 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:34:14 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:34:17 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:34:17 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:34:17 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:34:17 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:34:17 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:34:17 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:34:18 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:34:18 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:34:19 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:34:19 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:34:19 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:34:19 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:34:19 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:34:19 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:34:19 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:34:19 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:34:19 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:34:19 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:34:20 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:34:20 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:34:26 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 23/24 APIs healthy",
+    "description": "Health: 96% | Failed: 1 APIs | Run at 03-03-2026 17:34:26 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:36:26 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:36:26 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:44:04 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:44:04 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:47:13 IST",
+    "activity_type": "Auto-Repair",
+    "title": "Fallback activated: usdinr_frankfurter",
+    "description": "Primary API failed (Timeout (>8s)). Switched to yfinance(INR=X) fallback automatically.",
+    "status": "Completed",
+    "component": "usdinr_frankfurter",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:47:29 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:47:29 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "03-03-2026 17:50:33 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 03-03-2026 17:50:33 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
   }
 ]

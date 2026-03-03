@@ -305,6 +305,15 @@ def forecast_demand(state: str | None = None, months_ahead: int = 6) -> dict:
 
 def score_opportunity(features: dict) -> dict:
     """Score an opportunity using trained model or rule-based fallback."""
+    # Tier 0: Delegate to ml_boost_engine (LightGBM/XGBoost) if available
+    try:
+        from ml_boost_engine import score_opportunity_boost
+        result = score_opportunity_boost(features)
+        if result.get("model") != "rule":
+            return result
+    except Exception:
+        pass
+
     model_path = MODEL_DIR / "opportunity_scorer.pkl"
 
     if _HAS_SKLEARN and _HAS_JOBLIB and model_path.exists():
@@ -336,6 +345,15 @@ def score_opportunity(features: dict) -> dict:
 
 def score_risk(customer_data: dict) -> dict:
     """Score customer risk using trained model or rule-based fallback."""
+    # Tier 0: Delegate to ml_boost_engine (XGBoost/LightGBM) if available
+    try:
+        from ml_boost_engine import score_risk_boost
+        result = score_risk_boost(customer_data)
+        if result.get("model") != "rule":
+            return result
+    except Exception:
+        pass
+
     model_path = MODEL_DIR / "risk_scorer.pkl"
 
     if _HAS_SKLEARN and _HAS_JOBLIB and model_path.exists():
@@ -482,6 +500,15 @@ def train_models() -> dict:
             trained += 1
     except Exception as e:
         LOG.warning("Direction model training failed: %s", e)
+
+    # Train boost models (LightGBM/XGBoost) if available
+    try:
+        from ml_boost_engine import train_boost_models
+        boost_result = train_boost_models()
+        trained += boost_result.get("models_trained", 0)
+        accuracy["boost"] = boost_result.get("accuracy", {})
+    except Exception as e:
+        LOG.debug("Boost model training skipped: %s", e)
 
     return {"models_trained": trained, "accuracy": accuracy, "timestamp": _now_ist()}
 

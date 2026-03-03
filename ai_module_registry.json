@@ -1,0 +1,74 @@
+[
+  {
+    "name": "ai_fallback_engine",
+    "display_name": "LLM Chain (Ollama/HF/GPT4All)",
+    "status": "pass",
+    "engine": "ollama",
+    "health_test": "pass",
+    "last_tested": "03-03-2026 17:33:36 IST",
+    "error_log": ""
+  },
+  {
+    "name": "ml_forecast_engine",
+    "display_name": "Prophet + sklearn Forecasting",
+    "status": "degraded",
+    "engine": "heuristic",
+    "health_test": "degraded",
+    "last_tested": "03-03-2026 17:33:36 IST",
+    "error_log": ""
+  },
+  {
+    "name": "ml_boost_engine",
+    "display_name": "LightGBM/XGBoost Scoring",
+    "status": "degraded",
+    "engine": "rule",
+    "health_test": "degraded",
+    "last_tested": "03-03-2026 17:33:36 IST",
+    "error_log": ""
+  },
+  {
+    "name": "anomaly_engine",
+    "display_name": "Anomaly Detection",
+    "status": "pass",
+    "engine": "zscore",
+    "health_test": "pass",
+    "last_tested": "03-03-2026 17:33:36 IST",
+    "error_log": ""
+  },
+  {
+    "name": "rag_engine",
+    "display_name": "RAG Search (FAISS/TF-IDF)",
+    "status": "degraded",
+    "engine": "keyword",
+    "health_test": "degraded",
+    "last_tested": "03-03-2026 17:33:36 IST",
+    "error_log": ""
+  },
+  {
+    "name": "finbert_engine",
+    "display_name": "Financial Sentiment (FinBERT)",
+    "status": "degraded",
+    "engine": "keyword",
+    "health_test": "degraded",
+    "last_tested": "03-03-2026 17:33:36 IST",
+    "error_log": ""
+  },
+  {
+    "name": "nlp_extraction_engine",
+    "display_name": "NLP Entity Extraction",
+    "status": "degraded",
+    "engine": "regex",
+    "health_test": "degraded",
+    "last_tested": "03-03-2026 17:33:36 IST",
+    "error_log": ""
+  },
+  {
+    "name": "auto_insight_engine",
+    "display_name": "Auto Insight Generator",
+    "status": "pass",
+    "engine": "llm+rule",
+    "health_test": "pass",
+    "last_tested": "03-03-2026 17:33:36 IST",
+    "error_log": ""
+  }
+]

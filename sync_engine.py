@@ -118,6 +118,15 @@ class SyncEngine:
         # Step 14: Source Registry Health Update
         self._sync_source_health()
 
+        # Step 15: Auto Daily Insights
+        self._sync_auto_insights()
+
+        # Step 16: RAG Index Refresh
+        self._sync_rag_index()
+
+        # Step 17: ML Boost Model Training
+        self._sync_boost_models()
+
         # Finalize
         self.results["completed_at"] = _now()
         self.results["status"] = (
@@ -535,6 +544,54 @@ class SyncEngine:
         except Exception as e:
             step["details"].append(f"Source health: skipped — {str(e)[:80]}")
 
+        step["status"] = "done"
+        step["completed_at"] = _now()
+        self.results["steps"].append(step)
+
+    # ─── Step 15: Auto Insights ──────────────────────────────────────────────
+
+    def _sync_auto_insights(self):
+        """Generate daily AI insights after data refresh."""
+        step = {"name": "Auto Daily Insights", "status": "running",
+                "started_at": _now(), "details": []}
+        try:
+            from auto_insight_engine import schedule_insights
+            schedule_insights()
+            step["details"].append("Daily insights generated")
+        except Exception as e:
+            step["details"].append(f"Auto insights: skipped — {str(e)[:80]}")
+        step["status"] = "done"
+        step["completed_at"] = _now()
+        self.results["steps"].append(step)
+
+    # ─── Step 16: RAG Index Refresh ──────────────────────────────────────────
+
+    def _sync_rag_index(self):
+        """Rebuild RAG search index with latest data."""
+        step = {"name": "RAG Index Refresh", "status": "running",
+                "started_at": _now(), "details": []}
+        try:
+            from rag_engine import refresh_index
+            result = refresh_index()
+            step["details"].append(f"RAG index: {result.get('indexed', 0)} docs ({result.get('engine', 'none')})")
+        except Exception as e:
+            step["details"].append(f"RAG index: skipped — {str(e)[:80]}")
+        step["status"] = "done"
+        step["completed_at"] = _now()
+        self.results["steps"].append(step)
+
+    # ─── Step 17: ML Boost Model Training ────────────────────────────────────
+
+    def _sync_boost_models(self):
+        """Retrain LightGBM/XGBoost models on latest data."""
+        step = {"name": "ML Boost Training", "status": "running",
+                "started_at": _now(), "details": []}
+        try:
+            from ml_boost_engine import train_boost_models
+            result = train_boost_models()
+            step["details"].append(f"Boost models trained: {result.get('models_trained', 0)}")
+        except Exception as e:
+            step["details"].append(f"Boost training: skipped — {str(e)[:80]}")
         step["status"] = "done"
         step["completed_at"] = _now()
         self.results["steps"].append(step)

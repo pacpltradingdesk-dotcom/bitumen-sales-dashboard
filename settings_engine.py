@@ -138,6 +138,18 @@ DEFAULT_SETTINGS = {
     # Ops Monitoring
     "ops_monitoring_enabled": True,
 
+    # System Control Center — Master Switches
+    "ai_enabled": True,
+    "sync_enabled": True,
+    "anomaly_detection_enabled": True,
+    "maintenance_mode": False,
+
+    # AI Workers & Setup
+    "ai_workers_enabled": True,
+    "ai_auto_setup_on_start": True,
+    "ai_resource_tier": "auto",         # "auto", "LOW", "MEDIUM", "HIGH"
+    "ollama_auto_start": True,
+
     # Export Settings
     "excel_export_include_metadata": True,
     "csv_export_encoding": "utf-8-sig",

@@ -296,6 +296,37 @@ def build_full_context(role: str = "Admin") -> dict:
         ctx["price_predictions"] = get_prediction_context()
     if "dev" in allowed:
         ctx["dev_activity"] = get_dev_activity_summary()
+
+    # ── Anomaly alerts (if available) ──────────────────────────────────────
+    try:
+        from anomaly_engine import get_anomaly_summary
+        anomaly = get_anomaly_summary()
+        if anomaly.get("total_anomalies", 0) > 0:
+            ctx["anomaly_alerts"] = {
+                "alert_level": anomaly["alert_level"],
+                "total_anomalies": anomaly["total_anomalies"],
+                "high_severity": anomaly["high_severity_count"],
+                "price_anomalies": len(anomaly.get("price_anomalies", {}).get("anomalies", [])),
+                "tender_spikes": len(anomaly.get("tender_spikes", {}).get("spikes", [])),
+                "demand_anomalies": len(anomaly.get("demand_anomalies", {}).get("anomalies", [])),
+            }
+    except Exception:
+        pass
+
+    # ── Market sentiment (if FinBERT available) ────────────────────────────
+    try:
+        from finbert_engine import get_market_sentiment
+        sentiment = get_market_sentiment()
+        if sentiment.get("article_count", 0) > 0:
+            ctx["market_sentiment"] = {
+                "overall": sentiment["overall"],
+                "trend": sentiment["trend"],
+                "score": sentiment["score"],
+                "articles_analyzed": sentiment["article_count"],
+            }
+    except Exception:
+        pass
+
     return ctx
 
 

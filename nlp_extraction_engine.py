@@ -277,14 +277,25 @@ def _extract_work_types_regex(text: str) -> list:
 # SENTIMENT ANALYSIS
 # ═══════════════════════════════════════════════════════════════════════════════
 
-def analyze_sentiment(text: str) -> dict:
+def analyze_sentiment(text: str, domain: str = "general") -> dict:
     """
     Sentiment analysis on text.
-    Primary: HuggingFace distilbert. Fallback: keyword-based.
+    Primary (financial): FinBERT → DistilBERT → keyword.
+    Primary (general): DistilBERT → keyword.
     Returns: {"sentiment", "score", "engine"}
     """
     if not text or not text.strip():
         return {"sentiment": "neutral", "score": 0.5, "engine": "none"}
+
+    # Tier 0: FinBERT for financial domain
+    if domain == "financial":
+        try:
+            from finbert_engine import analyze_financial_sentiment
+            result = analyze_financial_sentiment(text)
+            if result.get("engine") == "finbert":
+                return result
+        except Exception:
+            pass
 
     if _HAS_TRANSFORMERS:
         try:

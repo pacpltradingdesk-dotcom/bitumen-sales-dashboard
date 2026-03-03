@@ -1356,7 +1356,8 @@ _NAV_SECTIONS = [
     ("🛡️  Compliance",         ["🛡️ GST & Legal Monitor", "⚡ Risk Scoring", "🏗️ Govt Data Hub"]),
     ("📊  Reports",            ["💰 Financial Intelligence", "📤 Reports", "🎯 Strategy Panel",
                                  "⏳ Past Predictions", "🛣️ Road Budget & Demand"]),
-    ("⚙️  System",             ["🌐 API Dashboard", "🔗 API HUB", "🏥 System Health",
+    ("⚙️  System",             ["🎛️ System Control Center", "🤖 AI Setup & Workers",
+                                 "🌐 API Dashboard", "🔗 API HUB", "🏥 System Health",
                                  "🔄 Sync Status", "🖥️ Ops Dashboard",
                                  "📦 System Requirements",
                                  "⚙️ Dev & System Activity",
@@ -1416,6 +1417,27 @@ with st.sidebar:
         key="_api_toggle_v3",
         help="ON = real-time data fetched from APIs. OFF = fast offline/simulated mode.",
     )
+    # ── AI status indicator ──────────────────────────────────────────────────
+    try:
+        from ai_setup_engine import get_module_registry
+        _ai_reg = get_module_registry()
+        if _ai_reg:
+            _ai_passed = sum(1 for m in _ai_reg if m.get("health_test") == "pass")
+            _ai_total = len(_ai_reg)
+            if _ai_passed == _ai_total:
+                _ai_dot, _ai_label = "🟢", "All Live"
+            elif _ai_passed > 0:
+                _ai_dot, _ai_label = "🟡", f"{_ai_passed}/{_ai_total} Live"
+            else:
+                _ai_dot, _ai_label = "🔴", "Setup Needed"
+            st.markdown(
+                f'<div style="font-size:0.68rem;color:#475569;padding:3px 4px 0 4px;">'
+                f'{_ai_dot} AI: {_ai_label}</div>',
+                unsafe_allow_html=True,
+            )
+    except Exception:
+        pass
+
     st.markdown(
         '<div style="font-size:0.65rem;color:#475569;padding:2px 4px 0 4px;">'
         'v4.0.0 &nbsp;|&nbsp; 03-03-2026 &nbsp;|&nbsp; Production'
@@ -4690,6 +4712,22 @@ elif selected_page == "🚨 Alert Center":
         cmd_alert_center.render()
     except Exception as _e:
         st.error(f"Alert Center failed to load: {_e}")
+
+elif selected_page == "🎛️ System Control Center":
+    _render_page_header("🎛️ System Control Center", "System", badge="Live")
+    try:
+        from command_intel import system_control_center
+        system_control_center.render()
+    except Exception as _e:
+        st.error(f"System Control Center failed to load: {_e}")
+
+elif selected_page == "🤖 AI Setup & Workers":
+    _render_page_header("🤖 AI Setup & Workers", "System", badge="Live")
+    try:
+        from command_intel import ai_setup_dashboard
+        ai_setup_dashboard.render()
+    except Exception as _e:
+        st.error(f"AI Setup & Workers failed to load: {_e}")
 
 elif selected_page == "🖥️ Ops Dashboard":
     _render_page_header("🖥️ Ops Dashboard", "System", badge="Live")

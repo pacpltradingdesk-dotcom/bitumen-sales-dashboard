@@ -1,0 +1,68 @@
+[
+  {
+    "ts": "03-03-2026 17:16:19 IST",
+    "event": "fallback",
+    "provider": "ollama",
+    "message": "Failed — Ollama daemon not running (start the Ollama app first)"
+  },
+  {
+    "ts": "03-03-2026 17:16:20 IST",
+    "event": "fallback",
+    "provider": "huggingface",
+    "message": "Failed — You must provide an api_key to work with featherless-ai API or log in with `hf auth login`."
+  },
+  {
+    "ts": "03-03-2026 17:19:27 IST",
+    "event": "fallback",
+    "provider": "ollama",
+    "message": "Failed — Ollama daemon not running (start the Ollama app first)"
+  },
+  {
+    "ts": "03-03-2026 17:19:29 IST",
+    "event": "fallback",
+    "provider": "huggingface",
+    "message": "Failed — You must provide an api_key to work with featherless-ai API or log in with `hf auth login`."
+  },
+  {
+    "ts": "03-03-2026 17:19:33 IST",
+    "event": "fallback",
+    "provider": "gpt4all",
+    "message": "Failed — [Errno 22] Invalid argument"
+  },
+  {
+    "ts": "03-03-2026 17:19:33 IST",
+    "event": "all_failed",
+    "provider": "none",
+    "message": "All providers failed for: You are a bitumen sales intelligence analyst. Today is 2026-"
+  },
+  {
+    "ts": "03-03-2026 17:33:40 IST",
+    "event": "fallback",
+    "provider": "ollama",
+    "message": "Failed — Ollama daemon not running (start the Ollama app first)"
+  },
+  {
+    "ts": "03-03-2026 17:33:43 IST",
+    "event": "fallback",
+    "provider": "huggingface",
+    "message": "Failed — You must provide an api_key to work with featherless-ai API or log in with `hf auth login`."
+  },
+  {
+    "ts": "03-03-2026 17:36:25 IST",
+    "event": "success",
+    "provider": "gpt4all",
+    "message": "Answered: What is the current Brent crude oil price trend?"
+  },
+  {
+    "ts": "03-03-2026 17:44:20 IST",
+    "event": "fallback",
+    "provider": "ollama",
+    "message": "Failed — Ollama daemon not running (start the Ollama app first)"
+  },
+  {
+    "ts": "03-03-2026 17:44:21 IST",
+    "event": "fallback",
+    "provider": "huggingface",
+    "message": "Failed — You must provide an api_key to work with featherless-ai API or log in with `hf auth login`."
+  }
+]
