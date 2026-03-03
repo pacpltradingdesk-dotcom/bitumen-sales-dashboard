@@ -66,10 +66,11 @@ def _render_api_config():
                 "360dialog API Key", value=creds.get("api_key", ""),
                 type="password", key="ws_api_key",
             )
-            api_url = st.text_input(
+            st.text_input(
                 "API Base URL",
                 value=creds.get("api_base_url", "https://waba.360dialog.io/v1"),
                 key="ws_api_url",
+                disabled=True,
             )
         with c2:
             phone_id = st.text_input(
@@ -82,7 +83,7 @@ def _render_api_config():
         bc1, bc2 = st.columns(2)
         with bc1:
             if st.button("Save & Test Connection", type="primary", key="ws_save_api"):
-                wcm.save_credentials(api_key, api_url)
+                wcm.save_credentials(api_key, phone_id, webhook_url="", business_name="PPS Anantam")
                 st.success("WhatsApp credentials saved.")
                 test_ok, test_msg = wcm.test_connection()
                 if test_ok:
@@ -115,7 +116,7 @@ def _render_templates():
     try:
         from whatsapp_engine import WhatsAppTemplateManager
         wtm = WhatsAppTemplateManager()
-        templates = wtm.get_all_templates()
+        templates = wtm.load_templates()
 
         if templates:
             for tname, tdata in templates.items():
@@ -155,7 +156,7 @@ def _render_send_message():
             try:
                 from whatsapp_engine import WhatsAppTemplateManager
                 wtm = WhatsAppTemplateManager()
-                tmpl_names = list(wtm.get_all_templates().keys())
+                tmpl_names = list(wtm.load_templates().keys())
             except Exception:
                 tmpl_names = ["bitumen_offer_v1", "bitumen_followup_v1", "payment_reminder_v1", "price_drop_alert_v1"]
 

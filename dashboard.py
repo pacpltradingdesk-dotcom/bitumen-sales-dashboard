@@ -1435,6 +1435,10 @@ tab11 = st.empty()
 tab12_sos = st.empty()
 
 
+# ── RBAC Gate (Phase C) — shows login form if RBAC enabled ─────────────────
+if not render_login_form():
+    st.stop()
+
 # ── Universal Print CSS + Action Bar (Phase C upgrade) ─────────────────────
 inject_print_css()
 
@@ -1453,7 +1457,7 @@ if selected_page not in _NAV_HEADERS:
     elif _PDF_BAR_OK:
         render_export_bar(
             page_title=selected_page,
-            role="Admin",
+            role=get_current_role(),
         )
 
 

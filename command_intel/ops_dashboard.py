@@ -75,14 +75,14 @@ def _render_workers():
     st.subheader("Background Workers")
 
     workers = [
-        {"name": "API Health Checker", "module": "api_manager", "flag": "_health_thread_running", "interval": "30 min"},
-        {"name": "SRE Self-Healing", "module": "sre_engine", "flag": "_sre_bg_running", "interval": "15 min"},
-        {"name": "API Hub Scheduler", "module": "api_hub_engine", "flag": "_hub_scheduler_running", "interval": "60 min"},
+        {"name": "API Health Checker", "module": "api_manager", "flag": "_G_health", "interval": "30 min"},
+        {"name": "SRE Self-Healing", "module": "sre_engine", "flag": "_sre_thread_started", "interval": "15 min"},
+        {"name": "API Hub Scheduler", "module": "api_hub_engine", "flag": "_hub_scheduler_started", "interval": "60 min"},
         {"name": "Sync Engine", "module": "sync_engine", "flag": "_scheduler_running", "interval": "60 min"},
         {"name": "Email Queue Processor", "module": "email_engine", "flag": "_email_scheduler_running", "interval": "5 min"},
         {"name": "WhatsApp Queue Processor", "module": "whatsapp_engine", "flag": "_wa_scheduler_running", "interval": "2 min"},
-        {"name": "News Fetcher", "module": "news_engine", "flag": "_news_bg_running", "interval": "10 min"},
-        {"name": "AI Fallback Monitor", "module": "ai_fallback_engine", "flag": "_monitor_running", "interval": "5 min"},
+        {"name": "News Fetcher", "module": "news_engine", "flag": "_bg_started", "interval": "10 min"},
+        {"name": "AI Fallback Monitor", "module": "ai_fallback_engine", "flag": "_G", "interval": "5 min", "dict_key": "monitor_started"},
     ]
 
     rows_html = []
@@ -92,7 +92,11 @@ def _render_workers():
         try:
             import importlib
             mod = importlib.import_module(w["module"])
-            is_running = getattr(mod, w["flag"], False)
+            flag_val = getattr(mod, w["flag"], False)
+            if "dict_key" in w and isinstance(flag_val, dict):
+                is_running = flag_val.get(w["dict_key"], False)
+            else:
+                is_running = bool(flag_val)
         except Exception:
             pass
 

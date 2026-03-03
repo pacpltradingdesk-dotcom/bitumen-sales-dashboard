@@ -419,7 +419,7 @@ class SyncEngine:
             engine = DirectorBriefingEngine()
             briefing = engine.generate_briefing()
             engine.save_briefing_to_db(briefing)
-            step["details"].append(f"Briefing generated for {briefing.get('date', 'today')}")
+            step["details"].append(f"Briefing generated for {briefing.get('briefing_date', 'today')}")
         except Exception as e:
             step["details"].append(f"Briefing: skipped — {str(e)[:80]}")
 

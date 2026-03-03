@@ -74,7 +74,7 @@ def _render_smtp_config():
         bc1, bc2 = st.columns(2)
         with bc1:
             if st.button("Save & Test SMTP", type="primary", key="es_save_smtp"):
-                ecm.save_credentials(smtp_host, int(smtp_port), smtp_user, smtp_pass, smtp_from)
+                ecm.save_credentials(smtp_host, int(smtp_port), smtp_user, smtp_pass, smtp_from, smtp_from_email)
                 st.success("SMTP credentials saved.")
                 test_ok, test_msg = ecm.test_connection()
                 if test_ok:
