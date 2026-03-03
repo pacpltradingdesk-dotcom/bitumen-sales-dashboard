@@ -55,6 +55,16 @@ except Exception:
     _ACTION_BAR_OK = False
     def render_action_bar(*a, **kw): pass
 
+# --- DATA CONFIDENCE ENGINE (Phase D) ---
+try:
+    from data_confidence_engine import render_confidence_bar, render_source_footnote, render_data_health_card, get_overall_health
+    _CONFIDENCE_OK = True
+except Exception:
+    _CONFIDENCE_OK = False
+    def render_confidence_bar(*a, **kw): pass
+    def render_source_footnote(*a, **kw): pass
+    def render_data_health_card(*a, **kw): pass
+
 # --- ROLE ENGINE (Phase C) ---
 try:
     from role_engine import render_login_form, get_current_role, check_role, init_roles
@@ -1460,6 +1470,15 @@ if selected_page not in _NAV_HEADERS:
             role=get_current_role(),
         )
 
+# ── Data Confidence Bar (Phase D) — shows on data-heavy pages ────────────────
+_DATA_HEAVY_PAGES = {
+    "🧮 Pricing Calculator", "💰 Financial Intelligence", "📊 Demand Analytics",
+    "🛣️ Road Budget & Demand", "🔭 Contractor OSINT", "🔮 Price Prediction",
+    "📈 Correlation Matrix", "🌍 Import Cost Model",
+}
+if _CONFIDENCE_OK and selected_page in _DATA_HEAVY_PAGES:
+    render_confidence_bar()
+
 
 # ── HOME PAGE — Executive Intelligence Dashboard ─────────────────────────────
 if selected_page == "🏠 Home":
@@ -1640,6 +1659,10 @@ if selected_page == "🏠 Home":
     _k5.metric("CRM Tasks", _task_count, f"{_high_pri} high priority" if _high_pri else None)
     _k6.metric("APIs Healthy", f"{_api_ok}/{_api_tot}")
     st.markdown('</div>', unsafe_allow_html=True)
+
+    # ── Data Health Card (Phase D) ──────────────────────────────────────────
+    if _CONFIDENCE_OK:
+        render_data_health_card()
 
     # ─────────────────────────────────────────────────────────────────────────
     # SECTION 3 — Top Sources + Top Sell Opportunities (2-column)

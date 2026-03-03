@@ -466,7 +466,35 @@ def _article_id(url: str, title: str) -> str:
 
 
 def _extract_location(text: str) -> dict:
-    """Extract {state, district, city} from text via GEO_MASTER keyword matching."""
+    """
+    Extract {state, district, city} from text.
+    Primary: spaCy NER (via nlp_extraction_engine). Fallback: keyword matching.
+    """
+    # ── spaCy NER path ──────────────────────────────────────────────────
+    try:
+        from nlp_extraction_engine import extract_entities
+        ents = extract_entities(text)
+        if ents.get("states") or ents.get("cities"):
+            result = {"state": None, "district": None, "city": None}
+            if ents["states"]:
+                # Map NLP state name back to our canonical names
+                nlp_state = ents["states"][0]
+                for state_name in INDIAN_STATES:
+                    if state_name.lower() == nlp_state.lower():
+                        result["state"] = state_name
+                        break
+                else:
+                    result["state"] = nlp_state
+            if ents["cities"]:
+                nlp_city = ents["cities"][0]
+                result["city"] = nlp_city
+                if not result["state"] and nlp_city in MAJOR_CITIES:
+                    result["state"] = MAJOR_CITIES[nlp_city]
+            return result
+    except Exception:
+        pass
+
+    # ── Regex fallback (always works) ───────────────────────────────────
     text_lower = text.lower()
     result = {"state": None, "district": None, "city": None}
 
@@ -513,7 +541,20 @@ def _detect_work_type(text: str) -> Optional[str]:
     return None
 
 
-def _sentiment_label(tone: float) -> str:
+def _sentiment_label(tone: float, text: str = "") -> str:
+    """
+    Sentiment classification.
+    Primary: HuggingFace sentiment (via nlp_extraction_engine). Fallback: GDELT tone.
+    """
+    if text:
+        try:
+            from nlp_extraction_engine import analyze_sentiment
+            result = analyze_sentiment(text)
+            if result.get("engine") != "none":
+                return result["sentiment"]
+        except Exception:
+            pass
+    # GDELT tone fallback
     if tone >= 2.0:
         return "positive"
     if tone <= -2.0:
@@ -580,7 +621,7 @@ def parse_gdelt_article(raw: dict) -> Optional[dict]:
         "department": department,
         "category": category,
         "sentiment_score": round(tone, 2),
-        "sentiment_label": _sentiment_label(tone),
+        "sentiment_label": _sentiment_label(tone, text=title),
         "confidence": "gdelt_direct",
         "tags": json.dumps(tags),
         "fetched_at": _now(),

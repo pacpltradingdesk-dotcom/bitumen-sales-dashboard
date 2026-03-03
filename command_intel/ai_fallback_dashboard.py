@@ -115,7 +115,9 @@ def _provider_badge(p: dict):
         f'<div style="display:flex;justify-content:space-between;align-items:center">'
         f'<span style="color:{color};font-size:1.1rem;font-weight:800">'
         f'{p["icon"]} {p["name"]}{act_badge}</span>'
-        f'<span style="color:#94a3b8;font-size:0.78rem">{p["type"]}</span></div>'
+        f'<span style="color:#94a3b8;font-size:0.78rem">{p["type"]}'
+        f'{" <span style=&quot;background:#22c55e;color:#fff;padding:1px 6px;border-radius:4px;font-size:0.65rem&quot;>FREE</span>" if p.get("cost") == "FREE" else " <span style=&quot;background:#f59e0b;color:#000;padding:1px 6px;border-radius:4px;font-size:0.65rem&quot;>PAID</span>"}'
+        f'</span></div>'
         f'<div style="display:flex;gap:18px;margin-top:6px;font-size:0.8rem">'
         f'<span style="color:#94a3b8">Package: <b style="color:#f8fafc">{pkg_icon} {p["pkg"]}</b></span>'
         f'<span style="color:#94a3b8">API Key: <b style="color:#f8fafc">{key_icon}</b></span>'
@@ -291,19 +293,79 @@ def _tab_providers():
         with col_card:
             _provider_badge(p)
 
+    # ── Ollama Model Selector ──────────────────────────────────────────────
     st.markdown("---")
-    _hdr("📥", "Quick Install Commands", "#06b6d4")
-    st.code("""# Install ALL providers at once (recommended):
-pip install openai ollama huggingface-hub gpt4all anthropic
+    _hdr("🦙", "Ollama Model Selection", "#8b5cf6")
+    st.caption("Choose which model Ollama uses. Requires `ollama pull <model>` first.")
+    try:
+        current_model = afe.get_preferred_ollama_model()
+        selected = st.selectbox(
+            "Preferred Ollama Model",
+            afe.OLLAMA_MODELS,
+            index=afe.OLLAMA_MODELS.index(current_model) if current_model in afe.OLLAMA_MODELS else 0,
+            key="ollama_model_select",
+        )
+        if selected != current_model:
+            if st.button("Save Model Choice"):
+                afe.set_preferred_ollama_model(selected)
+                st.success(f"Ollama model set to: **{selected}**")
+                st.rerun()
+    except Exception:
+        st.info("Ollama model selection unavailable.")
 
-# Then set up Ollama (for local Llama3):
-# 1. Download and install Ollama from: https://ollama.com/download
+    # ── ML & NLP Status ─────────────────────────────────────────────────
+    st.markdown("---")
+    _hdr("🧠", "ML & NLP Engine Status", "#06b6d4")
+    _ml_col1, _ml_col2, _ml_col3 = st.columns(3)
+    try:
+        from ml_forecast_engine import get_ml_status
+        ml = get_ml_status()
+        _ml_col1.metric("Prophet", "Installed" if ml.get("prophet_available") else "Not installed")
+        _ml_col1.metric("scikit-learn", "Installed" if ml.get("sklearn_available") else "Not installed")
+    except Exception:
+        _ml_col1.metric("Prophet", "Not available")
+        _ml_col1.metric("scikit-learn", "Not available")
+    try:
+        from nlp_extraction_engine import get_nlp_status
+        nlp = get_nlp_status()
+        _ml_col2.metric("spaCy", "Installed" if nlp.get("spacy_available") else "Not installed")
+        _ml_col2.metric("spaCy Model", "Loaded" if nlp.get("spacy_model_loaded") else "Not loaded")
+    except Exception:
+        _ml_col2.metric("spaCy", "Not available")
+        _ml_col2.metric("spaCy Model", "Not available")
+    try:
+        _ml_col3.metric("Transformers", "Installed" if nlp.get("transformers_available") else "Not installed")
+    except Exception:
+        _ml_col3.metric("Transformers", "Not available")
+    try:
+        from data_confidence_engine import get_overall_health
+        dh = get_overall_health()
+        _ml_col3.metric("Data Health", f'{dh["average_score"]}%', dh["overall"].title())
+    except Exception:
+        _ml_col3.metric("Data Health", "N/A")
+
+    # ── Install Guide ───────────────────────────────────────────────────
+    st.markdown("---")
+    _hdr("📥", "Setup Guide (All FREE)", "#06b6d4")
+    st.code("""# ── Step 1: FREE AI Providers (recommended) ──────────────────
+pip install ollama                   # Local AI (primary)
+pip install huggingface-hub          # Cloud AI (free tier)
+pip install gpt4all                  # Offline AI (no internet)
+
+# Set up Ollama (best free option):
+# 1. Download from: https://ollama.com/download
 # 2. Run: ollama pull llama3
+# 3. Optional: ollama pull mistral
 
-# API Keys needed:
-# - OpenAI: https://platform.openai.com/api-keys
-# - HuggingFace (optional): https://huggingface.co/settings/tokens
-# - Anthropic: https://console.anthropic.com
+# ── Step 2: ML & NLP (optional, enhances accuracy) ──────────
+pip install prophet                  # Time-series forecasting
+pip install scikit-learn             # ML scoring models
+pip install spacy                    # NLP entity extraction
+python -m spacy download en_core_web_sm
+
+# ── Step 3: Paid Providers (OPTIONAL — only if you have keys) ─
+pip install openai                   # Paid: OpenAI GPT-4o-mini
+pip install anthropic                # Paid: Anthropic Claude
 """, language="bash")
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -512,8 +574,8 @@ border-left:5px solid #10b981;">
 🔄 AI Fallback Engine — Dashboard Q&A
 </div>
 <div style="color:#94a3b8;font-size:0.9rem;margin-top:4px">
-Auto-fallback chain: OpenAI GPT-4o-mini → Ollama Llama3 → HuggingFace → GPT4All → Claude.
-Switches silently on failure. Restores primary every 5 min. Every response identifies the active AI.
+FREE-FIRST chain: Ollama Llama3 → HuggingFace → GPT4All → OpenAI → Claude.
+Zero-cost by default. Paid providers only used when API keys configured. Auto-restores primary every 5 min.
 </div>
 </div>
 """, unsafe_allow_html=True)
@@ -544,8 +606,8 @@ Switches silently on failure. Restores primary every 5 min. Every response ident
 
     st.markdown(
         '<div style="color:#475569;font-size:0.76rem;text-align:center;margin-top:16px">'
-        'AI Fallback Engine v1.0 | PPS Anantam Logistics | '
-        'Chain: OpenAI → Ollama → HuggingFace → GPT4All → Claude | '
+        'AI Fallback Engine v2.0 (FREE-FIRST) | PPS Anantam Logistics | '
+        'Chain: Ollama → HuggingFace → GPT4All → OpenAI → Claude | '
         'Monitor: every 5 min</div>',
         unsafe_allow_html=True,
     )

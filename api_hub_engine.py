@@ -346,13 +346,28 @@ def _save(path: Path, data: Any) -> None:
             json.dump(data, f, indent=2, ensure_ascii=False, default=str)
 
 
-def _append_tbl(path: Path, records: List[dict], max_records: int = 500) -> None:
-    """Append records to a normalized table JSON list, with dedup + validation + trim."""
+def _append_tbl(
+    path: Path,
+    records: List[dict],
+    max_records: int = 500,
+    source_type: str = "",
+    source_confidence: float = -1,
+    source_provider: str = "",
+) -> None:
+    """Append records to a normalized table JSON list, with dedup + validation + trim.
+    Optionally injects _source_type, _source_confidence, _source_provider metadata."""
     with _lock:
         existing = _load(path, [])
         if not isinstance(existing, list):
             existing = []
         for rec in records:
+            # Inject source confidence metadata (Phase D)
+            if source_type:
+                rec["_source_type"] = source_type
+            if source_confidence >= 0:
+                rec["_source_confidence"] = source_confidence
+            if source_provider:
+                rec["_source_provider"] = source_provider
             # Dedup: skip if same benchmark/key + same minute already exists
             ts_prefix = str(rec.get("date_time", ""))[:16]
             bm = rec.get("benchmark", rec.get("from_currency", rec.get("city", "")))
@@ -568,7 +583,9 @@ def connect_eia() -> dict:
                             "source":    "EIA",
                         })
             if records:
-                _append_tbl(TBL_CRUDE, records, max_records=500)
+                _append_tbl(TBL_CRUDE, records, max_records=500,
+                            source_type="live_api", source_confidence=0.95,
+                            source_provider="US Energy Information Administration")
                 records_written = len(records)
                 HubCatalog.set_status(connector_id, "Live", success=True)
                 _hub_log(connector_id, "OK", f"EIA: {records_written} crude price records", records_written)
@@ -616,7 +633,9 @@ def connect_eia() -> dict:
                             "price": round(wti_val, 2), "currency": "USD/bbl",
                             "source": "yfinance (EIA fallback)"})
         if records:
-            _append_tbl(TBL_CRUDE, records, max_records=500)
+            _append_tbl(TBL_CRUDE, records, max_records=500,
+                        source_type="live_api", source_confidence=0.90,
+                        source_provider="Yahoo Finance (yfinance library)")
             records_written = len(records)
             if not key:
                 HubCatalog.set_status(connector_id, "Disabled",
@@ -684,7 +703,9 @@ def connect_comtrade() -> dict:
                     "currency": "USD",
                     "source":   "UN Comtrade",
                 })
-            _append_tbl(TBL_TRADE, records, max_records=500)
+            _append_tbl(TBL_TRADE, records, max_records=500,
+                        source_type="live_api", source_confidence=0.98,
+                        source_provider="United Nations Statistics Division")
             records_written = len(records)
             HubCatalog.set_status(connector_id, "Live", success=True)
             HubCache.set(connector_id, records)
@@ -709,7 +730,9 @@ def connect_comtrade() -> dict:
     }
     existing = _load(TBL_TRADE, [])
     if not existing:
-        _append_tbl(TBL_TRADE, [static_record], max_records=500)
+        _append_tbl(TBL_TRADE, [static_record], max_records=500,
+                    source_type="cached_reference", source_confidence=0.45,
+                    source_provider="UN Comtrade (fallback reference)")
         records_written = 1
     _hub_log(connector_id, "Fallback", f"Comtrade unavailable: {err_msg}. Static cache used.")
     return {"ok": False, "records": records_written, "error": str(err_msg)}
@@ -786,7 +809,11 @@ def connect_weather() -> dict:
             records.append(rec)
 
     if records:
-        _append_tbl(TBL_WEATHER, records, max_records=1000)
+        _src_prov = "OpenWeather Ltd" if ow_key else "Open-Meteo.com"
+        _src_conf = 0.92 if ow_key else 0.88
+        _append_tbl(TBL_WEATHER, records, max_records=1000,
+                    source_type="live_api", source_confidence=_src_conf,
+                    source_provider=_src_prov)
         HubCatalog.set_status("open_meteo_hub", "Live", success=True)
         if ow_key:
             HubCatalog.set_status("openweather", "Live", success=True)
@@ -863,7 +890,9 @@ def connect_news() -> dict:
                     "source":          "NewsAPI",
                 })
             if records:
-                _append_tbl(TBL_NEWS, records, max_records=500)
+                _append_tbl(TBL_NEWS, records, max_records=500,
+                            source_type="live_api", source_confidence=0.85,
+                            source_provider="NewsAPI.org")
                 HubCatalog.set_status(connector_id, "Live", success=True)
                 _hub_log(connector_id, "OK", f"NewsAPI: {len(records)} articles", len(records))
                 HubCache.set(connector_id, records)
@@ -891,7 +920,9 @@ def connect_news() -> dict:
                 seen.add(h)
                 uniq.append(r)
         records = uniq[:30]
-        _append_tbl(TBL_NEWS, records, max_records=500)
+        _append_tbl(TBL_NEWS, records, max_records=500,
+                    source_type="live_feed", source_confidence=0.80,
+                    source_provider="Google News RSS")
         HubCatalog.set_status("gnews_rss", "Live", success=True)
         if not key:
             HubCatalog.set_status(connector_id, "Disabled",
@@ -937,7 +968,9 @@ def connect_fx() -> dict:
                 "source":    "Frankfurter (ECB)",
             })
         if records:
-            _append_tbl(TBL_FX, records, max_records=500)
+            _append_tbl(TBL_FX, records, max_records=500,
+                        source_type="live_api", source_confidence=0.96,
+                        source_provider="Frankfurter.app (ECB data)")
             HubCatalog.set_status(connector_id, "Live", success=True)
             HubCache.set(connector_id, records)
             _hub_log(connector_id, "OK", f"Frankfurter: {len(records)} FX pairs", len(records))
@@ -959,7 +992,9 @@ def connect_fx() -> dict:
                     "source":    "fawazahmed0 CDN (Frankfurter fallback)",
                 })
         if records:
-            _append_tbl(TBL_FX, records, max_records=500)
+            _append_tbl(TBL_FX, records, max_records=500,
+                        source_type="live_api", source_confidence=0.85,
+                        source_provider="fawazahmed0 CDN")
             HubCatalog.set_status("fawazahmed0_fx", "Live", success=True)
             HubCatalog.set_status(connector_id, "Failing",
                                   error_msg=f"Frankfurter failed: {err}. Using CDN fallback.")
@@ -1014,7 +1049,9 @@ def connect_ports() -> dict:
             "source":    "BDI-adjusted estimate (no free auto-API for Indian port cargo)",
         })
 
-    _append_tbl(TBL_PORTS, records, max_records=500)
+    _append_tbl(TBL_PORTS, records, max_records=500,
+                source_type="estimated", source_confidence=0.65,
+                source_provider="Baltic Dry Index (freight signal)")
     _hub_log(connector_id, "OK",
              f"Ports volume: {len(records)} port estimates (BDI factor={bdi_factor:.2f})", len(records))
     return {"ok": True, "records": len(records), "source": "BDI-adjusted estimate"}
@@ -1079,7 +1116,12 @@ def connect_refinery() -> dict:
 
     existing = _load(TBL_REFINERY, [])
     if not existing or len(existing) < 4:
-        _append_tbl(TBL_REFINERY, records, max_records=200)
+        _src_type = "live_api" if key else "cached_reference"
+        _src_conf = 0.93 if key else 0.70
+        _src_prov = "US Energy Information Administration" if key else "PPAC (Petroleum Planning & Analysis Cell)"
+        _append_tbl(TBL_REFINERY, records, max_records=200,
+                    source_type=_src_type, source_confidence=_src_conf,
+                    source_provider=_src_prov)
     _hub_log("refinery", "OK", f"Refinery: {len(records)} records (static+EIA)", len(records))
     return {"ok": True, "records": len(records), "source": "PPAC+EIA"}
 

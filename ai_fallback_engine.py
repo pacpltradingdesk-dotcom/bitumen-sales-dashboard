@@ -1,29 +1,31 @@
 """
-Multi-Provider AI Fallback Engine
-==================================
+Multi-Provider AI Fallback Engine — FREE-FIRST
+================================================
 Auto-selects the best available AI for dashboard Q&A.
 
-Priority chain:
-  1. OpenAI GPT-4o-mini         — primary paid API
-  2. Ollama + Llama3             — free, local (offline)
-  3. HuggingFace Inference API   — free cloud tier
-  4. GPT4All (Phi-3 Mini)        — free, fully offline
-  5. Anthropic Claude Haiku      — existing integration (final fallback)
+Priority chain (FREE providers first, PAID last):
+  1. Ollama + Llama3/Mistral     — FREE, local (offline)  ★ PRIMARY
+  2. HuggingFace Inference API   — FREE cloud tier
+  3. GPT4All (Phi-3 Mini)        — FREE, fully offline
+  4. OpenAI GPT-4o-mini          — Paid (only if key configured)
+  5. Anthropic Claude Haiku      — Paid (final fallback)
 
 Behaviour:
+  • FREE-FIRST: System runs at ZERO cost by default.
+  • Paid providers (OpenAI, Claude) only used when user has API keys.
   • Auto-detects installed packages & configured API keys.
   • Falls through chain silently until a provider succeeds.
-  • Background thread checks primary (OpenAI) every 5 minutes;
+  • Background thread checks primary (Ollama) every 5 minutes;
     silently restores it when it recovers.
   • Every response is prefixed with the 'Who is this?' identity banner.
   • All events logged to ai_fallback_log.json.
 
 Install commands (run once in terminal):
-  pip install openai                  → Provider 1 (OpenAI)
-  pip install ollama                  → Provider 2 client (+ install Ollama app from ollama.com)
-  pip install huggingface-hub         → Provider 3
-  pip install gpt4all                 → Provider 4
-  pip install anthropic               → Provider 5 (already installed)
+  pip install ollama                  → Provider 1 client (+ install Ollama app from ollama.com)
+  pip install huggingface-hub         → Provider 2
+  pip install gpt4all                 → Provider 3
+  pip install openai                  → Provider 4 (optional — paid)
+  pip install anthropic               → Provider 5 (optional — paid)
 """
 
 from __future__ import annotations
@@ -48,28 +50,21 @@ GPT4ALL_MODEL       = "Phi-3-mini-4k-instruct.Q4_0.gguf"
 OPENAI_MODEL        = "gpt-4o-mini"
 CLAUDE_MODEL        = "claude-haiku-4-5-20251001"
 
+# Ollama model options — user can choose via UI
+OLLAMA_MODELS = ["llama3", "mistral", "mixtral", "llama3:70b"]
+OLLAMA_DEFAULT_MODEL = "llama3"
+
 # ── Provider registry ─────────────────────────────────────────────────────────
 #   Each entry describes one AI provider in priority order.
 
 PROVIDER_CHAIN: list[dict] = [
-    {
-        "id":          "openai",
-        "name":        "OpenAI GPT-4o-mini",
-        "short":       "OpenAI",
-        "type":        "Paid — Primary",
-        "icon":        "🤖",
-        "pkg":         "openai",
-        "needs_key":   True,
-        "env_key":     "OPENAI_API_KEY",
-        "cfg_key":     "openai_api_key",
-        "install_cmd": "pip install openai",
-        "setup_note":  "Get key at: https://platform.openai.com/api-keys",
-    },
+    # ── FREE PROVIDERS FIRST (zero cost) ──────────────────────────────────────
     {
         "id":          "ollama",
         "name":        "Ollama Llama3",
         "short":       "Ollama",
         "type":        "Free — Local Offline",
+        "cost":        "FREE",
         "icon":        "🦙",
         "pkg":         "ollama",
         "needs_key":   False,
@@ -83,6 +78,7 @@ PROVIDER_CHAIN: list[dict] = [
         "name":        "HuggingFace Zephyr-7B",
         "short":       "HuggingFace",
         "type":        "Free — Cloud API",
+        "cost":        "FREE",
         "icon":        "🤗",
         "pkg":         "huggingface_hub",
         "needs_key":   False,   # Works without token (rate-limited)
@@ -96,6 +92,7 @@ PROVIDER_CHAIN: list[dict] = [
         "name":        "GPT4All Phi-3 Mini",
         "short":       "GPT4All",
         "type":        "Free — Fully Offline",
+        "cost":        "FREE",
         "icon":        "💻",
         "pkg":         "gpt4all",
         "needs_key":   False,
@@ -104,11 +101,27 @@ PROVIDER_CHAIN: list[dict] = [
         "install_cmd": "pip install gpt4all",
         "setup_note":  "First run downloads ~2 GB model automatically to ~/.cache/gpt4all/",
     },
+    # ── PAID PROVIDERS (only if user has API keys) ────────────────────────────
+    {
+        "id":          "openai",
+        "name":        "OpenAI GPT-4o-mini",
+        "short":       "OpenAI",
+        "type":        "Paid — Optional",
+        "cost":        "PAID",
+        "icon":        "🤖",
+        "pkg":         "openai",
+        "needs_key":   True,
+        "env_key":     "OPENAI_API_KEY",
+        "cfg_key":     "openai_api_key",
+        "install_cmd": "pip install openai",
+        "setup_note":  "Get key at: https://platform.openai.com/api-keys",
+    },
     {
         "id":          "claude",
         "name":        "Anthropic Claude Haiku",
         "short":       "Claude",
         "type":        "Paid — Final Fallback",
+        "cost":        "PAID",
         "icon":        "🔮",
         "pkg":         "anthropic",
         "needs_key":   True,
@@ -261,14 +274,41 @@ def _query_openai(question: str, context: str, key: str) -> str:
     return r.json()["choices"][0]["message"]["content"].strip()
 
 
+def get_preferred_ollama_model() -> str:
+    """Get the user's preferred Ollama model from config."""
+    try:
+        if CFG_FILE.exists():
+            cfg = json.loads(CFG_FILE.read_text(encoding="utf-8"))
+            model = cfg.get("ollama_preferred_model", "").strip()
+            if model:
+                return model
+    except Exception:
+        pass
+    return OLLAMA_DEFAULT_MODEL
+
+
+def set_preferred_ollama_model(model: str) -> None:
+    """Save the user's preferred Ollama model to config."""
+    try:
+        cfg = {}
+        if CFG_FILE.exists():
+            cfg = json.loads(CFG_FILE.read_text(encoding="utf-8"))
+        cfg["ollama_preferred_model"] = model.strip()
+        CFG_FILE.write_text(json.dumps(cfg, indent=2), encoding="utf-8")
+    except Exception:
+        pass
+
+
 def _query_ollama(question: str, context: str) -> str:
     import ollama
+    model_name = get_preferred_ollama_model()
     resp = ollama.chat(
-        model="llama3",
+        model=model_name,
         messages=[
             {"role": "system", "content": (
-                "You are a Bitumen Sales Dashboard AI. Answer from this data:\n"
-                f"{context[:3000]}"
+                "You are a Bitumen Sales Dashboard AI for PPS Anantams Logistics. "
+                "Answer ONLY from this data. Indian format: Rs crore/lakh, DD-MM-YYYY.\n\n"
+                f"LIVE DASHBOARD DATA:\n{context[:4000]}"
             )},
             {"role": "user", "content": question},
         ],
@@ -503,19 +543,20 @@ def _monitor_loop():
         with _lock:
             if _G["active_idx"] == 0:
                 continue   # Already on primary — nothing to do
-        # Test if primary (OpenAI) is back
+        # Test if primary (Ollama — free, local) is back
         primary = PROVIDER_CHAIN[0]
         if not _pkg_ok(primary["pkg"]):
             continue
-        key = get_api_key(primary["id"])
-        if not key:
-            continue
-        _, err = _run_provider("openai", "Reply with exactly: OK", "Dashboard health check.")
+        if primary["needs_key"]:
+            key = get_api_key(primary["id"])
+            if not key:
+                continue
+        _, err = _run_provider(primary["id"], "Reply with exactly: OK", "Dashboard health check.")
         if not err:
             with _lock:
                 _G["active_idx"] = 0
-            _log("restored", "openai",
-                 "Primary OpenAI API recovered — silently switched back from fallback")
+            _log("restored", primary["id"],
+                 f"Primary {primary['name']} recovered — silently switched back from fallback")
 
 
 def start_monitor():
@@ -574,3 +615,47 @@ def force_provider(provider_id: str) -> bool:
             _log("manual_override", provider_id, f"User manually switched to {p['name']}")
             return True
     return False
+
+
+def get_active_model_name() -> str:
+    """Returns human-readable name of the active AI model (for UI display)."""
+    p = get_active_provider()
+    pid = p["id"]
+    cost = p.get("cost", "FREE")
+    if pid == "ollama":
+        model = get_preferred_ollama_model()
+        return f"{model.title()} ({cost} · Local)"
+    elif pid == "huggingface":
+        return f"Zephyr-7B ({cost} · Cloud)"
+    elif pid == "gpt4all":
+        return f"Phi-3 Mini ({cost} · Offline)"
+    elif pid == "openai":
+        return f"GPT-4o-mini ({cost})"
+    elif pid == "claude":
+        return f"Claude Haiku ({cost})"
+    return p["name"]
+
+
+def get_provider_status() -> list[dict]:
+    """Returns status of all providers for UI display."""
+    statuses = []
+    with _lock:
+        active_idx = _G["active_idx"]
+    for i, p in enumerate(PROVIDER_CHAIN):
+        pkg_ok = _pkg_ok(p["pkg"])
+        key_ok = True
+        if p["needs_key"]:
+            key_ok = bool(get_api_key(p["id"]))
+        statuses.append({
+            "id": p["id"],
+            "name": p["name"],
+            "type": p["type"],
+            "cost": p.get("cost", "FREE"),
+            "icon": p["icon"],
+            "pkg_installed": pkg_ok,
+            "key_configured": key_ok,
+            "is_active": i == active_idx,
+            "ready": pkg_ok and (key_ok or not p["needs_key"]),
+            "last_error": _G["last_errors"].get(p["id"], ""),
+        })
+    return statuses

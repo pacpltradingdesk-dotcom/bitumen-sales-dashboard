@@ -254,68 +254,77 @@ def ask_ai(
       }
     """
     key = api_key or get_api_key()
-    if not key:
-        return {
-            "answer": (
-                "⚠️ **Anthropic API key not configured.**\n\n"
-                "Please enter your API key in the sidebar to activate the AI assistant."
-            ),
-            "chart": None, "confidence": "LOW", "sources": [], "error": "no_api_key",
-            "model_used": "",
-        }
 
+    # ── Claude path (best quality — when API key available) ──────────────
+    if key:
+        try:
+            import anthropic
+        except ImportError:
+            anthropic = None
+
+        if anthropic is not None:
+            model = MODEL_DEEP if deep_mode else MODEL_FAST
+            system_prompt = build_system_prompt(role)
+            messages: list[dict] = []
+            if history:
+                messages.extend(history[-10:])
+            messages.append({"role": "user", "content": question})
+            try:
+                client   = anthropic.Anthropic(api_key=key)
+                response = client.messages.create(
+                    model=model,
+                    max_tokens=2048,
+                    system=system_prompt,
+                    messages=messages,
+                )
+                raw_text = response.content[0].text
+                parsed   = parse_ai_response(raw_text)
+                parsed["model_used"] = model
+                parsed["error"]      = None
+                log_query(
+                    question=question, role=role,
+                    answer_summary=parsed["answer"][:300],
+                    confidence=parsed["confidence"],
+                    sources=parsed["sources"], model=model,
+                )
+                return parsed
+            except Exception as exc:
+                pass  # Fall through to free providers
+
+    # ── Free AI path (Ollama → HuggingFace → GPT4All via fallback engine) ──
     try:
-        import anthropic
-    except ImportError:
-        return {
-            "answer": (
-                "⚠️ **`anthropic` package not installed.**\n\n"
-                "Run: `pip install anthropic` to enable the AI assistant."
-            ),
-            "chart": None, "confidence": "LOW", "sources": [], "error": "pkg_missing",
-            "model_used": "",
-        }
+        from ai_fallback_engine import ask_with_fallback, get_active_model_name
+        context = build_system_prompt(role)
+        result = ask_with_fallback(question, context=context)
+        if not result.get("error"):
+            raw_text = result["answer"]
+            parsed = parse_ai_response(raw_text)
+            model_label = get_active_model_name()
+            parsed["model_used"] = model_label
+            parsed["error"] = None
+            log_query(
+                question=question, role=role,
+                answer_summary=parsed["answer"][:300],
+                confidence=parsed["confidence"],
+                sources=parsed["sources"], model=model_label,
+            )
+            return parsed
+    except Exception:
+        pass
 
-    model = MODEL_DEEP if deep_mode else MODEL_FAST
-    system_prompt = build_system_prompt(role)
-
-    # Build message history
-    messages: list[dict] = []
-    if history:
-        messages.extend(history[-10:])          # Last 10 turns for context
-    messages.append({"role": "user", "content": question})
-
-    try:
-        client   = anthropic.Anthropic(api_key=key)
-        response = client.messages.create(
-            model=model,
-            max_tokens=2048,
-            system=system_prompt,
-            messages=messages,
-        )
-        raw_text = response.content[0].text
-        parsed   = parse_ai_response(raw_text)
-        parsed["model_used"] = model
-        parsed["error"]      = None
-
-        # Log query
-        log_query(
-            question=question,
-            role=role,
-            answer_summary=parsed["answer"][:300],
-            confidence=parsed["confidence"],
-            sources=parsed["sources"],
-            model=model,
-        )
-        return parsed
-
-    except Exception as exc:
-        err_msg = str(exc)
-        return {
-            "answer": f"⚠️ **AI query failed:** {err_msg}\n\nPlease check your API key or network connection.",
-            "chart": None, "confidence": "LOW", "sources": [], "error": err_msg,
-            "model_used": model,
-        }
+    # ── All providers failed ─────────────────────────────────────────────
+    return {
+        "answer": (
+            "⚠️ **No AI provider available.**\n\n"
+            "**Free options (recommended):**\n"
+            "1. Install Ollama from ollama.com → `ollama pull llama3`\n"
+            "2. `pip install huggingface-hub` (free cloud AI)\n"
+            "3. `pip install gpt4all` (free offline AI)\n\n"
+            "**Paid option:** Enter Anthropic API key in sidebar."
+        ),
+        "chart": None, "confidence": "LOW", "sources": [],
+        "error": "no_provider", "model_used": "",
+    }
 
 
 def stream_ai(
@@ -331,36 +340,44 @@ def stream_ai(
     After completion, call parse_ai_response() on the full text.
     """
     key = api_key or get_api_key()
-    if not key:
-        yield "⚠️ API key not configured. Enter your Anthropic API key in the sidebar."
-        return
 
+    # ── Claude streaming (when API key available) ────────────────────────
+    if key:
+        try:
+            import anthropic
+            model = MODEL_DEEP if deep_mode else MODEL_FAST
+            system_prompt = build_system_prompt(role)
+            messages: list[dict] = []
+            if history:
+                messages.extend(history[-10:])
+            messages.append({"role": "user", "content": question})
+            client = anthropic.Anthropic(api_key=key)
+            with client.messages.stream(
+                model=model,
+                max_tokens=2048,
+                system=system_prompt,
+                messages=messages,
+            ) as stream:
+                for chunk in stream.text_stream:
+                    yield chunk
+            return
+        except Exception:
+            pass  # Fall through to free path
+
+    # ── Free AI fallback (non-streaming — yields full answer) ────────────
     try:
-        import anthropic
-    except ImportError:
-        yield "⚠️ `anthropic` package not installed. Run: `pip install anthropic`"
-        return
+        from ai_fallback_engine import ask_with_fallback, get_active_model_name
+        context = build_system_prompt(role)
+        result = ask_with_fallback(question, context=context)
+        if not result.get("error"):
+            model_label = get_active_model_name()
+            yield result["answer"]
+            yield f"\n\n---\n_Answered by {model_label}_"
+            return
+    except Exception:
+        pass
 
-    model = MODEL_DEEP if deep_mode else MODEL_FAST
-    system_prompt = build_system_prompt(role)
-
-    messages: list[dict] = []
-    if history:
-        messages.extend(history[-10:])
-    messages.append({"role": "user", "content": question})
-
-    try:
-        client = anthropic.Anthropic(api_key=key)
-        with client.messages.stream(
-            model=model,
-            max_tokens=2048,
-            system=system_prompt,
-            messages=messages,
-        ) as stream:
-            for chunk in stream.text_stream:
-                yield chunk
-    except Exception as exc:
-        yield f"\n⚠️ Stream error: {exc}"
+    yield "⚠️ No AI provider available. Install Ollama (free) or enter an API key."
 
 
 # ══════════════════════════════════════════════════════════════════════════════

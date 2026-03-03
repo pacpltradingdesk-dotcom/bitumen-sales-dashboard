@@ -343,11 +343,13 @@ def _handle_user_message(
         if chart_spec:
             render_chart(chart_spec)
 
+        model_used = result.get("model_used", "") if isinstance(result, dict) else ""
         conf_col = {"HIGH": "🟢", "MEDIUM": "🟡", "LOW": "🔴"}.get(confidence, "⚪")
         src_text = ", ".join(sources) if sources else ""
         st.caption(
             f"{conf_col} Confidence: {confidence} | {ts}"
             + (f" | Source: {src_text}" if src_text else "")
+            + (f" | Model: {model_used}" if model_used else "")
         )
 
     # Store assistant reply
@@ -358,6 +360,7 @@ def _handle_user_message(
         "confidence": confidence,
         "sources":    sources,
         "timestamp":  ts,
+        "model":      model_used if isinstance(result, dict) else "",
     })
     st.session_state["ai_msg_history"].append({"role": "assistant", "content": answer})
 
@@ -674,8 +677,14 @@ def _render_setup_tab() -> None:
 def render() -> None:
     display_badge("real-time")
     st.markdown("# 🤖 AI Dashboard Assistant")
+    # Show active AI model
+    try:
+        from ai_fallback_engine import get_active_model_name
+        _model_label = get_active_model_name()
+    except Exception:
+        _model_label = "Claude (Anthropic)"
     st.markdown(
-        "_Powered by Claude (Anthropic) · Connected to ALL dashboard data · "
+        f"_Powered by {_model_label} · Connected to ALL dashboard data · "
         "India-formatted · Role-controlled · Query-logged_"
     )
 
@@ -692,11 +701,26 @@ def render() -> None:
     )
 
     if not api_key:
-        st.warning(
-            "⚠️ **Anthropic API key required** to use the AI assistant.\n\n"
-            "Enter your key in the **sidebar** under _AI Assistant Settings → API Key_. "
-            "Get one at [console.anthropic.com](https://console.anthropic.com)."
-        )
+        # Check if free AI is available
+        _free_available = False
+        try:
+            from ai_fallback_engine import get_provider_status
+            _free_statuses = get_provider_status()
+            _free_available = any(p["ready"] and p.get("cost") == "FREE" for p in _free_statuses)
+        except Exception:
+            pass
+
+        if _free_available:
+            st.info(
+                "🦙 **Using Free AI** — No API key needed. "
+                "Responses powered by local/free AI models."
+            )
+        else:
+            st.warning(
+                "⚠️ **No AI provider available.**\n\n"
+                "**Free (recommended):** Install Ollama from ollama.com, then `ollama pull llama3`\n\n"
+                "**Paid (optional):** Enter Anthropic API key in sidebar."
+            )
 
     # Main tabs
     tab_chat, tab_charts, tab_history, tab_arch, tab_setup = st.tabs([

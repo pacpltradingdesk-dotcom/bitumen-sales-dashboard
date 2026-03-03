@@ -208,9 +208,20 @@ def _fail_reason(error: float, error_pct: float) -> str:
 def generate_forecast_calendar() -> pd.DataFrame:
     """
     Generate next 24 months of 1st & 16th revision predictions.
-    Backward-compatible public API used by dashboard.py Home page.
-    Returns DataFrame with enhanced columns including Remarks, Confidence.
+    Primary: Prophet ML forecast (via ml_forecast_engine).
+    Fallback: Heuristic statistical model.
+    Returns DataFrame with enhanced columns including Remarks, Confidence, Model.
     """
+    # ── Try ML forecast engine first ────────────────────────────────────
+    ml_forecast = None
+    try:
+        from ml_forecast_engine import forecast_crude_price
+        ml_result = forecast_crude_price(days_ahead=730)
+        if ml_result and ml_result.get("model") != "heuristic" and ml_result.get("predicted"):
+            ml_forecast = ml_result
+    except Exception:
+        pass
+
     rng = np.random.default_rng(seed=int(datetime.date.today().strftime("%Y%m")))
     base = datetime.date.today().replace(day=1)
 
@@ -238,22 +249,62 @@ def generate_forecast_calendar() -> pd.DataFrame:
         brent_stable = True
         fx_stable = True
 
+    # Build Prophet lookup if available
+    ml_lookup = {}
+    if ml_forecast and ml_forecast.get("dates") and ml_forecast.get("predicted"):
+        for i, ds in enumerate(ml_forecast["dates"]):
+            try:
+                if isinstance(ds, str):
+                    dt = datetime.datetime.strptime(ds[:10], "%Y-%m-%d").date()
+                else:
+                    dt = ds
+                ml_lookup[dt] = {
+                    "price": ml_forecast["predicted"][i],
+                    "lower": ml_forecast.get("lower", [None] * len(ml_forecast["predicted"]))[i],
+                    "upper": ml_forecast.get("upper", [None] * len(ml_forecast["predicted"]))[i],
+                }
+            except Exception:
+                continue
+
     for offset, d in enumerate(dates):
-        seas = _SEASON.get(d.month, 1.0)
-        crude_factor = (brent_now - 70) * 120     # ₹ per USD/bbl above 70
-        fx_factor    = (usdinr_now - 84) * 80     # ₹ per rupee above 84
+        # ── ML Path (Prophet/ARIMA) ──────────────────────────────────
+        used_ml = False
+        if ml_lookup:
+            # Find closest date within 8 days
+            best_match = None
+            best_delta = 999
+            for ml_date, ml_vals in ml_lookup.items():
+                delta = abs((ml_date - d).days)
+                if delta < best_delta:
+                    best_delta = delta
+                    best_match = ml_vals
+            if best_match and best_delta <= 8:
+                # Convert crude price (USD/bbl) to bitumen price (₹/MT)
+                crude_usd = best_match["price"]
+                price = 38_000 + (crude_usd - 60) * 450 + (usdinr_now - 84) * 120
+                low = price - 500 if best_match["lower"] is None else (
+                    38_000 + (best_match["lower"] - 60) * 450 + (usdinr_now - 84) * 120)
+                high = price + 500 if best_match["upper"] is None else (
+                    38_000 + (best_match["upper"] - 60) * 450 + (usdinr_now - 84) * 120)
+                used_ml = True
 
-        base_drift = rng.normal(0, 280) + crude_factor * 0.02 + fx_factor * 0.02
-        price = prev_price + base_drift * seas
-
-        low   = price - rng.uniform(350, 550)
-        high  = price + rng.uniform(350, 600)
+        # ── Heuristic Path (fallback) ───────────────────────────────
+        if not used_ml:
+            seas = _SEASON.get(d.month, 1.0)
+            crude_factor = (brent_now - 70) * 120
+            fx_factor    = (usdinr_now - 84) * 80
+            base_drift = rng.normal(0, 280) + crude_factor * 0.02 + fx_factor * 0.02
+            price = prev_price + base_drift * seas
+            low   = price - rng.uniform(350, 550)
+            high  = price + rng.uniform(350, 600)
 
         status = "Published" if d <= datetime.date.today() else "Pending"
         conf   = _confidence(offset // 2, brent_stable, fx_stable)
 
         tags   = _driver_tags((price - prev_price) / prev_price * 100, d.month, offset // 2)
         remark = _remark_future(price, prev_price, d.month)
+
+        model_label = ml_forecast["model"].title() if used_ml and ml_forecast else "Heuristic"
 
         rows.append({
             "Date":              d,
@@ -265,6 +316,7 @@ def generate_forecast_calendar() -> pd.DataFrame:
             "Confidence %":      conf,
             "Drivers":           tags,
             "Remarks":           remark,
+            "Model":             model_label,
             "Last Updated IST":  _now_ist(),
         })
         prev_price = price
@@ -731,6 +783,28 @@ def render():
   </div>
 </div>
 """, unsafe_allow_html=True)
+
+    # ── Model info badge ──────────────────────────────────────────────────────
+    try:
+        from ml_forecast_engine import get_ml_status
+        ml_stat = get_ml_status()
+        if ml_stat.get("prophet_available") or ml_stat.get("statsmodels_available"):
+            _engine = "Prophet" if ml_stat.get("prophet_available") else "ARIMA"
+            st.markdown(
+                f'<div style="background:#d4edda;color:#2d6a4f;padding:4px 12px;'
+                f'border-radius:6px;font-size:0.8em;display:inline-block;margin-bottom:8px;">'
+                f'ML Forecast Active: {_engine}</div>',
+                unsafe_allow_html=True,
+            )
+        else:
+            st.markdown(
+                '<div style="background:#fff3cd;color:#856404;padding:4px 12px;'
+                'border-radius:6px;font-size:0.8em;display:inline-block;margin-bottom:8px;">'
+                'Statistical Estimate (install Prophet for ML forecasting)</div>',
+                unsafe_allow_html=True,
+            )
+    except Exception:
+        pass
 
     # ── Load data ─────────────────────────────────────────────────────────────
     df_future = generate_forecast_calendar()
