@@ -67,6 +67,15 @@ try:
 except Exception:
     pass
 
+# --- SYNC ENGINE: Master data synchronization (daily + on-demand) ---
+try:
+    from sync_engine import start_sync_scheduler as _start_sync_sched
+    if "sync_engine_started" not in st.session_state:
+        _start_sync_sched(interval_minutes=60)
+        st.session_state["sync_engine_started"] = True
+except Exception:
+    pass
+
 # --- PORT TRACKER: initialise port master + allocation rule tables ---
 try:
     from port_tracker_engine import init_port_tracker
@@ -1119,6 +1128,27 @@ def _render_page_header(title: str, dept: str = "", badge: str = ""):
 </div>
 """, unsafe_allow_html=True)
 
+# ── INR formatter for Home page ──────────────────────────────────────────────
+def _fmt_inr_home(amount) -> str:
+    """Format INR with Indian comma system for homepage display."""
+    try:
+        amount = int(float(amount))
+        s = str(abs(amount))
+        if len(s) <= 3:
+            formatted = s
+        else:
+            last3 = s[-3:]
+            remaining = s[:-3]
+            groups = []
+            while remaining:
+                groups.insert(0, remaining[-2:])
+                remaining = remaining[:-2]
+            formatted = ",".join(groups) + "," + last3
+        sign = "-" if amount < 0 else ""
+        return f"{sign}\u20b9{formatted}"
+    except (ValueError, TypeError):
+        return str(amount)
+
 # Initialize Optimizer
 @st.cache_resource
 def get_optimizer():
@@ -1228,22 +1258,26 @@ section[data-testid="stSidebar"] div.row-widget.stRadio [role="radio"] {
 
 # ── Navigation sections (no-scroll sidebar) ──────────────────────────────────
 _NAV_SECTIONS = [
-    ("💼  Sales & Revenue",    ["💼 Sales Workspace", "🎯 CRM & Tasks", "📅 Sales Calendar",
-                                 "🧮 Pricing Calculator", "🚨 SPECIAL PRICE (SOS)", "📋 Source Directory"]),
-    ("🏭  Operations",         ["🏭 Feasibility", "📦 Import Cost Model", "🚢 Supply Chain", "🛠️ Data Manager", "📥 Contact Importer"]),
-    ("💰  Finance",            ["💰 Financial Intelligence", "👷 Demand Analytics", "📤 Reports"]),
-    ("🛡️  Legal & Compliance", ["🛡️ GST & Legal Monitor", "⚡ Risk Scoring"]),
-    ("🎯  Strategy & Intel",   ["🔮 Price Prediction", "⏳ Past Predictions", "📝 Manual Price Entry",
-                                 "🎯 Strategy Panel", "🔔 Alert System"]),
-    ("🔧  Technology",         ["🌐 API Dashboard", "🔗 API HUB", "⚙️ Dev & System Activity",
-                                 "📁 PDF Archive", "🏥 System Health", "🔔 Change Notifications",
-                                 "🐞 Bug Tracker", "👥 Ecosystem Management", "⚙️ Settings"]),
-    ("🧠  Knowledge & AI",     ["🔄 AI Fallback Engine", "🧠 AI Dashboard Assistant", "🤖 AI Assistant",
-                                 "📚 Knowledge Base", "🏛️ Business Intelligence"]),
-    ("📰  Market Intel",       ["📰 News Intelligence", "🕵️ Competitor Intelligence",
-                                 "🔭 Contractor OSINT", "🛣️ Road Budget & Demand",
-                                 "🏗️ Govt Data Hub", "⚓ Port Import Tracker", "📈 Demand Correlation",
-                                 "🗂️ India Procurement Directory"]),
+    ("💰  Pricing",            ["🧮 Pricing Calculator", "🔮 Price Prediction", "📦 Import Cost Model",
+                                 "🚨 SPECIAL PRICE (SOS)", "📝 Manual Price Entry"]),
+    ("💼  Sales & CRM",        ["💼 Sales Workspace", "🎯 CRM & Tasks", "📅 Sales Calendar",
+                                 "💬 Communication Hub", "🤝 Negotiation Assistant"]),
+    ("🚚  Logistics",          ["🏭 Feasibility", "🚢 Supply Chain", "📋 Source Directory",
+                                 "👥 Ecosystem Management"]),
+    ("🧠  Intelligence",       ["🔍 Opportunities", "📰 News Intelligence", "🕵️ Competitor Intelligence",
+                                 "🔭 Contractor OSINT", "👷 Demand Analytics",
+                                 "📈 Demand Correlation", "🗂️ India Procurement Directory"]),
+    ("🛡️  Compliance",         ["🛡️ GST & Legal Monitor", "⚡ Risk Scoring", "🏗️ Govt Data Hub"]),
+    ("📊  Reports",            ["💰 Financial Intelligence", "📤 Reports", "🎯 Strategy Panel",
+                                 "⏳ Past Predictions", "🛣️ Road Budget & Demand"]),
+    ("⚙️  System",             ["🌐 API Dashboard", "🔗 API HUB", "🏥 System Health",
+                                 "🔄 Sync Status", "⚙️ Dev & System Activity",
+                                 "🔔 Alert System", "🔔 Change Notifications",
+                                 "🐞 Bug Tracker", "📁 PDF Archive", "⚙️ Settings"]),
+    ("🧠  AI & Knowledge",     ["🔄 AI Fallback Engine", "🧠 AI Dashboard Assistant", "🤖 AI Assistant",
+                                 "📚 Knowledge Base", "🏛️ Business Intelligence",
+                                 "📥 Contact Importer", "🛠️ Data Manager",
+                                 "⚓ Port Import Tracker"]),
 ]
 if 'selected_page' not in st.session_state:
     st.session_state['selected_page'] = '🏠 Home'
@@ -1290,7 +1324,7 @@ with st.sidebar:
     )
     st.markdown(
         '<div style="font-size:0.65rem;color:#475569;padding:2px 4px 0 4px;">'
-        'v3.2.3 &nbsp;|&nbsp; 02-03-2026 &nbsp;|&nbsp; Production'
+        'v4.0.0 &nbsp;|&nbsp; 03-03-2026 &nbsp;|&nbsp; Production'
         '</div>',
         unsafe_allow_html=True,
     )
@@ -1333,12 +1367,13 @@ if selected_page not in _NAV_HEADERS:
     )
 
 
-# ── HOME PAGE — Zoho CRM-Style Dashboard ─────────────────────────────────────
+# ── HOME PAGE — Executive Intelligence Dashboard ─────────────────────────────
 if selected_page == "🏠 Home":
     import datetime as _dt
     import json as _json
 
     # ── Load data for Home dashboard ─────────────────────────────────────────
+    # Price prediction data
     try:
         from command_intel.price_prediction import generate_forecast_calendar as _gfc
         _fc_df  = _gfc()
@@ -1352,7 +1387,6 @@ if selected_page == "🏠 Home":
             _hi     = _nr.get("High Range", _pred + 400)
             _rdate  = _nr.get("Revision Date", "01-04-2026")
             _status = _nr.get("Status", "Pending")
-            # Next 6 rows for mini-chart
             _chart_rows = _future.head(6)
             _chart_dates  = [str(r.get("Revision Date", "")) for _, r in _chart_rows.iterrows()]
             _chart_prices = [float(r.get("Predicted (₹/MT)", r.get("Predicted", 48500)))
@@ -1372,19 +1406,16 @@ if selected_page == "🏠 Home":
             _crm_tasks = _json.load(_f)
         _task_count   = len(_crm_tasks)
         _high_pri     = sum(1 for t in _crm_tasks if t.get("priority") == "High")
-        _call_count   = sum(1 for t in _crm_tasks if t.get("type") == "Call")
-        _whatsapp_ct  = sum(1 for t in _crm_tasks if t.get("type") == "WhatsApp")
-        _email_count  = sum(1 for t in _crm_tasks if t.get("type") == "Email")
     except Exception:
-        _task_count, _high_pri, _call_count, _whatsapp_ct, _email_count = 7, 6, 6, 1, 1
+        _crm_tasks = []
+        _task_count, _high_pri = 0, 0
 
-    # Sales parties (customers)
+    # Database stats (suppliers, customers)
     try:
-        with open("sales_parties.json", encoding="utf-8") as _f:
-            _sales_parties = _json.load(_f)
-        _cust_count = len(_sales_parties)
+        from database import get_dashboard_stats as _get_db_stats
+        _db_stats = _get_db_stats()
     except Exception:
-        _cust_count = 3
+        _db_stats = {"total_suppliers": 63, "total_customers": 3, "total_deals": 0}
 
     # Live prices
     try:
@@ -1410,123 +1441,235 @@ if selected_page == "🏠 Home":
         _alert_count    = len(_alerts)
         _alert_critical = sum(1 for a in _alerts if a.get("severity") == "critical")
     except Exception:
-        _alerts, _alert_count, _alert_critical = [], 5, 1
+        _alerts, _alert_count, _alert_critical = [], 0, 0
+
+    # Cheapest sources (Top 5)
+    _top_sources = []
+    try:
+        from calculation_engine import BitumenCalculationEngine as _CalcEngine
+        _calc = _CalcEngine()
+        _src_cities = ["Ahmedabad", "Mumbai", "Delhi", "Pune", "Indore"]
+        for _sc in _src_cities:
+            try:
+                _srcs = _calc.find_best_sources(_sc, grade="VG30", top_n=1)
+                if _srcs:
+                    _top_sources.append({
+                        "city": _sc,
+                        "source": _srcs[0].get("source", "Unknown"),
+                        "landed": _srcs[0].get("landed_cost", 0),
+                    })
+            except Exception:
+                pass
+        _top_sources.sort(key=lambda x: x.get("landed", 99999))
+    except Exception:
+        pass
+
+    # Opportunities (from opportunity engine)
+    _opportunities = []
+    _opp_count = 0
+    try:
+        from opportunity_engine import get_all_opportunities as _get_opps
+        _opportunities = _get_opps(status="new")
+        _opp_count = len(_opportunities)
+    except Exception:
+        pass
+
+    # Today's recommendations
+    _todays_recs = {}
+    try:
+        from opportunity_engine import OpportunityEngine as _OppEngine
+        _opp_eng = _OppEngine()
+        _todays_recs = _opp_eng.get_todays_recommendations()
+    except Exception:
+        _todays_recs = {"buyers_to_call": [], "followups_due": [], "reactivation_targets": [], "total_new_opportunities": 0}
+
+    # Missing inputs count
+    _missing_count = 0
+    try:
+        from missing_inputs_engine import MissingInputsEngine as _MIEngine
+        _mi = _MIEngine()
+        _missing_count = len(_mi.scan_all_gaps())
+    except Exception:
+        pass
 
     # ─────────────────────────────────────────────────────────────────────────
-    # SECTION 1 — KPI Bar (8 metrics, full width)
+    # SECTION 1 — MARKET PULSE (Real-Time KPI Bar)
     # ─────────────────────────────────────────────────────────────────────────
-    st.markdown('<div class="kpi-bar">', unsafe_allow_html=True)
-    _k1, _k2, _k3, _k4, _k5, _k6, _k7, _k8 = st.columns(8)
-    _k1.metric("🔮 Predicted ₹/MT",   f"₹{int(_pred):,}")
-    _k2.metric("📅 Next Revision",     str(_rdate))
-    _k3.metric("🛢 Brent Crude",       mkt['brent']['value'],  mkt['brent']['change'])
-    _k4.metric("💵 USD / INR",         mkt['usdinr']['value'], mkt['usdinr']['change'])
-    _k5.metric("👥 CRM Tasks",         _task_count)
-    _k6.metric("⚡ Active Alerts",     _alert_count,
-               f"🔴 {_alert_critical} critical" if _alert_critical else None)
-    _k7.metric("🔗 APIs Healthy",      f"{_api_ok} / {_api_tot}")
-    _k8.metric("🗺️ Routes",            "3,476")
-    st.markdown('</div>', unsafe_allow_html=True)
-
-
-    # ─────────────────────────────────────────────────────────────────────────
-    # SECTION 2 — 3-column row: CRM Overview | Sales Snapshot | Price Forecast
-    # ─────────────────────────────────────────────────────────────────────────
-    _h2a, _h2b, _h2c = st.columns([3.5, 3.5, 3])
-
-    # ── CRM Overview ─────────────────────────────────────────────────────────
-    with _h2a:
-        st.markdown('<div class="zoho-row-header">💼 CRM Overview</div>', unsafe_allow_html=True)
-        st.markdown(f"""
-<div class="zoho-card green" style="margin-bottom:8px;">
-  <div style="display:flex;gap:16px;margin-bottom:10px;">
-    <div style="text-align:center;flex:1;">
-      <div style="font-size:1.45rem;font-weight:800;color:#1e3a5f;">{_cust_count}</div>
-      <div style="font-size:0.62rem;color:#64748b;font-weight:600;text-transform:uppercase;">Customers</div>
-    </div>
-    <div style="text-align:center;flex:1;">
-      <div style="font-size:1.45rem;font-weight:800;color:#1e3a5f;">{_task_count}</div>
-      <div style="font-size:0.62rem;color:#64748b;font-weight:600;text-transform:uppercase;">Tasks</div>
-    </div>
-    <div style="text-align:center;flex:1;">
-      <div style="font-size:1.45rem;font-weight:800;color:#dc2626;">{_high_pri}</div>
-      <div style="font-size:0.62rem;color:#64748b;font-weight:600;text-transform:uppercase;">High Priority</div>
-    </div>
+    _today_str = _dt.date.today().strftime("%d %b %Y")
+    st.markdown(f"""
+<div style="background:linear-gradient(135deg,#1e3a5f 0%,#0f2744 100%);border-radius:10px;
+            padding:12px 20px;margin-bottom:14px;display:flex;align-items:center;
+            justify-content:space-between;flex-wrap:wrap;gap:8px;">
+  <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:center;">
+    <span style="font-size:0.72rem;font-weight:800;color:#93c5fd;text-transform:uppercase;
+                 letter-spacing:0.08em;">MARKET PULSE</span>
+    <span style="color:#e2e8f0;font-size:0.82rem;">
+      <b>Brent:</b> {mkt['brent']['value']}
+      <span style="color:{mkt['brent']['color']};font-weight:600;"> {mkt['brent']['change']}</span>
+    </span>
+    <span style="color:#e2e8f0;font-size:0.82rem;">
+      <b>WTI:</b> {mkt['wti']['value']}
+      <span style="color:{mkt['wti']['color']};font-weight:600;"> {mkt['wti']['change']}</span>
+    </span>
+    <span style="color:#e2e8f0;font-size:0.82rem;">
+      <b>INR:</b> {mkt['usdinr']['value']}
+      <span style="color:{mkt['usdinr']['color']};font-weight:600;"> {mkt['usdinr']['change']}</span>
+    </span>
+    <span style="color:#fcd34d;font-size:0.82rem;font-weight:600;">
+      VG30: {_fmt_inr_home(_lp.get("DRUM_KANDLA_VG30", 35500))}
+    </span>
   </div>
-  <div style="font-size:0.65rem;color:#64748b;font-weight:700;text-transform:uppercase;
-              margin-bottom:4px;letter-spacing:0.05em;">Pipeline</div>
-  <div class="pipeline-bar" style="margin-bottom:6px;">
-    <div style="flex:2;background:#3b82f6;" title="New Enquiry"></div>
-    <div style="flex:1.5;background:#8b5cf6;" title="Quoted"></div>
-    <div style="flex:1;background:#f59e0b;" title="Negotiation"></div>
-    <div style="flex:0.5;background:#22c55e;" title="Closed"></div>
-  </div>
-  <div style="display:flex;gap:8px;font-size:0.62rem;color:#64748b;">
-    <span>🔵 Enquiry</span><span>🟣 Quoted</span><span>🟡 Negotiation</span><span>🟢 Closed</span>
-  </div>
-  <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;">
-    <span class="zoho-stat-pill">📞 {_call_count} Calls</span>
-    <span class="zoho-stat-pill">💬 {_whatsapp_ct} WhatsApp</span>
-    <span class="zoho-stat-pill">✉️ {_email_count} Email</span>
+  <div style="font-size:0.72rem;color:#93c5fd;white-space:nowrap;">
+    {_today_str}
   </div>
 </div>
 """, unsafe_allow_html=True)
-        if st.button("🎯 Open CRM & Tasks →", key="_home_crm_btn", use_container_width=True):
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # SECTION 2 — KPI Metrics (6 key metrics)
+    # ─────────────────────────────────────────────────────────────────────────
+    st.markdown('<div class="kpi-bar">', unsafe_allow_html=True)
+    _k1, _k2, _k3, _k4, _k5, _k6 = st.columns(6)
+    _k1.metric("Predicted Price", f"{_fmt_inr_home(int(_pred))}/MT")
+    _k2.metric("Suppliers", _db_stats.get("total_suppliers", 63))
+    _k3.metric("Customers", _db_stats.get("total_customers", 3))
+    _k4.metric("Opportunities", _opp_count if _opp_count else "Scan needed")
+    _k5.metric("CRM Tasks", _task_count, f"{_high_pri} high priority" if _high_pri else None)
+    _k6.metric("APIs Healthy", f"{_api_ok}/{_api_tot}")
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # SECTION 3 — Top Sources + Top Sell Opportunities (2-column)
+    # ─────────────────────────────────────────────────────────────────────────
+    _h3a, _h3b = st.columns(2)
+
+    with _h3a:
+        st.markdown('<div class="zoho-row-header">Top 5 Cheapest Sources (VG30 Landed)</div>', unsafe_allow_html=True)
+        if _top_sources:
+            _src_html = ""
+            for _idx, _ts in enumerate(_top_sources[:5], 1):
+                _rank_ico = ["", "1.", "2.", "3.", "4.", "5."][_idx]
+                _src_html += f"""
+<div style="display:flex;justify-content:space-between;align-items:center;
+            padding:6px 10px;border-bottom:1px solid #f1f5f9;font-size:0.8rem;">
+  <span style="color:#2d3142;font-weight:500;">{_rank_ico} {_ts['source']}</span>
+  <span style="color:#1e3a5f;font-weight:700;">{_fmt_inr_home(_ts['landed'])}/MT</span>
+</div>"""
+            st.markdown(f'<div class="zoho-card">{_src_html}</div>', unsafe_allow_html=True)
+        else:
+            st.markdown("""
+<div class="zoho-card" style="padding:16px;text-align:center;">
+  <div style="font-size:0.82rem;color:#64748b;">Run a sync to discover cheapest sources</div>
+</div>""", unsafe_allow_html=True)
+        if st.button("Open Pricing Calculator", key="_home_pricing_btn", use_container_width=True):
+            st.session_state["_nav_goto"] = "🧮 Pricing Calculator"
+            st.rerun()
+
+    with _h3b:
+        st.markdown('<div class="zoho-row-header">Top Sell Opportunities</div>', unsafe_allow_html=True)
+        _sell_opps = [o for o in _opportunities if o.get("type") == "price_drop_reactivation"][:5]
+        if _sell_opps:
+            _opp_html = ""
+            for _idx, _so in enumerate(_sell_opps[:5], 1):
+                _cname = _so.get("customer_name", "Unknown")[:25]
+                _ccity = _so.get("customer_city", "")
+                _margin = _so.get("estimated_margin_per_mt", 0)
+                _opp_html += f"""
+<div style="display:flex;justify-content:space-between;align-items:center;
+            padding:6px 10px;border-bottom:1px solid #f1f5f9;font-size:0.8rem;">
+  <span style="color:#2d3142;font-weight:500;">{_idx}. {_cname} ({_ccity})</span>
+  <span style="color:#2d6a4f;font-weight:700;">{_fmt_inr_home(_margin)} margin</span>
+</div>"""
+            st.markdown(f'<div class="zoho-card">{_opp_html}</div>', unsafe_allow_html=True)
+        else:
+            st.markdown("""
+<div class="zoho-card" style="padding:16px;text-align:center;">
+  <div style="font-size:0.82rem;color:#64748b;">Run opportunity scan to find sell targets</div>
+</div>""", unsafe_allow_html=True)
+        if st.button("View All Opportunities", key="_home_opp_btn", use_container_width=True):
+            st.session_state["_nav_goto"] = "🔍 Opportunities"
+            st.rerun()
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # SECTION 4 — Call Today + Negotiate Today (2-column)
+    # ─────────────────────────────────────────────────────────────────────────
+    _h4a, _h4b = st.columns(2)
+
+    with _h4a:
+        st.markdown('<div class="zoho-row-header">Call Today (Buyers)</div>', unsafe_allow_html=True)
+        _buyers = _todays_recs.get("buyers_to_call", [])[:5]
+        if _buyers:
+            _buy_html = ""
+            for _b in _buyers:
+                _bname = _b.get("customer_name", "Unknown")[:28]
+                _bcity = _b.get("customer_city", "")
+                _bpri = _b.get("priority", "P2")
+                _pri_clr = "#dc2626" if _bpri == "P0" else "#d97706" if _bpri == "P1" else "#3b82f6"
+                _buy_html += f"""
+<div style="display:flex;justify-content:space-between;align-items:center;
+            padding:5px 10px;border-bottom:1px solid #f1f5f9;font-size:0.78rem;">
+  <span style="color:#2d3142;font-weight:500;">{_bname}</span>
+  <span style="display:flex;gap:8px;align-items:center;">
+    <span style="color:#64748b;font-size:0.72rem;">{_bcity}</span>
+    <span style="background:{_pri_clr};color:#fff;font-size:0.62rem;font-weight:700;
+                 padding:1px 6px;border-radius:8px;">{_bpri}</span>
+  </span>
+</div>"""
+            st.markdown(f'<div class="zoho-card">{_buy_html}</div>', unsafe_allow_html=True)
+        else:
+            st.markdown("""
+<div class="zoho-card" style="padding:16px;text-align:center;">
+  <div style="font-size:0.82rem;color:#64748b;">No buyers flagged for today. Run opportunity scan.</div>
+</div>""", unsafe_allow_html=True)
+        if st.button("Open CRM & Tasks", key="_home_crm_btn", use_container_width=True):
             st.session_state["_nav_goto"] = "🎯 CRM & Tasks"
             st.rerun()
 
-    # ── Sales Snapshot ────────────────────────────────────────────────────────
-    with _h2b:
-        st.markdown('<div class="zoho-row-header">📦 Sales Snapshot</div>', unsafe_allow_html=True)
-        _vg30_mum = _lp.get("DRUM_MUMBAI_VG30", 37000)
-        _vg30_kan = _lp.get("DRUM_KANDLA_VG30", 35500)
-        _vg10_mum = _lp.get("DRUM_MUMBAI_VG10", 38000)
-        _vg10_kan = _lp.get("DRUM_KANDLA_VG10", 36500)
-        st.markdown(f"""
-<div class="zoho-card" style="margin-bottom:8px;">
-  <div style="font-size:0.65rem;color:#64748b;font-weight:700;text-transform:uppercase;
-              margin-bottom:6px;letter-spacing:0.05em;">Live Prices (₹/MT)</div>
-  <table style="width:100%;border-collapse:collapse;font-size:0.78rem;">
-    <thead>
-      <tr style="background:#f8fafc;">
-        <th style="padding:4px 8px;text-align:left;font-weight:700;color:#1e3a5f;border-bottom:1px solid #e8dcc8;">Grade</th>
-        <th style="padding:4px 8px;text-align:right;font-weight:700;color:#1e3a5f;border-bottom:1px solid #e8dcc8;">Mumbai</th>
-        <th style="padding:4px 8px;text-align:right;font-weight:700;color:#1e3a5f;border-bottom:1px solid #e8dcc8;">Kandla</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td style="padding:4px 8px;color:#2d3142;">VG-30</td>
-        <td style="padding:4px 8px;text-align:right;font-weight:600;color:#2d6a4f;">₹{int(_vg30_mum):,}</td>
-        <td style="padding:4px 8px;text-align:right;font-weight:600;color:#2d6a4f;">₹{int(_vg30_kan):,}</td>
-      </tr>
-      <tr style="background:#faf7f2;">
-        <td style="padding:4px 8px;color:#2d3142;">VG-10</td>
-        <td style="padding:4px 8px;text-align:right;font-weight:600;color:#2d6a4f;">₹{int(_vg10_mum):,}</td>
-        <td style="padding:4px 8px;text-align:right;font-weight:600;color:#2d6a4f;">₹{int(_vg10_kan):,}</td>
-      </tr>
-    </tbody>
-  </table>
-  <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
-    <span class="zoho-stat-pill">🚢 3,476 Routes</span>
-    <span class="zoho-stat-pill">🏭 63 Suppliers</span>
-  </div>
-  <div style="margin-top:8px;font-size:0.65rem;color:#64748b;font-weight:700;
-              text-transform:uppercase;margin-bottom:4px;">Top Contractors (MT/mo)</div>
-  <div style="font-size:0.75rem;color:#2d3142;line-height:1.8;">
-    🏆 Maharashtra Roads — 850 MT<br>
-    🥈 Gujarat Infra Corp — 640 MT<br>
-    🥉 Rajasthan PWD — 520 MT
-  </div>
-</div>
-""", unsafe_allow_html=True)
-        if st.button("💼 Open Sales Workspace →", key="_home_sales_btn", use_container_width=True):
+    with _h4b:
+        st.markdown('<div class="zoho-row-header">Follow-ups Due</div>', unsafe_allow_html=True)
+        _followups = _todays_recs.get("followups_due", [])[:5]
+        if _followups:
+            _fu_html = ""
+            for _fu in _followups:
+                _fname = _fu.get("customer_name", _fu.get("title", "Task"))[:28]
+                _ftype = _fu.get("type", _fu.get("channel", ""))
+                _fu_html += f"""
+<div style="display:flex;justify-content:space-between;align-items:center;
+            padding:5px 10px;border-bottom:1px solid #f1f5f9;font-size:0.78rem;">
+  <span style="color:#2d3142;font-weight:500;">{_fname}</span>
+  <span style="color:#64748b;font-size:0.72rem;">{_ftype}</span>
+</div>"""
+            st.markdown(f'<div class="zoho-card">{_fu_html}</div>', unsafe_allow_html=True)
+        else:
+            _pending_tasks = [t for t in _crm_tasks if t.get("status") == "Pending"][:5]
+            if _pending_tasks:
+                _pt_html = ""
+                for _pt in _pending_tasks:
+                    _ptitle = _pt.get("title", "Task")[:28]
+                    _ptype = _pt.get("type", "")
+                    _pt_html += f"""
+<div style="display:flex;justify-content:space-between;align-items:center;
+            padding:5px 10px;border-bottom:1px solid #f1f5f9;font-size:0.78rem;">
+  <span style="color:#2d3142;font-weight:500;">{_ptitle}</span>
+  <span style="color:#64748b;font-size:0.72rem;">{_ptype}</span>
+</div>"""
+                st.markdown(f'<div class="zoho-card">{_pt_html}</div>', unsafe_allow_html=True)
+            else:
+                st.markdown("""
+<div class="zoho-card" style="padding:16px;text-align:center;">
+  <div style="font-size:0.82rem;color:#64748b;">No follow-ups due today.</div>
+</div>""", unsafe_allow_html=True)
+        if st.button("Open Sales Workspace", key="_home_sales_btn", use_container_width=True):
             st.session_state["_nav_goto"] = "💼 Sales Workspace"
             st.rerun()
 
-    # ── Price Forecast Mini-Chart ─────────────────────────────────────────────
-    with _h2c:
-        st.markdown('<div class="zoho-row-header">🔮 Price Forecast</div>', unsafe_allow_html=True)
+    # ─────────────────────────────────────────────────────────────────────────
+    # SECTION 5 — Price Trend Chart + Alerts (2-column)
+    # ─────────────────────────────────────────────────────────────────────────
+    _h5a, _h5b = st.columns([6, 4])
+
+    with _h5a:
+        st.markdown('<div class="zoho-row-header">Price Forecast (VG-30, 6-month)</div>', unsafe_allow_html=True)
         try:
             import plotly.graph_objects as _go
             _fig = _go.Figure()
@@ -1535,10 +1678,10 @@ if selected_page == "🏠 Home":
                 line=dict(color='#2d6a4f', width=2.5),
                 marker=dict(size=6, color='#2d6a4f'),
                 fill='tozeroy', fillcolor='rgba(45,106,79,0.06)',
-                hovertemplate='%{x}<br>₹%{y:,.0f}/MT<extra></extra>'
+                hovertemplate='%{x}<br>%{y:,.0f}/MT<extra></extra>'
             ))
             _fig.update_layout(
-                height=155, margin=dict(l=0, r=0, t=8, b=24),
+                height=200, margin=dict(l=0, r=0, t=8, b=24),
                 paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)',
                 xaxis=dict(showgrid=False, tickfont=dict(size=9), tickangle=-30),
                 yaxis=dict(showgrid=True, gridcolor='#f1f5f9',
@@ -1548,146 +1691,162 @@ if selected_page == "🏠 Home":
             st.plotly_chart(_fig, use_container_width=True, config={"displayModeBar": False})
         except Exception:
             st.caption("Forecast chart unavailable.")
-        _conf_pct = 82
         st.markdown(f"""
-<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+<div style="display:flex;align-items:center;gap:8px;margin-top:-8px;">
   <span style="background:#e8f5ee;color:#2d6a4f;font-size:0.72rem;font-weight:700;
                padding:3px 10px;border-radius:20px;border:1px solid #b7dfc9;">
-    🎯 Confidence: {_conf_pct}%
+    Confidence: 82%
   </span>
-  <span style="font-size:0.68rem;color:#64748b;">VG-30 · 6-month</span>
+  <span style="font-size:0.68rem;color:#64748b;">Next revision: {_rdate}</span>
+  <span style="font-size:0.68rem;color:#1e3a5f;font-weight:600;">{_fmt_inr_home(int(_pred))}/MT</span>
 </div>
 """, unsafe_allow_html=True)
-        if st.button("📊 Full Forecast →", key="_home_fc_btn", use_container_width=True):
+        if st.button("Full Forecast", key="_home_fc_btn", use_container_width=True):
             st.session_state["_nav_goto"] = "🔮 Price Prediction"
             st.rerun()
 
+    with _h5b:
+        st.markdown('<div class="zoho-row-header">Alerts</div>', unsafe_allow_html=True)
+        _sev_cfg = {
+            "critical": ("#fff1f2", "#dc2626"),
+            "warning":  ("#fffbeb", "#d97706"),
+            "info":     ("#eff6ff", "#3b82f6"),
+        }
+        _alert_rows_html = ""
+        for _al in _alerts[:5]:
+            _sev = _al.get("severity", "info")
+            _bg, _clr = _sev_cfg.get(_sev, _sev_cfg["info"])
+            _title = _al.get("title", "Alert")[:50]
+            _alert_rows_html += f"""
+<div style="background:{_bg};border-left:3px solid {_clr};
+     margin-bottom:4px;border-radius:4px;padding:5px 8px;">
+  <span style="font-size:0.75rem;color:#2d3142;font-weight:500;">{_title}</span>
+</div>"""
+        if not _alert_rows_html:
+            _alert_rows_html = '<div style="font-size:0.78rem;color:#64748b;padding:8px;">No active alerts. System healthy.</div>'
+        st.markdown(f'<div class="zoho-card">{_alert_rows_html}</div>', unsafe_allow_html=True)
+
+        # Missing inputs notification
+        if _missing_count > 0:
+            st.markdown(f"""
+<div style="background:#fffbeb;border:1px solid #f59e0b;border-radius:8px;padding:8px 12px;margin-top:8px;">
+  <span style="font-size:0.78rem;color:#92400e;font-weight:600;">
+    {_missing_count} data gaps detected
+  </span>
+  <span style="font-size:0.72rem;color:#92400e;"> - update for better accuracy</span>
+</div>""", unsafe_allow_html=True)
+        if st.button("Alert System", key="_home_alert_btn", use_container_width=True):
+            st.session_state["_nav_goto"] = "🔔 Alert System"
+            st.rerun()
 
     # ─────────────────────────────────────────────────────────────────────────
-    # SECTION 3 — 2-column row: API Health | Active Alerts
+    # SECTION 6 — Sales Snapshot + API Health (2-column)
     # ─────────────────────────────────────────────────────────────────────────
-    _h3a, _h3b = st.columns([5.5, 4.5])
+    _h6a, _h6b = st.columns(2)
 
-    # ── API Health ────────────────────────────────────────────────────────────
-    with _h3a:
-        st.markdown('<div class="zoho-row-header">🔗 API Health</div>', unsafe_allow_html=True)
-        # Show first 6 APIs
+    with _h6a:
+        st.markdown('<div class="zoho-row-header">Sales Snapshot (Live Prices)</div>', unsafe_allow_html=True)
+        _vg30_mum = _lp.get("DRUM_MUMBAI_VG30", 37000)
+        _vg30_kan = _lp.get("DRUM_KANDLA_VG30", 35500)
+        _vg10_mum = _lp.get("DRUM_MUMBAI_VG10", 38000)
+        _vg10_kan = _lp.get("DRUM_KANDLA_VG10", 36500)
+        st.markdown(f"""
+<div class="zoho-card">
+  <table style="width:100%;border-collapse:collapse;font-size:0.8rem;">
+    <thead>
+      <tr style="background:#f8fafc;">
+        <th style="padding:6px 10px;text-align:left;font-weight:700;color:#1e3a5f;border-bottom:1px solid #e8dcc8;">Grade</th>
+        <th style="padding:6px 10px;text-align:right;font-weight:700;color:#1e3a5f;border-bottom:1px solid #e8dcc8;">Mumbai</th>
+        <th style="padding:6px 10px;text-align:right;font-weight:700;color:#1e3a5f;border-bottom:1px solid #e8dcc8;">Kandla</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding:5px 10px;color:#2d3142;font-weight:500;">VG-30</td>
+        <td style="padding:5px 10px;text-align:right;font-weight:700;color:#2d6a4f;">{_fmt_inr_home(int(_vg30_mum))}</td>
+        <td style="padding:5px 10px;text-align:right;font-weight:700;color:#2d6a4f;">{_fmt_inr_home(int(_vg30_kan))}</td>
+      </tr>
+      <tr style="background:#faf7f2;">
+        <td style="padding:5px 10px;color:#2d3142;font-weight:500;">VG-10</td>
+        <td style="padding:5px 10px;text-align:right;font-weight:700;color:#2d6a4f;">{_fmt_inr_home(int(_vg10_mum))}</td>
+        <td style="padding:5px 10px;text-align:right;font-weight:700;color:#2d6a4f;">{_fmt_inr_home(int(_vg10_kan))}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+    <span class="zoho-stat-pill">{_db_stats.get('total_suppliers', 63)} Suppliers</span>
+    <span class="zoho-stat-pill">{_db_stats.get('total_customers', 3)} Customers</span>
+    <span class="zoho-stat-pill">{_db_stats.get('total_deals', 0)} Deals</span>
+  </div>
+</div>
+""", unsafe_allow_html=True)
+
+    with _h6b:
+        st.markdown('<div class="zoho-row-header">API & System Health</div>', unsafe_allow_html=True)
         _api_display = list(_api_st.items())[:6] if _api_st else []
         _api_rows_html = ""
         for _aname, _adat in _api_display:
             _aok  = _adat.get("status", "") == "OK"
             _dot  = "ok" if _aok else "fail"
             _lat  = _adat.get("avg_latency_ms", 0)
-            _calls= _adat.get("calls", 0)
             _label = _aname.replace("_", " ").title()[:22]
             _api_rows_html += f"""
 <div class="alert-row" style="justify-content:flex-start;gap:10px;">
   <span class="api-dot {_dot}"></span>
   <span style="font-size:0.75rem;color:#2d3142;flex:1;font-weight:500;">{_label}</span>
   <span style="font-size:0.68rem;color:#64748b;">{_lat}ms</span>
-  <span style="font-size:0.68rem;color:#475569;">{_calls} call{"s" if _calls != 1 else ""}</span>
 </div>"""
-        _health_chip_clr = "#22c55e" if _api_ok >= _api_tot * 0.8 else "#f59e0b"
         st.markdown(f"""
 <div class="zoho-card">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
     <span style="font-size:0.72rem;color:#64748b;">Live API Status</span>
     <span style="background:#e8f5ee;color:#2d6a4f;font-size:0.68rem;font-weight:700;
                  padding:2px 8px;border-radius:12px;border:1px solid #b7dfc9;">
-      {_api_ok} / {_api_tot} Healthy
+      {_api_ok}/{_api_tot} Healthy
     </span>
   </div>
   {_api_rows_html}
 </div>
 """, unsafe_allow_html=True)
-        if st.button("🌐 API Dashboard →", key="_home_api_btn", use_container_width=True):
+        if st.button("API Dashboard", key="_home_api_btn", use_container_width=True):
             st.session_state["_nav_goto"] = "🌐 API Dashboard"
             st.rerun()
 
-    # ── Active Alerts ─────────────────────────────────────────────────────────
-    with _h3b:
-        st.markdown('<div class="zoho-row-header">⚡ Active Alerts</div>', unsafe_allow_html=True)
-        _sev_cfg = {
-            "critical": ("#fff1f2", "#dc2626", "🔴"),
-            "warning":  ("#fffbeb", "#d97706", "🟡"),
-            "info":     ("#eff6ff", "#3b82f6", "🔵"),
-        }
-        _alert_rows_html = ""
-        for _al in _alerts[:4]:
-            _sev = _al.get("severity", "info")
-            _bg, _clr, _ico = _sev_cfg.get(_sev, _sev_cfg["info"])
-            _title = _al.get("title", "Alert")[:55]
-            _cat   = _al.get("category", "")
-            _time_ago = ""
-            try:
-                _tdiff = _dt.datetime.now() - _al.get("time", _dt.datetime.now())
-                _h = int(_tdiff.total_seconds() // 3600)
-                _time_ago = f"{_h}h ago" if _h > 0 else "Just now"
-            except Exception:
-                _time_ago = "Recent"
-            _alert_rows_html += f"""
-<div class="alert-row" style="background:{_bg};border-left:3px solid {_clr};
-     margin-bottom:4px;border-radius:4px;padding:5px 8px;">
-  <span style="font-size:0.72rem;">{_ico}</span>
-  <span style="font-size:0.72rem;color:#2d3142;flex:1;font-weight:500;">{_title}</span>
-  <span style="font-size:0.62rem;color:#475569;white-space:nowrap;">{_time_ago}</span>
-</div>"""
-        if not _alert_rows_html:
-            _alert_rows_html = '<div style="font-size:0.78rem;color:#64748b;padding:8px;">No active alerts.</div>'
-        st.markdown(f"""
-<div class="zoho-card">
-  <div style="margin-bottom:6px;font-size:0.72rem;color:#64748b;">Top alerts by severity</div>
-  {_alert_rows_html}
-</div>
-""", unsafe_allow_html=True)
-        if st.button("🔔 Alert System →", key="_home_alert_btn", use_container_width=True):
-            st.session_state["_nav_goto"] = "🔔 Alert System"
-            st.rerun()
-
-
     # ─────────────────────────────────────────────────────────────────────────
-    # SECTION 4 — AI Assistant (full width, navy gradient)
+    # SECTION 7 — AI Command Centre (full width, navy gradient)
     # ─────────────────────────────────────────────────────────────────────────
-    st.markdown('<div class="zoho-row-header">🧠 AI Command Centre</div>', unsafe_allow_html=True)
+    st.markdown('<div class="zoho-row-header">AI Command Centre</div>', unsafe_allow_html=True)
     st.markdown("""
 <div style="background:linear-gradient(135deg,#1e3a5f 0%,#0f2744 100%);
-            border-radius:12px;padding:16px 20px;margin-bottom:12px;">
-  <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px;">
-    <span style="font-size:1.1rem;">🤖</span>
+            border-radius:12px;padding:14px 20px;margin-bottom:12px;">
+  <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px;">
     <span style="font-size:0.75rem;font-weight:700;color:#93c5fd;text-transform:uppercase;
                  letter-spacing:0.07em;">PPS Anantam AI — Ask Anything</span>
   </div>
   <div style="color:#e2e8f0;font-size:0.82rem;line-height:1.5;">
-    Access full AI chat, quick price queries, market intelligence, and system diagnostics.
-    The AI assistant is connected to live market data, CRM, and all 37 modules.
+    AI assistant connected to live market data, CRM, and all modules.
   </div>
 </div>
 """, unsafe_allow_html=True)
 
     _ai_c1, _ai_c2, _ai_c3 = st.columns([3, 3, 4])
 
-    # AI col1: Prediction summary
     with _ai_c1:
         st.markdown(f"""
 <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(201,168,76,0.3);
             border-left:4px solid #c9a84c;border-radius:8px;padding:12px 14px;">
   <div style="color:#fcd34d;font-size:0.65rem;font-weight:700;text-transform:uppercase;
               letter-spacing:0.05em;margin-bottom:6px;">Next Revision</div>
-  <div style="font-size:1.3rem;font-weight:800;color:#ffffff;">₹{int(_pred):,}</div>
-  <div style="font-size:0.68rem;color:#93c5fd;margin-top:2px;">/MT · VG-30 Bitumen</div>
+  <div style="font-size:1.3rem;font-weight:800;color:#ffffff;">{_fmt_inr_home(int(_pred))}</div>
+  <div style="font-size:0.68rem;color:#93c5fd;margin-top:2px;">/MT VG-30</div>
   <div style="display:flex;gap:10px;margin-top:8px;font-size:0.72rem;">
-    <span style="color:#86efac;">↓ ₹{int(_lo):,}</span>
-    <span style="color:#fca5a5;">↑ ₹{int(_hi):,}</span>
+    <span style="color:#86efac;">{_fmt_inr_home(int(_lo))}</span>
+    <span style="color:#fca5a5;">{_fmt_inr_home(int(_hi))}</span>
     <span style="color:#93c5fd;">{_rdate}</span>
-  </div>
-  <div style="margin-top:6px;">
-    <span style="background:rgba(45,106,79,0.4);color:#86efac;font-size:0.65rem;
-                 font-weight:700;padding:2px 8px;border-radius:10px;">{_status}</span>
   </div>
 </div>
 """, unsafe_allow_html=True)
 
-    # AI col2: Market metrics
     with _ai_c2:
         st.markdown(f"""
 <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
@@ -1696,32 +1855,31 @@ if selected_page == "🏠 Home":
               letter-spacing:0.05em;margin-bottom:8px;">Live Market</div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
     <div>
-      <div style="font-size:0.62rem;color:#94a3b8;">🛢 Brent</div>
+      <div style="font-size:0.62rem;color:#94a3b8;">Brent</div>
       <div style="font-size:0.9rem;font-weight:700;color:#e2e8f0;">{mkt['brent']['value']}</div>
     </div>
     <div>
-      <div style="font-size:0.62rem;color:#94a3b8;">🛢 WTI</div>
+      <div style="font-size:0.62rem;color:#94a3b8;">WTI</div>
       <div style="font-size:0.9rem;font-weight:700;color:#e2e8f0;">{mkt['wti']['value']}</div>
     </div>
     <div>
-      <div style="font-size:0.62rem;color:#94a3b8;">💵 USD/INR</div>
+      <div style="font-size:0.62rem;color:#94a3b8;">USD/INR</div>
       <div style="font-size:0.9rem;font-weight:700;color:#e2e8f0;">{mkt['usdinr']['value']}</div>
     </div>
     <div>
-      <div style="font-size:0.62rem;color:#94a3b8;">🔗 APIs</div>
+      <div style="font-size:0.62rem;color:#94a3b8;">APIs</div>
       <div style="font-size:0.9rem;font-weight:700;color:#86efac;">{_api_ok}/{_api_tot} OK</div>
     </div>
   </div>
 </div>
 """, unsafe_allow_html=True)
 
-    # AI col3: Quick questions + AI Chat button
     with _ai_c3:
         _quick_qs = [
-            ("🔮 Next predicted price?",        "What is the next predicted bitumen price for the 1st or 16th cycle?"),
-            ("📰 News affecting crude?",         "Any breaking news affecting crude oil or bitumen prices today?"),
-            ("🗺️ Highest demand state?",         "Which Indian state has the highest bitumen demand this month?"),
-            ("🐛 Open bugs & API issues?",       "Show me all open bugs and API health issues in the system."),
+            ("Next predicted price?",        "What is the next predicted bitumen price for the 1st or 16th cycle?"),
+            ("News affecting crude?",         "Any breaking news affecting crude oil or bitumen prices today?"),
+            ("Highest demand state?",         "Which Indian state has the highest bitumen demand this month?"),
+            ("Open bugs & issues?",           "Show me all open bugs and API health issues in the system."),
         ]
         _ql_c1, _ql_c2 = st.columns(2)
         for _i, (_qlabel, _qtext) in enumerate(_quick_qs):
@@ -1731,10 +1889,33 @@ if selected_page == "🏠 Home":
                     st.session_state["_ai_prefill"] = _qtext
                     st.session_state["_nav_goto"]   = "🧠 AI Dashboard Assistant"
                     st.rerun()
-        if st.button("💬 Open Full AI Chat", key="_home_ai_full",
+        if st.button("Open Full AI Chat", key="_home_ai_full",
                      use_container_width=True, type="primary"):
             st.session_state["_nav_goto"] = "🧠 AI Dashboard Assistant"
             st.rerun()
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # MISSING INPUTS POPUP (once per day)
+    # ─────────────────────────────────────────────────────────────────────────
+    try:
+        from missing_inputs_engine import MissingInputsEngine as _MIE2
+        _mi2 = _MIE2()
+        if _mi2.should_show_popup():
+            _gaps = _mi2.scan_all_gaps()
+            if _gaps:
+                with st.expander(f"Data Gaps Detected ({len(_gaps)} items) — Click to review", expanded=False):
+                    for _g in _gaps[:8]:
+                        _gpri = _g.get("priority", "Medium")
+                        _gpri_clr = "#dc2626" if _gpri == "High" else "#d97706" if _gpri == "Medium" else "#3b82f6"
+                        st.markdown(f"""
+<div style="display:flex;justify-content:space-between;align-items:center;
+            padding:4px 0;border-bottom:1px solid #f1f5f9;font-size:0.78rem;">
+  <span style="color:#2d3142;">{_g.get('label', _g.get('field', ''))}</span>
+  <span style="background:{_gpri_clr};color:#fff;font-size:0.62rem;font-weight:700;
+               padding:1px 6px;border-radius:8px;">{_gpri}</span>
+</div>""", unsafe_allow_html=True)
+    except Exception:
+        pass
 
 # ── Handle deferred navigation (from Home quick buttons) ─────────────────────
 if st.session_state.get("_nav_goto"):
@@ -3968,6 +4149,356 @@ elif selected_page == "🗂️ India Procurement Directory":
         st.error(f"⚠️ India Procurement Directory failed to load: {_e}")
         st.info("Try reloading the page.")
 
+# ========================================================================================
+# NEW INTELLIGENCE PAGES — Opportunities, Negotiation, Communication, Sync
+# ========================================================================================
+
+elif selected_page == "🔍 Opportunities":
+    _render_page_header("🔍 Opportunities (Auto-Discovered)", "Intelligence", badge="AI-Powered")
+    st.info("Auto-discovers profitable opportunities from market changes. Scan runs daily + on price changes.")
+    try:
+        from opportunity_engine import OpportunityEngine, get_all_opportunities, mark_opportunity_status
+        import json as _opp_json
+
+        _opp_eng = OpportunityEngine()
+        _opp_tabs = st.tabs(["New Opportunities", "Today's Targets", "Scan Now", "All History"])
+
+        with _opp_tabs[0]:
+            _new_opps = get_all_opportunities(status="new")
+            if _new_opps:
+                st.markdown(f"**{len(_new_opps)} new opportunities found**")
+                for _oi, _opp in enumerate(_new_opps[:20]):
+                    _otype = _opp.get("type", "")
+                    _otitle = _opp.get("title", "Opportunity")
+                    _opri = _opp.get("priority", "P2")
+                    _pri_colors = {"P0": "🔴", "P1": "🟡", "P2": "🔵"}
+                    with st.expander(f"{_pri_colors.get(_opri, '🔵')} [{_opri}] {_otitle}"):
+                        st.markdown(_opp.get("description", ""))
+                        if _opp.get("recommended_action"):
+                            st.success(f"**Action:** {_opp['recommended_action']}")
+                        _oc1, _oc2, _oc3 = st.columns(3)
+                        _oc1.metric("Savings/MT", _fmt_inr_home(_opp.get("savings_per_mt", 0)))
+                        _oc2.metric("Est. Margin", _fmt_inr_home(_opp.get("estimated_margin_per_mt", 0)))
+                        _oc3.metric("Est. Volume", f"{_opp.get('estimated_volume_mt', 0):.0f} MT")
+                        if _opp.get("whatsapp_template"):
+                            with st.expander("WhatsApp Template"):
+                                st.code(_opp["whatsapp_template"], language=None)
+                        if _opp.get("call_script"):
+                            with st.expander("Call Script"):
+                                st.code(_opp["call_script"], language=None)
+                        if st.button(f"Mark Contacted", key=f"opp_contact_{_oi}"):
+                            # Find real index in full opportunity list
+                            _all_opps_list = get_all_opportunities()
+                            for _real_idx, _real_opp in enumerate(_all_opps_list):
+                                if (_real_opp.get("title") == _opp.get("title")
+                                        and _real_opp.get("created_at") == _opp.get("created_at")):
+                                    mark_opportunity_status(_real_idx, "contacted")
+                                    break
+                            st.rerun()
+            else:
+                st.info("No new opportunities. Click 'Scan Now' to run a fresh scan.")
+
+        with _opp_tabs[1]:
+            _recs = _opp_eng.get_todays_recommendations()
+            st.subheader("Buyers to Call Today")
+            _b2c = _recs.get("buyers_to_call", [])
+            if _b2c:
+                for _bc in _b2c[:10]:
+                    st.markdown(f"- **{_bc.get('customer_name', 'Unknown')}** ({_bc.get('customer_city', '')}) — "
+                                f"Save {_fmt_inr_home(_bc.get('savings_per_mt', 0))}/MT | {_bc.get('priority', 'P2')}")
+            else:
+                st.caption("No buyers flagged. Run a scan first.")
+
+            st.subheader("Follow-ups Due")
+            _fud = _recs.get("followups_due", [])
+            if _fud:
+                for _fu in _fud[:10]:
+                    st.markdown(f"- {_fu.get('title', _fu.get('customer_name', 'Task'))} — {_fu.get('status', '')}")
+            else:
+                st.caption("No follow-ups due.")
+
+            st.subheader("Reactivation Targets")
+            _react = _recs.get("reactivation_targets", [])
+            if _react:
+                for _rt in _react[:5]:
+                    st.markdown(f"- **{_rt.get('customer_name', _rt.get('title', 'Target'))}** — {_rt.get('type', '')}")
+            else:
+                st.caption("No reactivation targets found.")
+
+        with _opp_tabs[2]:
+            st.markdown("Run a fresh opportunity scan across all data sources.")
+            if st.button("Run Full Opportunity Scan", type="primary", use_container_width=True):
+                with st.spinner("Scanning for opportunities..."):
+                    _scan_results = _opp_eng.scan_all_opportunities()
+                st.success(f"Scan complete! Found {len(_scan_results)} opportunities.")
+                st.rerun()
+
+        with _opp_tabs[3]:
+            _all_opps = get_all_opportunities()
+            if _all_opps:
+                _opp_df = pd.DataFrame(_all_opps)
+                _cols_to_show = ["type", "title", "priority", "status", "savings_per_mt", "created_at"]
+                _display_cols = [c for c in _cols_to_show if c in _opp_df.columns]
+                st.dataframe(_opp_df[_display_cols], use_container_width=True, hide_index=True)
+            else:
+                st.info("No opportunity history yet.")
+
+    except Exception as _e:
+        st.error(f"Opportunities failed to load: {_e}")
+
+elif selected_page == "🤝 Negotiation Assistant":
+    _render_page_header("🤝 Negotiation Assistant", "Sales & CRM", badge="AI-Powered")
+    st.info("Prepares complete briefing packs for sales team before customer calls.")
+    try:
+        from negotiation_engine import NegotiationAssistant, get_full_objection_library
+
+        _neg = NegotiationAssistant()
+        _neg_tabs = st.tabs(["Prepare Brief", "Objection Library"])
+
+        with _neg_tabs[0]:
+            st.subheader("Customer Negotiation Brief")
+            _nc1, _nc2 = st.columns(2)
+            with _nc1:
+                _neg_cust = st.text_input("Customer Name", placeholder="e.g. L&T Construction")
+                _neg_city = st.text_input("City", placeholder="e.g. Ahmedabad")
+            with _nc2:
+                _neg_grade = st.selectbox("Grade", ["VG30", "VG10", "VG40", "CRMB-55", "CRMB-60", "PMB", "Emulsion"])
+                _neg_qty = st.number_input("Quantity (MT)", min_value=10, max_value=10000, value=100, step=10)
+            _neg_last_price = st.number_input("Customer's Last Purchase Price (INR/MT, optional)", min_value=0, value=0, step=500)
+
+            if st.button("Generate Negotiation Brief", type="primary", use_container_width=True):
+                if _neg_cust and _neg_city:
+                    with st.spinner("Preparing negotiation brief..."):
+                        _brief = _neg.prepare_negotiation_brief(
+                            customer_name=_neg_cust,
+                            city=_neg_city,
+                            grade=_neg_grade,
+                            quantity_mt=_neg_qty,
+                            customer_last_price=_neg_last_price if _neg_last_price > 0 else None
+                        )
+
+                    # Display brief
+                    st.subheader("Negotiation Brief")
+
+                    # Customer Profile
+                    _cp = _brief.get("customer_profile", {})
+                    st.markdown(f"**Customer:** {_cp.get('name', _neg_cust)} | "
+                                f"**City:** {_cp.get('city', _neg_city)} | "
+                                f"**Stage:** {_cp.get('relationship', 'new')}")
+
+                    # Cost & Offers
+                    _cost = _brief.get("our_best_cost", {})
+                    if _cost:
+                        _bc1, _bc2 = st.columns(2)
+                        _bc1.metric("Best Landed Cost", f"{_fmt_inr_home(_cost.get('landed_cost', 0))}/MT")
+                        _bc1.caption(f"Source: {_cost.get('source', 'N/A')}")
+                        if _brief.get("walk_away_price"):
+                            _bc2.metric("Walk-Away Price", _brief["walk_away_price"]["label"])
+
+                    # Offer Tiers
+                    _tiers = _brief.get("offer_tiers")
+                    if _tiers:
+                        st.markdown("**3-Tier Offer Pricing:**")
+                        _tc1, _tc2, _tc3 = st.columns(3)
+                        for _col, _tier_key, _color in [(_tc1, "aggressive", "#2d6a4f"), (_tc2, "balanced", "#1e3a5f"), (_tc3, "premium", "#c9a84c")]:
+                            _tier = _tiers.get(_tier_key, {})
+                            _col.markdown(f"""
+<div style="background:#faf7f2;border:2px solid {_color};border-radius:8px;padding:12px;text-align:center;">
+  <div style="font-size:0.68rem;font-weight:700;color:{_color};text-transform:uppercase;">{_tier.get('label', _tier_key)}</div>
+  <div style="font-size:1.2rem;font-weight:800;color:#1e3a5f;">{_fmt_inr_home(_tier.get('price', 0))}</div>
+  <div style="font-size:0.72rem;color:#64748b;">Margin: {_fmt_inr_home(_tier.get('margin', 0))}/MT</div>
+</div>""", unsafe_allow_html=True)
+
+                    # Client Benefit
+                    _cb = _brief.get("client_benefit")
+                    if _cb:
+                        st.info(_cb.get("narrative", ""))
+
+                    # Market Context
+                    _mc = _brief.get("market_context", {})
+                    if _mc.get("narrative"):
+                        st.markdown(f"**Market Context:** {_mc['narrative']}")
+
+                    # Objection Handling
+                    _objs = _brief.get("objection_handling", [])
+                    if _objs:
+                        st.markdown("**Top Objections & Responses:**")
+                        for _obj in _objs:
+                            with st.expander(f"{_obj['objection']}"):
+                                st.markdown(f"**Quick Reply:** {_obj['short_reply']}")
+                                st.markdown(f"**Detailed:** {_obj['detailed_reply']}")
+                                st.caption(f"Confidence: {_obj['confidence_booster']}")
+
+                    # Closing Strategy
+                    _cs = _brief.get("closing_strategy", {})
+                    if _cs.get("recommended"):
+                        st.markdown(f"**Recommended Close:** {_cs['recommended']['technique']}")
+                        st.success(f'"{_cs["recommended"]["script"]}"')
+                else:
+                    st.warning("Please enter customer name and city.")
+
+        with _neg_tabs[1]:
+            st.subheader("Complete Objection Library")
+            _obj_lib = get_full_objection_library()
+            for _ok, _ov in _obj_lib.items():
+                with st.expander(f"{_ov['objection']}"):
+                    st.markdown(f"**Quick Reply:** {_ov['short_reply']}")
+                    st.markdown(f"**Detailed:** {_ov['detailed_reply']}")
+                    st.caption(f"Confidence Booster: {_ov['confidence_booster']}")
+
+    except Exception as _e:
+        st.error(f"Negotiation Assistant failed to load: {_e}")
+
+elif selected_page == "💬 Communication Hub":
+    _render_page_header("💬 Communication Hub", "Sales & CRM", badge="Templates")
+    st.info("Auto-generates WhatsApp, Email, and Call scripts for sales team.")
+    try:
+        from communication_engine import CommunicationHub
+
+        _comm = CommunicationHub()
+        _comm_tabs = st.tabs(["Generate Message", "Follow-up Sequence", "Communication Log"])
+
+        with _comm_tabs[0]:
+            _msg_type = st.selectbox("Message Type", ["Offer", "Follow-up", "Reactivation", "Payment Reminder"])
+            _cc1, _cc2 = st.columns(2)
+            with _cc1:
+                _comm_cust = st.text_input("Customer Name", placeholder="e.g. L&T Construction", key="comm_cust")
+                _comm_city = st.text_input("City", placeholder="e.g. Mumbai", key="comm_city")
+            with _cc2:
+                _comm_grade = st.selectbox("Grade", ["VG30", "VG10", "VG40"], key="comm_grade")
+                _comm_qty = st.number_input("Quantity (MT)", min_value=10, value=100, step=10, key="comm_qty")
+            _comm_price = st.number_input("Price (INR/MT)", min_value=20000, max_value=80000, value=42000, step=500, key="comm_price")
+
+            _channel = st.radio("Channel", ["WhatsApp", "Email", "Call Script"], horizontal=True)
+
+            if st.button("Generate", type="primary", use_container_width=True, key="comm_gen"):
+                if _comm_cust:
+                    if _channel == "WhatsApp":
+                        if _msg_type == "Offer":
+                            _msg = _comm.whatsapp_offer(_comm_cust, _comm_city, _comm_grade, _comm_qty, _comm_price)
+                        elif _msg_type == "Follow-up":
+                            _msg = _comm.whatsapp_followup(_comm_cust)
+                        elif _msg_type == "Reactivation":
+                            _msg = _comm.whatsapp_reactivation(_comm_cust, _comm_city, _comm_price, _comm_price + 2000, 2000)
+                        else:
+                            _msg = _comm.whatsapp_payment_reminder(_comm_cust, 500000)
+                        st.text_area("WhatsApp Message (copy & send):", _msg, height=300)
+                    elif _channel == "Email":
+                        if _msg_type == "Offer":
+                            _email = _comm.email_offer(_comm_cust, _comm_city, _comm_grade, _comm_qty, _comm_price)
+                        else:
+                            _email = _comm.email_followup(_comm_cust, city=_comm_city, price=_comm_price)
+                        st.text_input("Subject:", _email.get("subject", ""), key="email_subj_out")
+                        st.text_area("Body:", _email.get("body", ""), height=350)
+                    else:
+                        _script = _comm.call_script_offer(_comm_cust, _comm_city, _comm_grade, _comm_price)
+                        st.text_area("Call Script:", _script, height=400)
+
+                    _comm.log_communication(_comm_cust, _channel, _msg_type)
+                    st.success(f"{_channel} {_msg_type} generated and logged.")
+                else:
+                    st.warning("Please enter customer name.")
+
+        with _comm_tabs[1]:
+            st.subheader("5-Touch Follow-up Sequence")
+            _fu_cust = st.text_input("Customer", key="fu_cust")
+            _fu_city = st.text_input("City", key="fu_city")
+            _fu_price = st.number_input("Offer Price", min_value=20000, value=42000, step=500, key="fu_price")
+            if st.button("Generate Sequence", key="fu_gen"):
+                if _fu_cust:
+                    _seq = _comm.generate_followup_sequence(_fu_cust, _fu_city, _fu_price)
+                    for _s in _seq:
+                        _day_label = f"Day {_s['day']}" if _s['day'] > 0 else "Today"
+                        st.markdown(f"**{_day_label}** — {_s['channel']}: {_s['action']}")
+
+        with _comm_tabs[2]:
+            st.subheader("Recent Communications")
+            _hist = _comm.get_communication_history(limit=30)
+            if _hist:
+                _hist_df = pd.DataFrame(_hist)
+                st.dataframe(_hist_df, use_container_width=True, hide_index=True)
+            else:
+                st.caption("No communications logged yet.")
+
+    except Exception as _e:
+        st.error(f"Communication Hub failed to load: {_e}")
+
+elif selected_page == "🔄 Sync Status":
+    _render_page_header("🔄 Sync Status", "System", badge="Auto-Sync")
+    st.info("Master data synchronization — runs automatically every 60 minutes + on-demand.")
+    try:
+        from sync_engine import SyncEngine
+        import json as _sync_json
+
+        _sync_eng = SyncEngine()
+        _sync_tabs = st.tabs(["Run Sync", "Sync History", "Missing Inputs"])
+
+        with _sync_tabs[0]:
+            st.subheader("Manual Sync")
+            _sc1, _sc2 = st.columns(2)
+            with _sc1:
+                if st.button("Full Sync (All Sources)", type="primary", use_container_width=True):
+                    with st.spinner("Running full sync... this may take 2-3 minutes"):
+                        _result = _sync_eng.run_full_sync()
+                    st.success(f"Sync completed! {_result.get('apis_succeeded', 0)} APIs succeeded.")
+                    for _step in _result.get("steps", []):
+                        _step_status = _step.get("status", "unknown")
+                        _step_icon = "OK" if _step_status == "success" else "WARN" if _step_status == "partial" else "FAIL"
+                        st.markdown(f"- [{_step_icon}] {_step.get('name', 'Step')} — {_step.get('details', '')}")
+            with _sc2:
+                if st.button("Market Data Only (Quick)", use_container_width=True):
+                    with st.spinner("Syncing market data..."):
+                        _result = _sync_eng.run_market_only()
+                    st.success("Market sync completed!")
+
+        with _sync_tabs[1]:
+            st.subheader("Sync History")
+            try:
+                from database import get_sync_logs
+                _logs = get_sync_logs(limit=20)
+                if _logs:
+                    _log_df = pd.DataFrame(_logs)
+                    st.dataframe(_log_df, use_container_width=True, hide_index=True)
+                else:
+                    st.caption("No sync history yet. Run a sync first.")
+            except Exception:
+                st.caption("Sync logs not available.")
+
+        with _sync_tabs[2]:
+            st.subheader("Missing Data Inputs")
+            try:
+                from missing_inputs_engine import MissingInputsEngine
+                _mi_eng = MissingInputsEngine()
+                _gaps = _mi_eng.scan_all_gaps()
+                if _gaps:
+                    st.markdown(f"**{len(_gaps)} data gaps detected:**")
+                    for _g in _gaps:
+                        _gpri = _g.get("priority", "Medium")
+                        _gpri_clr = "#dc2626" if _gpri == "High" else "#d97706" if _gpri == "Medium" else "#3b82f6"
+                        st.markdown(f"""
+<div style="display:flex;justify-content:space-between;align-items:center;
+            padding:6px 10px;border-bottom:1px solid #f1f5f9;font-size:0.82rem;">
+  <div>
+    <span style="color:#2d3142;font-weight:600;">{_g.get('label', _g.get('field', 'Unknown'))}</span>
+    <span style="font-size:0.72rem;color:#64748b;margin-left:8px;">{_g.get('reason', '')}</span>
+  </div>
+  <span style="background:{_gpri_clr};color:#fff;font-size:0.65rem;font-weight:700;
+               padding:2px 8px;border-radius:8px;">{_gpri}</span>
+</div>""", unsafe_allow_html=True)
+
+                    _daily_qs = _mi_eng._daily_questions()
+                    if _daily_qs:
+                        st.subheader("Daily Questions")
+                        for _dq in _daily_qs:
+                            st.text_input(_dq.get("label", ""), key=f"dq_{_dq.get('field', '')}", placeholder=_dq.get("placeholder", ""))
+                else:
+                    st.success("No data gaps detected! All inputs are up to date.")
+            except Exception as _e:
+                st.caption(f"Missing inputs scanner not available: {_e}")
+
+    except Exception as _e:
+        st.error(f"Sync Status failed to load: {_e}")
+
 
 # ══════════════════════════════════════════════════════════════════════════════
 # GLOBAL FOOTER — PPS Anantam Agentic AI Eco System
@@ -3994,8 +4525,8 @@ st.markdown("""
     </span>
   </div>
   <div style="font-size:0.73rem;color:#475569;display:flex;gap:14px;flex-wrap:wrap;">
-    <span>Version v3.2.3</span>
-    <span>Build: 02-03-2026</span>
+    <span>Version v4.0.0</span>
+    <span>Build: 03-03-2026</span>
     <span>Environment: Production</span>
     <span style="color:#c9a84c;font-weight:600;">GST: 24AAHCV1611L2ZD</span>
   </div>

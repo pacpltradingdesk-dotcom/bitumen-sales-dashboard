@@ -178,5 +178,89 @@
     "affected_tab": "",
     "affected_api": "rest_countries_india",
     "user_id": "System"
+  },
+  {
+    "datetime_ist": "02-03-2026 22:35:26 IST",
+    "component": "usdinr",
+    "what_changed": "Data source switched to fallback",
+    "old_value": "Primary: https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json",
+    "new_value": "Fallback: yfinance(INR=X)",
+    "reason": "Primary failed: Connection error (no internet or host unreachable)",
+    "trigger": "Auto",
+    "affected_tab": "",
+    "affected_api": "usdinr",
+    "user_id": "System"
+  },
+  {
+    "datetime_ist": "03-03-2026 09:00:57 IST",
+    "component": "wti",
+    "what_changed": "auto_heal_fetch",
+    "old_value": "FAIL",
+    "new_value": "OK",
+    "reason": "SRE auto-heal attempt 1 succeeded",
+    "trigger": "Auto",
+    "affected_tab": "",
+    "affected_api": "wti",
+    "user_id": "System"
+  },
+  {
+    "datetime_ist": "03-03-2026 09:00:58 IST",
+    "component": "natural_gas",
+    "what_changed": "auto_heal_fetch",
+    "old_value": "FAIL",
+    "new_value": "OK",
+    "reason": "SRE auto-heal attempt 1 succeeded",
+    "trigger": "Auto",
+    "affected_tab": "",
+    "affected_api": "natural_gas",
+    "user_id": "System"
+  },
+  {
+    "datetime_ist": "03-03-2026 09:00:58 IST",
+    "component": "dxy",
+    "what_changed": "auto_heal_fetch",
+    "old_value": "FAIL",
+    "new_value": "OK",
+    "reason": "SRE auto-heal attempt 1 succeeded",
+    "trigger": "Auto",
+    "affected_tab": "",
+    "affected_api": "dxy",
+    "user_id": "System"
+  },
+  {
+    "datetime_ist": "03-03-2026 09:00:58 IST",
+    "component": "nifty50",
+    "what_changed": "auto_heal_fetch",
+    "old_value": "FAIL",
+    "new_value": "OK",
+    "reason": "SRE auto-heal attempt 1 succeeded",
+    "trigger": "Auto",
+    "affected_tab": "",
+    "affected_api": "nifty50",
+    "user_id": "System"
+  },
+  {
+    "datetime_ist": "03-03-2026 09:00:59 IST",
+    "component": "sensex",
+    "what_changed": "auto_heal_fetch",
+    "old_value": "FAIL",
+    "new_value": "OK",
+    "reason": "SRE auto-heal attempt 1 succeeded",
+    "trigger": "Auto",
+    "affected_tab": "",
+    "affected_api": "sensex",
+    "user_id": "System"
+  },
+  {
+    "datetime_ist": "03-03-2026 09:00:59 IST",
+    "component": "india_vix",
+    "what_changed": "auto_heal_fetch",
+    "old_value": "FAIL",
+    "new_value": "OK",
+    "reason": "SRE auto-heal attempt 1 succeeded",
+    "trigger": "Auto",
+    "affected_tab": "",
+    "affected_api": "india_vix",
+    "user_id": "System"
   }
 ]

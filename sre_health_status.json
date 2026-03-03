@@ -3,50 +3,40 @@
     "entity_type": "data",
     "entity_name": "api_cache_freshness",
     "status": "OK",
-    "last_checked_ist": "02-03-2026 17:44:55 IST",
-    "last_ok_ist": "02-03-2026 17:44:55 IST",
+    "last_checked_ist": "03-03-2026 10:44:45 IST",
+    "last_ok_ist": "03-03-2026 10:44:45 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "3 cached entries fresh"
-  },
-  {
-    "entity_type": "data",
-    "entity_name": "live_prices",
-    "status": "OK",
-    "last_checked_ist": "02-03-2026 17:44:55 IST",
-    "last_ok_ist": "02-03-2026 17:44:55 IST",
-    "error_code": "",
-    "auto_fix_attempted": "N",
-    "details": "7 price keys OK"
-  },
-  {
-    "entity_type": "export",
-    "entity_name": "pdf_export",
-    "status": "OK",
-    "last_checked_ist": "02-03-2026 17:44:55 IST",
-    "last_ok_ist": "02-03-2026 17:44:55 IST",
-    "error_code": "",
-    "auto_fix_attempted": "N",
-    "details": "No PDF exports yet (normal on first run)"
+    "details": "18 cached entries fresh"
   },
   {
     "entity_type": "scheduler",
     "entity_name": "auto_health_check",
     "status": "OK",
-    "last_checked_ist": "02-03-2026 17:44:55 IST",
-    "last_ok_ist": "02-03-2026 17:44:55 IST",
+    "last_checked_ist": "03-03-2026 10:44:45 IST",
+    "last_ok_ist": "03-03-2026 10:44:45 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "Last run 2.7 min ago — on schedule"
+    "details": "Last run 6.0 min ago — on schedule"
+  },
+  {
+    "entity_type": "export",
+    "entity_name": "pdf_export",
+    "status": "OK",
+    "last_checked_ist": "03-03-2026 10:44:45 IST",
+    "last_ok_ist": "03-03-2026 10:44:45 IST",
+    "error_code": "",
+    "auto_fix_attempted": "N",
+    "details": "No PDF exports yet (normal on first run)"
   },
   {
     "entity_type": "errors",
     "entity_name": "error_log",
     "status": "WARN",
-    "last_checked_ist": "02-03-2026 17:44:55 IST",
+    "last_checked_ist": "03-03-2026 10:44:45 IST",
     "last_ok_ist": "",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "22 P1 open errors (threshold ≥5)"
+    "details": "33 P1 open errors (threshold ≥5)"
   }
 ]

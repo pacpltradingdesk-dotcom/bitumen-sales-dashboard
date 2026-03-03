@@ -1,57 +1,7 @@
 [
   {
-    "request_id": "REQ-20260302-174455-EEBB",
-    "timestamp_ist": "02-03-2026 17:44:55 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "SREOrchestrator",
-    "user_id": "system",
-    "message": "=== SRE CYCLE START ===",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-174455-2120",
-    "timestamp_ist": "02-03-2026 17:44:55 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "API health checked: 16 APIs",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-174455-04A1",
-    "timestamp_ist": "02-03-2026 17:44:55 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "API health checked: 16 APIs",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-174455-94E9",
-    "timestamp_ist": "02-03-2026 17:44:55 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Data quality checked: 2 entities",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-174455-B984",
-    "timestamp_ist": "02-03-2026 17:44:55 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Calculation health: 0 checks",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-174455-E63B",
-    "timestamp_ist": "02-03-2026 17:44:55 IST",
+    "request_id": "REQ-20260303-104445-5E4E",
+    "timestamp_ist": "03-03-2026 10:44:45 IST",
     "severity": "INFO",
     "route": "",
     "component": "HealthCheckEngine",
@@ -60,33 +10,123 @@
     "payload_hash": ""
   },
   {
-    "request_id": "REQ-20260302-174455-5E30",
-    "timestamp_ist": "02-03-2026 17:44:55 IST",
+    "request_id": "REQ-20260303-104445-17E2",
+    "timestamp_ist": "03-03-2026 10:44:45 IST",
     "severity": "INFO",
     "route": "",
     "component": "HealthCheckEngine",
     "user_id": "system",
-    "message": "Scheduler health: OK — Last run 2.7 min ago — on schedule",
+    "message": "Full health run: 96% OK  fail=0 warn=1",
     "payload_hash": ""
   },
   {
-    "request_id": "REQ-20260302-174455-9AED",
-    "timestamp_ist": "02-03-2026 17:44:55 IST",
-    "severity": "INFO",
-    "route": "",
-    "component": "HealthCheckEngine",
-    "user_id": "system",
-    "message": "Full health run: 95% OK  fail=0 warn=1",
-    "payload_hash": ""
-  },
-  {
-    "request_id": "REQ-20260302-174455-85DF",
-    "timestamp_ist": "02-03-2026 17:44:55 IST",
+    "request_id": "REQ-20260303-104445-1137",
+    "timestamp_ist": "03-03-2026 10:44:45 IST",
     "severity": "INFO",
     "route": "",
     "component": "SREOrchestrator",
     "user_id": "system",
-    "message": "=== SRE CYCLE END — 0.6s  health=95%  alerts=0  bugs=0 ===",
+    "message": "=== SRE CYCLE END — 1.4s  health=96%  alerts=0  bugs=0 ===",
+    "payload_hash": ""
+  },
+  {
+    "request_id": "REQ-20260303-104445-61AD",
+    "timestamp_ist": "03-03-2026 10:44:45 IST",
+    "severity": "INFO",
+    "route": "",
+    "component": "SREOrchestrator",
+    "user_id": "system",
+    "message": "=== SRE CYCLE END — 1.4s  health=96%  alerts=0  bugs=0 ===",
+    "payload_hash": ""
+  },
+  {
+    "request_id": "REQ-20260303-104445-F4F1",
+    "timestamp_ist": "03-03-2026 10:44:45 IST",
+    "severity": "INFO",
+    "route": "",
+    "component": "HealthCheckEngine",
+    "user_id": "system",
+    "message": "Scheduler health: OK — Last run 6.0 min ago — on schedule",
+    "payload_hash": ""
+  },
+  {
+    "request_id": "REQ-20260303-104445-5833",
+    "timestamp_ist": "03-03-2026 10:44:45 IST",
+    "severity": "INFO",
+    "route": "",
+    "component": "HealthCheckEngine",
+    "user_id": "system",
+    "message": "Scheduler health: OK — Last run 6.0 min ago — on schedule",
+    "payload_hash": ""
+  },
+  {
+    "request_id": "REQ-20260303-104445-6567",
+    "timestamp_ist": "03-03-2026 10:44:45 IST",
+    "severity": "INFO",
+    "route": "",
+    "component": "SREOrchestrator",
+    "user_id": "system",
+    "message": "=== SRE CYCLE END — 1.5s  health=96%  alerts=0  bugs=0 ===",
+    "payload_hash": ""
+  },
+  {
+    "request_id": "REQ-20260303-104445-FDC3",
+    "timestamp_ist": "03-03-2026 10:44:45 IST",
+    "severity": "INFO",
+    "route": "",
+    "component": "HealthCheckEngine",
+    "user_id": "system",
+    "message": "Export health: OK — No PDF exports yet (normal on first run)",
+    "payload_hash": ""
+  },
+  {
+    "request_id": "REQ-20260303-104445-6D52",
+    "timestamp_ist": "03-03-2026 10:44:45 IST",
+    "severity": "INFO",
+    "route": "",
+    "component": "HealthCheckEngine",
+    "user_id": "system",
+    "message": "Full health run: 96% OK  fail=0 warn=1",
+    "payload_hash": ""
+  },
+  {
+    "request_id": "REQ-20260303-104445-7D68",
+    "timestamp_ist": "03-03-2026 10:44:45 IST",
+    "severity": "INFO",
+    "route": "",
+    "component": "SREOrchestrator",
+    "user_id": "system",
+    "message": "=== SRE CYCLE END — 1.6s  health=96%  alerts=0  bugs=0 ===",
+    "payload_hash": ""
+  },
+  {
+    "request_id": "REQ-20260303-104445-5931",
+    "timestamp_ist": "03-03-2026 10:44:45 IST",
+    "severity": "INFO",
+    "route": "",
+    "component": "HealthCheckEngine",
+    "user_id": "system",
+    "message": "Scheduler health: OK — Last run 6.0 min ago — on schedule",
+    "payload_hash": ""
+  },
+  {
+    "request_id": "REQ-20260303-104446-D5D5",
+    "timestamp_ist": "03-03-2026 10:44:46 IST",
+    "severity": "INFO",
+    "route": "",
+    "component": "HealthCheckEngine",
+    "user_id": "system",
+    "message": "Full health run: 96% OK  fail=0 warn=1",
+    "payload_hash": ""
+  },
+  {
+    "request_id": "REQ-20260303-104446-BA8C",
+    "timestamp_ist": "03-03-2026 10:44:46 IST",
+    "severity": "INFO",
+    "route": "",
+    "component": "SREOrchestrator",
+    "user_id": "system",
+    "message": "=== SRE CYCLE END — 1.7s  health=96%  alerts=0  bugs=0 ===",
     "payload_hash": ""
   }
 ]

@@ -347,12 +347,22 @@ def _save(path: Path, data: Any) -> None:
 
 
 def _append_tbl(path: Path, records: List[dict], max_records: int = 500) -> None:
-    """Append records to a normalized table JSON list, trim to max_records."""
+    """Append records to a normalized table JSON list, with dedup + validation + trim."""
     with _lock:
         existing = _load(path, [])
         if not isinstance(existing, list):
             existing = []
-        existing.extend(records)
+        for rec in records:
+            # Dedup: skip if same benchmark/key + same minute already exists
+            ts_prefix = str(rec.get("date_time", ""))[:16]
+            bm = rec.get("benchmark", rec.get("from_currency", rec.get("city", "")))
+            is_dup = any(
+                str(e.get("date_time", ""))[:16] == ts_prefix
+                and e.get("benchmark", e.get("from_currency", e.get("city", ""))) == bm
+                for e in existing[-50:]  # check last 50 only for speed
+            )
+            if not is_dup:
+                existing.append(rec)
         if len(existing) > max_records:
             existing = existing[-max_records:]
         _save(path, existing)
@@ -534,25 +544,29 @@ def connect_eia() -> dict:
             rows = data["response"].get("data", [])
             records = []
             for row in rows:
-                records.append({
-                    "date_time":  row.get("period", _date_str()),
-                    "benchmark":  "Brent",
-                    "price":      float(row.get("value", 0)),
-                    "currency":   "USD/bbl",
-                    "source":     "EIA",
-                })
+                price_val = float(row.get("value", 0))
+                if 40 <= price_val <= 150:  # Validate range
+                    records.append({
+                        "date_time":  row.get("period", _date_str()),
+                        "benchmark":  "Brent",
+                        "price":      price_val,
+                        "currency":   "USD/bbl",
+                        "source":     "EIA",
+                    })
             # Also fetch WTI
             params["facets[series][]"] = "RCLC1"
             data2, _ = _http_get(url, params=params)
             if data2 and isinstance(data2, dict):
                 for row in data2["response"].get("data", []):
-                    records.append({
-                        "date_time": row.get("period", _date_str()),
-                        "benchmark": "WTI",
-                        "price":     float(row.get("value", 0)),
-                        "currency":  "USD/bbl",
-                        "source":    "EIA",
-                    })
+                    price_val = float(row.get("value", 0))
+                    if 40 <= price_val <= 150:  # Validate range
+                        records.append({
+                            "date_time": row.get("period", _date_str()),
+                            "benchmark": "WTI",
+                            "price":     price_val,
+                            "currency":  "USD/bbl",
+                            "source":    "EIA",
+                        })
             if records:
                 _append_tbl(TBL_CRUDE, records, max_records=500)
                 records_written = len(records)
@@ -567,15 +581,37 @@ def connect_eia() -> dict:
     # ── Fallback: yfinance via existing api_manager ───────────────────────────
     try:
         from api_manager import fetch_yfinance_with_history
+        # Fetch Brent and WTI as SEPARATE calls to avoid data contamination
         brent_val, brent_7d = fetch_yfinance_with_history("BZ=F")
         wti_val,   wti_7d   = fetch_yfinance_with_history("CL=F")
         records = []
         ts = _ts()
-        if brent_val:
+
+        # ── Price validation: reject values outside $40-$150 range ──
+        def _valid_crude(price, benchmark):
+            if price is None:
+                return False
+            if price < 40 or price > 150:
+                _hub_log(connector_id, "WARN",
+                         f"Price validation REJECTED: {benchmark} ${price}/bbl (outside $40-$150 range)")
+                return False
+            return True
+
+        brent_ok = _valid_crude(brent_val, "Brent")
+        wti_ok = _valid_crude(wti_val, "WTI")
+
+        # ── Guard: Brent and WTI must NOT be equal (they differ by $3-$8 typically) ──
+        if brent_ok and wti_ok and abs(brent_val - wti_val) < 0.01:
+            _hub_log(connector_id, "WARN",
+                     f"WTI=Brent anomaly detected: Brent=${brent_val} WTI=${wti_val} — skipping save")
+            brent_ok = False
+            wti_ok = False
+
+        if brent_ok:
             records.append({"date_time": ts, "benchmark": "Brent",
                             "price": round(brent_val, 2), "currency": "USD/bbl",
                             "source": "yfinance (EIA fallback)"})
-        if wti_val:
+        if wti_ok:
             records.append({"date_time": ts, "benchmark": "WTI",
                             "price": round(wti_val, 2), "currency": "USD/bbl",
                             "source": "yfinance (EIA fallback)"})
