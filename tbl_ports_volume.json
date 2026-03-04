@@ -1,6 +1,6 @@
 [
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Kandla (KPCT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 35000,
@@ -8,15 +8,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
-    "port_name": "Kandla (KPCT)",
-    "commodity": "Bitumen (VG-30/VG-10)",
-    "quantity": 35000,
-    "unit": "MT (estimated)",
-    "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
-  },
-  {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Mumbai (JNPT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 18000,
@@ -24,7 +16,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Mangalore (NMPT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 12000,
@@ -32,7 +24,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Chennai (CCTPL)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 8000,
@@ -40,7 +32,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Paradip (PPT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 6000,
@@ -48,7 +40,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Kandla (KPCT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 35000,
@@ -56,7 +48,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Mumbai (JNPT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 18000,
@@ -64,7 +56,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Mangalore (NMPT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 12000,
@@ -72,7 +64,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Chennai (CCTPL)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 8000,
@@ -80,7 +72,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Paradip (PPT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 6000,
@@ -88,7 +80,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Kandla (KPCT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 35000,
@@ -96,7 +88,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Mumbai (JNPT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 18000,
@@ -104,7 +96,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Mangalore (NMPT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 12000,
@@ -112,7 +104,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Chennai (CCTPL)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 8000,
@@ -120,7 +112,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Paradip (PPT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 6000,
@@ -128,7 +120,47 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
+    "port_name": "Kandla (KPCT)",
+    "commodity": "Bitumen (VG-30/VG-10)",
+    "quantity": 40992,
+    "unit": "MT (estimated)",
+    "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
+  },
+  {
+    "date": "04-03-2026",
+    "port_name": "Mumbai (JNPT)",
+    "commodity": "Bitumen (VG-30/VG-10)",
+    "quantity": 21082,
+    "unit": "MT (estimated)",
+    "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
+  },
+  {
+    "date": "04-03-2026",
+    "port_name": "Mangalore (NMPT)",
+    "commodity": "Bitumen (VG-30/VG-10)",
+    "quantity": 14054,
+    "unit": "MT (estimated)",
+    "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
+  },
+  {
+    "date": "04-03-2026",
+    "port_name": "Chennai (CCTPL)",
+    "commodity": "Bitumen (VG-30/VG-10)",
+    "quantity": 9370,
+    "unit": "MT (estimated)",
+    "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
+  },
+  {
+    "date": "04-03-2026",
+    "port_name": "Paradip (PPT)",
+    "commodity": "Bitumen (VG-30/VG-10)",
+    "quantity": 7027,
+    "unit": "MT (estimated)",
+    "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
+  },
+  {
+    "date": "04-03-2026",
     "port_name": "Kandla (KPCT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 35000,
@@ -136,7 +168,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Mumbai (JNPT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 18000,
@@ -144,7 +176,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Mangalore (NMPT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 12000,
@@ -152,7 +184,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Chennai (CCTPL)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 8000,
@@ -160,7 +192,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Paradip (PPT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 6000,
@@ -168,7 +200,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Kandla (KPCT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 35000,
@@ -176,7 +208,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Mumbai (JNPT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 18000,
@@ -184,7 +216,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Mangalore (NMPT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 12000,
@@ -192,7 +224,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Chennai (CCTPL)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 8000,
@@ -200,7 +232,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Paradip (PPT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 6000,
@@ -208,7 +240,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Kandla (KPCT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 35000,
@@ -216,7 +248,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Mumbai (JNPT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 18000,
@@ -224,7 +256,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Mangalore (NMPT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 12000,
@@ -232,7 +264,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Chennai (CCTPL)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 8000,
@@ -240,7 +272,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Paradip (PPT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 6000,
@@ -248,7 +280,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Kandla (KPCT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 35000,
@@ -256,7 +288,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Mumbai (JNPT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 18000,
@@ -264,7 +296,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Mangalore (NMPT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 12000,
@@ -272,7 +304,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Chennai (CCTPL)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 8000,
@@ -280,7 +312,7 @@
     "source": "BDI-adjusted estimate (no free auto-API for Indian port cargo)"
   },
   {
-    "date": "03-03-2026",
+    "date": "04-03-2026",
     "port_name": "Paradip (PPT)",
     "commodity": "Bitumen (VG-30/VG-10)",
     "quantity": 6000,

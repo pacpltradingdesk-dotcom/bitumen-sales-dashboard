@@ -1,181 +1,42 @@
 {
-  "wti": {
-    "timestamp": 1772540505.288726,
-    "data": {
-      "current": 76.41000366210938,
-      "history_7d": 65.62999725341797
-    },
-    "source": "Primary fetch"
-  },
-  "natural_gas": {
-    "timestamp": 1772540505.390882,
-    "data": {
-      "current": 76.41000366210938,
-      "history_7d": 65.62999725341797
-    },
-    "source": "Primary fetch"
-  },
-  "dxy": {
-    "timestamp": 1772540505.5126433,
-    "data": {
-      "current": 3.128000020980835,
-      "history_7d": 2.9149999618530273
-    },
-    "source": "Primary fetch"
-  },
-  "nifty50": {
-    "timestamp": 1772540505.643877,
-    "data": {
-      "current": 99.16899871826172,
-      "history_7d": 97.87999725341797
-    },
-    "source": "Primary fetch"
-  },
-  "sensex": {
-    "timestamp": 1772540505.772296,
-    "data": {
-      "current": 24865.69921875,
-      "history_7d": 25571.25
-    },
-    "source": "Primary fetch"
-  },
-  "india_vix": {
-    "timestamp": 1772540505.8788695,
-    "data": {
-      "current": 80238.8515625,
-      "history_7d": 82814.7109375
-    },
-    "source": "Primary fetch"
-  },
-  "gold_xau": {
-    "timestamp": 1772540506.0109813,
-    "data": {
-      "current": 5358.04607062,
-      "history_7d": 5155.7998046875
-    },
-    "source": "Primary fetch"
-  },
-  "weather_mumbai": {
-    "timestamp": 1772540506.7743814,
-    "data": {
-      "current": 27.8,
-      "history_7d": 27.8
-    },
-    "source": "Primary fetch"
-  },
-  "weather_kandla": {
-    "timestamp": 1772540507.7621624,
-    "data": {
-      "current": 32.7,
-      "history_7d": 32.7
-    },
-    "source": "Primary fetch"
-  },
-  "weather_mangalore": {
-    "timestamp": 1772540508.6158907,
-    "data": {
-      "current": 28.5,
-      "history_7d": 28.5
-    },
-    "source": "Primary fetch"
-  },
-  "weather_delhi": {
-    "timestamp": 1772540509.5432665,
-    "data": {
-      "current": 28.4,
-      "history_7d": 28.4
-    },
-    "source": "Primary fetch"
-  },
-  "world_bank_india_gdp": {
-    "timestamp": 1772540510.6089149,
-    "data": {
-      "current": 6.49476552383821,
-      "year": "2024",
-      "country": "India"
-    },
-    "source": "Primary fetch"
-  },
-  "world_bank_india_infra": {
-    "timestamp": 1772540511.4796386,
-    "data": {
-      "current": 7.06298735847362,
-      "year": "2024",
-      "country": "India"
-    },
-    "source": "Primary fetch"
-  },
-  "world_bank_cpi_india": {
-    "timestamp": 1772540512.3124495,
-    "data": {
-      "current": 4.95303550973656,
-      "year": "2024",
-      "country": "India"
-    },
-    "source": "Primary fetch"
-  },
-  "opec_basket": {
-    "timestamp": 1772540513.3710866,
-    "data": {
-      "current": 83.48999786376953,
-      "history_7d": 70.7699966430664
-    },
-    "source": "Primary fetch"
-  },
-  "shipping_freight": {
-    "timestamp": 1772540513.6028512,
-    "data": {
-      "current": 12.220000267028809,
-      "history_7d": 11.729999542236328
-    },
-    "source": "Primary fetch"
-  },
-  "nse_infrastructure": {
-    "timestamp": 1772540513.9089897,
-    "data": {
-      "current": 1288.9000244140625,
-      "history_7d": 1353.199951171875
-    },
-    "source": "Primary fetch"
-  },
   "open_meteo_forecast_vadodara": {
-    "timestamp": 1772540514.237248,
+    "timestamp": 1772603565.8728673,
     "data": {
-      "current": 37.8,
+      "current": 38.4,
       "forecast_7d": [
         [
-          "2026-03-03",
-          37.8,
-          0.0
-        ],
-        [
           "2026-03-04",
-          39.1,
+          38.4,
           0.0
         ],
         [
           "2026-03-05",
-          39.8,
-          0.0
-        ],
-        [
-          "2026-03-06",
-          39.0,
-          0.0
-        ],
-        [
-          "2026-03-07",
           39.1,
           0.0
         ],
         [
+          "2026-03-06",
+          37.3,
+          0.0
+        ],
+        [
+          "2026-03-07",
+          38.3,
+          0.0
+        ],
+        [
           "2026-03-08",
-          39.9,
+          40.1,
           0.0
         ],
         [
           "2026-03-09",
-          40.6,
+          41.0,
+          0.0
+        ],
+        [
+          "2026-03-10",
+          41.0,
           0.0
         ]
       ]
@@ -183,7 +44,7 @@
     "source": "Primary fetch"
   },
   "govt_holiday_api": {
-    "timestamp": 1772540515.1159515,
+    "timestamp": 1772603566.8083074,
     "data": {
       "current": 18,
       "holidays": [
@@ -264,7 +125,7 @@
     "source": "Primary fetch"
   },
   "rest_countries_india": {
-    "timestamp": 1772540515.1567113,
+    "timestamp": 1772603566.8372462,
     "data": {
       "current": 1417492000,
       "name": "India",
@@ -278,33 +139,172 @@
     "source": "Primary fetch"
   },
   "current_time": {
-    "timestamp": 1772540516.156273,
+    "timestamp": 1772603567.8387501,
     "data": {
-      "current": "17:51"
+      "current": "11:22"
     },
     "source": "Primary fetch"
   },
   "usdinr": {
-    "timestamp": 1772540503.9627929,
+    "timestamp": 1772603556.4995933,
     "data": {
-      "current": 91.20917467,
-      "history_7d": 90.72660064697266
+      "current": 91.69100348,
+      "history_7d": 91.02010345458984
     },
     "source": "Primary fetch"
   },
   "usdinr_frankfurter": {
-    "timestamp": 1772540504.585285,
+    "timestamp": 1772603557.25554,
     "data": {
-      "current": 91.74,
-      "history_7d": 91.74
+      "current": 92.15,
+      "history_7d": 92.15
     },
     "source": "Primary fetch"
   },
   "brent": {
-    "timestamp": 1772540505.0387068,
+    "timestamp": 1772603558.33158,
     "data": {
-      "current": 83.48999786376953,
-      "history_7d": 70.7699966430664
+      "current": 83.05000305175781,
+      "history_7d": 70.8499984741211
+    },
+    "source": "Primary fetch"
+  },
+  "wti": {
+    "timestamp": 1772603558.5326257,
+    "data": {
+      "current": 75.81999969482422,
+      "history_7d": 65.41999816894531
+    },
+    "source": "Primary fetch"
+  },
+  "natural_gas": {
+    "timestamp": 1772603558.7375283,
+    "data": {
+      "current": 3.0510001182556152,
+      "history_7d": 2.9690001010894775
+    },
+    "source": "Primary fetch"
+  },
+  "dxy": {
+    "timestamp": 1772603558.9276938,
+    "data": {
+      "current": 99.21199798583984,
+      "history_7d": 97.69999694824219
+    },
+    "source": "Primary fetch"
+  },
+  "nifty50": {
+    "timestamp": 1772603559.1191998,
+    "data": {
+      "current": 24418.5,
+      "history_7d": 25713.0
+    },
+    "source": "Primary fetch"
+  },
+  "sensex": {
+    "timestamp": 1772603559.309792,
+    "data": {
+      "current": 78947.96875,
+      "history_7d": 83294.65625
+    },
+    "source": "Primary fetch"
+  },
+  "india_vix": {
+    "timestamp": 1772603559.5063834,
+    "data": {
+      "current": 20.732500076293945,
+      "history_7d": 14.170000076293945
+    },
+    "source": "Primary fetch"
+  },
+  "gold_xau": {
+    "timestamp": 1772603559.7043192,
+    "data": {
+      "current": 5358.04607062,
+      "history_7d": 5206.39990234375
+    },
+    "source": "Primary fetch"
+  },
+  "weather_mumbai": {
+    "timestamp": 1772603560.3150084,
+    "data": {
+      "current": 28.5,
+      "history_7d": 28.5
+    },
+    "source": "Primary fetch"
+  },
+  "weather_kandla": {
+    "timestamp": 1772603561.2076828,
+    "data": {
+      "current": 30.2,
+      "history_7d": 30.2
+    },
+    "source": "Primary fetch"
+  },
+  "weather_mangalore": {
+    "timestamp": 1772603561.910847,
+    "data": {
+      "current": 27.9,
+      "history_7d": 27.9
+    },
+    "source": "Primary fetch"
+  },
+  "weather_delhi": {
+    "timestamp": 1772603562.7280347,
+    "data": {
+      "current": 27.8,
+      "history_7d": 27.8
+    },
+    "source": "Primary fetch"
+  },
+  "world_bank_india_gdp": {
+    "timestamp": 1772603563.377294,
+    "data": {
+      "current": 6.49476552383821,
+      "year": "2024",
+      "country": "India"
+    },
+    "source": "Primary fetch"
+  },
+  "world_bank_india_infra": {
+    "timestamp": 1772603563.9743788,
+    "data": {
+      "current": 7.06298735847362,
+      "year": "2024",
+      "country": "India"
+    },
+    "source": "Primary fetch"
+  },
+  "world_bank_cpi_india": {
+    "timestamp": 1772603564.6484084,
+    "data": {
+      "current": 4.95303550973656,
+      "year": "2024",
+      "country": "India"
+    },
+    "source": "Primary fetch"
+  },
+  "opec_basket": {
+    "timestamp": 1772603565.2573395,
+    "data": {
+      "current": 83.05000305175781,
+      "history_7d": 70.8499984741211
+    },
+    "source": "Primary fetch"
+  },
+  "shipping_freight": {
+    "timestamp": 1772603565.4574757,
+    "data": {
+      "current": 12.5,
+      "history_7d": 11.770000457763672
+    },
+    "source": "Primary fetch"
+  },
+  "nse_infrastructure": {
+    "timestamp": 1772603565.6498127,
+    "data": {
+      "current": 1305.199951171875,
+      "history_7d": 1327.5
     },
     "source": "Primary fetch"
   }

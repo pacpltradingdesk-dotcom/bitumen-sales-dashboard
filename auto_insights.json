@@ -12,5 +12,37 @@
     "date": "2026-03-03",
     "model": "rule",
     "data_points_used": 6
+  },
+  {
+    "insights": [
+      {
+        "title": "Anomaly Alert - High Severity in Uttar Pradesh",
+        "body": "Two high severity anomalies detected, potentially impacting sales. Investigate the causes and implications for bitumen demand.",
+        "severity": "warning",
+        "category": "risk"
+      },
+      {
+        "title": "Stable Market Sentiment - Opportunity Analysis",
+        "body": "Neutral market sentiment with stable trend suggests a consistent demand. Explore opportunities for sales growth in high-scoring states.",
+        "severity": "info",
+        "category": "opportunity"
+      },
+      {
+        "title": "Demand Peaks - Uttar Pradesh & Maharashtra Focus",
+        "body": "Uttar Pradesh and Maharashtra have the highest demand scores. Prioritize these states for sales initiatives.",
+        "severity": "info",
+        "category": "demand"
+      },
+      {
+        "title": "FX Rate Data Unavailable - Pricing Strategy Impacted",
+        "body": "Lack of current FX rates could affect international pricing strategies. Seek updated exchange rate information.",
+        "severity": "info",
+        "category": "pricing"
+      }
+    ],
+    "generated_at": "04-03-2026 11:02:15 IST",
+    "date": "2026-03-04",
+    "model": "ai",
+    "data_points_used": 6
   }
 ]

@@ -1,6 +1,6 @@
 [
   {
-    "date_ist": "03-03-2026 17:33:42 IST",
+    "date_ist": "04-03-2026 11:13:31 IST",
     "insight_text": "Insufficient monthly data for analysis. Run 'comtrade_hs271320' and 'data_gov_in_highways' connectors first.",
     "trigger_metric": "data_missing",
     "severity": "WARNING"
