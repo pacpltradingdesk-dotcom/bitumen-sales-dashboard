@@ -2149,7 +2149,7 @@ if st.session_state.get("_nav_goto"):
     st.rerun()
 
 # Main Layout: 3 Columns (Selection | Analysis | Detailed Slip)
-if selected_page == "🧮 Pricing Calculator":
+elif selected_page == "🧮 Pricing Calculator":
     _render_page_header("🧮 Pricing Calculator", "Sales & Revenue")
     display_badge("calculated")
     col_left, col_mid, col_right = st.columns([1.2, 1.3, 2.0])
@@ -2636,13 +2636,13 @@ _Terms: 100% Advance. Valid for 24 Hrs._
             st.info("Please select a city to begin.")
 
 # --- TAB: SALES WORKSPACE (NEW) ---
-if selected_page == "💼 Sales Workspace":
+elif selected_page == "💼 Sales Workspace":
     _render_page_header("💼 Sales Workspace", "Sales & Revenue")
     display_badge("historical")
     sales_workspace.render_deal_room()
 
 # --- TAB 2: SALES CALENDAR ---
-if selected_page == "📅 Sales Calendar":
+elif selected_page == "📅 Sales Calendar":
     _render_page_header("📅 Sales Calendar", "Sales & Revenue")
     st.header("📅 Sales Calendar - Season & Holiday Planner")
     st.caption("Understand peak/off seasons, holidays, and best times to contact clients by city")
@@ -2872,7 +2872,7 @@ if selected_page == "📅 Sales Calendar":
 
 # --- TAB 3: PARTY MANAGEMENT ---
 # --- TAB 3: PARTY MANAGEMENT ---
-if selected_page == "👥 Ecosystem Management":
+elif selected_page == "👥 Ecosystem Management":
     _render_page_header("👥 Ecosystem Management", "Technology")
     st.header("👥 Ecosystem Management")
     st.caption("Manage Suppliers, Customers, and Logistics Partners in your ecosystem.")
@@ -3409,7 +3409,7 @@ if selected_page == "👥 Ecosystem Management":
                     st.warning("No sales parties to export")
 
 # --- AI FALLBACK ENGINE (Multi-Provider: OpenAI→Ollama→HuggingFace→GPT4All→Claude) ---
-if selected_page == "🔄 AI Fallback Engine":
+elif selected_page == "🔄 AI Fallback Engine":
     _render_page_header("🔄 AI Fallback Engine", "Knowledge & AI")
     try:
         from command_intel import ai_fallback_dashboard
@@ -3556,7 +3556,7 @@ elif selected_page == "🤖 AI Assistant":
 
 # --- TAB 5: AUTOMATION RULES ---
 # --- TAB 5: AUTOMATION RULES & SETTINGS ---
-if selected_page == "⚙️ Settings":
+elif selected_page == "⚙️ Settings":
     _render_page_header("⚙️ Settings", "Technology")
     st.header("⚙️ System Settings & Integrations")
     
@@ -3688,7 +3688,7 @@ if selected_page == "⚙️ Settings":
     st.multiselect("Mark these Ports as CURRENTLY OFFLINE:", ["Haldia", "Mumbai", "Chennai", "Kochi"])
 
 # --- TAB 6: DATA MANAGER ---
-if selected_page == "🛠️ Data Manager":
+elif selected_page == "🛠️ Data Manager":
     _render_page_header("🛠️ Data Manager", "Operations")
     st.header("🛠️ Data Manager")
     st.info("Update live pricing, discounts, availability, and transport logistics.")
@@ -3829,7 +3829,7 @@ if selected_page == "🛠️ Data Manager":
         st.caption("📍 **Drum Loading Points**: Mumbai serves South India. Kandla serves North India, Gujarat & parts of Maharashtra.")
 
 # --- CONTACT IMPORTER ---
-if selected_page == "📥 Contact Importer":
+elif selected_page == "📥 Contact Importer":
     _render_page_header("📥 Contact Importer", "Operations")
     st.info("ℹ️ **Department Head:** Sales / CRM Admin\n\n📌 Upload PDF, Excel, CSV, or images — AI auto-extracts contacts and fills CRM fields.")
     try:
@@ -3840,7 +3840,7 @@ if selected_page == "📥 Contact Importer":
         st.info("Try reloading the page. If this persists, check 🏥 System Health.")
 
 # --- TAB 7: SOURCE DIRECTORY ---
-if selected_page == "📋 Source Directory":
+elif selected_page == "📋 Source Directory":
     _render_page_header("📋 Source Directory", "Sales & Revenue")
     st.header("📋 Source Directory")
     st.info("Complete list of all loading points categorized by type.")
@@ -3910,7 +3910,7 @@ if selected_page == "📋 Source Directory":
         st.info("💡 **Decanter Info**: These facilities convert drum bitumen into bulk form for road construction projects.")
 
 # --- TAB 8: FEASIBILITY ASSESSMENT ---
-if selected_page == "🏭 Feasibility":
+elif selected_page == "🏭 Feasibility":
     _render_page_header("🏭 Feasibility", "Operations")
     st.header("📊 Feasibility Assessment")
     st.info("Automatic price comparison: **2 Refineries + 2 Import Terminals + 2 Decanters** for any destination")
@@ -4014,7 +4014,7 @@ if selected_page == "🏭 Feasibility":
 
 
 # --- TAB 10: KNOWLEDGE BASE ---
-if selected_page == "📚 Knowledge Base":
+elif selected_page == "📚 Knowledge Base":
     _render_page_header("📚 Knowledge Base", "Knowledge & AI")
     st.header("📚 Bitumen Sales Knowledge Base")
     st.caption("Training Manual, FAQs, and Process Guidelines")
@@ -4062,7 +4062,7 @@ if selected_page == "📚 Knowledge Base":
     st.markdown("---")
     
     # --- TAB 11: CRM & TASKS (NEW) ---
-if selected_page == "🎯 CRM & Tasks":
+elif selected_page == "🎯 CRM & Tasks":
     _render_page_header("🎯 CRM & Tasks", "Sales & Revenue")
     st.header("🎯 Sales CRM & Daily Worklist")
     st.caption("Never miss a follow-up. Manage calls, tasks, and client engagement.")
@@ -4143,7 +4143,7 @@ if selected_page == "🎯 CRM & Tasks":
                 st.rerun()
 
 # --- TAB 12: SOS SPECIAL PRICE TRIGGER (NEW) ---
-if selected_page == "🚨 SPECIAL PRICE (SOS)":
+elif selected_page == "🚨 SPECIAL PRICE (SOS)":
     _render_page_header("🚨 Special Price (SOS)", "Sales & Revenue", "URGENT")
     st.header("🚨 Special Price | SOS Sales Blast")
     st.caption("Active Special Price Opportunities (SPO) detected based on cost reduction.")
@@ -4191,7 +4191,7 @@ if selected_page == "🚨 SPECIAL PRICE (SOS)":
 
 # --- USER GUIDE SECTION ---
 # --- TAB 9: REPORTS ---
-if selected_page == "📤 Reports":
+elif selected_page == "📤 Reports":
     _render_page_header("📤 Reports", "Finance")
     with st.container():
         st.header("📤 Sales Reports & Analytics")
@@ -4228,7 +4228,7 @@ if selected_page == "📤 Reports":
 # COMMAND INTELLIGENCE SYSTEM — PANEL ROUTING
 # ========================================================================================
 
-if selected_page == "🌐 API Dashboard":
+elif selected_page == "🌐 API Dashboard":
     _render_page_header("🌐 API Dashboard", "Technology")
     display_badge("real-time")
     try:
@@ -4998,6 +4998,75 @@ elif selected_page == "🗺️ Dashboard Flow Map":
     except Exception as _e:
         st.error(f"⚠️ Dashboard Flow Map failed to load: {_e}")
         st.info("Try reloading the page.")
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# AI TRADING INTELLIGENCE SYSTEM PAGES (Steps 2-10)
+# ══════════════════════════════════════════════════════════════════════════════
+
+elif selected_page == "🌐 Global Markets":
+    _render_page_header("🌐 Global Markets", "Intelligence", badge="Live Data")
+    try:
+        from command_intel import global_market_dashboard
+        global_market_dashboard.render()
+    except Exception as _e:
+        st.error(f"Global Markets failed to load: {_e}")
+
+elif selected_page == "🏭 Refinery Supply":
+    _render_page_header("🏭 Refinery Supply", "Intelligence", badge="Supply")
+    try:
+        from command_intel import refinery_supply_dashboard
+        refinery_supply_dashboard.render()
+    except Exception as _e:
+        st.error(f"Refinery Supply failed to load: {_e}")
+
+elif selected_page == "🔴 Real-time Insights":
+    _render_page_header("🔴 Real-time Insights", "Intelligence", badge="Live")
+    try:
+        from command_intel import real_time_insights_dashboard
+        real_time_insights_dashboard.render()
+    except Exception as _e:
+        st.error(f"Real-time Insights failed to load: {_e}")
+
+elif selected_page == "💡 Recommendations":
+    _render_page_header("💡 Recommendations", "Intelligence", badge="AI")
+    try:
+        from command_intel import recommendation_dashboard
+        recommendation_dashboard.render()
+    except Exception as _e:
+        st.error(f"Recommendations failed to load: {_e}")
+
+elif selected_page == "🧑‍💼 Business Advisor":
+    _render_page_header("🧑‍💼 Business Advisor", "Intelligence", badge="Advisor")
+    try:
+        from command_intel import business_advisor_dashboard
+        business_advisor_dashboard.render()
+    except Exception as _e:
+        st.error(f"Business Advisor failed to load: {_e}")
+
+elif selected_page == "📋 Discussion Guide":
+    _render_page_header("📋 Discussion Guide", "Sales", badge="Guide")
+    try:
+        from command_intel import discussion_guidance_dashboard
+        discussion_guidance_dashboard.render()
+    except Exception as _e:
+        st.error(f"Discussion Guide failed to load: {_e}")
+
+elif selected_page == "💬 Trading Chatbot":
+    _render_page_header("💬 Trading Chatbot", "AI & Knowledge", badge="AI Chat")
+    try:
+        from command_intel import ai_dashboard_assistant
+        ai_dashboard_assistant.render()
+    except Exception as _e:
+        st.error(f"Trading Chatbot failed to load: {_e}")
+
+elif selected_page == "🎯 Intelligence Hub":
+    _render_page_header("🎯 Intelligence Hub", "AI & Knowledge", badge="Hub")
+    try:
+        from command_intel import intelligence_hub_dashboard
+        intelligence_hub_dashboard.render()
+    except Exception as _e:
+        st.error(f"Intelligence Hub failed to load: {_e}")
 
 
 # ══════════════════════════════════════════════════════════════════════════════

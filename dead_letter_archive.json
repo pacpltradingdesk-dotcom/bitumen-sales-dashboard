@@ -28,5 +28,215 @@
     "status": "exhausted",
     "last_error": "Timeout after 120s",
     "archived_at": "04-03-2026 16:44:45 IST"
+  },
+  {
+    "job_id": "DLQ-20260304-165644-2608",
+    "job_type": "sync_step",
+    "payload": {
+      "step_name": "infra_demand"
+    },
+    "error": "Timeout after 120s",
+    "attempt": 3,
+    "max_retries": 3,
+    "created_at": "04-03-2026 16:56:44 IST",
+    "next_retry_at": "04-03-2026 19:14:47 IST",
+    "status": "exhausted",
+    "last_error": "Timeout after 120s",
+    "archived_at": "04-03-2026 17:20:53 IST"
+  },
+  {
+    "job_id": "DLQ-20260304-172021-6176",
+    "job_type": "sync_step",
+    "payload": {
+      "step_name": "infra_demand"
+    },
+    "error": "Timeout after 120s",
+    "attempt": 3,
+    "max_retries": 3,
+    "created_at": "04-03-2026 17:20:21 IST",
+    "next_retry_at": "04-03-2026 19:30:03 IST",
+    "status": "exhausted",
+    "last_error": "Timeout after 120s",
+    "archived_at": "04-03-2026 17:35:53 IST"
+  },
+  {
+    "job_id": "DLQ-20260304-172607-2288",
+    "job_type": "sync_step",
+    "payload": {
+      "step_name": "infra_demand"
+    },
+    "error": "Timeout after 120s",
+    "attempt": 3,
+    "max_retries": 3,
+    "created_at": "04-03-2026 17:26:07 IST",
+    "next_retry_at": "04-03-2026 19:38:40 IST",
+    "status": "exhausted",
+    "last_error": "Timeout after 120s",
+    "archived_at": "04-03-2026 17:45:10 IST"
+  },
+  {
+    "job_id": "DLQ-20260304-175547-1056",
+    "job_type": "sync_step",
+    "payload": {
+      "step_name": "infra_demand"
+    },
+    "error": "Timeout after 120s",
+    "attempt": 3,
+    "max_retries": 3,
+    "created_at": "04-03-2026 17:55:47 IST",
+    "next_retry_at": "04-03-2026 20:08:40 IST",
+    "status": "exhausted",
+    "last_error": "Timeout after 120s",
+    "archived_at": "04-03-2026 18:08:41 IST"
+  },
+  {
+    "job_id": "DLQ-20260304-180025-8064",
+    "job_type": "sync_step",
+    "payload": {
+      "step_name": "infra_demand"
+    },
+    "error": "Timeout after 120s",
+    "attempt": 3,
+    "max_retries": 3,
+    "created_at": "04-03-2026 18:00:25 IST",
+    "next_retry_at": "04-03-2026 20:08:41 IST",
+    "status": "exhausted",
+    "last_error": "Timeout after 120s",
+    "archived_at": "04-03-2026 18:09:07 IST"
+  },
+  {
+    "job_id": "DLQ-20260304-191050-7392",
+    "job_type": "sync_step",
+    "payload": {
+      "step_name": "market_data"
+    },
+    "error": "Timeout after 120s",
+    "attempt": 3,
+    "max_retries": 3,
+    "created_at": "04-03-2026 19:10:50 IST",
+    "next_retry_at": "04-03-2026 21:22:10 IST",
+    "status": "exhausted",
+    "last_error": "Timeout after 120s",
+    "archived_at": "04-03-2026 19:23:42 IST"
+  },
+  {
+    "job_id": "DLQ-20260304-191415-2608",
+    "job_type": "sync_step",
+    "payload": {
+      "step_name": "infra_demand"
+    },
+    "error": "Timeout after 120s",
+    "attempt": 3,
+    "max_retries": 3,
+    "created_at": "04-03-2026 19:14:15 IST",
+    "next_retry_at": "04-03-2026 21:22:10 IST",
+    "status": "exhausted",
+    "last_error": "Timeout after 120s",
+    "archived_at": "04-03-2026 19:23:42 IST"
+  },
+  {
+    "job_id": "DLQ-20260304-191423-3232",
+    "job_type": "sync_step",
+    "payload": {
+      "step_name": "infra_demand"
+    },
+    "error": "Timeout after 120s",
+    "attempt": 3,
+    "max_retries": 3,
+    "created_at": "04-03-2026 19:14:23 IST",
+    "next_retry_at": "04-03-2026 21:22:10 IST",
+    "status": "exhausted",
+    "last_error": "Timeout after 120s",
+    "archived_at": "04-03-2026 19:23:42 IST"
+  },
+  {
+    "job_id": "DLQ-20260304-191928-7680",
+    "job_type": "sync_step",
+    "payload": {
+      "step_name": "infra_demand"
+    },
+    "error": "Timeout after 120s",
+    "attempt": 3,
+    "max_retries": 3,
+    "created_at": "04-03-2026 19:19:28 IST",
+    "next_retry_at": "04-03-2026 21:22:10 IST",
+    "status": "exhausted",
+    "last_error": "Timeout after 120s",
+    "archived_at": "04-03-2026 19:23:42 IST"
+  },
+  {
+    "job_id": "DLQ-20260304-193421-7584",
+    "job_type": "sync_step",
+    "payload": {
+      "step_name": "infra_demand"
+    },
+    "error": "Timeout after 120s",
+    "attempt": 3,
+    "max_retries": 3,
+    "created_at": "04-03-2026 19:34:21 IST",
+    "next_retry_at": "04-03-2026 21:37:35 IST",
+    "status": "exhausted",
+    "last_error": "Timeout after 120s",
+    "archived_at": "04-03-2026 19:39:04 IST"
+  },
+  {
+    "job_id": "DLQ-20260304-202320-8816",
+    "job_type": "sync_step",
+    "payload": {
+      "step_name": "market_data"
+    },
+    "error": "Timeout after 120s",
+    "attempt": 3,
+    "max_retries": 3,
+    "created_at": "04-03-2026 20:23:20 IST",
+    "next_retry_at": "04-03-2026 22:31:37 IST",
+    "status": "exhausted",
+    "last_error": "Timeout after 120s",
+    "archived_at": "04-03-2026 20:53:45 IST"
+  },
+  {
+    "job_id": "DLQ-20260304-202351-4304",
+    "job_type": "sync_step",
+    "payload": {
+      "step_name": "market_data"
+    },
+    "error": "Timeout after 120s",
+    "attempt": 3,
+    "max_retries": 3,
+    "created_at": "04-03-2026 20:23:51 IST",
+    "next_retry_at": "04-03-2026 22:31:37 IST",
+    "status": "exhausted",
+    "last_error": "Timeout after 120s",
+    "archived_at": "04-03-2026 20:53:45 IST"
+  },
+  {
+    "job_id": "DLQ-20260304-202837-8784",
+    "job_type": "sync_step",
+    "payload": {
+      "step_name": "infra_demand"
+    },
+    "error": "Timeout after 120s",
+    "attempt": 3,
+    "max_retries": 3,
+    "created_at": "04-03-2026 20:28:37 IST",
+    "next_retry_at": "04-03-2026 22:31:37 IST",
+    "status": "exhausted",
+    "last_error": "Timeout after 120s",
+    "archived_at": "04-03-2026 20:53:46 IST"
+  },
+  {
+    "job_id": "DLQ-20260304-202907-2208",
+    "job_type": "sync_step",
+    "payload": {
+      "step_name": "infra_demand"
+    },
+    "error": "Timeout after 120s",
+    "attempt": 3,
+    "max_retries": 3,
+    "created_at": "04-03-2026 20:29:07 IST",
+    "next_retry_at": "04-03-2026 22:31:37 IST",
+    "status": "exhausted",
+    "last_error": "Timeout after 120s",
+    "archived_at": "04-03-2026 20:53:47 IST"
   }
 ]

@@ -612,6 +612,53 @@ class HealthCheckEngine:
         _upsert_health("errors", "error_log", status, details=detail)
         return {"entity": "error_log", "status": status, "details": detail}
 
+    # ── 7. Resource Monitoring (CPU, Memory, Disk) ──────────────────────────
+    @staticmethod
+    def check_resources() -> dict:
+        """Check system resources via psutil (if available)."""
+        try:
+            import psutil
+            cpu_pct = psutil.cpu_percent(interval=0.5)
+            mem = psutil.virtual_memory()
+            disk = psutil.disk_usage("/") if not hasattr(psutil, 'disk_usage') else psutil.disk_usage(".")
+
+            alerts = []
+            status = "OK"
+            if cpu_pct > 90:
+                alerts.append(f"CPU critical: {cpu_pct}%")
+                status = "FAIL"
+            elif cpu_pct > 75:
+                alerts.append(f"CPU high: {cpu_pct}%")
+                status = "WARN"
+
+            if mem.percent > 85:
+                alerts.append(f"Memory critical: {mem.percent}%")
+                status = "FAIL"
+            elif mem.percent > 70:
+                alerts.append(f"Memory high: {mem.percent}%")
+                if status != "FAIL":
+                    status = "WARN"
+
+            if disk.percent > 90:
+                alerts.append(f"Disk critical: {disk.percent}%")
+                status = "FAIL"
+
+            detail = (f"CPU={cpu_pct}% Mem={mem.percent}% Disk={disk.percent}% "
+                      f"MemUsed={mem.used // (1024**2)}MB")
+            _upsert_health("resource", "system_resources", status, details=detail)
+            return {
+                "entity": "system_resources", "status": status,
+                "cpu_pct": cpu_pct, "memory_pct": mem.percent,
+                "disk_pct": disk.percent, "memory_used_mb": mem.used // (1024**2),
+                "alerts": alerts, "details": detail,
+            }
+        except ImportError:
+            return {"entity": "system_resources", "status": "OK",
+                    "details": "psutil not installed — resource monitoring disabled"}
+        except Exception as e:
+            return {"entity": "system_resources", "status": "OK",
+                    "details": f"Resource check error: {e}"}
+
     # ── Full run ───────────────────────────────────────────────────────────────
     @classmethod
     def run_all(cls) -> dict:
@@ -624,6 +671,7 @@ class HealthCheckEngine:
             "export_health": cls.check_export(),
             "sched_health":  cls.check_scheduler(),
             "error_rates":   cls.check_error_rates(),
+            "resources":     cls.check_resources(),
         }
 
         # Aggregate summary
@@ -631,7 +679,7 @@ class HealthCheckEngine:
         for key in ("api_health", "data_health", "calc_health"):
             for r in results[key]:
                 all_statuses.append(r["status"])
-        for key in ("export_health", "sched_health", "error_rates"):
+        for key in ("export_health", "sched_health", "error_rates", "resources"):
             all_statuses.append(results[key]["status"])
 
         total  = len(all_statuses)

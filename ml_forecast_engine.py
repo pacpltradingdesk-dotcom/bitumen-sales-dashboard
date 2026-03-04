@@ -103,6 +103,8 @@ def forecast_crude_price(days_ahead: int = 90) -> dict:
     Forecast crude oil prices.
     Returns: {"dates", "predicted", "lower", "upper", "model", "confidence",
               "current_price", "direction"}
+
+    Ensemble: Prophet(0.35) + SARIMAX(0.35) + ARIMA(0.30) when available.
     """
     # Load historical data
     raw = _load_json("tbl_crude_prices.json")
@@ -110,6 +112,44 @@ def forecast_crude_price(days_ahead: int = 90) -> dict:
 
     df = _build_crude_df(records)
 
+    # Try ensemble (Prophet + SARIMAX)
+    if df is not None and len(df) >= 20:
+        forecasts = []
+        weights = []
+
+        if _HAS_PROPHET:
+            try:
+                prophet_fc = _forecast_prophet(df, days_ahead, "crude_price")
+                if prophet_fc.get("model") == "prophet":
+                    forecasts.append(prophet_fc)
+                    weights.append(0.35)
+            except Exception:
+                pass
+
+        if _HAS_STATSMODELS:
+            try:
+                sarimax_fc = _forecast_sarimax(df, days_ahead, "crude_price")
+                if sarimax_fc.get("model") == "sarimax":
+                    forecasts.append(sarimax_fc)
+                    weights.append(0.35)
+            except Exception:
+                pass
+
+            if len(forecasts) < 2:
+                try:
+                    arima_fc = _forecast_arima(df, days_ahead, "crude_price")
+                    if arima_fc.get("model") == "arima":
+                        forecasts.append(arima_fc)
+                        weights.append(0.30)
+                except Exception:
+                    pass
+
+        if len(forecasts) >= 2:
+            return _ensemble_forecast(forecasts, weights)
+        if forecasts:
+            return forecasts[0]
+
+    # Single-model fallback
     if df is not None and len(df) >= 10 and _HAS_PROPHET:
         return _forecast_prophet(df, days_ahead, "crude_price")
 
@@ -586,3 +626,312 @@ def _build_direction_training_data():
         X.append([crude_pct, fx_pct, season, demand, import_trend])
         y.append(direction)
     return np.array(X), np.array(y)
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# 6. SARIMAX FORECAST
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _forecast_sarimax(df: pd.DataFrame, days_ahead: int, label: str,
+                      exog_df: Optional[pd.DataFrame] = None) -> dict:
+    """SARIMAX(1,1,1)(1,1,1,7) forecast with optional exogenous variables."""
+    if not _HAS_STATSMODELS:
+        return _forecast_heuristic_crude([], days_ahead)
+    try:
+        from statsmodels.tsa.statespace.sarimax import SARIMAX
+
+        series = df.set_index("ds")["y"].asfreq("D", method="ffill")
+
+        # Build exogenous features if not provided
+        exog = None
+        future_exog = None
+        if exog_df is not None and len(exog_df) == len(series):
+            exog = exog_df
+            # Extend exog for forecast period (repeat last row)
+            last_row = exog_df.iloc[-1:]
+            future_exog = pd.concat([last_row] * days_ahead, ignore_index=True)
+
+        model = SARIMAX(
+            series,
+            exog=exog,
+            order=(1, 1, 1),
+            seasonal_order=(1, 1, 1, 7),
+            enforce_stationarity=False,
+            enforce_invertibility=False,
+        )
+        fit = model.fit(disp=False, maxiter=100)
+        fc_result = fit.get_forecast(steps=days_ahead, exog=future_exog)
+        fc = fc_result.predicted_mean
+        conf = fc_result.conf_int()
+
+        dates = pd.date_range(series.index[-1] + timedelta(days=1), periods=days_ahead)
+        current = float(series.iloc[-1])
+        pred_end = float(fc.iloc[-1])
+        direction = "UP" if pred_end > current * 1.01 else ("DOWN" if pred_end < current * 0.99 else "STABLE")
+
+        return {
+            "dates": dates.strftime("%Y-%m-%d").tolist(),
+            "predicted": fc.round(2).tolist(),
+            "lower": conf.iloc[:, 0].round(2).tolist(),
+            "upper": conf.iloc[:, 1].round(2).tolist(),
+            "model": "sarimax",
+            "confidence": min(90.0, max(58.0, 90 - days_ahead * 0.12)),
+            "current_price": current,
+            "direction": direction,
+            "label": label,
+        }
+    except Exception as e:
+        LOG.warning("SARIMAX forecast failed: %s", e)
+        return {"model": "failed"}
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# 7. ENSEMBLE FORECAST
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _ensemble_forecast(forecasts: list[dict], weights: Optional[list[float]] = None) -> dict:
+    """Weighted ensemble of multiple forecast models."""
+    if not forecasts:
+        return _forecast_heuristic_crude([], 30)
+
+    if weights is None:
+        weights = [1.0 / len(forecasts)] * len(forecasts)
+
+    # Normalize weights
+    total_w = sum(weights)
+    weights = [w / total_w for w in weights]
+
+    # Find shortest forecast length
+    min_len = min(len(f.get("predicted", [])) for f in forecasts)
+    if min_len == 0:
+        return forecasts[0]
+
+    # Weighted average of predictions
+    predicted = np.zeros(min_len)
+    lower = np.zeros(min_len)
+    upper = np.zeros(min_len)
+
+    for fc, w in zip(forecasts, weights):
+        predicted += np.array(fc["predicted"][:min_len]) * w
+        lower += np.array(fc.get("lower", fc["predicted"])[:min_len]) * w
+        upper += np.array(fc.get("upper", fc["predicted"])[:min_len]) * w
+
+    dates = forecasts[0]["dates"][:min_len]
+    current = forecasts[0].get("current_price", 0)
+    pred_end = float(predicted[-1])
+    direction = "UP" if pred_end > current * 1.01 else ("DOWN" if pred_end < current * 0.99 else "STABLE")
+
+    # Ensemble gets +5% confidence bonus
+    avg_conf = np.mean([f.get("confidence", 60) for f in forecasts])
+    ensemble_conf = min(97.0, avg_conf + 5.0)
+
+    models_used = [f.get("model", "unknown") for f in forecasts]
+
+    return {
+        "dates": dates,
+        "predicted": np.round(predicted, 2).tolist(),
+        "lower": np.round(lower, 2).tolist(),
+        "upper": np.round(upper, 2).tolist(),
+        "model": f"ensemble({'+'.join(models_used)})",
+        "confidence": round(ensemble_conf, 1),
+        "current_price": current,
+        "direction": direction,
+        "label": forecasts[0].get("label", ""),
+        "component_models": models_used,
+    }
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# 8. FX RATE FORECASTING — Prophet → ARIMA → Momentum
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def forecast_fx_rate(days_ahead: int = 30) -> dict:
+    """
+    Forecast USD/INR exchange rate.
+    Returns same format as crude price forecast.
+    """
+    raw = _load_json("tbl_fx_rates.json")
+    records = raw if isinstance(raw, list) else raw.get("records", raw.get("data", []))
+
+    df = _build_fx_df(records)
+
+    if df is not None and len(df) >= 10 and _HAS_PROPHET:
+        return _forecast_prophet(df, days_ahead, "fx_rate")
+
+    if df is not None and len(df) >= 10 and _HAS_STATSMODELS:
+        return _forecast_arima(df, days_ahead, "fx_rate")
+
+    return _forecast_heuristic_fx(records, days_ahead)
+
+
+def _build_fx_df(records: list) -> Optional[pd.DataFrame]:
+    """Build Prophet-compatible DataFrame from FX records."""
+    if not records:
+        return None
+    rows = []
+    for r in records:
+        ts = r.get("timestamp") or r.get("date") or r.get("created_at", "")
+        rate = r.get("usdinr") or r.get("rate") or r.get("value")
+        if ts and rate:
+            try:
+                dt = pd.to_datetime(str(ts)[:19])
+                rows.append({"ds": dt, "y": float(rate)})
+            except Exception:
+                continue
+    if not rows:
+        return None
+    df = pd.DataFrame(rows).drop_duplicates("ds").sort_values("ds").reset_index(drop=True)
+    return df if len(df) >= 5 else None
+
+
+def _forecast_heuristic_fx(records: list, days_ahead: int) -> dict:
+    """Momentum-based FX heuristic fallback."""
+    current = 86.5  # reasonable default
+    if records:
+        for r in reversed(records):
+            v = r.get("usdinr") or r.get("rate")
+            if v:
+                current = float(v)
+                break
+
+    rng = np.random.default_rng(int(datetime.now().strftime("%Y%m%d")))
+    dates, predicted, lower, upper = [], [], [], []
+    rate = current
+    for i in range(days_ahead):
+        dt = datetime.now(IST) + timedelta(days=i + 1)
+        drift = rng.normal(0.01, 0.15)  # slight depreciation bias
+        rate = max(60, min(120, rate + drift))
+        band = 0.5 + i * 0.03
+        dates.append(dt.strftime("%Y-%m-%d"))
+        predicted.append(round(rate, 2))
+        lower.append(round(rate - band, 2))
+        upper.append(round(rate + band, 2))
+
+    direction = "UP" if predicted[-1] > current * 1.005 else ("DOWN" if predicted[-1] < current * 0.995 else "STABLE")
+    return {
+        "dates": dates, "predicted": predicted, "lower": lower, "upper": upper,
+        "model": "heuristic", "confidence": max(40.0, 65.0 - days_ahead * 0.3),
+        "current_price": current, "direction": direction, "label": "fx_rate",
+    }
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# 9. STATE-LEVEL DEMAND FORECASTING
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Monsoon severity factors by state (lower = more construction slowdown)
+_MONSOON_FACTORS = {
+    "Gujarat": 0.70, "Rajasthan": 0.75, "Maharashtra": 0.65,
+    "Karnataka": 0.60, "Tamil Nadu": 0.55, "Andhra Pradesh": 0.60,
+    "Telangana": 0.62, "Madhya Pradesh": 0.68, "Uttar Pradesh": 0.72,
+    "West Bengal": 0.50, "Odisha": 0.52, "Bihar": 0.55,
+    "Punjab": 0.75, "Haryana": 0.75, "Kerala": 0.45,
+    "Jharkhand": 0.58, "Chhattisgarh": 0.60, "Assam": 0.42,
+}
+
+# Season factors by month (national average)
+_SEASON_NATIONAL = {
+    1: 1.02, 2: 1.04, 3: 1.06, 4: 1.03, 5: 0.98, 6: 0.92,
+    7: 0.85, 8: 0.88, 9: 0.95, 10: 1.05, 11: 1.04, 12: 1.00,
+}
+
+
+def forecast_state_demand(state: str, months_ahead: int = 6) -> dict:
+    """
+    Per-state demand forecast with monsoon severity and infra tenders.
+    Tier 1: Prophet with tender regressor → Tier 2: State-aware heuristic.
+    """
+    # Try to load state-specific data from DB
+    records = []
+    try:
+        from database import get_connection
+        with get_connection() as conn:
+            rows = conn.execute(
+                "SELECT * FROM infra_demand_scores WHERE state = ? ORDER BY score_date DESC LIMIT 500",
+                (state,)
+            ).fetchall()
+            cols = [d[0] for d in conn.description]
+            records = [dict(zip(cols, r)) for r in rows]
+    except Exception:
+        pass
+
+    if records and len(records) >= 15 and _HAS_PROPHET:
+        try:
+            df_rows = []
+            for r in records:
+                dt = r.get("score_date") or r.get("created_at", "")
+                score = r.get("demand_score") or r.get("composite_score")
+                tenders = r.get("tender_count", 0)
+                if dt and score:
+                    df_rows.append({
+                        "ds": pd.to_datetime(str(dt)[:10]),
+                        "y": float(score),
+                        "tenders": float(tenders or 0),
+                    })
+            if len(df_rows) >= 15:
+                df = pd.DataFrame(df_rows).drop_duplicates("ds").sort_values("ds")
+                return _forecast_state_prophet(df, state, months_ahead)
+        except Exception:
+            pass
+
+    # Heuristic fallback with state-specific monsoon adjustment
+    monsoon_factor = _MONSOON_FACTORS.get(state, 0.65)
+    base_demand = 65.0
+    dates, predicted = [], []
+    for i in range(months_ahead):
+        dt = datetime.now(IST) + timedelta(days=30 * (i + 1))
+        season = _SEASON_NATIONAL.get(dt.month, 1.0)
+        # Apply monsoon penalty during Jun-Sep
+        if dt.month in (6, 7, 8, 9):
+            season *= monsoon_factor
+        dates.append(dt.strftime("%Y-%m"))
+        predicted.append(round(base_demand * season, 1))
+
+    return {
+        "dates": dates, "predicted": predicted,
+        "lower": [round(p * 0.85, 1) for p in predicted],
+        "upper": [round(p * 1.15, 1) for p in predicted],
+        "model": "heuristic_state", "confidence": 52.0,
+        "direction": "STABLE", "label": "state_demand",
+        "state": state, "monsoon_factor": monsoon_factor,
+    }
+
+
+def _forecast_state_prophet(df: pd.DataFrame, state: str, months_ahead: int) -> dict:
+    """Prophet forecast with tenders as additive regressor."""
+    try:
+        model = Prophet(
+            daily_seasonality=False,
+            weekly_seasonality=False,
+            yearly_seasonality=True,
+            changepoint_prior_scale=0.05,
+        )
+        if "tenders" in df.columns:
+            model.add_regressor("tenders", mode="additive")
+        model.fit(df)
+
+        future = model.make_future_dataframe(periods=months_ahead * 30)
+        if "tenders" in df.columns:
+            avg_tenders = df["tenders"].mean()
+            future["tenders"] = avg_tenders
+
+        fc = model.predict(future)
+        fc_future = fc[fc["ds"] > df["ds"].max()]
+
+        current = float(df["y"].iloc[-1])
+        pred_end = float(fc_future["yhat"].iloc[-1]) if len(fc_future) > 0 else current
+        direction = "UP" if pred_end > current * 1.02 else ("DOWN" if pred_end < current * 0.98 else "STABLE")
+
+        return {
+            "dates": fc_future["ds"].dt.strftime("%Y-%m-%d").tolist(),
+            "predicted": fc_future["yhat"].round(1).tolist(),
+            "lower": fc_future["yhat_lower"].round(1).tolist(),
+            "upper": fc_future["yhat_upper"].round(1).tolist(),
+            "model": "prophet_state", "confidence": 72.0,
+            "current_price": current, "direction": direction,
+            "label": "state_demand", "state": state,
+            "monsoon_factor": _MONSOON_FACTORS.get(state, 0.65),
+        }
+    except Exception as e:
+        LOG.warning("State Prophet forecast failed for %s: %s", state, e)
+        return forecast_state_demand(state, months_ahead)  # falls to heuristic

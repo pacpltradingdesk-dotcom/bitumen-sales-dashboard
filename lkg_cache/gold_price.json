@@ -1,0 +1,12 @@
+{
+  "source_key": "gold_price",
+  "data": {
+    "ok": true,
+    "connector_id": "gold_price",
+    "records": 6,
+    "latest_gold": 5212.0
+  },
+  "original_confidence": 85,
+  "saved_at": "04-03-2026 17:54:11 IST",
+  "saved_epoch": 1772627051.0100188
+}

@@ -131,6 +131,13 @@ class SyncEngine:
             ("market_signals", self._sync_market_signals),
         ])
 
+        # Batch 5 (parallel): AI Trading Intelligence Refresh
+        self._run_batch([
+            ("intelligence_refresh", self._sync_intelligence_refresh),
+            ("market_pulse", self._sync_market_pulse),
+            ("recommendations", self._sync_recommendations),
+        ])
+
         # Finalize
         self.results["completed_at"] = _now()
         self.results["status"] = (
@@ -630,6 +637,56 @@ class SyncEngine:
         except Exception as e:
             step["details"].append(f"Market signals: Error — {str(e)[:100]}")
             self.results["errors"].append(f"Market signals: {str(e)[:100]}")
+        step["status"] = "done"
+        step["completed_at"] = _now()
+        self.results["steps"].append(step)
+
+    # ─── Step 19: AI Trading Intelligence Refresh ────────────────────────────
+
+    def _sync_intelligence_refresh(self):
+        """Trigger unified intelligence refresh (Batch 5)."""
+        step = {"name": "Intelligence Refresh", "status": "running",
+                "started_at": _now(), "details": []}
+        try:
+            from unified_intelligence_engine import refresh_intelligence
+            result = refresh_intelligence()
+            ok = sum(1 for v in result.values() if v and not str(v).startswith("Error"))
+            step["details"].append(f"Intelligence refresh: {ok}/{len(result)} engines OK")
+        except Exception as e:
+            step["details"].append(f"Intelligence refresh: skipped — {str(e)[:80]}")
+        step["status"] = "done"
+        step["completed_at"] = _now()
+        self.results["steps"].append(step)
+
+    def _sync_market_pulse(self):
+        """Generate contextual market alerts."""
+        step = {"name": "Market Pulse", "status": "running",
+                "started_at": _now(), "details": []}
+        try:
+            from market_pulse_engine import monitor_all
+            result = monitor_all()
+            alert_count = len(result.get("alerts", []))
+            step["details"].append(f"Market pulse: {alert_count} alerts generated")
+        except Exception as e:
+            step["details"].append(f"Market pulse: skipped — {str(e)[:80]}")
+        step["status"] = "done"
+        step["completed_at"] = _now()
+        self.results["steps"].append(step)
+
+    def _sync_recommendations(self):
+        """Generate daily trading recommendations."""
+        step = {"name": "Recommendations", "status": "running",
+                "started_at": _now(), "details": []}
+        try:
+            from recommendation_engine import generate_daily_recommendations
+            result = generate_daily_recommendations()
+            action = "N/A"
+            buy = result.get("buy_timing", {})
+            if isinstance(buy, dict):
+                action = buy.get("action", "N/A")
+            step["details"].append(f"Recommendations generated: buy action={action}")
+        except Exception as e:
+            step["details"].append(f"Recommendations: skipped — {str(e)[:80]}")
         step["status"] = "done"
         step["completed_at"] = _now()
         self.results["steps"].append(step)

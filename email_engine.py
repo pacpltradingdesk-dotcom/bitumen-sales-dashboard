@@ -38,7 +38,7 @@ EMAIL_REGEX = re.compile(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
 # ─── Credential Management ──────────────────────────────────────────────────
 
 class EmailCredentialManager:
-    """Stores SMTP credentials in email_config.json with base64 obfuscation."""
+    """Stores SMTP credentials with Fernet encryption (fallback: base64 legacy)."""
 
     CONFIG_FILE = BASE / "email_config.json"
 
@@ -49,11 +49,21 @@ class EmailCredentialManager:
                          signature_html: str = "",
                          cc_default: str = "",
                          bcc_default: str = "") -> None:
+        # Encrypt password via vault if available, else base64 legacy
+        pw_encoded = base64.b64encode(password.encode()).decode()
+        pw_format = "base64"
+        try:
+            from vault_engine import encrypt_value
+            pw_encoded = encrypt_value(password)
+            pw_format = "fernet"
+        except (ImportError, Exception):
+            pass
         config = {
             "smtp_host": smtp_host,
             "smtp_port": smtp_port,
             "username": username,
-            "password": base64.b64encode(password.encode()).decode(),
+            "password": pw_encoded,
+            "password_format": pw_format,
             "from_name": from_name,
             "from_email": from_email,
             "signature_html": signature_html,
@@ -71,7 +81,27 @@ class EmailCredentialManager:
             with open(cls.CONFIG_FILE, "r", encoding="utf-8") as f:
                 config = json.load(f)
             if config.get("password"):
-                config["password"] = base64.b64decode(config["password"]).decode()
+                fmt = config.get("password_format", "base64")
+                if fmt == "fernet":
+                    try:
+                        from vault_engine import decrypt_value
+                        config["password"] = decrypt_value(config["password"])
+                    except Exception:
+                        config["password"] = ""
+                else:
+                    # Legacy base64 — decode + auto-migrate to Fernet
+                    config["password"] = base64.b64decode(config["password"]).decode()
+                    try:
+                        cls.save_credentials(
+                            config.get("smtp_host", ""), config.get("smtp_port", 587),
+                            config.get("username", ""), config["password"],
+                            config.get("from_name", ""), config.get("from_email", ""),
+                            config.get("signature_html", ""),
+                            config.get("cc_default", ""), config.get("bcc_default", ""),
+                        )
+                    except Exception:
+                        pass
+            config.pop("password_format", None)
             return config
         except (json.JSONDecodeError, IOError, Exception):
             return {}

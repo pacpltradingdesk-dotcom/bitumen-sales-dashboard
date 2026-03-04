@@ -1,0 +1,197 @@
+{
+  "latest": {
+    "buy_advisory": {
+      "sources": [
+        {
+          "name": "Local Decanter (Ahmedabad)",
+          "source_type": "PRIVATE_DECANTER",
+          "base_price": 35500.0,
+          "freight": 2043.0,
+          "landed_inr": 44433.0,
+          "savings_vs_avg": 2965.26
+        },
+        {
+          "name": "Kandla Port Import",
+          "source_type": "IMPORT_TERMINAL",
+          "base_price": 38000.0,
+          "freight": 1721.5,
+          "landed_inr": 46871.37,
+          "savings_vs_avg": 526.89
+        },
+        {
+          "name": "Mundra Port Import",
+          "source_type": "IMPORT_TERMINAL",
+          "base_price": 37800.0,
+          "freight": 2090.0,
+          "landed_inr": 47070.2,
+          "savings_vs_avg": 328.06
+        },
+        {
+          "name": "Digi Port Import",
+          "source_type": "IMPORT_TERMINAL",
+          "base_price": 39000.0,
+          "freight": 2178.0,
+          "landed_inr": 48590.04,
+          "savings_vs_avg": 0
+        },
+        {
+          "name": "VVF Mumbai Terminal",
+          "source_type": "IMPORT_TERMINAL",
+          "base_price": 39200.0,
+          "freight": 3195.5,
+          "landed_inr": 50026.69,
+          "savings_vs_avg": 0
+        }
+      ],
+      "timing": "Normal schedule -- no urgency, monitor daily",
+      "quantity_mt": 200,
+      "urgency": "HOLD",
+      "urgency_index": 58,
+      "reasons": [
+        "Purchase urgency index: 58/100 (HOLD)",
+        "Crude prices forecast to FALL -- consider waiting",
+        "Market composite: SIDEWAYS (45% confidence)",
+        "Market action: High risk detected -- secure supply from reliable sources",
+        "Season: Peak (Month 3)"
+      ],
+      "confidence": 0.58,
+      "crude_forecast_direction": "DOWN",
+      "season": "Peak",
+      "generated_at": "04-03-2026 21:24 IST"
+    },
+    "sell_advisory": {
+      "targets": [
+        {
+          "name": "Dilip Buildcon (Bhopal)",
+          "city": "Bhopal",
+          "relationship_stage": "cold",
+          "days_since_contact": 999,
+          "offer_aggressive": 48791.0,
+          "offer_balanced": 49091.0,
+          "offer_premium": 49491.0,
+          "landed_cost": 48291.0,
+          "margin_per_mt": 500.0,
+          "priority": "low"
+        },
+        {
+          "name": "L&T Construction (Hyderabad)",
+          "city": "Hyderabad",
+          "relationship_stage": "cold",
+          "days_since_contact": 999,
+          "offer_aggressive": 49667.0,
+          "offer_balanced": 49967.0,
+          "offer_premium": 50367.0,
+          "landed_cost": 49167.0,
+          "margin_per_mt": 500.0,
+          "priority": "low"
+        },
+        {
+          "name": "Tata Projects (Pune)",
+          "city": "Pune",
+          "relationship_stage": "cold",
+          "days_since_contact": 999,
+          "offer_aggressive": 45755.0,
+          "offer_balanced": 46055.0,
+          "offer_premium": 46455.0,
+          "landed_cost": 45255.0,
+          "margin_per_mt": 500.0,
+          "priority": "low"
+        }
+      ],
+      "call_script": "--- TODAY'S CALL PRIORITY LIST ---\n\n1. [LOW] Dilip Buildcon (Bhopal) (Bhopal) | Offer: Rs.48,791.00/MT (Aggressive) to Rs.49,491.00/MT (Premium) | Margin: Rs.500.00/MT\n   -> Cold contact. Reintroduce with market update.\n\n2. [LOW] L&T Construction (Hyderabad) (Hyderabad) | Offer: Rs.49,667.00/MT (Aggressive) to Rs.50,367.00/MT (Premium) | Margin: Rs.500.00/MT\n   -> Cold contact. Reintroduce with market update.\n\n3. [LOW] Tata Projects (Pune) (Pune) | Offer: Rs.45,755.00/MT (Aggressive) to Rs.46,455.00/MT (Premium) | Margin: Rs.500.00/MT\n   -> Cold contact. Reintroduce with market update.\n",
+      "timing": "Peak season -- push aggressively. Customers need supply for active road construction projects.",
+      "total_targets": 3,
+      "high_priority_count": 0,
+      "generated_at": "04-03-2026 21:24 IST"
+    },
+    "timing_advisory": {
+      "next_revision_date": "16-03-2026",
+      "days_to_revision": 12,
+      "expected_direction": "STABLE",
+      "forward_strategy_direction": "UP",
+      "crude_forecast_direction": "DOWN",
+      "order_window": "Normal timing -- next revision 16-03-2026 (12 days away). No urgency.",
+      "confidence": 0.57,
+      "season": "Peak",
+      "generated_at": "04-03-2026 21:24 IST"
+    },
+    "risk_summary": {
+      "risks": {
+        "supply": {
+          "level": "high",
+          "description": "Supply risk: HIGH. Geopolitical tensions affecting crude supply. Key headline: OPEC Plus to Boost Oil Production as Iran Strikes Threaten Price Spike - The New",
+          "mitigation": "Diversify suppliers and maintain 15-day safety stock"
+        },
+        "fx": {
+          "level": "low",
+          "description": "USD/INR pressure: LOW. FX forecast: DOWN. Latest rate: 86.48",
+          "mitigation": "Monitor USD/INR; no hedging needed currently"
+        },
+        "credit": {
+          "level": "low",
+          "description": "0 customer(s) with outstanding amounts",
+          "mitigation": "Standard payment terms; monitor receivables"
+        },
+        "seasonal": {
+          "level": "low",
+          "description": "Peak season -- healthy construction activity",
+          "mitigation": "Maintain 10-15 day stock for peak demand"
+        },
+        "logistics": {
+          "level": "high",
+          "description": "Road: LOW. Port: HIGH. Affected cities: None. Congested ports: None",
+          "mitigation": "Plan alternate routes; allow 2-3 day delivery buffer"
+        }
+      },
+      "overall_level": "high",
+      "high_risk_count": 2,
+      "generated_at": "04-03-2026 21:24 IST"
+    },
+    "generated_at": "04-03-2026 21:24 IST",
+    "natural_language_brief": " Today, my recommendation is to hold your positions as we navigate a forecasted downturn in crude oil markets that may impact bitumen pricing stability. Maintain current inventory levels at approximately 200 MT without immediate purchase or sale actions until the next price revision on March 16th (16/3/2026). Keep an eye out for any shifts in expected prices, but remain cautious given our high-risk environment. Aim to reassess market conditions post-revision before making significant moves."
+  },
+  "history": [
+    {
+      "timestamp": "04-03-2026 21:02 IST",
+      "buy_urgency": "HOLD",
+      "sell_targets": 3,
+      "expected_direction": "STABLE",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "04-03-2026 21:04 IST",
+      "buy_urgency": "HOLD",
+      "sell_targets": 3,
+      "expected_direction": "STABLE",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "04-03-2026 21:04 IST",
+      "buy_urgency": "HOLD",
+      "sell_targets": 3,
+      "expected_direction": "STABLE",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "04-03-2026 21:04 IST",
+      "buy_urgency": "HOLD",
+      "sell_targets": 3,
+      "expected_direction": "STABLE",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "04-03-2026 21:12 IST",
+      "buy_urgency": "HOLD",
+      "sell_targets": 3,
+      "expected_direction": "STABLE",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "04-03-2026 21:24 IST",
+      "buy_urgency": "HOLD",
+      "sell_targets": 3,
+      "expected_direction": "STABLE",
+      "overall_risk": "high"
+    }
+  ]
+}

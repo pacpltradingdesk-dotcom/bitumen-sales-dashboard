@@ -68,13 +68,17 @@ MODULE_NAV: dict[str, dict] = {
     "🧠 Intelligence": {
         "icon": "🧠", "label": "Intelligence",
         "tabs": [
-            {"label": "Market Signals",    "page": "📡 Market Signals"},
-            {"label": "Tender & Infra",    "page": "🏗️ Infra Demand Intelligence",
-             "also": ["🔭 Contractor OSINT", "🗂️ India Procurement Directory"]},
-            {"label": "News Center",       "page": "📰 News Intelligence"},
-            {"label": "Forecast",          "page": "👷 Demand Analytics",
-             "also": ["🔍 Opportunities", "📈 Demand Correlation",
-                      "🕵️ Competitor Intelligence"]},
+            {"label": "Market Signals",      "page": "📡 Market Signals",
+             "also": ["📰 News Intelligence", "🏗️ Infra Demand Intelligence",
+                      "🔭 Contractor OSINT", "🗂️ India Procurement Directory"]},
+            {"label": "Real-time Insights",  "page": "🔴 Real-time Insights",
+             "also": ["🌐 Global Markets", "🏭 Refinery Supply"]},
+            {"label": "Business Advisor",    "page": "🧑‍💼 Business Advisor",
+             "also": ["📋 Discussion Guide"]},
+            {"label": "Recommendations",     "page": "💡 Recommendations",
+             "also": ["👷 Demand Analytics", "🔍 Opportunities",
+                      "📈 Demand Correlation", "🕵️ Competitor Intelligence",
+                      "🔮 Price Prediction"]},
         ],
     },
     "🛡 Compliance": {
@@ -124,13 +128,13 @@ MODULE_NAV: dict[str, dict] = {
     "🤖 AI & Knowledge": {
         "icon": "🤖", "label": "AI & Knowledge",
         "tabs": [
-            {"label": "AI Assistant",      "page": "🤖 AI Assistant",
-             "also": ["🧠 AI Dashboard Assistant"]},
+            {"label": "Trading Chatbot",   "page": "💬 Trading Chatbot",
+             "also": ["🤖 AI Assistant", "🧠 AI Dashboard Assistant"]},
             {"label": "Fallback Engine",   "page": "🔄 AI Fallback Engine"},
             {"label": "Knowledge Base",    "page": "📚 Knowledge Base",
              "also": ["🏛️ Business Intelligence"]},
-            {"label": "AI Learning",       "page": "🤖 AI Learning",
-             "also": ["📥 Contact Importer", "🛠️ Data Manager"]},
+            {"label": "Intelligence Hub",  "page": "🎯 Intelligence Hub",
+             "also": ["🤖 AI Learning", "📥 Contact Importer", "🛠️ Data Manager"]},
         ],
     },
 }
@@ -202,3 +206,41 @@ def all_pages() -> list[str]:
             for p in tab.get("also", []):
                 pages.append(p)
     return pages
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# PAGE-LEVEL ROLE REQUIREMENTS
+# Minimum role needed to access each module.  Pages not listed default to
+# "viewer".  Role hierarchy: director(4) > sales(3) > operations(2) > viewer(1)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+MODULE_ROLE_MAP: dict[str, str] = {
+    "🏠 Home":              "viewer",
+    "📌 Director Briefing": "director",
+    "💰 Procurement":       "operations",
+    "🧾 Sales":             "sales",
+    "🚚 Logistics":         "operations",
+    "🧠 Intelligence":      "viewer",
+    "🛡 Compliance":        "operations",
+    "📊 Reports":           "viewer",
+    "⚙ System Control":    "director",
+    "🛠 Developer":         "director",
+    "🤖 AI & Knowledge":   "viewer",
+}
+
+
+def _build_page_role_map() -> dict[str, str]:
+    """Build a flat page → required role mapping from MODULE_ROLE_MAP."""
+    mapping: dict[str, str] = {}
+    for mod_key, mod in MODULE_NAV.items():
+        required = MODULE_ROLE_MAP.get(mod_key, "viewer")
+        for tab in mod["tabs"]:
+            page = tab["page"]
+            if not page.startswith("_"):
+                mapping[page] = required
+            for p in tab.get("also", []):
+                mapping[p] = required
+    return mapping
+
+
+PAGE_ROLE_MAP: dict[str, str] = _build_page_role_map()

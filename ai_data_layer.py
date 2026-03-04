@@ -337,6 +337,143 @@ def build_context_json(role: str = "Admin") -> str:
 
 
 # ══════════════════════════════════════════════════════════════════════════════
+# FULL TRADING CONTEXT (Step 4/10 — feeds the AI Trading Chatbot)
+# ══════════════════════════════════════════════════════════════════════════════
+
+def get_full_trading_context(role: str = "Admin") -> dict:
+    """Aggregate ALL data sources into one context dict for the Trading Chatbot.
+
+    Returns a superset of build_full_context() with additional:
+    - Market pulse alerts & state
+    - Trading recommendations
+    - Business advisory
+    - Supply chain / logistics context
+    - Forecast data
+    """
+    # Start with existing full context
+    ctx = build_full_context(role)
+
+    # ── Market Pulse ─────────────────────────────────────────────────
+    try:
+        from market_pulse_engine import get_market_state_summary, get_active_alerts
+        ctx["market_pulse"] = get_market_state_summary()
+        alerts = get_active_alerts(max_age_hours=24)
+        ctx["active_alerts"] = alerts[:10] if alerts else []
+    except Exception:
+        pass
+
+    # ── Recommendations ──────────────────────────────────────────────
+    try:
+        from recommendation_engine import get_latest_recommendations
+        recs = get_latest_recommendations()
+        if recs and not recs.get("error"):
+            ctx["recommendations"] = {
+                "buy_timing": recs.get("buy_timing"),
+                "sell_timing": recs.get("sell_timing"),
+            }
+    except Exception:
+        pass
+
+    # ── Business Advisory ────────────────────────────────────────────
+    try:
+        from business_advisor_engine import get_buy_advisory, get_sell_advisory
+        ctx["buy_advisory"] = get_buy_advisory()
+        ctx["sell_advisory"] = get_sell_advisory()
+    except Exception:
+        pass
+
+    # ── Market Intelligence Master Signal ────────────────────────────
+    try:
+        from market_intelligence_engine import MarketIntelligenceEngine
+        mie = MarketIntelligenceEngine()
+        master = mie.compute_master_signal()
+        if master:
+            ctx["master_signal"] = {
+                "score": master.get("score"),
+                "direction": master.get("market_direction"),
+                "confidence": master.get("confidence"),
+            }
+    except Exception:
+        pass
+
+    # ── Purchase Advisor ─────────────────────────────────────────────
+    try:
+        from purchase_advisor_engine import PurchaseAdvisorEngine
+        pa = PurchaseAdvisorEngine()
+        advice = pa.get_purchase_advice()
+        if advice:
+            ctx["purchase_urgency"] = {
+                "score": advice.get("urgency_score"),
+                "action": advice.get("action"),
+            }
+    except Exception:
+        pass
+
+    # ── Forecasts ────────────────────────────────────────────────────
+    try:
+        from ml_forecast_engine import forecast_crude_price, forecast_fx_rate
+        crude_fc = forecast_crude_price(15)
+        if crude_fc and crude_fc.get("predicted"):
+            ctx["crude_forecast_15d"] = {
+                "trend": crude_fc.get("trend"),
+                "confidence": crude_fc.get("confidence"),
+            }
+        fx_fc = forecast_fx_rate(15)
+        if fx_fc and fx_fc.get("predicted"):
+            ctx["fx_forecast_15d"] = {
+                "trend": fx_fc.get("trend"),
+                "confidence": fx_fc.get("confidence"),
+            }
+    except Exception:
+        pass
+
+    # ── Supply Chain / Logistics ─────────────────────────────────────
+    try:
+        from api_hub_engine import HubCache
+        maritime = HubCache.get("maritime_intel")
+        if maritime:
+            ctx["maritime_status"] = "available"
+        ports = HubCache.get("ports")
+        if ports:
+            ctx["ports_status"] = "available"
+    except Exception:
+        pass
+
+    return ctx
+
+
+def get_supply_chain_context() -> dict:
+    """Get supply chain and logistics context."""
+    ctx = {}
+    try:
+        from api_hub_engine import HubCache
+        ctx["maritime"] = HubCache.get("maritime_intel") or {}
+        ctx["ports"] = HubCache.get("ports") or {}
+        ctx["bdi"] = HubCache.get("bdi_index") or {}
+    except Exception:
+        pass
+    return ctx
+
+
+def get_logistics_context() -> dict:
+    """Get logistics-specific context for chatbot."""
+    ctx = {}
+    try:
+        from maritime_intelligence_engine import get_maritime_summary
+        ctx["maritime_summary"] = get_maritime_summary()
+    except Exception:
+        pass
+    try:
+        from api_hub_engine import HubCache
+        bdi = HubCache.get("bdi_index")
+        if bdi:
+            ctx["bdi_latest"] = bdi.get("latest")
+    except Exception:
+        pass
+    return ctx
+
+
+# ══════════════════════════════════════════════════════════════════════════════
 # PRE-BUILT CHART DATA (called by UI to render quick charts)
 # ══════════════════════════════════════════════════════════════════════════════
 

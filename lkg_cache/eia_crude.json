@@ -2,10 +2,10 @@
   "source_key": "eia_crude",
   "data": {
     "ok": true,
-    "records": 1,
+    "records": 2,
     "source": "yfinance fallback"
   },
   "original_confidence": 85,
-  "saved_at": "04-03-2026 16:15:14 IST",
-  "saved_epoch": 1772621114.2588089
+  "saved_at": "04-03-2026 20:15:52 IST",
+  "saved_epoch": 1772635552.5168035
 }

@@ -34,18 +34,24 @@ except Exception:
 # ═══════════════════════════════════════════════════════════════════════════════
 
 def get_finbert_status() -> dict:
-    """Returns FinBERT model availability."""
+    """Returns FinBERT model availability and active tier."""
+    if _HAS_TRANSFORMERS and _HAS_TORCH:
+        active = "finbert"
+    elif _HAS_VADER:
+        active = "vader"
+    else:
+        active = "keyword"
     return {
         "transformers_available": _HAS_TRANSFORMERS,
         "torch_available": _HAS_TORCH,
+        "vader_available": _HAS_VADER,
         "finbert_ready": _HAS_TRANSFORMERS and _HAS_TORCH,
-        "active_engine": (
-            "finbert" if _HAS_TRANSFORMERS and _HAS_TORCH else
-            "keyword"
-        ),
+        "active_engine": active,
+        "tier_chain": "FinBERT → DistilBERT → VADER → Keyword",
         "install_hints": {
             "transformers": "pip install transformers",
             "torch": "pip install torch",
+            "vader": "pip install vaderSentiment",
         },
     }
 
@@ -75,6 +81,62 @@ def _get_finbert_pipeline():
         return _finbert_pipeline
     except Exception as e:
         LOG.warning("FinBERT load failed: %s", e)
+        return None
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# VADER SENTIMENT (Tier 3 — lightweight, no model download)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+_HAS_VADER = False
+_vader_analyzer = None
+
+try:
+    from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+    _HAS_VADER = True
+except ImportError:
+    pass
+
+
+def _get_vader():
+    """Lazy-load VADER analyzer."""
+    global _vader_analyzer
+    if _vader_analyzer is not None:
+        return _vader_analyzer
+    if not _HAS_VADER:
+        return None
+    try:
+        from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+        _vader_analyzer = SentimentIntensityAnalyzer()
+        return _vader_analyzer
+    except Exception:
+        return None
+
+
+def _vader_sentiment(text: str) -> Optional[dict]:
+    """VADER sentiment analysis. Returns None if VADER not available."""
+    analyzer = _get_vader()
+    if analyzer is None:
+        return None
+    try:
+        scores = analyzer.polarity_scores(text)
+        compound = scores["compound"]
+        if compound >= 0.05:
+            sentiment = "positive"
+            score = min(0.95, 0.5 + compound * 0.5)
+        elif compound <= -0.05:
+            sentiment = "negative"
+            score = min(0.95, 0.5 + abs(compound) * 0.5)
+        else:
+            sentiment = "neutral"
+            score = 0.5
+        return {
+            "sentiment": sentiment,
+            "score": round(score, 3),
+            "engine": "vader",
+            "compound": round(compound, 3),
+        }
+    except Exception:
         return None
 
 
@@ -160,7 +222,12 @@ def analyze_financial_sentiment(text: str) -> dict:
     except Exception:
         pass
 
-    # Tier 3: Keyword fallback
+    # Tier 3: VADER sentiment (lightweight, no model download needed)
+    vader_result = _vader_sentiment(text)
+    if vader_result:
+        return vader_result
+
+    # Tier 4: Keyword fallback
     return _keyword_sentiment(text)
 
 

@@ -67,7 +67,7 @@ def format_whatsapp_number(number: str) -> str:
 # ─── Credential Management ──────────────────────────────────────────────────
 
 class WhatsAppCredentialManager:
-    """Stores 360dialog credentials in whatsapp_config.json."""
+    """Stores 360dialog credentials with Fernet encryption (fallback: base64)."""
 
     CONFIG_FILE = BASE / "whatsapp_config.json"
 
@@ -75,8 +75,17 @@ class WhatsAppCredentialManager:
     def save_credentials(cls, api_key: str, phone_number_id: str,
                          webhook_url: str = "",
                          business_name: str = "PPS Anantam") -> None:
+        key_encoded = base64.b64encode(api_key.encode()).decode()
+        key_format = "base64"
+        try:
+            from vault_engine import encrypt_value
+            key_encoded = encrypt_value(api_key)
+            key_format = "fernet"
+        except (ImportError, Exception):
+            pass
         config = {
-            "api_key": base64.b64encode(api_key.encode()).decode(),
+            "api_key": key_encoded,
+            "api_key_format": key_format,
             "phone_number_id": phone_number_id,
             "webhook_url": webhook_url,
             "business_name": business_name,
@@ -92,7 +101,24 @@ class WhatsAppCredentialManager:
             with open(cls.CONFIG_FILE, "r", encoding="utf-8") as f:
                 config = json.load(f)
             if config.get("api_key"):
-                config["api_key"] = base64.b64decode(config["api_key"]).decode()
+                fmt = config.get("api_key_format", "base64")
+                if fmt == "fernet":
+                    try:
+                        from vault_engine import decrypt_value
+                        config["api_key"] = decrypt_value(config["api_key"])
+                    except Exception:
+                        config["api_key"] = ""
+                else:
+                    config["api_key"] = base64.b64decode(config["api_key"]).decode()
+                    # Auto-migrate to Fernet
+                    try:
+                        cls.save_credentials(
+                            config["api_key"], config.get("phone_number_id", ""),
+                            config.get("webhook_url", ""), config.get("business_name", "PPS Anantam"),
+                        )
+                    except Exception:
+                        pass
+            config.pop("api_key_format", None)
             return config
         except (json.JSONDecodeError, IOError, Exception):
             return {}

@@ -473,9 +473,12 @@ class MarketIntelligenceEngine:
                 sent_score = article.get("sentiment_score")
                 if sent_score is None:
                     try:
-                        from finbert_engine import _keyword_sentiment
-                        result = _keyword_sentiment(headline)
-                        sent_score = result.get("score", 0)
+                        from finbert_engine import analyze_financial_sentiment
+                        result = analyze_financial_sentiment(headline)
+                        sent_score = result.get("score", 0.5)
+                        # Negate for negative sentiment
+                        if result.get("sentiment") == "negative":
+                            sent_score = -sent_score
                     except Exception:
                         sent_score = 0
                 sentiments.append(float(sent_score or 0))

@@ -44,3 +44,16 @@ lightgbm>=4.2.0
 # NLP & Sentiment (unlock existing finbert_engine)
 transformers>=4.37.0
 torch>=2.1.0
+
+# VADER Sentiment (lightweight fallback — no model download needed)
+vaderSentiment>=3.3.2
+
+# RAG — Semantic Search (unlock hybrid search in rag_engine)
+faiss-cpu>=1.7.4
+sentence-transformers>=2.3.0
+
+# Encryption (vault_engine credential storage)
+cryptography>=42.0.0
+
+# System Monitoring (sre_engine resource checks)
+psutil>=5.9.0

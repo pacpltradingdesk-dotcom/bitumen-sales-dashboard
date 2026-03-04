@@ -1950,5 +1950,822 @@
     "accuracy_scores": {
       "price_7d": 91.3
     }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 16:51:22",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.58,
+        "error_pct": 8.57
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.58,
+        "error_pct": 8.57
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 91.4
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 16:54:18",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.54,
+        "error_pct": 8.53
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.54,
+        "error_pct": 8.53
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 91.5
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 16:54:21",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.54,
+        "error_pct": 8.53
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.54,
+        "error_pct": 8.53
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 91.5
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 16:58:54",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.23,
+        "error_pct": 8.18
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.23,
+        "error_pct": 8.18
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 91.8
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 17:12:30",
+    "predictions_evaluated": [],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 0
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 17:13:16",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.21,
+        "error_pct": 8.16
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.21,
+        "error_pct": 8.16
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 91.8
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 17:16:43",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.37,
+        "error_pct": 8.34
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.37,
+        "error_pct": 8.34
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 91.7
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 17:17:42",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.43,
+        "error_pct": 8.41
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.43,
+        "error_pct": 8.41
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 91.6
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 17:19:28",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.49,
+        "error_pct": 8.47
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.49,
+        "error_pct": 8.47
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 91.5
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 17:20:42",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.44,
+        "error_pct": 8.42
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.44,
+        "error_pct": 8.42
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 91.6
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 17:22:47",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.38,
+        "error_pct": 8.35
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.38,
+        "error_pct": 8.35
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 91.7
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 17:24:30",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.47,
+        "error_pct": 8.45
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.47,
+        "error_pct": 8.45
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 91.5
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 17:32:49",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.35,
+        "error_pct": 8.32
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.35,
+        "error_pct": 8.32
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 91.7
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 17:33:03",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.35,
+        "error_pct": 8.32
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.35,
+        "error_pct": 8.32
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 91.7
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 17:34:02",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.34,
+        "error_pct": 8.31
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.34,
+        "error_pct": 8.31
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 91.7
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 17:34:02",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.34,
+        "error_pct": 8.31
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.34,
+        "error_pct": 8.31
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 91.7
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 17:37:54",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.43,
+        "error_pct": 8.41
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.43,
+        "error_pct": 8.41
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 91.6
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 17:38:47",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.51,
+        "error_pct": 8.5
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.51,
+        "error_pct": 8.5
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 91.5
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 17:38:55",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.51,
+        "error_pct": 8.5
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.51,
+        "error_pct": 8.5
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 91.5
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 17:52:48",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.32,
+        "error_pct": 8.28
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.32,
+        "error_pct": 8.28
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 91.7
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 17:54:48",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.31,
+        "error_pct": 8.27
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.31,
+        "error_pct": 8.27
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 91.7
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 17:57:19",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.09,
+        "error_pct": 8.03
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.09,
+        "error_pct": 8.03
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 92.0
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 17:58:44",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 81.98,
+        "error_pct": 7.9
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 81.98,
+        "error_pct": 7.9
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 92.1
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 18:02:33",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.21,
+        "error_pct": 8.16
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 82.21,
+        "error_pct": 8.16
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 91.8
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 18:15:56",
+    "predictions_evaluated": [],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 0
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 18:16:31",
+    "predictions_evaluated": [],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 0
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 19:11:43",
+    "predictions_evaluated": [],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 0
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 19:11:49",
+    "predictions_evaluated": [],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 0
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 19:11:58",
+    "predictions_evaluated": [],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 0
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 19:12:15",
+    "predictions_evaluated": [],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 0
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 19:14:09",
+    "predictions_evaluated": [],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 0
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 19:15:10",
+    "predictions_evaluated": [],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 0
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 19:16:27",
+    "predictions_evaluated": [],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 0
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 19:23:17",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 81.17,
+        "error_pct": 6.99
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 81.17,
+        "error_pct": 6.99
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 93.0
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 19:27:24",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 80.92,
+        "error_pct": 6.7
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 80.92,
+        "error_pct": 6.7
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 93.3
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 19:27:25",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 80.92,
+        "error_pct": 6.7
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 80.92,
+        "error_pct": 6.7
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 93.3
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 19:27:25",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 80.92,
+        "error_pct": 6.7
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 80.92,
+        "error_pct": 6.7
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 93.3
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 19:28:10",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 81.05,
+        "error_pct": 6.85
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 81.05,
+        "error_pct": 6.85
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 93.2
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 19:31:18",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 80.55,
+        "error_pct": 6.27
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 80.55,
+        "error_pct": 6.27
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 93.7
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 19:31:55",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 80.55,
+        "error_pct": 6.27
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 80.55,
+        "error_pct": 6.27
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 93.7
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 19:32:31",
+    "predictions_evaluated": [
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 80.49,
+        "error_pct": 6.2
+      },
+      {
+        "type": "crude_price",
+        "predicted": 75.5,
+        "actual": 80.49,
+        "error_pct": 6.2
+      }
+    ],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 93.8
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 20:24:25",
+    "predictions_evaluated": [],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 0
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 20:24:29",
+    "predictions_evaluated": [],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 0
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 20:24:46",
+    "predictions_evaluated": [],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 0
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 20:24:58",
+    "predictions_evaluated": [],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 0
+    }
+  },
+  {
+    "cycle_type": "daily",
+    "run_date": "2026-03-04 20:27:39",
+    "predictions_evaluated": [],
+    "adjustments": [],
+    "accuracy_scores": {
+      "price_7d": 0
+    }
   }
 ]

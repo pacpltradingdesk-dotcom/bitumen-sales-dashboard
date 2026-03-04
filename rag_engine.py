@@ -296,7 +296,8 @@ def _load_cached_documents() -> list[dict]:
 
 def search(query: str, top_k: int = 5) -> list[dict]:
     """
-    Semantic search across indexed documents.
+    Hybrid search across indexed documents.
+    Pipeline: synonym expand → fetch 3x candidates → hybrid rank (RRF) → rerank → top-k.
     Fallback chain: FAISS → TF-IDF → keyword match.
     """
     global _documents, _faiss_index, _tfidf_vectorizer, _tfidf_matrix, _embedding_model
@@ -311,7 +312,15 @@ def search(query: str, top_k: int = 5) -> list[dict]:
 
     texts = [d["text"] for d in _documents]
 
-    # Tier 1: FAISS
+    # Step 1: Expand query with synonyms
+    expanded_query = _expand_query(query)
+
+    # Step 2: Get candidates from multiple sources (3x top_k for diversity)
+    fetch_k = min(top_k * 3, len(_documents))
+    faiss_results = []
+    tfidf_results = []
+
+    # Dense retrieval: FAISS
     if _HAS_FAISS and _HAS_SENTENCE_TRANSFORMERS:
         try:
             if _faiss_index is None:
@@ -322,28 +331,19 @@ def search(query: str, top_k: int = 5) -> list[dict]:
                 _embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
 
             if _faiss_index is not None:
-                q_embedding = _embedding_model.encode([query])
+                q_embedding = _embedding_model.encode([expanded_query])
                 q_embedding = np.array(q_embedding, dtype="float32")
                 faiss.normalize_L2(q_embedding)
 
-                scores, indices = _faiss_index.search(q_embedding, min(top_k, len(_documents)))
-                results = []
+                scores, indices = _faiss_index.search(q_embedding, min(fetch_k, _faiss_index.ntotal))
                 for score, idx in zip(scores[0], indices[0]):
                     if idx < 0 or idx >= len(_documents):
                         continue
-                    doc = _documents[idx]
-                    results.append({
-                        "text": doc["text"],
-                        "source": doc.get("source", "unknown"),
-                        "score": round(float(score), 3),
-                        "metadata": doc.get("metadata", {}),
-                        "engine": "faiss",
-                    })
-                return results
+                    faiss_results.append((int(idx), float(score)))
         except Exception as e:
             LOG.debug("FAISS search failed: %s", e)
 
-    # Tier 2: TF-IDF
+    # Sparse retrieval: TF-IDF
     if _HAS_SKLEARN:
         try:
             if _tfidf_vectorizer is None or _tfidf_matrix is None:
@@ -355,28 +355,147 @@ def search(query: str, top_k: int = 5) -> list[dict]:
                         _tfidf_matrix = data["matrix"]
 
             if _tfidf_vectorizer is not None and _tfidf_matrix is not None:
-                q_vec = _tfidf_vectorizer.transform([query])
+                q_vec = _tfidf_vectorizer.transform([expanded_query])
                 similarities = cosine_similarity(q_vec, _tfidf_matrix).flatten()
-                top_indices = similarities.argsort()[-top_k:][::-1]
-
-                results = []
+                top_indices = similarities.argsort()[-fetch_k:][::-1]
                 for idx in top_indices:
-                    if similarities[idx] < 0.01:
-                        continue
-                    doc = _documents[idx]
-                    results.append({
-                        "text": doc["text"],
-                        "source": doc.get("source", "unknown"),
-                        "score": round(float(similarities[idx]), 3),
-                        "metadata": doc.get("metadata", {}),
-                        "engine": "tfidf",
-                    })
-                return results
+                    if similarities[idx] >= 0.01:
+                        tfidf_results.append((int(idx), float(similarities[idx])))
         except Exception as e:
             LOG.debug("TF-IDF search failed: %s", e)
 
+    # Step 3: Hybrid ranking via Reciprocal Rank Fusion
+    if faiss_results and tfidf_results:
+        merged = _reciprocal_rank_fusion(faiss_results, tfidf_results, k=60)
+        results = []
+        for idx, score in merged[:top_k]:
+            doc = _documents[idx]
+            results.append({
+                "text": doc["text"],
+                "source": doc.get("source", "unknown"),
+                "score": round(score, 3),
+                "metadata": doc.get("metadata", {}),
+                "engine": "hybrid(faiss+tfidf)",
+            })
+        return _rerank(results, query)
+
+    # Single-source fallback
+    if faiss_results:
+        results = []
+        for idx, score in faiss_results[:top_k]:
+            doc = _documents[idx]
+            results.append({
+                "text": doc["text"], "source": doc.get("source", "unknown"),
+                "score": round(score, 3), "metadata": doc.get("metadata", {}),
+                "engine": "faiss",
+            })
+        return _rerank(results, query)
+
+    if tfidf_results:
+        results = []
+        for idx, score in tfidf_results[:top_k]:
+            doc = _documents[idx]
+            results.append({
+                "text": doc["text"], "source": doc.get("source", "unknown"),
+                "score": round(score, 3), "metadata": doc.get("metadata", {}),
+                "engine": "tfidf",
+            })
+        return results
+
     # Tier 3: Keyword match
-    return _keyword_search(query, texts, top_k)
+    return _keyword_search(expanded_query, texts, top_k)
+
+
+# ── Synonym Expansion ──────────────────────────────────────────────────────
+
+_SYNONYMS = {
+    "bitumen": ["asphalt", "blacktop", "binder"],
+    "asphalt": ["bitumen", "blacktop", "binder"],
+    "vg30": ["vg-30", "viscosity grade 30"],
+    "vg10": ["vg-10", "viscosity grade 10"],
+    "vg40": ["vg-40", "viscosity grade 40"],
+    "crude": ["oil", "brent", "wti", "petroleum"],
+    "brent": ["crude oil", "brent crude"],
+    "price": ["cost", "rate", "pricing"],
+    "demand": ["consumption", "requirement", "usage"],
+    "supply": ["production", "output", "refinery"],
+    "import": ["inbound", "shipment", "cargo"],
+    "export": ["outbound", "shipment"],
+    "freight": ["transport", "logistics", "shipping"],
+    "refinery": ["iocl", "bpcl", "hpcl", "plant"],
+    "road": ["highway", "nhai", "infrastructure"],
+    "tender": ["bid", "contract", "procurement"],
+    "monsoon": ["rain", "rainy season", "rainfall"],
+    "fx": ["exchange rate", "usd inr", "forex", "currency"],
+}
+
+
+def _expand_query(query: str) -> str:
+    """Expand query with domain-specific synonyms."""
+    words = query.lower().split()
+    expansions = []
+    for word in words:
+        clean = re.sub(r'[^\w]', '', word)
+        synonyms = _SYNONYMS.get(clean, [])
+        if synonyms:
+            expansions.extend(synonyms[:2])
+    if expansions:
+        return f"{query} {' '.join(expansions)}"
+    return query
+
+
+# ── Reciprocal Rank Fusion ────────────────────────────────────────────────
+
+def _reciprocal_rank_fusion(
+    dense_results: list[tuple[int, float]],
+    sparse_results: list[tuple[int, float]],
+    k: int = 60,
+) -> list[tuple[int, float]]:
+    """Merge two ranked lists using Reciprocal Rank Fusion."""
+    rrf_scores: dict[int, float] = {}
+
+    for rank, (idx, _) in enumerate(dense_results):
+        rrf_scores[idx] = rrf_scores.get(idx, 0) + 1.0 / (k + rank + 1)
+
+    for rank, (idx, _) in enumerate(sparse_results):
+        rrf_scores[idx] = rrf_scores.get(idx, 0) + 1.0 / (k + rank + 1)
+
+    merged = sorted(rrf_scores.items(), key=lambda x: x[1], reverse=True)
+    return merged
+
+
+# ── Cross-Encoder Reranking ───────────────────────────────────────────────
+
+_cross_encoder = None
+_HAS_CROSS_ENCODER = False
+
+try:
+    from sentence_transformers import CrossEncoder as _CE
+    _HAS_CROSS_ENCODER = True
+except ImportError:
+    pass
+
+
+def _rerank(results: list[dict], query: str) -> list[dict]:
+    """Rerank results using cross-encoder if available."""
+    global _cross_encoder
+    if not _HAS_CROSS_ENCODER or len(results) <= 1:
+        return results
+
+    try:
+        if _cross_encoder is None:
+            _cross_encoder = _CE("cross-encoder/ms-marco-MiniLM-L-6-v2")
+
+        pairs = [(query, r["text"]) for r in results]
+        scores = _cross_encoder.predict(pairs)
+
+        for r, score in zip(results, scores):
+            r["rerank_score"] = round(float(score), 3)
+
+        results.sort(key=lambda r: r.get("rerank_score", 0), reverse=True)
+        return results
+    except Exception:
+        return results
 
 
 def _keyword_search(query: str, texts: list[str], top_k: int) -> list[dict]:

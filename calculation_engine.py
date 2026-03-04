@@ -296,6 +296,7 @@ class BitumenCalculationEngine:
         # ------ tax rates ------
         self.gst_rate: float = float(self._settings.get("gst_rate_pct", 18)) / 100.0
         self.customs_duty_pct: float = float(self._settings.get("customs_duty_pct", 2.5))
+        self.landing_charges_pct: float = float(self._settings.get("landing_charges_pct", 1.0)) / 100.0
 
         # ------ transport ------
         self.bulk_rate_per_km: float = float(
@@ -415,10 +416,13 @@ class BitumenCalculationEngine:
 
         switch_bl_inr = switch_bl_usd * usdinr
         port_per_mt = port_charges_inr / vessel_qty_mt if vessel_qty_mt > 0 else 0
-        customs_inr = cif_inr * customs_duty_pct / 100.0
+        landing_charges_inr = cif_inr * self.landing_charges_pct
+        assessable_value_inr = cif_inr + landing_charges_inr
+        customs_inr = assessable_value_inr * customs_duty_pct / 100.0
 
         subtotal = (
             cif_inr
+            + landing_charges_inr
             + switch_bl_inr
             + port_per_mt
             + cha_per_mt
@@ -439,11 +443,13 @@ class BitumenCalculationEngine:
             ("Ocean Freight (INR)", freight_inr),
             ("Insurance", insurance_inr),
             ("CIF Value", cif_inr),
+            (f"Landing Charges ({self.landing_charges_pct * 100:.0f}%)", landing_charges_inr),
+            ("Assessable Value", assessable_value_inr),
             ("Switch B/L", switch_bl_inr),
             ("Port Charges / MT", port_per_mt),
             ("CHA Charges / MT", cha_per_mt),
             ("Handling / MT", handling_per_mt),
-            ("Customs Duty", customs_inr),
+            (f"Customs Duty @ {customs_duty_pct}%", customs_inr),
             ("Subtotal (pre-GST)", subtotal),
             (f"GST @ {self.gst_rate * 100:.0f}%", gst_inr),
             ("Landed at Port", landed_at_port),
@@ -462,6 +468,9 @@ class BitumenCalculationEngine:
             "freight_inr": self._round2(freight_inr),
             "insurance_inr": self._round2(insurance_inr),
             "cif_inr": self._round2(cif_inr),
+            "landing_charges_pct": self.landing_charges_pct * 100,
+            "landing_charges_inr": self._round2(landing_charges_inr),
+            "assessable_value_inr": self._round2(assessable_value_inr),
             "switch_bl_usd": switch_bl_usd,
             "switch_bl_inr": self._round2(switch_bl_inr),
             "port_charges_inr": port_charges_inr,
@@ -520,14 +529,14 @@ class BitumenCalculationEngine:
         distance_km = self._safe_distance(source, destination)
         rate_per_km = self.bulk_rate_per_km if load_type == "Bulk" else self.drum_rate_per_km
 
-        gst = base_price * self.gst_rate
         freight = distance_km * rate_per_km
-        landed_cost = base_price + gst + freight
+        gst = (base_price + freight) * self.gst_rate
+        landed_cost = base_price + freight + gst
 
         breakdown_items = [
             ("Base Price (ex-refinery)", base_price),
-            (f"GST @ {self.gst_rate * 100:.0f}%", gst),
             (f"Freight ({distance_km:.0f} km x {format_inr(rate_per_km, include_symbol=False)}/km)", freight),
+            (f"GST @ {self.gst_rate * 100:.0f}% (on base + freight)", gst),
             ("TOTAL LANDED COST", landed_cost),
         ]
 

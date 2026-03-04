@@ -112,5 +112,173 @@
     "event": "fallback",
     "provider": "huggingface",
     "message": "Failed — You must provide an api_key to work with featherless-ai API or log in with `hf auth login`."
+  },
+  {
+    "ts": "04-03-2026 19:09:11 IST",
+    "event": "fallback",
+    "provider": "ollama",
+    "message": "Failed — Ollama daemon not running (start the Ollama app first)"
+  },
+  {
+    "ts": "04-03-2026 19:09:17 IST",
+    "event": "fallback",
+    "provider": "huggingface",
+    "message": "Failed — You must provide an api_key to work with featherless-ai API or log in with `hf auth login`."
+  },
+  {
+    "ts": "04-03-2026 19:15:47 IST",
+    "event": "success",
+    "provider": "gpt4all",
+    "message": "Answered: You are a senior bitumen trading advisor at PPS Anantam, Vad"
+  },
+  {
+    "ts": "04-03-2026 19:31:51 IST",
+    "event": "fallback",
+    "provider": "ollama",
+    "message": "Failed — Ollama daemon not running (start the Ollama app first)"
+  },
+  {
+    "ts": "04-03-2026 19:31:51 IST",
+    "event": "fallback",
+    "provider": "huggingface",
+    "message": "Failed — You must provide an api_key to work with featherless-ai API or log in with `hf auth login`."
+  },
+  {
+    "ts": "04-03-2026 19:32:06 IST",
+    "event": "fallback",
+    "provider": "ollama",
+    "message": "Failed — Ollama daemon not running (start the Ollama app first)"
+  },
+  {
+    "ts": "04-03-2026 19:32:06 IST",
+    "event": "fallback",
+    "provider": "huggingface",
+    "message": "Failed — You must provide an api_key to work with featherless-ai API or log in with `hf auth login`."
+  },
+  {
+    "ts": "04-03-2026 19:32:12 IST",
+    "event": "fallback",
+    "provider": "ollama",
+    "message": "Failed — Ollama daemon not running (start the Ollama app first)"
+  },
+  {
+    "ts": "04-03-2026 19:32:12 IST",
+    "event": "fallback",
+    "provider": "huggingface",
+    "message": "Failed — You must provide an api_key to work with featherless-ai API or log in with `hf auth login`."
+  },
+  {
+    "ts": "04-03-2026 19:32:18 IST",
+    "event": "fallback",
+    "provider": "ollama",
+    "message": "Failed — Ollama daemon not running (start the Ollama app first)"
+  },
+  {
+    "ts": "04-03-2026 19:32:18 IST",
+    "event": "fallback",
+    "provider": "huggingface",
+    "message": "Failed — You must provide an api_key to work with featherless-ai API or log in with `hf auth login`."
+  },
+  {
+    "ts": "04-03-2026 19:32:26 IST",
+    "event": "fallback",
+    "provider": "ollama",
+    "message": "Failed — Ollama daemon not running (start the Ollama app first)"
+  },
+  {
+    "ts": "04-03-2026 19:32:26 IST",
+    "event": "fallback",
+    "provider": "huggingface",
+    "message": "Failed — You must provide an api_key to work with featherless-ai API or log in with `hf auth login`."
+  },
+  {
+    "ts": "04-03-2026 19:35:09 IST",
+    "event": "fallback",
+    "provider": "ollama",
+    "message": "Failed — Ollama daemon not running (start the Ollama app first)"
+  },
+  {
+    "ts": "04-03-2026 19:35:09 IST",
+    "event": "fallback",
+    "provider": "huggingface",
+    "message": "Failed — You must provide an api_key to work with featherless-ai API or log in with `hf auth login`."
+  },
+  {
+    "ts": "04-03-2026 20:55:29 IST",
+    "event": "fallback",
+    "provider": "ollama",
+    "message": "Failed — Ollama daemon not running (start the Ollama app first)"
+  },
+  {
+    "ts": "04-03-2026 20:55:33 IST",
+    "event": "fallback",
+    "provider": "huggingface",
+    "message": "Failed — You must provide an api_key to work with featherless-ai API or log in with `hf auth login`."
+  },
+  {
+    "ts": "04-03-2026 21:12:32 IST",
+    "event": "fallback",
+    "provider": "ollama",
+    "message": "Failed — Ollama daemon not running (start the Ollama app first)"
+  },
+  {
+    "ts": "04-03-2026 21:12:33 IST",
+    "event": "fallback",
+    "provider": "huggingface",
+    "message": "Failed — You must provide an api_key to work with featherless-ai API or log in with `hf auth login`."
+  },
+  {
+    "ts": "04-03-2026 21:14:08 IST",
+    "event": "success",
+    "provider": "gpt4all",
+    "message": "Answered: You are a bitumen trading advisor for PPS Anantam, Vadodara,"
+  },
+  {
+    "ts": "04-03-2026 21:19:24 IST",
+    "event": "success",
+    "provider": "gpt4all",
+    "message": "Answered: Current crude price?"
+  },
+  {
+    "ts": "04-03-2026 21:21:39 IST",
+    "event": "fallback",
+    "provider": "ollama",
+    "message": "Failed — Ollama daemon not running (start the Ollama app first)"
+  },
+  {
+    "ts": "04-03-2026 21:21:40 IST",
+    "event": "fallback",
+    "provider": "huggingface",
+    "message": "Failed — You must provide an api_key to work with featherless-ai API or log in with `hf auth login`."
+  },
+  {
+    "ts": "04-03-2026 21:22:04 IST",
+    "event": "fallback",
+    "provider": "ollama",
+    "message": "Failed — Ollama daemon not running (start the Ollama app first)"
+  },
+  {
+    "ts": "04-03-2026 21:22:04 IST",
+    "event": "fallback",
+    "provider": "huggingface",
+    "message": "Failed — You must provide an api_key to work with featherless-ai API or log in with `hf auth login`."
+  },
+  {
+    "ts": "04-03-2026 21:24:16 IST",
+    "event": "fallback",
+    "provider": "ollama",
+    "message": "Failed — Ollama daemon not running (start the Ollama app first)"
+  },
+  {
+    "ts": "04-03-2026 21:24:17 IST",
+    "event": "fallback",
+    "provider": "huggingface",
+    "message": "Failed — You must provide an api_key to work with featherless-ai API or log in with `hf auth login`."
+  },
+  {
+    "ts": "04-03-2026 21:25:35 IST",
+    "event": "success",
+    "provider": "gpt4all",
+    "message": "Answered: You are a bitumen trading advisor for PPS Anantam, Vadodara,"
   }
 ]

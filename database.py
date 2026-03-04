@@ -21,6 +21,8 @@ Usage:
 import sqlite3
 import os
 import json
+import queue
+from contextlib import contextmanager
 from datetime import datetime, timezone, timedelta
 
 # ---------------------------------------------------------------------------
@@ -54,6 +56,147 @@ def _row_to_dict(row: sqlite3.Row) -> dict:
 def _rows_to_list(rows) -> list:
     """Convert a list of sqlite3.Row objects to a list of dicts."""
     return [dict(r) for r in rows]
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# CONNECTION POOL — Thread-safe reusable connections
+# ═══════════════════════════════════════════════════════════════════════════
+
+_pool = queue.Queue(maxsize=5)
+
+
+def _create_connection() -> sqlite3.Connection:
+    """Create a fresh SQLite connection with standard pragmas."""
+    conn = sqlite3.connect(DB_PATH, check_same_thread=False)
+    conn.row_factory = sqlite3.Row
+    conn.execute("PRAGMA journal_mode=WAL;")
+    conn.execute("PRAGMA foreign_keys=ON;")
+    return conn
+
+
+@contextmanager
+def get_connection():
+    """
+    Context manager returning a pooled connection.
+    Auto-returns to pool on exit; creates new if pool empty.
+    """
+    try:
+        conn = _pool.get_nowait()
+    except queue.Empty:
+        conn = _create_connection()
+    try:
+        yield conn
+    finally:
+        try:
+            _pool.put_nowait(conn)
+        except queue.Full:
+            conn.close()
+
+
+@contextmanager
+def db_transaction():
+    """
+    Context manager for multi-statement transactions.
+
+    Usage::
+
+        with db_transaction() as conn:
+            conn.execute("INSERT INTO ...", (...))
+            conn.execute("UPDATE ...", (...))
+
+    Auto-commits on success, auto-rollbacks on exception.
+    """
+    conn = _create_connection()
+    try:
+        yield conn
+        conn.commit()
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        conn.close()
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# MONETARY & TIMESTAMP HELPERS
+# ═══════════════════════════════════════════════════════════════════════════
+
+# Columns that store monetary values — rounded on write
+MONETARY_DEAL_COLS = frozenset({
+    "buy_price_per_mt", "sell_price_per_mt", "landed_cost_per_mt",
+    "margin_per_mt", "freight_per_mt", "total_value_inr",
+    "payment_received_inr", "gst_amount", "competitor_price",
+    "credit_limit_inr", "outstanding_inr", "last_purchase_price",
+    "last_deal_price", "cost_per_mt", "estimated_margin_per_mt",
+    "estimated_value_inr", "old_landed_cost", "new_landed_cost",
+    "savings_per_mt",
+})
+
+
+def _round_money(value, decimals: int = 2) -> float:
+    """Round monetary values consistently to avoid float drift."""
+    if value is None:
+        return 0.0
+    return round(float(value), decimals)
+
+
+def _round_monetary_fields(data: dict) -> dict:
+    """Round all monetary fields in a data dict."""
+    for col in MONETARY_DEAL_COLS:
+        if col in data and data[col] is not None:
+            data[col] = _round_money(data[col])
+    return data
+
+
+def _parse_timestamp(ts: str):
+    """Parse an IST timestamp string to a datetime object, or None."""
+    if not ts:
+        return None
+    for fmt in ("%Y-%m-%d %H:%M:%S", "%d-%m-%Y %H:%M:%S", "%d-%m-%Y %H:%M"):
+        try:
+            dt = datetime.strptime(ts, fmt)
+            return dt.replace(tzinfo=IST)
+        except ValueError:
+            continue
+    return None
+
+
+def _days_since(ts: str):
+    """Return the number of days since a timestamp string, or None."""
+    dt = _parse_timestamp(ts)
+    if not dt:
+        return None
+    now = datetime.now(IST)
+    return (now - dt).days
+
+
+def _is_within_days(ts: str, days: int) -> bool:
+    """Check if a timestamp is within the last N days."""
+    d = _days_since(ts)
+    return d is not None and d <= days
+
+
+# Transaction-aware insert/update (caller manages commit/rollback)
+
+def _insert_row_tx(conn: sqlite3.Connection, table: str, data: dict) -> int:
+    """Insert within an existing transaction (caller manages commit)."""
+    _validate_table(table)
+    col_names = _validate_columns(data.keys())
+    cols = ", ".join(col_names)
+    placeholders = ", ".join(["?"] * len(data))
+    sql = f"INSERT INTO {table} ({cols}) VALUES ({placeholders})"
+    cur = conn.cursor()
+    cur.execute(sql, list(data.values()))
+    return cur.lastrowid
+
+
+def _update_row_tx(conn: sqlite3.Connection, table: str, row_id: int, data: dict):
+    """Update within an existing transaction (caller manages commit)."""
+    _validate_table(table)
+    col_names = _validate_columns(data.keys())
+    set_clause = ", ".join([f"{k} = ?" for k in col_names])
+    sql = f"UPDATE {table} SET {set_clause} WHERE id = ?"
+    conn.execute(sql, list(data.values()) + [row_id])
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -609,6 +752,7 @@ def init_db():
     """
     Create all tables and indexes if they do not already exist.
     Safe to call multiple times (uses IF NOT EXISTS).
+    Also runs incremental schema migrations.
     """
     conn = _get_conn()
     try:
@@ -628,12 +772,103 @@ def init_db():
     finally:
         conn.close()
 
+    # Run incremental schema migrations
+    _run_schema_migrations()
+
     # Initialize infra demand intelligence tables
     try:
         from infra_demand_engine import init_infra_tables
         init_infra_tables()
     except Exception:
         pass
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# SCHEMA MIGRATIONS — Incremental, versioned
+# ═══════════════════════════════════════════════════════════════════════════
+
+def _run_schema_migrations():
+    """Apply incremental schema migrations. Uses _schema_version tracker."""
+    conn = _get_conn()
+    try:
+        cur = conn.cursor()
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS _schema_version (
+                id          INTEGER PRIMARY KEY AUTOINCREMENT,
+                version     INTEGER NOT NULL,
+                description TEXT,
+                applied_at  TEXT
+            )
+        """)
+        conn.commit()
+
+        row = cur.execute("SELECT MAX(version) as v FROM _schema_version").fetchone()
+        current_version = row["v"] if row and row["v"] else 0
+
+        migrations = [
+            (1, "Add CHECK constraints + fix NULL data", _migration_001_fix_data),
+            (2, "Add UNIQUE indexes on business keys", _migration_002_unique_indexes),
+            (3, "Add crm_tasks table", _migration_003_crm_tasks),
+        ]
+
+        for version, desc, migration_fn in migrations:
+            if version > current_version:
+                try:
+                    migration_fn(cur)
+                    cur.execute(
+                        "INSERT INTO _schema_version (version, description, applied_at) "
+                        "VALUES (?, ?, ?)",
+                        (version, desc, _now_ist()),
+                    )
+                    conn.commit()
+                except Exception as e:
+                    conn.rollback()
+                    # Log but don't crash — migrations are best-effort
+                    import logging
+                    logging.getLogger("database").warning(
+                        "Migration %d failed: %s", version, e
+                    )
+    finally:
+        conn.close()
+
+
+def _migration_001_fix_data(cur):
+    """Fix NULL customer names and negative quantities."""
+    cur.execute("UPDATE customers SET name = 'UNKNOWN' WHERE name IS NULL OR name = ''")
+    cur.execute("UPDATE deals SET quantity_mt = ABS(quantity_mt) WHERE quantity_mt IS NOT NULL AND quantity_mt < 0")
+
+
+def _migration_002_unique_indexes(cur):
+    """Add unique composite index on customers to prevent duplicates."""
+    try:
+        cur.execute(
+            "CREATE UNIQUE INDEX IF NOT EXISTS idx_customers_name_contact "
+            "ON customers(name, contact) WHERE contact IS NOT NULL AND contact != ''"
+        )
+    except Exception:
+        pass  # Skip if duplicates exist
+
+
+def _migration_003_crm_tasks(cur):
+    """Add crm_tasks table for CRM consolidation."""
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS crm_tasks (
+            id              TEXT PRIMARY KEY,
+            client          TEXT NOT NULL,
+            task_type       TEXT NOT NULL,
+            due_date        TEXT,
+            status          TEXT DEFAULT 'Pending',
+            priority        TEXT DEFAULT 'Medium',
+            note            TEXT,
+            outcome         TEXT,
+            automated       INTEGER DEFAULT 0,
+            created_at      TEXT,
+            completed_at    TEXT
+        )
+    """)
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_crm_tasks_status ON crm_tasks(status)")
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_crm_tasks_client ON crm_tasks(client)")
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_crm_tasks_due    ON crm_tasks(due_date)")
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -647,6 +882,7 @@ _VALID_TABLES = {
     "whatsapp_incoming", "director_briefings", "daily_logs", "alerts",
     "users", "audit_log", "recipient_lists", "source_registry",
     "chat_messages", "share_links", "share_schedules", "comm_tracking",
+    "crm_tasks", "_schema_version",
 }
 
 import re
@@ -882,6 +1118,7 @@ def insert_deal(data: dict) -> int:
         data["deal_number"] = "DEAL-" + datetime.now(IST).strftime("%Y%m%d-%H%M%S")
     data.setdefault("created_at", _now_ist())
     data.setdefault("updated_at", _now_ist())
+    _round_monetary_fields(data)
     return _insert_row("deals", data)
 
 
@@ -912,6 +1149,8 @@ def update_deal_stage(deal_id: int, new_stage: str):
         delivered      -> delivery_date
         paid           -> payment_date
 
+    Uses a transaction to ensure atomicity.
+
     Parameters
     ----------
     deal_id : int
@@ -933,7 +1172,8 @@ def update_deal_stage(deal_id: int, new_stage: str):
     if date_col:
         data[date_col] = now
 
-    _update_row("deals", deal_id, data)
+    with db_transaction() as conn:
+        _update_row_tx(conn, "deals", deal_id, data)
 
 
 def update_deal(deal_id: int, data: dict):
@@ -948,6 +1188,7 @@ def update_deal(deal_id: int, data: dict):
     """
     data = dict(data)
     data["updated_at"] = _now_ist()
+    _round_monetary_fields(data)
     _update_row("deals", deal_id, data)
 
 
@@ -1878,6 +2119,122 @@ def get_comm_stats(days: int = 30) -> dict:
         }
     finally:
         conn.close()
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# CRM TASKS (SQLite-backed)
+# ═══════════════════════════════════════════════════════════════════════════
+
+def insert_crm_task(data: dict) -> str:
+    """Insert or replace a CRM task. Returns task id."""
+    data = dict(data)
+    data.setdefault("created_at", _now_ist())
+    task_id = data.get("id", "")
+    if not task_id:
+        import uuid
+        task_id = str(uuid.uuid4())[:8]
+        data["id"] = task_id
+    # Map 'type' to 'task_type' for DB column
+    if "type" in data and "task_type" not in data:
+        data["task_type"] = data.pop("type")
+    conn = _get_conn()
+    try:
+        conn.execute(
+            """INSERT OR REPLACE INTO crm_tasks
+               (id, client, task_type, due_date, status, priority, note,
+                outcome, automated, created_at, completed_at)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+            (
+                data.get("id"), data.get("client", ""),
+                data.get("task_type", "Call"), data.get("due_date"),
+                data.get("status", "Pending"), data.get("priority", "Medium"),
+                data.get("note", ""), data.get("outcome", ""),
+                1 if data.get("automated") else 0,
+                data.get("created_at", _now_ist()), data.get("completed_at"),
+            ),
+        )
+        conn.commit()
+        return task_id
+    finally:
+        conn.close()
+
+
+def get_crm_tasks(status: str = None, client: str = None) -> list:
+    """Return CRM tasks, optionally filtered."""
+    conn = _get_conn()
+    try:
+        sql = "SELECT * FROM crm_tasks WHERE 1=1"
+        params = []
+        if status:
+            sql += " AND status = ?"
+            params.append(status)
+        if client:
+            sql += " AND client = ?"
+            params.append(client)
+        sql += " ORDER BY due_date ASC"
+        rows = conn.execute(sql, params).fetchall()
+        return _rows_to_list(rows)
+    finally:
+        conn.close()
+
+
+def complete_crm_task(task_id: str, outcome: str = ""):
+    """Mark a CRM task as completed."""
+    conn = _get_conn()
+    try:
+        conn.execute(
+            "UPDATE crm_tasks SET status = 'Completed', outcome = ?, "
+            "completed_at = ? WHERE id = ?",
+            (outcome, _now_ist(), task_id),
+        )
+        conn.commit()
+    finally:
+        conn.close()
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# DATA RETENTION / CLEANUP
+# ═══════════════════════════════════════════════════════════════════════════
+
+def cleanup_old_records() -> dict:
+    """
+    Trim oversized tables based on configured limits.
+    Called from sync_engine Batch 4.
+    Returns dict of {table: rows_deleted}.
+    """
+    try:
+        from settings_engine import load_settings
+        settings = load_settings()
+    except ImportError:
+        settings = {}
+
+    limits = {
+        "sync_logs":      settings.get("max_sync_logs", 1000),
+        "audit_log":      10000,
+        "comm_tracking":  settings.get("max_communication_records", 10000),
+        "price_history":  settings.get("max_price_history_records", 5000),
+    }
+
+    results = {}
+    conn = _get_conn()
+    try:
+        for table, max_rows in limits.items():
+            try:
+                row = conn.execute(f"SELECT COUNT(*) as c FROM {table}").fetchone()
+                count = row["c"] if row else 0
+                if count > max_rows:
+                    conn.execute(
+                        f"DELETE FROM {table} WHERE id NOT IN "
+                        f"(SELECT id FROM {table} ORDER BY id DESC LIMIT ?)",
+                        (max_rows,),
+                    )
+                    results[table] = count - max_rows
+            except Exception:
+                pass
+        conn.commit()
+    finally:
+        conn.close()
+    return results
 
 
 # ═══════════════════════════════════════════════════════════════════════════

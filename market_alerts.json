@@ -1,0 +1,100 @@
+[
+  {
+    "id": "5eecc339231f",
+    "severity": "P2",
+    "category": "logistics",
+    "message": "2 vessel(s) delayed on bitumen import routes",
+    "impact": "Import deliveries may be delayed; spot market could tighten",
+    "action": "Check alternative suppliers; domestic procurement as backup",
+    "confidence": 65,
+    "created_at": "04-03-2026 18:07 IST",
+    "expires_at": "06-03-2026 18:07 IST",
+    "sources": [
+      "tbl_maritime_intel"
+    ]
+  },
+  {
+    "id": "966c66c6384f",
+    "severity": "P2",
+    "category": "logistics",
+    "message": "2 vessel(s) delayed on bitumen import routes",
+    "impact": "Import deliveries may be delayed; spot market could tighten",
+    "action": "Check alternative suppliers; domestic procurement as backup",
+    "confidence": 65,
+    "created_at": "04-03-2026 19:34 IST",
+    "expires_at": "06-03-2026 19:34 IST",
+    "sources": [
+      "tbl_maritime_intel"
+    ]
+  },
+  {
+    "id": "b5d36f1f96ae",
+    "severity": "P2",
+    "category": "logistics",
+    "message": "2 vessel(s) delayed on bitumen import routes",
+    "impact": "Import deliveries may be delayed; spot market could tighten",
+    "action": "Check alternative suppliers; domestic procurement as backup",
+    "confidence": 65,
+    "created_at": "04-03-2026 20:15 IST",
+    "expires_at": "06-03-2026 20:15 IST",
+    "sources": [
+      "tbl_maritime_intel"
+    ]
+  },
+  {
+    "id": "591ed6b76af7",
+    "severity": "P0",
+    "category": "price",
+    "message": "Crude Brent up 9.26% this week — expect bitumen price increase in 7-10 days",
+    "impact": "Landed cost of bitumen will rise proportionally",
+    "action": "Buy now before prices increase",
+    "confidence": 65,
+    "created_at": "04-03-2026 20:19 IST",
+    "expires_at": "05-03-2026 08:19 IST",
+    "sources": [
+      "tbl_crude_prices"
+    ]
+  },
+  {
+    "id": "dca98fc47d23",
+    "severity": "P0",
+    "category": "price",
+    "message": "Crude Brent up 9.34% this week — expect bitumen price increase in 7-10 days",
+    "impact": "Landed cost of bitumen will rise proportionally",
+    "action": "Buy now before prices increase",
+    "confidence": 65,
+    "created_at": "04-03-2026 20:54 IST",
+    "expires_at": "05-03-2026 08:54 IST",
+    "sources": [
+      "tbl_crude_prices"
+    ]
+  },
+  {
+    "id": "8ea19605d034",
+    "severity": "P0",
+    "category": "price",
+    "message": "Crude Brent up 9.34% this week — expect bitumen price increase in 7-10 days",
+    "impact": "Landed cost of bitumen will rise proportionally",
+    "action": "Buy now before prices increase",
+    "confidence": 65,
+    "created_at": "04-03-2026 21:02 IST",
+    "expires_at": "05-03-2026 09:02 IST",
+    "sources": [
+      "tbl_crude_prices"
+    ]
+  },
+  {
+    "id": "4d324adcb2c5",
+    "severity": "P2",
+    "category": "logistics",
+    "message": "2 vessel(s) delayed on bitumen import routes",
+    "impact": "Import deliveries may be delayed; spot market could tighten",
+    "action": "Check alternative suppliers; domestic procurement as backup",
+    "confidence": 65,
+    "created_at": "04-03-2026 21:02 IST",
+    "expires_at": "06-03-2026 21:02 IST",
+    "sources": [
+      "tbl_maritime_intel"
+    ]
+  }
+]

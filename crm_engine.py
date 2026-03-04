@@ -1,19 +1,16 @@
 """
-PPS Anantam — Intelligent CRM Engine v2.0
+PPS Anantam — Intelligent CRM Engine v3.0
 ==========================================
 Market-intelligent CRM with auto-updating profiles,
 relationship scoring, and AI-driven task management.
 
-Features:
-  - Task CRUD with pipeline automation
-  - Customer/Supplier relationship intelligence
-  - Auto-profile updates based on interaction frequency
-  - Deal probability scoring
-  - Today's target recommendations
+v3.0 changes:
+  - Tasks stored in SQLite (crm_tasks table) instead of JSON
+  - One-time auto-migration from crm_tasks.json → SQLite
+  - Activities still in JSON (lightweight, append-only)
 """
 
 import json
-import os
 import datetime
 import uuid
 from datetime import timedelta
@@ -25,8 +22,9 @@ IST = pytz.timezone("Asia/Kolkata")
 BASE = Path(__file__).parent
 
 # --- CONFIGURATION ---
-TASKS_FILE = "crm_tasks.json"
-ACTIVITIES_FILE = "crm_activities.json"
+TASKS_JSON_FILE = BASE / "crm_tasks.json"       # legacy (migrated to SQLite)
+TASKS_JSON_BAK = BASE / "crm_tasks.json.bak"    # backup after migration
+ACTIVITIES_FILE = BASE / "crm_activities.json"
 
 # --- CONSTANTS ---
 PIPELINE_STAGES = [
@@ -41,69 +39,182 @@ PRIORITIES = ["High", "Medium", "Low"]
 RELATIONSHIP_THRESHOLDS = {"hot": 7, "warm": 30, "cold": 90}
 
 
-# --- DATA HANDLING ---
+# --- DATA HANDLING (Activities — still JSON) ---
 
-def load_data(filepath, default=None):
+def _load_json(filepath, default=None):
     if default is None:
         default = []
-    if os.path.exists(filepath):
+    fp = Path(filepath)
+    if fp.exists():
         try:
-            with open(filepath, 'r', encoding='utf-8') as f:
+            with open(fp, 'r', encoding='utf-8') as f:
                 return json.load(f)
         except (json.JSONDecodeError, IOError):
             return default
     return default
 
 
-def save_data(filepath, data):
+def _save_json(filepath, data):
     with open(filepath, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=2, ensure_ascii=False, default=str)
 
 
-def get_tasks(): return load_data(TASKS_FILE)
-def save_tasks(tasks): save_data(TASKS_FILE, tasks)
-def get_activities(): return load_data(ACTIVITIES_FILE)
-def save_activities(acts): save_data(ACTIVITIES_FILE, acts)
+def get_activities(): return _load_json(ACTIVITIES_FILE)
+def save_activities(acts): _save_json(ACTIVITIES_FILE, acts)
+
+
+# --- TASK STORAGE (SQLite) ---
+
+def get_tasks() -> list[dict]:
+    """Get all tasks from SQLite crm_tasks table."""
+    try:
+        from database import get_crm_tasks
+        return get_crm_tasks()
+    except Exception:
+        # Fallback to JSON if DB not available
+        return _load_json(TASKS_JSON_FILE)
+
+
+def save_tasks(tasks: list[dict]):
+    """Legacy compatibility — bulk-save tasks. Prefer add_task / complete_task."""
+    _save_json(TASKS_JSON_FILE, tasks)
+
+
+# --- ONE-TIME MIGRATION ---
+
+_MIGRATION_DONE = False
+
+
+def _migrate_json_to_sqlite():
+    """Migrate tasks from crm_tasks.json → SQLite crm_tasks table (once)."""
+    global _MIGRATION_DONE  # noqa: PLW0603
+    if _MIGRATION_DONE:
+        return
+    _MIGRATION_DONE = True
+
+    if not TASKS_JSON_FILE.exists():
+        return
+
+    try:
+        from database import insert_crm_task, get_crm_tasks
+        existing = get_crm_tasks()
+        existing_ids = {t.get("task_id") for t in existing}
+
+        json_tasks = _load_json(TASKS_JSON_FILE)
+        if not json_tasks:
+            return
+
+        migrated = 0
+        for t in json_tasks:
+            tid = t.get("id", str(uuid.uuid4())[:8])
+            if tid in existing_ids:
+                continue
+            try:
+                insert_crm_task({
+                    "task_id": tid,
+                    "client": t.get("client", ""),
+                    "type": t.get("type", "Call"),
+                    "due_date": t.get("due_date", ""),
+                    "status": t.get("status", "Pending"),
+                    "priority": t.get("priority", "Medium"),
+                    "note": t.get("note", ""),
+                    "outcome": t.get("outcome", ""),
+                    "automated": 1 if t.get("automated") else 0,
+                    "created_at": t.get("created_at", ""),
+                    "completed_at": t.get("completed_at", ""),
+                })
+                migrated += 1
+            except Exception:
+                pass
+
+        if migrated > 0:
+            # Backup JSON file and remove original
+            import shutil
+            try:
+                shutil.copy2(TASKS_JSON_FILE, TASKS_JSON_BAK)
+                TASKS_JSON_FILE.unlink()
+            except Exception:
+                pass
+    except ImportError:
+        pass
+    except Exception:
+        pass
 
 
 # --- CORE CRM LOGIC ---
 
 def add_task(client_name, task_type, due_date_str, priority="Medium", note="", automated=False):
     """
-    Adds a new task to the CRM.
+    Adds a new task to the CRM (SQLite).
     due_date_str format: 'DD-MM-YYYY HH:MM'
     """
-    tasks = get_tasks()
-    new_task = {
-        "id": str(uuid.uuid4())[:8],
-        "client": client_name,
-        "type": task_type,
-        "due_date": due_date_str,
-        "status": "Pending",
-        "priority": priority,
-        "note": note,
-        "created_at": datetime.datetime.now(IST).strftime("%d-%m-%Y %H:%M"),
-        "automated": automated
+    task_id = str(uuid.uuid4())[:8]
+    created_at = datetime.datetime.now(IST).strftime("%d-%m-%Y %H:%M")
+
+    try:
+        from database import insert_crm_task
+        insert_crm_task({
+            "task_id": task_id,
+            "client": client_name,
+            "type": task_type,
+            "due_date": due_date_str,
+            "status": "Pending",
+            "priority": priority,
+            "note": note,
+            "outcome": "",
+            "automated": 1 if automated else 0,
+            "created_at": created_at,
+            "completed_at": "",
+        })
+    except Exception:
+        # Fallback: append to JSON
+        tasks = _load_json(TASKS_JSON_FILE)
+        tasks.append({
+            "id": task_id, "client": client_name, "type": task_type,
+            "due_date": due_date_str, "status": "Pending", "priority": priority,
+            "note": note, "created_at": created_at, "automated": automated,
+        })
+        _save_json(TASKS_JSON_FILE, tasks)
+
+    return {
+        "id": task_id, "client": client_name, "type": task_type,
+        "due_date": due_date_str, "status": "Pending", "priority": priority,
+        "note": note, "created_at": created_at, "automated": automated,
     }
-    tasks.append(new_task)
-    save_tasks(tasks)
-    return new_task
 
 
 def complete_task(task_id, outcome_note=""):
-    tasks = get_tasks()
+    """Mark a task as completed (SQLite)."""
+    completed_at = datetime.datetime.now(IST).strftime("%d-%m-%Y %H:%M")
     matched = None
-    for t in tasks:
-        if t['id'] == task_id:
-            t['status'] = "Completed"
-            t['outcome'] = outcome_note
-            t['completed_at'] = datetime.datetime.now(IST).strftime("%d-%m-%Y %H:%M")
-            matched = t
-            break
-    save_tasks(tasks)
+
+    try:
+        from database import complete_crm_task, get_crm_tasks
+        complete_crm_task(task_id, outcome_note)
+        # Find the task for activity logging
+        tasks = get_crm_tasks()
+        for t in tasks:
+            if t.get("task_id") == task_id:
+                matched = t
+                break
+    except Exception:
+        # Fallback: JSON
+        tasks = _load_json(TASKS_JSON_FILE)
+        for t in tasks:
+            if t.get("id") == task_id:
+                t["status"] = "Completed"
+                t["outcome"] = outcome_note
+                t["completed_at"] = completed_at
+                matched = t
+                break
+        _save_json(TASKS_JSON_FILE, tasks)
+
     if matched:
-        log_activity(matched['client'], matched['type'],
-                     f"Completed Task: {matched['note']} | Outcome: {outcome_note}")
+        client = matched.get("client", "")
+        ttype = matched.get("type", "")
+        tnote = matched.get("note", "")
+        log_activity(client, ttype,
+                     f"Completed Task: {tnote} | Outcome: {outcome_note}")
 
 
 def log_activity(client_name, act_type, details):
@@ -197,13 +308,14 @@ def get_due_tasks(filter_type="Today"):
 
     filtered = []
     for t in pending:
-        t_date = t.get('due_date', '').split(' ')[0]
+        due = t.get('due_date', '') or ''
+        t_date = due.split(' ')[0] if due else ''
 
         if filter_type == "Overdue":
-            if t.get('due_date', '') < now_str:
+            if due < now_str:
                 filtered.append(t)
         elif filter_type == "Today":
-            if t_date == today_date and t.get('due_date', '') >= now_str:
+            if t_date == today_date and due >= now_str:
                 filtered.append(t)
         elif filter_type == "Upcoming":
             if t_date > today_date:
@@ -346,39 +458,37 @@ class IntelligentCRM:
         """
         updated = 0
         try:
-            from database import get_all_customers, _get_conn
+            from database import get_all_customers, get_connection
             customers = get_all_customers()
             activities = get_activities()
 
-            for cust in customers:
-                name = cust.get("name", "")
-                if not name:
-                    continue
+            with get_connection() as conn:
+                for cust in customers:
+                    name = cust.get("name", "")
+                    if not name:
+                        continue
 
-                # Find last activity for this customer
-                cust_acts = [a for a in activities if a.get("client", "").lower() == name.lower()]
-                if cust_acts:
-                    try:
-                        last_ts = cust_acts[-1].get("timestamp", "")
-                        last_dt = datetime.datetime.strptime(last_ts, "%d-%m-%Y %H:%M")
-                        days_since = (datetime.datetime.now() - last_dt).days
-                        new_stage = (
-                            "hot" if days_since <= self.hot_days else
-                            "warm" if days_since <= self.warm_days else
-                            "cold"
-                        )
+                    # Find last activity for this customer
+                    cust_acts = [a for a in activities if a.get("client", "").lower() == name.lower()]
+                    if cust_acts:
+                        try:
+                            last_ts = cust_acts[-1].get("timestamp", "")
+                            last_dt = datetime.datetime.strptime(last_ts, "%d-%m-%Y %H:%M")
+                            days_since = (datetime.datetime.now() - last_dt).days
+                            new_stage = (
+                                "hot" if days_since <= self.hot_days else
+                                "warm" if days_since <= self.warm_days else
+                                "cold"
+                            )
 
-                        # Update in database
-                        conn = _get_conn()
-                        conn.execute(
-                            "UPDATE customers SET relationship_stage = ?, updated_at = ? WHERE name = ?",
-                            (new_stage, datetime.datetime.now(IST).strftime("%d-%m-%Y %H:%M IST"), name)
-                        )
-                        conn.commit()
-                        conn.close()
-                        updated += 1
-                    except Exception:
-                        pass
+                            conn.execute(
+                                "UPDATE customers SET relationship_stage = ?, updated_at = ? WHERE name = ?",
+                                (new_stage, datetime.datetime.now(IST).strftime("%d-%m-%Y %H:%M IST"), name)
+                            )
+                            updated += 1
+                        except Exception:
+                            pass
+                conn.commit()
         except Exception:
             pass
 
@@ -463,23 +573,13 @@ class IntelligentCRM:
         }
 
 
-# --- MOCK DATA GENERATOR ---
-def init_mock_crm_data():
-    if not os.path.exists(TASKS_FILE):
-        now = datetime.datetime.now(IST)
-        mock_tasks = [
-            {"id": "101", "client": "L&T Construction", "type": "Call",
-             "due_date": now.strftime("%d-%m-%Y 10:00"), "status": "Pending",
-             "priority": "High", "note": "Negotiate Pricing for 50MT"},
-            {"id": "102", "client": "Patel Infra", "type": "WhatsApp",
-             "due_date": now.strftime("%d-%m-%Y 14:00"), "status": "Pending",
-             "priority": "Medium", "note": "Send revised quote"},
-            {"id": "103", "client": "Global Roadways", "type": "Email",
-             "due_date": (now - timedelta(days=1)).strftime("%d-%m-%Y 09:00"),
-             "status": "Pending", "priority": "Low",
-             "note": "Intro email (Overdue)"}
-        ]
-        save_tasks(mock_tasks)
+# --- INITIALIZATION ---
 
+def _init_crm():
+    """Initialize CRM: migrate JSON → SQLite if needed."""
+    _migrate_json_to_sqlite()
 
-init_mock_crm_data()
+try:
+    _init_crm()
+except Exception:
+    pass

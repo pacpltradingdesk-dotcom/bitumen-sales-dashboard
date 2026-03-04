@@ -616,16 +616,28 @@ def _score_impact(headline: str, summary: str, tags: list[str],
     return min(score, 100)
 
 def _detect_sentiment(headline: str, summary: str) -> str:
-    text = (headline + " " + summary).lower()
-    pos = ["rise", "gain", "surge", "award", "approve", "sanction", "growth", "record high",
-           "boost", "launch", "complete", "achieve", "increase", "positive", "profit"]
-    neg = ["fall", "crash", "drop", "ban", "sanction", "loss", "decline", "negative",
-           "risk", "dispute", "delay", "shortage", "outage", "attack", "halt", "fail"]
-    p = sum(1 for w in pos if w in text)
-    n = sum(1 for w in neg if w in text)
-    if p > n:    return "positive"
-    elif n > p:  return "negative"
-    return "neutral"
+    """Detect sentiment using full FinBERT → DistilBERT → VADER → Keyword chain."""
+    text = f"{headline}. {summary}".strip(". ")
+    if not text:
+        return "neutral"
+    try:
+        from finbert_engine import analyze_financial_sentiment
+        result = analyze_financial_sentiment(text)
+        return result.get("sentiment", "neutral")
+    except Exception:
+        # Inline keyword fallback if finbert_engine not available
+        text_lower = text.lower()
+        pos = ["rise", "gain", "surge", "award", "approve", "growth", "record high",
+               "boost", "launch", "complete", "achieve", "increase", "positive", "profit"]
+        neg = ["fall", "crash", "drop", "ban", "loss", "decline", "negative",
+               "risk", "dispute", "delay", "shortage", "outage", "attack", "halt", "fail"]
+        p = sum(1 for w in pos if w in text_lower)
+        n = sum(1 for w in neg if w in text_lower)
+        if p > n:
+            return "positive"
+        elif n > p:
+            return "negative"
+        return "neutral"
 
 # ══════════════════════════════════════════════════════════════════════════════
 # DEDUPLICATION

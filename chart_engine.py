@@ -1025,6 +1025,108 @@ class ChartEngine:
     # Private helpers
     # ------------------------------------------------------------------
     @staticmethod
+    # ------------------------------------------------------------------
+    # Chart Export Helpers
+    # ------------------------------------------------------------------
+
+    def render_with_export(self, fig: go.Figure, key: str, data_df=None):
+        """Render a Plotly chart with CSV + PNG export buttons below it."""
+        import streamlit as st
+        st.plotly_chart(fig, use_container_width=True, key=f"chart_{key}")
+
+        col1, col2 = st.columns([1, 1])
+        if data_df is not None:
+            with col1:
+                csv = data_df.to_csv(index=False)
+                st.download_button(
+                    "Export CSV", csv, f"{key}.csv", "text/csv",
+                    key=f"csv_{key}", use_container_width=True,
+                )
+        with col2:
+            try:
+                img_bytes = fig.to_image(format="png", width=1200, height=500)
+                st.download_button(
+                    "Export PNG", img_bytes, f"{key}.png", "image/png",
+                    key=f"png_{key}", use_container_width=True,
+                )
+            except Exception:
+                pass  # kaleido not installed
+
+    # ------------------------------------------------------------------
+    # Period Comparison Chart
+    # ------------------------------------------------------------------
+
+    def comparison_chart(
+        self,
+        current_data: list[float],
+        previous_data: list[float],
+        labels: list[str],
+        current_label: str = "Current Period",
+        previous_label: str = "Previous Period",
+        title: str = "Period Comparison",
+    ) -> go.Figure:
+        """Overlay two time periods on the same chart for comparison."""
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(
+            x=labels, y=current_data, name=current_label,
+            mode="lines+markers",
+            line=dict(color=VASTU_COLORS['navy'], width=2),
+        ))
+        fig.add_trace(go.Scatter(
+            x=labels, y=previous_data, name=previous_label,
+            mode="lines+markers",
+            line=dict(color=VASTU_COLORS['gold'], width=2, dash="dash"),
+        ))
+        self._apply_vastu_theme(fig, height=400)
+        fig.update_layout(title=title, hovermode="x unified")
+        return fig
+
+    # ------------------------------------------------------------------
+    # Enhanced KPI Card with Sparkline
+    # ------------------------------------------------------------------
+
+    def kpi_with_sparkline(
+        self,
+        label: str,
+        value: str,
+        delta: str = "",
+        trend_data: list[float] | None = None,
+        delta_color: str = "green",
+    ) -> str:
+        """Return HTML for a KPI card with embedded inline sparkline SVG."""
+        sparkline_svg = ""
+        if trend_data and len(trend_data) >= 3:
+            # Build SVG sparkline inline
+            mn, mx = min(trend_data), max(trend_data)
+            rng = mx - mn if mx != mn else 1
+            w, h = 80, 24
+            points = []
+            for i, v in enumerate(trend_data[-10:]):
+                x = i * w / max(len(trend_data[-10:]) - 1, 1)
+                y = h - (v - mn) / rng * h
+                points.append(f"{x:.1f},{y:.1f}")
+            polyline = " ".join(points)
+            color = "#22c55e" if delta_color == "green" else "#ef4444"
+            sparkline_svg = (
+                f'<svg width="{w}" height="{h}" style="margin-top:4px;">'
+                f'<polyline points="{polyline}" fill="none" stroke="{color}" stroke-width="1.5"/>'
+                f'</svg>'
+            )
+
+        delta_html = ""
+        if delta:
+            c = "#22c55e" if delta_color == "green" else "#ef4444"
+            arrow = "▲" if delta_color == "green" else "▼"
+            delta_html = f'<span style="font-size:0.75rem;color:{c};">{arrow} {delta}</span>'
+
+        return f"""
+<div style="background:#0d1b2e;border:1px solid #1e3a5f;border-radius:10px;padding:14px 16px;">
+<div style="font-size:0.7rem;color:#94a3b8;text-transform:uppercase;letter-spacing:0.5px;">{label}</div>
+<div style="font-size:1.5rem;font-weight:800;color:#f8fafc;margin:2px 0;">{value} {delta_html}</div>
+{sparkline_svg}
+</div>"""
+
+    @staticmethod
     def _alpha(hex_color: str, alpha: float) -> str:
         """Convert a hex colour to an ``rgba(...)`` string with the given
         alpha transparency.

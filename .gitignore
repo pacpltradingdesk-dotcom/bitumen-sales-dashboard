@@ -26,3 +26,17 @@ Thumbs.db
 # Secrets (DO NOT UPLOAD)
 secrets.toml
 .streamlit/secrets.toml
+vault.enc
+.vault_salt
+*_config.json
+email_credentials.json
+whatsapp_credentials.json
+
+# ML model artifacts
+ml_models/*.pkl
+
+# Logs directory
+logs/
+
+# Database backups
+backups/

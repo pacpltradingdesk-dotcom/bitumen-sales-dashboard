@@ -1,74 +1,47 @@
 [
   {
-    "timestamp_ist": "04-03-2026 16:37:29 IST",
-    "total": 32,
-    "ok": 31,
-    "warn": 1,
+    "timestamp_ist": "04-03-2026 20:53:31 IST",
+    "total": 17,
+    "ok": 8,
+    "warn": 9,
     "fail": 0,
-    "health_pct": 96,
+    "health_pct": 47,
     "overall": "WARN"
   },
   {
-    "timestamp_ist": "04-03-2026 16:37:29 IST",
-    "total": 32,
-    "ok": 31,
-    "warn": 1,
+    "timestamp_ist": "04-03-2026 20:53:34 IST",
+    "total": 16,
+    "ok": 8,
+    "warn": 8,
     "fail": 0,
-    "health_pct": 96,
+    "health_pct": 50,
     "overall": "WARN"
   },
   {
-    "timestamp_ist": "04-03-2026 16:37:30 IST",
-    "total": 32,
-    "ok": 31,
-    "warn": 1,
+    "timestamp_ist": "04-03-2026 20:53:35 IST",
+    "total": 17,
+    "ok": 9,
+    "warn": 8,
     "fail": 0,
-    "health_pct": 96,
+    "health_pct": 52,
     "overall": "WARN"
   },
   {
-    "timestamp_ist": "04-03-2026 16:39:53 IST",
-    "total": 33,
-    "ok": 31,
-    "warn": 2,
+    "timestamp_ist": "04-03-2026 20:54:27 IST",
+    "total": 18,
+    "ok": 9,
+    "warn": 9,
     "fail": 0,
-    "health_pct": 93,
+    "health_pct": 50,
     "overall": "WARN"
   },
   {
-    "timestamp_ist": "04-03-2026 16:41:51 IST",
-    "total": 33,
-    "ok": 31,
-    "warn": 2,
+    "timestamp_ist": "04-03-2026 20:56:44 IST",
+    "total": 18,
+    "ok": 9,
+    "warn": 9,
     "fail": 0,
-    "health_pct": 93,
-    "overall": "WARN"
-  },
-  {
-    "timestamp_ist": "04-03-2026 16:44:45 IST",
-    "total": 33,
-    "ok": 31,
-    "warn": 2,
-    "fail": 0,
-    "health_pct": 93,
-    "overall": "WARN"
-  },
-  {
-    "timestamp_ist": "04-03-2026 16:50:35 IST",
-    "total": 32,
-    "ok": 31,
-    "warn": 1,
-    "fail": 0,
-    "health_pct": 96,
-    "overall": "WARN"
-  },
-  {
-    "timestamp_ist": "04-03-2026 16:50:52 IST",
-    "total": 33,
-    "ok": 31,
-    "warn": 2,
-    "fail": 0,
-    "health_pct": 93,
+    "health_pct": 50,
     "overall": "WARN"
   }
 ]

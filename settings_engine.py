@@ -21,6 +21,7 @@ DEFAULT_SETTINGS = {
     "margin_premium_multiplier": 2.4,
     "gst_rate_pct": 18,
     "customs_duty_pct": 2.5,
+    "landing_charges_pct": 1.0,
 
     # Transport Rates
     "bulk_rate_per_km": 5.5,
@@ -283,6 +284,70 @@ def reset_to_defaults() -> None:
     save_settings(DEFAULT_SETTINGS)
 
 
+# ─── Secure API Key Access ───────────────────────────────────────────────────
+
+_SENSITIVE_KEYS = {
+    "api_key_eia", "api_key_fred", "api_key_data_gov_in",
+    "api_key_openweather", "api_key_newsapi",
+}
+
+_ENV_VAR_MAP = {
+    "api_key_eia": "EIA_API_KEY",
+    "api_key_fred": "FRED_API_KEY",
+    "api_key_data_gov_in": "DATA_GOV_IN_KEY",
+    "api_key_openweather": "OPENWEATHER_API_KEY",
+    "api_key_newsapi": "NEWSAPI_KEY",
+}
+
+
+def get_api_key_secure(key: str) -> str:
+    """
+    Get an API key securely.
+    Checks: environment variable → encrypted vault → settings.json (legacy).
+    """
+    env_var = _ENV_VAR_MAP.get(key, "")
+    try:
+        from vault_engine import get_secret
+        val = get_secret(f"settings_{key}", env_var=env_var)
+        if val:
+            return val
+    except ImportError:
+        pass
+    # Check environment directly
+    if env_var:
+        val = __import__("os").environ.get(env_var, "").strip()
+        if val:
+            return val
+    # Fallback to plain settings.json (legacy)
+    return load_settings().get(key, "")
+
+
+def _migrate_sensitive_to_vault():
+    """One-time: move plaintext API keys from settings.json into encrypted vault."""
+    try:
+        from vault_engine import set_secret, _HAS_CRYPTOGRAPHY
+        if not _HAS_CRYPTOGRAPHY:
+            return
+    except ImportError:
+        return
+    settings = load_settings()
+    dirty = False
+    for key in _SENSITIVE_KEYS:
+        val = settings.get(key, "")
+        if val and isinstance(val, str) and len(val) > 5:
+            set_secret(f"settings_{key}", val)
+            settings[key] = ""  # Clear from JSON
+            dirty = True
+    if dirty:
+        save_settings(settings)
+
+
 # Initialize settings file if it doesn't exist
 if not SETTINGS_FILE.exists():
     save_settings(DEFAULT_SETTINGS)
+
+# Auto-migrate sensitive keys to vault on first import
+try:
+    _migrate_sensitive_to_vault()
+except Exception:
+    pass
