@@ -1049,6 +1049,118 @@ class ChartEngine:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
+# STANDALONE CHART FUNCTIONS (not part of ChartEngine class)
+# ═══════════════════════════════════════════════════════════════════════════
+
+def procurement_urgency_gauge(urgency: int, recommendation: str) -> str:
+    """Return HTML for a procurement urgency circular gauge."""
+    color = "#ef4444" if urgency >= 75 else (
+        "#f59e0b" if urgency >= 50 else (
+        "#3b82f6" if urgency >= 30 else "#22c55e"))
+    return f"""
+<div style="text-align:center; padding:20px;">
+<div style="position:relative; margin:0 auto; width:120px; height:120px;">
+<svg viewBox="0 0 36 36" style="transform:rotate(-90deg);">
+<path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+      fill="none" stroke="#e2e8f0" stroke-width="3"/>
+<path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+      fill="none" stroke="{color}" stroke-width="3"
+      stroke-dasharray="{urgency}, 100" stroke-linecap="round"/>
+</svg>
+<div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+<div style="font-size:1.8rem; font-weight:900; color:{color};">{urgency}</div>
+</div>
+</div>
+<div style="font-size:0.9rem; font-weight:700; color:{color}; margin-top:8px;">
+{recommendation}
+</div>
+</div>
+"""
+
+
+def volatility_bands_chart(prices: list, window: int = 20):
+    """Return a Plotly figure with Bollinger Bands for price volatility."""
+    import plotly.graph_objects as go
+    import numpy as np
+
+    n = len(prices)
+    if n < window:
+        window = max(3, n // 2)
+
+    arr = np.array(prices, dtype=float)
+    sma = np.convolve(arr, np.ones(window)/window, mode="valid")
+    std = np.array([np.std(arr[max(0, i-window+1):i+1]) for i in range(window-1, n)])
+
+    upper = sma + 2 * std
+    lower = sma - 2 * std
+    x = list(range(window - 1, n))
+
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=list(range(n)), y=prices, mode="lines",
+                             name="Price", line=dict(color="#1e3a5f", width=2)))
+    fig.add_trace(go.Scatter(x=x, y=upper.tolist(), mode="lines",
+                             name="Upper Band", line=dict(color="#ef4444", dash="dash", width=1)))
+    fig.add_trace(go.Scatter(x=x, y=sma.tolist(), mode="lines",
+                             name=f"SMA({window})", line=dict(color="#f59e0b", width=1.5)))
+    fig.add_trace(go.Scatter(x=x, y=lower.tolist(), mode="lines",
+                             name="Lower Band", line=dict(color="#22c55e", dash="dash", width=1),
+                             fill="tonexty", fillcolor="rgba(34,197,94,0.08)"))
+    fig.update_layout(height=350, margin=dict(l=0, r=0, t=30, b=20),
+                      title="Volatility Bands (Bollinger)", template="plotly_white")
+    return fig
+
+
+def crude_bitumen_lag_chart(crude_prices: list, bitumen_prices: list, lag_days: int = 15):
+    """Return a Plotly dual-axis chart showing crude → bitumen price lag."""
+    import plotly.graph_objects as go
+    from plotly.subplots import make_subplots
+
+    fig = make_subplots(specs=[[{"secondary_y": True}]])
+    n_crude = len(crude_prices)
+    n_bitumen = len(bitumen_prices)
+
+    fig.add_trace(go.Scatter(
+        x=list(range(n_crude)), y=crude_prices,
+        name="Brent Crude ($/bbl)", mode="lines",
+        line=dict(color="#1e3a5f", width=2),
+    ), secondary_y=False)
+
+    # Shift bitumen left by lag_days to show correlation
+    fig.add_trace(go.Scatter(
+        x=[i - lag_days for i in range(n_bitumen)], y=bitumen_prices,
+        name=f"Bitumen (₹/MT) shifted -{lag_days}d", mode="lines",
+        line=dict(color="#c9a84c", width=2, dash="dot"),
+    ), secondary_y=True)
+
+    fig.update_layout(
+        height=350, margin=dict(l=0, r=0, t=30, b=20),
+        title=f"Crude → Bitumen Price Lag ({lag_days} days)",
+        template="plotly_white",
+    )
+    fig.update_yaxes(title_text="Crude ($/bbl)", secondary_y=False)
+    fig.update_yaxes(title_text="Bitumen (₹/MT)", secondary_y=True)
+    return fig
+
+
+def volatility_thermometer(score: int, label: str = "Volatility") -> str:
+    """Return HTML for a linear thermometer gauge."""
+    color = "#22c55e" if score <= 30 else ("#f59e0b" if score <= 60 else "#ef4444")
+    level = "Low" if score <= 30 else ("Medium" if score <= 60 else "High")
+    return f"""
+<div style="background:white; border-radius:10px; padding:12px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+<span style="font-size:0.75rem; font-weight:600; color:#475569;">{label}</span>
+<span style="font-size:0.75rem; font-weight:700; color:{color};">{level} ({score}%)</span>
+</div>
+<div style="background:#e2e8f0; border-radius:6px; height:14px; overflow:hidden;">
+<div style="width:{score}%; height:100%; background:linear-gradient(90deg, #22c55e, #f59e0b, #ef4444);
+border-radius:6px; transition:width 0.5s;"></div>
+</div>
+</div>
+"""
+
+
+# ═══════════════════════════════════════════════════════════════════════════
 # Module-level convenience — singleton
 # ═══════════════════════════════════════════════════════════════════════════
 charts = ChartEngine()

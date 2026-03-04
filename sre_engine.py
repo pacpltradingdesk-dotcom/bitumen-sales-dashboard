@@ -252,6 +252,75 @@ def _upsert_health(entity_type: str, entity_name: str, status: str,
     _save(_F_HEALTH, data)
 
 
+# ═══════════════════════════════════════════════════════════════════════════════
+# Circuit Breaker — resilient API call wrapper
+# ═══════════════════════════════════════════════════════════════════════════════
+
+class CircuitBreaker:
+    """
+    Circuit breaker pattern for external API calls.
+    States: CLOSED (normal) → OPEN (blocking) → HALF_OPEN (testing).
+    """
+    CLOSED    = "CLOSED"
+    OPEN      = "OPEN"
+    HALF_OPEN = "HALF_OPEN"
+
+    def __init__(self, name: str, failure_threshold: int = 5,
+                 recovery_timeout: int = 60):
+        self.name = name
+        self.failure_threshold = failure_threshold
+        self.recovery_timeout = recovery_timeout
+        self._state = self.CLOSED
+        self._failure_count = 0
+        self._last_failure_time: Optional[float] = None
+        self._lock = threading.Lock()
+
+    @property
+    def state(self) -> str:
+        with self._lock:
+            if self._state == self.OPEN and self._last_failure_time:
+                elapsed = time.time() - self._last_failure_time
+                if elapsed >= self.recovery_timeout:
+                    self._state = self.HALF_OPEN
+            return self._state
+
+    def call(self, func, *args, **kwargs):
+        """Execute func through circuit breaker protection."""
+        st = self.state
+        if st == self.OPEN:
+            AuditLogger.warn("CircuitBreaker",
+                             f"[{self.name}] OPEN — call blocked")
+            raise ConnectionError(
+                f"Circuit breaker {self.name} is OPEN — too many failures")
+
+        try:
+            result = func(*args, **kwargs)
+            with self._lock:
+                if self._state == self.HALF_OPEN:
+                    AuditLogger.info("CircuitBreaker",
+                                     f"[{self.name}] recovered → CLOSED")
+                self._state = self.CLOSED
+                self._failure_count = 0
+            return result
+        except Exception as e:
+            with self._lock:
+                self._failure_count += 1
+                self._last_failure_time = time.time()
+                if self._failure_count >= self.failure_threshold:
+                    self._state = self.OPEN
+                    AuditLogger.error("CircuitBreaker",
+                                      f"[{self.name}] → OPEN after "
+                                      f"{self._failure_count} failures")
+            raise
+
+    def reset(self):
+        """Manually reset to CLOSED."""
+        with self._lock:
+            self._state = self.CLOSED
+            self._failure_count = 0
+            self._last_failure_time = None
+
+
 class HealthCheckEngine:
     """
     Runs health checks across 7 entity types:
@@ -363,6 +432,25 @@ class HealthCheckEngine:
             cache_detail = f"{len(cache)} cached entries fresh"
         _upsert_health("data", "api_cache_freshness", cache_status, details=cache_detail)
         results.append({"entity": "api_cache_freshness", "status": cache_status, "details": cache_detail})
+
+        # ── Anomaly detection (if anomaly_engine is available) ──────────────
+        try:
+            from anomaly_engine import detect_price_anomalies
+            anomalies = detect_price_anomalies()
+            if anomalies:
+                anom_detail = f"{len(anomalies)} price anomalies detected"
+                _upsert_health("data", "price_anomalies", "WARN", details=anom_detail)
+                results.append({"entity": "price_anomalies", "status": "WARN",
+                                "details": anom_detail})
+            else:
+                _upsert_health("data", "price_anomalies", "OK",
+                               details="No anomalies detected")
+                results.append({"entity": "price_anomalies", "status": "OK",
+                                "details": "No anomalies detected"})
+        except ImportError:
+            pass  # anomaly_engine not available (ML packages not installed)
+        except Exception:
+            pass  # graceful fallback
 
         AuditLogger.info("HealthCheckEngine", f"Data quality checked: {len(results)} entities")
         return results
@@ -1288,6 +1376,35 @@ class SREOrchestrator:
     """
 
     @classmethod
+    def auto_escalate(cls) -> int:
+        """Escalate P1 alerts open >24h to P0. Returns count escalated."""
+        alerts: List[dict] = _load(_F_ALERTS, [])
+        cutoff = _now() - datetime.timedelta(hours=24)
+        escalated = 0
+        for a in alerts:
+            if a.get("severity") != "P1" or a.get("status") != "Open":
+                continue
+            ts_str = a.get("triggered_on_ist", "")
+            try:
+                ts_dt = datetime.datetime.strptime(
+                    ts_str.replace(" IST", ""), "%d-%m-%Y %H:%M:%S")
+                ts_dt = IST.localize(ts_dt)
+                if ts_dt < cutoff:
+                    a["severity"] = "P0"
+                    a["action_needed"] = (
+                        a.get("action_needed", "") +
+                        " [AUTO-ESCALATED from P1 after 24h]"
+                    )
+                    escalated += 1
+            except Exception:
+                pass
+        if escalated:
+            _save(_F_ALERTS, alerts)
+            AuditLogger.warn("SREOrchestrator",
+                             f"Auto-escalated {escalated} P1 alerts → P0")
+        return escalated
+
+    @classmethod
     def run_cycle(cls) -> dict:
         AuditLogger.info("SREOrchestrator", "=== SRE CYCLE START ===")
         t_start = time.time()
@@ -1297,6 +1414,9 @@ class SREOrchestrator:
 
         # Phase 4: alerts from health
         alerts_fired = SmartAlertEngine.from_health_results(health)
+
+        # Auto-escalate stale P1 alerts → P0
+        escalated = cls.auto_escalate()
 
         # Phase 3: auto-heal failed APIs
         heal_results = []
@@ -1314,15 +1434,44 @@ class SREOrchestrator:
                     )
                     bugs_created.append(bug_id)
 
+        # ── Resilience: Heartbeat check + DLQ processing + LKG cleanup ────
+        heartbeat_dead = 0
+        heartbeat_restarted = 0
+        dlq_stats = {}
+        lkg_cleaned = 0
+        try:
+            from resilience_manager import HeartbeatMonitor, DeadLetterQueue, LKGCache
+            dead = HeartbeatMonitor.check_all()
+            heartbeat_dead = len(dead)
+            if dead:
+                heartbeat_restarted = HeartbeatMonitor.auto_restart_dead()
+                AuditLogger.warn("SREOrchestrator",
+                                 f"Heartbeat: {heartbeat_dead} dead threads, "
+                                 f"{heartbeat_restarted} restarted")
+            dlq_stats = DeadLetterQueue.process_all()
+            if dlq_stats.get("retried", 0) > 0:
+                AuditLogger.info("SREOrchestrator",
+                                 f"DLQ: retried={dlq_stats['retried']}, "
+                                 f"exhausted={dlq_stats['exhausted']}")
+            lkg_cleaned = LKGCache.cleanup_old()
+        except Exception as _res_err:
+            AuditLogger.warn("SREOrchestrator",
+                             f"Resilience integration skipped: {_res_err}")
+
         elapsed = time.time() - t_start
         summary = {
             "timestamp_ist":   _ts(),
             "elapsed_sec":     round(elapsed, 2),
             "health_summary":  health.get("summary", {}),
             "alerts_fired":    alerts_fired,
+            "alerts_escalated": escalated,
             "heals_attempted": len(heal_results),
             "heals_succeeded": sum(1 for h in heal_results if h.get("healed")),
             "bugs_created":    bugs_created,
+            "heartbeat_dead":  heartbeat_dead,
+            "heartbeat_restarted": heartbeat_restarted,
+            "dlq_stats":       dlq_stats,
+            "lkg_cleaned":     lkg_cleaned,
         }
         AuditLogger.info("SREOrchestrator",
                          f"=== SRE CYCLE END — {elapsed:.1f}s  "
@@ -1351,6 +1500,12 @@ def start_sre_background(interval_min: int = 15) -> None:
         time.sleep(60)  # settle time on startup
         while True:
             try:
+                # Heartbeat beat
+                try:
+                    from resilience_manager import HeartbeatMonitor
+                    HeartbeatMonitor.beat("SREBackground")
+                except Exception:
+                    pass
                 SREOrchestrator.run_cycle()
             except Exception as e:
                 AuditLogger.error("SREBackground", f"Cycle exception: {e}")
@@ -1358,6 +1513,18 @@ def start_sre_background(interval_min: int = 15) -> None:
 
     t = threading.Thread(target=_worker, daemon=True, name="SREBackground")
     t.start()
+
+    # Register with heartbeat monitor
+    try:
+        from resilience_manager import HeartbeatMonitor
+        HeartbeatMonitor.register(
+            "SREBackground",
+            restart_fn=lambda: start_sre_background(interval_min),
+            expected_interval_sec=interval_min * 60,
+        )
+    except Exception:
+        pass
+
     AuditLogger.info("SREOrchestrator",
                      f"SRE background thread started (interval={interval_min}min)")
 

@@ -1,393 +1,87 @@
 [
   {
-    "datetime_ist": "04-03-2026 11:10:27 IST",
-    "api_id": "opec_basket",
-    "status": "OK",
-    "latency_ms": 303,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:10:27 IST",
+    "datetime_ist": "04-03-2026 16:29:58 IST",
     "api_id": "world_bank_cpi_india",
     "status": "OK",
-    "latency_ms": 3461,
+    "latency_ms": 685,
     "http_code": 200,
     "error_detail": "",
     "action_taken": "Primary fetch"
   },
   {
-    "datetime_ist": "04-03-2026 11:10:28 IST",
-    "api_id": "shipping_freight",
-    "status": "OK",
-    "latency_ms": 687,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:10:29 IST",
-    "api_id": "nse_infrastructure",
-    "status": "OK",
-    "latency_ms": 330,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:10:29 IST",
-    "api_id": "current_time",
-    "status": "OK",
-    "latency_ms": 2315,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:10:29 IST",
-    "api_id": "nse_infrastructure",
-    "status": "OK",
-    "latency_ms": 492,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:10:29 IST",
-    "api_id": "open_meteo_forecast_vadodara",
-    "status": "OK",
-    "latency_ms": 2467,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:10:30 IST",
-    "api_id": "govt_holiday_api",
-    "status": "OK",
-    "latency_ms": 0,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:10:30 IST",
-    "api_id": "current_time",
-    "status": "OK",
-    "latency_ms": 2571,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:10:30 IST",
-    "api_id": "current_time",
-    "status": "OK",
-    "latency_ms": 2612,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:10:30 IST",
-    "api_id": "open_meteo_forecast_vadodara",
-    "status": "OK",
-    "latency_ms": 1462,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:10:30 IST",
-    "api_id": "govt_holiday_api",
-    "status": "OK",
-    "latency_ms": 0,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:10:31 IST",
-    "api_id": "open_meteo_forecast_vadodara",
-    "status": "OK",
-    "latency_ms": 1367,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:10:31 IST",
-    "api_id": "govt_holiday_api",
-    "status": "OK",
-    "latency_ms": 0,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:10:31 IST",
-    "api_id": "rest_countries_india",
-    "status": "OK",
-    "latency_ms": 1585,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:10:32 IST",
-    "api_id": "rest_countries_india",
-    "status": "OK",
-    "latency_ms": 1413,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:10:32 IST",
-    "api_id": "rest_countries_india",
-    "status": "OK",
-    "latency_ms": 1349,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:10:32 IST",
-    "api_id": "rest_countries_india",
-    "status": "FAIL",
-    "latency_ms": 5460,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:10:33 IST",
-    "api_id": "current_time",
-    "status": "OK",
-    "latency_ms": 1470,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:10:33 IST",
-    "api_id": "current_time",
-    "status": "OK",
-    "latency_ms": 1580,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:10:34 IST",
-    "api_id": "current_time",
-    "status": "OK",
-    "latency_ms": 1557,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:10:34 IST",
-    "api_id": "current_time",
-    "status": "OK",
-    "latency_ms": 1378,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:11:34 IST",
-    "api_id": "usdinr",
-    "status": "OK",
-    "latency_ms": 1856,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:11:36 IST",
-    "api_id": "usdinr_frankfurter",
-    "status": "OK",
-    "latency_ms": 1619,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:11:38 IST",
-    "api_id": "brent",
-    "status": "OK",
-    "latency_ms": 1330,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:11:40 IST",
-    "api_id": "wti",
-    "status": "OK",
-    "latency_ms": 674,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:11:41 IST",
-    "api_id": "natural_gas",
-    "status": "OK",
-    "latency_ms": 465,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:11:41 IST",
-    "api_id": "dxy",
-    "status": "OK",
-    "latency_ms": 516,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:11:43 IST",
-    "api_id": "nifty50",
-    "status": "OK",
-    "latency_ms": 1125,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:11:45 IST",
-    "api_id": "sensex",
-    "status": "OK",
-    "latency_ms": 1105,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:11:47 IST",
-    "api_id": "india_vix",
-    "status": "OK",
-    "latency_ms": 737,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:11:47 IST",
-    "api_id": "gold_xau",
-    "status": "OK",
-    "latency_ms": 724,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:11:48 IST",
-    "api_id": "weather_mumbai",
-    "status": "OK",
-    "latency_ms": 809,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:11:49 IST",
-    "api_id": "weather_kandla",
-    "status": "OK",
-    "latency_ms": 820,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:11:50 IST",
-    "api_id": "weather_mangalore",
-    "status": "OK",
-    "latency_ms": 984,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:11:51 IST",
-    "api_id": "weather_delhi",
-    "status": "OK",
-    "latency_ms": 1065,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:11:52 IST",
-    "api_id": "world_bank_india_gdp",
-    "status": "OK",
-    "latency_ms": 752,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:11:53 IST",
+    "datetime_ist": "04-03-2026 16:29:58 IST",
     "api_id": "world_bank_india_infra",
     "status": "OK",
-    "latency_ms": 967,
+    "latency_ms": 713,
     "http_code": 200,
     "error_detail": "",
     "action_taken": "Primary fetch"
   },
   {
-    "datetime_ist": "04-03-2026 11:11:54 IST",
-    "api_id": "world_bank_cpi_india",
-    "status": "OK",
-    "latency_ms": 716,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:11:54 IST",
+    "datetime_ist": "04-03-2026 16:29:58 IST",
     "api_id": "opec_basket",
     "status": "OK",
-    "latency_ms": 147,
+    "latency_ms": 134,
     "http_code": 0,
     "error_detail": "",
     "action_taken": "Primary fetch"
   },
   {
-    "datetime_ist": "04-03-2026 11:11:54 IST",
+    "datetime_ist": "04-03-2026 16:29:58 IST",
     "api_id": "shipping_freight",
     "status": "OK",
-    "latency_ms": 132,
+    "latency_ms": 174,
     "http_code": 0,
     "error_detail": "",
     "action_taken": "Primary fetch"
   },
   {
-    "datetime_ist": "04-03-2026 11:11:55 IST",
+    "datetime_ist": "04-03-2026 16:29:58 IST",
     "api_id": "nse_infrastructure",
     "status": "OK",
-    "latency_ms": 276,
+    "latency_ms": 235,
     "http_code": 0,
     "error_detail": "",
     "action_taken": "Primary fetch"
   },
   {
-    "datetime_ist": "04-03-2026 11:11:55 IST",
+    "datetime_ist": "04-03-2026 16:29:58 IST",
+    "api_id": "opec_basket",
+    "status": "OK",
+    "latency_ms": 187,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:29:59 IST",
+    "api_id": "shipping_freight",
+    "status": "OK",
+    "latency_ms": 187,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:29:59 IST",
+    "api_id": "nse_infrastructure",
+    "status": "OK",
+    "latency_ms": 318,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:29:59 IST",
     "api_id": "open_meteo_forecast_vadodara",
     "status": "OK",
-    "latency_ms": 835,
+    "latency_ms": 897,
     "http_code": 200,
     "error_detail": "",
     "action_taken": "Primary fetch"
   },
   {
-    "datetime_ist": "04-03-2026 11:11:56 IST",
+    "datetime_ist": "04-03-2026 16:29:59 IST",
     "api_id": "govt_holiday_api",
     "status": "OK",
     "latency_ms": 0,
@@ -396,232 +90,16 @@
     "action_taken": "Primary fetch"
   },
   {
-    "datetime_ist": "04-03-2026 11:11:57 IST",
+    "datetime_ist": "04-03-2026 16:30:00 IST",
     "api_id": "rest_countries_india",
     "status": "OK",
-    "latency_ms": 982,
+    "latency_ms": 974,
     "http_code": 200,
     "error_detail": "",
     "action_taken": "Primary fetch"
   },
   {
-    "datetime_ist": "04-03-2026 11:11:58 IST",
-    "api_id": "current_time",
-    "status": "OK",
-    "latency_ms": 1112,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:18:44 IST",
-    "api_id": "usdinr",
-    "status": "OK",
-    "latency_ms": 424,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:18:44 IST",
-    "api_id": "usdinr_frankfurter",
-    "status": "OK",
-    "latency_ms": 293,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:18:44 IST",
-    "api_id": "brent",
-    "status": "OK",
-    "latency_ms": 264,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:18:45 IST",
-    "api_id": "wti",
-    "status": "OK",
-    "latency_ms": 131,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:18:45 IST",
-    "api_id": "natural_gas",
-    "status": "OK",
-    "latency_ms": 148,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:18:45 IST",
-    "api_id": "dxy",
-    "status": "OK",
-    "latency_ms": 124,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:18:45 IST",
-    "api_id": "nifty50",
-    "status": "OK",
-    "latency_ms": 130,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:18:45 IST",
-    "api_id": "sensex",
-    "status": "OK",
-    "latency_ms": 127,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:18:45 IST",
-    "api_id": "india_vix",
-    "status": "OK",
-    "latency_ms": 126,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:18:46 IST",
-    "api_id": "gold_xau",
-    "status": "OK",
-    "latency_ms": 473,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:18:47 IST",
-    "api_id": "weather_mumbai",
-    "status": "OK",
-    "latency_ms": 937,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:18:48 IST",
-    "api_id": "weather_kandla",
-    "status": "OK",
-    "latency_ms": 686,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:18:48 IST",
-    "api_id": "weather_mangalore",
-    "status": "OK",
-    "latency_ms": 769,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:18:49 IST",
-    "api_id": "weather_delhi",
-    "status": "OK",
-    "latency_ms": 815,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:18:51 IST",
-    "api_id": "world_bank_india_gdp",
-    "status": "OK",
-    "latency_ms": 1272,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:18:52 IST",
-    "api_id": "world_bank_india_infra",
-    "status": "OK",
-    "latency_ms": 1207,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:18:52 IST",
-    "api_id": "world_bank_cpi_india",
-    "status": "OK",
-    "latency_ms": 529,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:18:53 IST",
-    "api_id": "opec_basket",
-    "status": "OK",
-    "latency_ms": 81,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:18:53 IST",
-    "api_id": "shipping_freight",
-    "status": "OK",
-    "latency_ms": 150,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:18:53 IST",
-    "api_id": "nse_infrastructure",
-    "status": "OK",
-    "latency_ms": 195,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:18:54 IST",
-    "api_id": "open_meteo_forecast_vadodara",
-    "status": "OK",
-    "latency_ms": 811,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:18:54 IST",
-    "api_id": "govt_holiday_api",
-    "status": "OK",
-    "latency_ms": 0,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:18:55 IST",
-    "api_id": "rest_countries_india",
-    "status": "OK",
-    "latency_ms": 990,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:18:56 IST",
+    "datetime_ist": "04-03-2026 16:30:01 IST",
     "api_id": "current_time",
     "status": "OK",
     "latency_ms": 1033,
@@ -630,196 +108,25 @@
     "action_taken": "Primary fetch"
   },
   {
-    "datetime_ist": "04-03-2026 11:22:37 IST",
+    "datetime_ist": "04-03-2026 16:30:04 IST",
     "api_id": "usdinr",
     "status": "OK",
-    "latency_ms": 733,
+    "latency_ms": 490,
     "http_code": 200,
     "error_detail": "",
     "action_taken": "Primary fetch"
   },
   {
-    "datetime_ist": "04-03-2026 11:22:38 IST",
-    "api_id": "usdinr_frankfurter",
-    "status": "OK",
-    "latency_ms": 1039,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:22:38 IST",
-    "api_id": "brent",
-    "status": "OK",
-    "latency_ms": 167,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:22:38 IST",
-    "api_id": "wti",
-    "status": "OK",
-    "latency_ms": 172,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:22:38 IST",
-    "api_id": "natural_gas",
-    "status": "OK",
-    "latency_ms": 159,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:22:39 IST",
-    "api_id": "dxy",
-    "status": "OK",
-    "latency_ms": 162,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:22:39 IST",
-    "api_id": "nifty50",
-    "status": "OK",
-    "latency_ms": 160,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:22:39 IST",
-    "api_id": "sensex",
-    "status": "OK",
-    "latency_ms": 167,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:22:39 IST",
-    "api_id": "india_vix",
-    "status": "OK",
-    "latency_ms": 169,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:22:40 IST",
-    "api_id": "gold_xau",
-    "status": "OK",
-    "latency_ms": 573,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:22:41 IST",
-    "api_id": "weather_mumbai",
-    "status": "OK",
-    "latency_ms": 864,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:22:41 IST",
-    "api_id": "weather_kandla",
-    "status": "OK",
-    "latency_ms": 669,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:22:42 IST",
-    "api_id": "weather_mangalore",
-    "status": "OK",
-    "latency_ms": 785,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:22:43 IST",
-    "api_id": "weather_delhi",
-    "status": "OK",
-    "latency_ms": 618,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:22:43 IST",
-    "api_id": "world_bank_india_gdp",
-    "status": "OK",
-    "latency_ms": 564,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:22:44 IST",
-    "api_id": "world_bank_india_infra",
-    "status": "OK",
-    "latency_ms": 644,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:22:45 IST",
-    "api_id": "world_bank_cpi_india",
-    "status": "OK",
-    "latency_ms": 576,
-    "http_code": 200,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:22:45 IST",
-    "api_id": "opec_basket",
-    "status": "OK",
-    "latency_ms": 170,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:22:45 IST",
-    "api_id": "shipping_freight",
-    "status": "OK",
-    "latency_ms": 166,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:22:45 IST",
-    "api_id": "nse_infrastructure",
-    "status": "OK",
-    "latency_ms": 195,
-    "http_code": 0,
-    "error_detail": "",
-    "action_taken": "Primary fetch"
-  },
-  {
-    "datetime_ist": "04-03-2026 11:22:46 IST",
+    "datetime_ist": "04-03-2026 16:30:04 IST",
     "api_id": "open_meteo_forecast_vadodara",
     "status": "OK",
-    "latency_ms": 903,
+    "latency_ms": 5082,
     "http_code": 200,
     "error_detail": "",
     "action_taken": "Primary fetch"
   },
   {
-    "datetime_ist": "04-03-2026 11:22:46 IST",
+    "datetime_ist": "04-03-2026 16:30:04 IST",
     "api_id": "govt_holiday_api",
     "status": "OK",
     "latency_ms": 0,
@@ -828,19 +135,1306 @@
     "action_taken": "Primary fetch"
   },
   {
-    "datetime_ist": "04-03-2026 11:22:47 IST",
-    "api_id": "rest_countries_india",
+    "datetime_ist": "04-03-2026 16:30:04 IST",
+    "api_id": "usdinr_frankfurter",
     "status": "OK",
-    "latency_ms": 971,
+    "latency_ms": 304,
     "http_code": 200,
     "error_detail": "",
     "action_taken": "Primary fetch"
   },
   {
-    "datetime_ist": "04-03-2026 11:22:49 IST",
+    "datetime_ist": "04-03-2026 16:30:04 IST",
+    "api_id": "brent",
+    "status": "OK",
+    "latency_ms": 143,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:30:05 IST",
+    "api_id": "wti",
+    "status": "OK",
+    "latency_ms": 128,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:30:05 IST",
+    "api_id": "natural_gas",
+    "status": "OK",
+    "latency_ms": 212,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:30:05 IST",
+    "api_id": "dxy",
+    "status": "OK",
+    "latency_ms": 185,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:30:05 IST",
+    "api_id": "rest_countries_india",
+    "status": "OK",
+    "latency_ms": 962,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:30:05 IST",
+    "api_id": "nifty50",
+    "status": "OK",
+    "latency_ms": 248,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:30:06 IST",
+    "api_id": "sensex",
+    "status": "OK",
+    "latency_ms": 157,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:30:06 IST",
+    "api_id": "india_vix",
+    "status": "OK",
+    "latency_ms": 181,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:30:06 IST",
     "api_id": "current_time",
     "status": "OK",
-    "latency_ms": 1202,
+    "latency_ms": 945,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:30:06 IST",
+    "api_id": "gold_xau",
+    "status": "OK",
+    "latency_ms": 462,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:30:14 IST",
+    "api_id": "weather_mumbai",
+    "status": "OK",
+    "latency_ms": 7589,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:30:16 IST",
+    "api_id": "weather_kandla",
+    "status": "OK",
+    "latency_ms": 1626,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:30:17 IST",
+    "api_id": "weather_mangalore",
+    "status": "OK",
+    "latency_ms": 1468,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:30:18 IST",
+    "api_id": "weather_delhi",
+    "status": "OK",
+    "latency_ms": 1293,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:30:19 IST",
+    "api_id": "world_bank_india_gdp",
+    "status": "OK",
+    "latency_ms": 653,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:30:20 IST",
+    "api_id": "world_bank_india_infra",
+    "status": "OK",
+    "latency_ms": 550,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:30:20 IST",
+    "api_id": "world_bank_cpi_india",
+    "status": "OK",
+    "latency_ms": 671,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:30:21 IST",
+    "api_id": "opec_basket",
+    "status": "OK",
+    "latency_ms": 443,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:30:21 IST",
+    "api_id": "shipping_freight",
+    "status": "OK",
+    "latency_ms": 189,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:30:21 IST",
+    "api_id": "nse_infrastructure",
+    "status": "OK",
+    "latency_ms": 223,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:30:22 IST",
+    "api_id": "open_meteo_forecast_vadodara",
+    "status": "OK",
+    "latency_ms": 1126,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:30:22 IST",
+    "api_id": "govt_holiday_api",
+    "status": "OK",
+    "latency_ms": 0,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:30:24 IST",
+    "api_id": "rest_countries_india",
+    "status": "OK",
+    "latency_ms": 1033,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:30:25 IST",
+    "api_id": "current_time",
+    "status": "OK",
+    "latency_ms": 1006,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:31:31 IST",
+    "api_id": "usdinr",
+    "status": "OK",
+    "latency_ms": 510,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:31:31 IST",
+    "api_id": "usdinr_frankfurter",
+    "status": "OK",
+    "latency_ms": 381,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:31:31 IST",
+    "api_id": "brent",
+    "status": "OK",
+    "latency_ms": 238,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:31:32 IST",
+    "api_id": "wti",
+    "status": "OK",
+    "latency_ms": 254,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:31:32 IST",
+    "api_id": "natural_gas",
+    "status": "OK",
+    "latency_ms": 201,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:31:32 IST",
+    "api_id": "dxy",
+    "status": "OK",
+    "latency_ms": 221,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:31:33 IST",
+    "api_id": "nifty50",
+    "status": "OK",
+    "latency_ms": 256,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:31:33 IST",
+    "api_id": "sensex",
+    "status": "OK",
+    "latency_ms": 225,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:31:33 IST",
+    "api_id": "india_vix",
+    "status": "OK",
+    "latency_ms": 177,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:31:34 IST",
+    "api_id": "gold_xau",
+    "status": "OK",
+    "latency_ms": 534,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:31:34 IST",
+    "api_id": "weather_mumbai",
+    "status": "OK",
+    "latency_ms": 739,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:31:35 IST",
+    "api_id": "weather_kandla",
+    "status": "OK",
+    "latency_ms": 744,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:31:36 IST",
+    "api_id": "weather_mangalore",
+    "status": "OK",
+    "latency_ms": 734,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:31:37 IST",
+    "api_id": "weather_delhi",
+    "status": "OK",
+    "latency_ms": 984,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:31:39 IST",
+    "api_id": "world_bank_india_gdp",
+    "status": "OK",
+    "latency_ms": 829,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:31:39 IST",
+    "api_id": "world_bank_india_infra",
+    "status": "OK",
+    "latency_ms": 650,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:31:40 IST",
+    "api_id": "world_bank_cpi_india",
+    "status": "OK",
+    "latency_ms": 767,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:31:41 IST",
+    "api_id": "opec_basket",
+    "status": "OK",
+    "latency_ms": 275,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:31:41 IST",
+    "api_id": "shipping_freight",
+    "status": "OK",
+    "latency_ms": 493,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:31:43 IST",
+    "api_id": "nse_infrastructure",
+    "status": "OK",
+    "latency_ms": 1055,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:31:44 IST",
+    "api_id": "open_meteo_forecast_vadodara",
+    "status": "OK",
+    "latency_ms": 989,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:31:44 IST",
+    "api_id": "govt_holiday_api",
+    "status": "OK",
+    "latency_ms": 0,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:31:45 IST",
+    "api_id": "rest_countries_india",
+    "status": "OK",
+    "latency_ms": 999,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:31:47 IST",
+    "api_id": "current_time",
+    "status": "OK",
+    "latency_ms": 1048,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:33:39 IST",
+    "api_id": "usdinr",
+    "status": "OK",
+    "latency_ms": 580,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:33:39 IST",
+    "api_id": "usdinr_frankfurter",
+    "status": "OK",
+    "latency_ms": 346,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:33:39 IST",
+    "api_id": "brent",
+    "status": "OK",
+    "latency_ms": 233,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:33:40 IST",
+    "api_id": "wti",
+    "status": "OK",
+    "latency_ms": 181,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:33:40 IST",
+    "api_id": "natural_gas",
+    "status": "OK",
+    "latency_ms": 169,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:33:40 IST",
+    "api_id": "dxy",
+    "status": "OK",
+    "latency_ms": 191,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:33:40 IST",
+    "api_id": "nifty50",
+    "status": "OK",
+    "latency_ms": 173,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:33:40 IST",
+    "api_id": "sensex",
+    "status": "OK",
+    "latency_ms": 227,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:33:41 IST",
+    "api_id": "india_vix",
+    "status": "OK",
+    "latency_ms": 212,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:33:41 IST",
+    "api_id": "gold_xau",
+    "status": "OK",
+    "latency_ms": 611,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:33:42 IST",
+    "api_id": "weather_mumbai",
+    "status": "OK",
+    "latency_ms": 777,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:33:43 IST",
+    "api_id": "weather_kandla",
+    "status": "OK",
+    "latency_ms": 921,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:33:44 IST",
+    "api_id": "weather_mangalore",
+    "status": "OK",
+    "latency_ms": 817,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:33:45 IST",
+    "api_id": "weather_delhi",
+    "status": "OK",
+    "latency_ms": 943,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:33:46 IST",
+    "api_id": "world_bank_india_gdp",
+    "status": "OK",
+    "latency_ms": 636,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:33:46 IST",
+    "api_id": "world_bank_india_infra",
+    "status": "OK",
+    "latency_ms": 602,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:33:47 IST",
+    "api_id": "world_bank_cpi_india",
+    "status": "OK",
+    "latency_ms": 1170,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:33:48 IST",
+    "api_id": "opec_basket",
+    "status": "OK",
+    "latency_ms": 170,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:33:48 IST",
+    "api_id": "shipping_freight",
+    "status": "OK",
+    "latency_ms": 199,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:33:48 IST",
+    "api_id": "nse_infrastructure",
+    "status": "OK",
+    "latency_ms": 275,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:33:49 IST",
+    "api_id": "open_meteo_forecast_vadodara",
+    "status": "OK",
+    "latency_ms": 704,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:33:49 IST",
+    "api_id": "govt_holiday_api",
+    "status": "OK",
+    "latency_ms": 0,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:33:50 IST",
+    "api_id": "rest_countries_india",
+    "status": "OK",
+    "latency_ms": 1043,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:33:51 IST",
+    "api_id": "current_time",
+    "status": "OK",
+    "latency_ms": 1159,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:36:30 IST",
+    "api_id": "usdinr",
+    "status": "OK",
+    "latency_ms": 488,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:36:30 IST",
+    "api_id": "usdinr_frankfurter",
+    "status": "OK",
+    "latency_ms": 405,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:36:30 IST",
+    "api_id": "brent",
+    "status": "OK",
+    "latency_ms": 127,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:36:31 IST",
+    "api_id": "wti",
+    "status": "OK",
+    "latency_ms": 131,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:36:31 IST",
+    "api_id": "natural_gas",
+    "status": "OK",
+    "latency_ms": 119,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:36:31 IST",
+    "api_id": "dxy",
+    "status": "OK",
+    "latency_ms": 120,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:36:31 IST",
+    "api_id": "nifty50",
+    "status": "OK",
+    "latency_ms": 138,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:36:31 IST",
+    "api_id": "sensex",
+    "status": "OK",
+    "latency_ms": 120,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:36:31 IST",
+    "api_id": "india_vix",
+    "status": "OK",
+    "latency_ms": 173,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:36:32 IST",
+    "api_id": "gold_xau",
+    "status": "OK",
+    "latency_ms": 492,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:36:33 IST",
+    "api_id": "weather_mumbai",
+    "status": "OK",
+    "latency_ms": 857,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:36:34 IST",
+    "api_id": "weather_kandla",
+    "status": "OK",
+    "latency_ms": 781,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:36:34 IST",
+    "api_id": "weather_mangalore",
+    "status": "OK",
+    "latency_ms": 709,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:36:35 IST",
+    "api_id": "weather_delhi",
+    "status": "OK",
+    "latency_ms": 653,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:36:36 IST",
+    "api_id": "world_bank_india_gdp",
+    "status": "OK",
+    "latency_ms": 538,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:36:36 IST",
+    "api_id": "world_bank_india_infra",
+    "status": "OK",
+    "latency_ms": 580,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:36:37 IST",
+    "api_id": "world_bank_cpi_india",
+    "status": "OK",
+    "latency_ms": 572,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:36:37 IST",
+    "api_id": "opec_basket",
+    "status": "OK",
+    "latency_ms": 164,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:36:37 IST",
+    "api_id": "shipping_freight",
+    "status": "OK",
+    "latency_ms": 198,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:36:38 IST",
+    "api_id": "nse_infrastructure",
+    "status": "OK",
+    "latency_ms": 234,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:36:38 IST",
+    "api_id": "open_meteo_forecast_vadodara",
+    "status": "OK",
+    "latency_ms": 668,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:36:38 IST",
+    "api_id": "govt_holiday_api",
+    "status": "OK",
+    "latency_ms": 0,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:36:39 IST",
+    "api_id": "rest_countries_india",
+    "status": "OK",
+    "latency_ms": 945,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:36:40 IST",
+    "api_id": "current_time",
+    "status": "OK",
+    "latency_ms": 878,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:41:08 IST",
+    "api_id": "usdinr",
+    "status": "OK",
+    "latency_ms": 497,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:41:09 IST",
+    "api_id": "usdinr_frankfurter",
+    "status": "OK",
+    "latency_ms": 1049,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:41:10 IST",
+    "api_id": "brent",
+    "status": "OK",
+    "latency_ms": 256,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:41:10 IST",
+    "api_id": "wti",
+    "status": "OK",
+    "latency_ms": 175,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:41:10 IST",
+    "api_id": "natural_gas",
+    "status": "OK",
+    "latency_ms": 199,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:41:10 IST",
+    "api_id": "dxy",
+    "status": "OK",
+    "latency_ms": 195,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:41:11 IST",
+    "api_id": "nifty50",
+    "status": "OK",
+    "latency_ms": 169,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:41:11 IST",
+    "api_id": "sensex",
+    "status": "OK",
+    "latency_ms": 195,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:41:11 IST",
+    "api_id": "india_vix",
+    "status": "OK",
+    "latency_ms": 258,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:41:12 IST",
+    "api_id": "gold_xau",
+    "status": "OK",
+    "latency_ms": 511,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:41:12 IST",
+    "api_id": "weather_mumbai",
+    "status": "OK",
+    "latency_ms": 714,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:41:13 IST",
+    "api_id": "weather_kandla",
+    "status": "OK",
+    "latency_ms": 716,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:41:14 IST",
+    "api_id": "weather_mangalore",
+    "status": "OK",
+    "latency_ms": 863,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:41:15 IST",
+    "api_id": "weather_delhi",
+    "status": "OK",
+    "latency_ms": 910,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:41:16 IST",
+    "api_id": "world_bank_india_gdp",
+    "status": "OK",
+    "latency_ms": 652,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:41:16 IST",
+    "api_id": "world_bank_india_infra",
+    "status": "OK",
+    "latency_ms": 552,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:41:17 IST",
+    "api_id": "world_bank_cpi_india",
+    "status": "OK",
+    "latency_ms": 575,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:41:17 IST",
+    "api_id": "opec_basket",
+    "status": "OK",
+    "latency_ms": 162,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:41:17 IST",
+    "api_id": "shipping_freight",
+    "status": "OK",
+    "latency_ms": 263,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:41:18 IST",
+    "api_id": "nse_infrastructure",
+    "status": "OK",
+    "latency_ms": 227,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:41:18 IST",
+    "api_id": "open_meteo_forecast_vadodara",
+    "status": "OK",
+    "latency_ms": 882,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:41:19 IST",
+    "api_id": "govt_holiday_api",
+    "status": "OK",
+    "latency_ms": 0,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:41:20 IST",
+    "api_id": "rest_countries_india",
+    "status": "OK",
+    "latency_ms": 1059,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:41:21 IST",
+    "api_id": "current_time",
+    "status": "OK",
+    "latency_ms": 1010,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:45:28 IST",
+    "api_id": "usdinr",
+    "status": "OK",
+    "latency_ms": 507,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:45:29 IST",
+    "api_id": "usdinr_frankfurter",
+    "status": "OK",
+    "latency_ms": 485,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:45:29 IST",
+    "api_id": "brent",
+    "status": "OK",
+    "latency_ms": 243,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:45:29 IST",
+    "api_id": "wti",
+    "status": "OK",
+    "latency_ms": 172,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:45:29 IST",
+    "api_id": "natural_gas",
+    "status": "OK",
+    "latency_ms": 201,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:45:30 IST",
+    "api_id": "dxy",
+    "status": "OK",
+    "latency_ms": 189,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:45:30 IST",
+    "api_id": "nifty50",
+    "status": "OK",
+    "latency_ms": 182,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:45:30 IST",
+    "api_id": "sensex",
+    "status": "OK",
+    "latency_ms": 268,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:45:30 IST",
+    "api_id": "india_vix",
+    "status": "OK",
+    "latency_ms": 172,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:45:31 IST",
+    "api_id": "gold_xau",
+    "status": "OK",
+    "latency_ms": 739,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:45:32 IST",
+    "api_id": "weather_mumbai",
+    "status": "OK",
+    "latency_ms": 729,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:45:33 IST",
+    "api_id": "weather_kandla",
+    "status": "OK",
+    "latency_ms": 822,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:45:34 IST",
+    "api_id": "weather_mangalore",
+    "status": "OK",
+    "latency_ms": 964,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:45:35 IST",
+    "api_id": "weather_delhi",
+    "status": "OK",
+    "latency_ms": 790,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:45:36 IST",
+    "api_id": "world_bank_india_gdp",
+    "status": "OK",
+    "latency_ms": 654,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:45:36 IST",
+    "api_id": "world_bank_india_infra",
+    "status": "OK",
+    "latency_ms": 539,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:45:37 IST",
+    "api_id": "world_bank_cpi_india",
+    "status": "OK",
+    "latency_ms": 655,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:45:37 IST",
+    "api_id": "opec_basket",
+    "status": "OK",
+    "latency_ms": 286,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:45:37 IST",
+    "api_id": "shipping_freight",
+    "status": "OK",
+    "latency_ms": 181,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:45:38 IST",
+    "api_id": "nse_infrastructure",
+    "status": "OK",
+    "latency_ms": 269,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:45:39 IST",
+    "api_id": "open_meteo_forecast_vadodara",
+    "status": "OK",
+    "latency_ms": 1315,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:45:39 IST",
+    "api_id": "govt_holiday_api",
+    "status": "OK",
+    "latency_ms": 0,
+    "http_code": 0,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:45:40 IST",
+    "api_id": "rest_countries_india",
+    "status": "OK",
+    "latency_ms": 1201,
+    "http_code": 200,
+    "error_detail": "",
+    "action_taken": "Primary fetch"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:45:42 IST",
+    "api_id": "current_time",
+    "status": "OK",
+    "latency_ms": 1182,
     "http_code": 200,
     "error_detail": "",
     "action_taken": "Primary fetch"

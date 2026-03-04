@@ -469,6 +469,81 @@ _TABLES = {
             updated_at      TEXT
         );
     """,
+
+    # ── Phase D: Integrations & Communication tables ─────────────────────────
+
+    "chat_messages": """
+        CREATE TABLE IF NOT EXISTS chat_messages (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            conversation_id TEXT NOT NULL,
+            sender_type     TEXT NOT NULL,
+            sender_name     TEXT,
+            sender_id       INTEGER,
+            message_text    TEXT NOT NULL,
+            attachment_path TEXT,
+            is_read         INTEGER DEFAULT 0,
+            created_at      TEXT
+        );
+    """,
+
+    "share_links": """
+        CREATE TABLE IF NOT EXISTS share_links (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            link_token      TEXT NOT NULL UNIQUE,
+            page_name       TEXT NOT NULL,
+            filters_json    TEXT,
+            created_by      TEXT,
+            permissions     TEXT DEFAULT 'view',
+            password_hash   TEXT,
+            expires_at      TEXT,
+            max_views       INTEGER DEFAULT 0,
+            view_count      INTEGER DEFAULT 0,
+            is_active       INTEGER DEFAULT 1,
+            last_accessed   TEXT,
+            created_at      TEXT
+        );
+    """,
+
+    "share_schedules": """
+        CREATE TABLE IF NOT EXISTS share_schedules (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            schedule_name   TEXT NOT NULL,
+            page_name       TEXT NOT NULL,
+            content_type    TEXT,
+            channel         TEXT NOT NULL,
+            recipients_json TEXT NOT NULL,
+            frequency       TEXT NOT NULL,
+            day_of_week     TEXT,
+            day_of_month    INTEGER,
+            time_ist        TEXT DEFAULT '09:00',
+            is_active       INTEGER DEFAULT 1,
+            last_run        TEXT,
+            next_run        TEXT,
+            run_count       INTEGER DEFAULT 0,
+            created_by      TEXT,
+            created_at      TEXT,
+            updated_at      TEXT
+        );
+    """,
+
+    "comm_tracking": """
+        CREATE TABLE IF NOT EXISTS comm_tracking (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            tracking_id     TEXT NOT NULL UNIQUE,
+            channel         TEXT NOT NULL,
+            action          TEXT NOT NULL,
+            sender          TEXT,
+            recipient_name  TEXT,
+            recipient_addr  TEXT,
+            page_name       TEXT,
+            content_type    TEXT,
+            content_summary TEXT,
+            delivery_status TEXT DEFAULT 'pending',
+            error_message   TEXT,
+            created_at      TEXT,
+            delivered_at    TEXT
+        );
+    """,
 }
 
 # Indexes for common query patterns
@@ -513,6 +588,16 @@ _INDEXES = [
     "CREATE INDEX IF NOT EXISTS idx_recip_name              ON recipient_lists(list_name);",
     "CREATE INDEX IF NOT EXISTS idx_source_reg_key          ON source_registry(source_key);",
     "CREATE INDEX IF NOT EXISTS idx_source_reg_status       ON source_registry(status);",
+    # Phase D: Integrations & Communication indexes
+    "CREATE INDEX IF NOT EXISTS idx_chat_convo              ON chat_messages(conversation_id);",
+    "CREATE INDEX IF NOT EXISTS idx_chat_created            ON chat_messages(created_at);",
+    "CREATE INDEX IF NOT EXISTS idx_share_links_token       ON share_links(link_token);",
+    "CREATE INDEX IF NOT EXISTS idx_share_links_active      ON share_links(is_active);",
+    "CREATE INDEX IF NOT EXISTS idx_share_sched_active      ON share_schedules(is_active);",
+    "CREATE INDEX IF NOT EXISTS idx_share_sched_next        ON share_schedules(next_run);",
+    "CREATE INDEX IF NOT EXISTS idx_comm_track_channel      ON comm_tracking(channel);",
+    "CREATE INDEX IF NOT EXISTS idx_comm_track_status       ON comm_tracking(delivery_status);",
+    "CREATE INDEX IF NOT EXISTS idx_comm_track_created      ON comm_tracking(created_at);",
 ]
 
 
@@ -561,6 +646,7 @@ _VALID_TABLES = {
     "missing_inputs", "email_queue", "whatsapp_queue", "whatsapp_sessions",
     "whatsapp_incoming", "director_briefings", "daily_logs", "alerts",
     "users", "audit_log", "recipient_lists", "source_registry",
+    "chat_messages", "share_links", "share_schedules", "comm_tracking",
 }
 
 import re
@@ -1620,6 +1706,176 @@ def delete_source_registry(source_id: int):
     try:
         conn.execute("DELETE FROM source_registry WHERE id = ?", (source_id,))
         conn.commit()
+    finally:
+        conn.close()
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# CHAT MESSAGES
+# ═══════════════════════════════════════════════════════════════════════════
+
+def insert_chat_message(data: dict) -> int:
+    data.setdefault("created_at", _now_ist())
+    return _insert_row("chat_messages", data)
+
+def get_chat_messages(conversation_id: str, limit: int = 100) -> list:
+    conn = _get_conn()
+    try:
+        rows = conn.execute(
+            "SELECT * FROM chat_messages WHERE conversation_id = ? ORDER BY created_at ASC LIMIT ?",
+            (conversation_id, limit),
+        ).fetchall()
+        return _rows_to_list(rows)
+    finally:
+        conn.close()
+
+def get_chat_conversations() -> list:
+    conn = _get_conn()
+    try:
+        rows = conn.execute(
+            """SELECT conversation_id,
+                      MAX(sender_name) as last_sender,
+                      MAX(created_at) as last_message_at,
+                      SUM(CASE WHEN is_read = 0 AND sender_type = 'client' THEN 1 ELSE 0 END) as unread
+               FROM chat_messages
+               GROUP BY conversation_id
+               ORDER BY last_message_at DESC"""
+        ).fetchall()
+        return _rows_to_list(rows)
+    finally:
+        conn.close()
+
+def mark_chat_read(conversation_id: str):
+    conn = _get_conn()
+    try:
+        conn.execute(
+            "UPDATE chat_messages SET is_read = 1 WHERE conversation_id = ? AND is_read = 0",
+            (conversation_id,),
+        )
+        conn.commit()
+    finally:
+        conn.close()
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# SHARE LINKS
+# ═══════════════════════════════════════════════════════════════════════════
+
+def insert_share_link(data: dict) -> int:
+    data.setdefault("created_at", _now_ist())
+    return _insert_row("share_links", data)
+
+def get_share_link(token: str):
+    conn = _get_conn()
+    try:
+        row = conn.execute("SELECT * FROM share_links WHERE link_token = ?", (token,)).fetchone()
+        return _row_to_dict(row) if row else None
+    finally:
+        conn.close()
+
+def get_all_share_links(active_only: bool = True) -> list:
+    where = "is_active = 1" if active_only else ""
+    return _select_all("share_links", where=where, order="created_at DESC")
+
+def increment_share_view(token: str):
+    conn = _get_conn()
+    try:
+        conn.execute(
+            "UPDATE share_links SET view_count = view_count + 1, last_accessed = ? WHERE link_token = ?",
+            (_now_ist(), token),
+        )
+        conn.commit()
+    finally:
+        conn.close()
+
+def deactivate_share_link(link_id: int):
+    _update_row("share_links", link_id, {"is_active": 0})
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# SHARE SCHEDULES
+# ═══════════════════════════════════════════════════════════════════════════
+
+def insert_share_schedule(data: dict) -> int:
+    data.setdefault("created_at", _now_ist())
+    data.setdefault("updated_at", _now_ist())
+    return _insert_row("share_schedules", data)
+
+def get_share_schedules(active_only: bool = True) -> list:
+    where = "is_active = 1" if active_only else ""
+    return _select_all("share_schedules", where=where, order="schedule_name")
+
+def update_share_schedule(schedule_id: int, data: dict):
+    data["updated_at"] = _now_ist()
+    _update_row("share_schedules", schedule_id, data)
+
+def delete_share_schedule(schedule_id: int):
+    _update_row("share_schedules", schedule_id, {"is_active": 0, "updated_at": _now_ist()})
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# COMMUNICATION TRACKING
+# ═══════════════════════════════════════════════════════════════════════════
+
+def insert_comm_tracking(data: dict) -> int:
+    data.setdefault("created_at", _now_ist())
+    return _insert_row("comm_tracking", data)
+
+def get_comm_tracking(channel: str = None, limit: int = 200) -> list:
+    conn = _get_conn()
+    try:
+        if channel:
+            rows = conn.execute(
+                "SELECT * FROM comm_tracking WHERE channel = ? ORDER BY created_at DESC LIMIT ?",
+                (channel, limit),
+            ).fetchall()
+        else:
+            rows = conn.execute(
+                "SELECT * FROM comm_tracking ORDER BY created_at DESC LIMIT ?",
+                (limit,),
+            ).fetchall()
+        return _rows_to_list(rows)
+    finally:
+        conn.close()
+
+def update_comm_tracking_status(tracking_id: str, status: str, error_message: str = None):
+    conn = _get_conn()
+    try:
+        if error_message:
+            conn.execute(
+                "UPDATE comm_tracking SET delivery_status = ?, error_message = ?, delivered_at = ? WHERE tracking_id = ?",
+                (status, error_message, _now_ist(), tracking_id),
+            )
+        else:
+            conn.execute(
+                "UPDATE comm_tracking SET delivery_status = ?, delivered_at = ? WHERE tracking_id = ?",
+                (status, _now_ist(), tracking_id),
+            )
+        conn.commit()
+    finally:
+        conn.close()
+
+def get_comm_stats(days: int = 30) -> dict:
+    conn = _get_conn()
+    try:
+        from datetime import datetime, timedelta
+        cutoff = (datetime.now(IST) - timedelta(days=days)).strftime("%Y-%m-%d %H:%M:%S")
+        total = conn.execute(
+            "SELECT COUNT(*) as cnt FROM comm_tracking WHERE created_at >= ?", (cutoff,)
+        ).fetchone()["cnt"]
+        by_channel = conn.execute(
+            "SELECT channel, COUNT(*) as cnt FROM comm_tracking WHERE created_at >= ? GROUP BY channel",
+            (cutoff,),
+        ).fetchall()
+        by_status = conn.execute(
+            "SELECT delivery_status, COUNT(*) as cnt FROM comm_tracking WHERE created_at >= ? GROUP BY delivery_status",
+            (cutoff,),
+        ).fetchall()
+        return {
+            "total": total,
+            "by_channel": {r["channel"]: r["cnt"] for r in by_channel},
+            "by_status": {r["delivery_status"]: r["cnt"] for r in by_status},
+        }
     finally:
         conn.close()
 

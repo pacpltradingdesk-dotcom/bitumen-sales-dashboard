@@ -64,6 +64,8 @@ TBL_PORTS      = BASE / "tbl_ports_volume.json"
 TBL_REFINERY   = BASE / "tbl_refinery_production.json"
 TBL_WEATHER    = BASE / "tbl_weather.json"
 TBL_NEWS       = BASE / "tbl_news_feed.json"
+TBL_WORLD_BANK = BASE / "tbl_world_bank.json"
+TBL_MARITIME   = BASE / "tbl_maritime_intel.json"
 
 # ── Contact import tables ──────────────────────────────────────────────────────
 TBL_CONTACTS    = BASE / "tbl_contacts.json"
@@ -322,6 +324,40 @@ DEFAULT_CATALOG_GOVT: Dict[str, dict] = {
         "fallback_api":       "frankfurter_fx",
         "data_output_tables": ["tbl_demand_proxy"],
         "notes":              "Free key: https://fred.stlouisfed.org/docs/api/api_key.html | Series: DEXINUS, DCOILBRENTEU",
+    },
+    "world_bank_india": {
+        "api_name":           "World Bank — India Economic Indicators",
+        "category":           "Macro / Govt",
+        "provider":           "World Bank Group",
+        "base_url":           "https://api.worldbank.org/v2/",
+        "endpoints":          ["country/IND/indicator/"],
+        "auth_type":          "None",
+        "key_value":          "",
+        "status":             "Live",
+        "refresh_frequency":  "1d",
+        "cache_ttl_sec":      86400,
+        "last_success_time":  None,
+        "last_error_message": "",
+        "fallback_api":       "",
+        "data_output_tables": ["tbl_world_bank"],
+        "notes":              "No key required. India CPI inflation, GDP growth rate.",
+    },
+    "maritime_intel": {
+        "api_name":           "Maritime Intelligence — Vessel Tracking & Port Activity",
+        "category":           "Maritime / Logistics",
+        "provider":           "Open-Meteo Marine + RSS + Simulation",
+        "base_url":           "https://marine-api.open-meteo.com/v1/marine",
+        "endpoints":          ["marine"],
+        "auth_type":          "None",
+        "key_value":          "",
+        "status":             "Live",
+        "refresh_frequency":  "15m",
+        "cache_ttl_sec":      900,
+        "last_success_time":  None,
+        "last_error_message": "",
+        "fallback_api":       "",
+        "data_output_tables": ["tbl_maritime_intel"],
+        "notes":              "Free APIs + deterministic simulation. Vessel tracking, port congestion, route risk.",
     },
 }
 
@@ -1127,6 +1163,88 @@ def connect_refinery() -> dict:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# CONNECTOR H — WORLD BANK (India CPI / GDP — no key required)
+# ─────────────────────────────────────────────────────────────────────────────
+
+def connect_world_bank() -> dict:
+    """
+    World Bank API — India economic indicators.
+    Fetches CPI inflation (FP.CPI.TOTL.ZG) and GDP growth (NY.GDP.MKTP.KD.ZG).
+    No API key required. Output: tbl_world_bank.json
+    """
+    connector_id = "world_bank_india"
+    records: dict = {}
+
+    indicators = {
+        "cpi":        "FP.CPI.TOTL.ZG",
+        "gdp_growth": "NY.GDP.MKTP.KD.ZG",
+    }
+
+    for label, indicator in indicators.items():
+        url = f"https://api.worldbank.org/v2/country/IND/indicator/{indicator}"
+        params = {"format": "json", "per_page": "5", "date": "2020:2026"}
+        data, err = _http_get(url, params=params, timeout=15)
+        if err:
+            _hub_log(connector_id, "WARN", f"World Bank {label}: {err}")
+            continue
+        if isinstance(data, list) and len(data) > 1:
+            for entry in data[1]:
+                if entry.get("value") is not None:
+                    records[label] = float(entry["value"])
+                    records[f"{label}_year"] = entry.get("date", "")
+                    break  # Latest non-null value
+
+    if records:
+        records["source"] = "World Bank API"
+        records["fetched_at"] = _ts()
+        _save(TBL_WORLD_BANK, records)
+        HubCatalog.set_status(connector_id, "Live", success=True)
+        _hub_log(connector_id, "OK", f"World Bank: {len(records)} indicators", len(records))
+        return {"ok": True, "records": len(records), "source": "World Bank API"}
+
+    # Static fallback
+    fallback = {
+        "gdp_growth": 6.8, "gdp_growth_year": "2024",
+        "cpi": 5.2, "cpi_year": "2024",
+        "source": "Static reference (World Bank API unavailable)",
+        "fetched_at": _ts(),
+    }
+    _save(TBL_WORLD_BANK, fallback)
+    _hub_log(connector_id, "FALLBACK", "Using static reference", 2)
+    return {"ok": True, "records": 2, "source": "Static fallback"}
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# CONNECTOR I — MARITIME INTELLIGENCE (Simulation + Open-Meteo Marine + RSS)
+# ─────────────────────────────────────────────────────────────────────────────
+
+def connect_maritime() -> dict:
+    """
+    Maritime Intelligence — vessel tracking, port congestion, route risk.
+    Uses deterministic simulation + Open-Meteo Marine API + Maritime RSS.
+    No API key required. Output: tbl_maritime_intel.json, tbl_maritime_routes.json
+    """
+    connector_id = "maritime_intel"
+    try:
+        from maritime_intelligence_engine import refresh_maritime_intel
+        result = refresh_maritime_intel()
+        summary = result.get("summary", {})
+        vessel_count = summary.get("vessels_total", 0)
+        port_count = len(result.get("port_congestion", []))
+        total_records = vessel_count + port_count
+
+        HubCatalog.set_status(connector_id, "Live", success=True)
+        _hub_log(connector_id, "OK",
+                 f"Maritime: {vessel_count} vessels, {port_count} ports", total_records)
+        return {"ok": True, "records": total_records,
+                "source": "Maritime Intelligence Engine"}
+    except Exception as e:
+        HubCatalog.set_status(connector_id, "Error", error_msg=str(e)[:200])
+        _hub_log(connector_id, "FAIL", f"Maritime connector error: {e}")
+        return {"ok": False, "records": 0, "error": str(e)[:100]}
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # NORMALIZED TABLE READER
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -1172,6 +1290,16 @@ class NormalizedTables:
     def hub_log(n: int = 200) -> List[dict]:
         data = _load(HUB_LOG_FILE, [])
         return list(reversed(data[-n:]))
+
+    @staticmethod
+    def world_bank() -> dict:
+        """World Bank India economic indicators (CPI, GDP)."""
+        return _load(TBL_WORLD_BANK, {})
+
+    @staticmethod
+    def maritime_intel() -> dict:
+        """Maritime vessel tracking, port congestion, route risk."""
+        return _load(TBL_MARITIME, {})
 
     # ── Govt extension tables ─────────────────────────────────────────────
     @staticmethod
@@ -1247,6 +1375,7 @@ class NormalizedTables:
             "tbl_corr_results":          _cnt("tbl_corr_results.json"),
             "tbl_insights":              _cnt("tbl_insights.json"),
             "tbl_api_runs":              _cnt("tbl_api_runs.json"),
+            "tbl_maritime_intel":        len(_load(TBL_MARITIME, {}).get("vessels", [])) if isinstance(_load(TBL_MARITIME, {}), dict) else 0,
             "last_updated":              _ts(),
         }
 
@@ -1318,9 +1447,27 @@ class HubHealthMonitor:
 # FULL REFRESH — run all connectors
 # ─────────────────────────────────────────────────────────────────────────────
 
+def run_single_connector(connector_id: str) -> bool:
+    """Run a single connector by ID. Used by DeadLetterQueue retries."""
+    _CONNECTOR_MAP = {
+        "eia_crude": connect_eia, "un_comtrade": connect_comtrade,
+        "weather": connect_weather, "news": connect_news,
+        "fx": connect_fx, "ports": connect_ports, "refinery": connect_refinery,
+        "maritime_intel": connect_maritime,
+    }
+    fn = _CONNECTOR_MAP.get(connector_id)
+    if not fn:
+        return False
+    try:
+        result = fn()
+        return result.get("ok", False) if isinstance(result, dict) else bool(result)
+    except Exception:
+        return False
+
+
 def run_all_connectors(force: bool = False) -> dict:
     """
-    Run all API connectors sequentially.
+    Run all API connectors in parallel with circuit breaker protection.
     If force=False, respects cache TTL.
     Returns summary of results.
     """
@@ -1333,19 +1480,77 @@ def run_all_connectors(force: bool = False) -> dict:
         ("fx",          connect_fx),
         ("ports",       connect_ports),
         ("refinery",    connect_refinery),
+        ("maritime_intel", connect_maritime),
     ]
 
     if force:
         for cid, _ in connectors:
             HubCache.invalidate(cid)
 
-    for name, fn in connectors:
-        try:
-            result = fn()
-            results[name] = result
-        except Exception as e:
-            results[name] = {"ok": False, "error": str(e)[:100]}
-            _hub_log(name, "FAIL", f"Connector exception: {e}")
+    # ── Try parallel execution via ConcurrentExecutor ─────────────────────
+    try:
+        from resilience_manager import ConcurrentExecutor, LKGCache, DeadLetterQueue
+        from sre_engine import CircuitBreaker
+        from resilience_config import get_cb_profile
+
+        # Build per-connector circuit breakers (reuse across calls)
+        if not hasattr(run_all_connectors, "_breakers"):
+            run_all_connectors._breakers = {}
+            for cid, _ in connectors:
+                profile = get_cb_profile(cid)
+                run_all_connectors._breakers[cid] = CircuitBreaker(
+                    cid, profile["threshold"], profile["timeout_sec"])
+
+        def _safe_connect(name, fn):
+            """Wrap connector with circuit breaker + LKG fallback."""
+            cb = run_all_connectors._breakers.get(name)
+            try:
+                if cb:
+                    result = cb.call(fn)
+                else:
+                    result = fn()
+                # Save as LKG on success
+                if isinstance(result, dict) and result.get("ok"):
+                    LKGCache.save_snapshot(name, result, confidence_pct=85)
+                return result
+            except ConnectionError:
+                # Circuit breaker open — try LKG
+                lkg = LKGCache.get_snapshot(name)
+                if lkg and lkg.get("data"):
+                    r = lkg["data"]
+                    if isinstance(r, dict):
+                        r["_lkg"] = True
+                    return r
+                return {"ok": False, "error": f"Circuit breaker OPEN for {name}"}
+            except Exception as e:
+                # Push to DLQ for later retry
+                DeadLetterQueue.push("hub_connector", {"connector_id": name}, str(e))
+                # Try LKG as last resort
+                lkg = LKGCache.get_snapshot(name)
+                if lkg and lkg.get("data"):
+                    r = lkg["data"]
+                    if isinstance(r, dict):
+                        r["_lkg"] = True
+                    return r
+                return {"ok": False, "error": str(e)[:100]}
+
+        tasks = [
+            {"name": cid, "fn": _safe_connect, "args": (cid, fn), "timeout": 60}
+            for cid, fn in connectors
+        ]
+        parallel_results = ConcurrentExecutor.run_parallel(tasks, max_workers=5, timeout_per_task=60)
+        for pr in parallel_results:
+            results[pr["name"]] = pr.get("result") or {"ok": False, "error": pr.get("error", "timeout")}
+
+    except ImportError:
+        # Fallback to sequential execution if resilience_manager not available
+        for name, fn in connectors:
+            try:
+                result = fn()
+                results[name] = result
+            except Exception as e:
+                results[name] = {"ok": False, "error": str(e)[:100]}
+                _hub_log(name, "FAIL", f"Connector exception: {e}")
 
     # ── Govt connectors extension ─────────────────────────────────────────
     try:
@@ -1358,8 +1563,10 @@ def run_all_connectors(force: bool = False) -> dict:
     summary = {
         "timestamp_ist": _ts(),
         "total":   len(results),
-        "ok":      sum(1 for r in results.values() if r.get("ok")),
-        "failed":  sum(1 for r in results.values() if not r.get("ok")),
+        "ok":      sum(1 for r in results.values()
+                       if isinstance(r, dict) and r.get("ok")),
+        "failed":  sum(1 for r in results.values()
+                       if isinstance(r, dict) and not r.get("ok")),
         "results": results,
         "table_summary": NormalizedTables.summary(),
     }
@@ -1391,6 +1598,11 @@ def start_hub_scheduler(interval_min: int = 60) -> None:
         time.sleep(90)  # allow dashboard to fully boot
         while True:
             try:
+                from resilience_manager import HeartbeatMonitor
+                HeartbeatMonitor.beat("HubScheduler")
+            except Exception:
+                pass
+            try:
                 run_all_connectors(force=False)
             except Exception as e:
                 _hub_log("hub_scheduler", "FAIL", f"Scheduler exception: {e}")
@@ -1398,6 +1610,18 @@ def start_hub_scheduler(interval_min: int = 60) -> None:
 
     t = threading.Thread(target=_worker, daemon=True, name="HubScheduler")
     t.start()
+
+    # Register with heartbeat monitor
+    try:
+        from resilience_manager import HeartbeatMonitor
+        HeartbeatMonitor.register(
+            "HubScheduler",
+            restart_fn=lambda: start_hub_scheduler(interval_min),
+            expected_interval_sec=interval_min * 60,
+        )
+    except Exception:
+        pass
+
     _hub_log("hub_scheduler", "INFO",
              f"Hub scheduler started (interval={interval_min}min)", 0)
 
@@ -1464,6 +1688,9 @@ def init_hub() -> None:
         # Contact import tables
         (TBL_CONTACTS,    []),
         (TBL_IMPORT_HIST, []),
+        # Maritime tables
+        (TBL_MARITIME,                          {}),
+        (BASE / "tbl_maritime_routes.json",     {}),
     ]:
         if not f.exists():
             _save(f, default)

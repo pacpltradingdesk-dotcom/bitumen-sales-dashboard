@@ -12,24 +12,52 @@ import numpy as np
 
 
 def _generate_decisions():
-    """Generate strategic recommendations based on market conditions."""
-    np.random.seed(datetime.date.today().toordinal() % 100)
+    """Generate strategic recommendations from real market signals."""
     month = datetime.date.today().month
-    
     is_peak = month in [10, 11, 12, 1, 2, 3]
     is_monsoon = month in [6, 7, 8, 9]
-    
+
+    # ── Load market intelligence signals for data-driven confidence ────────
+    signals, has_signals = {}, False
+    master, crude_sig, currency_sig = {}, {}, {}
+    try:
+        from market_intelligence_engine import MarketIntelligenceEngine
+        eng = MarketIntelligenceEngine()
+        signals = eng.compute_all_signals()
+        master = signals.get("master", {})
+        crude_sig = signals.get("crude_market", {})
+        currency_sig = signals.get("currency", {})
+        has_signals = bool(master.get("status") == "OK")
+    except Exception:
+        pass
+
+    # Helper: derive confidence from signal data (replaces np.random.normal)
+    def _conf(base, signal_key=None, boost_if=None):
+        c = base
+        if has_signals and signal_key:
+            sig = signals.get(signal_key, {})
+            c = int(sig.get("confidence", base))
+        if boost_if:
+            c += 5
+        return max(50, min(95, c))
+
+    # Live values for reasoning text
+    _brent = crude_sig.get("latest_brent", "~$80") if has_signals else "~$80"
+    _usdinr = currency_sig.get("latest_usdinr", "~83") if has_signals else "~83"
+    _crude_dir = crude_sig.get("direction", "SIDEWAYS") if has_signals else "SIDEWAYS"
+    _fx_pressure = currency_sig.get("pressure", "MEDIUM") if has_signals else "MEDIUM"
+
     decisions = [
         {
             "question": "Import Now or Wait?",
             "icon": "🚢",
             "recommendation": "IMPORT NOW" if is_peak else "WAIT 30 DAYS",
-            "confidence": int(np.clip(np.random.normal(75 if is_peak else 65, 10), 50, 95)),
+            "confidence": _conf(75 if is_peak else 60, "crude_market", is_peak),
             "reasoning": [
-                f"Current FOB price ₹ 380/MT — {'trending up, lock price now' if is_peak else 'expected to soften in off-season'}",
+                f"Brent at {_brent} — crude trending {_crude_dir}",
                 f"Seasonal demand is {'PEAK — strong off-take guaranteed' if is_peak else 'LOW — risk of inventory buildup'}",
-                f"USD/INR at ₹83.25 — {'stable window for imports' if np.random.random() > 0.5 else 'slight weakening trend, import sooner'}",
-                f"Ocean freight at ₹ 35/MT — {'competitive rate, book now' if np.random.random() > 0.4 else 'rising trend, negotiate long-term'}",
+                f"USD/INR at {_usdinr} — FX pressure: {_fx_pressure}",
+                f"Market master signal: {master.get('market_direction', 'N/A')}" if has_signals else "Market signals loading...",
             ],
             "risk": "Supply shortage if delayed" if is_peak else "Price may drop further",
             "color": "#22c55e" if is_peak else "#f59e0b"
@@ -37,13 +65,13 @@ def _generate_decisions():
         {
             "question": "Hedge Crude Exposure?",
             "icon": "🛡️",
-            "recommendation": "YES — Partial Hedge" if np.random.random() > 0.4 else "NO — Monitor Closely",
-            "confidence": int(np.clip(np.random.normal(68, 12), 45, 90)),
+            "recommendation": "YES — Partial Hedge" if crude_sig.get("volatility", "MEDIUM") == "HIGH" else "NO — Monitor Closely",
+            "confidence": _conf(68, "crude_market"),
             "reasoning": [
-                "Brent volatility index above average — hedging provides downside protection",
+                f"Crude volatility: {crude_sig.get('volatility', 'MEDIUM')}" if has_signals else "Crude volatility being assessed",
                 "Recommended hedge: 50% of next 3-month import volume",
                 "Use Brent futures or USD/INR forward contracts",
-                "Cost of hedge: ~₹200-300/MT — justified by volatility premium"
+                "Cost of hedge: ~Rs 200-300/MT — justified by volatility premium"
             ],
             "risk": "Opportunity cost if crude drops below hedge price",
             "color": "#3b82f6"
@@ -52,12 +80,12 @@ def _generate_decisions():
             "question": "Increase Inventory?",
             "icon": "📦",
             "recommendation": "YES — Stock 15 Days Extra" if is_peak else "NO — Maintain Current Levels",
-            "confidence": int(np.clip(np.random.normal(72 if is_peak else 60, 10), 45, 90)),
+            "confidence": _conf(72 if is_peak else 55, "weather"),
             "reasoning": [
-                f"{'Peak season demand expected to rise 20% — safety stock critical' if is_peak else 'Off-season demand declining — avoid cash lock-up'}",
-                f"Current stock: ~8,000 MT | Recommended: {'12,000 MT' if is_peak else '6,000 MT'}",
-                "Storage cost: ₹50/MT/month at Kandla terminal",
-                f"{'Risk of refinery shutdowns for maintenance in Feb-Mar' if is_peak else 'Adequate supply available from all sources'}"
+                f"{'Peak season — safety stock critical' if is_peak else 'Off-season — avoid cash lock-up'}",
+                f"Demand outlook: {master.get('demand_outlook', 'N/A')}" if has_signals else "Demand outlook loading...",
+                "Storage cost: Rs 50/MT/month at Kandla terminal",
+                f"{'Refinery shutdown risk in Feb-Mar' if is_peak else 'Adequate supply from all sources'}"
             ],
             "risk": "Working capital blocked" if is_peak else "Stock-out risk if demand spikes",
             "color": "#22c55e" if is_peak else "#f59e0b"
@@ -66,12 +94,12 @@ def _generate_decisions():
             "question": "Reduce Financial Exposure?",
             "icon": "💰",
             "recommendation": "YES — Tighten Credit",
-            "confidence": int(np.clip(np.random.normal(78, 8), 55, 95)),
+            "confidence": _conf(78),
             "reasoning": [
-                "₹18.2 Cr receivables outstanding — 15% in 90+ days bucket",
+                "Review receivables outstanding in 90+ days bucket",
                 "Recommend: Strict 30-day payment enforcement for all contractors",
-                "Stop dispatches to accounts with pending > ₹50L",
-                "Shift 2 more contractors to advance payment model"
+                "Stop dispatches to accounts with pending > Rs 50L",
+                "Shift more contractors to advance payment model"
             ],
             "risk": "May lose price-sensitive contractors",
             "color": "#f59e0b"
@@ -79,13 +107,13 @@ def _generate_decisions():
         {
             "question": "Offer Higher Contractor Price?",
             "icon": "📈",
-            "recommendation": "NO — Hold Current Pricing" if is_peak else "YES — Small Increase (₹200/MT)",
-            "confidence": int(np.clip(np.random.normal(70, 10), 50, 90)),
+            "recommendation": "NO — Hold Current Pricing" if is_peak else "YES — Small Increase (Rs 200/MT)",
+            "confidence": _conf(70 if is_peak else 60),
             "reasoning": [
-                f"{'Demand is strong — no need to increase. Contractors will accept current rates' if is_peak else 'Market is slow — small price incentive may win volume'}",
-                f"Current avg sale price: ₹44,500/MT | Margin: {'12%' if is_peak else '8%'}",
-                f"Competitor pricing: {'₹200-300 higher — we are competitive' if is_peak else '₹100-200 lower — pressure on margins'}",
-                "Volume impact of ₹200 increase: estimated +5-8% more orders"
+                f"{'Demand is strong — hold current rates' if is_peak else 'Market slow — price incentive may win volume'}",
+                f"Risk level: {master.get('risk_level', 'N/A')}" if has_signals else "Risk level loading...",
+                f"Crude direction: {_crude_dir} — {'pricing power intact' if is_peak else 'pressure on margins'}",
+                "Volume impact of Rs 200 increase: estimated +5-8% more orders"
             ],
             "risk": "Margin compression" if not is_peak else "None — pricing power intact",
             "color": "#ef4444" if not is_peak else "#22c55e"
@@ -94,7 +122,7 @@ def _generate_decisions():
             "question": "Shift Import Port?",
             "icon": "⚓",
             "recommendation": "STAY — Mangalore + Kandla Optimal",
-            "confidence": int(np.clip(np.random.normal(82, 8), 60, 95)),
+            "confidence": _conf(82, "ports"),
             "reasoning": [
                 "Mangalore: Best for South + West India — covers 60% of volume",
                 "Kandla: Best for North + Central India — covers 35% of volume",
@@ -108,14 +136,14 @@ def _generate_decisions():
             "question": "Increase Credit Control?",
             "icon": "🔒",
             "recommendation": "YES — Immediate Action Needed",
-            "confidence": int(np.clip(np.random.normal(85, 7), 60, 95)),
+            "confidence": _conf(85),
             "reasoning": [
-                "2 high-risk suppliers detected — suspend purchases",
-                "GSTR-2B mismatch with Mundra Import Terminal — ITC at risk",
-                "Section 74 exposure probability at 60% — needs urgent action",
+                "High-risk suppliers require review — check compliance status",
+                "GSTR-2B matching status should be verified for all suppliers",
+                "Section 74 exposure risk needs urgent assessment",
                 "Recommend: Full compliance audit within 15 days"
             ],
-            "risk": "ITC reversal of ₹15-20L if not addressed",
+            "risk": "ITC reversal risk if compliance gaps not addressed",
             "color": "#ef4444"
         }
     ]

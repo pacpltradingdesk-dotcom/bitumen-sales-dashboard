@@ -71,61 +71,65 @@ class SyncEngine:
             "errors": [],
         }
 
+    def _run_batch(self, steps: list[tuple[str, callable]]) -> None:
+        """Run a batch of steps in parallel using ConcurrentExecutor."""
+        try:
+            from resilience_manager import ConcurrentExecutor, DeadLetterQueue
+            tasks = [
+                {"name": name, "fn": fn, "args": (), "timeout": 120}
+                for name, fn in steps
+            ]
+            results = ConcurrentExecutor.run_parallel(tasks, max_workers=4, timeout_per_task=120)
+            for r in results:
+                if not r.get("success"):
+                    self.results["errors"].append(f"{r['name']}: {r.get('error', 'unknown')}")
+                    DeadLetterQueue.push("sync_step", {"step_name": r["name"]}, r.get("error", ""))
+        except ImportError:
+            # Fallback to sequential if resilience_manager not available
+            for name, fn in steps:
+                try:
+                    fn()
+                except Exception as e:
+                    self.results["errors"].append(f"{name}: {e}")
+
     def run_full_sync(self) -> dict:
-        """Orchestrates complete data refresh across all systems."""
+        """Orchestrates complete data refresh across all systems (parallel batches)."""
         self.results["started_at"] = _now()
         self.results["status"] = "running"
 
-        # Step 1: Market Data (Crude, FX, Weather)
-        self._sync_market_data()
+        # Batch 1 (parallel): Data fetching
+        self._run_batch([
+            ("market_data", self._sync_market_data),
+            ("news_feeds", self._sync_news_feeds),
+            ("trade_data", self._sync_trade_data),
+        ])
 
-        # Step 2: News Feeds
-        self._sync_news_feeds()
+        # Batch 2 (parallel): Validation + processing
+        self._run_batch([
+            ("validate", self._validate_data),
+            ("calculations", self._refresh_calculations),
+            ("opportunities", self._scan_opportunities),
+        ])
 
-        # Step 3: Trade Data
-        self._sync_trade_data()
+        # Batch 3 (parallel): CRM + communications
+        self._run_batch([
+            ("crm_profiles", self._update_crm_profiles),
+            ("alerts", self._generate_alerts),
+            ("comms", self._process_communication_triggers),
+            ("briefing", self._generate_director_briefing),
+        ])
 
-        # Step 4: Validate All Data
-        self._validate_data()
-
-        # Step 5: Refresh Calculated Tables
-        self._refresh_calculations()
-
-        # Step 6: Scan Opportunities
-        self._scan_opportunities()
-
-        # Step 7: Update CRM Profiles
-        self._update_crm_profiles()
-
-        # Step 8: Generate Alerts
-        self._generate_alerts()
-
-        # Step 9: Communication Triggers (email/WhatsApp)
-        self._process_communication_triggers()
-
-        # Step 10: Director Briefing
-        self._generate_director_briefing()
-
-        # Step 11: AI Learning
-        self._run_ai_learning()
-
-        # Step 12: Smart Alert Scan
-        self._generate_smart_alerts()
-
-        # Step 13: Infra Demand Intelligence (GDELT + budget + demand scores)
-        self._sync_infra_demand()
-
-        # Step 14: Source Registry Health Update
-        self._sync_source_health()
-
-        # Step 15: Auto Daily Insights
-        self._sync_auto_insights()
-
-        # Step 16: RAG Index Refresh
-        self._sync_rag_index()
-
-        # Step 17: ML Boost Model Training
-        self._sync_boost_models()
+        # Batch 4 (parallel): AI + ML + Intelligence
+        self._run_batch([
+            ("ai_learning", self._run_ai_learning),
+            ("smart_alerts", self._generate_smart_alerts),
+            ("infra_demand", self._sync_infra_demand),
+            ("source_health", self._sync_source_health),
+            ("auto_insights", self._sync_auto_insights),
+            ("rag_index", self._sync_rag_index),
+            ("boost_models", self._sync_boost_models),
+            ("market_signals", self._sync_market_signals),
+        ])
 
         # Finalize
         self.results["completed_at"] = _now()
@@ -196,6 +200,18 @@ class SyncEngine:
                 step["details"].append(f"Weather: {result.get('records', 0)} records")
         except Exception as e:
             step["details"].append(f"Weather: Error — {str(e)[:100]}")
+
+        # World Bank (Economic data)
+        try:
+            from api_hub_engine import connect_world_bank
+            result = connect_world_bank()
+            self.results["apis_called"] += 1
+            if result and result.get("ok"):
+                self.results["apis_succeeded"] += 1
+                self.results["records_updated"] += result.get("records", 0)
+                step["details"].append(f"World Bank: {result.get('records', 0)} indicators")
+        except Exception as e:
+            step["details"].append(f"World Bank: Error — {str(e)[:100]}")
 
         step["status"] = "done"
         step["completed_at"] = _now()
@@ -596,6 +612,28 @@ class SyncEngine:
         step["completed_at"] = _now()
         self.results["steps"].append(step)
 
+    # ─── Step 18: Market Intelligence Signals ───────────────────────────────
+
+    def _sync_market_signals(self):
+        """Compute all 10 market intelligence signals."""
+        step = {"name": "Market Intelligence Signals", "status": "running",
+                "started_at": _now(), "details": []}
+        try:
+            from market_intelligence_engine import compute_all_signals
+            result = compute_all_signals()
+            master = result.get("master", {})
+            step["details"].append(
+                f"Master signal: {master.get('market_direction', 'N/A')} "
+                f"(confidence {master.get('confidence', 0)}%)")
+            ok_count = sum(1 for s in result.values() if s.get("status") == "OK")
+            step["details"].append(f"10 signals computed, {ok_count} OK")
+        except Exception as e:
+            step["details"].append(f"Market signals: Error — {str(e)[:100]}")
+            self.results["errors"].append(f"Market signals: {str(e)[:100]}")
+        step["status"] = "done"
+        step["completed_at"] = _now()
+        self.results["steps"].append(step)
+
     # ─── Logging ─────────────────────────────────────────────────────────────
 
     def _save_log(self):
@@ -631,9 +669,14 @@ def run_market_sync() -> dict:
 
 
 def _scheduler_loop(interval_minutes: int = 60):
-    """Background scheduler loop."""
+    """Background scheduler loop with heartbeat."""
     global _scheduler_running
     while _scheduler_running:
+        try:
+            from resilience_manager import HeartbeatMonitor
+            HeartbeatMonitor.beat("SyncScheduler")
+        except Exception:
+            pass
         try:
             engine = SyncEngine()
             engine.run_full_sync()
@@ -660,6 +703,17 @@ def start_sync_scheduler(interval_minutes: int = 60):
             name="SyncScheduler"
         )
         _scheduler_thread.start()
+
+        # Register with heartbeat monitor
+        try:
+            from resilience_manager import HeartbeatMonitor
+            HeartbeatMonitor.register(
+                "SyncScheduler",
+                restart_fn=lambda: start_sync_scheduler(interval_minutes),
+                expected_interval_sec=interval_minutes * 60,
+            )
+        except Exception:
+            pass
 
 
 def stop_sync_scheduler():

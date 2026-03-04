@@ -1,0 +1,11 @@
+{
+  "source_key": "weather",
+  "data": {
+    "ok": true,
+    "records": 5,
+    "source": "weather"
+  },
+  "original_confidence": 85,
+  "saved_at": "04-03-2026 16:15:14 IST",
+  "saved_epoch": 1772621114.9151068
+}

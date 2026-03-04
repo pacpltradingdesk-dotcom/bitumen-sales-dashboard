@@ -45,10 +45,10 @@ def _inject_topbar_css():
   position: sticky; top: 0; z-index: 999;
   background: #ffffff;
   border-bottom: 1px solid #e2ddd4;
-  box-shadow: 0 1px 4px rgba(30,58,95,0.06);
-  padding: 6px 16px;
-  margin: -1rem -1rem 12px -1rem;
-  display: flex; align-items: center; gap: 6px;
+  box-shadow: 0 1px 3px rgba(30,58,95,0.05);
+  padding: 4px 12px;
+  margin: 0 -20px 6px -20px;
+  display: flex; align-items: center; gap: 5px;
   flex-wrap: wrap;
 }
 .pps-topbar-brand {
@@ -169,7 +169,7 @@ def render_top_bar() -> None:
     # ── API toggle + Quick Send (as Streamlit widgets below the HTML bar) ────
     cols = st.columns([1, 1, 1, 1, 4])
     with cols[0]:
-        api_val = st.toggle(
+        st.toggle(
             "🌐 APIs",
             value=st.session_state.get("_api_toggle_v3", False),
             key="_api_toggle_v3",

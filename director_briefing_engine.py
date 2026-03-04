@@ -89,8 +89,23 @@ class DirectorBriefingEngine:
             "sparklines": self.get_sparkline_data(),
             "opportunities": self._get_recent_opportunities(),
             "alerts": self._get_active_alerts(),
+            "market_signals": self._get_market_signals(),
         }
         return briefing
+
+    def _get_market_signals(self) -> dict:
+        """Get master market intelligence signal for briefing."""
+        try:
+            from market_intelligence_engine import get_master_signal
+            return get_master_signal()
+        except Exception:
+            return {
+                "market_direction": "N/A",
+                "confidence": 0,
+                "demand_outlook": "N/A",
+                "risk_level": "N/A",
+                "recommended_action": "Market intelligence engine unavailable",
+            }
 
     def get_yesterday_summary(self, reference_date: str = None) -> dict:
         """Aggregate yesterday's deal, communication, market, and payment data."""

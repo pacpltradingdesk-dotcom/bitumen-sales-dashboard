@@ -1,0 +1,11 @@
+{
+  "source_key": "news",
+  "data": {
+    "ok": true,
+    "records": 30,
+    "source": "Google News RSS"
+  },
+  "original_confidence": 85,
+  "saved_at": "04-03-2026 16:15:13 IST",
+  "saved_epoch": 1772621113.167101
+}

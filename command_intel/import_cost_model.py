@@ -127,18 +127,33 @@ Iraq → India Complete Landed Cost Calculator
     
     with col_input:
         st.markdown("### 📝 Cost Parameters")
-        
+
+        # ── Port selector — loads port-specific charges from settings ──
+        try:
+            from settings_engine import get as _sg
+            _port_charges = _sg("port_charges", {})
+        except Exception:
+            _port_charges = {}
+        _port_names = list(_port_charges.keys()) if _port_charges else [
+            "Kandla", "Mundra", "Mangalore", "JNPT", "Karwar", "Haldia", "Ennore", "Paradip"
+        ]
+        selected_port = st.selectbox("⚓ Import Port", _port_names, key="import_port_sel")
+        _pc = _port_charges.get(selected_port, {})
+        _def_berthing = int(_pc.get("berthing", DEFAULT_PARAMS["port_berthing_total"]))
+        _def_cha = float(_pc.get("cha_per_mt", DEFAULT_PARAMS["cha_per_mt"]))
+        _def_handling = float(_pc.get("handling_per_mt", DEFAULT_PARAMS["handling_per_mt"]))
+
         with st.form("import_cost_form"):
             st.markdown("**🌍 International Costs (USD/MT)**")
             fob = st.number_input("FOB Price ($/MT)", value=DEFAULT_PARAMS["fob_price_usd"], step=5.0)
             freight = st.number_input("Ocean Freight ($/MT)", value=DEFAULT_PARAMS["freight_usd"], step=1.0)
             insurance = st.number_input("Insurance (%)", value=DEFAULT_PARAMS["insurance_pct"], step=0.1)
             switch_bl = st.number_input("Switch BL Cost ($/MT)", value=DEFAULT_PARAMS["switch_bl_usd"], step=0.5)
-            
-            st.markdown("**🇮🇳 Indian Port Charges (₹)**")
-            port_berthing = st.number_input("Port Berthing (₹ Total)", value=DEFAULT_PARAMS["port_berthing_total"], step=1000)
-            cha = st.number_input("CHA (₹/MT)", value=DEFAULT_PARAMS["cha_per_mt"], step=5.0)
-            handling = st.number_input("Handling (₹/MT)", value=DEFAULT_PARAMS["handling_per_mt"], step=10.0)
+
+            st.markdown(f"**🇮🇳 Port Charges — {selected_port} (₹)**")
+            port_berthing = st.number_input("Port Berthing (₹ Total)", value=_def_berthing, step=1000)
+            cha = st.number_input("CHA (₹/MT)", value=_def_cha, step=5.0)
+            handling = st.number_input("Handling (₹/MT)", value=_def_handling, step=10.0)
             
             st.markdown("**🏛️ Duties & Taxes**")
             customs = st.number_input("Customs Duty (%)", value=DEFAULT_PARAMS["customs_duty_pct"], step=0.5)

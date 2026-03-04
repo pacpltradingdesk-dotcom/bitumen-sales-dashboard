@@ -36,6 +36,9 @@ from command_intel import director_dashboard as cmd_director_dashboard
 from command_intel import daily_log_panel as cmd_daily_log
 from command_intel import alert_center as cmd_alert_center
 from command_intel import infra_demand_dashboard as cmd_infra_demand
+from command_intel import market_signals_dashboard as cmd_market_signals
+from command_intel import developer_ops_dashboard as cmd_dev_ops
+from command_intel import dashboard_flow_map as cmd_flow_map
 import api_dashboard
 
 # --- PDF EXPORT SYSTEM ---
@@ -124,6 +127,13 @@ try:
     if "whatsapp_engine_started" not in st.session_state:
         _start_wa_sched()
         st.session_state["whatsapp_engine_started"] = True
+except Exception:
+    pass
+
+# --- RESILIENCE: Heartbeat monitor for all daemon threads ---
+try:
+    from resilience_manager import HeartbeatMonitor
+    HeartbeatMonitor.start_checker()
 except Exception:
     pass
 
@@ -353,19 +363,51 @@ section[data-testid="stSidebar"] [data-testid="stIconEmoji"] {
   width:     0 !important;
 }
 
-/* ── 3. App Background ───────────────────────────────────────────────────── */
+/* ── 3. App Background — Zero-waste vertical space ────────────────────────── */
 .stApp, [data-testid="stApp"] {
   background: var(--ivory) !important;
 }
 .main .block-container {
   background: transparent !important;
-  padding-top: var(--s8) !important;
-  padding-bottom: var(--s16) !important;
+  padding-top: 0px !important;
+  padding-bottom: var(--s12) !important;
   padding-left: var(--page-gutter) !important;
   padding-right: var(--page-gutter) !important;
   max-width: 100% !important;
   position: relative !important;
   z-index: 1 !important;
+}
+/* ── Kill Streamlit's built-in top padding & header whitespace ────────────── */
+header[data-testid="stHeader"] {
+  height: 0px !important;
+  min-height: 0px !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+div[data-testid="stToolbar"] {
+  display: none !important;
+}
+div[data-testid="stDecoration"] {
+  display: none !important;
+}
+/* Remove gap above first element in main area */
+.main .block-container > div:first-child {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+/* Tighten vertical block gaps globally */
+[data-testid="stVerticalBlock"] > [data-testid="stVerticalBlockBorderWrapper"],
+[data-testid="stVerticalBlock"] > div {
+  margin-top: 0 !important;
+}
+/* Reduce section separator gap globally */
+.main .stMarkdown + .stMarkdown,
+.main [data-testid="stVerticalBlock"] > [style*="gap"] {
+  gap: 8px !important;
+}
+/* Remove fixed heights that waste space */
+.main [data-testid="stVerticalBlock"] {
+  gap: 6px !important;
 }
 
 /* ── 4. Cards / Expanders / Forms ────────────────────────────────────────── */
@@ -376,10 +418,13 @@ div[data-testid="stForm"] {
   border: 1px solid var(--sandal) !important;
   border-radius: 12px !important;
   box-shadow: var(--shadow-card) !important;
-  transition: box-shadow 0.2s ease !important;
+  transition: box-shadow 0.25s ease !important;
 }
 div[data-testid="stExpander"]:hover {
   box-shadow: var(--shadow-hover) !important;
+}
+div[data-testid="stMetric"] {
+  transition: all 0.25s ease !important;
 }
 div[data-testid="stExpanderDetails"] {
   background: #ffffff !important;
@@ -408,20 +453,22 @@ div[data-testid="stExpanderDetails"] {
   color: var(--charcoal) !important;
   font-weight: 600 !important;
   font-size:   0.82rem !important;
-  line-height: 28px !important;         /* vertical centering within height:28px */
+  line-height: 28px !important;
   padding:     0 var(--s12) !important;
   margin-bottom: 0 !important;
-  transition:  all 0.18s ease !important;
+  transition:  all 0.25s ease !important;
 }
 .stTabs [data-baseweb="tab"]:hover {
-  background: var(--sandal-light) !important;
+  background: #e0e7ff !important;
   color: var(--navy) !important;
+  transition: all 0.25s ease !important;
 }
 .stTabs [data-baseweb="tab"][aria-selected="true"] {
   background: var(--navy) !important;
   color: #ffffff !important;
   border-color: var(--navy) !important;
-  box-shadow: 0 2px 8px rgba(30,58,95,0.20) !important;
+  font-weight: 700 !important;
+  box-shadow: 0 2px 8px rgba(30,58,95,0.25) !important;
 }
 .stTabs [data-baseweb="tab-highlight"] { display: none !important; }
 
@@ -450,29 +497,38 @@ div[data-testid="stMetricDelta"] { font-size: 0.8rem !important; font-weight: 60
   font-size: 0.875rem !important;
   padding: var(--s8) var(--card-pad) !important;
   box-shadow: 0 1px 4px rgba(30,58,95,0.08) !important;
-  transition: all 0.15s ease !important;
+  transition: all 0.25s ease !important;
   min-height: var(--table-row-h) !important;
 }
 .stButton > button:hover {
-  background: var(--sandal-light) !important;
+  background: #e0e7ff !important;
   border-color: var(--navy-mid) !important;
   color: var(--navy) !important;
-  box-shadow: 0 3px 8px rgba(30,58,95,0.15) !important;
+  box-shadow: 0 3px 8px rgba(30,58,95,0.18) !important;
+  transition: all 0.25s ease !important;
 }
-.stButton > button:active { box-shadow: none !important; }
+.stButton > button:active { box-shadow: none !important; transform: translateY(0) !important; }
 .stButton > button[kind="primary"] {
-  background: var(--vastu-green) !important;
-  border-color: var(--vastu-green) !important;
+  background: var(--navy) !important;
+  border-color: var(--navy) !important;
   color: #ffffff !important;
-  box-shadow: 0 3px 10px rgba(45,106,79,0.3) !important;
+  font-weight: 700 !important;
+  box-shadow: 0 3px 10px rgba(30,58,95,0.3) !important;
+  transition: all 0.25s ease !important;
 }
 .stButton > button[kind="primary"]:hover {
-  background: #255a42 !important;
-  border-color: #255a42 !important;
+  background: #152d4a !important;
+  border-color: #152d4a !important;
   transform: translateY(-1px) !important;
 }
 .stButton > button[kind="secondary"] {
-  border-color: var(--navy-mid) !important;
+  background: #ffffff !important;
+  border-color: var(--sandal) !important;
+  color: var(--charcoal) !important;
+  transition: all 0.25s ease !important;
+}
+.stButton > button[kind="secondary"]:hover {
+  background: #e0e7ff !important;
   color: var(--navy) !important;
 }
 
@@ -510,9 +566,9 @@ th {
   min-height: var(--table-row-h) !important;
   position: sticky !important; top: 0 !important; z-index: 1 !important;
 }
-td { padding: var(--s8) var(--s12) !important; min-height: var(--table-row-h) !important; border-bottom: 1px solid var(--cream) !important; color: var(--charcoal) !important; }
+td { padding: var(--s8) var(--s12) !important; min-height: var(--table-row-h) !important; border-bottom: 1px solid var(--cream) !important; color: var(--charcoal) !important; transition: all 0.25s ease !important; }
 tr:nth-child(even) td { background: var(--ivory-deep) !important; }
-tr:hover td { background: var(--sandal-light) !important; }
+tr:hover td { background: #dbeafe !important; color: var(--navy) !important; }
 
 /* ── 10. Info / Warning / Success / Error boxes ─────────────────────────── */
 div[data-testid="stAlert"] {
@@ -1072,11 +1128,44 @@ def get_cached_market_data(is_active):
 
 mkt = get_cached_market_data(api_active)
 
+
+@st.cache_data(ttl=300)
+def _cached_db_stats():
+    """Cached database stats for Home dashboard."""
+    try:
+        from database import get_dashboard_stats
+        return get_dashboard_stats()
+    except Exception:
+        return {"total_suppliers": 63, "total_customers": 3, "total_deals": 0}
+
+
+@st.cache_data(ttl=600)
+def _cached_forecast_calendar():
+    """Cached price forecast (heavy computation)."""
+    try:
+        from command_intel.price_prediction import generate_forecast_calendar
+        return generate_forecast_calendar()
+    except Exception:
+        return None
+
+
+@st.cache_data(ttl=300)
+def _cached_market_signals():
+    """Cached market intelligence signals."""
+    try:
+        from market_intelligence_engine import MarketIntelligenceEngine
+        eng = MarketIntelligenceEngine()
+        return eng.compute_all_signals()
+    except Exception:
+        return {}
+
+
 st.markdown(f"""
 <div style="
   background: var(--ivory,#faf7f2);
   border-bottom: 1px solid var(--sandal,#e8dcc8);
-  padding: var(--s8,8px) var(--page-gutter,20px);
+  padding: 6px var(--page-gutter,20px);
+  margin: 0 -20px 6px -20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1117,13 +1206,13 @@ except Exception:
 st.markdown("""
 <div style="
   background: linear-gradient(135deg, #1e3a5f 0%, #0f2744 100%);
-  padding: 11px 22px;
+  padding: 9px 20px;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 18px;
-  box-shadow: 0 6px 20px -4px rgba(30,58,95,0.35);
+  margin: 0 0 10px 0;
+  box-shadow: 0 4px 14px -3px rgba(30,58,95,0.30);
   border-bottom: 2px solid #c9a84c;
 ">
   <div style="display:flex; align-items:center; gap:14px;">
@@ -1166,13 +1255,13 @@ def _render_page_header(title: str, dept: str = "", badge: str = ""):
     st.markdown(f"""
 <div style="display:flex;align-items:center;justify-content:space-between;
             border-bottom:2px solid var(--sandal,#e8dcc8);
-            padding-bottom:var(--s8,8px);
-            margin-bottom:var(--section-sep,16px);">
-  <div style="display:flex;align-items:baseline;gap:var(--grid-gap,12px);">
-    <span style="font-size:1.12rem;font-weight:800;color:var(--navy,#1e3a5f);">{title}</span>
+            padding-bottom:6px;
+            margin-bottom:10px;">
+  <div style="display:flex;align-items:baseline;gap:10px;">
+    <span style="font-size:1.08rem;font-weight:800;color:var(--navy,#1e3a5f);">{title}</span>
     {_dept_html}
   </div>
-  <div style="display:flex;align-items:center;gap:var(--s8,8px);">
+  <div style="display:flex;align-items:center;gap:8px;">
     {_badge_html}
     <span style="font-size:0.68rem;color:var(--steel-light,#64748b);">{_today_str}</span>
   </div>
@@ -1221,7 +1310,7 @@ if optimizer is None:
 # --- TABS Interface ---
 # --- SIDEBAR + TOP BAR + SUB-TABS NAVIGATION (Enterprise v4.0) ---
 
-from nav_config import MODULE_NAV, SIDEBAR_ORDER, get_default_page
+from nav_config import MODULE_NAV, SIDEBAR_ORDER, get_default_page, get_tabs
 from top_bar import render_top_bar
 from subtab_bar import render_subtab_bar
 
@@ -1232,20 +1321,21 @@ st.markdown("""
    PPS Anantam — Compact Sidebar v4.0  (10 modules, no sub-items)
    ═══════════════════════════════════════════════════════════════════════════ */
 
-/* ── Sidebar container ────────────────────────────────────────────────────── */
+/* ── Sidebar — HIDDEN (navigation moved to horizontal top bar) ────────────── */
 section[data-testid="stSidebar"] {
-  background: linear-gradient(180deg, #ffffff 0%, #fafaf8 100%) !important;
-  border-right: 1px solid #e2ddd4 !important;
-  box-shadow: 2px 0 12px rgba(30,58,95,0.05) !important;
-  min-width: 240px !important;
-  width: 260px !important;
+  display: none !important;
+  width: 0 !important;
+  min-width: 0 !important;
 }
-section[data-testid="stSidebar"] > div:first-child {
-  padding-top: 0.5rem !important;
-  width: 100% !important;
+/* Ensure main content takes full width */
+.main .block-container {
+  max-width: 100% !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
 }
-/* Hide dividers */
-section[data-testid="stSidebar"] hr { display: none !important; }
+button[data-testid="stSidebarCollapsedControl"] {
+  display: none !important;
+}
 
 /* ── Nav buttons — compact, full text ─────────────────────────────────────── */
 section[data-testid="stSidebar"] button[kind="secondary"],
@@ -1300,37 +1390,43 @@ section[data-testid="stSidebar"] button[kind="primary"]:hover {
 
 /* ── Sub-tab bar buttons (in main content area) ──────────────────────────── */
 div[data-testid="stHorizontalBlock"] button[kind="primary"] {
-  background: #e8f5ee !important;
-  color: #2d6a4f !important;
+  background: var(--navy) !important;
+  color: #ffffff !important;
   font-weight: 700 !important;
-  border-bottom: 2px solid #2d6a4f !important;
+  border-bottom: 3px solid var(--vastu-gold) !important;
+  box-shadow: 0 2px 8px rgba(30,58,95,0.2) !important;
+  transition: all 0.25s ease !important;
+}
+div[data-testid="stHorizontalBlock"] button[kind="secondary"] {
+  background: #ffffff !important;
+  color: var(--charcoal) !important;
+  border: 1px solid var(--sandal) !important;
+  transition: all 0.25s ease !important;
+}
+div[data-testid="stHorizontalBlock"] button[kind="secondary"]:hover {
+  background: #e0e7ff !important;
+  color: var(--navy) !important;
+}
+
+/* ── Radio buttons (also pages) — enhanced selection ─────────────────────── */
+div[data-testid="stRadio"] > div[role="radiogroup"] label {
+  transition: all 0.25s ease !important;
+}
+div[data-testid="stRadio"] > div[role="radiogroup"] label:hover {
+  background: #e0e7ff !important;
+  border-radius: 14px !important;
 }
 
 /* ── RESPONSIVE ───────────────────────────────────────────────────────────── */
-@media (max-width: 1024px) {
-  section[data-testid="stSidebar"] {
-    min-width: 220px !important;
-    width: 240px !important;
-  }
-  section[data-testid="stSidebar"] button[kind="secondary"],
-  section[data-testid="stSidebar"] button[kind="primary"] {
-    font-size: 0.80rem !important;
-    padding: 7px 10px !important;
-    min-height: 38px !important;
-  }
-}
 @media (max-width: 768px) {
-  section[data-testid="stSidebar"] {
-    min-width: 260px !important;
-    width: 80vw !important;
-    max-width: 320px !important;
-    box-shadow: 4px 0 24px rgba(30,58,95,0.15) !important;
+  .pps-main-nav-row button {
+    font-size: 0.72rem !important;
+    padding: 6px 8px !important;
+    min-height: 34px !important;
   }
-  section[data-testid="stSidebar"] button[kind="secondary"],
-  section[data-testid="stSidebar"] button[kind="primary"] {
-    font-size: 0.88rem !important;
-    padding: 10px 14px !important;
-    min-height: 44px !important;
+  .pps-brand-header {
+    font-size: 0.78rem !important;
+    padding: 8px 12px !important;
   }
 }
 </style>
@@ -1342,64 +1438,83 @@ if 'selected_module' not in st.session_state:
 if 'selected_page' not in st.session_state:
     st.session_state['selected_page'] = '🏠 Home'
 
-# ── COMPACT SIDEBAR — 10 module buttons + dividers ───────────────────────────
-with st.sidebar:
-    # ── Brand header ─────────────────────────────────────────────────────────
-    st.markdown("""
-<div style="padding:14px 14px 10px 14px;border-bottom:1px solid #e2ddd4;margin-bottom:6px;
-            background:linear-gradient(135deg,#1e3a5f 0%,#2c5282 100%);border-radius:0 0 12px 12px;">
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
-    <span style="font-size:1.5rem;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.2));">🏛️</span>
+# ── HORIZONTAL MAIN NAV BAR (2-level: main tabs + sub-tabs) ──────────────────
+
+# ── Brand header (compact, full-width) ────────────────────────────────────────
+st.markdown("""
+<div class="pps-brand-header" style="padding:10px 18px;margin-bottom:4px;
+    background:linear-gradient(135deg,#1e3a5f 0%,#2c5282 100%);border-radius:10px;
+    display:flex;align-items:center;gap:12px;justify-content:space-between;">
+  <div style="display:flex;align-items:center;gap:10px;">
+    <span style="font-size:1.4rem;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.2));">🏛️</span>
     <div>
-      <div style="font-size:0.88rem;font-weight:800;color:#ffffff;line-height:1.25;">
-        PPS Anantam
-      </div>
-      <div style="font-size:0.68rem;font-weight:500;color:#c9a84c;line-height:1.3;">
+      <span style="font-size:0.88rem;font-weight:800;color:#ffffff;">PPS Anantam</span>
+      <span style="font-size:0.68rem;font-weight:500;color:#c9a84c;margin-left:8px;">
         Agentic AI Eco System
-      </div>
+      </span>
     </div>
   </div>
-  <div style="font-size:0.58rem;color:rgba(255,255,255,0.55);padding-left:2px;">
-    GST: 24AAHCV1611L2ZD &middot; Vadodara HQ
+  <div style="font-size:0.58rem;color:rgba(255,255,255,0.55);">
+    v4.0.0 &middot; GST: 24AAHCV1611L2ZD &middot; Vadodara HQ
   </div>
 </div>
 """, unsafe_allow_html=True)
 
-    # ── Render 10 module buttons (no expanders, no sub-items) ────────────────
-    _active_mod = st.session_state.get('selected_module', '🏠 Home')
+# ── Main nav: 2 rows of module buttons ────────────────────────────────────────
+_active_mod = st.session_state.get('selected_module', '🏠 Home')
+_modules = [m for m in SIDEBAR_ORDER if not m.startswith("_")]
 
-    for _item in SIDEBAR_ORDER:
-        if _item.startswith("_divider"):
-            st.markdown('<div class="pps-sidebar-divider"></div>', unsafe_allow_html=True)
-            continue
-
-        _mod_info = MODULE_NAV.get(_item, {})
-        _btn_label = f"{_mod_info.get('icon', '')}  {_mod_info.get('label', _item)}"
-        _btn_type = "primary" if _item == _active_mod else "secondary"
-
-        if st.button(_btn_label, key=f"_mod_{_item}", use_container_width=True, type=_btn_type):
-            st.session_state['selected_module'] = _item
-            # Set default page for this module
-            st.session_state['selected_page'] = get_default_page(_item)
-            # Reset sub-tab index
-            st.session_state[f"_subtab_idx_{_item}"] = 0
+# Row 1: first 6 modules
+_row1 = _modules[:6]
+_cols1 = st.columns(len(_row1))
+for _i, _mod in enumerate(_row1):
+    with _cols1[_i]:
+        _mod_info = MODULE_NAV.get(_mod, {})
+        _btn_label = f"{_mod_info.get('icon', '')} {_mod_info.get('label', _mod)}"
+        _btn_type = "primary" if _mod == _active_mod else "secondary"
+        if st.button(_btn_label, key=f"_mnav_{_mod}", use_container_width=True, type=_btn_type):
+            st.session_state['selected_module'] = _mod
+            st.session_state['selected_page'] = get_default_page(_mod)
+            st.session_state[f"_subtab_idx_{_mod}"] = 0
             st.rerun()
 
-    # ── Sidebar footer — version only (API toggle moved to top bar) ──────────
-    st.markdown('<div class="pps-sidebar-footer">', unsafe_allow_html=True)
-    st.markdown(
-        '<div class="pps-sidebar-footer-info">'
-        'v4.0.0 &middot; Production'
-        '</div>',
-        unsafe_allow_html=True,
-    )
-    st.markdown('</div>', unsafe_allow_html=True)
+# Row 2: remaining modules
+_row2 = _modules[6:]
+_cols2 = st.columns(len(_row2))
+for _i, _mod in enumerate(_row2):
+    with _cols2[_i]:
+        _mod_info = MODULE_NAV.get(_mod, {})
+        _btn_label = f"{_mod_info.get('icon', '')} {_mod_info.get('label', _mod)}"
+        _btn_type = "primary" if _mod == _active_mod else "secondary"
+        if st.button(_btn_label, key=f"_mnav_{_mod}", use_container_width=True, type=_btn_type):
+            st.session_state['selected_module'] = _mod
+            st.session_state['selected_page'] = get_default_page(_mod)
+            st.session_state[f"_subtab_idx_{_mod}"] = 0
+            st.rerun()
+
+# ── Thin separator ────────────────────────────────────────────────────────────
+st.markdown('<hr style="margin:2px 0 6px 0;border:none;border-top:1px solid #e2ddd4;">', unsafe_allow_html=True)
 
 # ── TOP CONTROL BAR (sticky, above content) ──────────────────────────────────
 render_top_bar()
 
 # ── SUB-TAB BAR (max 4 tabs per module) ──────────────────────────────────────
 _current_module = st.session_state.get('selected_module', '🏠 Home')
+
+# ── Breadcrumb ────────────────────────────────────────────────────────────────
+_bc_mod_info = MODULE_NAV.get(_current_module, {})
+_bc_tabs = get_tabs(_current_module)
+_bc_tab_idx = st.session_state.get(f"_subtab_idx_{_current_module}", 0)
+if _bc_tab_idx >= len(_bc_tabs):
+    _bc_tab_idx = 0
+_bc_tab_label = _bc_tabs[_bc_tab_idx]["label"] if _bc_tabs else ""
+st.markdown(
+    f'<div style="font-size:0.75rem;color:#64748b;padding:2px 0 4px 2px;">'
+    f'{_bc_mod_info.get("icon", "")} {_bc_mod_info.get("label", "")} &gt; {_bc_tab_label}'
+    f'</div>',
+    unsafe_allow_html=True,
+)
+
 _subtab_page = render_subtab_bar(_current_module)
 if _subtab_page and not _subtab_page.startswith("_"):
     st.session_state['selected_page'] = _subtab_page
@@ -1466,10 +1581,11 @@ if selected_page == "🏠 Home":
     import json as _json
 
     # ── Load data for Home dashboard ─────────────────────────────────────────
-    # Price prediction data
+    # Price prediction data — cached
     try:
-        from command_intel.price_prediction import generate_forecast_calendar as _gfc
-        _fc_df  = _gfc()
+        _fc_df  = _cached_forecast_calendar()
+        if _fc_df is None:
+            raise ValueError("No forecast data")
         _today  = _dt.date.today()
         _future = _fc_df[_fc_df["Date"].apply(
             lambda x: x.date() if hasattr(x, "date") else x) > _today]
@@ -1503,12 +1619,8 @@ if selected_page == "🏠 Home":
         _crm_tasks = []
         _task_count, _high_pri = 0, 0
 
-    # Database stats (suppliers, customers)
-    try:
-        from database import get_dashboard_stats as _get_db_stats
-        _db_stats = _get_db_stats()
-    except Exception:
-        _db_stats = {"total_suppliers": 63, "total_customers": 3, "total_deals": 0}
+    # Database stats (suppliers, customers) — cached
+    _db_stats = _cached_db_stats()
 
     # Live prices
     try:
@@ -1631,13 +1743,20 @@ if selected_page == "🏠 Home":
     # SECTION 2 — KPI Metrics (6 key metrics)
     # ─────────────────────────────────────────────────────────────────────────
     st.markdown('<div class="kpi-bar">', unsafe_allow_html=True)
-    _k1, _k2, _k3, _k4, _k5, _k6 = st.columns(6)
+    _k1, _k2, _k3, _k4, _k5, _k6, _k7 = st.columns(7)
     _k1.metric("Predicted Price", f"{_fmt_inr_home(int(_pred))}/MT")
     _k2.metric("Suppliers", _db_stats.get("total_suppliers", 63))
     _k3.metric("Customers", _db_stats.get("total_customers", 3))
     _k4.metric("Opportunities", _opp_count if _opp_count else "Scan needed")
     _k5.metric("CRM Tasks", _task_count, f"{_high_pri} high priority" if _high_pri else None)
     _k6.metric("APIs Healthy", f"{_api_ok}/{_api_tot}")
+    try:
+        from market_intelligence_engine import get_master_signal
+        _ms = get_master_signal()
+        _k7.metric("Market Signal", _ms.get("market_direction", "N/A"),
+                    f"{_ms.get('confidence', 0)}% conf")
+    except Exception:
+        _k7.metric("Market Signal", "N/A")
     st.markdown('</div>', unsafe_allow_html=True)
 
     # ── Data Health Card (Phase D) ──────────────────────────────────────────
@@ -3470,6 +3589,61 @@ if selected_page == "⚙️ Settings":
             else:
                 st.toast("Settings Saved")
 
+    with st.expander("🌐 Market Data API Keys", expanded=False):
+        st.caption("Configure API keys for live market data feeds. All keys are stored locally in settings.json.")
+        try:
+            from settings_engine import load_settings as _ld_s, save_settings as _sv_s
+            _api_sett = _ld_s()
+            _api_configs = [
+                ("EIA (US Energy)", "api_key_eia", "api_key_eia_enabled", "Crude oil & energy data from US EIA"),
+                ("FRED (Federal Reserve)", "api_key_fred", "api_key_fred_enabled", "Economic indicators & interest rates"),
+                ("data.gov.in", "api_key_data_gov_in", "api_key_data_gov_in_enabled", "Indian government open data"),
+                ("OpenWeather", "api_key_openweather", "api_key_openweather_enabled", "Weather data for construction forecasting"),
+                ("NewsAPI", "api_key_newsapi", "api_key_newsapi_enabled", "News headlines for sentiment analysis"),
+            ]
+            for _label, _key_field, _enable_field, _desc in _api_configs:
+                _ac1, _ac2, _ac3 = st.columns([1.5, 2, 0.5])
+                with _ac1:
+                    _api_sett[_enable_field] = st.toggle(
+                        f"Enable {_label}", value=_api_sett.get(_enable_field, False),
+                        key=f"mkt_{_enable_field}")
+                with _ac2:
+                    _api_sett[_key_field] = st.text_input(
+                        f"{_label} API Key", value=_api_sett.get(_key_field, ""),
+                        type="password", key=f"mkt_{_key_field}", help=_desc)
+                with _ac3:
+                    if _api_sett.get(_key_field):
+                        st.markdown("🟢")
+                    else:
+                        st.markdown("⚪")
+
+            if st.button("💾 Save Market Data API Keys", key="save_mkt_api_keys"):
+                _sv_s(_api_sett)
+                # Also update hub_catalog.json if it exists
+                try:
+                    import json as _jj
+                    _hc_path = Path("hub_catalog.json")
+                    if _hc_path.exists():
+                        with open(_hc_path, "r", encoding="utf-8") as _hf:
+                            _hc = _jj.load(_hf)
+                        _key_map = {
+                            "api_key_eia": "eia", "api_key_fred": "fred",
+                            "api_key_data_gov_in": "data_gov_in",
+                            "api_key_openweather": "openweather",
+                            "api_key_newsapi": "newsapi",
+                        }
+                        for _sf, _hid in _key_map.items():
+                            for _entry in _hc:
+                                if isinstance(_entry, dict) and _entry.get("id") == _hid:
+                                    _entry["api_key"] = _api_sett.get(_sf, "")
+                        with open(_hc_path, "w", encoding="utf-8") as _hf:
+                            _jj.dump(_hc, _hf, indent=2, ensure_ascii=False)
+                except Exception:
+                    pass
+                st.toast("Market Data API keys saved!")
+        except Exception as _mke:
+            st.caption(f"Settings engine unavailable: {_mke}")
+
     with st.expander("📧 Email & WhatsApp Automation", expanded=False):
         try:
             from settings_engine import load_settings as _load_s, save_settings as _save_s
@@ -4142,6 +4316,20 @@ elif selected_page == "📦 Import Cost Model":
     except Exception as _e:
         st.error(f"⚠️ Import Cost Model failed to load: {_e}")
         st.info("Try reloading the page.")
+elif selected_page == "🛒 Purchase Advisor":
+    _render_page_header("🛒 Purchase Advisor", "Procurement Intelligence")
+    try:
+        from command_intel.purchase_advisor_dashboard import render as _pa_render
+        _pa_render()
+    except Exception as _e:
+        st.error(f"⚠️ Purchase Advisor failed to load: {_e}")
+elif selected_page == "🚢 Maritime Logistics":
+    _render_page_header("🚢 Maritime Logistics", "Operations")
+    try:
+        from command_intel import maritime_logistics_dashboard
+        maritime_logistics_dashboard.render()
+    except Exception as _e:
+        st.error(f"⚠️ Maritime Logistics failed to load: {_e}")
 elif selected_page == "🚢 Supply Chain":
     _render_page_header("🚢 Supply Chain", "Operations")
     st.info("ℹ️ **UX Note:** Tracks voyage ships, transit times, and potential local stock availability constraints.")
@@ -4657,6 +4845,22 @@ elif selected_page in ("📱 WhatsApp Setup", "📱 WhatsApp Engine"):
     except Exception as _e:
         st.error(f"WhatsApp Setup failed to load: {_e}")
 
+elif selected_page == "🔗 Integrations":
+    _render_page_header("🔗 Integrations", "System", badge="Connections")
+    try:
+        from command_intel import integrations_dashboard
+        integrations_dashboard.render()
+    except Exception as _e:
+        st.error(f"Integrations failed to load: {_e}")
+
+elif selected_page == "📊 Comm Tracking":
+    _render_page_header("📊 Communication Tracking", "Sales & CRM", badge="All Channels")
+    try:
+        from command_intel import comm_tracking_dashboard
+        comm_tracking_dashboard.render()
+    except Exception as _e:
+        st.error(f"Communication Tracking failed to load: {_e}")
+
 elif selected_page == "📓 Daily Log":
     _render_page_header("📓 Daily Log", "Sales & CRM", badge="Team Notes")
     try:
@@ -4670,6 +4874,14 @@ elif selected_page == "🚨 Alert Center":
         cmd_alert_center.render()
     except Exception as _e:
         st.error(f"Alert Center failed to load: {_e}")
+
+elif selected_page == "🏥 Health Monitor":
+    _render_page_header("🏥 Health Monitor", "System", badge="Live")
+    try:
+        from command_intel import health_monitor_dashboard
+        health_monitor_dashboard.render()
+    except Exception as _e:
+        st.error(f"Health Monitor failed to load: {_e}")
 
 elif selected_page == "🎛️ System Control Center":
     _render_page_header("🎛️ System Control Center", "System", badge="Live")
@@ -4760,6 +4972,32 @@ elif selected_page == "🏗️ Infra Demand Intelligence":
         cmd_infra_demand.render()
     except Exception as _e:
         st.error(f"Infra Demand Intelligence failed to load: {_e}")
+
+elif selected_page == "📡 Market Signals":
+    _render_page_header("📡 Market Signals", "Intelligence", badge="AI Signal")
+    st.info("ℹ️ **10-Signal Composite Intelligence.** Crude (25%) + Currency (15%) + News (15%) + Weather (10%) + Govt (10%) + Tenders (10%) + Economic (5%) + Search (5%) + Ports (5%) = Master Signal. Refreshes every 2 hours.")
+    try:
+        cmd_market_signals.render()
+    except Exception as _e:
+        st.error(f"⚠️ Market Signals failed to load: {_e}")
+        st.info("Try reloading the page.")
+
+elif selected_page == "🛠️ Developer Ops Map":
+    _render_page_header("🛠️ Developer Ops Map", "Developer", badge="Ops")
+    try:
+        cmd_dev_ops.render()
+    except Exception as _e:
+        st.error(f"⚠️ Developer Ops Map failed to load: {_e}")
+        st.info("Try reloading the page.")
+
+elif selected_page == "🗺️ Dashboard Flow Map":
+    _render_page_header("🗺️ Dashboard Flow Map", "Developer", badge="Blueprint")
+    st.info("ℹ️ **Master System Blueprint.** Visual architecture of the entire dashboard — data sources, AI processing, calculations, storage, visualization, reports, and alerts.")
+    try:
+        cmd_flow_map.render()
+    except Exception as _e:
+        st.error(f"⚠️ Dashboard Flow Map failed to load: {_e}")
+        st.info("Try reloading the page.")
 
 
 # ══════════════════════════════════════════════════════════════════════════════

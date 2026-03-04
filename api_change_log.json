@@ -1042,5 +1042,29 @@
     "affected_tab": "",
     "affected_api": "usdinr_frankfurter",
     "user_id": "System"
+  },
+  {
+    "datetime_ist": "04-03-2026 13:26:37 IST",
+    "component": "rest_countries_india",
+    "what_changed": "auto_heal_fetch",
+    "old_value": "FAIL",
+    "new_value": "OK",
+    "reason": "SRE auto-heal attempt 1 succeeded",
+    "trigger": "Auto",
+    "affected_tab": "",
+    "affected_api": "rest_countries_india",
+    "user_id": "System"
+  },
+  {
+    "datetime_ist": "04-03-2026 16:29:44 IST",
+    "component": "rest_countries_india",
+    "what_changed": "auto_heal_fetch",
+    "old_value": "FAIL",
+    "new_value": "OK",
+    "reason": "SRE auto-heal attempt 1 succeeded",
+    "trigger": "Auto",
+    "affected_tab": "",
+    "affected_api": "rest_countries_india",
+    "user_id": "System"
   }
 ]

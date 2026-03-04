@@ -17,41 +17,41 @@ def get_live_market_data():
     # 1. Brent Crude
     brent_data = fetch_api_data("brent")
     if brent_data and 'current' in brent_data:
-        curr = brent_data['current']
-        hist = brent_data.get('history_7d', curr)
+        curr = float(brent_data['current'])
+        hist = float(brent_data.get('history_7d', curr))
         chg = ((curr - hist) / hist) * 100 if hist else 0.0
         chg_str, color = format_change(chg)
         data['brent'] = {"value": f"${curr:.2f}", "value_7d": f"${hist:.2f}", "change": chg_str, "color": color}
     else:
         data['brent'] = {"value": "N/A", "value_7d": "N/A", "change": "0.00%", "color": "grey"}
-        
+
     # 2. WTI Crude
     wti_data = fetch_api_data("wti")
     if wti_data and 'current' in wti_data:
-        curr = wti_data['current']
-        hist = wti_data.get('history_7d', curr)
+        curr = float(wti_data['current'])
+        hist = float(wti_data.get('history_7d', curr))
         chg = ((curr - hist) / hist) * 100 if hist else 0.0
         chg_str, color = format_change(chg)
         data['wti'] = {"value": f"${curr:.2f}", "value_7d": f"${hist:.2f}", "change": chg_str, "color": color}
     else:
         data['wti'] = {"value": "N/A", "value_7d": "N/A", "change": "0.00%", "color": "grey"}
-        
+
     # 3. USD/INR
     usdinr_data = fetch_api_data("usdinr")
     if usdinr_data and 'current' in usdinr_data:
-        curr = usdinr_data['current']
-        hist = usdinr_data.get('history_7d', curr)
+        curr = float(usdinr_data['current'])
+        hist = float(usdinr_data.get('history_7d', curr))
         chg = ((curr - hist) / hist) * 100 if hist else 0.0
         chg_str, color = format_change(chg)
         data['usdinr'] = {"value": f"{curr:.2f}", "value_7d": f"{hist:.2f}", "change": chg_str, "color": color}
     else:
         data['usdinr'] = {"value": "N/A", "value_7d": "N/A", "change": "0.00%", "color": "grey"}
-        
+
     # 4. DXY
     dxy_data = fetch_api_data("dxy")
     if dxy_data and 'current' in dxy_data:
-        curr = dxy_data['current']
-        hist = dxy_data.get('history_7d', curr)
+        curr = float(dxy_data['current'])
+        hist = float(dxy_data.get('history_7d', curr))
         chg = ((curr - hist) / hist) * 100 if hist else 0.0
         chg_str, color = format_change(chg)
         data['dxy'] = {"value": f"{curr:.2f}", "value_7d": f"{hist:.2f}", "change": chg_str, "color": color}

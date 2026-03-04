@@ -8,11 +8,10 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from ui_badges import display_badge
 import datetime
-import random
 import numpy as np
 
-# --- CONTRACTOR DATABASE ---
-CONTRACTORS = [
+# --- HARDCODED CONTRACTOR DATABASE (fallback if DB unavailable) ---
+_HARDCODED_CONTRACTORS = [
     {
         "name": "L&T Construction",
         "project": "Mumbai-Pune Expressway Expansion",
@@ -128,13 +127,54 @@ CONTRACTORS = [
 ]
 
 
+def _load_contractors():
+    """Load contractors from DB customers table, fallback to hardcoded list."""
+    try:
+        from database import _get_conn
+        conn = _get_conn()
+        rows = conn.execute(
+            "SELECT name, city, state, grade, payment_terms, "
+            "total_orders, total_volume_mt FROM customers"
+        ).fetchall()
+        conn.close()
+        if rows and len(rows) >= 3:
+            contractors = []
+            for r in rows:
+                orders = int(r[5] or 0)
+                vol = float(r[6] or 0)
+                monthly = round(vol / max(orders, 1)) if orders else 200
+                contractors.append({
+                    "name": r[0] or "Unknown",
+                    "project": "Active Projects",
+                    "location": f"{r[1] or ''}, {r[2] or ''}".strip(", "),
+                    "timeline": "Ongoing",
+                    "consumption_mt_month": monthly,
+                    "credit_days": 0 if "advance" in (r[4] or "").lower() else 15,
+                    "payment_reliability": 90,
+                    "total_orders": orders,
+                    "pending_payment_cr": 0,
+                    "grade": r[3] or "VG30",
+                    "type": "Bulk",
+                    "status": "Active"
+                })
+            return contractors
+    except Exception:
+        pass
+    return list(_HARDCODED_CONTRACTORS)
+
+
 def _get_demand_factors():
     """Predictive demand factors."""
     month = datetime.date.today().month
     
     highway_active = month in [10, 11, 12, 1, 2, 3, 4, 5]
     monsoon = month in [6, 7, 8, 9]
-    election_year = datetime.date.today().year in [2024, 2029]
+    try:
+        from settings_engine import get as _sg
+        _election_years = _sg("election_years", [2024, 2029, 2034])
+    except Exception:
+        _election_years = [2024, 2029, 2034]
+    election_year = datetime.date.today().year in _election_years
     
     return {
         "highway_projects": {
@@ -190,6 +230,9 @@ Consumption Modeling • Payment Intelligence • Demand Forecasting
 </div>
 """, unsafe_allow_html=True)
     
+    # --- LOAD CONTRACTORS ---
+    CONTRACTORS = _load_contractors()
+
     # --- SUMMARY METRICS ---
     total_monthly = sum(c["consumption_mt_month"] for c in CONTRACTORS)
     total_pending = sum(c["pending_payment_cr"] for c in CONTRACTORS)

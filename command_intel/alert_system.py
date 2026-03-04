@@ -27,6 +27,60 @@ BRENT_LOW_THRESHOLD  = 65.0   # USD/bbl — Warning if below
 VIX_HIGH_THRESHOLD   = 20.0   # India VIX — Warning if above
 
 
+def _get_overdue_alerts(now):
+    """Generate payment overdue alerts from deals table, fallback to hardcoded."""
+    try:
+        from database import _get_conn
+        conn = _get_conn()
+        rows = conn.execute(
+            "SELECT customer_name, total_value, delivery_date, invoice_number "
+            "FROM deals WHERE payment_date IS NULL AND delivery_date IS NOT NULL "
+            "ORDER BY delivery_date ASC LIMIT 5"
+        ).fetchall()
+        conn.close()
+        if rows:
+            alerts = []
+            for i, r in enumerate(rows):
+                name = r[0] or "Unknown"
+                value = float(r[1] or 0)
+                delivery = r[2] or ""
+                inv = r[3] or f"INV-{i}"
+                try:
+                    d_date = datetime.datetime.strptime(delivery, "%Y-%m-%d")
+                    overdue_days = (now - d_date).days
+                except Exception:
+                    overdue_days = 0
+                value_cr = value / 10000000
+                alerts.append({
+                    "id": f"ALT-005-{i+1}",
+                    "severity": "critical" if overdue_days > 30 else "warning",
+                    "category": "Payment",
+                    "title": f"💰 Payment Overdue — {name}",
+                    "message": (
+                        f"Outstanding ₹{value_cr:.1f} Cr overdue by {overdue_days} days "
+                        f"({inv}). Follow up immediately."
+                    ),
+                    "time": now - datetime.timedelta(days=1),
+                    "action": "Send payment reminder • Hold further dispatches • Escalate to Finance Head",
+                    "acknowledged": False
+                })
+            return alerts
+    except Exception:
+        pass
+    # Fallback: single hardcoded alert
+    return [{
+        "id": "ALT-005",
+        "severity": "warning",
+        "category": "Payment",
+        "title": "💰 Payment Overdue — Ashoka Buildcon",
+        "message": "Outstanding ₹1.5 Cr overdue by 12 days (Invoice #INV-2026-0089). "
+                   "Credit days exhausted. Payment reliability score dropped to 85%.",
+        "time": now - datetime.timedelta(days=1),
+        "action": "Send payment reminder • Hold further dispatches • Escalate to Finance Head",
+        "acknowledged": False
+    }]
+
+
 def _get_active_alerts():
     """
     Build alert list combining:
@@ -87,17 +141,7 @@ def _get_active_alerts():
             "action": "Notify buyer • Arrange interim supply from local stock • Update delivery schedule",
             "acknowledged": False
         },
-        {
-            "id": "ALT-005",
-            "severity": "warning",
-            "category": "Payment",
-            "title": "💰 Payment Overdue — Ashoka Buildcon",
-            "message": "Outstanding ₹1.5 Cr overdue by 12 days (Invoice #INV-2026-0089). "
-                       "Credit days exhausted. Payment reliability score dropped to 85%.",
-            "time": now - datetime.timedelta(days=1),
-            "action": "Send payment reminder • Hold further dispatches • Escalate to Finance Head",
-            "acknowledged": False
-        },
+        *_get_overdue_alerts(now),
         {
             "id": "ALT-006",
             "severity": "info",

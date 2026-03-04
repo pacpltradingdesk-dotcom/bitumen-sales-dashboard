@@ -800,7 +800,7 @@ def start_auto_health(interval_min: int = AUTO_HEALTH_INTERVAL_MIN):
                     error_type="SchedulerError",
                     message=str(exc)[:200],
                     severity="P2",
-                    tab="Dev Activity",
+                    root_cause="Auto health scheduler exception",
                 )
             time.sleep(interval_min * 60)
 

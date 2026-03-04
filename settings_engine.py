@@ -153,6 +153,95 @@ DEFAULT_SETTINGS = {
     # Export Settings
     "excel_export_include_metadata": True,
     "csv_export_encoding": "utf-8-sig",
+
+    # ── Market Data API Keys ─────────────────────────────────────────────────
+    "api_key_eia": "",
+    "api_key_eia_enabled": False,
+    "api_key_fred": "",
+    "api_key_fred_enabled": False,
+    "api_key_data_gov_in": "",
+    "api_key_data_gov_in_enabled": False,
+    "api_key_openweather": "",
+    "api_key_openweather_enabled": False,
+    "api_key_newsapi": "",
+    "api_key_newsapi_enabled": False,
+
+    # ── Google Sheets Integration ─────────────────────────────────────────────
+    "google_sheets_enabled": False,
+    "google_sheets_sync_interval_minutes": 60,
+    "google_sheets_auto_sync": False,
+    "google_sheets_service_account_path": "",
+
+    # ── Client Chat ────────────────────────────────────────────────────────────
+    "chat_enabled": False,
+    "chat_polling_interval_seconds": 10,
+    "chat_max_message_length": 2000,
+
+    # ── Share Links ────────────────────────────────────────────────────────────
+    "share_links_enabled": True,
+    "share_links_default_expiry_hours": 48,
+    "share_links_require_password": False,
+    "share_links_max_active": 100,
+
+    # ── Share Automation ───────────────────────────────────────────────────────
+    "share_automation_enabled": False,
+    "share_automation_max_schedules": 50,
+
+    # ── Universal Share Button ─────────────────────────────────────────────────
+    "share_button_enabled": True,
+    "share_button_show_email": True,
+    "share_button_show_whatsapp": True,
+    "share_button_show_pdf": True,
+    "share_button_show_link": True,
+    "share_button_show_image": True,
+
+    # ── AI Message Generation ──────────────────────────────────────────────────
+    "ai_message_tone": "professional",
+    "ai_message_language": "en",
+
+    # ── Communication Tracking ─────────────────────────────────────────────────
+    "comm_tracking_enabled": True,
+    "comm_tracking_retention_days": 365,
+
+    # ── Maritime Intelligence ─────────────────────────────────────────────────
+    "maritime_enabled": True,
+    "maritime_refresh_interval_minutes": 15,
+    "maritime_vessel_count": 12,
+    "maritime_priority_ports": ["Mundra", "Kandla", "Mumbai"],
+    "maritime_container_first": True,
+    "maritime_show_risk_alerts": True,
+    "maritime_marine_weather_enabled": True,
+    "maritime_rss_enabled": True,
+    "maritime_multimodal_enabled": True,
+    "maritime_map_center_lat": 18.0,
+    "maritime_map_center_lon": 68.0,
+    "maritime_map_zoom": 4,
+
+    # ── Port-Specific Charges (INR) ──────────────────────────────────────────
+    "port_charges": {
+        "Kandla": {"berthing": 8000, "cha_per_mt": 70, "handling_per_mt": 90},
+        "Mundra": {"berthing": 12000, "cha_per_mt": 80, "handling_per_mt": 110},
+        "Mangalore": {"berthing": 10000, "cha_per_mt": 75, "handling_per_mt": 100},
+        "JNPT": {"berthing": 15000, "cha_per_mt": 90, "handling_per_mt": 120},
+        "Karwar": {"berthing": 7000, "cha_per_mt": 65, "handling_per_mt": 85},
+        "Haldia": {"berthing": 9000, "cha_per_mt": 75, "handling_per_mt": 95},
+        "Ennore": {"berthing": 11000, "cha_per_mt": 80, "handling_per_mt": 105},
+        "Paradip": {"berthing": 8500, "cha_per_mt": 70, "handling_per_mt": 90},
+    },
+
+    # ── Election Years (dynamic for demand_analytics) ────────────────────────
+    "election_years": [2024, 2029, 2034],
+
+    # ── Purchase Advisor Weights ─────────────────────────────────────────────
+    "purchase_advisor_enabled": True,
+    "purchase_advisor_urgency_weights": {
+        "price_trend": 0.25,
+        "demand_season": 0.20,
+        "inventory_level": 0.15,
+        "crude_momentum": 0.20,
+        "fx_pressure": 0.10,
+        "supply_risk": 0.10,
+    },
 }
 
 

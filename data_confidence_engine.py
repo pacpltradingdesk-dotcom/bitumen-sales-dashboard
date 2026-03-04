@@ -472,3 +472,65 @@ def render_data_health_card() -> None:
                 f'{conf_obj.provider} · {age} · {conf_obj.record_count} records',
                 unsafe_allow_html=True,
             )
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# GRACEFUL DEGRADATION — Fallback-aware confidence
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def get_source_with_fallback(source_key: str) -> dict:
+    """
+    Get data for a source, walking the fallback chain if needed.
+    Returns: {"data", "source", "confidence_pct", "is_degraded", "level"}
+    """
+    try:
+        from resilience_manager import GracefulDegradation
+        # Map data_confidence keys → fallback matrix categories
+        _KEY_TO_CATEGORY = {
+            "crude_prices": "crude_prices",
+            "fx_rates": "fx_rates",
+            "weather": "weather",
+            "news_feed": "news",
+            "news_articles": "news",
+            "trade_imports": "trade_data",
+            "ports_volume": "trade_data",
+            "refinery_production": "trade_data",
+        }
+        category = _KEY_TO_CATEGORY.get(source_key, source_key)
+        return GracefulDegradation.get_best_available(category)
+    except ImportError:
+        # Fallback: return standard confidence without degradation info
+        conf = get_data_confidence(source_key)
+        return {
+            "data": None,
+            "source": conf.provider,
+            "confidence_pct": conf.confidence_score,
+            "is_degraded": conf.confidence in ("stale", "unavailable"),
+            "level": "primary" if conf.confidence == "verified" else "secondary",
+        }
+
+
+def compute_dashboard_confidence() -> dict:
+    """
+    Compute aggregate dashboard health from all sources.
+    Returns: {"score", "color", "label", "degraded_sources", "source_details"}
+    """
+    confs = get_all_confidences()
+    scores = [c.confidence_score for c in confs]
+    degraded = [c.source_name for c in confs if c.confidence in ("stale", "unavailable")]
+
+    try:
+        from resilience_config import compute_health_score
+        metrics = {"data_freshness": sum(scores) / len(scores) if scores else 0}
+        result = compute_health_score(metrics)
+    except ImportError:
+        avg = sum(scores) / len(scores) if scores else 0
+        result = {"score": round(avg), "color": "#f59e0b", "label": "Unknown"}
+
+    result["degraded_sources"] = degraded
+    result["source_details"] = [
+        {"name": c.source_name, "confidence": c.confidence,
+         "score": c.confidence_score, "age_min": c.freshness_minutes}
+        for c in confs
+    ]
+    return result

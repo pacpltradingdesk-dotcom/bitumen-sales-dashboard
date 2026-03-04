@@ -67,6 +67,13 @@ WORKER_DEFS = [
         "desc": "Generates daily insight reports",
         "min_tier": "MEDIUM",
     },
+    {
+        "name": "market_signals",
+        "display": "Market Intelligence",
+        "interval": 7200,
+        "desc": "Computes 10-signal market intelligence composite",
+        "min_tier": "LOW",
+    },
 ]
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -118,6 +125,11 @@ FEATURE_MAP = {
         "module": "auto_comm_intelligence",
         "worker": None,
         "dashboard_page": "Communication Hub",
+    },
+    "Market Intelligence": {
+        "module": "market_intelligence_engine",
+        "worker": "market_signals",
+        "dashboard_page": "Market Signals",
     },
 }
 
@@ -275,6 +287,21 @@ def _run_report_writer() -> dict:
         return {"generated": False, "error": str(e)}
 
 
+def _run_market_signals() -> dict:
+    """Compute 10-signal market intelligence composite."""
+    try:
+        from market_intelligence_engine import compute_all_signals
+        signals = compute_all_signals()
+        master = signals.get("master", {})
+        return {
+            "direction": master.get("market_direction", "N/A"),
+            "confidence": master.get("confidence", 0),
+            "signals_ok": sum(1 for s in signals.values() if s.get("status") == "OK"),
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+
 _WORKER_FN_MAP = {
     "summarizer": _run_summarizer,
     "extractor": _run_extractor,
@@ -282,6 +309,7 @@ _WORKER_FN_MAP = {
     "scoring": _run_scoring,
     "alert": _run_alert,
     "report_writer": _run_report_writer,
+    "market_signals": _run_market_signals,
 }
 
 
