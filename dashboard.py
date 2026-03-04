@@ -1202,6 +1202,13 @@ try:
 except Exception:
     pass
 
+# ── 4-row market data ticker (Tenders / Markets / Refinery / Import) ───────
+try:
+    from market_ticker import render_market_ticker
+    render_market_ticker()
+except Exception:
+    pass
+
 # ── Enterprise Header — PPS Anantam Agentic AI Eco System ───────────────────
 st.markdown("""
 <div style="
@@ -5067,6 +5074,40 @@ elif selected_page == "🎯 Intelligence Hub":
         intelligence_hub_dashboard.render()
     except Exception as _e:
         st.error(f"Intelligence Hub failed to load: {_e}")
+
+# ── Document Management pages ────────────────────────────────────────────
+
+elif selected_page == "📋 Purchase Orders":
+    _render_page_header("📋 Purchase Orders", "Documents", badge="PO")
+    try:
+        from command_intel.document_management import render_purchase_order
+        render_purchase_order()
+    except Exception as _e:
+        st.error(f"Purchase Orders failed to load: {_e}")
+
+elif selected_page == "📋 Sales Orders":
+    _render_page_header("📋 Sales Orders", "Documents", badge="SO")
+    try:
+        from command_intel.document_management import render_sales_order
+        render_sales_order()
+    except Exception as _e:
+        st.error(f"Sales Orders failed to load: {_e}")
+
+elif selected_page == "💳 Payment Orders":
+    _render_page_header("💳 Payment Orders", "Documents", badge="Payment")
+    try:
+        from command_intel.document_management import render_payment_order
+        render_payment_order()
+    except Exception as _e:
+        st.error(f"Payment Orders failed to load: {_e}")
+
+elif selected_page == "👥 Party Master":
+    _render_page_header("👥 Party Master", "Documents", badge="Party")
+    try:
+        from command_intel.document_management import render_party_master
+        render_party_master()
+    except Exception as _e:
+        st.error(f"Party Master failed to load: {_e}")
 
 
 # ══════════════════════════════════════════════════════════════════════════════

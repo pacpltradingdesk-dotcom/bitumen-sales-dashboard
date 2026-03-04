@@ -34,6 +34,13 @@ COMPANY_PROFILE = {
         "8. FORCE MAJEURE: Delivery subject to availability and force majeure conditions (strikes, lockouts, refinery shutdowns).",
         "9. DISPUTES: All disputes subject to VADODARA Jurisdiction only.",
         "E. & O.E."
-    ]
+    ],
+
+    "declaration": "We declare that this document shows the actual details of the goods described and that the particulars given above are true and correct.",
+    "interest_clause": "Interest @18% p.a. will be charged on overdue payments beyond the agreed credit period.",
+    "complaint_clause": "No complaint will be entertained after the vehicle leaves our premises. The driver must confirm quantity, quality, and packing at loading point.",
+    "driver_clause": "The driver of the vehicle confirms receipt of the material in good condition and correct quantity as specified above.",
+    "invoice_correction_clause": "Any discrepancy in the invoice must be brought to notice before the vehicle leaves the premises. No corrections will be entertained thereafter.",
+    "lr_clause": "The Lorry Receipt (LR) must be signed by the driver confirming receipt of goods in good condition. LR serves as proof of dispatch.",
 }
 

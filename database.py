@@ -669,6 +669,162 @@ _TABLES = {
         );
     """,
 
+    # ── Document Management tables ─────────────────────────────────────
+
+    "company_master": """
+        CREATE TABLE IF NOT EXISTS company_master (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            legal_name      TEXT NOT NULL,
+            short_name      TEXT,
+            gstin           TEXT,
+            pan             TEXT,
+            cin             TEXT,
+            address_line1   TEXT,
+            address_line2   TEXT,
+            city            TEXT,
+            pincode         TEXT,
+            state           TEXT,
+            state_code      TEXT,
+            full_address    TEXT,
+            hsn_code        TEXT,
+            phone           TEXT,
+            email           TEXT,
+            website         TEXT,
+            logo_path       TEXT,
+            created_at      TEXT,
+            updated_at      TEXT
+        );
+    """,
+
+    "bank_master": """
+        CREATE TABLE IF NOT EXISTS bank_master (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            company_id      INTEGER DEFAULT 1,
+            bank_name       TEXT NOT NULL,
+            ac_no           TEXT NOT NULL,
+            ifsc            TEXT,
+            branch          TEXT,
+            is_primary      INTEGER DEFAULT 0,
+            created_at      TEXT,
+            updated_at      TEXT,
+            FOREIGN KEY (company_id) REFERENCES company_master(id)
+        );
+    """,
+
+    "terms_master": """
+        CREATE TABLE IF NOT EXISTS terms_master (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            term_key        TEXT UNIQUE NOT NULL,
+            term_text       TEXT NOT NULL,
+            category        TEXT DEFAULT 'general',
+            sort_order      INTEGER DEFAULT 0,
+            is_active       INTEGER DEFAULT 1,
+            created_at      TEXT,
+            updated_at      TEXT
+        );
+    """,
+
+    "purchase_orders": """
+        CREATE TABLE IF NOT EXISTS purchase_orders (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            po_number       TEXT UNIQUE NOT NULL,
+            deal_id         INTEGER,
+            supplier_id     INTEGER,
+            supplier_name   TEXT,
+            supplier_gstin  TEXT,
+            supplier_address TEXT,
+            items_json      TEXT,
+            logistics_json  TEXT,
+            totals_json     TEXT,
+            notes           TEXT,
+            status          TEXT DEFAULT 'draft',
+            pdf_path        TEXT,
+            created_by      TEXT DEFAULT 'Admin',
+            created_at      TEXT,
+            updated_at      TEXT,
+            FOREIGN KEY (deal_id) REFERENCES deals(id),
+            FOREIGN KEY (supplier_id) REFERENCES suppliers(id)
+        );
+    """,
+
+    "sales_orders": """
+        CREATE TABLE IF NOT EXISTS sales_orders (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            so_number       TEXT UNIQUE NOT NULL,
+            deal_id         INTEGER,
+            customer_id     INTEGER,
+            customer_name   TEXT,
+            customer_gstin  TEXT,
+            customer_address TEXT,
+            items_json      TEXT,
+            logistics_json  TEXT,
+            totals_json     TEXT,
+            notes           TEXT,
+            status          TEXT DEFAULT 'draft',
+            pdf_path        TEXT,
+            created_by      TEXT DEFAULT 'Admin',
+            created_at      TEXT,
+            updated_at      TEXT,
+            FOREIGN KEY (deal_id) REFERENCES deals(id),
+            FOREIGN KEY (customer_id) REFERENCES customers(id)
+        );
+    """,
+
+    "payment_orders": """
+        CREATE TABLE IF NOT EXISTS payment_orders (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            pay_number      TEXT UNIQUE NOT NULL,
+            deal_id         INTEGER,
+            po_id           INTEGER,
+            so_id           INTEGER,
+            supplier_name   TEXT,
+            customer_name   TEXT,
+            purchase_payable REAL DEFAULT 0,
+            sales_receivable REAL DEFAULT 0,
+            transport_cost  REAL DEFAULT 0,
+            profit_json     TEXT,
+            notes           TEXT,
+            status          TEXT DEFAULT 'draft',
+            pdf_path        TEXT,
+            created_by      TEXT DEFAULT 'Admin',
+            created_at      TEXT,
+            updated_at      TEXT,
+            FOREIGN KEY (deal_id) REFERENCES deals(id),
+            FOREIGN KEY (po_id) REFERENCES purchase_orders(id),
+            FOREIGN KEY (so_id) REFERENCES sales_orders(id)
+        );
+    """,
+
+    "_doc_counters": """
+        CREATE TABLE IF NOT EXISTS _doc_counters (
+            doc_type    TEXT PRIMARY KEY,
+            last_date   TEXT,
+            last_seq    INTEGER DEFAULT 0
+        );
+    """,
+
+    "transporters": """
+        CREATE TABLE IF NOT EXISTS transporters (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            name            TEXT NOT NULL,
+            contact         TEXT,
+            gstin           TEXT,
+            pan             TEXT,
+            city            TEXT,
+            state           TEXT,
+            address         TEXT,
+            vehicle_types   TEXT,
+            rate_per_km     REAL,
+            bank_name       TEXT,
+            bank_ac_no      TEXT,
+            bank_ifsc       TEXT,
+            is_active       INTEGER DEFAULT 1,
+            notes           TEXT,
+            created_at      TEXT,
+            updated_at      TEXT
+        );
+    """,
+
     "comm_tracking": """
         CREATE TABLE IF NOT EXISTS comm_tracking (
             id              INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -741,6 +897,23 @@ _INDEXES = [
     "CREATE INDEX IF NOT EXISTS idx_comm_track_channel      ON comm_tracking(channel);",
     "CREATE INDEX IF NOT EXISTS idx_comm_track_status       ON comm_tracking(delivery_status);",
     "CREATE INDEX IF NOT EXISTS idx_comm_track_created      ON comm_tracking(created_at);",
+    # Transporter indexes
+    "CREATE INDEX IF NOT EXISTS idx_transporters_active     ON transporters(is_active);",
+    "CREATE INDEX IF NOT EXISTS idx_transporters_city       ON transporters(city);",
+    # Document Management indexes
+    "CREATE INDEX IF NOT EXISTS idx_po_supplier             ON purchase_orders(supplier_id);",
+    "CREATE INDEX IF NOT EXISTS idx_po_deal                 ON purchase_orders(deal_id);",
+    "CREATE INDEX IF NOT EXISTS idx_po_status               ON purchase_orders(status);",
+    "CREATE INDEX IF NOT EXISTS idx_po_created              ON purchase_orders(created_at);",
+    "CREATE INDEX IF NOT EXISTS idx_so_customer             ON sales_orders(customer_id);",
+    "CREATE INDEX IF NOT EXISTS idx_so_deal                 ON sales_orders(deal_id);",
+    "CREATE INDEX IF NOT EXISTS idx_so_status               ON sales_orders(status);",
+    "CREATE INDEX IF NOT EXISTS idx_so_created              ON sales_orders(created_at);",
+    "CREATE INDEX IF NOT EXISTS idx_pay_deal                ON payment_orders(deal_id);",
+    "CREATE INDEX IF NOT EXISTS idx_pay_status              ON payment_orders(status);",
+    "CREATE INDEX IF NOT EXISTS idx_pay_created             ON payment_orders(created_at);",
+    "CREATE INDEX IF NOT EXISTS idx_terms_category          ON terms_master(category);",
+    "CREATE INDEX IF NOT EXISTS idx_bank_company            ON bank_master(company_id);",
 ]
 
 
@@ -809,6 +982,8 @@ def _run_schema_migrations():
             (1, "Add CHECK constraints + fix NULL data", _migration_001_fix_data),
             (2, "Add UNIQUE indexes on business keys", _migration_002_unique_indexes),
             (3, "Add crm_tasks table", _migration_003_crm_tasks),
+            (4, "Seed company_master, bank_master, terms_master", _migration_004_seed_company_data),
+            (5, "Add transporters + payment_orders columns + seed new clauses", _migration_005_transporters_and_payment_cols),
         ]
 
         for version, desc, migration_fn in migrations:
@@ -871,6 +1046,148 @@ def _migration_003_crm_tasks(cur):
     cur.execute("CREATE INDEX IF NOT EXISTS idx_crm_tasks_due    ON crm_tasks(due_date)")
 
 
+def _migration_004_seed_company_data(cur):
+    """Seed company_master, bank_master, terms_master from company_config.py."""
+    try:
+        from company_config import COMPANY_PROFILE as CP
+    except ImportError:
+        return
+
+    now = _now_ist()
+
+    # Seed company_master (only if empty)
+    row = cur.execute("SELECT COUNT(*) as c FROM company_master").fetchone()
+    if row["c"] == 0:
+        cur.execute(
+            "INSERT INTO company_master "
+            "(legal_name, short_name, gstin, pan, cin, address_line1, address_line2, "
+            " city, pincode, state, state_code, full_address, hsn_code, created_at, updated_at) "
+            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            (
+                CP.get("legal_name", ""), CP.get("short_name", ""),
+                CP.get("gst_no", ""), CP.get("pan_no", ""), CP.get("cin_no", ""),
+                CP.get("address_line1", ""), CP.get("address_line2", ""),
+                CP.get("city", ""), CP.get("pincode", ""),
+                CP.get("state", ""), CP.get("state_code", ""),
+                CP.get("full_address", ""), CP.get("hsn_code", ""),
+                now, now,
+            ),
+        )
+
+    # Seed bank_master (only if empty)
+    row = cur.execute("SELECT COUNT(*) as c FROM bank_master").fetchone()
+    if row["c"] == 0:
+        bd = CP.get("bank_details", {})
+        cur.execute(
+            "INSERT INTO bank_master "
+            "(company_id, bank_name, ac_no, ifsc, branch, is_primary, created_at, updated_at) "
+            "VALUES (1,?,?,?,?,1,?,?)",
+            (bd.get("bank_name", ""), bd.get("ac_no", ""),
+             bd.get("ifsc", ""), bd.get("branch", ""), now, now),
+        )
+
+    # Seed terms_master (only if empty)
+    row = cur.execute("SELECT COUNT(*) as c FROM terms_master").fetchone()
+    if row["c"] == 0:
+        terms = CP.get("terms", [])
+        for i, term_text in enumerate(terms):
+            key = f"term_{i+1}"
+            cat = "delivery" if i == 0 else "payment" if i == 2 else "legal"
+            cur.execute(
+                "INSERT INTO terms_master (term_key, term_text, category, sort_order, is_active, created_at, updated_at) "
+                "VALUES (?,?,?,?,1,?,?)",
+                (key, term_text, cat, i + 1, now, now),
+            )
+        # Add special clauses
+        for key, attr in [
+            ("declaration", "declaration"),
+            ("interest_clause", "interest_clause"),
+            ("complaint_clause", "complaint_clause"),
+            ("driver_clause", "driver_clause"),
+        ]:
+            text = CP.get(attr, "")
+            if text:
+                cur.execute(
+                    "INSERT INTO terms_master (term_key, term_text, category, sort_order, is_active, created_at, updated_at) "
+                    "VALUES (?,?,?,?,1,?,?)",
+                    (key, text, "clause", 100, now, now),
+                )
+
+
+def _migration_005_transporters_and_payment_cols(cur):
+    """Add transporters table columns, payment_orders enhancements, seed new clauses."""
+    # Add new columns to payment_orders (idempotent via try/except)
+    new_cols = [
+        ("payment_mode", "TEXT DEFAULT 'NEFT'"),
+        ("purchase_due_date", "TEXT"),
+        ("sales_expected_date", "TEXT"),
+        ("purchase_status", "TEXT DEFAULT 'Pending'"),
+        ("sales_status", "TEXT DEFAULT 'Pending'"),
+        ("transport_amount", "REAL DEFAULT 0"),
+        ("transport_status", "TEXT DEFAULT 'N/A'"),
+        ("prepared_by", "TEXT"),
+        ("approved_by", "TEXT"),
+        ("po_number", "TEXT"),
+        ("so_number", "TEXT"),
+        ("transporter_name", "TEXT"),
+    ]
+    for col_name, col_type in new_cols:
+        try:
+            cur.execute(f"ALTER TABLE payment_orders ADD COLUMN {col_name} {col_type}")
+        except Exception:
+            pass  # Column already exists
+
+    # Add new columns to purchase_orders
+    po_new_cols = [
+        ("po_date", "TEXT"),
+        ("reference_no", "TEXT"),
+        ("lr_no", "TEXT"),
+        ("transporter_id", "INTEGER"),
+    ]
+    for col_name, col_type in po_new_cols:
+        try:
+            cur.execute(f"ALTER TABLE purchase_orders ADD COLUMN {col_name} {col_type}")
+        except Exception:
+            pass
+
+    # Add new columns to sales_orders
+    so_new_cols = [
+        ("so_date", "TEXT"),
+        ("reference_no", "TEXT"),
+        ("lr_no", "TEXT"),
+        ("transporter_id", "INTEGER"),
+    ]
+    for col_name, col_type in so_new_cols:
+        try:
+            cur.execute(f"ALTER TABLE sales_orders ADD COLUMN {col_name} {col_type}")
+        except Exception:
+            pass
+
+    # Seed new clauses (invoice_correction_clause, lr_clause)
+    try:
+        from company_config import COMPANY_PROFILE as CP
+    except ImportError:
+        CP = {}
+
+    now = _now_ist()
+    for key, attr in [
+        ("invoice_correction_clause", "invoice_correction_clause"),
+        ("lr_clause", "lr_clause"),
+    ]:
+        text = CP.get(attr, "")
+        if text:
+            # Check if already exists
+            existing = cur.execute(
+                "SELECT id FROM terms_master WHERE term_key = ?", (key,)
+            ).fetchone()
+            if not existing:
+                cur.execute(
+                    "INSERT INTO terms_master (term_key, term_text, category, sort_order, is_active, created_at, updated_at) "
+                    "VALUES (?,?,?,?,1,?,?)",
+                    (key, text, "clause", 101, now, now),
+                )
+
+
 # ═══════════════════════════════════════════════════════════════════════════
 # GENERIC HELPERS (private)
 # ═══════════════════════════════════════════════════════════════════════════
@@ -883,6 +1200,9 @@ _VALID_TABLES = {
     "users", "audit_log", "recipient_lists", "source_registry",
     "chat_messages", "share_links", "share_schedules", "comm_tracking",
     "crm_tasks", "_schema_version",
+    "company_master", "bank_master", "terms_master",
+    "purchase_orders", "sales_orders", "payment_orders", "_doc_counters",
+    "transporters",
 }
 
 import re
@@ -2235,6 +2555,644 @@ def cleanup_old_records() -> dict:
     finally:
         conn.close()
     return results
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# DOCUMENT MANAGEMENT — Doc numbering + CRUD
+# ═══════════════════════════════════════════════════════════════════════════
+
+def _get_current_fy() -> str:
+    """
+    Return Indian Financial Year string. FY runs Apr 1 – Mar 31.
+    E.g., March 2026 → "2526", April 2026 → "2627".
+    """
+    now = datetime.now(IST)
+    year = now.year
+    month = now.month
+    if month >= 4:
+        # Apr-Dec: FY starts this year
+        start_year = year % 100
+        end_year = (year + 1) % 100
+    else:
+        # Jan-Mar: FY started previous year
+        start_year = (year - 1) % 100
+        end_year = year % 100
+    return f"{start_year:02d}{end_year:02d}"
+
+
+def get_next_doc_number(doc_type: str) -> str:
+    """
+    Atomic FY-based auto-numbering: FY2526/PO/0001, FY2526/SO/0001, FY2526/PAY/0001.
+    Counter resets each financial year (April 1).
+    Thread-safe via BEGIN IMMEDIATE transaction.
+    """
+    fy = _get_current_fy()
+    conn = _get_conn()
+    try:
+        conn.execute("BEGIN IMMEDIATE")
+        row = conn.execute(
+            "SELECT last_date, last_seq FROM _doc_counters WHERE doc_type = ?",
+            (doc_type,),
+        ).fetchone()
+        if row and row["last_date"] == fy:
+            seq = row["last_seq"] + 1
+            conn.execute(
+                "UPDATE _doc_counters SET last_seq = ? WHERE doc_type = ?",
+                (seq, doc_type),
+            )
+        else:
+            seq = 1
+            conn.execute(
+                "INSERT OR REPLACE INTO _doc_counters (doc_type, last_date, last_seq) "
+                "VALUES (?, ?, ?)",
+                (doc_type, fy, seq),
+            )
+        conn.commit()
+        return f"FY{fy}/{doc_type}/{seq:04d}"
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        conn.close()
+
+
+# ── Company Master ────────────────────────────────────────────────────────
+
+def get_company_master() -> dict | None:
+    """Return the company master row (single row expected)."""
+    conn = _get_conn()
+    try:
+        row = conn.execute("SELECT * FROM company_master LIMIT 1").fetchone()
+        return _row_to_dict(row) if row else None
+    finally:
+        conn.close()
+
+
+def upsert_company_master(data: dict) -> int:
+    """Insert or update company master (single row, id=1)."""
+    data["updated_at"] = _now_ist()
+    conn = _get_conn()
+    try:
+        existing = conn.execute("SELECT id FROM company_master LIMIT 1").fetchone()
+        if existing:
+            row_id = existing["id"]
+            col_names = _validate_columns(data.keys())
+            set_clause = ", ".join([f"{k} = ?" for k in col_names])
+            conn.execute(
+                f"UPDATE company_master SET {set_clause} WHERE id = ?",
+                list(data.values()) + [row_id],
+            )
+        else:
+            data["created_at"] = _now_ist()
+            col_names = _validate_columns(data.keys())
+            cols = ", ".join(col_names)
+            placeholders = ", ".join(["?"] * len(data))
+            conn.execute(
+                f"INSERT INTO company_master ({cols}) VALUES ({placeholders})",
+                list(data.values()),
+            )
+            row_id = 1
+        conn.commit()
+        return row_id
+    finally:
+        conn.close()
+
+
+# ── Bank Master ───────────────────────────────────────────────────────────
+
+def get_bank_accounts(company_id: int = 1) -> list:
+    """Return all bank accounts for a company."""
+    conn = _get_conn()
+    try:
+        rows = conn.execute(
+            "SELECT * FROM bank_master WHERE company_id = ? ORDER BY is_primary DESC",
+            (company_id,),
+        ).fetchall()
+        return _rows_to_list(rows)
+    finally:
+        conn.close()
+
+
+def get_primary_bank(company_id: int = 1) -> dict | None:
+    """Return the primary bank account."""
+    conn = _get_conn()
+    try:
+        row = conn.execute(
+            "SELECT * FROM bank_master WHERE company_id = ? AND is_primary = 1 LIMIT 1",
+            (company_id,),
+        ).fetchone()
+        return _row_to_dict(row) if row else None
+    finally:
+        conn.close()
+
+
+def upsert_bank_account(data: dict) -> int:
+    """Insert or update a bank account."""
+    data["updated_at"] = _now_ist()
+    conn = _get_conn()
+    try:
+        bank_id = data.pop("id", None)
+        if bank_id:
+            col_names = _validate_columns(data.keys())
+            set_clause = ", ".join([f"{k} = ?" for k in col_names])
+            conn.execute(
+                f"UPDATE bank_master SET {set_clause} WHERE id = ?",
+                list(data.values()) + [bank_id],
+            )
+        else:
+            data["created_at"] = _now_ist()
+            col_names = _validate_columns(data.keys())
+            cols = ", ".join(col_names)
+            placeholders = ", ".join(["?"] * len(data))
+            cur = conn.cursor()
+            cur.execute(
+                f"INSERT INTO bank_master ({cols}) VALUES ({placeholders})",
+                list(data.values()),
+            )
+            bank_id = cur.lastrowid
+        conn.commit()
+        return bank_id
+    finally:
+        conn.close()
+
+
+# ── Terms Master ──────────────────────────────────────────────────────────
+
+def get_terms(category: str | None = None) -> list:
+    """Return terms, optionally filtered by category. Sorted by sort_order."""
+    conn = _get_conn()
+    try:
+        if category:
+            rows = conn.execute(
+                "SELECT * FROM terms_master WHERE category = ? AND is_active = 1 "
+                "ORDER BY sort_order",
+                (category,),
+            ).fetchall()
+        else:
+            rows = conn.execute(
+                "SELECT * FROM terms_master WHERE is_active = 1 ORDER BY sort_order"
+            ).fetchall()
+        return _rows_to_list(rows)
+    finally:
+        conn.close()
+
+
+def get_term_by_key(term_key: str) -> dict | None:
+    """Return a single term by its unique key."""
+    conn = _get_conn()
+    try:
+        row = conn.execute(
+            "SELECT * FROM terms_master WHERE term_key = ?", (term_key,)
+        ).fetchone()
+        return _row_to_dict(row) if row else None
+    finally:
+        conn.close()
+
+
+def upsert_term(data: dict) -> int:
+    """Insert or update a term by term_key."""
+    data["updated_at"] = _now_ist()
+    conn = _get_conn()
+    try:
+        term_key = data.get("term_key", "")
+        existing = conn.execute(
+            "SELECT id FROM terms_master WHERE term_key = ?", (term_key,)
+        ).fetchone()
+        if existing:
+            row_id = existing["id"]
+            col_names = _validate_columns(data.keys())
+            set_clause = ", ".join([f"{k} = ?" for k in col_names])
+            conn.execute(
+                f"UPDATE terms_master SET {set_clause} WHERE id = ?",
+                list(data.values()) + [row_id],
+            )
+        else:
+            data["created_at"] = _now_ist()
+            col_names = _validate_columns(data.keys())
+            cols = ", ".join(col_names)
+            placeholders = ", ".join(["?"] * len(data))
+            cur = conn.cursor()
+            cur.execute(
+                f"INSERT INTO terms_master ({cols}) VALUES ({placeholders})",
+                list(data.values()),
+            )
+            row_id = cur.lastrowid
+        conn.commit()
+        return row_id
+    finally:
+        conn.close()
+
+
+# ── Purchase Orders ───────────────────────────────────────────────────────
+
+def insert_purchase_order(data: dict) -> int:
+    """Create a new purchase order. Auto-generates po_number if not provided."""
+    if "po_number" not in data or not data["po_number"]:
+        data["po_number"] = get_next_doc_number("PO")
+    data["created_at"] = _now_ist()
+    data["updated_at"] = _now_ist()
+    # Serialize nested dicts to JSON
+    for key in ("items_json", "logistics_json", "totals_json"):
+        if key in data and isinstance(data[key], (dict, list)):
+            data[key] = json.dumps(data[key])
+    conn = _get_conn()
+    try:
+        col_names = _validate_columns(data.keys())
+        cols = ", ".join(col_names)
+        placeholders = ", ".join(["?"] * len(data))
+        cur = conn.cursor()
+        cur.execute(
+            f"INSERT INTO purchase_orders ({cols}) VALUES ({placeholders})",
+            list(data.values()),
+        )
+        conn.commit()
+        return cur.lastrowid
+    finally:
+        conn.close()
+
+
+def get_purchase_order(po_id: int) -> dict | None:
+    """Get a single PO by id."""
+    conn = _get_conn()
+    try:
+        row = conn.execute(
+            "SELECT * FROM purchase_orders WHERE id = ?", (po_id,)
+        ).fetchone()
+        if not row:
+            return None
+        d = _row_to_dict(row)
+        for key in ("items_json", "logistics_json", "totals_json"):
+            if d.get(key):
+                try:
+                    d[key] = json.loads(d[key])
+                except (json.JSONDecodeError, TypeError):
+                    pass
+        return d
+    finally:
+        conn.close()
+
+
+def get_purchase_order_by_number(po_number: str) -> dict | None:
+    """Get a single PO by po_number."""
+    conn = _get_conn()
+    try:
+        row = conn.execute(
+            "SELECT * FROM purchase_orders WHERE po_number = ?", (po_number,)
+        ).fetchone()
+        if not row:
+            return None
+        d = _row_to_dict(row)
+        for key in ("items_json", "logistics_json", "totals_json"):
+            if d.get(key):
+                try:
+                    d[key] = json.loads(d[key])
+                except (json.JSONDecodeError, TypeError):
+                    pass
+        return d
+    finally:
+        conn.close()
+
+
+def get_all_purchase_orders(status: str | None = None, supplier_id: int | None = None,
+                            limit: int = 100) -> list:
+    """Return purchase orders with optional filters."""
+    conn = _get_conn()
+    try:
+        sql = "SELECT * FROM purchase_orders WHERE 1=1"
+        params = []
+        if status:
+            sql += " AND status = ?"
+            params.append(status)
+        if supplier_id:
+            sql += " AND supplier_id = ?"
+            params.append(supplier_id)
+        sql += " ORDER BY created_at DESC LIMIT ?"
+        params.append(limit)
+        rows = conn.execute(sql, params).fetchall()
+        results = []
+        for row in rows:
+            d = _row_to_dict(row)
+            for key in ("items_json", "logistics_json", "totals_json"):
+                if d.get(key):
+                    try:
+                        d[key] = json.loads(d[key])
+                    except (json.JSONDecodeError, TypeError):
+                        pass
+            results.append(d)
+        return results
+    finally:
+        conn.close()
+
+
+def update_purchase_order(po_id: int, data: dict):
+    """Update a purchase order."""
+    data["updated_at"] = _now_ist()
+    for key in ("items_json", "logistics_json", "totals_json"):
+        if key in data and isinstance(data[key], (dict, list)):
+            data[key] = json.dumps(data[key])
+    conn = _get_conn()
+    try:
+        col_names = _validate_columns(data.keys())
+        set_clause = ", ".join([f"{k} = ?" for k in col_names])
+        conn.execute(
+            f"UPDATE purchase_orders SET {set_clause} WHERE id = ?",
+            list(data.values()) + [po_id],
+        )
+        conn.commit()
+    finally:
+        conn.close()
+
+
+# ── Sales Orders ──────────────────────────────────────────────────────────
+
+def insert_sales_order(data: dict) -> int:
+    """Create a new sales order. Auto-generates so_number if not provided."""
+    if "so_number" not in data or not data["so_number"]:
+        data["so_number"] = get_next_doc_number("SO")
+    data["created_at"] = _now_ist()
+    data["updated_at"] = _now_ist()
+    for key in ("items_json", "logistics_json", "totals_json"):
+        if key in data and isinstance(data[key], (dict, list)):
+            data[key] = json.dumps(data[key])
+    conn = _get_conn()
+    try:
+        col_names = _validate_columns(data.keys())
+        cols = ", ".join(col_names)
+        placeholders = ", ".join(["?"] * len(data))
+        cur = conn.cursor()
+        cur.execute(
+            f"INSERT INTO sales_orders ({cols}) VALUES ({placeholders})",
+            list(data.values()),
+        )
+        conn.commit()
+        return cur.lastrowid
+    finally:
+        conn.close()
+
+
+def get_sales_order(so_id: int) -> dict | None:
+    """Get a single SO by id."""
+    conn = _get_conn()
+    try:
+        row = conn.execute(
+            "SELECT * FROM sales_orders WHERE id = ?", (so_id,)
+        ).fetchone()
+        if not row:
+            return None
+        d = _row_to_dict(row)
+        for key in ("items_json", "logistics_json", "totals_json"):
+            if d.get(key):
+                try:
+                    d[key] = json.loads(d[key])
+                except (json.JSONDecodeError, TypeError):
+                    pass
+        return d
+    finally:
+        conn.close()
+
+
+def get_sales_order_by_number(so_number: str) -> dict | None:
+    """Get a single SO by so_number."""
+    conn = _get_conn()
+    try:
+        row = conn.execute(
+            "SELECT * FROM sales_orders WHERE so_number = ?", (so_number,)
+        ).fetchone()
+        if not row:
+            return None
+        d = _row_to_dict(row)
+        for key in ("items_json", "logistics_json", "totals_json"):
+            if d.get(key):
+                try:
+                    d[key] = json.loads(d[key])
+                except (json.JSONDecodeError, TypeError):
+                    pass
+        return d
+    finally:
+        conn.close()
+
+
+def get_all_sales_orders(status: str | None = None, customer_id: int | None = None,
+                         limit: int = 100) -> list:
+    """Return sales orders with optional filters."""
+    conn = _get_conn()
+    try:
+        sql = "SELECT * FROM sales_orders WHERE 1=1"
+        params = []
+        if status:
+            sql += " AND status = ?"
+            params.append(status)
+        if customer_id:
+            sql += " AND customer_id = ?"
+            params.append(customer_id)
+        sql += " ORDER BY created_at DESC LIMIT ?"
+        params.append(limit)
+        rows = conn.execute(sql, params).fetchall()
+        results = []
+        for row in rows:
+            d = _row_to_dict(row)
+            for key in ("items_json", "logistics_json", "totals_json"):
+                if d.get(key):
+                    try:
+                        d[key] = json.loads(d[key])
+                    except (json.JSONDecodeError, TypeError):
+                        pass
+            results.append(d)
+        return results
+    finally:
+        conn.close()
+
+
+def update_sales_order(so_id: int, data: dict):
+    """Update a sales order."""
+    data["updated_at"] = _now_ist()
+    for key in ("items_json", "logistics_json", "totals_json"):
+        if key in data and isinstance(data[key], (dict, list)):
+            data[key] = json.dumps(data[key])
+    conn = _get_conn()
+    try:
+        col_names = _validate_columns(data.keys())
+        set_clause = ", ".join([f"{k} = ?" for k in col_names])
+        conn.execute(
+            f"UPDATE sales_orders SET {set_clause} WHERE id = ?",
+            list(data.values()) + [so_id],
+        )
+        conn.commit()
+    finally:
+        conn.close()
+
+
+# ── Payment Orders ────────────────────────────────────────────────────────
+
+def insert_payment_order(data: dict) -> int:
+    """Create a new payment order. Auto-generates pay_number if not provided."""
+    if "pay_number" not in data or not data["pay_number"]:
+        data["pay_number"] = get_next_doc_number("PAY")
+    data["created_at"] = _now_ist()
+    data["updated_at"] = _now_ist()
+    if "profit_json" in data and isinstance(data["profit_json"], (dict, list)):
+        data["profit_json"] = json.dumps(data["profit_json"])
+    conn = _get_conn()
+    try:
+        col_names = _validate_columns(data.keys())
+        cols = ", ".join(col_names)
+        placeholders = ", ".join(["?"] * len(data))
+        cur = conn.cursor()
+        cur.execute(
+            f"INSERT INTO payment_orders ({cols}) VALUES ({placeholders})",
+            list(data.values()),
+        )
+        conn.commit()
+        return cur.lastrowid
+    finally:
+        conn.close()
+
+
+def get_payment_order(pay_id: int) -> dict | None:
+    """Get a single payment order by id."""
+    conn = _get_conn()
+    try:
+        row = conn.execute(
+            "SELECT * FROM payment_orders WHERE id = ?", (pay_id,)
+        ).fetchone()
+        if not row:
+            return None
+        d = _row_to_dict(row)
+        if d.get("profit_json"):
+            try:
+                d["profit_json"] = json.loads(d["profit_json"])
+            except (json.JSONDecodeError, TypeError):
+                pass
+        return d
+    finally:
+        conn.close()
+
+
+def get_all_payment_orders(status: str | None = None, limit: int = 100) -> list:
+    """Return payment orders with optional filters."""
+    conn = _get_conn()
+    try:
+        sql = "SELECT * FROM payment_orders WHERE 1=1"
+        params = []
+        if status:
+            sql += " AND status = ?"
+            params.append(status)
+        sql += " ORDER BY created_at DESC LIMIT ?"
+        params.append(limit)
+        rows = conn.execute(sql, params).fetchall()
+        results = []
+        for row in rows:
+            d = _row_to_dict(row)
+            if d.get("profit_json"):
+                try:
+                    d["profit_json"] = json.loads(d["profit_json"])
+                except (json.JSONDecodeError, TypeError):
+                    pass
+            results.append(d)
+        return results
+    finally:
+        conn.close()
+
+
+def update_payment_order(pay_id: int, data: dict):
+    """Update a payment order."""
+    data["updated_at"] = _now_ist()
+    if "profit_json" in data and isinstance(data["profit_json"], (dict, list)):
+        data["profit_json"] = json.dumps(data["profit_json"])
+    conn = _get_conn()
+    try:
+        col_names = _validate_columns(data.keys())
+        set_clause = ", ".join([f"{k} = ?" for k in col_names])
+        conn.execute(
+            f"UPDATE payment_orders SET {set_clause} WHERE id = ?",
+            list(data.values()) + [pay_id],
+        )
+        conn.commit()
+    finally:
+        conn.close()
+
+
+# ── Transporters ─────────────────────────────────────────────────────────
+
+def insert_transporter(data: dict) -> int:
+    """Create a new transporter. Returns new ID."""
+    data["created_at"] = _now_ist()
+    data["updated_at"] = _now_ist()
+    if "vehicle_types" in data and isinstance(data["vehicle_types"], (list, tuple)):
+        data["vehicle_types"] = json.dumps(data["vehicle_types"])
+    conn = _get_conn()
+    try:
+        col_names = _validate_columns(data.keys())
+        cols = ", ".join(col_names)
+        placeholders = ", ".join(["?"] * len(data))
+        cur = conn.cursor()
+        cur.execute(
+            f"INSERT INTO transporters ({cols}) VALUES ({placeholders})",
+            list(data.values()),
+        )
+        conn.commit()
+        return cur.lastrowid
+    finally:
+        conn.close()
+
+
+def get_all_transporters(active_only: bool = True) -> list:
+    """Return all transporters."""
+    conn = _get_conn()
+    try:
+        sql = "SELECT * FROM transporters"
+        if active_only:
+            sql += " WHERE is_active = 1"
+        sql += " ORDER BY name"
+        rows = conn.execute(sql).fetchall()
+        results = _rows_to_list(rows)
+        for r in results:
+            if r.get("vehicle_types"):
+                try:
+                    r["vehicle_types"] = json.loads(r["vehicle_types"])
+                except (json.JSONDecodeError, TypeError):
+                    pass
+        return results
+    finally:
+        conn.close()
+
+
+def get_transporter(transporter_id: int) -> dict | None:
+    """Get a single transporter by ID."""
+    conn = _get_conn()
+    try:
+        row = conn.execute(
+            "SELECT * FROM transporters WHERE id = ?", (transporter_id,)
+        ).fetchone()
+        if not row:
+            return None
+        d = _row_to_dict(row)
+        if d.get("vehicle_types"):
+            try:
+                d["vehicle_types"] = json.loads(d["vehicle_types"])
+            except (json.JSONDecodeError, TypeError):
+                pass
+        return d
+    finally:
+        conn.close()
+
+
+def update_transporter(transporter_id: int, data: dict):
+    """Update a transporter."""
+    data["updated_at"] = _now_ist()
+    if "vehicle_types" in data and isinstance(data["vehicle_types"], (list, tuple)):
+        data["vehicle_types"] = json.dumps(data["vehicle_types"])
+    conn = _get_conn()
+    try:
+        col_names = _validate_columns(data.keys())
+        set_clause = ", ".join([f"{k} = ?" for k in col_names])
+        conn.execute(
+            f"UPDATE transporters SET {set_clause} WHERE id = ?",
+            list(data.values()) + [transporter_id],
+        )
+        conn.commit()
+    finally:
+        conn.close()
 
 
 # ═══════════════════════════════════════════════════════════════════════════

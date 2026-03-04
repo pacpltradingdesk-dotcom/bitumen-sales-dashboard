@@ -44,7 +44,7 @@ from reportlab.lib.utils import ImageReader
 # ── Paths ─────────────────────────────────────────────────────────────────────
 BASE_DIR      = Path(__file__).parent
 EXPORT_DIR    = BASE_DIR / "pdf_exports"
-LOGO_PATH     = BASE_DIR / "assets" / "pps_logo.png"
+LOGO_PATH     = BASE_DIR / "pps_logo.png"
 EXPORT_DIR.mkdir(exist_ok=True)
 
 IST = pytz.timezone("Asia/Kolkata")
@@ -227,7 +227,8 @@ def _build_header_footer(canvas, doc):
     # Page number
     canvas.setFont("Helvetica", 8)
     canvas.setFillColor(GREY_DARK)
-    canvas.drawString(10*mm, 10*mm, f"Page {canvas.getPageNumber()}")
+    total = getattr(doc, "_total_pages", "?")
+    canvas.drawString(10*mm, 10*mm, f"Page {canvas.getPageNumber()} of {total}")
     ts_footer = getattr(doc, "_generated_at", _ts_ist())
     canvas.drawCentredString(
         W / 2, 10*mm,
@@ -566,6 +567,38 @@ class PDFExportEngine:
 
         story_full.extend(self._story)
 
+        # Two-pass build: first pass counts pages, second pass renders with total
+        counting_buf = io.BytesIO()
+        counting_doc = BaseDocTemplate(
+            counting_buf, pagesize=self.pagesize,
+            leftMargin=15*mm, rightMargin=15*mm,
+            topMargin=35*mm, bottomMargin=22*mm,
+        )
+        counting_doc._page_title = self.page_title
+        counting_doc._generated_at = self._generated_at
+        counting_doc._total_pages = "?"
+        count_template = PageTemplate(
+            id="count_template",
+            frames=[Frame(15*mm, 20*mm, self.pagesize[0]-30*mm, self.pagesize[1]-55*mm,
+                          leftPadding=0, rightPadding=0, topPadding=4, bottomPadding=4)],
+            onPage=_build_header_footer,
+        )
+        counting_doc.addPageTemplates([count_template])
+        page_count = [0]
+        _orig_afterPage = counting_doc.afterPage
+        def _track_pages():
+            page_count[0] = counting_doc.page
+            if _orig_afterPage:
+                _orig_afterPage()
+        counting_doc.afterPage = _track_pages
+        try:
+            counting_doc.build(list(story_full))
+            page_count[0] = max(page_count[0], counting_doc.page)
+        except Exception:
+            page_count[0] = 1
+
+        # Second pass with total page count
+        doc._total_pages = page_count[0]
         doc.build(story_full)
         pdf_bytes = self._buf.getvalue()
 

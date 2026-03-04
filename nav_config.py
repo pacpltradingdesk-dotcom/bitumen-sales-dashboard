@@ -55,6 +55,15 @@ MODULE_NAV: dict[str, dict] = {
              "also": ["📱 WhatsApp Setup", "🔗 Integrations"]},
         ],
     },
+    "📄 Documents": {
+        "icon": "📄", "label": "Documents",
+        "tabs": [
+            {"label": "Purchase Orders",  "page": "📋 Purchase Orders"},
+            {"label": "Sales Orders",     "page": "📋 Sales Orders"},
+            {"label": "Payment Orders",   "page": "💳 Payment Orders"},
+            {"label": "Party Master",     "page": "👥 Party Master"},
+        ],
+    },
     "🚚 Logistics": {
         "icon": "🚚", "label": "Logistics",
         "tabs": [
@@ -146,6 +155,7 @@ SIDEBAR_ORDER: list[str] = [
     "_divider_1",
     "💰 Procurement",
     "🧾 Sales",
+    "📄 Documents",
     "🚚 Logistics",
     "🧠 Intelligence",
     "_divider_2",
@@ -219,6 +229,7 @@ MODULE_ROLE_MAP: dict[str, str] = {
     "📌 Director Briefing": "director",
     "💰 Procurement":       "operations",
     "🧾 Sales":             "sales",
+    "📄 Documents":         "operations",
     "🚚 Logistics":         "operations",
     "🧠 Intelligence":      "viewer",
     "🛡 Compliance":        "operations",

@@ -44,6 +44,9 @@ _PRINT_CSS = """
   .stButton > button,
   footer { display: none !important; }
 
+  /* A4 page setup */
+  @page { size: A4; margin: 15mm; }
+
   /* Remove padding from main content */
   .main .block-container {
     padding: 0.5rem !important;
@@ -63,8 +66,15 @@ _PRINT_CSS = """
   }
   th { background: #1e3a5f !important; color: #ffffff !important; }
 
-  /* Charts: allow plotly to print */
+  /* Page break control */
+  table, .stDataFrame, .element-container { page-break-inside: avoid !important; }
   .js-plotly-plot { page-break-inside: avoid !important; }
+  tr { page-break-inside: avoid !important; }
+  orphans: 2;
+  widows: 2;
+
+  /* Exact color reproduction */
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 
   /* Section headings */
   h1, h2, h3 { color: #1e3a5f !important; page-break-after: avoid !important; }
