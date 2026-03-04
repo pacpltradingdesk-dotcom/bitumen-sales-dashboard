@@ -1219,234 +1219,192 @@ if optimizer is None:
 
 # --- TABS Interface ---
 # --- TABS Interface ---
-# --- SIDEBAR NAVIGATION (REFACTORED) ---
+# --- SIDEBAR + TOP BAR + SUB-TABS NAVIGATION (Enterprise v4.0) ---
 
-# ── Sidebar CSS — Corporate Vastu v3.1 ──────────────────────────────────────
+from nav_config import MODULE_NAV, SIDEBAR_ORDER, get_default_page
+from top_bar import render_top_bar
+from subtab_bar import render_subtab_bar
+
+# ── Sidebar CSS — Compact Enterprise v4.0 ────────────────────────────────────
 st.markdown("""
 <style>
+/* ═══════════════════════════════════════════════════════════════════════════
+   PPS Anantam — Compact Sidebar v4.0  (10 modules, no sub-items)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 /* ── Sidebar container ────────────────────────────────────────────────────── */
 section[data-testid="stSidebar"] {
-  background: #ffffff !important;
-  border-right: 1px solid #e8dcc8 !important;
-  box-shadow: 1px 0 8px rgba(30,58,95,0.06) !important;
+  background: linear-gradient(180deg, #ffffff 0%, #fafaf8 100%) !important;
+  border-right: 1px solid #e2ddd4 !important;
+  box-shadow: 2px 0 12px rgba(30,58,95,0.05) !important;
+  min-width: 240px !important;
+  width: 260px !important;
 }
 section[data-testid="stSidebar"] > div:first-child {
-  padding-top: 0.75rem !important;
+  padding-top: 0.5rem !important;
+  width: 100% !important;
 }
-/* Hide all horizontal dividers inside sidebar */
+/* Hide dividers */
 section[data-testid="stSidebar"] hr { display: none !important; }
-section[data-testid="stSidebar"] [data-testid="stVerticalBlock"] > hr { display: none !important; }
 
-/* ── Nav radio items ──────────────────────────────────────────────────────── */
-section[data-testid="stSidebar"] div.row-widget.stRadio > div,
-section[data-testid="stSidebar"] [data-testid="stRadio"] > div {
-  gap: 1px !important;
-  padding-top: 0 !important;
-}
-section[data-testid="stSidebar"] div.row-widget.stRadio > div > label,
-section[data-testid="stSidebar"] [data-testid="stRadio"] label {
-  background: transparent !important;
-  border: none !important;
-  border-radius: 7px !important;
-  padding: 6px 10px !important;
-  font-size: 0.83rem !important;
-  font-weight: 400 !important;
-  color: #2d3142 !important;
-  cursor: pointer !important;
-  transition: background 0.15s, color 0.15s !important;
+/* ── Nav buttons — compact, full text ─────────────────────────────────────── */
+section[data-testid="stSidebar"] button[kind="secondary"],
+section[data-testid="stSidebar"] button[kind="primary"] {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  font-size: 0.84rem !important;
+  font-weight: 500 !important;
+  padding: 9px 14px !important;
+  min-height: 44px !important;
+  border-radius: 10px !important;
+  text-align: left !important;
   line-height: 1.35 !important;
+  transition: background 0.15s ease !important;
+  border: none !important;
+  margin-bottom: 1px !important;
 }
-section[data-testid="stSidebar"] div.row-widget.stRadio > div > label:hover,
-section[data-testid="stSidebar"] [data-testid="stRadio"] label:hover {
+section[data-testid="stSidebar"] button[kind="secondary"] {
+  background: transparent !important;
+  color: #334155 !important;
+}
+section[data-testid="stSidebar"] button[kind="secondary"]:hover {
   background: #f2ece0 !important;
   color: #1e3a5f !important;
 }
-/* Active (selected) item — soft green tint */
-section[data-testid="stSidebar"] [data-testid="stRadio"] label[data-checked="true"],
-section[data-testid="stSidebar"] div.row-widget.stRadio > div > label[data-baseweb="radio"] {
-  background: #e8f5ee !important;
-  color: #2d6a4f !important;
-  font-weight: 600 !important;
-}
-/* Shrink radio circle — keep it visible + clickable, just smaller */
-section[data-testid="stSidebar"] [data-testid="stRadio"] [data-baseweb="radio"],
-section[data-testid="stSidebar"] div.row-widget.stRadio [role="radio"] {
-  transform: scale(0.75) !important;
-  opacity: 0.6 !important;
-  flex-shrink: 0 !important;
-}
-
-/* ── Sidebar expander headers — single line, no wrap ─────────────────────── */
-section[data-testid="stSidebar"] [data-testid="stExpander"] summary,
-section[data-testid="stSidebar"] [data-testid="stExpander"] summary span,
-section[data-testid="stSidebar"] [data-testid="stExpander"] summary p,
-section[data-testid="stSidebar"] [data-testid="stExpander"] details > summary > span {
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  font-size: 0.82rem !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.04em !important;
-  color: #1e3a5f !important;
-}
-/* Nav buttons inside expanders — single line */
-section[data-testid="stSidebar"] button[kind="secondary"],
+/* Active module — left accent bar + green tint */
 section[data-testid="stSidebar"] button[kind="primary"] {
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  font-size: 0.8rem !important;
-  padding: 4px 8px !important;
-  min-height: 2rem !important;
-}
-/* Sidebar min-width to prevent squishing */
-section[data-testid="stSidebar"] {
-  min-width: 260px !important;
-  width: 280px !important;
-}
-section[data-testid="stSidebar"] > div:first-child {
-  width: 100% !important;
-}
-
-/* ── Category section headers (─── 🏢 SECTION ───) ──────────────────────── */
-/* These are styled with a distinct muted look by the JS injection below */
-.pps-nav-section-label {
-  font-size: 0.68rem !important;
+  background: linear-gradient(90deg, #e8f5ee 0%, #f0faf4 100%) !important;
+  color: #2d6a4f !important;
   font-weight: 700 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.06em !important;
-  color: #475569 !important;
-  padding: 10px 10px 3px 10px !important;
-  margin-top: 4px !important;
-  display: block;
+  border-left: 3px solid #2d6a4f !important;
+}
+section[data-testid="stSidebar"] button[kind="primary"]:hover {
+  background: linear-gradient(90deg, #d4edda 0%, #e8f5ee 100%) !important;
 }
 
-/* ── API toggle area at sidebar bottom ────────────────────────────────────── */
+/* ── Sidebar dividers ─────────────────────────────────────────────────────── */
+.pps-sidebar-divider {
+  height: 1px; background: #e8dcc8; margin: 8px 12px;
+}
+/* ── Sidebar footer ───────────────────────────────────────────────────────── */
 .pps-sidebar-footer {
-  border-top: 1px solid #e8dcc8;
-  padding: 10px 4px 4px 4px;
+  border-top: 1px solid #e2ddd4;
+  padding: 10px 10px 6px 10px;
   margin-top: 8px;
 }
+.pps-sidebar-footer-info {
+  font-size: 0.65rem; color: #64748b;
+  padding: 3px 2px; line-height: 1.4;
+}
 
-/* Mobile: sidebar full-width */
+/* ── Sub-tab bar buttons (in main content area) ──────────────────────────── */
+div[data-testid="stHorizontalBlock"] button[kind="primary"] {
+  background: #e8f5ee !important;
+  color: #2d6a4f !important;
+  font-weight: 700 !important;
+  border-bottom: 2px solid #2d6a4f !important;
+}
+
+/* ── RESPONSIVE ───────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  section[data-testid="stSidebar"] {
+    min-width: 220px !important;
+    width: 240px !important;
+  }
+  section[data-testid="stSidebar"] button[kind="secondary"],
+  section[data-testid="stSidebar"] button[kind="primary"] {
+    font-size: 0.80rem !important;
+    padding: 7px 10px !important;
+    min-height: 38px !important;
+  }
+}
 @media (max-width: 768px) {
-  section[data-testid="stSidebar"] div.row-widget.stRadio > div > label,
-  section[data-testid="stSidebar"] [data-testid="stRadio"] label {
-    font-size: 0.95rem !important;
-    padding: 8px 12px !important;
+  section[data-testid="stSidebar"] {
+    min-width: 260px !important;
+    width: 80vw !important;
+    max-width: 320px !important;
+    box-shadow: 4px 0 24px rgba(30,58,95,0.15) !important;
+  }
+  section[data-testid="stSidebar"] button[kind="secondary"],
+  section[data-testid="stSidebar"] button[kind="primary"] {
+    font-size: 0.88rem !important;
+    padding: 10px 14px !important;
+    min-height: 44px !important;
   }
 }
 </style>
 """, unsafe_allow_html=True)
 
-# ── Navigation sections (no-scroll sidebar) ──────────────────────────────────
-_NAV_SECTIONS = [
-    ("💰  Pricing",            ["🧮 Pricing Calculator", "🔮 Price Prediction", "📦 Import Cost Model",
-                                 "🚨 SPECIAL PRICE (SOS)", "📝 Manual Price Entry"]),
-    ("💼  Sales & CRM",        ["💼 Sales Workspace", "🎯 CRM & Tasks", "📅 Sales Calendar",
-                                 "💬 Communication Hub", "🤝 Negotiation Assistant",
-                                 "📧 Email Setup", "📱 WhatsApp Setup", "📓 Daily Log"]),
-    ("🚚  Logistics",          ["🏭 Feasibility", "🚢 Supply Chain", "📋 Source Directory",
-                                 "👥 Ecosystem Management"]),
-    ("🧠  Intelligence",       ["🔍 Opportunities", "📰 News Intelligence", "🕵️ Competitor Intelligence",
-                                 "🔭 Contractor OSINT", "👷 Demand Analytics",
-                                 "📈 Demand Correlation", "🗂️ India Procurement Directory",
-                                 "🏗️ Infra Demand Intelligence"]),
-    ("🛡️  Compliance",         ["🛡️ GST & Legal Monitor", "⚡ Risk Scoring", "🏗️ Govt Data Hub"]),
-    ("📊  Reports",            ["💰 Financial Intelligence", "📤 Reports", "🎯 Strategy Panel",
-                                 "⏳ Past Predictions", "🛣️ Road Budget & Demand"]),
-    ("⚙️  System",             ["🎛️ System Control Center", "🤖 AI Setup & Workers",
-                                 "🌐 API Dashboard", "🔗 API HUB", "🏥 System Health",
-                                 "🔄 Sync Status", "🖥️ Ops Dashboard",
-                                 "📦 System Requirements",
-                                 "⚙️ Dev & System Activity",
-                                 "🔔 Alert System", "🚨 Alert Center",
-                                 "🔔 Change Notifications",
-                                 "🐞 Bug Tracker", "📁 PDF Archive", "⚙️ Settings"]),
-    ("🧠  AI & Knowledge",     ["🔄 AI Fallback Engine", "🧠 AI Dashboard Assistant", "🤖 AI Assistant",
-                                 "📚 Knowledge Base", "🏛️ Business Intelligence",
-                                 "🤖 AI Learning", "📥 Contact Importer", "🛠️ Data Manager",
-                                 "⚓ Port Import Tracker"]),
-]
+# ── Session state initialization ─────────────────────────────────────────────
+if 'selected_module' not in st.session_state:
+    st.session_state['selected_module'] = '🏠 Home'
 if 'selected_page' not in st.session_state:
     st.session_state['selected_page'] = '🏠 Home'
 
+# ── COMPACT SIDEBAR — 10 module buttons + dividers ───────────────────────────
 with st.sidebar:
     # ── Brand header ─────────────────────────────────────────────────────────
     st.markdown("""
-<div style="padding:10px 10px 8px 10px;border-bottom:1px solid #e8dcc8;margin-bottom:4px;">
-  <div style="display:flex;align-items:center;gap:7px;margin-bottom:3px;">
-    <span style="font-size:1.3rem;">🏛️</span>
-    <span style="font-size:0.79rem;font-weight:800;color:#1e3a5f;line-height:1.2;">
-      PPS Anantam<br>Agentic AI Eco System
-    </span>
+<div style="padding:14px 14px 10px 14px;border-bottom:1px solid #e2ddd4;margin-bottom:6px;
+            background:linear-gradient(135deg,#1e3a5f 0%,#2c5282 100%);border-radius:0 0 12px 12px;">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
+    <span style="font-size:1.5rem;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.2));">🏛️</span>
+    <div>
+      <div style="font-size:0.88rem;font-weight:800;color:#ffffff;line-height:1.25;">
+        PPS Anantam
+      </div>
+      <div style="font-size:0.68rem;font-weight:500;color:#c9a84c;line-height:1.3;">
+        Agentic AI Eco System
+      </div>
+    </div>
   </div>
-  <div style="font-size:0.62rem;color:#475569;padding-left:2px;line-height:1.3;">
-    GST: 24AAHCV1611L2ZD &nbsp;·&nbsp; Vadodara HQ
+  <div style="font-size:0.58rem;color:rgba(255,255,255,0.55);padding-left:2px;">
+    GST: 24AAHCV1611L2ZD &middot; Vadodara HQ
   </div>
 </div>
 """, unsafe_allow_html=True)
 
-    # ── Expander + button nav (no-scroll, Zoho-style) ────────────────────────
-    _sp = st.session_state['selected_page']
+    # ── Render 10 module buttons (no expanders, no sub-items) ────────────────
+    _active_mod = st.session_state.get('selected_module', '🏠 Home')
 
-    if st.button("🏠 Home", key="_nav_home", use_container_width=True,
-                 type="primary" if _sp == "🏠 Home" else "secondary"):
-        st.session_state['selected_page'] = "🏠 Home"
-        st.rerun()
+    for _item in SIDEBAR_ORDER:
+        if _item.startswith("_divider"):
+            st.markdown('<div class="pps-sidebar-divider"></div>', unsafe_allow_html=True)
+            continue
 
-    if st.button("📋 Director Briefing", key="_nav_director", use_container_width=True,
-                 type="primary" if _sp == "📋 Director Briefing" else "secondary"):
-        st.session_state['selected_page'] = "📋 Director Briefing"
-        st.rerun()
+        _mod_info = MODULE_NAV.get(_item, {})
+        _btn_label = f"{_mod_info.get('icon', '')}  {_mod_info.get('label', _item)}"
+        _btn_type = "primary" if _item == _active_mod else "secondary"
 
-    for _sec_label, _sec_pages in _NAV_SECTIONS:
-        with st.expander(_sec_label, expanded=(_sp in _sec_pages)):
-            for _pg in _sec_pages:
-                if st.button(_pg, key=f"_nav_{_pg}", use_container_width=True,
-                             type="primary" if _sp == _pg else "secondary"):
-                    st.session_state['selected_page'] = _pg
-                    st.rerun()
+        if st.button(_btn_label, key=f"_mod_{_item}", use_container_width=True, type=_btn_type):
+            st.session_state['selected_module'] = _item
+            # Set default page for this module
+            st.session_state['selected_page'] = get_default_page(_item)
+            # Reset sub-tab index
+            st.session_state[f"_subtab_idx_{_item}"] = 0
+            st.rerun()
 
-    # ── Sidebar bottom: API toggle + version ─────────────────────────────────
+    # ── Sidebar footer — version only (API toggle moved to top bar) ──────────
     st.markdown('<div class="pps-sidebar-footer">', unsafe_allow_html=True)
-    _api_val = st.toggle(
-        "🌐 Live Data APIs",
-        value=st.session_state.get("_api_toggle_v3", False),
-        key="_api_toggle_v3",
-        help="ON = real-time data fetched from APIs. OFF = fast offline/simulated mode.",
-    )
-    # ── AI status indicator ──────────────────────────────────────────────────
-    try:
-        from ai_setup_engine import get_module_registry
-        _ai_reg = get_module_registry()
-        if _ai_reg:
-            _ai_passed = sum(1 for m in _ai_reg if m.get("health_test") == "pass")
-            _ai_total = len(_ai_reg)
-            if _ai_passed == _ai_total:
-                _ai_dot, _ai_label = "🟢", "All Live"
-            elif _ai_passed > 0:
-                _ai_dot, _ai_label = "🟡", f"{_ai_passed}/{_ai_total} Live"
-            else:
-                _ai_dot, _ai_label = "🔴", "Setup Needed"
-            st.markdown(
-                f'<div style="font-size:0.68rem;color:#475569;padding:3px 4px 0 4px;">'
-                f'{_ai_dot} AI: {_ai_label}</div>',
-                unsafe_allow_html=True,
-            )
-    except Exception:
-        pass
-
     st.markdown(
-        '<div style="font-size:0.65rem;color:#475569;padding:2px 4px 0 4px;">'
-        'v4.0.0 &nbsp;|&nbsp; 03-03-2026 &nbsp;|&nbsp; Production'
+        '<div class="pps-sidebar-footer-info">'
+        'v4.0.0 &middot; Production'
         '</div>',
         unsafe_allow_html=True,
     )
     st.markdown('</div>', unsafe_allow_html=True)
 
-# ── Resolve selected page from session_state ─────────────────────────────────
+# ── TOP CONTROL BAR (sticky, above content) ──────────────────────────────────
+render_top_bar()
+
+# ── SUB-TAB BAR (max 4 tabs per module) ──────────────────────────────────────
+_current_module = st.session_state.get('selected_module', '🏠 Home')
+_subtab_page = render_subtab_bar(_current_module)
+if _subtab_page and not _subtab_page.startswith("_"):
+    st.session_state['selected_page'] = _subtab_page
+
+# ── Resolve selected page ────────────────────────────────────────────────────
 selected_page = st.session_state.get('selected_page', '🏠 Home')
 
 # Logic: Only execute the selected page to prevent poor performance/crashes
