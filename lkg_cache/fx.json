@@ -2,10 +2,11 @@
   "source_key": "fx",
   "data": {
     "ok": true,
-    "records": 6,
-    "source": "fawazahmed0 fallback"
+    "records": 0,
+    "source": "cache",
+    "cached": true
   },
   "original_confidence": 85,
-  "saved_at": "04-03-2026 20:17:33 IST",
-  "saved_epoch": 1772635653.7212994
+  "saved_at": "05-03-2026 08:44:01 IST",
+  "saved_epoch": 1772680441.9734519
 }

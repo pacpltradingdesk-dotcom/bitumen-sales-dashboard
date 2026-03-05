@@ -1,0 +1,23 @@
+{
+  "models": {
+    "recommendation_engine": {
+      "accuracy": {
+        "model": "recommendation_engine",
+        "samples": 0,
+        "mae": null,
+        "rmse": null,
+        "mape": null,
+        "directional_accuracy": null,
+        "note": "No evaluated predictions found"
+      },
+      "drift": {
+        "model": "recommendation_engine",
+        "drift_detected": false,
+        "note": "Insufficient data"
+      },
+      "status": "healthy"
+    }
+  },
+  "checked_at": "2026-03-05 13:54:26",
+  "total_predictions": 65
+}

@@ -160,8 +160,17 @@ def generate_daily_insights() -> dict:
     context = "\n".join(f"- {dp}" for dp in data_points)
 
     # Generate insights via LLM
+    # Inject business context
+    biz_ctx = ""
+    try:
+        from business_context import get_business_context
+        biz_ctx = get_business_context("general") + "\n\n"
+    except Exception:
+        pass
+
     prompt = (
-        f"You are a bitumen sales intelligence analyst. Today is {_now_date()}.\n\n"
+        f"You are a bitumen sales intelligence analyst for PPS Anantam Capital Pvt Ltd. "
+        f"Today is {_now_date()}.\n\n{biz_ctx}"
         f"Current dashboard data:\n{context}\n\n"
         f"Generate 3-5 actionable insights for bitumen sales decision-making. "
         f"For each insight provide:\n"

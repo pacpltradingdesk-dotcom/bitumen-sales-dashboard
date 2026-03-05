@@ -43,21 +43,21 @@
           "savings_vs_avg": 0
         }
       ],
-      "timing": "Normal schedule -- no urgency, monitor daily",
-      "quantity_mt": 200,
-      "urgency": "HOLD",
+      "timing": "Within 5 days -- favorable window, crude trending UP",
+      "quantity_mt": 500,
+      "urgency": "PRE-BUY",
       "urgency_index": 58,
       "reasons": [
         "Purchase urgency index: 58/100 (HOLD)",
-        "Crude prices forecast to FALL -- consider waiting",
-        "Market composite: SIDEWAYS (45% confidence)",
+        "Crude prices forecast to RISE -- lock in current rates",
+        "Market composite: SIDEWAYS (61% confidence)",
         "Market action: High risk detected -- secure supply from reliable sources",
         "Season: Peak (Month 3)"
       ],
       "confidence": 0.58,
-      "crude_forecast_direction": "DOWN",
+      "crude_forecast_direction": "UP",
       "season": "Peak",
-      "generated_at": "04-03-2026 21:24 IST"
+      "generated_at": "05-03-2026 13:49 IST"
     },
     "sell_advisory": {
       "targets": [
@@ -102,29 +102,29 @@
       "timing": "Peak season -- push aggressively. Customers need supply for active road construction projects.",
       "total_targets": 3,
       "high_priority_count": 0,
-      "generated_at": "04-03-2026 21:24 IST"
+      "generated_at": "05-03-2026 13:49 IST"
     },
     "timing_advisory": {
       "next_revision_date": "16-03-2026",
-      "days_to_revision": 12,
-      "expected_direction": "STABLE",
-      "forward_strategy_direction": "UP",
-      "crude_forecast_direction": "DOWN",
-      "order_window": "Normal timing -- next revision 16-03-2026 (12 days away). No urgency.",
-      "confidence": 0.57,
+      "days_to_revision": 11,
+      "expected_direction": "UP",
+      "forward_strategy_direction": "STABLE",
+      "crude_forecast_direction": "UP",
+      "order_window": "Order within 5 days -- prices trending UP before 16-03-2026 revision",
+      "confidence": 0.78,
       "season": "Peak",
-      "generated_at": "04-03-2026 21:24 IST"
+      "generated_at": "05-03-2026 13:49 IST"
     },
     "risk_summary": {
       "risks": {
         "supply": {
           "level": "high",
-          "description": "Supply risk: HIGH. Geopolitical tensions affecting crude supply. Key headline: OPEC Plus to Boost Oil Production as Iran Strikes Threaten Price Spike - The New",
+          "description": "Supply risk: HIGH. Geopolitical tensions affecting crude supply. Key headline: OPEC+ to raise oil output slightly even as U.S.-Israel strikes on Iran disrupt s",
           "mitigation": "Diversify suppliers and maintain 15-day safety stock"
         },
         "fx": {
           "level": "low",
-          "description": "USD/INR pressure: LOW. FX forecast: DOWN. Latest rate: 86.48",
+          "description": "USD/INR pressure: LOW. FX forecast: UP. Latest rate: 86.45",
           "mitigation": "Monitor USD/INR; no hedging needed currently"
         },
         "credit": {
@@ -145,10 +145,10 @@
       },
       "overall_level": "high",
       "high_risk_count": 2,
-      "generated_at": "04-03-2026 21:24 IST"
+      "generated_at": "05-03-2026 13:49 IST"
     },
-    "generated_at": "04-03-2026 21:24 IST",
-    "natural_language_brief": " Today, my recommendation is to hold your positions as we navigate a forecasted downturn in crude oil markets that may impact bitumen pricing stability. Maintain current inventory levels at approximately 200 MT without immediate purchase or sale actions until the next price revision on March 16th (16/3/2026). Keep an eye out for any shifts in expected prices, but remain cautious given our high-risk environment. Aim to reassess market conditions post-revision before making significant moves."
+    "generated_at": "05-03-2026 13:49 IST",
+    "natural_language_brief": " Today I recommend a balanced buy stance on VG-30 bitumen, purchasing at Rs.65/MT to capitalize before the fiscal rush in February and March peaks demand with limited supply due to monsoon season slowdown from June - August. Aim for 10 MT given your role as a commission agent; this quantity aligns well within our credit policy of advance payment only, ensuring compliance without risking financial exposure."
   },
   "history": [
     {
@@ -191,6 +191,188 @@
       "buy_urgency": "HOLD",
       "sell_targets": 3,
       "expected_direction": "STABLE",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "04-03-2026 21:58 IST",
+      "buy_urgency": "HOLD",
+      "sell_targets": 3,
+      "expected_direction": "STABLE",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "04-03-2026 22:34 IST",
+      "buy_urgency": "HOLD",
+      "sell_targets": 3,
+      "expected_direction": "STABLE",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "05-03-2026 08:19 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "05-03-2026 08:20 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "05-03-2026 08:51 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "05-03-2026 10:02 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "05-03-2026 10:12 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "05-03-2026 10:12 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "05-03-2026 10:41 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "05-03-2026 11:07 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "05-03-2026 11:17 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "05-03-2026 11:18 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "05-03-2026 11:39 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "05-03-2026 11:50 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "05-03-2026 12:12 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "05-03-2026 12:14 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "05-03-2026 12:23 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "05-03-2026 12:24 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "05-03-2026 12:42 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "05-03-2026 12:50 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "05-03-2026 12:53 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "05-03-2026 13:23 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "05-03-2026 13:23 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "05-03-2026 13:35 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "05-03-2026 13:36 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "05-03-2026 13:49 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
       "overall_risk": "high"
     }
   ]

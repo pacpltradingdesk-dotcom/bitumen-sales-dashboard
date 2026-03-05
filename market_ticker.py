@@ -342,8 +342,9 @@ def _build_market_ticker_html(
     market_html: str,
     refinery_html: str,
     import_html: str,
+    speed: int = 600,
 ) -> str:
-    """Build the full 4-row ticker HTML with CSS animations."""
+    """Build the full 4-row ticker HTML with CSS animations. Speed in seconds."""
 
     # Duplicate content for seamless infinite loop
     tender_loop   = tender_html * 2
@@ -419,10 +420,10 @@ def _build_market_ticker_html(
     line-height: 32px;
     padding-left: 100%;
   }}
-  .pps-mkt-text-tender   {{ animation: pps-mkt-tender-scroll   600s linear infinite; color: #1e3a5f; }}
-  .pps-mkt-text-market   {{ animation: pps-mkt-market-scroll   600s linear infinite; color: #1e3a5f; }}
-  .pps-mkt-text-refinery {{ animation: pps-mkt-refinery-scroll 600s linear infinite; color: #2d6a4f; }}
-  .pps-mkt-text-import   {{ animation: pps-mkt-import-scroll   600s linear infinite; color: #9a3412; }}
+  .pps-mkt-text-tender   {{ animation: pps-mkt-tender-scroll   {speed}s linear infinite; color: #1e3a5f; }}
+  .pps-mkt-text-market   {{ animation: pps-mkt-market-scroll   {speed}s linear infinite; color: #1e3a5f; }}
+  .pps-mkt-text-refinery {{ animation: pps-mkt-refinery-scroll {speed}s linear infinite; color: #2d6a4f; }}
+  .pps-mkt-text-import   {{ animation: pps-mkt-import-scroll   {speed}s linear infinite; color: #9a3412; }}
 
   @keyframes pps-mkt-tender-scroll   {{ 0% {{ transform: translateX(0); }} 100% {{ transform: translateX(-50%); }} }}
   @keyframes pps-mkt-market-scroll   {{ 0% {{ transform: translateX(0); }} 100% {{ transform: translateX(-50%); }} }}
@@ -509,11 +510,13 @@ def render_market_ticker():
     refinery = _fetch_refinery_prices()
     imports  = _fetch_import_prices()
 
+    _speed = st.session_state.get("_ticker_speed", 600)
     html = _build_market_ticker_html(
         _tender_items_to_html(tenders),
         _market_items_to_html(markets),
         _price_items_to_html(refinery, "#2d6a4f"),
         _price_items_to_html(imports, "#9a3412"),
+        speed=_speed,
     )
 
     # 4 rows x 32px + 2px border = 130px

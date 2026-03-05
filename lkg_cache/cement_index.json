@@ -1,0 +1,12 @@
+{
+  "source_key": "cement_index",
+  "data": {
+    "ok": true,
+    "connector_id": "cement_index",
+    "records": 30,
+    "trend": "stable"
+  },
+  "original_confidence": 85,
+  "saved_at": "05-03-2026 08:44:04 IST",
+  "saved_epoch": 1772680444.0440216
+}

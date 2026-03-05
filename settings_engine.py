@@ -243,6 +243,125 @@ DEFAULT_SETTINGS = {
         "fx_pressure": 0.10,
         "supply_risk": 0.10,
     },
+
+    # ── CRM Automation — Daily Rotation ──────────────────────────────────────
+    "daily_rotation_enabled": False,
+    "daily_rotation_count": 2400,
+    "daily_rotation_time": "09:00",
+    "rotation_cycle_days": 10,
+    "rotation_min_gap_days": 7,
+    "rotation_channels": ["whatsapp", "email"],
+    "rotation_retry_failed": True,
+    "rotation_retry_max_attempts": 3,
+
+    # ── CRM Automation — Festival Broadcasts ─────────────────────────────────
+    "festival_broadcast_enabled": False,
+    "festival_broadcast_time": "07:00",
+    "festival_broadcast_days_ahead": 1,
+    "festival_broadcast_channels": ["whatsapp", "email"],
+
+    # ── CRM Automation — Price Broadcasts ────────────────────────────────────
+    "price_broadcast_enabled": False,
+    "price_change_threshold_pct": 2.0,
+    "price_broadcast_channels": ["whatsapp", "email"],
+    "price_watch_interval_minutes": 5,
+
+    # ── CRM Automation — AI Auto-Reply ───────────────────────────────────────
+    "ai_auto_reply_enabled": False,
+    "ai_auto_reply_confidence_threshold": 0.7,
+    "ai_auto_reply_escalate_unsure": True,
+    "ai_auto_reply_languages": ["en", "hi"],
+
+    # ── CRM Automation — WhatsApp Festival Mode ──────────────────────────────
+    "whatsapp_festival_mode_limit": 24000,
+    "whatsapp_stagger_batch_size": 1000,
+    "whatsapp_stagger_delay_minutes": 60,
+
+    # ── CRM Automation — SendGrid Bulk Email ─────────────────────────────────
+    "sendgrid_enabled": False,
+    "sendgrid_api_key": "",
+    "sendgrid_from_email": "",
+    "sendgrid_from_name": "PPS Anantam",
+    "sendgrid_daily_limit": 10000,
+
+    # ── CRM Automation — Contact Categories ──────────────────────────────────
+    "contact_categories": [
+        "Importer", "Exporter", "Trader", "Dealer",
+        "Decanter Unit", "Commission Agent",
+        "Truck Transporter", "Tanker Transporter"
+    ],
+
+    # ── SMS Engine (Fast2SMS) ──────────────────────────────────────────────
+    "sms_enabled": False,
+    "fast2sms_api_key": "",
+    "sms_daily_limit": 100,
+
+    # ── DPDP Privacy Compliance ────────────────────────────────────────────
+    "dpdp_compliance_enabled": True,
+    "unsubscribe_footer_text": "To unsubscribe, reply STOP.",
+    "consent_required_for_broadcast": True,
+
+    # ── Bhashini Translation ───────────────────────────────────────────────
+    "bhashini_enabled": False,
+    "bhashini_api_key": "",
+
+    # ── AI Calling (Placeholder) ───────────────────────────────────────────
+    "ai_calling_enabled": False,
+    "ai_calling_provider": "none",
+    "ai_calling_api_key": "",
+
+    # ── Multi-AI Provider API Keys ─────────────────────────────────────────
+    "groq_api_key": "",
+    "gemini_api_key": "",
+    "mistral_api_key": "",
+    "deepseek_api_key": "",
+    "brevo_api_key": "",
+    "elevenlabs_api_key": "",
+
+    # ── AI Provider Enable/Disable ─────────────────────────────────────────
+    "ai_provider_groq_enabled": True,
+    "ai_provider_gemini_enabled": True,
+    "ai_provider_mistral_enabled": True,
+    "ai_provider_deepseek_enabled": True,
+    "ai_deepseek_pii_filter": True,
+
+    # ── Voice (Stubs) ──────────────────────────────────────────────────────
+    "voice_tts_enabled": False,
+    "voice_stt_enabled": False,
+    "voice_tts_provider": "elevenlabs",
+    "voice_stt_provider": "whisper",
+
+    # ── AI Provider Health ─────────────────────────────────────────────────
+    "ai_provider_auto_disable_threshold": 50,
+    "ai_provider_cooldown_minutes": 15,
+    "ai_provider_health_check_interval": 300,
+
+    # ── News Ticker ────────────────────────────────────────────────────
+    "ticker_speed": 600,
+
+    # ── Owner & Company Identity ─────────────────────────────────────────
+    "owner_name": "PRINCE P SHAH",
+    "owner_mobile": "+91 7795242424",
+    "owner_email": "princepshah@gmail.com",
+    "company_trade_name": "PACPL",
+
+    # ── Segment-Aware Communication ──────────────────────────────────────
+    "segment_aware_templates": True,
+    "default_communication_language": "en",
+
+    # ── Price Factor Thresholds ──────────────────────────────────────────
+    "pf_crude_threshold_pct": 3.0,
+    "pf_fx_threshold_pct": 1.0,
+    "pf_conference_threshold_pct": 2.0,
+    "pf_psu_threshold_pct": 1.5,
+
+    # ── Daily Automation Schedule ────────────────────────────────────────
+    "schedule_price_gathering_time": "05:00",
+    "schedule_daily_brief_time": "06:30",
+    "schedule_festival_check_time": "07:00",
+    "schedule_daily_broadcast_time": "09:00",
+    "schedule_price_alerts_time": "18:00",
+    "schedule_daily_report_time": "21:00",
 }
 
 
@@ -288,7 +407,10 @@ def reset_to_defaults() -> None:
 
 _SENSITIVE_KEYS = {
     "api_key_eia", "api_key_fred", "api_key_data_gov_in",
-    "api_key_openweather", "api_key_newsapi",
+    "api_key_openweather", "api_key_newsapi", "sendgrid_api_key",
+    "fast2sms_api_key", "bhashini_api_key", "ai_calling_api_key",
+    "groq_api_key", "gemini_api_key", "mistral_api_key",
+    "deepseek_api_key", "brevo_api_key", "elevenlabs_api_key",
 }
 
 _ENV_VAR_MAP = {
@@ -297,6 +419,16 @@ _ENV_VAR_MAP = {
     "api_key_data_gov_in": "DATA_GOV_IN_KEY",
     "api_key_openweather": "OPENWEATHER_API_KEY",
     "api_key_newsapi": "NEWSAPI_KEY",
+    "sendgrid_api_key": "SENDGRID_API_KEY",
+    "fast2sms_api_key": "FAST2SMS_API_KEY",
+    "bhashini_api_key": "BHASHINI_API_KEY",
+    "ai_calling_api_key": "AI_CALLING_API_KEY",
+    "groq_api_key": "GROQ_API_KEY",
+    "gemini_api_key": "GEMINI_API_KEY",
+    "mistral_api_key": "MISTRAL_API_KEY",
+    "deepseek_api_key": "DEEPSEEK_API_KEY",
+    "brevo_api_key": "BREVO_API_KEY",
+    "elevenlabs_api_key": "ELEVENLABS_API_KEY",
 }
 
 

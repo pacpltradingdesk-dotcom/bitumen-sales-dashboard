@@ -755,21 +755,35 @@ def connect_comtrade() -> dict:
     if cached:
         return {"ok": True, "records": 0, "source": "cache", "cached": True}
 
-    # ── Try public preview endpoint ────────────────────────────────────────────
-    url = "https://comtradeapi.un.org/public/v1/preview/C/A/HS"
-    params = {
-        "typeCode":     "C",
-        "freqCode":     "A",
-        "clCode":       "HS",
-        "period":       str(_now().year - 1),  # last complete year
-        "reporterCode": "356",  # India
-        "cmdCode":      "271320",   # Bitumen of petroleum
-        "flowCode":     "M",    # Imports
-        "partnerCode":  "0",    # World
-    }
+    # ── Try public preview endpoint (v1 → v2 fallback) ─────────────────────────
+    _yr = str(_now().year - 1)
+    urls_to_try = []
     if key:
-        url      = "https://comtradeapi.un.org/data/v1/get/C/A/HS"
-        params["subscription-key"] = key
+        urls_to_try.append((
+            "https://comtradeapi.un.org/data/v1/get/C/A/HS",
+            {"typeCode": "C", "freqCode": "A", "clCode": "HS",
+             "period": _yr, "reporterCode": "356", "cmdCode": "271320",
+             "flowCode": "M", "partnerCode": "0", "subscription-key": key},
+        ))
+    urls_to_try.append((
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS",
+        {"typeCode": "C", "freqCode": "A", "clCode": "HS",
+         "period": _yr, "reporterCode": "356", "cmdCode": "271320",
+         "flowCode": "M", "partnerCode": "0"},
+    ))
+    # v2 bulk endpoint as last resort
+    urls_to_try.append((
+        f"https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=356&cmdCode=271320&flowCode=M&period={_yr}",
+        {},
+    ))
+
+    data = None
+    err = None
+    for url, params in urls_to_try:
+        data, err = _http_get(url, params=params if params else None, timeout=15)
+        if data and isinstance(data, dict) and data.get("data"):
+            break
+        data = None  # reset for next attempt
 
     data, err = _http_get(url, params=params, timeout=15)
     if data and isinstance(data, dict):
@@ -799,7 +813,7 @@ def connect_comtrade() -> dict:
 
     # ── Fallback: use static reference data ────────────────────────────────────
     err_msg = err or "Empty Comtrade response"
-    HubCatalog.set_status(connector_id, "Failing", error_msg=str(err_msg)[:120])
+    HubCatalog.set_status(connector_id, "Static", error_msg=f"API unavailable — using cached reference. {str(err_msg)[:80]}")
 
     # Write a cached reference row so dashboard is not blank
     static_record = {

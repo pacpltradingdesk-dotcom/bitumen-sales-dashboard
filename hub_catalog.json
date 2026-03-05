@@ -30,11 +30,11 @@
     ],
     "auth_type": "API Key",
     "key_value": "",
-    "status": "Failing",
+    "status": "Static",
     "refresh_frequency": "1d",
     "cache_ttl_sec": 86400,
     "last_success_time": null,
-    "last_error_message": "Empty Comtrade response",
+    "last_error_message": "API unavailable — using cached reference. Empty Comtrade response",
     "fallback_api": "static_trade_cache",
     "data_output_tables": [
       "tbl_trade_imports"
@@ -96,7 +96,7 @@
     "status": "Live",
     "refresh_frequency": "1h",
     "cache_ttl_sec": 3600,
-    "last_success_time": null,
+    "last_success_time": "05-03-2026 13:22:46 IST",
     "last_error_message": "",
     "fallback_api": "fawazahmed0_fx",
     "data_output_tables": [
@@ -117,7 +117,7 @@
     "status": "Live",
     "refresh_frequency": "1h",
     "cache_ttl_sec": 3600,
-    "last_success_time": "04-03-2026 20:26:12 IST",
+    "last_success_time": "05-03-2026 13:48:43 IST",
     "last_error_message": "",
     "fallback_api": "",
     "data_output_tables": [
@@ -138,7 +138,7 @@
     "status": "Live",
     "refresh_frequency": "1h",
     "cache_ttl_sec": 3600,
-    "last_success_time": "04-03-2026 20:26:32 IST",
+    "last_success_time": "05-03-2026 13:48:43 IST",
     "last_error_message": "",
     "fallback_api": "",
     "data_output_tables": [
@@ -201,7 +201,7 @@
     "status": "Live",
     "refresh_frequency": "1d",
     "cache_ttl_sec": 86400,
-    "last_success_time": "04-03-2026 20:22:07 IST",
+    "last_success_time": "05-03-2026 08:44:07 IST",
     "last_error_message": "",
     "fallback_api": "fawazahmed0_fx",
     "data_output_tables": [
@@ -222,7 +222,7 @@
     "status": "Live",
     "refresh_frequency": "1d",
     "cache_ttl_sec": 86400,
-    "last_success_time": "04-03-2026 20:23:56 IST",
+    "last_success_time": "05-03-2026 08:44:07 IST",
     "last_error_message": "",
     "fallback_api": "",
     "data_output_tables": [
@@ -264,7 +264,7 @@
     "status": "Disabled",
     "refresh_frequency": "1d",
     "cache_ttl_sec": 86400,
-    "last_success_time": null,
+    "last_success_time": "05-03-2026 08:44:04 IST",
     "last_error_message": "API key not configured — register free at fred.stlouisfed.org",
     "fallback_api": "frankfurter_fx",
     "data_output_tables": [
@@ -285,7 +285,7 @@
     "status": "Live",
     "refresh_frequency": "1d",
     "cache_ttl_sec": 86400,
-    "last_success_time": "04-03-2026 20:26:18 IST",
+    "last_success_time": "05-03-2026 13:48:45 IST",
     "last_error_message": "",
     "fallback_api": "",
     "data_output_tables": [
@@ -306,7 +306,7 @@
     "status": "Live",
     "refresh_frequency": "15m",
     "cache_ttl_sec": 900,
-    "last_success_time": null,
+    "last_success_time": "05-03-2026 08:44:05 IST",
     "last_error_message": "",
     "fallback_api": "",
     "data_output_tables": [

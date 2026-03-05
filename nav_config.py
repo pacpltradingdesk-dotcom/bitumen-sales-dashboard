@@ -53,6 +53,7 @@ MODULE_NAV: dict[str, dict] = {
              "also": ["📓 Daily Log", "📊 Comm Tracking"]},
             {"label": "Channels Setup",      "page": "📧 Email Setup",
              "also": ["📱 WhatsApp Setup", "🔗 Integrations"]},
+            {"label": "CRM Automation",     "page": "🤖 CRM Automation"},
         ],
     },
     "📄 Documents": {

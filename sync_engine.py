@@ -28,6 +28,11 @@ import pytz
 IST = pytz.timezone("Asia/Kolkata")
 BASE = Path(__file__).parent
 
+try:
+    from log_engine import dashboard_log as _dlog
+except ImportError:
+    _dlog = None
+
 SYNC_LOG_FILE = BASE / "sync_logs.json"
 
 _scheduler_thread = None
@@ -111,11 +116,15 @@ class SyncEngine:
             ("opportunities", self._scan_opportunities),
         ])
 
-        # Batch 3 (parallel): CRM + communications
+        # Batch 3 (parallel): CRM + communications + automation
         self._run_batch([
             ("crm_profiles", self._update_crm_profiles),
             ("alerts", self._generate_alerts),
             ("comms", self._process_communication_triggers),
+            ("daily_rotation", self._run_daily_rotation),
+            ("festival_broadcasts", self._check_festival_broadcasts),
+            ("price_watch", self._run_price_watch),
+            ("ai_replies", self._process_ai_replies),
             ("briefing", self._generate_director_briefing),
         ])
 
@@ -440,7 +449,121 @@ class SyncEngine:
         step["completed_at"] = _now()
         self.results["steps"].append(step)
 
-    # ─── Step 10: Director Briefing ───────────────────────────────────────────
+    # ─── Step 10a: Daily Rotation ──────────────────────────────────────────────
+
+    def _run_daily_rotation(self):
+        """Trigger daily contact rotation if scheduled."""
+        step = {"name": "Daily Rotation", "status": "running", "started_at": _now(), "details": []}
+        try:
+            from settings_engine import load_settings
+            settings = load_settings()
+            if not settings.get("daily_rotation_enabled", False):
+                step["details"].append("Rotation: disabled in settings")
+            else:
+                from rotation_engine import ContactRotationEngine
+                engine = ContactRotationEngine()
+                today = datetime.datetime.now().strftime("%Y-%m-%d")
+                batch = engine.select_daily_batch(today)
+                if batch:
+                    result = engine.execute_rotation(batch, today)
+                    step["details"].append(
+                        f"Rotation: sent={result.get('sent',0)} "
+                        f"failed={result.get('failed',0)} of {len(batch)}")
+                    self.results["records_updated"] += result.get("sent", 0)
+                else:
+                    step["details"].append("Rotation: no contacts in batch")
+        except Exception as e:
+            step["details"].append(f"Rotation: skipped — {str(e)[:80]}")
+        step["status"] = "done"
+        step["completed_at"] = _now()
+        self.results["steps"].append(step)
+
+    # ─── Step 10b: Festival Broadcasts ───────────────────────────────────────
+
+    def _check_festival_broadcasts(self):
+        """Check and execute festival broadcasts if any are due."""
+        step = {"name": "Festival Broadcasts", "status": "running", "started_at": _now(), "details": []}
+        try:
+            from settings_engine import load_settings
+            settings = load_settings()
+            if not settings.get("festival_broadcast_enabled", False):
+                step["details"].append("Festival broadcasts: disabled")
+            else:
+                from rotation_engine import FestivalBroadcastEngine
+                engine = FestivalBroadcastEngine()
+                days_ahead = settings.get("festival_broadcast_days_ahead", 1)
+                upcoming = engine.get_upcoming_festivals(days_ahead=days_ahead)
+                if upcoming:
+                    for fest in upcoming:
+                        fname = fest.get("name", fest.get("festival", ""))
+                        fdate = fest.get("parsed_date", fest.get("date", ""))
+                        if fname:
+                            prepared = engine.prepare_festival_messages(fname, fdate)
+                            if prepared.get("messages"):
+                                result = engine.execute_festival_broadcast(prepared)
+                                step["details"].append(
+                                    f"Festival '{fname}': wa={result.get('sent_whatsapp',0)} "
+                                    f"email={result.get('sent_email',0)}")
+                else:
+                    step["details"].append("No festivals due")
+        except Exception as e:
+            step["details"].append(f"Festival: skipped — {str(e)[:80]}")
+        step["status"] = "done"
+        step["completed_at"] = _now()
+        self.results["steps"].append(step)
+
+    # ─── Step 10c: Price Watch ───────────────────────────────────────────────
+
+    def _run_price_watch(self):
+        """Detect price changes and broadcast if significant."""
+        step = {"name": "Price Watch", "status": "running", "started_at": _now(), "details": []}
+        try:
+            from settings_engine import load_settings
+            settings = load_settings()
+            if not settings.get("price_broadcast_enabled", False):
+                step["details"].append("Price broadcast: disabled")
+            else:
+                from price_watch_engine import PriceWatchEngine
+                engine = PriceWatchEngine()
+                result = engine.run_check()
+                changes = result.get("changes_found", 0)
+                if changes > 0:
+                    br = result.get("broadcast_result", {})
+                    step["details"].append(
+                        f"Price changes: {changes} detected, "
+                        f"wa={br.get('sent_whatsapp',0)} email={br.get('sent_email',0)}")
+                else:
+                    step["details"].append("No significant price changes")
+        except Exception as e:
+            step["details"].append(f"Price watch: skipped — {str(e)[:80]}")
+        step["status"] = "done"
+        step["completed_at"] = _now()
+        self.results["steps"].append(step)
+
+    # ─── Step 10d: AI Auto-Replies ───────────────────────────────────────────
+
+    def _process_ai_replies(self):
+        """Process incoming WhatsApp messages with AI auto-reply."""
+        step = {"name": "AI Auto-Replies", "status": "running", "started_at": _now(), "details": []}
+        try:
+            from settings_engine import load_settings
+            settings = load_settings()
+            if not settings.get("ai_auto_reply_enabled", False):
+                step["details"].append("AI auto-reply: disabled")
+            else:
+                from ai_reply_engine import process_pending_replies
+                result = process_pending_replies()
+                step["details"].append(
+                    f"AI replies: processed={result.get('processed',0)} "
+                    f"auto={result.get('auto_replied',0)} "
+                    f"escalated={result.get('escalated',0)}")
+        except Exception as e:
+            step["details"].append(f"AI replies: skipped — {str(e)[:80]}")
+        step["status"] = "done"
+        step["completed_at"] = _now()
+        self.results["steps"].append(step)
+
+    # ─── Step 10e: Director Briefing ─────────────────────────────────────────
 
     def _generate_director_briefing(self):
         """Auto-generate and store daily briefing."""
@@ -723,6 +846,41 @@ def run_market_sync() -> dict:
     """Quick market-only sync."""
     engine = SyncEngine()
     return engine.run_market_only()
+
+
+def _get_schedule_times() -> dict:
+    """Load daily automation schedule from settings, fallback to business_context."""
+    defaults = {
+        "price_gathering": "05:00",
+        "daily_brief": "06:30",
+        "festival_check": "07:00",
+        "daily_broadcast": "09:00",
+        "price_alerts": "18:00",
+        "daily_report": "21:00",
+    }
+    try:
+        from settings_engine import load_settings
+        s = load_settings()
+        return {
+            "price_gathering": s.get("schedule_price_gathering_time", defaults["price_gathering"]),
+            "daily_brief": s.get("schedule_daily_brief_time", defaults["daily_brief"]),
+            "festival_check": s.get("schedule_festival_check_time", defaults["festival_check"]),
+            "daily_broadcast": s.get("schedule_daily_broadcast_time", defaults["daily_broadcast"]),
+            "price_alerts": s.get("schedule_price_alerts_time", defaults["price_alerts"]),
+            "daily_report": s.get("schedule_daily_report_time", defaults["daily_report"]),
+        }
+    except Exception:
+        pass
+    try:
+        from business_context import get_daily_schedule
+        sched = get_daily_schedule()
+        for item in sched:
+            key = item.get("task", "").lower().replace(" ", "_")
+            if key in defaults:
+                defaults[key] = item.get("time", defaults[key])
+    except Exception:
+        pass
+    return defaults
 
 
 def _scheduler_loop(interval_minutes: int = 60):

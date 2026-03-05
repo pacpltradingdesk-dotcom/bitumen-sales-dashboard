@@ -1,7 +1,15 @@
 
 COMPANY_PROFILE = {
     "legal_name": "PPS Anantams Corporation Private Limited",
+    "trade_name": "PACPL",
     "short_name": "PPS Anantams",
+    "owner_name": "PRINCE P SHAH",
+    "owner_short": "PPS",
+    "owner_mobile": "+91 7795242424",
+    "owner_email": "princepshah@gmail.com",
+    "experience_years": 24,
+    "business_role": "Commission Agent + Logistics Arranger",
+    "contact_database_size": 24000,
     "gst_no": "24AAHCV1611L2ZD",
     "pan_no": "AAHCV1611L",
     "cin_no": "U46632GJ2019PTC110676",

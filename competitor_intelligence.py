@@ -45,6 +45,82 @@ try:
 except ImportError:
     def display_badge(x): pass
 
+
+# ─────────────────────────────────────────────────────────────────────────────
+# LIVE PSU RATE FETCH (via api_hub_engine)
+# ─────────────────────────────────────────────────────────────────────────────
+
+import json as _json
+from pathlib import Path as _Path
+
+_COMPETITOR_CACHE = _Path(__file__).parent / "competitor_cache.json"
+_CACHE_TTL_HOURS = 6
+
+
+def _fetch_live_psu_rates() -> list:
+    """
+    Fetch latest PSU bitumen rates from api_hub_engine IOCL connector.
+    Caches results for 6 hours to avoid repeated API calls.
+    Returns list of {refinery, grade, price_inr_mt, effective_date, source}.
+    """
+    # Check cache first
+    if _COMPETITOR_CACHE.exists():
+        try:
+            with open(_COMPETITOR_CACHE, "r", encoding="utf-8") as f:
+                cache = _json.load(f)
+            cached_at = cache.get("cached_at", "")
+            if cached_at:
+                cached_dt = datetime.datetime.fromisoformat(cached_at)
+                age_hours = (datetime.datetime.now() - cached_dt).total_seconds() / 3600
+                if age_hours < _CACHE_TTL_HOURS and cache.get("records"):
+                    return cache["records"]
+        except Exception:
+            pass
+
+    # Fetch from api_hub_engine
+    records = []
+    try:
+        from api_hub_engine import connect_iocl_circular, HubCache
+        result = connect_iocl_circular()
+        if result.get("ok"):
+            cached_data = HubCache.get("iocl_circular")
+            if cached_data and isinstance(cached_data, dict):
+                records = cached_data.get("records", [])
+    except Exception:
+        pass
+
+    # Fallback: try feasibility_engine directly
+    if not records:
+        try:
+            from feasibility_engine import get_psu_prices
+            prices = get_psu_prices()
+            if prices:
+                for refinery, data in prices.items():
+                    records.append({
+                        "refinery": refinery,
+                        "grade": "VG-30",
+                        "price_inr_mt": data.get("price") or data.get("vg30"),
+                        "effective_date": data.get("date", ""),
+                        "source": "PSU circular",
+                    })
+        except Exception:
+            pass
+
+    # Save to cache
+    if records:
+        try:
+            cache_data = {
+                "cached_at": datetime.datetime.now().isoformat(),
+                "records": records,
+            }
+            with open(_COMPETITOR_CACHE, "w", encoding="utf-8") as f:
+                _json.dump(cache_data, f, indent=2, ensure_ascii=False)
+        except Exception:
+            pass
+
+    return records
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # SECTION A — MASTER DATASET (Extracted from all WhatsApp images)
 # Source: Multi Energy Enterprises, Mumbai | Feb 2026
@@ -405,6 +481,29 @@ Use our live `api_manager` USD/INR for actual.
             f'<span style="color:#f8fafc;font-size:0.88rem">{n["headline"]}</span></div>',
             unsafe_allow_html=True,
         )
+
+    # Live PSU Rates from api_hub_engine
+    st.markdown("---")
+    _hdr("🏭", "Live PSU Bitumen Rates (Auto-Fetch)", "#10b981")
+    live_rates = _fetch_live_psu_rates()
+    if live_rates:
+        for rate in live_rates[:6]:
+            refinery = rate.get("refinery", "Unknown")
+            grade = rate.get("grade", "VG-30")
+            price = rate.get("price_inr_mt")
+            eff_date = rate.get("effective_date", "")
+            price_str = format_inr(price) if price else "N/A"
+            st.markdown(
+                f'<div style="display:inline-block;background:#0f172a;border:1px solid #10b98133;'
+                f'border-radius:8px;padding:8px 14px;margin:4px">'
+                f'<b style="color:#10b981">{refinery}</b> — {grade}<br>'
+                f'<span style="color:#f8fafc;font-size:1.1rem">{price_str}/MT</span>'
+                f'<span style="color:#94a3b8;font-size:0.75rem"> ({eff_date})</span>'
+                f'</div>',
+                unsafe_allow_html=True,
+            )
+    else:
+        st.info("PSU rate auto-fetch not available. Using static data from MEE bulletins.")
 
     st.markdown("---")
     _hdr("🗓️", "Upcoming Industry Events", "#22c55e")

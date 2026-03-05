@@ -298,7 +298,7 @@ class DirectorBriefingEngine:
             return -1
 
     def format_whatsapp_summary(self, briefing: dict) -> str:
-        """Format briefing as compact WhatsApp text."""
+        """Format briefing as PPS Daily Brief WhatsApp message."""
         yesterday = briefing.get("yesterday_summary", {})
         actions = briefing.get("today_actions", {})
         outlook = briefing.get("fifteen_day_outlook", {})
@@ -306,31 +306,63 @@ class DirectorBriefingEngine:
         market = yesterday.get("market_movement", {})
         strategy = outlook.get("stock_strategy", {})
         demand = outlook.get("demand_score", {})
-        price = outlook.get("price_direction", {})
+        price_dir = outlook.get("price_direction", {})
+        deals = yesterday.get("deals_closed", {})
+        comms = yesterday.get("communications", {})
+        outstanding = yesterday.get("outstanding_collections", {})
+
+        greeting = briefing.get("greeting", "Good Morning")
 
         lines = [
-            f"*DIRECTOR BRIEFING \u2014 {briefing.get('timestamp', '')}*",
+            f"*{greeting}, PPS Sir*",
+            f"*PACPL Daily Brief \u2014 {briefing.get('timestamp', '')}*",
             "",
-            f"*MARKET*: Brent ${market.get('brent_price', 'N/A')} ({market.get('brent_pct', 0):+.1f}%)",
-            f"USD/INR: {market.get('fx_rate', 'N/A')} ({market.get('fx_pct', 0):+.1f}%)",
+            "\ud83d\udcca *MARKET STATUS*",
+            f"  Brent: ${market.get('brent_price', 'N/A')}/bbl ({market.get('brent_pct', 0):+.1f}%)",
+            f"  USD/INR: {market.get('fx_rate', 'N/A')} ({market.get('fx_pct', 0):+.1f}%)",
             "",
-            f"*YESTERDAY*: {yesterday.get('deals_closed', {}).get('count', 0)} deals | "
-            f"{yesterday.get('communications', {}).get('total', 0)} comms",
+            "\ud83d\udcc8 *15-DAY OUTLOOK*",
+            f"  Price: {price_dir.get('arrow', '')} {price_dir.get('direction', 'N/A')} "
+            f"({price_dir.get('confidence_pct', 0)}% conf)",
+            f"  Demand: {demand.get('total_score', 0)}/100 ({demand.get('label', '')})",
+            f"  Strategy: *{strategy.get('strategy', 'N/A')}*",
+            f"  {strategy.get('action', '')}",
             "",
-            f"*15-DAY OUTLOOK*",
-            f"Price: {price.get('arrow', '')} {price.get('direction', 'N/A')} "
-            f"({price.get('confidence_pct', 0)}%)",
-            f"Demand: {demand.get('total_score', 0)}/100 {demand.get('label', '')}",
-            f"Strategy: *{strategy.get('strategy', 'N/A')}*",
-            f"{strategy.get('action', '')}",
+            "\ud83d\udcb0 *YESTERDAY SUMMARY*",
+            f"  Deals: {deals.get('count', 0)} "
+            f"(Value: {_fmt_inr(deals.get('total_value', 0))})",
+            f"  Comms: {comms.get('total', 0)} "
+            f"(WA:{comms.get('whatsapp', 0)} | Email:{comms.get('email', 0)} | "
+            f"Calls:{comms.get('calls', 0)})",
+            f"  Outstanding: {_fmt_inr(outstanding.get('total', 0))}",
             "",
         ]
 
+        # Top 10 to call
         buyers = actions.get("buyers_to_call", [])
         if buyers:
-            lines.append("*TODAY'S CALLS*:")
-            for b in buyers[:3]:
-                lines.append(f"\u2022 {b.get('name', 'Unknown')}")
+            lines.append("\ud83d\udcde *TOP CALLS TODAY*")
+            for i, b in enumerate(buyers[:10], 1):
+                name = b.get("name", "Unknown")
+                city = b.get("city", "")
+                reason = b.get("reason", "")
+                city_str = f" ({city})" if city else ""
+                reason_str = f" \u2014 {reason}" if reason else ""
+                lines.append(f"  {i}. {name}{city_str}{reason_str}")
+            lines.append("")
 
-        lines.append(f"\n\u2014 PPS Anantam AI")
+        # Followups
+        followups = actions.get("followups_due", [])
+        if followups:
+            lines.append("\ud83d\udd04 *FOLLOWUPS DUE*")
+            for fu in followups[:5]:
+                name = fu.get("customer_name", fu.get("name", "Unknown"))
+                lines.append(f"  \u2022 {name}")
+            lines.append("")
+
+        lines.extend([
+            "\u2014 *PACPL Agentic AI*",
+            "PPS Anantam Corporation Pvt Ltd",
+            "\ud83d\udcf1 +91 7795242424",
+        ])
         return "\n".join(lines)

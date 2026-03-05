@@ -4,9 +4,9 @@
     "ok": true,
     "connector_id": "gold_price",
     "records": 6,
-    "latest_gold": 5212.0
+    "latest_gold": 5201.60009765625
   },
   "original_confidence": 85,
-  "saved_at": "04-03-2026 17:54:11 IST",
-  "saved_epoch": 1772627051.0100188
+  "saved_at": "05-03-2026 08:44:03 IST",
+  "saved_epoch": 1772680443.83015
 }

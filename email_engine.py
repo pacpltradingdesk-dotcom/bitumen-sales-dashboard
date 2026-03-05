@@ -32,6 +32,11 @@ import pytz
 IST = pytz.timezone("Asia/Kolkata")
 BASE = Path(__file__).parent
 
+try:
+    from log_engine import dashboard_log as _dlog
+except ImportError:
+    _dlog = None
+
 EMAIL_REGEX = re.compile(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
 
 
@@ -187,6 +192,126 @@ class EmailEngine:
         except Exception as e:
             return {"success": False, "message_id": "", "error": str(e)[:200]}
 
+    def send_email_sendgrid(self, to_email: str, subject: str,
+                             body_html: str, body_text: str = "") -> dict:
+        """Send email via SendGrid HTTP API. Returns {success, message_id, error}."""
+        try:
+            from settings_engine import get_api_key_secure, load_settings
+            settings = load_settings()
+            api_key = get_api_key_secure("sendgrid_api_key")
+            if not api_key:
+                return {"success": False, "message_id": "",
+                        "error": "SendGrid API key not configured"}
+
+            from_email = settings.get("sendgrid_from_email") or self.credentials.get(
+                "from_email", self.credentials.get("username", ""))
+            from_name = settings.get("sendgrid_from_name", "PPS Anantam")
+
+            import urllib.request
+            payload = {
+                "personalizations": [{"to": [{"email": to_email}]}],
+                "from": {"email": from_email, "name": from_name},
+                "subject": subject,
+                "content": [],
+            }
+            if body_text:
+                payload["content"].append({"type": "text/plain", "value": body_text})
+            if body_html:
+                payload["content"].append({"type": "text/html", "value": body_html})
+            if not payload["content"]:
+                payload["content"].append({"type": "text/plain", "value": subject})
+
+            data = json.dumps(payload).encode("utf-8")
+            req = urllib.request.Request(
+                "https://api.sendgrid.com/v3/mail/send",
+                data=data,
+                headers={
+                    "Authorization": f"Bearer {api_key}",
+                    "Content-Type": "application/json",
+                },
+                method="POST",
+            )
+            resp = urllib.request.urlopen(req, timeout=30)
+            msg_id = resp.headers.get("X-Message-Id", "")
+            return {"success": True, "message_id": msg_id, "error": ""}
+        except Exception as e:
+            return {"success": False, "message_id": "", "error": str(e)[:200]}
+
+    def send_email_brevo(self, to_email: str, subject: str,
+                          body_html: str, body_text: str = "") -> dict:
+        """Send email via Brevo (Sendinblue) HTTP API. Free: 300 emails/day."""
+        try:
+            from settings_engine import get_api_key_secure
+            api_key = get_api_key_secure("brevo_api_key")
+            if not api_key:
+                return {"success": False, "message_id": "",
+                        "error": "Brevo API key not configured"}
+
+            from_email = self.credentials.get(
+                "from_email", self.credentials.get("username", ""))
+            from_name = self.credentials.get("from_name", "PPS Anantam")
+
+            import urllib.request
+            payload = {
+                "sender": {"name": from_name, "email": from_email},
+                "to": [{"email": to_email}],
+                "subject": subject,
+                "htmlContent": body_html or f"<p>{body_text or subject}</p>",
+            }
+            if body_text:
+                payload["textContent"] = body_text
+
+            data = json.dumps(payload).encode("utf-8")
+            req = urllib.request.Request(
+                "https://api.brevo.com/v3/smtp/email",
+                data=data,
+                headers={
+                    "api-key": api_key,
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                },
+                method="POST",
+            )
+            resp = urllib.request.urlopen(req, timeout=30)
+            result = json.loads(resp.read().decode("utf-8"))
+            msg_id = result.get("messageId", "")
+            return {"success": True, "message_id": msg_id, "error": ""}
+        except Exception as e:
+            return {"success": False, "message_id": "", "error": str(e)[:200]}
+
+    def send_email_auto(self, to_email: str, subject: str,
+                         body_html: str, body_text: str = "",
+                         cc: str = "", bcc: str = "") -> dict:
+        """Auto-select: SMTP first, SendGrid second, Brevo third."""
+        # Try SMTP first
+        result = self.send_email(to_email, subject, body_html, body_text, cc, bcc)
+        if result.get("success"):
+            return result
+
+        # If rate limited or SMTP failed, try SendGrid
+        try:
+            from settings_engine import load_settings
+            if load_settings().get("sendgrid_enabled"):
+                sg_result = self.send_email_sendgrid(to_email, subject,
+                                                      body_html, body_text)
+                if sg_result.get("success"):
+                    return sg_result
+        except Exception:
+            pass
+
+        # Third fallback: Brevo
+        try:
+            from settings_engine import get_api_key_secure
+            if get_api_key_secure("brevo_api_key"):
+                brevo_result = self.send_email_brevo(to_email, subject,
+                                                      body_html, body_text)
+                if brevo_result.get("success"):
+                    return brevo_result
+        except Exception:
+            pass
+
+        return result  # Return original SMTP error
+
     def _check_rate_limit(self) -> bool:
         now = datetime.datetime.now(IST)
         with self._lock:
@@ -210,10 +335,53 @@ class EmailEngine:
         if sig:
             body_html = body_html + f"\n<br><br>{sig}"
 
+        # DPDP compliance: append unsubscribe footer
+        body_html = self._append_unsubscribe_footer(body_html, to_email)
+        if body_text:
+            body_text = self._append_unsubscribe_footer_text(body_text)
+
         if body_text:
             msg.attach(MIMEText(body_text, "plain", "utf-8"))
         msg.attach(MIMEText(body_html, "html", "utf-8"))
         return msg
+
+    def _append_unsubscribe_footer(self, body_html: str, to_email: str) -> str:
+        """Append DPDP-compliant unsubscribe footer to HTML emails."""
+        try:
+            from settings_engine import load_settings
+            settings = load_settings()
+            if not settings.get("dpdp_compliance_enabled", True):
+                return body_html
+        except Exception:
+            return body_html
+
+        footer_text = (
+            '<br><hr style="border:none;border-top:1px solid #ccc;margin:20px 0">'
+            '<p style="font-size:11px;color:#888;text-align:center">'
+            'You are receiving this email because you are a valued business contact of '
+            'PPS Anantam Capital Pvt Ltd. '
+            'To unsubscribe from future communications, reply with "STOP" or '
+            f'email <a href="mailto:unsubscribe@ppsanantam.com?subject=Unsubscribe&body={to_email}">'
+            'unsubscribe@ppsanantam.com</a>.'
+            '</p>'
+        )
+        return body_html + footer_text
+
+    def _append_unsubscribe_footer_text(self, body_text: str) -> str:
+        """Append DPDP unsubscribe footer to plain text emails."""
+        try:
+            from settings_engine import load_settings
+            if not load_settings().get("dpdp_compliance_enabled", True):
+                return body_text
+        except Exception:
+            return body_text
+
+        return body_text + (
+            "\n\n---\n"
+            "You are receiving this email because you are a valued business contact "
+            "of PPS Anantam Capital Pvt Ltd. "
+            "To unsubscribe, reply with STOP."
+        )
 
     # ─── Queue Management ────────────────────────────────────────────────
 
@@ -261,7 +429,7 @@ class EmailEngine:
                 continue
 
             update_email_status(item["id"], "sending")
-            result = self.send_email(
+            result = self.send_email_auto(
                 to_email=item["to_email"],
                 subject=item["subject"],
                 body_html=item.get("body_html", ""),
@@ -306,12 +474,18 @@ class EmailEngine:
                          city: str, grade: str, quantity_mt: float,
                          price_per_mt: float, source: str = "",
                          benefit_pct: float = 0, customer_id: int = None,
-                         auto_send: bool = False) -> int:
-        """Queue an offer email using CommunicationHub template."""
+                         auto_send: bool = False,
+                         segment: str = "") -> int:
+        """Queue an offer email using CommunicationHub template (segment-aware)."""
         from communication_engine import CommunicationHub
         hub = CommunicationHub()
-        email = hub.email_offer(customer_name, city, grade, quantity_mt,
-                                price_per_mt, source, benefit_pct)
+        if segment:
+            email = hub.email_offer_segmented(customer_name, city, grade,
+                                              quantity_mt, price_per_mt,
+                                              segment, source, benefit_pct)
+        else:
+            email = hub.email_offer(customer_name, city, grade, quantity_mt,
+                                    price_per_mt, source, benefit_pct)
         return self.queue_email(
             to_email=customer_email, subject=email["subject"],
             body_html=email["body"].replace("\n", "<br>"),

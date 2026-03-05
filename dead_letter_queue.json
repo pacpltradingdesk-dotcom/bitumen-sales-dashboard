@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "job_id": "DLQ-20260305-135428-2560",
+    "job_type": "sync_step",
+    "payload": {
+      "step_name": "intelligence_refresh"
+    },
+    "error": "Timeout after 120s",
+    "attempt": 3,
+    "max_retries": 3,
+    "created_at": "05-03-2026 13:54:28 IST",
+    "next_retry_at": "05-03-2026 15:57:56 IST",
+    "status": "pending",
+    "last_error": "Timeout after 120s"
+  }
+]

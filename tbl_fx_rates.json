@@ -47,5 +47,73 @@
     "pair": "USD/INR",
     "rate": 86.4815,
     "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "04-03-2026 21:57:58 IST",
+    "pair": "USD/EUR",
+    "rate": 0.85844,
+    "source": "Frankfurter (ECB)",
+    "_source_type": "live_api",
+    "_source_confidence": 0.96,
+    "_source_provider": "Frankfurter.app (ECB data)"
+  },
+  {
+    "date_time": "05-03-2026 08:14:10 IST",
+    "pair": "USD/EUR",
+    "rate": 0.85844,
+    "source": "Frankfurter (ECB)",
+    "_source_type": "live_api",
+    "_source_confidence": 0.96,
+    "_source_provider": "Frankfurter.app (ECB data)"
+  },
+  {
+    "date_time": "05-03-2026 08:43:44 IST",
+    "period_label": "2025-03",
+    "pair": "USD/INR",
+    "rate": 86.4468,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "05-03-2026 08:44:07 IST",
+    "period_label": "2025-03",
+    "pair": "USD/INR",
+    "rate": 86.4468,
+    "source": "RBI Reference Rate (ECB/Frankfurter proxy) — monthly avg"
+  },
+  {
+    "date_time": "05-03-2026 10:02:31 IST",
+    "pair": "USD/EUR",
+    "rate": 0.85844,
+    "source": "Frankfurter (ECB)",
+    "_source_type": "live_api",
+    "_source_confidence": 0.96,
+    "_source_provider": "Frankfurter.app (ECB data)"
+  },
+  {
+    "date_time": "05-03-2026 11:06:17 IST",
+    "pair": "USD/EUR",
+    "rate": 0.85844,
+    "source": "Frankfurter (ECB)",
+    "_source_type": "live_api",
+    "_source_confidence": 0.96,
+    "_source_provider": "Frankfurter.app (ECB data)"
+  },
+  {
+    "date_time": "05-03-2026 12:11:43 IST",
+    "pair": "USD/EUR",
+    "rate": 0.85844,
+    "source": "Frankfurter (ECB)",
+    "_source_type": "live_api",
+    "_source_confidence": 0.96,
+    "_source_provider": "Frankfurter.app (ECB data)"
+  },
+  {
+    "date_time": "05-03-2026 13:22:46 IST",
+    "pair": "USD/EUR",
+    "rate": 0.85844,
+    "source": "Frankfurter (ECB)",
+    "_source_type": "live_api",
+    "_source_confidence": 0.96,
+    "_source_provider": "Frankfurter.app (ECB data)"
   }
 ]

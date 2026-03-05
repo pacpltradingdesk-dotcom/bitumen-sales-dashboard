@@ -21,6 +21,11 @@ import pytz
 IST = pytz.timezone("Asia/Kolkata")
 BASE = Path(__file__).parent
 
+try:
+    from log_engine import dashboard_log as _dlog
+except ImportError:
+    _dlog = None
+
 # --- CONFIGURATION ---
 TASKS_JSON_FILE = BASE / "crm_tasks.json"       # legacy (migrated to SQLite)
 TASKS_JSON_BAK = BASE / "crm_tasks.json.bak"    # backup after migration
@@ -37,6 +42,21 @@ PRIORITIES = ["High", "Medium", "Low"]
 
 # Relationship decay thresholds (days since last interaction)
 RELATIONSHIP_THRESHOLDS = {"hot": 7, "warm": 30, "cold": 90}
+
+# VIP scoring weights (total = 1.0)
+VIP_WEIGHTS = {
+    "deal_value": 0.35,
+    "purchase_frequency": 0.25,
+    "recency": 0.20,
+    "response_rate": 0.10,
+    "relationship_age": 0.10,
+}
+VIP_TIERS = {
+    "platinum": 80,  # score >= 80
+    "gold": 60,      # score >= 60
+    "silver": 40,    # score >= 40
+    "standard": 0,   # score < 40
+}
 
 
 # --- DATA HANDLING (Activities — still JSON) ---
@@ -493,6 +513,140 @@ class IntelligentCRM:
             pass
 
         return updated
+
+    # ── VIP Scoring ──────────────────────────────────────────────────────────
+
+    def compute_vip_score(self, contact: dict) -> dict:
+        """
+        Compute VIP score for a contact using weighted composite algorithm.
+
+        Weights: deal_value(35%) + purchase_frequency(25%) + recency(20%)
+                + response_rate(10%) + relationship_age(10%)
+
+        Returns: {vip_score (0-100), vip_tier, breakdown}
+        """
+        scores = {}
+
+        # 1. Deal Value (lifetime_value_inr) — normalize to 0-100
+        ltv = float(contact.get("lifetime_value_inr") or 0)
+        # Scale: 0=0, 10L=50, 50L+=100
+        scores["deal_value"] = min(100, (ltv / 5_00_000) * 100) if ltv > 0 else 0
+
+        # 2. Purchase Frequency — based on contact_frequency field or deal count
+        freq = float(contact.get("contact_frequency") or 0)
+        # Scale: 0=0, 2/month=50, 5+/month=100
+        scores["purchase_frequency"] = min(100, (freq / 5) * 100) if freq > 0 else 0
+
+        # 3. Recency — days since last contact (lower = better)
+        days_since = 999
+        last_date_str = contact.get("last_contact_date") or ""
+        if last_date_str:
+            try:
+                for fmt in ("%d-%m-%Y %H:%M IST", "%d-%m-%Y %H:%M", "%Y-%m-%d"):
+                    try:
+                        last_dt = datetime.datetime.strptime(last_date_str.strip(), fmt)
+                        days_since = (datetime.datetime.now() - last_dt).days
+                        break
+                    except ValueError:
+                        continue
+            except Exception:
+                pass
+        # Scale: 0 days=100, 7=85, 30=50, 90=10, 180+=0
+        if days_since <= 7:
+            scores["recency"] = 100 - (days_since * 2)
+        elif days_since <= 30:
+            scores["recency"] = 85 - ((days_since - 7) * 1.5)
+        elif days_since <= 90:
+            scores["recency"] = 50 - ((days_since - 30) * 0.67)
+        else:
+            scores["recency"] = max(0, 10 - ((days_since - 90) * 0.11))
+
+        # 4. Response Rate — whatsapp/email responsiveness
+        resp = float(contact.get("response_rate") or contact.get("relationship_score") or 0)
+        scores["response_rate"] = min(100, resp)
+
+        # 5. Relationship Age — months since first contact
+        created = contact.get("created_at") or ""
+        months_since = 0
+        if created:
+            try:
+                for fmt in ("%d-%m-%Y %H:%M IST", "%Y-%m-%d %H:%M:%S", "%Y-%m-%d"):
+                    try:
+                        created_dt = datetime.datetime.strptime(created.strip(), fmt)
+                        months_since = (datetime.datetime.now() - created_dt).days / 30
+                        break
+                    except ValueError:
+                        continue
+            except Exception:
+                pass
+        # Scale: 0 months=10, 6=40, 12=60, 24+=100
+        scores["relationship_age"] = min(100, (months_since / 24) * 100) if months_since > 0 else 10
+
+        # Weighted composite
+        total = sum(scores[k] * VIP_WEIGHTS[k] for k in VIP_WEIGHTS)
+        total = round(min(100, max(0, total)), 1)
+
+        # Determine tier
+        tier = "standard"
+        for tier_name, threshold in sorted(VIP_TIERS.items(), key=lambda x: -x[1]):
+            if total >= threshold:
+                tier = tier_name
+                break
+
+        return {
+            "vip_score": total,
+            "vip_tier": tier,
+            "breakdown": {k: round(v, 1) for k, v in scores.items()},
+        }
+
+    def update_all_vip_scores(self) -> dict:
+        """
+        Batch-update VIP scores for all contacts in SQLite.
+        Returns: {updated, errors, tier_counts}
+        """
+        updated = 0
+        errors = 0
+        tier_counts = {"platinum": 0, "gold": 0, "silver": 0, "standard": 0}
+
+        try:
+            from database import get_all_contacts, _get_conn
+            contacts = get_all_contacts(active_only=True)
+            conn = _get_conn()
+
+            for contact in contacts:
+                try:
+                    result = self.compute_vip_score(contact)
+                    conn.execute(
+                        "UPDATE contacts SET vip_score = ?, vip_tier = ?, "
+                        "updated_at = datetime('now') WHERE id = ?",
+                        (result["vip_score"], result["vip_tier"],
+                         contact.get("id"))
+                    )
+                    tier_counts[result["vip_tier"]] = tier_counts.get(result["vip_tier"], 0) + 1
+                    updated += 1
+                except Exception:
+                    errors += 1
+
+            conn.commit()
+            conn.close()
+        except Exception as e:
+            logger.error(f"VIP score update failed: {e}")
+
+        return {"updated": updated, "errors": errors, "tier_counts": tier_counts}
+
+    def get_vip_summary(self) -> dict:
+        """Get VIP tier distribution summary."""
+        try:
+            from database import _get_conn
+            conn = _get_conn()
+            rows = conn.execute(
+                "SELECT vip_tier, COUNT(*) as cnt FROM contacts "
+                "WHERE is_active = 1 GROUP BY vip_tier"
+            ).fetchall()
+            conn.close()
+            return {row["vip_tier"]: row["cnt"] for row in rows}
+        except Exception:
+            return {}
 
     def get_crm_summary(self) -> dict:
         """Get CRM dashboard summary stats."""

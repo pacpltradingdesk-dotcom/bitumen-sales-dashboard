@@ -69,8 +69,8 @@ def _fetch_headlines(region: str, max_count: int = 20) -> list[tuple[str, str]]:
 
 # ── HTML ticker builder ───────────────────────────────────────────────────────
 
-def _build_ticker_html(intl_items: list[tuple], dom_items: list[tuple]) -> str:
-    """Build full HTML + CSS + JS ticker."""
+def _build_ticker_html(intl_items: list[tuple], dom_items: list[tuple], speed: int = 600) -> str:
+    """Build full HTML + CSS + JS ticker. Speed is animation duration in seconds."""
 
     def items_to_html(items: list[tuple], link_color: str) -> str:
         parts = []
@@ -170,11 +170,11 @@ def _build_ticker_html(intl_items: list[tuple], dom_items: list[tuple]) -> str:
     padding-left: 100%;
   }}
   .pps-ticker-intl-text {{
-    animation: pps-intl-scroll 600s linear infinite;
+    animation: pps-intl-scroll {speed}s linear infinite;
     color: #1e3a5f;
   }}
   .pps-ticker-dom-text {{
-    animation: pps-dom-scroll 600s linear infinite;
+    animation: pps-dom-scroll {speed}s linear infinite;
     color: #2d6a4f;
   }}
   @keyframes pps-intl-scroll {{
@@ -238,7 +238,8 @@ def render_news_ticker(max_intl: int = 20, max_dom: int = 20):
     intl_items = _fetch_headlines("International", max_intl)
     dom_items  = _fetch_headlines("Domestic",      max_dom)
 
-    html = _build_ticker_html(intl_items, dom_items)
+    _speed = st.session_state.get("_ticker_speed", 600)
+    html = _build_ticker_html(intl_items, dom_items, speed=_speed)
 
     # Height: 2 rows × 32px + 2px border = 66px
     components.html(html, height=66, scrolling=False)

@@ -43,5 +43,1301 @@
     "status": "Completed",
     "component": "usdinr_frankfurter",
     "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 21:57:56 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 21:57:59 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 21:58:41 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 21:58:41 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 21:59:02 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 21:59:02 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 21:59:17 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 21:59:17 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 21:59:30 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 21:59:30 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 21:59:47 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 04-03-2026 21:59:47 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:00:11 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:00:14 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:00:16 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:00:37 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:00:44 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:00:48 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:00:54 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:01:06 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:01:09 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:01:35 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:01:36 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:01:43 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:02:17 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:02:19 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:02:27 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:02:30 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:02:34 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:03:14 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:03:16 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:03:31 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:03:37 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:03:42 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:04:05 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:30:30 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 04-03-2026 22:30:30 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:33:06 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 24 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:34:55 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 24/24 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 04-03-2026 22:34:55 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:48:36 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:51:53 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:52:01 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:52:02 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "04-03-2026 22:53:35 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 04-03-2026 22:53:35 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 08:14:07 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 08:14:41 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 08:15:11 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 08:15:11 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 08:16:01 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 08:16:01 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 08:17:38 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 08:19:37 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 08:19:37 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 08:27:23 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 08:27:51 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 08:28:05 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 08:38:05 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 08:38:05 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 08:43:05 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 08:43:05 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 08:43:34 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 08:43:34 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 08:45:33 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 08:45:33 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 08:46:25 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 08:46:25 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 08:49:49 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 08:49:49 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 09:55:27 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 09:55:27 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 10:02:29 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 10:02:54 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 10:02:54 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 10:03:55 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 10:03:55 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 10:04:21 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 10:04:21 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 10:07:08 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 10:07:08 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 10:25:38 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 10:25:38 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 10:33:13 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 10:33:13 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 10:34:07 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 10:34:07 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 10:34:34 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 10:34:34 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 10:37:22 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 10:37:22 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 10:57:38 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 10:57:38 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:03:38 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 11:03:38 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:04:36 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 11:04:36 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:05:01 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 11:05:01 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:07:58 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 11:07:58 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:27:52 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 11:27:52 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:33:55 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 11:33:55 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:34:57 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 11:34:57 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:35:21 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 11:35:21 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:38:14 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 11:38:14 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:38:17 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:38:36 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:38:37 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:40:27 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 11:40:27 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:47:44 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:47:45 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:47:47 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 11:47:47 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:47:47 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 11:47:47 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:47:47 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 11:47:47 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:47:47 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 11:47:47 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:49:30 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:49:31 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 11:49:31 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:49:31 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 11:49:31 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:49:32 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 11:49:32 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:49:32 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 11:49:32 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:49:36 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:49:37 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:49:46 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:49:47 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:49:52 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:49:53 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:49:56 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 11:58:14 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 11:58:14 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 12:04:16 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 12:04:16 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 12:05:19 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 12:05:19 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 12:05:42 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 12:05:42 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 12:08:32 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 12:08:32 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 12:10:44 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 12:10:44 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 12:11:39 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 12:12:07 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 12:13:20 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 12:13:20 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 12:13:41 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 12:13:41 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 12:15:20 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 12:15:20 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 12:28:48 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 12:28:48 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 12:34:38 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 12:34:38 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 12:35:34 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 12:35:34 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 12:35:57 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 12:35:57 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 12:38:50 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 12:38:50 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 12:41:00 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 12:41:00 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 12:44:04 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 12:44:04 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 12:45:43 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 12:45:43 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 12:49:20 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 12:51:23 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 12:51:23 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 12:59:15 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 12:59:15 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 13:04:54 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 13:04:54 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 13:05:54 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 13:05:54 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 13:06:16 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 13:06:16 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 13:09:08 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 13:09:08 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 13:11:16 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 13:11:16 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 13:14:22 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 13:14:22 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 13:16:01 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 13:16:01 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 13:21:47 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 13:21:47 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 13:29:43 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 13:29:43 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 13:35:11 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 13:35:11 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 13:36:20 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 13:36:20 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 13:36:45 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 13:36:45 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 13:39:49 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 13:39:49 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 13:41:39 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 13:41:39 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 13:44:49 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 13:44:49 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 13:46:15 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 13:46:15 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 13:48:10 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 13:48:13 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 13:48:16 IST",
+    "activity_type": "System Start",
+    "title": "Dashboard initialized",
+    "description": "API Intelligence System v3.0 started. 25 APIs registered. Auto-repair: Enabled.",
+    "status": "Running",
+    "component": "System",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 13:50:03 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 13:50:03 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
+  },
+  {
+    "datetime_ist": "05-03-2026 13:52:15 IST",
+    "activity_type": "Health Check",
+    "title": "System-wide health check: 25/25 APIs healthy",
+    "description": "Health: 100% | Failed: 0 APIs | Run at 05-03-2026 13:52:15 IST",
+    "status": "Completed",
+    "component": "All APIs",
+    "department": "Technology"
   }
 ]

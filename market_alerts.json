@@ -96,5 +96,207 @@
     "sources": [
       "tbl_maritime_intel"
     ]
+  },
+  {
+    "id": "2d1e43fee3e0",
+    "severity": "P0",
+    "category": "price",
+    "message": "Crude Brent up 8.27% this week — expect bitumen price increase in 7-10 days",
+    "impact": "Landed cost of bitumen will rise proportionally",
+    "action": "Buy now before prices increase",
+    "confidence": 65,
+    "created_at": "04-03-2026 21:58 IST",
+    "expires_at": "05-03-2026 09:58 IST",
+    "sources": [
+      "tbl_crude_prices"
+    ]
+  },
+  {
+    "id": "d1b851de0edf",
+    "severity": "P0",
+    "category": "price",
+    "message": "Crude Brent up 8.27% this week — expect bitumen price increase in 7-10 days",
+    "impact": "Landed cost of bitumen will rise proportionally",
+    "action": "Buy now before prices increase",
+    "confidence": 65,
+    "created_at": "04-03-2026 22:02 IST",
+    "expires_at": "05-03-2026 10:02 IST",
+    "sources": [
+      "tbl_crude_prices"
+    ]
+  },
+  {
+    "id": "83816777979f",
+    "severity": "P2",
+    "category": "logistics",
+    "message": "2 vessel(s) delayed on bitumen import routes",
+    "impact": "Import deliveries may be delayed; spot market could tighten",
+    "action": "Check alternative suppliers; domestic procurement as backup",
+    "confidence": 65,
+    "created_at": "04-03-2026 22:02 IST",
+    "expires_at": "06-03-2026 22:02 IST",
+    "sources": [
+      "tbl_maritime_intel"
+    ]
+  },
+  {
+    "id": "543289de344a",
+    "severity": "P0",
+    "category": "price",
+    "message": "Crude Brent up 8.11% this week — expect bitumen price increase in 7-10 days",
+    "impact": "Landed cost of bitumen will rise proportionally",
+    "action": "Buy now before prices increase",
+    "confidence": 65,
+    "created_at": "04-03-2026 22:34 IST",
+    "expires_at": "05-03-2026 10:34 IST",
+    "sources": [
+      "tbl_crude_prices"
+    ]
+  },
+  {
+    "id": "ff0f282040ff",
+    "severity": "P1",
+    "category": "price",
+    "message": "BUY signal: 3/5 indicators bullish — market momentum favours price increase",
+    "impact": "Bitumen prices likely to rise in the near term",
+    "action": "Consider increasing stock levels and locking current prices",
+    "confidence": 70,
+    "created_at": "05-03-2026 08:19 IST",
+    "expires_at": "06-03-2026 08:19 IST",
+    "sources": [
+      "tbl_crude_prices",
+      "tbl_fx_rates",
+      "tbl_news_feed"
+    ]
+  },
+  {
+    "id": "7602091df088",
+    "severity": "P2",
+    "category": "logistics",
+    "message": "2 vessel(s) delayed on bitumen import routes",
+    "impact": "Import deliveries may be delayed; spot market could tighten",
+    "action": "Check alternative suppliers; domestic procurement as backup",
+    "confidence": 65,
+    "created_at": "05-03-2026 08:19 IST",
+    "expires_at": "07-03-2026 08:19 IST",
+    "sources": [
+      "tbl_maritime_intel"
+    ]
+  },
+  {
+    "id": "fc75d03ca164",
+    "severity": "P1",
+    "category": "logistics",
+    "message": "7 vessel(s) delayed on bitumen import routes",
+    "impact": "Import deliveries may be delayed; spot market could tighten",
+    "action": "Check alternative suppliers; domestic procurement as backup",
+    "confidence": 65,
+    "created_at": "05-03-2026 08:51 IST",
+    "expires_at": "06-03-2026 08:51 IST",
+    "sources": [
+      "tbl_maritime_intel"
+    ]
+  },
+  {
+    "id": "243492a7a965",
+    "severity": "P1",
+    "category": "price",
+    "message": "BUY signal: 3/5 indicators bullish — market momentum favours price increase",
+    "impact": "Bitumen prices likely to rise in the near term",
+    "action": "Consider increasing stock levels and locking current prices",
+    "confidence": 70,
+    "created_at": "05-03-2026 09:41 IST",
+    "expires_at": "06-03-2026 09:41 IST",
+    "sources": [
+      "tbl_crude_prices",
+      "tbl_fx_rates",
+      "tbl_news_feed"
+    ]
+  },
+  {
+    "id": "dd8a6718528a",
+    "severity": "P1",
+    "category": "logistics",
+    "message": "7 vessel(s) delayed on bitumen import routes",
+    "impact": "Import deliveries may be delayed; spot market could tighten",
+    "action": "Check alternative suppliers; domestic procurement as backup",
+    "confidence": 65,
+    "created_at": "05-03-2026 09:41 IST",
+    "expires_at": "06-03-2026 09:41 IST",
+    "sources": [
+      "tbl_maritime_intel"
+    ]
+  },
+  {
+    "id": "b8e61e70276b",
+    "severity": "P1",
+    "category": "logistics",
+    "message": "7 vessel(s) delayed on bitumen import routes",
+    "impact": "Import deliveries may be delayed; spot market could tighten",
+    "action": "Check alternative suppliers; domestic procurement as backup",
+    "confidence": 65,
+    "created_at": "05-03-2026 10:02 IST",
+    "expires_at": "06-03-2026 10:02 IST",
+    "sources": [
+      "tbl_maritime_intel"
+    ]
+  },
+  {
+    "id": "fc8eae810f45",
+    "severity": "P1",
+    "category": "logistics",
+    "message": "7 vessel(s) delayed on bitumen import routes",
+    "impact": "Import deliveries may be delayed; spot market could tighten",
+    "action": "Check alternative suppliers; domestic procurement as backup",
+    "confidence": 65,
+    "created_at": "05-03-2026 11:06 IST",
+    "expires_at": "06-03-2026 11:06 IST",
+    "sources": [
+      "tbl_maritime_intel"
+    ]
+  },
+  {
+    "id": "621d480d3bae",
+    "severity": "P1",
+    "category": "price",
+    "message": "BUY signal: 3/5 indicators bullish — market momentum favours price increase",
+    "impact": "Bitumen prices likely to rise in the near term",
+    "action": "Consider increasing stock levels and locking current prices",
+    "confidence": 70,
+    "created_at": "05-03-2026 11:38 IST",
+    "expires_at": "06-03-2026 11:38 IST",
+    "sources": [
+      "tbl_crude_prices",
+      "tbl_fx_rates",
+      "tbl_news_feed"
+    ]
+  },
+  {
+    "id": "8297de29118d",
+    "severity": "P1",
+    "category": "logistics",
+    "message": "7 vessel(s) delayed on bitumen import routes",
+    "impact": "Import deliveries may be delayed; spot market could tighten",
+    "action": "Check alternative suppliers; domestic procurement as backup",
+    "confidence": 65,
+    "created_at": "05-03-2026 12:12 IST",
+    "expires_at": "06-03-2026 12:12 IST",
+    "sources": [
+      "tbl_maritime_intel"
+    ]
+  },
+  {
+    "id": "90f31993c596",
+    "severity": "P1",
+    "category": "logistics",
+    "message": "7 vessel(s) delayed on bitumen import routes",
+    "impact": "Import deliveries may be delayed; spot market could tighten",
+    "action": "Check alternative suppliers; domestic procurement as backup",
+    "confidence": 65,
+    "created_at": "05-03-2026 13:01 IST",
+    "expires_at": "06-03-2026 13:01 IST",
+    "sources": [
+      "tbl_maritime_intel"
+    ]
   }
 ]

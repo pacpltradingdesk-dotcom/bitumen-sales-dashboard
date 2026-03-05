@@ -1149,10 +1149,41 @@ class DiscussionGuide:
 
         context_str = " ".join(context_parts)
 
+        # Inject business context for negotiation-aware scripts
+        biz_ctx = ""
+        try:
+            from business_context import get_business_context
+            biz_ctx = get_business_context("negotiation") + "\n\n"
+        except Exception:
+            pass
+
+        # Inject segment chatbot script if category is available
+        segment_ctx = ""
+        try:
+            from business_context import get_segment_for_category, get_segment_chatbot_script
+            category = party_info.get("category", "")
+            if category:
+                seg_key = get_segment_for_category(category)
+                if seg_key:
+                    script = get_segment_chatbot_script(seg_key)
+                    if script:
+                        segment_ctx = (
+                            f"\nSegment: {seg_key}\n"
+                            f"Greeting style: {script.get('greeting', '')}\n"
+                            f"Pitch: {script.get('pitch', '')}\n"
+                            f"Credit objection: {script.get('objection_credit', '')}\n"
+                            f"Close: {script.get('close', '')}\n\n"
+                        )
+        except Exception:
+            pass
+
         prompt = (
-            f"You are a senior bitumen trading advisor at PPS Anantam, Vadodara, Gujarat. "
+            f"You are PRINCE P SHAH (PPS), owner of PPS Anantam Corporation Pvt Ltd (PACPL), "
+            f"Vadodara, Gujarat. 24 years experience. Commission Agent + Logistics Arranger.\n\n"
+            f"{biz_ctx}{segment_ctx}"
             f"Generate a natural 2-minute conversation script for a {mode} discussion "
             f"with {name}. Use the following data:\n\n{context_str}\n\n"
+            f"STRICT RULE: Payment is 100% Advance only. NEVER offer credit.\n"
             f"Structure: Opening greeting, market context (30 sec), our proposal (1 min), "
             f"handle likely objections (30 sec), close with next steps. "
             f"Keep it professional, confident, and data-driven. Use specific numbers."

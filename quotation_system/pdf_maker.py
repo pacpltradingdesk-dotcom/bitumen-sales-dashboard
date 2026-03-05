@@ -8,7 +8,7 @@ from reportlab.lib.enums import TA_CENTER, TA_RIGHT, TA_LEFT
 
 import os
 
-LOGO_PATH = r"C:\Users\HP\.gemini\antigravity\scratch\pps_logo.png"
+LOGO_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "pps_logo.png")
 
 def generate_pdf(quotation, filename):
     """

@@ -21,161 +21,11 @@
       "supply_risk": 0.1
     },
     "stock_recommendation": "Stock 10-15 days — peak season but costs manageable",
-    "timestamp": "04-03-2026 21:24 IST",
+    "timestamp": "05-03-2026 13:49 IST",
     "has_live_data": true
   },
   "history": [
     {
-      "timestamp": "04-03-2026 19:34 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 19:34 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 19:34 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 20:53 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 20:53 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 20:55 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 20:55 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:01 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:01 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:02 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:02 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:02 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:02 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:02 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:02 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:02 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:02 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:02 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:02 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:02 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:02 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:02 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:02 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:02 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:03 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:03 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:03 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:03 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:03 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:03 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
       "timestamp": "04-03-2026 21:03 IST",
       "urgency_index": 58,
       "recommendation": "HOLD"
@@ -232,6 +82,396 @@
     },
     {
       "timestamp": "04-03-2026 21:24 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "04-03-2026 21:58 IST",
+      "urgency_index": 74,
+      "recommendation": "PRE-BUY"
+    },
+    {
+      "timestamp": "04-03-2026 21:58 IST",
+      "urgency_index": 74,
+      "recommendation": "PRE-BUY"
+    },
+    {
+      "timestamp": "04-03-2026 21:58 IST",
+      "urgency_index": 74,
+      "recommendation": "PRE-BUY"
+    },
+    {
+      "timestamp": "04-03-2026 22:34 IST",
+      "urgency_index": 74,
+      "recommendation": "PRE-BUY"
+    },
+    {
+      "timestamp": "04-03-2026 22:34 IST",
+      "urgency_index": 74,
+      "recommendation": "PRE-BUY"
+    },
+    {
+      "timestamp": "04-03-2026 22:34 IST",
+      "urgency_index": 74,
+      "recommendation": "PRE-BUY"
+    },
+    {
+      "timestamp": "05-03-2026 08:19 IST",
+      "urgency_index": 74,
+      "recommendation": "PRE-BUY"
+    },
+    {
+      "timestamp": "05-03-2026 08:19 IST",
+      "urgency_index": 74,
+      "recommendation": "PRE-BUY"
+    },
+    {
+      "timestamp": "05-03-2026 08:19 IST",
+      "urgency_index": 74,
+      "recommendation": "PRE-BUY"
+    },
+    {
+      "timestamp": "05-03-2026 08:20 IST",
+      "urgency_index": 74,
+      "recommendation": "PRE-BUY"
+    },
+    {
+      "timestamp": "05-03-2026 08:20 IST",
+      "urgency_index": 74,
+      "recommendation": "PRE-BUY"
+    },
+    {
+      "timestamp": "05-03-2026 08:20 IST",
+      "urgency_index": 74,
+      "recommendation": "PRE-BUY"
+    },
+    {
+      "timestamp": "05-03-2026 08:51 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 08:51 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 08:51 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 10:02 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 10:02 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 10:02 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 10:12 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 10:12 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 10:12 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 10:12 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 10:12 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 10:12 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 10:41 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 10:41 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 10:41 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 11:06 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 11:06 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 11:07 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 11:16 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 11:16 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 11:17 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 11:18 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 11:18 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 11:18 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 11:38 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 11:38 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 11:39 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 11:50 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 11:50 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 11:50 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 12:12 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 12:12 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 12:12 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 12:14 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 12:14 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 12:14 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 12:23 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 12:23 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 12:23 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 12:24 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 12:24 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 12:24 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 12:42 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 12:42 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 12:42 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 12:50 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 12:50 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 12:50 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 12:52 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 12:52 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 12:52 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 13:23 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 13:23 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 13:23 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 13:23 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 13:23 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 13:23 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 13:35 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 13:35 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 13:35 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 13:36 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 13:36 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 13:36 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 13:49 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 13:49 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 13:49 IST",
       "urgency_index": 58,
       "recommendation": "HOLD"
     }

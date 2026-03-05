@@ -175,14 +175,23 @@ def save_api_key(key: str) -> None:
 # ══════════════════════════════════════════════════════════════════════════════
 
 def build_system_prompt(role: str = "Admin") -> str:
-    """Build the full system prompt with live context injected."""
+    """Build the full system prompt with live context + business knowledge injected."""
     from ai_data_layer import build_context_json
     ts_ist      = datetime.datetime.now().strftime("%d-%m-%Y %H:%M IST")
     context_json = build_context_json(role)
+
+    # Inject PACPL business context
+    biz_ctx = ""
+    try:
+        from business_context import get_business_context
+        biz_ctx = "\n\nBUSINESS KNOWLEDGE:\n" + get_business_context("general")
+    except Exception:
+        pass
+
     return _SYSTEM_PROMPT_TEMPLATE.format(
         role=role,
         ts_ist=ts_ist,
-        context_json=context_json,
+        context_json=context_json + biz_ctx,
     )
 
 

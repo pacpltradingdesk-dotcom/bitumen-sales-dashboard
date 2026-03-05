@@ -843,6 +843,92 @@ _TABLES = {
             delivered_at    TEXT
         );
     """,
+
+    # ── CRM Automation Tables (Phase 6) ────────────────────────────────────
+
+    "contacts": """
+        CREATE TABLE IF NOT EXISTS contacts (
+            id                  INTEGER PRIMARY KEY AUTOINCREMENT,
+            name                TEXT NOT NULL,
+            company_name        TEXT,
+            contact_type        TEXT NOT NULL DEFAULT 'prospect',
+            category            TEXT,
+            buyer_seller_tag    TEXT DEFAULT 'unknown',
+            city                TEXT,
+            state               TEXT,
+            mobile1             TEXT,
+            mobile2             TEXT,
+            email               TEXT,
+            gstin               TEXT,
+            pan                 TEXT,
+            address             TEXT,
+            pincode             TEXT,
+            products_dealt      TEXT,
+            preferred_language  TEXT DEFAULT 'en',
+            whatsapp_opted_in   INTEGER DEFAULT 0,
+            email_opted_in      INTEGER DEFAULT 1,
+            last_contact_date   TEXT,
+            last_contact_channel TEXT,
+            next_rotation_date  TEXT,
+            rotation_priority   REAL DEFAULT 0.0,
+            relationship_score  REAL DEFAULT 0.0,
+            lifetime_value_inr  REAL DEFAULT 0.0,
+            contact_frequency   INTEGER DEFAULT 0,
+            source              TEXT,
+            customer_id         INTEGER,
+            supplier_id         INTEGER,
+            is_active           INTEGER DEFAULT 1,
+            notes               TEXT,
+            created_at          TEXT,
+            updated_at          TEXT,
+            FOREIGN KEY (customer_id) REFERENCES customers(id),
+            FOREIGN KEY (supplier_id) REFERENCES suppliers(id)
+        );
+    """,
+
+    "contact_rotation_log": """
+        CREATE TABLE IF NOT EXISTS contact_rotation_log (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            contact_id      INTEGER NOT NULL,
+            rotation_date   TEXT NOT NULL,
+            channel         TEXT,
+            status          TEXT DEFAULT 'pending',
+            message_type    TEXT,
+            error_message   TEXT,
+            created_at      TEXT,
+            FOREIGN KEY (contact_id) REFERENCES contacts(id)
+        );
+    """,
+
+    "festival_broadcasts": """
+        CREATE TABLE IF NOT EXISTS festival_broadcasts (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            festival_name   TEXT NOT NULL,
+            festival_date   TEXT NOT NULL,
+            broadcast_status TEXT DEFAULT 'scheduled',
+            total_contacts  INTEGER DEFAULT 0,
+            sent_whatsapp   INTEGER DEFAULT 0,
+            sent_email      INTEGER DEFAULT 0,
+            failed_count    INTEGER DEFAULT 0,
+            started_at      TEXT,
+            completed_at    TEXT,
+            created_at      TEXT
+        );
+    """,
+
+    "price_update_log": """
+        CREATE TABLE IF NOT EXISTS price_update_log (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            price_key       TEXT NOT NULL,
+            old_value       REAL,
+            new_value       REAL,
+            change_pct      REAL,
+            changed_by      TEXT DEFAULT 'system',
+            broadcast_sent  INTEGER DEFAULT 0,
+            broadcast_id    TEXT,
+            created_at      TEXT
+        );
+    """,
 }
 
 # Indexes for common query patterns
@@ -900,6 +986,25 @@ _INDEXES = [
     # Transporter indexes
     "CREATE INDEX IF NOT EXISTS idx_transporters_active     ON transporters(is_active);",
     "CREATE INDEX IF NOT EXISTS idx_transporters_city       ON transporters(city);",
+    # CRM Automation indexes (contacts)
+    "CREATE INDEX IF NOT EXISTS idx_contacts_type           ON contacts(contact_type);",
+    "CREATE INDEX IF NOT EXISTS idx_contacts_category       ON contacts(category);",
+    "CREATE INDEX IF NOT EXISTS idx_contacts_city           ON contacts(city);",
+    "CREATE INDEX IF NOT EXISTS idx_contacts_state          ON contacts(state);",
+    "CREATE INDEX IF NOT EXISTS idx_contacts_buyer_seller   ON contacts(buyer_seller_tag);",
+    "CREATE INDEX IF NOT EXISTS idx_contacts_rotation       ON contacts(next_rotation_date);",
+    "CREATE INDEX IF NOT EXISTS idx_contacts_mobile         ON contacts(mobile1);",
+    "CREATE INDEX IF NOT EXISTS idx_contacts_email          ON contacts(email);",
+    "CREATE INDEX IF NOT EXISTS idx_contacts_active         ON contacts(is_active);",
+    "CREATE INDEX IF NOT EXISTS idx_contacts_wa_optin       ON contacts(whatsapp_opted_in);",
+    "CREATE INDEX IF NOT EXISTS idx_contacts_last_contact   ON contacts(last_contact_date);",
+    "CREATE INDEX IF NOT EXISTS idx_rotation_log_contact    ON contact_rotation_log(contact_id);",
+    "CREATE INDEX IF NOT EXISTS idx_rotation_log_date       ON contact_rotation_log(rotation_date);",
+    "CREATE INDEX IF NOT EXISTS idx_rotation_log_status     ON contact_rotation_log(status);",
+    "CREATE INDEX IF NOT EXISTS idx_festival_bc_date        ON festival_broadcasts(festival_date);",
+    "CREATE INDEX IF NOT EXISTS idx_festival_bc_status      ON festival_broadcasts(broadcast_status);",
+    "CREATE INDEX IF NOT EXISTS idx_price_log_key           ON price_update_log(price_key);",
+    "CREATE INDEX IF NOT EXISTS idx_price_log_created       ON price_update_log(created_at);",
     # Document Management indexes
     "CREATE INDEX IF NOT EXISTS idx_po_supplier             ON purchase_orders(supplier_id);",
     "CREATE INDEX IF NOT EXISTS idx_po_deal                 ON purchase_orders(deal_id);",
@@ -984,6 +1089,8 @@ def _run_schema_migrations():
             (3, "Add crm_tasks table", _migration_003_crm_tasks),
             (4, "Seed company_master, bank_master, terms_master", _migration_004_seed_company_data),
             (5, "Add transporters + payment_orders columns + seed new clauses", _migration_005_transporters_and_payment_cols),
+            (6, "Add CRM automation tables: contacts, rotation log, festival, price log", _migration_006_crm_automation),
+            (7, "Add VIP scoring, DPDP consent columns, sms_queue table", _migration_007_vip_and_sms),
         ]
 
         for version, desc, migration_fn in migrations:
@@ -1188,6 +1295,50 @@ def _migration_005_transporters_and_payment_cols(cur):
                 )
 
 
+def _migration_006_crm_automation(cur):
+    """Add CRM automation tables: contacts, rotation log, festival, price log.
+    Tables are created by _TABLES dict in init_db(), so this migration just
+    ensures any future ALTER TABLE needs are handled."""
+    pass  # Tables auto-created via _TABLES dict; migration placeholder for tracking
+
+
+def _migration_007_vip_and_sms(cur):
+    """Add VIP scoring columns to contacts, DPDP consent fields, sms_queue table."""
+    # --- VIP scoring columns on contacts ---
+    _safe_add_column(cur, "contacts", "vip_score", "REAL DEFAULT 0")
+    _safe_add_column(cur, "contacts", "vip_tier", "TEXT DEFAULT 'standard'")
+
+    # --- DPDP compliance columns ---
+    _safe_add_column(cur, "contacts", "consent_timestamp", "TEXT")
+    _safe_add_column(cur, "contacts", "unsubscribe_token", "TEXT")
+    _safe_add_column(cur, "contacts", "sms_opted_in", "INTEGER DEFAULT 0")
+
+    # --- SMS Queue table ---
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS sms_queue (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            to_number       TEXT NOT NULL,
+            message         TEXT NOT NULL,
+            sms_type        TEXT DEFAULT 'transactional',
+            status          TEXT DEFAULT 'pending',
+            scheduled_time  TEXT,
+            sent_at         TEXT,
+            error_message   TEXT,
+            retry_count     INTEGER DEFAULT 0,
+            created_at      TEXT DEFAULT (datetime('now'))
+        )
+    """)
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_sms_queue_status ON sms_queue(status)")
+
+
+def _safe_add_column(cur, table: str, column: str, col_def: str):
+    """Add column if it doesn't already exist (SQLite has no IF NOT EXISTS for ALTER)."""
+    try:
+        cur.execute(f"ALTER TABLE {table} ADD COLUMN {column} {col_def}")
+    except Exception:
+        pass  # Column already exists
+
+
 # ═══════════════════════════════════════════════════════════════════════════
 # GENERIC HELPERS (private)
 # ═══════════════════════════════════════════════════════════════════════════
@@ -1203,6 +1354,10 @@ _VALID_TABLES = {
     "company_master", "bank_master", "terms_master",
     "purchase_orders", "sales_orders", "payment_orders", "_doc_counters",
     "transporters",
+    # CRM Automation tables (Phase 6)
+    "contacts", "contact_rotation_log", "festival_broadcasts", "price_update_log",
+    # SMS queue (Phase 7)
+    "sms_queue",
 }
 
 import re
@@ -3197,6 +3352,247 @@ def update_transporter(transporter_id: int, data: dict):
 
 # ═══════════════════════════════════════════════════════════════════════════
 # CONVENIENCE: Run init when executed directly
+# ═══════════════════════════════════════════════════════════════════════════
+# CONTACTS — Unified 24K Contact Database
+# ═══════════════════════════════════════════════════════════════════════════
+
+def insert_contact(data: dict) -> int:
+    """Insert a new contact. Returns contact id."""
+    data = dict(data)
+    data.setdefault("created_at", _now_ist())
+    data.setdefault("updated_at", _now_ist())
+    return _insert_row("contacts", data)
+
+
+def upsert_contact(data: dict) -> int:
+    """Insert or update contact by mobile1. Returns contact id."""
+    mobile = data.get("mobile1", "").strip()
+    if not mobile:
+        return insert_contact(data)
+    conn = _get_conn()
+    try:
+        row = conn.execute(
+            "SELECT id FROM contacts WHERE mobile1 = ?", (mobile,)
+        ).fetchone()
+        if row:
+            rid = row["id"]
+            data["updated_at"] = _now_ist()
+            _update_row("contacts", rid, data)
+            return rid
+        else:
+            return insert_contact(data)
+    finally:
+        conn.close()
+
+
+def get_all_contacts(contact_type: str = None, category: str = None,
+                     buyer_seller: str = None, state: str = None,
+                     active_only: bool = True, limit: int = 5000,
+                     offset: int = 0) -> list:
+    """Return contacts, optionally filtered."""
+    conn = _get_conn()
+    try:
+        clauses = []
+        params = []
+        if active_only:
+            clauses.append("is_active = 1")
+        if contact_type:
+            clauses.append("contact_type = ?")
+            params.append(contact_type)
+        if category:
+            clauses.append("category = ?")
+            params.append(category)
+        if buyer_seller:
+            clauses.append("buyer_seller_tag = ?")
+            params.append(buyer_seller)
+        if state:
+            clauses.append("state = ?")
+            params.append(state)
+        where = (" WHERE " + " AND ".join(clauses)) if clauses else ""
+        sql = f"SELECT * FROM contacts{where} ORDER BY rotation_priority DESC, name ASC LIMIT ? OFFSET ?"
+        params.extend([limit, offset])
+        rows = conn.execute(sql, params).fetchall()
+        return _rows_to_list(rows)
+    finally:
+        conn.close()
+
+
+def get_contacts_for_rotation(limit: int = 2400, min_gap_days: int = 7) -> list:
+    """Get contacts due for rotation — not contacted in min_gap_days, sorted by priority."""
+    conn = _get_conn()
+    try:
+        cutoff = (datetime.now(IST) - timedelta(days=min_gap_days)).strftime("%Y-%m-%d %H:%M:%S")
+        rows = conn.execute(
+            """SELECT * FROM contacts
+               WHERE is_active = 1
+                 AND (last_contact_date IS NULL OR last_contact_date < ?)
+               ORDER BY rotation_priority DESC, last_contact_date ASC NULLS FIRST
+               LIMIT ?""",
+            (cutoff, limit),
+        ).fetchall()
+        return _rows_to_list(rows)
+    finally:
+        conn.close()
+
+
+def get_contacts_for_broadcast(wa_only: bool = False, email_only: bool = False) -> list:
+    """Get all active contacts for broadcast (festival/price)."""
+    conn = _get_conn()
+    try:
+        clauses = ["is_active = 1"]
+        if wa_only:
+            clauses.append("whatsapp_opted_in = 1 AND mobile1 IS NOT NULL AND mobile1 != ''")
+        if email_only:
+            clauses.append("email_opted_in = 1 AND email IS NOT NULL AND email != ''")
+        where = " WHERE " + " AND ".join(clauses)
+        rows = conn.execute(f"SELECT * FROM contacts{where} ORDER BY name").fetchall()
+        return _rows_to_list(rows)
+    finally:
+        conn.close()
+
+
+def update_contact_last_contacted(contact_id: int, channel: str = "whatsapp"):
+    """Update last_contact_date and increment contact_frequency."""
+    now = _now_ist()
+    conn = _get_conn()
+    try:
+        conn.execute(
+            """UPDATE contacts
+               SET last_contact_date = ?, last_contact_channel = ?,
+                   contact_frequency = contact_frequency + 1, updated_at = ?
+               WHERE id = ?""",
+            (now, channel, now, contact_id),
+        )
+        conn.commit()
+    finally:
+        conn.close()
+
+
+def get_contacts_count() -> dict:
+    """Return counts: total, by type, by category, opted_in stats."""
+    conn = _get_conn()
+    try:
+        total = conn.execute("SELECT COUNT(*) AS c FROM contacts WHERE is_active = 1").fetchone()["c"]
+        by_type = {}
+        for row in conn.execute(
+            "SELECT contact_type, COUNT(*) AS c FROM contacts WHERE is_active = 1 GROUP BY contact_type"
+        ).fetchall():
+            by_type[row["contact_type"]] = row["c"]
+        by_category = {}
+        for row in conn.execute(
+            "SELECT category, COUNT(*) AS c FROM contacts WHERE is_active = 1 GROUP BY category"
+        ).fetchall():
+            by_category[row["category"] or "Uncategorized"] = row["c"]
+        wa_opted = conn.execute(
+            "SELECT COUNT(*) AS c FROM contacts WHERE is_active = 1 AND whatsapp_opted_in = 1"
+        ).fetchone()["c"]
+        email_opted = conn.execute(
+            "SELECT COUNT(*) AS c FROM contacts WHERE is_active = 1 AND email_opted_in = 1"
+        ).fetchone()["c"]
+        return {
+            "total": total,
+            "by_type": by_type,
+            "by_category": by_category,
+            "whatsapp_opted_in": wa_opted,
+            "email_opted_in": email_opted,
+        }
+    finally:
+        conn.close()
+
+
+def search_contacts(query: str, limit: int = 50) -> list:
+    """Search contacts on name, company_name, city, mobile1, email."""
+    conn = _get_conn()
+    try:
+        q = f"%{query}%"
+        rows = conn.execute(
+            """SELECT * FROM contacts
+               WHERE is_active = 1 AND (
+                   name LIKE ? OR company_name LIKE ? OR city LIKE ?
+                   OR mobile1 LIKE ? OR email LIKE ? OR state LIKE ?
+               ) ORDER BY name LIMIT ?""",
+            (q, q, q, q, q, q, limit),
+        ).fetchall()
+        return _rows_to_list(rows)
+    finally:
+        conn.close()
+
+
+# ── Contact Rotation Log ─────────────────────────────────────────────────
+
+def insert_rotation_log(data: dict) -> int:
+    """Log a rotation outreach attempt."""
+    data = dict(data)
+    data.setdefault("created_at", _now_ist())
+    return _insert_row("contact_rotation_log", data)
+
+
+def get_rotation_stats(date: str) -> dict:
+    """Return stats for a rotation day: sent, pending, failed."""
+    conn = _get_conn()
+    try:
+        rows = conn.execute(
+            "SELECT status, COUNT(*) AS c FROM contact_rotation_log WHERE rotation_date = ? GROUP BY status",
+            (date,),
+        ).fetchall()
+        stats = {"sent": 0, "pending": 0, "failed": 0, "skipped": 0, "total": 0}
+        for r in rows:
+            stats[r["status"]] = r["c"]
+            stats["total"] += r["c"]
+        return stats
+    finally:
+        conn.close()
+
+
+# ── Festival Broadcasts ──────────────────────────────────────────────────
+
+def insert_festival_broadcast(data: dict) -> int:
+    """Create a festival broadcast record."""
+    data = dict(data)
+    data.setdefault("created_at", _now_ist())
+    return _insert_row("festival_broadcasts", data)
+
+
+def update_festival_broadcast(broadcast_id: int, data: dict):
+    """Update festival broadcast progress."""
+    _update_row("festival_broadcasts", broadcast_id, data)
+
+
+def get_festival_broadcasts(limit: int = 20) -> list:
+    """Get recent festival broadcasts."""
+    conn = _get_conn()
+    try:
+        rows = conn.execute(
+            "SELECT * FROM festival_broadcasts ORDER BY created_at DESC LIMIT ?",
+            (limit,),
+        ).fetchall()
+        return _rows_to_list(rows)
+    finally:
+        conn.close()
+
+
+# ── Price Update Log ─────────────────────────────────────────────────────
+
+def insert_price_update_log(data: dict) -> int:
+    """Log a price change."""
+    data = dict(data)
+    data.setdefault("created_at", _now_ist())
+    return _insert_row("price_update_log", data)
+
+
+def get_price_update_history(limit: int = 50) -> list:
+    """Get recent price updates."""
+    conn = _get_conn()
+    try:
+        rows = conn.execute(
+            "SELECT * FROM price_update_log ORDER BY created_at DESC LIMIT ?",
+            (limit,),
+        ).fetchall()
+        return _rows_to_list(rows)
+    finally:
+        conn.close()
+
+
 # ═══════════════════════════════════════════════════════════════════════════
 
 if __name__ == "__main__":

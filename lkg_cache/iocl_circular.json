@@ -1,0 +1,11 @@
+{
+  "source_key": "iocl_circular",
+  "data": {
+    "ok": true,
+    "connector_id": "iocl_circular",
+    "records": 1
+  },
+  "original_confidence": 85,
+  "saved_at": "05-03-2026 08:44:03 IST",
+  "saved_epoch": 1772680443.9039752
+}

@@ -1,25 +1,318 @@
 {
   "weather_mumbai": {
-    "timestamp": 1772637979.6677034,
+    "timestamp": 1772698916.4936516,
     "data": {
-      "current": 28.8,
-      "history_7d": 28.8
+      "current": 29.1,
+      "history_7d": 29.1
     },
     "source": "Primary fetch"
   },
   "weather_mangalore": {
-    "timestamp": 1772638053.8456068,
+    "timestamp": 1772698919.9080703,
     "data": {
-      "current": 28.6,
-      "history_7d": 28.6
+      "current": 28.4,
+      "history_7d": 28.4
     },
     "source": "Primary fetch"
   },
   "weather_delhi": {
-    "timestamp": 1772638107.3509905,
+    "timestamp": 1772698921.4568477,
     "data": {
-      "current": 25.0,
-      "history_7d": 25.0
+      "current": 31.9,
+      "history_7d": 31.9
+    },
+    "source": "Primary fetch"
+  },
+  "brent": {
+    "timestamp": 1772698911.2289248,
+    "data": {
+      "current": 83.98999786376953,
+      "history_7d": 70.75
+    },
+    "source": "Primary fetch"
+  },
+  "usdinr": {
+    "timestamp": 1772698907.8071492,
+    "data": {
+      "current": 92.10340058,
+      "history_7d": 90.91799926757812
+    },
+    "source": "Primary fetch"
+  },
+  "india_vix": {
+    "timestamp": 1772698914.5198944,
+    "data": {
+      "current": 18.770000457763672,
+      "history_7d": 14.149999618530273
+    },
+    "source": "Primary fetch"
+  },
+  "usdinr_frankfurter": {
+    "timestamp": 1772698909.3925238,
+    "data": {
+      "current": 92.09,
+      "history_7d": 92.09
+    },
+    "source": "Primary fetch"
+  },
+  "wti": {
+    "timestamp": 1772698911.6668413,
+    "data": {
+      "current": 77.30000305175781,
+      "history_7d": 65.20999908447266
+    },
+    "source": "Primary fetch"
+  },
+  "natural_gas": {
+    "timestamp": 1772698912.136275,
+    "data": {
+      "current": 2.9839999675750732,
+      "history_7d": 2.8269999027252197
+    },
+    "source": "Primary fetch"
+  },
+  "dxy": {
+    "timestamp": 1772698913.0844996,
+    "data": {
+      "current": 99.14299774169922,
+      "history_7d": 97.79000091552734
+    },
+    "source": "Primary fetch"
+  },
+  "nifty50": {
+    "timestamp": 1772698913.5510707,
+    "data": {
+      "current": 24606.69921875,
+      "history_7d": 25424.650390625
+    },
+    "source": "Primary fetch"
+  },
+  "sensex": {
+    "timestamp": 1772698914.043675,
+    "data": {
+      "current": 79482.9296875,
+      "history_7d": 82225.921875
+    },
+    "source": "Primary fetch"
+  },
+  "gold_xau": {
+    "timestamp": 1772698914.9559443,
+    "data": {
+      "current": 5174.22387935,
+      "history_7d": 5176.5
+    },
+    "source": "Primary fetch"
+  },
+  "weather_kandla": {
+    "timestamp": 1772698918.2589731,
+    "data": {
+      "current": 32.0,
+      "history_7d": 32.0
+    },
+    "source": "Primary fetch"
+  },
+  "world_bank_india_gdp": {
+    "timestamp": 1772698924.5021038,
+    "data": {
+      "current": 6.49476552383821,
+      "year": "2024",
+      "country": "India"
+    },
+    "source": "Primary fetch"
+  },
+  "world_bank_india_infra": {
+    "timestamp": 1772698925.894362,
+    "data": {
+      "current": 7.06298735847362,
+      "year": "2024",
+      "country": "India"
+    },
+    "source": "Primary fetch"
+  },
+  "world_bank_cpi_india": {
+    "timestamp": 1772698927.1875412,
+    "data": {
+      "current": 4.95303550973656,
+      "year": "2024",
+      "country": "India"
+    },
+    "source": "Primary fetch"
+  },
+  "opec_basket": {
+    "timestamp": 1772698928.507901,
+    "data": {
+      "current": 84.04000091552734,
+      "history_7d": 70.75
+    },
+    "source": "Primary fetch"
+  },
+  "shipping_freight": {
+    "timestamp": 1772698928.9482949,
+    "data": {
+      "current": 11.90999984741211,
+      "history_7d": 11.869999885559082
+    },
+    "source": "Primary fetch"
+  },
+  "nse_infrastructure": {
+    "timestamp": 1772698929.4082026,
+    "data": {
+      "current": 1299.199951171875,
+      "history_7d": 1275.5
+    },
+    "source": "Primary fetch"
+  },
+  "open_meteo_forecast_vadodara": {
+    "timestamp": 1772698929.8741927,
+    "data": {
+      "current": 38.7,
+      "forecast_7d": [
+        [
+          "2026-03-05",
+          38.7,
+          0.0
+        ],
+        [
+          "2026-03-06",
+          36.5,
+          0.0
+        ],
+        [
+          "2026-03-07",
+          38.1,
+          0.0
+        ],
+        [
+          "2026-03-08",
+          40.4,
+          0.0
+        ],
+        [
+          "2026-03-09",
+          41.2,
+          0.0
+        ],
+        [
+          "2026-03-10",
+          41.6,
+          0.0
+        ],
+        [
+          "2026-03-11",
+          41.4,
+          0.0
+        ]
+      ]
+    },
+    "source": "Primary fetch"
+  },
+  "govt_holiday_api": {
+    "timestamp": 1772698931.335055,
+    "data": {
+      "current": 18,
+      "holidays": [
+        {
+          "date": "2026-01-01",
+          "name": "New Year's Day"
+        },
+        {
+          "date": "2026-01-14",
+          "name": "Makar Sankranti"
+        },
+        {
+          "date": "2026-01-26",
+          "name": "Republic Day"
+        },
+        {
+          "date": "2026-03-03",
+          "name": "Holi"
+        },
+        {
+          "date": "2026-04-02",
+          "name": "Ram Navami"
+        },
+        {
+          "date": "2026-04-03",
+          "name": "Good Friday"
+        },
+        {
+          "date": "2026-04-14",
+          "name": "Dr. Ambedkar Jayanti / Baisakhi"
+        },
+        {
+          "date": "2026-05-01",
+          "name": "Maharashtra Day / Labour Day"
+        },
+        {
+          "date": "2026-06-08",
+          "name": "Eid al-Adha (Bakrid)"
+        },
+        {
+          "date": "2026-07-06",
+          "name": "Muharram"
+        },
+        {
+          "date": "2026-08-15",
+          "name": "Independence Day"
+        },
+        {
+          "date": "2026-08-25",
+          "name": "Janmashtami"
+        },
+        {
+          "date": "2026-09-14",
+          "name": "Milad-un-Nabi (Prophet's Birthday)"
+        },
+        {
+          "date": "2026-10-02",
+          "name": "Gandhi Jayanti / Dussehra"
+        },
+        {
+          "date": "2026-10-20",
+          "name": "Diwali (Lakshmi Puja)"
+        },
+        {
+          "date": "2026-11-04",
+          "name": "Guru Nanak Jayanti"
+        },
+        {
+          "date": "2026-11-14",
+          "name": "Children's Day"
+        },
+        {
+          "date": "2026-12-25",
+          "name": "Christmas Day"
+        }
+      ]
+    },
+    "source": "Primary fetch"
+  },
+  "rest_countries_india": {
+    "timestamp": 1772698931.4721937,
+    "data": {
+      "current": 1417492000,
+      "name": "India",
+      "capital": "New Delhi",
+      "area": 3287263.0,
+      "region": "Asia",
+      "currencies": [
+        "INR"
+      ]
+    },
+    "source": "Primary fetch"
+  },
+  "current_time": {
+    "timestamp": 1772698933.1855953,
+    "data": {
+      "current": "13:52"
+    },
+    "source": "Primary fetch"
+  },
+  "fuel_oil": {
+    "timestamp": 1772698912.5969436,
+    "data": {
+      "current": 3.4939000606536865,
+      "history_7d": 2.612499952316284
     },
     "source": "Primary fetch"
   }

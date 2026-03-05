@@ -1116,6 +1116,14 @@ from sales_calendar import (
 # --- LIVE MARKET DATA (AUTO-TICKER) ---
 from market_data import get_live_market_data, get_simulated_data
 
+# Initialize ticker speed from settings (used by news_ticker + market_ticker)
+if "_ticker_speed" not in st.session_state:
+    try:
+        from settings_engine import load_settings as _ld_spd
+        st.session_state["_ticker_speed"] = _ld_spd().get("ticker_speed", 600)
+    except Exception:
+        st.session_state["_ticker_speed"] = 600
+
 # API toggle — read from session_state so the widget can live at sidebar bottom
 api_active = st.session_state.get("_api_toggle_v3", False)
 
@@ -3677,8 +3685,41 @@ elif selected_page == "⚙️ Settings":
         except Exception as _se:
             st.caption(f"Settings engine unavailable: {_se}")
 
+    with st.expander("📊 Display & Tickers", expanded=False):
+        st.caption("Control the scroll speed of the 6 news and market ticker rows on the homepage.")
+        try:
+            from settings_engine import load_settings as _ld_ts, save_settings as _sv_ts
+            _ts_sett = _ld_ts()
+        except Exception:
+            _ts_sett = {}
+        _current_speed = _ts_sett.get("ticker_speed", 600)
+        _tc1, _tc2 = st.columns([3, 1])
+        with _tc1:
+            _new_speed = st.slider(
+                "Ticker Scroll Speed (seconds per full cycle)",
+                min_value=60, max_value=1200, value=int(_current_speed), step=30,
+                help="Lower = faster scroll. 60s = fast, 600s = default, 1200s = very slow",
+                key="set_ticker_speed",
+            )
+        with _tc2:
+            if _new_speed <= 120:
+                st.metric("Speed", "Fast")
+            elif _new_speed <= 600:
+                st.metric("Speed", "Normal")
+            else:
+                st.metric("Speed", "Slow")
+        if _new_speed != _current_speed:
+            st.session_state["_ticker_speed"] = _new_speed
+            _ts_sett["ticker_speed"] = _new_speed
+            try:
+                _sv_ts(_ts_sett)
+            except Exception:
+                pass
+        else:
+            st.session_state["_ticker_speed"] = _current_speed
+
     st.divider()
-    
+
     st.subheader("🧠 Smart Logic Rules")
     st.write("Configure how the system reacts to market changes.")
     
@@ -4674,6 +4715,14 @@ elif selected_page == "🤝 Negotiation Assistant":
 
     except Exception as _e:
         st.error(f"Negotiation Assistant failed to load: {_e}")
+
+elif selected_page == "🤖 CRM Automation":
+    _render_page_header("🤖 CRM Automation", "Sales & Revenue", badge="AI-Powered")
+    try:
+        from command_intel.crm_automation_dashboard import render_crm_automation
+        render_crm_automation()
+    except Exception as _e:
+        st.error(f"CRM Automation failed to load: {_e}")
 
 elif selected_page == "💬 Communication Hub":
     _render_page_header("💬 Communication Hub", "Sales & CRM", badge="Templates")

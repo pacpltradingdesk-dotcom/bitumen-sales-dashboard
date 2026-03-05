@@ -30,8 +30,10 @@ BASE_DIR = Path(__file__).parent
 # ─── Category & Destination constants ────────────────────────────────────────
 
 CATEGORY_TYPES = [
-    "Importer", "Exporter", "Trader", "Contractor",
-    "Govt Officer", "Transporter", "CHA", "Commission Agent",
+    "Importer", "Exporter", "Trader", "Dealer",
+    "Decanter Unit", "Commission Agent",
+    "Truck Transporter", "Tanker Transporter",
+    "Contractor", "Govt Officer", "CHA",
 ]
 
 DESTINATION_OPTIONS = [
@@ -51,6 +53,7 @@ CONTACT_SCHEMA: dict = {
     "contact_id":       "",
     "import_batch":     "",
     "category_type":    "",
+    "buyer_seller_tag": "unknown",  # buyer / seller / both / unknown
     "company_name":     "",
     "person_name":      "",
     "mobile1":          "",
@@ -408,18 +411,43 @@ def extract_contacts_rules(raw_text: str, category_type: str) -> list[dict]:
 
 def check_duplicates(new_contacts: list[dict]) -> list[dict]:
     """
-    Compare new contacts against tbl_contacts.json.
+    Compare new contacts against SQLite contacts table (fallback: tbl_contacts.json).
     Sets duplicate_status: 'new' / 'possible_duplicate' / 'confirmed_dup'.
     """
-    try:
-        existing = NormalizedTables.get_contacts()
-    except Exception:
-        existing = []
+    # Try SQLite first
+    ex_mobiles: set[str] = set()
+    ex_emails: set[str] = set()
+    ex_gstins: set[str] = set()
 
-    # Build lookup sets from existing
-    ex_mobiles = {r.get("mobile1", "").strip() for r in existing if r.get("mobile1")}
-    ex_emails  = {r.get("email1", "").strip().lower() for r in existing if r.get("email1")}
-    ex_gstins  = {r.get("gstin", "").strip() for r in existing if r.get("gstin")}
+    try:
+        from database import get_all_contacts
+        existing = get_all_contacts(active_only=False)
+        for r in existing:
+            m = (r.get("mobile1") or "").strip()
+            if m:
+                ex_mobiles.add(m)
+            e = (r.get("email") or "").strip().lower()
+            if e:
+                ex_emails.add(e)
+            g = (r.get("gstin") or "").strip()
+            if g:
+                ex_gstins.add(g)
+    except Exception:
+        # Fallback to JSON
+        try:
+            existing = NormalizedTables.get_contacts()
+            for r in existing:
+                m = (r.get("mobile1") or "").strip()
+                if m:
+                    ex_mobiles.add(m)
+                e = (r.get("email1") or r.get("email") or "").strip().lower()
+                if e:
+                    ex_emails.add(e)
+                g = (r.get("gstin") or "").strip()
+                if g:
+                    ex_gstins.add(g)
+        except Exception:
+            pass
 
     result: list[dict] = []
     for c in new_contacts:
@@ -480,8 +508,8 @@ def save_contacts(contacts: list[dict], destination: str,
         saved, errors = _save_to_directory(contacts, destination)
 
     else:
-        # Port Contacts / Govt Contacts / Logistics Contacts → tbl_contacts.json
-        saved, errors = _save_to_tbl_contacts(contacts)
+        # Port Contacts / Govt Contacts / Logistics Contacts → SQLite contacts table
+        saved, errors = _save_to_sqlite_contacts(contacts)
 
     # Log to import history
     _log_batch(contacts, destination, source_file, saved, errors)
@@ -556,7 +584,44 @@ def _save_to_directory(contacts: list[dict], destination: str) -> tuple[int, lis
         return 0, [str(e)]
 
 
-def _save_to_tbl_contacts(contacts: list[dict]) -> tuple[int, list]:
+def _save_to_sqlite_contacts(contacts: list[dict]) -> tuple[int, list]:
+    """Save contacts to SQLite contacts table. Falls back to JSON on error."""
+    try:
+        from database import upsert_contact
+        saved = 0
+        errors = []
+        for c in contacts:
+            try:
+                row = {
+                    "name": c.get("person_name") or c.get("company_name") or "Unknown",
+                    "company_name": c.get("company_name", ""),
+                    "contact_type": "prospect",
+                    "category": c.get("category_type", ""),
+                    "buyer_seller_tag": c.get("buyer_seller_tag", "unknown"),
+                    "city": c.get("city", ""),
+                    "state": c.get("state", ""),
+                    "address": c.get("address", ""),
+                    "pincode": c.get("pincode", ""),
+                    "mobile1": c.get("mobile1", ""),
+                    "mobile2": c.get("mobile2", ""),
+                    "email": c.get("email1", ""),
+                    "gstin": c.get("gstin", ""),
+                    "pan": c.get("pan", ""),
+                    "source": c.get("source_file", "importer"),
+                    "notes": c.get("notes", ""),
+                    "is_active": 1,
+                }
+                upsert_contact(row)
+                saved += 1
+            except Exception as e:
+                errors.append(f"{c.get('person_name', '?')}: {e}")
+        return saved, errors
+    except ImportError:
+        return _save_to_tbl_contacts_json(contacts)
+
+
+def _save_to_tbl_contacts_json(contacts: list[dict]) -> tuple[int, list]:
+    """Fallback: save to tbl_contacts.json."""
     try:
         existing = NormalizedTables.get_contacts()
     except Exception:

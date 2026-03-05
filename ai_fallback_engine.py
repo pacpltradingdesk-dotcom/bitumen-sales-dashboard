@@ -50,6 +50,16 @@ GPT4ALL_MODEL       = "Phi-3-mini-4k-instruct.Q4_0.gguf"
 OPENAI_MODEL        = "gpt-4o-mini"
 CLAUDE_MODEL        = "claude-haiku-4-5-20251001"
 
+# ── New FREE provider endpoints ───────────────────────────────────────────────
+GROQ_ENDPOINT       = "https://api.groq.com/openai/v1/chat/completions"
+GROQ_MODEL          = "llama-3.3-70b-versatile"
+GEMINI_ENDPOINT     = "https://generativelanguage.googleapis.com/v1beta/models"
+GEMINI_MODEL        = "gemini-2.0-flash"
+MISTRAL_ENDPOINT    = "https://api.mistral.ai/v1/chat/completions"
+MISTRAL_MODEL       = "mistral-small-latest"
+DEEPSEEK_ENDPOINT   = "https://api.deepseek.com/v1/chat/completions"
+DEEPSEEK_MODEL      = "deepseek-chat"
+
 # Ollama model options — user can choose via UI
 OLLAMA_MODELS = ["llama3", "mistral", "mixtral", "llama3:70b"]
 OLLAMA_DEFAULT_MODEL = "llama3"
@@ -100,6 +110,67 @@ PROVIDER_CHAIN: list[dict] = [
         "cfg_key":     "",
         "install_cmd": "pip install gpt4all",
         "setup_note":  "First run downloads ~2 GB model automatically to ~/.cache/gpt4all/",
+    },
+    # ── FREE CLOUD PROVIDERS (API key required but FREE tier) ─────────────────
+    {
+        "id":          "groq",
+        "name":        "Groq Llama-3.3-70B",
+        "short":       "Groq",
+        "type":        "Free — Cloud (Speed)",
+        "cost":        "FREE",
+        "icon":        "⚡",
+        "pkg":         "urllib",
+        "needs_key":   True,
+        "env_key":     "GROQ_API_KEY",
+        "cfg_key":     "groq_api_key",
+        "install_cmd": "",
+        "setup_note":  "Get free key at: https://console.groq.com/keys",
+        "restricted":  False,
+    },
+    {
+        "id":          "gemini",
+        "name":        "Google Gemini 2.0 Flash",
+        "short":       "Gemini",
+        "type":        "Free — Cloud (Analysis)",
+        "cost":        "FREE",
+        "icon":        "💎",
+        "pkg":         "urllib",
+        "needs_key":   True,
+        "env_key":     "GEMINI_API_KEY",
+        "cfg_key":     "gemini_api_key",
+        "install_cmd": "",
+        "setup_note":  "Get free key at: https://aistudio.google.com/apikey",
+        "restricted":  False,
+    },
+    {
+        "id":          "mistral",
+        "name":        "Mistral Small",
+        "short":       "Mistral",
+        "type":        "Free — Cloud (EU-safe)",
+        "cost":        "FREE",
+        "icon":        "🌀",
+        "pkg":         "urllib",
+        "needs_key":   True,
+        "env_key":     "MISTRAL_API_KEY",
+        "cfg_key":     "mistral_api_key",
+        "install_cmd": "",
+        "setup_note":  "Get free key at: https://console.mistral.ai/api-keys",
+        "restricted":  False,
+    },
+    {
+        "id":          "deepseek",
+        "name":        "DeepSeek Chat",
+        "short":       "DeepSeek",
+        "type":        "Free — Cloud (Research ONLY)",
+        "cost":        "FREE",
+        "icon":        "🔬",
+        "pkg":         "urllib",
+        "needs_key":   True,
+        "env_key":     "DEEPSEEK_API_KEY",
+        "cfg_key":     "deepseek_api_key",
+        "install_cmd": "",
+        "setup_note":  "Get free key at: https://platform.deepseek.com/api_keys — RESEARCH ONLY, no customer data",
+        "restricted":  True,
     },
     # ── PAID PROVIDERS (only if user has API keys) ────────────────────────────
     {
@@ -226,14 +297,254 @@ def get_provider_status() -> list[dict]:
 # PROVIDER QUERY FUNCTIONS
 # ══════════════════════════════════════════════════════════════════════════════
 
-def _query_openai(question: str, context: str, key: str) -> str:
-    """Query OpenAI GPT-4o-mini. Tries SDK first, then falls back to requests.post."""
+def _get_business_ctx(scope: str = "general", segment: str = "") -> str:
+    """Load business context for AI prompt injection."""
+    try:
+        from business_context import get_business_context
+        return get_business_context(scope, segment=segment)
+    except Exception:
+        return ""
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# PII FILTER — Strips sensitive data before sending to restricted providers
+# ══════════════════════════════════════════════════════════════════════════════
+
+import re as _re
+import urllib.request as _urllib_req
+
+_PII_PATTERNS = [
+    (_re.compile(r"(\+?91[\s\-]?)?[6-9]\d[\s\-]?\d[\s\-]?\d[\s\-]?\d[\s\-]?\d[\s\-]?\d[\s\-]?\d[\s\-]?\d[\s\-]?\d"), "[PHONE]"),
+    (_re.compile(r"[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"), "[EMAIL]"),
+    (_re.compile(r"[A-Z]{5}\d{4}[A-Z]"), "[PAN]"),
+    (_re.compile(r"\d{2}[A-Z]{5}\d{4}[A-Z]\d[A-Z\d]{2}"), "[GSTIN]"),
+    (_re.compile(r"\b\d{4}\s?\d{4}\s?\d{4}\b"), "[AADHAAR]"),
+    (_re.compile(r"\b\d{6}\b"), "[PIN]"),
+]
+
+_CUSTOMER_NAMES_CACHE: list = []
+_CUSTOMER_NAMES_LOADED = False
+
+
+def _load_customer_names() -> list:
+    """Load customer/contact names from database (cached)."""
+    global _CUSTOMER_NAMES_CACHE, _CUSTOMER_NAMES_LOADED
+    if _CUSTOMER_NAMES_LOADED:
+        return _CUSTOMER_NAMES_CACHE
+    try:
+        from database import get_all_contacts
+        contacts = get_all_contacts()
+        _CUSTOMER_NAMES_CACHE = [
+            c.get("name", "") for c in contacts if c.get("name")
+        ]
+        _CUSTOMER_NAMES_LOADED = True
+    except Exception:
+        _CUSTOMER_NAMES_LOADED = True
+    return _CUSTOMER_NAMES_CACHE
+
+
+def _strip_pii(text: str) -> str:
+    """Replace PII patterns with placeholders. Used for restricted providers (DeepSeek)."""
+    if not text:
+        return text
+    result = text
+    for pattern, replacement in _PII_PATTERNS:
+        result = pattern.sub(replacement, result)
+    # Replace known customer names
+    for name in _load_customer_names():
+        if name and len(name) > 2 and name in result:
+            result = result.replace(name, "[CUSTOMER]")
+    return result
+
+
+def _pii_filter_enabled() -> bool:
+    """Check if PII filter is enabled in settings."""
+    try:
+        from settings_engine import load_settings
+        return load_settings().get("ai_deepseek_pii_filter", True)
+    except Exception:
+        return True
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# PROVIDER HEALTH TRACKING — Auto-disable/reenable based on success rate
+# ══════════════════════════════════════════════════════════════════════════════
+
+_HEALTH: dict = {}  # {pid: {"calls": [(ts, success, latency_ms)], "disabled_until": None}}
+
+
+def _init_health(pid: str):
+    """Initialize health tracking for a provider if not present."""
+    if pid not in _HEALTH:
+        _HEALTH[pid] = {"calls": [], "disabled_until": None}
+
+
+def _record_call(pid: str, success: bool, latency_ms: float = 0):
+    """Record a call result for health tracking."""
+    _init_health(pid)
+    import time as _time
+    with _lock:
+        calls = _HEALTH[pid]["calls"]
+        calls.append((_time.time(), success, latency_ms))
+        # Keep last 100 calls only
+        if len(calls) > 100:
+            _HEALTH[pid]["calls"] = calls[-100:]
+        # Auto-disable if >50% error in last 20 calls
+        recent = calls[-20:]
+        if len(recent) >= 5:
+            error_rate = sum(1 for _, s, _ in recent if not s) / len(recent)
+            try:
+                from settings_engine import load_settings
+                threshold = load_settings().get("ai_provider_auto_disable_threshold", 50) / 100
+            except Exception:
+                threshold = 0.5
+            if error_rate > threshold:
+                try:
+                    from settings_engine import load_settings
+                    cooldown_min = load_settings().get("ai_provider_cooldown_minutes", 15)
+                except Exception:
+                    cooldown_min = 15
+                _HEALTH[pid]["disabled_until"] = _time.time() + (cooldown_min * 60)
+                _log("auto_disabled", pid,
+                     f"Error rate {error_rate:.0%} > {threshold:.0%} — disabled for {cooldown_min}min")
+
+
+def _is_provider_disabled(pid: str) -> bool:
+    """Check if a provider is auto-disabled (reenables after cooldown)."""
+    _init_health(pid)
+    import time as _time
+    with _lock:
+        until = _HEALTH[pid].get("disabled_until")
+        if until is None:
+            return False
+        if _time.time() >= until:
+            _HEALTH[pid]["disabled_until"] = None
+            _log("auto_reenabled", pid, "Cooldown expired — provider re-enabled")
+            return False
+        return True
+
+
+def get_provider_health(pid: str = "") -> dict:
+    """Get health stats for one or all providers."""
+    import time as _time
+    if pid:
+        _init_health(pid)
+        with _lock:
+            calls = _HEALTH[pid]["calls"]
+            recent = calls[-20:] if calls else []
+            success_count = sum(1 for _, s, _ in recent if s)
+            total = len(recent)
+            avg_lat = sum(l for _, _, l in recent) / max(total, 1)
+            return {
+                "provider": pid,
+                "success_rate": round(success_count / max(total, 1) * 100, 1),
+                "avg_latency_ms": round(avg_lat, 0),
+                "total_calls": len(calls),
+                "is_disabled": _is_provider_disabled(pid),
+                "disabled_until": _HEALTH[pid].get("disabled_until"),
+            }
+    # All providers
+    result = {}
+    for p in PROVIDER_CHAIN:
+        result[p["id"]] = get_provider_health(p["id"])
+    return result
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# NEW PROVIDER QUERY FUNCTIONS — OpenAI-compatible + Gemini REST
+# ══════════════════════════════════════════════════════════════════════════════
+
+def _query_openai_compatible(question: str, context: str, key: str,
+                              endpoint: str, model: str) -> str:
+    """Generic OpenAI-format API caller using urllib (no extra packages)."""
+    biz = _get_business_ctx("general")
     messages = [
         {"role": "system", "content": (
-            "You are a Bitumen Sales Dashboard AI assistant for PPS Anantams Logistics. "
+            "You are a Bitumen Sales Dashboard AI assistant for PPS Anantam Capital Pvt Ltd. "
+            "Answer ONLY from the dashboard data provided. Use Indian number formatting "
+            "(Rs crore/lakh). Dates: DD-MM-YYYY. Be concise but complete.\n\n"
+            f"{biz}\n\n"
+            f"LIVE DASHBOARD DATA:\n{context[:4000]}"
+        )},
+        {"role": "user", "content": question},
+    ]
+    payload = json.dumps({
+        "model": model,
+        "messages": messages,
+        "max_tokens": MAX_TOKENS,
+        "temperature": 0.3,
+    }).encode("utf-8")
+
+    req = _urllib_req.Request(
+        endpoint,
+        data=payload,
+        headers={
+            "Authorization": f"Bearer {key}",
+            "Content-Type": "application/json",
+        },
+        method="POST",
+    )
+    with _urllib_req.urlopen(req, timeout=30) as resp:
+        result = json.loads(resp.read().decode("utf-8"))
+    return result["choices"][0]["message"]["content"].strip()
+
+
+def _query_groq(question: str, context: str, key: str) -> str:
+    """Query Groq (Llama-3.3-70B) — fastest inference."""
+    return _query_openai_compatible(question, context, key, GROQ_ENDPOINT, GROQ_MODEL)
+
+
+def _query_gemini(question: str, context: str, key: str) -> str:
+    """Query Google Gemini 2.0 Flash — different REST format."""
+    biz = _get_business_ctx("general")
+    prompt_text = (
+        "You are a Bitumen Sales Dashboard AI assistant for PPS Anantam Capital Pvt Ltd. "
+        "Answer ONLY from the dashboard data provided. Use Indian number formatting "
+        "(Rs crore/lakh). Dates: DD-MM-YYYY. Be concise but complete.\n\n"
+        f"{biz}\n\n"
+        f"LIVE DASHBOARD DATA:\n{context[:4000]}\n\n"
+        f"Question: {question}"
+    )
+    payload = json.dumps({
+        "contents": [{"parts": [{"text": prompt_text}]}],
+        "generationConfig": {
+            "temperature": 0.3,
+            "maxOutputTokens": MAX_TOKENS,
+        },
+    }).encode("utf-8")
+
+    url = f"{GEMINI_ENDPOINT}/{GEMINI_MODEL}:generateContent?key={key}"
+    req = _urllib_req.Request(
+        url,
+        data=payload,
+        headers={"Content-Type": "application/json"},
+        method="POST",
+    )
+    with _urllib_req.urlopen(req, timeout=30) as resp:
+        result = json.loads(resp.read().decode("utf-8"))
+    return result["candidates"][0]["content"]["parts"][0]["text"].strip()
+
+
+def _query_mistral(question: str, context: str, key: str) -> str:
+    """Query Mistral Small — EU-safe, good for emails."""
+    return _query_openai_compatible(question, context, key, MISTRAL_ENDPOINT, MISTRAL_MODEL)
+
+
+def _query_deepseek(question: str, context: str, key: str) -> str:
+    """Query DeepSeek Chat — research only, PII stripped."""
+    return _query_openai_compatible(question, context, key, DEEPSEEK_ENDPOINT, DEEPSEEK_MODEL)
+
+
+def _query_openai(question: str, context: str, key: str) -> str:
+    """Query OpenAI GPT-4o-mini. Tries SDK first, then falls back to requests.post."""
+    biz = _get_business_ctx("general")
+    messages = [
+        {"role": "system", "content": (
+            "You are a Bitumen Sales Dashboard AI assistant for PPS Anantam Capital Pvt Ltd. "
             "Answer ONLY from the dashboard data provided. Use Indian number formatting "
             "(₹ crore/lakh). Dates: DD-MM-YYYY. Be concise but complete.\n\n"
-            f"LIVE DASHBOARD DATA:\n{context[:6000]}"
+            f"{biz}\n\n"
+            f"LIVE DASHBOARD DATA:\n{context[:5000]}"
         )},
         {"role": "user", "content": question},
     ]
@@ -302,13 +613,15 @@ def set_preferred_ollama_model(model: str) -> None:
 def _query_ollama(question: str, context: str) -> str:
     import ollama
     model_name = get_preferred_ollama_model()
+    biz = _get_business_ctx("general")
     resp = ollama.chat(
         model=model_name,
         messages=[
             {"role": "system", "content": (
-                "You are a Bitumen Sales Dashboard AI for PPS Anantams Logistics. "
+                "You are a Bitumen Sales Dashboard AI for PPS Anantam Capital Pvt Ltd. "
                 "Answer ONLY from this data. Indian format: Rs crore/lakh, DD-MM-YYYY.\n\n"
-                f"LIVE DASHBOARD DATA:\n{context[:4000]}"
+                f"{biz}\n\n"
+                f"LIVE DASHBOARD DATA:\n{context[:3000]}"
             )},
             {"role": "user", "content": question},
         ],
@@ -325,10 +638,11 @@ def _query_huggingface(question: str, context: str, token: str) -> str:
         model=HF_MODEL,
         token=token if token else None,
     )
+    biz = _get_business_ctx("general")
     # Mistral/Zephyr instruction format
     prompt = (
-        f"<|system|>\nYou are a Bitumen Sales Dashboard AI for PPS Anantams Logistics. "
-        f"Answer ONLY from this data:\n{context[:2500]}</s>\n"
+        f"<|system|>\nYou are a Bitumen Sales Dashboard AI for PPS Anantam Capital Pvt Ltd. "
+        f"{biz}\n\nAnswer ONLY from this data:\n{context[:2000]}</s>\n"
         f"<|user|>\n{question}</s>\n"
         f"<|assistant|>\n"
     )
@@ -343,12 +657,13 @@ def _query_huggingface(question: str, context: str, token: str) -> str:
 
 def _query_gpt4all(question: str, context: str) -> str:
     from gpt4all import GPT4All
+    biz = _get_business_ctx("general")
     # allow_download=True fetches the model on first run (~2 GB)
     model = GPT4All(GPT4ALL_MODEL, allow_download=True)
     with model.chat_session(
         system_prompt=(
-            "You are a Bitumen Sales Dashboard AI. "
-            f"Answer only from this data:\n{context[:2000]}"
+            "You are a Bitumen Sales Dashboard AI for PPS Anantam Capital Pvt Ltd. "
+            f"{biz}\n\nAnswer only from this data:\n{context[:1500]}"
         )
     ):
         return model.generate(question, max_tokens=512)
@@ -356,14 +671,16 @@ def _query_gpt4all(question: str, context: str) -> str:
 
 def _query_claude(question: str, context: str, key: str) -> str:
     import anthropic
+    biz = _get_business_ctx("general")
     client = anthropic.Anthropic(api_key=key)
     resp = client.messages.create(
         model=CLAUDE_MODEL,
         max_tokens=MAX_TOKENS,
         system=(
-            "You are a Bitumen Sales Dashboard AI for PPS Anantams Logistics. "
+            "You are a Bitumen Sales Dashboard AI for PPS Anantam Capital Pvt Ltd. "
             "Answer ONLY from the data provided. Indian format: ₹ crore/lakh, DD-MM-YYYY.\n\n"
-            f"LIVE DASHBOARD DATA:\n{context[:5000]}"
+            f"{biz}\n\n"
+            f"LIVE DASHBOARD DATA:\n{context[:4000]}"
         ),
         messages=[{"role": "user", "content": question}],
     )
@@ -373,34 +690,83 @@ def _query_claude(question: str, context: str, key: str) -> str:
 def _run_provider(pid: str, question: str, context: str) -> tuple[str, Optional[str]]:
     """
     Call the appropriate provider. Returns (answer, error_or_None).
+    Tracks health metrics and applies PII filter for restricted providers.
     """
+    import time as _t
     key = get_api_key(pid)
+    t0 = _t.time()
+
+    # Check if provider is enabled in settings
     try:
+        from settings_engine import load_settings
+        _s = load_settings()
+        enable_key = f"ai_provider_{pid}_enabled"
+        if enable_key in _s and not _s[enable_key]:
+            return "", f"{pid} is disabled in settings"
+    except Exception:
+        pass
+
+    try:
+        # PII filter for restricted providers (DeepSeek)
+        q = question
+        c = context
+        p_info = next((x for x in PROVIDER_CHAIN if x["id"] == pid), {})
+        if p_info.get("restricted") and _pii_filter_enabled():
+            q = _strip_pii(question)
+            c = _strip_pii(context)
+
         if pid == "openai":
             if not key:
                 return "", "OpenAI API key not configured"
-            return _query_openai(question, context, key), None
+            ans = _query_openai(q, c, key)
 
         elif pid == "ollama":
             if not _ollama_running():
                 return "", "Ollama daemon not running (start the Ollama app first)"
-            return _query_ollama(question, context), None
+            ans = _query_ollama(q, c)
 
         elif pid == "huggingface":
-            return _query_huggingface(question, context, key), None
+            ans = _query_huggingface(q, c, key)
 
         elif pid == "gpt4all":
-            return _query_gpt4all(question, context), None
+            ans = _query_gpt4all(q, c)
 
         elif pid == "claude":
             if not key:
                 return "", "Anthropic API key not configured"
-            return _query_claude(question, context, key), None
+            ans = _query_claude(q, c, key)
+
+        elif pid == "groq":
+            if not key:
+                return "", "Groq API key not configured"
+            ans = _query_groq(q, c, key)
+
+        elif pid == "gemini":
+            if not key:
+                return "", "Gemini API key not configured"
+            ans = _query_gemini(q, c, key)
+
+        elif pid == "mistral":
+            if not key:
+                return "", "Mistral API key not configured"
+            ans = _query_mistral(q, c, key)
+
+        elif pid == "deepseek":
+            if not key:
+                return "", "DeepSeek API key not configured"
+            ans = _query_deepseek(q, c, key)
+
+        else:
+            return "", f"Unknown provider: {pid}"
+
+        latency = (_t.time() - t0) * 1000
+        _record_call(pid, True, latency)
+        return ans, None
 
     except Exception as exc:
+        latency = (_t.time() - t0) * 1000
+        _record_call(pid, False, latency)
         return "", str(exc)
-
-    return "", f"Unknown provider: {pid}"
 
 # ══════════════════════════════════════════════════════════════════════════════
 # CORE FALLBACK LOGIC
@@ -426,8 +792,14 @@ def ask_with_fallback(question: str, context: str = "", start_from_primary: bool
         idx = (start_idx + offset) % len(PROVIDER_CHAIN)
         p   = PROVIDER_CHAIN[idx]
 
-        # Skip if package not installed
-        if not _pkg_ok(p["pkg"]):
+        # Skip if auto-disabled (health check)
+        if _is_provider_disabled(p["id"]):
+            tried.append({"id": p["id"], "name": p["name"],
+                          "reason": f"{p['name']} auto-disabled (high error rate)"})
+            continue
+
+        # Skip if package not installed (urllib always available for cloud providers)
+        if p["pkg"] not in ("urllib",) and not _pkg_ok(p["pkg"]):
             tried.append({"id": p["id"], "name": p["name"],
                           "reason": f"Package '{p['pkg']}' not installed. Run: {p['install_cmd']}"})
             continue
@@ -633,6 +1005,14 @@ def get_active_model_name() -> str:
         return f"GPT-4o-mini ({cost})"
     elif pid == "claude":
         return f"Claude Haiku ({cost})"
+    elif pid == "groq":
+        return f"Llama-3.3-70B ({cost} · Groq)"
+    elif pid == "gemini":
+        return f"Gemini 2.0 Flash ({cost} · Google)"
+    elif pid == "mistral":
+        return f"Mistral Small ({cost} · EU)"
+    elif pid == "deepseek":
+        return f"DeepSeek Chat ({cost} · Research)"
     return p["name"]
 
 
@@ -642,10 +1022,11 @@ def get_provider_status() -> list[dict]:
     with _lock:
         active_idx = _G["active_idx"]
     for i, p in enumerate(PROVIDER_CHAIN):
-        pkg_ok = _pkg_ok(p["pkg"])
+        pkg_ok = _pkg_ok(p["pkg"]) if p["pkg"] not in ("urllib",) else True
         key_ok = True
         if p["needs_key"]:
             key_ok = bool(get_api_key(p["id"]))
+        health = get_provider_health(p["id"])
         statuses.append({
             "id": p["id"],
             "name": p["name"],
@@ -655,7 +1036,165 @@ def get_provider_status() -> list[dict]:
             "pkg_installed": pkg_ok,
             "key_configured": key_ok,
             "is_active": i == active_idx,
-            "ready": pkg_ok and (key_ok or not p["needs_key"]),
+            "ready": pkg_ok and (key_ok or not p["needs_key"]) and not health.get("is_disabled"),
             "last_error": _G["last_errors"].get(p["id"], ""),
+            "health": health,
         })
     return statuses
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# TASK-BASED ROUTING — Right AI for right job
+# ══════════════════════════════════════════════════════════════════════════════
+
+TASK_ROUTING_TABLE = {
+    "whatsapp_reply":  {"primary": "groq",    "fallback": ["ollama", "gemini"]},
+    "email_draft":     {"primary": "gemini",  "fallback": ["ollama", "mistral"]},
+    "market_analysis": {"primary": "gemini",  "fallback": ["deepseek", "ollama"]},
+    "customer_chat":   {"primary": "groq",    "fallback": ["ollama", "gemini"]},
+    "director_brief":  {"primary": "gemini",  "fallback": ["ollama", "groq"]},
+    "call_script":     {"primary": "ollama",  "fallback": ["groq", "gemini"]},
+    "price_inquiry":   {"primary": "groq",    "fallback": ["ollama", "gemini"]},
+    "hindi_regional":  {"primary": "gemini",  "fallback": ["ollama", "groq"]},
+    "private_data":    {"primary": "ollama",  "fallback": ["gpt4all"]},
+    "research_only":   {"primary": "deepseek", "fallback": ["gemini", "mistral"]},
+}
+
+
+def ask_routed(question: str, context: str = "",
+               task_type: str = "customer_chat") -> dict:
+    """
+    Task-based AI routing — tries the best provider for the job first,
+    then falls to task-specific fallbacks, then global ask_with_fallback.
+
+    Returns same dict format as ask_with_fallback + 'routed' key.
+    """
+    route = TASK_ROUTING_TABLE.get(task_type)
+    if not route:
+        result = ask_with_fallback(question, context, start_from_primary=True)
+        result["routed"] = False
+        result["task_type"] = task_type
+        return result
+
+    # Try primary for this task type
+    chain = [route["primary"]] + route.get("fallback", [])
+    tried: list[dict] = []
+
+    for pid in chain:
+        p = next((x for x in PROVIDER_CHAIN if x["id"] == pid), None)
+        if not p:
+            continue
+
+        # Skip disabled
+        if _is_provider_disabled(pid):
+            tried.append({"id": pid, "name": p["name"],
+                          "reason": f"Auto-disabled (health)"})
+            continue
+
+        # Skip if pkg not available (local providers)
+        if p["pkg"] not in ("urllib",) and not _pkg_ok(p["pkg"]):
+            tried.append({"id": pid, "name": p["name"],
+                          "reason": f"Package not installed"})
+            continue
+
+        # Skip if key needed but missing
+        if p["needs_key"] and not get_api_key(pid):
+            tried.append({"id": pid, "name": p["name"],
+                          "reason": f"API key not configured"})
+            continue
+
+        answer, err = _run_provider(pid, question, context)
+        if err:
+            tried.append({"id": pid, "name": p["name"], "reason": err})
+            _log("routed_fallback", pid, f"Task={task_type} — {err}")
+            continue
+
+        # Success
+        _log("routed_success", pid, f"Task={task_type}: {question[:50]}")
+        fallback_reason = ""
+        if tried:
+            fallback_reason = " -> ".join(f'{t["name"]} ({t["reason"]})' for t in tried)
+
+        return {
+            "answer": answer,
+            "provider_id": pid,
+            "provider_name": p["name"],
+            "provider_type": p["type"],
+            "provider_icon": p["icon"],
+            "fallback_reason": fallback_reason,
+            "tried": tried,
+            "error": None,
+            "routed": True,
+            "task_type": task_type,
+        }
+
+    # All task-specific providers failed — fall to global chain
+    _log("routed_global_fallback", "none",
+         f"Task={task_type} all specific providers failed — using global chain")
+    result = ask_with_fallback(question, context, start_from_primary=True)
+    result["routed"] = False
+    result["task_type"] = task_type
+    return result
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# VOICE STUBS — ElevenLabs TTS + Whisper STT (placeholder)
+# ══════════════════════════════════════════════════════════════════════════════
+
+def text_to_speech(text: str, voice_id: str = "pNInz6obpgDQGcFmaJgB",
+                   language: str = "en") -> dict:
+    """
+    ElevenLabs TTS stub — converts text to audio bytes.
+    Returns {success, audio_bytes, error}.
+    """
+    try:
+        from settings_engine import load_settings, get_api_key_secure
+        settings = load_settings()
+        if not settings.get("voice_tts_enabled"):
+            return {"success": False, "audio_bytes": b"", "error": "TTS not enabled"}
+        api_key = get_api_key_secure("elevenlabs_api_key")
+        if not api_key:
+            return {"success": False, "audio_bytes": b"", "error": "ElevenLabs API key not configured"}
+
+        payload = json.dumps({
+            "text": text[:5000],
+            "voice_settings": {"stability": 0.5, "similarity_boost": 0.75},
+        }).encode("utf-8")
+        req = _urllib_req.Request(
+            f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}",
+            data=payload,
+            headers={
+                "xi-api-key": api_key,
+                "Content-Type": "application/json",
+                "Accept": "audio/mpeg",
+            },
+            method="POST",
+        )
+        with _urllib_req.urlopen(req, timeout=30) as resp:
+            audio = resp.read()
+        return {"success": True, "audio_bytes": audio, "error": ""}
+    except Exception as e:
+        return {"success": False, "audio_bytes": b"", "error": str(e)}
+
+
+def speech_to_text(audio_path: str, language: str = "en") -> dict:
+    """
+    Whisper STT stub — transcribes audio file to text.
+    Returns {success, text, error}.
+    Requires: pip install openai-whisper (local) or OpenAI API.
+    """
+    try:
+        from settings_engine import load_settings
+        if not load_settings().get("voice_stt_enabled"):
+            return {"success": False, "text": "", "error": "STT not enabled"}
+        # Try local whisper first
+        try:
+            import whisper
+            model = whisper.load_model("base")
+            result = model.transcribe(audio_path, language=language)
+            return {"success": True, "text": result.get("text", ""), "error": ""}
+        except ImportError:
+            return {"success": False, "text": "",
+                    "error": "Whisper not installed. Run: pip install openai-whisper"}
+    except Exception as e:
+        return {"success": False, "text": "", "error": str(e)}

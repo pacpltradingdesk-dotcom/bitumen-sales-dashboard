@@ -28,6 +28,15 @@ try:
 except Exception:
     pass
 
+_HAS_VADER = False
+_vader_analyzer = None
+
+try:
+    from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+    _HAS_VADER = True
+except ImportError:
+    pass
+
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # STATUS
@@ -87,16 +96,6 @@ def _get_finbert_pipeline():
 # ═══════════════════════════════════════════════════════════════════════════════
 # VADER SENTIMENT (Tier 3 — lightweight, no model download)
 # ═══════════════════════════════════════════════════════════════════════════════
-
-_HAS_VADER = False
-_vader_analyzer = None
-
-try:
-    from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-    _HAS_VADER = True
-except ImportError:
-    pass
-
 
 def _get_vader():
     """Lazy-load VADER analyzer."""

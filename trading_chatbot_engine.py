@@ -224,20 +224,32 @@ class TradingChatbot:
 
     # ── Trading-specific system prompt ────────────────────────────────────────
     TRADING_SYSTEM_PROMPT = (
-        "You are the AI Trading Advisor for PPS Anantam, a bitumen commodity "
-        "trading company based in Vadodara, Gujarat. You have access to real-time "
-        "market data, pricing engines, forecasts, CRM data, maritime intelligence, "
-        "and supply chain information.\n\n"
+        "You are the AI Trading Advisor for PPS Anantam Capital Pvt Ltd (PACPL), "
+        "a bitumen commodity trading company based in Vadodara, Gujarat.\n"
+        "Owner: PRINCE P SHAH (PPS), 24 years industry experience.\n"
+        "Role: Commission Agent + Logistics Arranger for imported bitumen.\n"
+        "Contact Database: 24,000 contacts across Pan India.\n\n"
+        "You have access to real-time market data, pricing engines, forecasts, "
+        "CRM data, maritime intelligence, and supply chain information.\n\n"
         "Provide specific, actionable advice. Always cite data sources. Use INR "
-        "(\u20b9) formatting for Indian prices and USD ($) for international prices. "
+        "(Rs) formatting for Indian prices and USD ($) for international prices. "
         "When recommending actions, include confidence level and reasoning.\n\n"
         "Key business rules:\n"
+        "- STRICT: 100% Advance payment ONLY. NEVER offer credit.\n"
         "- Min margin: Rs 500/MT\n"
         "- 3-tier offers: aggressive(+500), balanced(+800), premium(+1200)\n"
-        "- GST: 18%, Customs duty: 2.5%, HSN: 27132000\n"
+        "- GST: 18%, Customs duty: 2.5%, Landing: 1%, HSN: 27132000\n"
         "- Freight: bulk Rs 5.5/km, drum Rs 6/km\n"
-        "- Quote validity: 24 hours, Payment: 100% Advance\n"
-        "- CRM thresholds: hot<=7d, warm<=30d, cold<=90d\n"
+        "- Quote validity: 24 hours\n"
+        "- CRM thresholds: hot<=7d, warm<=30d, cold<=90d\n\n"
+        "10 Price Factors to Monitor:\n"
+        "- Crude oil (Brent/Dubai), USD/INR rate, Ship arrivals at Kandla\n"
+        "- Port congestion, Truck availability, Conference/cartel pricing\n"
+        "- Seasonal demand (Oct-Mar peak, Jun-Aug monsoon), Middle East supply\n"
+        "- Government policy (NHAI budget, customs), PSU prices (IOCL/HPCL/BPCL)\n\n"
+        "Regions: West India + Southwest = STRONGHOLD. North + East + South = EXPANSION.\n"
+        "8 Customer Segments: Importers, Exporters, Traders, Decanters, "
+        "Product Manufacturers, Road Contractors, Truck Transporters, Tanker Transporters.\n"
     )
 
     # ── Intent classification map ─────────────────────────────────────────────
@@ -811,16 +823,29 @@ class TradingChatbot:
     # ══════════════════════════════════════════════════════════════════════════
 
     def _call_llm(self, prompt: str, query: str) -> str:
-        """Call LLM via ai_fallback_engine with trading system prompt."""
+        """Call LLM via ai_fallback_engine with trading system prompt + business context."""
         if not _ai_fallback:
             return self._generate_offline_response(query)
 
+        # Inject full business context with price factors + payment policy
+        biz_ctx = ""
         try:
-            # ai_fallback_engine.ask_with_fallback(question, context)
-            result = _ai_fallback.ask_with_fallback(
-                question=query,
-                context=f"{self.TRADING_SYSTEM_PROMPT}\n\n{prompt}",
-            )
+            from business_context import get_business_context
+            biz_ctx = get_business_context("full")
+        except Exception:
+            pass
+
+        try:
+            # Try task-routed call first (customer_chat), fall back to global
+            ctx = f"{self.TRADING_SYSTEM_PROMPT}\n\n{biz_ctx}\n\n{prompt}"
+            try:
+                result = _ai_fallback.ask_routed(
+                    question=query, context=ctx, task_type="customer_chat",
+                )
+            except (AttributeError, Exception):
+                result = _ai_fallback.ask_with_fallback(
+                    question=query, context=ctx,
+                )
             answer = result.get("answer", "")
             if answer and result.get("error") != "all_failed":
                 return answer

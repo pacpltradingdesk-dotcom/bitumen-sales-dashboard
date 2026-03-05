@@ -29,6 +29,11 @@ except ImportError:
 IST = pytz.timezone("Asia/Kolkata")
 BASE = Path(__file__).parent
 
+try:
+    from log_engine import dashboard_log as _dlog
+except ImportError:
+    _dlog = None
+
 DIALOG360_API_BASE = "https://waba.360dialog.io/v1"
 INDIAN_MOBILE_REGEX = re.compile(r"^[6-9]\d{9}$")
 
@@ -276,6 +281,25 @@ class WhatsAppTemplateManager:
                            "savings", "city"],
             "category": "MARKETING",
         },
+        "festival_greeting_v1": {
+            "name": "festival_greeting_v1",
+            "language": "en",
+            "parameters": ["customer_name", "festival_name"],
+            "category": "MARKETING",
+        },
+        "price_update_v1": {
+            "name": "price_update_v1",
+            "language": "en",
+            "parameters": ["customer_name", "grade", "old_price",
+                           "new_price", "change_pct"],
+            "category": "UTILITY",
+        },
+        "daily_outreach_v1": {
+            "name": "daily_outreach_v1",
+            "language": "en",
+            "parameters": ["customer_name", "company_name"],
+            "category": "MARKETING",
+        },
     }
 
     @classmethod
@@ -355,6 +379,10 @@ class WhatsAppEngine:
         sent_this_minute = 0
         rate_limit = self.settings.get("whatsapp_rate_limit_per_minute", 20)
         daily_limit = self.settings.get("whatsapp_rate_limit_per_day", 1000)
+
+        # Festival mode: increase daily limit for broadcast days
+        if self._is_festival_mode():
+            daily_limit = self.settings.get("whatsapp_festival_mode_limit", 24000)
 
         # Check daily send count
         today = datetime.datetime.now(IST).strftime("%Y-%m-%d")
@@ -626,6 +654,27 @@ class WhatsAppEngine:
             })
             upsert_wa_session(from_number, last_message=text[:200])
 
+    # ─── Festival Mode ────────────────────────────────────────────────────
+
+    def _is_festival_mode(self) -> bool:
+        """Check if today is a festival day (enables higher rate limits)."""
+        try:
+            from sales_calendar import get_festivals
+            today = datetime.datetime.now(IST).date()
+            for f in get_festivals():
+                date_str = f.get("date", "")
+                for fmt in ("%Y-%m-%d", "%d-%m-%Y", "%d/%m/%Y"):
+                    try:
+                        fdate = datetime.datetime.strptime(date_str, fmt).date()
+                        if fdate == today:
+                            return True
+                        break
+                    except Exception:
+                        continue
+        except Exception:
+            pass
+        return False
+
     # ─── Connection Status ───────────────────────────────────────────────
 
     def get_connection_status(self) -> dict:
@@ -677,6 +726,60 @@ class WhatsAppEngine:
             })
         except Exception:
             pass
+
+
+# ─── DPDP Opt-Out Handler ─────────────────────────────────────────────────────
+
+
+def handle_whatsapp_opt_out(from_number: str) -> dict:
+    """
+    Process STOP/unsubscribe message from WhatsApp contact.
+    Updates contacts table: whatsapp_opted_in = 0.
+
+    Returns: {success, contact_name, message}
+    """
+    valid, normalized = validate_indian_mobile(from_number)
+    if not valid:
+        return {"success": False, "message": "Invalid number"}
+
+    try:
+        from database import _get_conn
+        conn = _get_conn()
+
+        # Find contact by mobile
+        row = conn.execute(
+            "SELECT id, name FROM contacts WHERE mobile1 = ? OR mobile2 = ?",
+            (normalized, normalized)
+        ).fetchone()
+
+        if row:
+            conn.execute(
+                "UPDATE contacts SET whatsapp_opted_in = 0, "
+                "updated_at = datetime('now') WHERE id = ?",
+                (row["id"],)
+            )
+            conn.commit()
+            conn.close()
+            return {
+                "success": True,
+                "contact_name": row["name"],
+                "message": f"Opt-out processed for {row['name']}",
+            }
+        else:
+            conn.close()
+            return {"success": False, "message": "Contact not found"}
+    except Exception as e:
+        return {"success": False, "message": str(e)}
+
+
+def check_message_for_opt_out(message_text: str) -> bool:
+    """Check if incoming message is an opt-out request."""
+    if not message_text:
+        return False
+    text = message_text.strip().upper()
+    opt_out_keywords = {"STOP", "UNSUBSCRIBE", "OPT OUT", "OPTOUT",
+                        "CANCEL", "REMOVE ME", "BAND KARO", "NAHI CHAHIYE"}
+    return text in opt_out_keywords or any(kw in text for kw in opt_out_keywords)
 
 
 # ─── Scheduler ───────────────────────────────────────────────────────────────

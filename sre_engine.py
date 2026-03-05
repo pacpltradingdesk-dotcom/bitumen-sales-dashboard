@@ -659,6 +659,53 @@ class HealthCheckEngine:
             return {"entity": "system_resources", "status": "OK",
                     "details": f"Resource check error: {e}"}
 
+    # ── 8. AI Provider Health ─────────────────────────────────────────────────
+    @staticmethod
+    def check_ai_providers() -> List[dict]:
+        """Check health of all AI providers from ai_fallback_engine."""
+        results = []
+        try:
+            from ai_fallback_engine import PROVIDER_CHAIN, get_provider_health, _is_provider_disabled
+            for p in PROVIDER_CHAIN:
+                pid = p["id"]
+                health = get_provider_health(pid)
+                sr = health.get("success_rate", 100)
+                disabled = health.get("is_disabled", False)
+                latency = health.get("avg_latency_ms", 0)
+                total = health.get("total_calls", 0)
+
+                if disabled:
+                    status = "FAIL"
+                    detail = f"{p['name']} auto-disabled (error rate too high)"
+                elif total >= 5 and sr < 50:
+                    status = "FAIL"
+                    detail = f"{p['name']} success_rate={sr}% (<50%)"
+                elif total >= 5 and sr < 80:
+                    status = "WARN"
+                    detail = f"{p['name']} success_rate={sr}% (<80%)"
+                elif latency > 5000:
+                    status = "WARN"
+                    detail = f"{p['name']} avg_latency={latency:.0f}ms (>5s)"
+                else:
+                    status = "OK"
+                    detail = (f"{p['name']} OK — {sr}% success, "
+                              f"{latency:.0f}ms avg, {total} calls")
+
+                _upsert_health("ai_provider", pid, status, details=detail)
+                results.append({
+                    "entity": pid, "name": p["name"], "status": status,
+                    "success_rate": sr, "avg_latency_ms": latency,
+                    "total_calls": total, "is_disabled": disabled,
+                    "details": detail,
+                })
+        except ImportError:
+            results.append({"entity": "ai_providers", "status": "OK",
+                            "details": "ai_fallback_engine not available"})
+        except Exception as e:
+            results.append({"entity": "ai_providers", "status": "WARN",
+                            "details": f"AI provider check error: {e}"})
+        return results
+
     # ── Full run ───────────────────────────────────────────────────────────────
     @classmethod
     def run_all(cls) -> dict:
@@ -672,11 +719,12 @@ class HealthCheckEngine:
             "sched_health":  cls.check_scheduler(),
             "error_rates":   cls.check_error_rates(),
             "resources":     cls.check_resources(),
+            "ai_provider_health": cls.check_ai_providers(),
         }
 
         # Aggregate summary
         all_statuses = []
-        for key in ("api_health", "data_health", "calc_health"):
+        for key in ("api_health", "data_health", "calc_health", "ai_provider_health"):
             for r in results[key]:
                 all_statuses.append(r["status"])
         for key in ("export_health", "sched_health", "error_rates", "resources"):

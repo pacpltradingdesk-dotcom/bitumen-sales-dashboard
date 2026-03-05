@@ -421,3 +421,145 @@ def get_yearly_overview(city: str) -> List[Dict]:
     return overview
 
 STATE_HOLIDAYS = STATE_HOLIDAYS_ATMOSPHERE
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# SEASONAL DEMAND PREDICTOR
+# ══════════════════════════════════════════════════════════════════════════════
+
+# Base demand levels by season type (1-10 scale)
+_DEMAND_BASE = {"peak": 8, "moderate": 5, "off": 2}
+
+# Fiscal year boost (govt budget utilization rush)
+_FISCAL_BOOST = {2: 1.0, 3: 2.0}  # Feb: +1, Mar: +2
+
+# Festival density impact (more festivals = slightly less construction activity)
+_FESTIVAL_PENALTY_PER = 0.2  # per festival in that month
+
+# State-wise infrastructure spending weight (higher = more road projects)
+_STATE_INFRA_WEIGHT = {
+    "Gujarat": 1.2, "Rajasthan": 1.15, "Maharashtra": 1.25,
+    "Madhya Pradesh": 1.1, "Uttar Pradesh": 1.2, "Tamil Nadu": 1.15,
+    "Karnataka": 1.15, "Andhra Pradesh": 1.1, "Telangana": 1.1,
+    "Bihar": 1.05, "West Bengal": 1.05, "Odisha": 1.0,
+    "Punjab": 1.05, "Haryana": 1.1, "Delhi": 1.0,
+}
+
+# City to state mapping for demand forecast
+_CITY_STATE = {
+    "Ahmedabad": "Gujarat", "Vadodara": "Gujarat", "Surat": "Gujarat",
+    "Rajkot": "Gujarat", "Kutch": "Gujarat",
+    "Mumbai": "Maharashtra", "Pune": "Maharashtra", "Nagpur": "Maharashtra",
+    "Jaipur": "Rajasthan", "Jodhpur": "Rajasthan", "Udaipur": "Rajasthan",
+    "Lucknow": "Uttar Pradesh", "Kanpur": "Uttar Pradesh",
+    "Indore": "Madhya Pradesh", "Bhopal": "Madhya Pradesh",
+    "Kolkata": "West Bengal", "Patna": "Bihar",
+    "Chennai": "Tamil Nadu", "Hyderabad": "Telangana",
+    "Bengaluru": "Karnataka", "Vizag": "Andhra Pradesh",
+    "Bhubaneswar": "Odisha", "Delhi": "Delhi",
+    "Chandigarh": "Punjab", "Gurgaon": "Haryana",
+}
+
+
+def get_demand_forecast(city: str, months_ahead: int = 3) -> list:
+    """
+    Predict demand level for a city for the next N months.
+
+    Combines: city season data + festival density + fiscal year effect +
+    monsoon calendar + state infrastructure weight.
+
+    Returns: [{month, month_name, demand_level (1-10), factors, recommendation}]
+    """
+    import datetime as _dt
+    now = _dt.datetime.now()
+    forecasts = []
+
+    for i in range(months_ahead):
+        target = now + _dt.timedelta(days=30 * (i + 1))
+        month = target.month
+        month_name = MONTH_NAMES[month]
+
+        # 1. Base demand from season
+        season = get_season_status(city, month)
+        status = season.get("status", "moderate")
+        base = _DEMAND_BASE.get(status, 5)
+        factors = [f"Season: {status} ({month_name})"]
+
+        # 2. Fiscal year boost (Feb-Mar)
+        fiscal = _FISCAL_BOOST.get(month, 0)
+        if fiscal > 0:
+            base += fiscal
+            factors.append(f"Fiscal year end boost: +{fiscal}")
+
+        # 3. Festival density penalty
+        festivals_in_month = get_holidays_for_month(target.year, month)
+        fest_count = len(festivals_in_month)
+        if fest_count > 0:
+            penalty = min(1.5, fest_count * _FESTIVAL_PENALTY_PER)
+            base -= penalty
+            factors.append(f"Festivals ({fest_count}): -{penalty:.1f}")
+
+        # 4. State infrastructure weight
+        state = _CITY_STATE.get(city, "")
+        infra_w = _STATE_INFRA_WEIGHT.get(state, 1.0)
+        if infra_w != 1.0:
+            base *= infra_w
+            factors.append(f"State infra weight: x{infra_w}")
+
+        # Clamp to 1-10
+        demand = round(min(10, max(1, base)), 1)
+
+        # Recommendation
+        if demand >= 7:
+            rec = "HIGH demand — stock up, focus sales outreach, premium pricing OK"
+        elif demand >= 4:
+            rec = "MODERATE demand — maintain regular outreach, competitive pricing"
+        else:
+            rec = "LOW demand — build relationships, focus industrial/waterproofing clients"
+
+        forecasts.append({
+            "month": month,
+            "month_name": month_name,
+            "year": target.year,
+            "demand_level": demand,
+            "factors": factors,
+            "recommendation": rec,
+        })
+
+    return forecasts
+
+
+def get_national_demand_heatmap(month: int) -> dict:
+    """
+    Get state-wise demand levels for a given month.
+    Returns: {state: {demand_level, season_status, cities}}
+    """
+    heatmap = {}
+
+    for city, state in _CITY_STATE.items():
+        season = get_season_status(city, month)
+        status = season.get("status", "moderate")
+        base = _DEMAND_BASE.get(status, 5)
+
+        # Fiscal boost
+        base += _FISCAL_BOOST.get(month, 0)
+
+        # State weight
+        infra_w = _STATE_INFRA_WEIGHT.get(state, 1.0)
+        base = round(min(10, max(1, base * infra_w)), 1)
+
+        if state not in heatmap:
+            heatmap[state] = {
+                "demand_level": base,
+                "season_status": status,
+                "cities": [city],
+            }
+        else:
+            # Average demand across cities in state
+            existing = heatmap[state]
+            existing["cities"].append(city)
+            existing["demand_level"] = round(
+                (existing["demand_level"] + base) / 2, 1
+            )
+
+    return heatmap

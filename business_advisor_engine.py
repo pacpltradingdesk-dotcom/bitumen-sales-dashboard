@@ -776,12 +776,22 @@ class BusinessAdvisor:
         context = "\n".join(context_parts)
 
         # --- Try AI generation ---
+        # Inject business context for domain-accurate briefs
+        biz_ctx = ""
+        try:
+            from business_context import get_business_context
+            biz_ctx = "\n\n" + get_business_context("general")
+        except Exception:
+            pass
+
         prompt = (
-            "You are a bitumen trading advisor for PPS Anantam, Vadodara, Gujarat. "
+            "You are a bitumen trading advisor for PPS Anantam Capital Pvt Ltd, "
+            "Vadodara, Gujarat. "
             "Write a concise 3-4 sentence daily intelligence brief for the trader "
             "based on this data. Start with 'Today I recommend...' and include "
             "specific buy/sell/hold guidance with quantities and prices. "
             "Use Indian number formatting (Rs./MT). Be direct and actionable."
+            f"{biz_ctx}"
         )
 
         ai_brief = _ai_generate(prompt, context)
