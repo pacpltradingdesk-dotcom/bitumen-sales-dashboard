@@ -583,5 +583,27 @@
     "_source_type": "live_api",
     "_source_confidence": 0.88,
     "_source_provider": "Open-Meteo.com"
+  },
+  {
+    "date_time": "05-03-2026 13:58:45 IST",
+    "location": "Mumbai",
+    "temp": 29.1,
+    "rain_mm": 0.0,
+    "humidity": 66,
+    "source": "Open-Meteo (OpenWeather fallback)",
+    "_source_type": "live_api",
+    "_source_confidence": 0.88,
+    "_source_provider": "Open-Meteo.com"
+  },
+  {
+    "date_time": "05-03-2026 14:01:57 IST",
+    "location": "Mumbai",
+    "temp": 29.0,
+    "rain_mm": 0.0,
+    "humidity": 66,
+    "source": "Open-Meteo (OpenWeather fallback)",
+    "_source_type": "live_api",
+    "_source_confidence": 0.88,
+    "_source_provider": "Open-Meteo.com"
   }
 ]

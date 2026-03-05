@@ -1,11 +1,11 @@
 {
   "openweather": {
-    "ts": 1772698723.8938618,
+    "ts": 1772699518.7512572,
     "data": [
       {
-        "date_time": "05-03-2026 13:48:43 IST",
+        "date_time": "05-03-2026 14:01:57 IST",
         "location": "Mumbai",
-        "temp": 29.1,
+        "temp": 29.0,
         "rain_mm": 0.0,
         "humidity": 66,
         "source": "Open-Meteo (OpenWeather fallback)",
@@ -14,9 +14,9 @@
         "_source_provider": "Open-Meteo.com"
       },
       {
-        "date_time": "05-03-2026 13:48:43 IST",
+        "date_time": "05-03-2026 14:01:58 IST",
         "location": "Kandla",
-        "temp": 32.0,
+        "temp": 31.9,
         "rain_mm": 0.0,
         "humidity": 59,
         "source": "Open-Meteo (OpenWeather fallback)",
@@ -25,7 +25,7 @@
         "_source_provider": "Open-Meteo.com"
       },
       {
-        "date_time": "05-03-2026 13:48:43 IST",
+        "date_time": "05-03-2026 14:01:58 IST",
         "location": "Mangalore",
         "temp": 28.4,
         "rain_mm": 0.3,
@@ -36,9 +36,9 @@
         "_source_provider": "Open-Meteo.com"
       },
       {
-        "date_time": "05-03-2026 13:48:43 IST",
+        "date_time": "05-03-2026 14:01:58 IST",
         "location": "Delhi",
-        "temp": 31.7,
+        "temp": 31.9,
         "rain_mm": 0.0,
         "humidity": 86,
         "source": "Open-Meteo (OpenWeather fallback)",
@@ -47,9 +47,9 @@
         "_source_provider": "Open-Meteo.com"
       },
       {
-        "date_time": "05-03-2026 13:48:43 IST",
+        "date_time": "05-03-2026 14:01:58 IST",
         "location": "Vadodara",
-        "temp": 38.4,
+        "temp": 38.5,
         "rain_mm": 0.0,
         "humidity": 59,
         "source": "Open-Meteo (OpenWeather fallback)",
@@ -101,10 +101,10 @@
     ]
   },
   "newsapi": {
-    "ts": 1772698723.4305646,
+    "ts": 1772699516.8458176,
     "data": [
       {
-        "date_time": "05-03-2026 13:48:42 IST",
+        "date_time": "05-03-2026 14:01:56 IST",
         "headline": "Opinion | Bitumen: A Crude Item's Curious Link To Trump's Venezuela Strike - And India - NDTV",
         "publisher": "NDTV",
         "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOZUJCR1lpV1pRZWVXMzdPSG1tejFwNHhqVm9BUkloeW1zbE5ld2prN051Wk40THdRb2d1RXhoZHBXOEZBYW9ydzZQNHlLOHR1MnBCTTZRdEpKR2dfVnB2bUhnRVhDYTE0V2pRRXV3ald3bDJmWkoyZzlaR0JvQ2xrMHhJWE5MUGxHb3QtcFlhaW1zeXc3S0J3bHR4T1kzWUdrSXdoUC1XbnduNkRWSTBudQ?oc=5",
@@ -115,7 +115,7 @@
         "_source_provider": "Google News RSS"
       },
       {
-        "date_time": "05-03-2026 13:48:42 IST",
+        "date_time": "05-03-2026 14:01:56 IST",
         "headline": "India become first country to commercially produce bio-bitumen - News On AIR",
         "publisher": "News On AIR",
         "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPcUM4ekt0TXZ2Q1VkOG9VRkpjRHVSSWgzVjQ5WkRhMHdlMkhIcTJzY2U4bVF2SzJHaEYzc2tCZk9mQm9QdmdOLUdtdURSdkFEQ2ExQUl6WmFfNXFCc3JXZEZHbEZsak1QWUcwQldVSGJLLTZ5SDlsSHRqYV9odUlQb2RKRTJ6YkZzeW5LT0o5SnAwT1dybUhiNnFXczd2aFphTjJCNDdhWEdFQ2dHVFVVOEMxSjE?oc=5",
@@ -126,7 +126,7 @@
         "_source_provider": "Google News RSS"
       },
       {
-        "date_time": "05-03-2026 13:48:42 IST",
+        "date_time": "05-03-2026 14:01:56 IST",
         "headline": "India becomes first country to commercially produce bio-bitumen - Manorama Yearbook",
         "publisher": "Manorama Yearbook",
         "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOVHZ2MFRNc3N4RFAyVjNuSjFIU0l5LUZCZU04Q2Q1VmtkNkQwbWNiRkx2VzNiMDZZaFpockY4Q2N6OW5DM05kU0w2ZGdUamplaHlnbU1jWEQySngyMzcyQlNiR1ZOdUZmTy14RF9LMEZLdTBORkZMVmRmRDZwTnNRcDV1RE5HSXQ4QTVuSnExeXBoVVYtbnNYb2VIRnFWRGtWWUdmcEJLZjNDcHEw?oc=5",
@@ -137,7 +137,7 @@
         "_source_provider": "Google News RSS"
       },
       {
-        "date_time": "05-03-2026 13:48:42 IST",
+        "date_time": "05-03-2026 14:01:56 IST",
         "headline": "India Becomes First to Produce Bio-Bitumen Commercially - GK Today",
         "publisher": "GK Today",
         "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQRDM3VFpGdVlNY0Rfa1M1SmdMcXpvVDRLRGtXeE1Pd0lwblZ6cnZFQXRKVy0xbmJVdmFUUEdYNWZXczc1dVc0QU1MckZWc1ZGaVhzT1Zwb1FNMGpBNkRRYW9TWFZRRGgwM09mZ2I2Njc4V3ppWlRwcHpCWUJ5UTdUaHZiRXNrdw?oc=5",
@@ -148,7 +148,7 @@
         "_source_provider": "Google News RSS"
       },
       {
-        "date_time": "05-03-2026 13:48:42 IST",
+        "date_time": "05-03-2026 14:01:56 IST",
         "headline": "Pune-based company imported $8 million worth of Iranian-origin bitumen in 9 months - theweek.in",
         "publisher": "theweek.in",
         "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNOGNTS21qTGVJaDBaR24taGU0VGhNM29fa01SbTN2UkpLNTR3Uy1UZHBRYnJZanFsaklnaWM4TXBlY2ljX1paM0czVTNPMV9sQUs2NzMyQmxHZTZNZTRRclZuSGVTbDRMaXcteWdpWTJmUk1memNwUUpndklGWmdfazZYcElwWDVwODliUktGcEdzRTlOMWxuY3BPN1czVmpVb1E0RW91d2h6ZmdMcU8tR1k4WUFMZUY4QzJCS3lNVHI",
@@ -159,150 +159,7 @@
         "_source_provider": "Google News RSS"
       },
       {
-        "date_time": "05-03-2026 13:48:42 IST",
-        "headline": "India must rein in imports, push exports: Gadkari - ET Auto",
-        "publisher": "ET Auto",
-        "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxQYkhBQnNibnlTdWFKOHMtcWlBMjE0Y19iUnczbXAzcHVZTHJYVVhKWVF2N29sVEEtdnR6Yjc1bzlhaThJQ0I1MDB1Rk9iMXFwazZBeVAyMXBwUUZkQTFjMk04b0R5WlFGQzZQWGxjemNWamVZX182bUtCejRuRFpRZUFmdl9DZ3hJaEFIZThCSVBPVTE1SUNYZl9UdVlwZVRYaWhxSXd4MHkzOWw4bzFkMlVHeGVKYXFMU0FDak9KZ21",
-        "sentiment_score": null,
-        "source": "Google News RSS",
-        "_source_type": "live_feed",
-        "_source_confidence": 0.8,
-        "_source_provider": "Google News RSS"
-      },
-      {
-        "date_time": "05-03-2026 13:48:42 IST",
-        "headline": "Bio-Bitumen: A Sustainable Revolution in Road Construction - Sanskriti IAS",
-        "publisher": "Sanskriti IAS",
-        "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQamM0VmItSXV6QWhwcWRlcFJ1Z3BscUt5ZmktRF9wWkI5N2xQZk1EcDdMZlI2b1FQb1lZVm9OZTZiNzI0Q1U4SklKamhSX1I0SXIwZm1DNHE2bkVJSVYzeWozZVU2Z3NqOU1aUVphc0lzOVU5VFJ3TXFkYllhdm9lWnVEWWRvcDJjeW5lbzI3UThZeVZXYktQSlBteHhPRk1ENG44dg?oc=5",
-        "sentiment_score": null,
-        "source": "Google News RSS",
-        "_source_type": "live_feed",
-        "_source_confidence": 0.8,
-        "_source_provider": "Google News RSS"
-      },
-      {
-        "date_time": "05-03-2026 13:48:42 IST",
-        "headline": "India becomes the first nation to commercially produce bio-bitumen - BusinessLine",
-        "publisher": "BusinessLine",
-        "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOMldVZHlTdVkwdHhFSU5iWWNPdjdHTGZfVnl6WmRWazJFeWlHd3BWWm9VSHV5TXV3bWJacE9OWnFtVURvWTdWZUhST3p2eTg3UzR6TU9xeXliRDlBQW1abmVYR3U3di1GYmpjcV9WVGkyX2Qtb3ZnRlhoMDhZVFU2NnVMUERlanJXa2tveHRseXVxN0oyeXVHV1NSQ25hTGJCYlJ4ZzJDcno5YS01MC1qSmkwSExBLVBJS2lJdVdTMXh",
-        "sentiment_score": null,
-        "source": "Google News RSS",
-        "_source_type": "live_feed",
-        "_source_confidence": 0.8,
-        "_source_provider": "Google News RSS"
-      },
-      {
-        "date_time": "05-03-2026 13:48:42 IST",
-        "headline": "India Becomes First to Produce Bio-Bitumen Commercially - Jagran Josh",
-        "publisher": "Jagran Josh",
-        "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNTVpIeXVGM0swUGd1YmFhVTZQelQ0MFZrMFlYQkQ1MjFFV0Y4MV94dnA1dXFQNmF3Yy1aVGU3UzFDZnV1NE4ydkNlZ3ZJeHBxV241YW82dUZiVUJQWjV6R2N2UEZOZi0tZC1PUkhLX3lsbFdVLXhWZG5oakFWaFJvX3Q2dGt2V2ptRnFVRFBKUmk1X19iX0pwNzduTDN2OWszWjQxdENsMkU4U1AtQzAw?oc=5",
-        "sentiment_score": null,
-        "source": "Google News RSS",
-        "_source_type": "live_feed",
-        "_source_confidence": 0.8,
-        "_source_provider": "Google News RSS"
-      },
-      {
-        "date_time": "05-03-2026 13:48:42 IST",
-        "headline": "India Becomes First Country to Commercially Produce Bio-Bitumen - Adda247",
-        "publisher": "Adda247",
-        "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOa05uMTdYR0ZuY0NZSGk1Z1Npaml1dkRPZXR3bFdtY1dTdUlqVVRSV3dNcHZObzhOUTR3blNVdFduaXNvczBicklvYmh1SV9yU0Z2YXowMEZLRG13YVpTVExxYlVZclRubW5wSUwyZHdILTB0aWZPYlBHWm54eVJOOFZ1X18tREkyM1VRZUhaTjlhejJUa085TXBqUVhlY2dH?oc=5",
-        "sentiment_score": null,
-        "source": "Google News RSS",
-        "_source_type": "live_feed",
-        "_source_confidence": 0.8,
-        "_source_provider": "Google News RSS"
-      },
-      {
-        "date_time": "05-03-2026 13:48:42 IST",
-        "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
-        "publisher": "APAC Media",
-        "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPUG5NaXVCRXByUjFDNGJhcEJQazZRc25QbnZsN1JxNkZWcWxaYzZCUkVlZXhubldyYWpCdlFTZDVVdGpjaUpuR3AyaHo3VWlNcGVLSWctTDhSX0NPbWNRQWlkelQ3QXZUb2JKdlBJYndYSElXMGI5cEFMWjJTQmpaVnRidVJSTFpSX1ItVTRyM0tDa09JR01lVGJiNUFtZ1ExdTdBMGVMbS0tMmdmUFVVNXlRUjk3bGFkdnVRSVZmd9I",
-        "sentiment_score": null,
-        "source": "Google News RSS",
-        "_source_type": "live_feed",
-        "_source_confidence": 0.8,
-        "_source_provider": "Google News RSS"
-      },
-      {
-        "date_time": "05-03-2026 13:48:42 IST",
-        "headline": "India’s crude oil and petroleum product output, refinery throughput fall in April 2025 - The New Indian Express",
-        "publisher": "The New Indian Express",
-        "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOZ21Gd1AzbzFMc0hPYWM3N1RpNlVnVC1rNnNGQWpXTVVmU245MDVVZXRHZXItVzNidmFpSVQ3ZEg2Z0hRb25uM204akllUVFVbjNrVVpEdUpmbUpPWGRCZG9JdE5iVHJUR0cxMUZGc2h5WTBVQ2VnYmZSdHZUalBCU3FVR2ozLWFoTnlXalU2UEthazhDVHg4OGZPSjA1UGx6RDcwcmFTdlZyb2hOWjFPTzNtOXBUWlJxR2ZvV3FBWUl",
-        "sentiment_score": null,
-        "source": "Google News RSS",
-        "_source_type": "live_feed",
-        "_source_confidence": 0.8,
-        "_source_provider": "Google News RSS"
-      },
-      {
-        "date_time": "05-03-2026 13:48:42 IST",
-        "headline": "Iraq's Oil Exports to India Topped $29 Billion in 2024 - Crude Oil Prices Today | OilPrice.com",
-        "publisher": "Crude Oil Prices Today | OilPrice.com",
-        "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPS3FhOTVkV0xwNm1KUmxVRzA3TGxVTkpfSW0yWUhtekVEdWdaSC0ycENfZ0ZSU05MN0JvZDVsenE3OW9ZM3NKWW16aVhoaTRyV3hhM1JnZGlDUEw4dl9DcUpQTE0zMWZnWjRaQzdwc1N6b3F5U1pYNmh5WmJkT2ZUZ2l6eDVBMU93dzU0ZFBPdTQzZ0luMzFaQU9Tck1obmtfZnFmVDVDOVAtWENu0gGyAUFVX3lxTE9lYTR4NXk5Ymp",
-        "sentiment_score": null,
-        "source": "Google News RSS",
-        "_source_type": "live_feed",
-        "_source_confidence": 0.8,
-        "_source_provider": "Google News RSS"
-      },
-      {
-        "date_time": "05-03-2026 13:48:42 IST",
-        "headline": "Union Minister Nitin Gadkari highlights agricultural waste can be converted into a valuable national resource - PIB",
-        "publisher": "PIB",
-        "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBTQVU3YTNOYUdHQy1zQWdUYzdlZ1ByLUpuUGtPZUxyV2g5TmhMZi1wekFkMmlsQS1TR1lKSzA1SzA2VmFwa01seEs5Y2swZWVkSDcwRERwOVNtWlBEQzk4dVgtWVhNNXZqTnVLX1E5c3hlX2hfZU0zSkFR?oc=5",
-        "sentiment_score": null,
-        "source": "Google News RSS",
-        "_source_type": "live_feed",
-        "_source_confidence": 0.8,
-        "_source_provider": "Google News RSS"
-      },
-      {
-        "date_time": "05-03-2026 13:48:42 IST",
-        "headline": "India's 2023 bitumen imports surge 31% on year as demand set to grow - S&P Global",
-        "publisher": "S&P Global",
-        "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPWXpPbTJ3T1BBVVVXN281dkxtOElmV3FyVnVkaGpKZVZNSU9NMlpTUmdMS2NQUUlaclZUUHNMZTRHYXpuYy10VHA5NHNtLTZ2LXlpR1hjaXJTME9WVmd3VDBGWkI0TkFDQVpKTEhoWGhxZ2lqTHFxc3phYkhOSHhCWm5peHYzOTc1WnoyQndLNHJpWDhEd1I2cFd2WDZnZDczem56OE5EWmI0Ym5JRWp5N1J2LUhXUXFUQXlZR2ktdnB",
-        "sentiment_score": null,
-        "source": "Google News RSS",
-        "_source_type": "live_feed",
-        "_source_confidence": 0.8,
-        "_source_provider": "Google News RSS"
-      },
-      {
-        "date_time": "05-03-2026 13:48:42 IST",
-        "headline": "India - Monthly Refined Petroleum Consumption (YoY % Change) | Crude Oil (Other) | Collection - MacroMicro",
-        "publisher": "MacroMicro",
-        "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQbHhWQnVYbHZ3OTNTMXl5anpFSC1iZW9vanRvclRBcFpKbUFDbDZ2T2xndHNZbnI2XzIyVDV0N2J4aVNEWFBhMkVQV2d4czA2Y2p5UXpoVkVMZDBIa2kxelI1WXFLYzlHbmpERWs1RTdSczI4WjFMMTRuT0J4QWtMUG5CZy1iUllkWXhRZ1pxRGpSQURFMi1BY0JMS1JINXRxdF9kSUVIYzhpN1pTTG0xWEFsVQ?oc=5",
-        "sentiment_score": null,
-        "source": "Google News RSS",
-        "_source_type": "live_feed",
-        "_source_confidence": 0.8,
-        "_source_provider": "Google News RSS"
-      },
-      {
-        "date_time": "05-03-2026 13:48:42 IST",
-        "headline": "Analysis of the Indian bitumen market during Jan-March 2022 - Indian Chemical News",
-        "publisher": "Indian Chemical News",
-        "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQazE1VmJFNm1BT1lybVJKS2VkNTlaM2pZcV9OUnFKZ1djd2NWQWl3UFU1cVpId295NlFlck1YTWNEQ0NkRTJBQThmd3dtcUlGLUJYa1Nad1hsbmxpTlVkZW80Y0s4ZjVETmNZSVBTOEg1Q1dla3J0anZSSUdZa0NEZVNCV0FCTXRvdGI4SlZMVWYxMmttMlBPeldTWVE1R2x2WXBoTUlpQTh3TG5h0gGzAUFVX3lxTFBOMDBERlZrbm5",
-        "sentiment_score": null,
-        "source": "Google News RSS",
-        "_source_type": "live_feed",
-        "_source_confidence": 0.8,
-        "_source_provider": "Google News RSS"
-      },
-      {
-        "date_time": "05-03-2026 13:48:42 IST",
-        "headline": "Total and Indian Oil Form Joint Company in India to Offer High-Quality Bitumen Derivatives - TotalEnergies.com",
-        "publisher": "TotalEnergies.com",
-        "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQV20xSG5uTlo0Z2NYWVFILVQyczNmR2RUeG9sbU10aGJLQ093R0Nobzh6QXVlMm80c3dpWjFITC03dEpqcDVidl9SZVJXajRjWm56cDBpSmFOdEw1eFpWX2VuRVdzRDF4dkNZNTlsSVJ6MHdiX2FRNnlUYnpXcDFFMDNyZzBLYnFRdG9sVzlMOC1UNmJLbjd3UFZTWDdjTmhfUXY4emNScmwzNEVLRk5heHNqSzI?oc=5",
-        "sentiment_score": null,
-        "source": "Google News RSS",
-        "_source_type": "live_feed",
-        "_source_confidence": 0.8,
-        "_source_provider": "Google News RSS"
-      },
-      {
-        "date_time": "05-03-2026 13:48:42 IST",
+        "date_time": "05-03-2026 14:01:56 IST",
         "headline": "Crude oil imports rise 5.9% in May, LNG imports fall 15.3% - ET EnergyWorld",
         "publisher": "ET EnergyWorld",
         "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNejVjLVljM3c5LVBYNWphUTdjUjc4OFhhdHctUHR5OUNHZWlKTlY2a3k0WmQzME5vTC1pX2hOcUpuT1ozQXBMY0dlcHZodXFCYjJLNlk4WS1PTldEMC01WlJ3Q0drNm1pTExZZy04eHc4czhGY3Q2QU9IUC1pR1hFZ21qV2hKMnJ4R1VmM2xLOF9MZjZDV3ZYWTNaUjdfSHJ0eERPT2d3T3czWldpT3EtYkNXVXZzcWxOazRkYm5rV05",
@@ -313,7 +170,150 @@
         "_source_provider": "Google News RSS"
       },
       {
-        "date_time": "05-03-2026 13:48:42 IST",
+        "date_time": "05-03-2026 14:01:56 IST",
+        "headline": "India becomes the first nation to commercially produce bio-bitumen - BusinessLine",
+        "publisher": "BusinessLine",
+        "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOMldVZHlTdVkwdHhFSU5iWWNPdjdHTGZfVnl6WmRWazJFeWlHd3BWWm9VSHV5TXV3bWJacE9OWnFtVURvWTdWZUhST3p2eTg3UzR6TU9xeXliRDlBQW1abmVYR3U3di1GYmpjcV9WVGkyX2Qtb3ZnRlhoMDhZVFU2NnVMUERlanJXa2tveHRseXVxN0oyeXVHV1NSQ25hTGJCYlJ4ZzJDcno5YS01MC1qSmkwSExBLVBJS2lJdVdTMXh",
+        "sentiment_score": null,
+        "source": "Google News RSS",
+        "_source_type": "live_feed",
+        "_source_confidence": 0.8,
+        "_source_provider": "Google News RSS"
+      },
+      {
+        "date_time": "05-03-2026 14:01:56 IST",
+        "headline": "Bio-Bitumen: A Sustainable Revolution in Road Construction - Sanskriti IAS",
+        "publisher": "Sanskriti IAS",
+        "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQamM0VmItSXV6QWhwcWRlcFJ1Z3BscUt5ZmktRF9wWkI5N2xQZk1EcDdMZlI2b1FQb1lZVm9OZTZiNzI0Q1U4SklKamhSX1I0SXIwZm1DNHE2bkVJSVYzeWozZVU2Z3NqOU1aUVphc0lzOVU5VFJ3TXFkYllhdm9lWnVEWWRvcDJjeW5lbzI3UThZeVZXYktQSlBteHhPRk1ENG44dg?oc=5",
+        "sentiment_score": null,
+        "source": "Google News RSS",
+        "_source_type": "live_feed",
+        "_source_confidence": 0.8,
+        "_source_provider": "Google News RSS"
+      },
+      {
+        "date_time": "05-03-2026 14:01:56 IST",
+        "headline": "India's gasoline demand continues to see roubust increase, says OPEC - Business Standard",
+        "publisher": "Business Standard",
+        "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOc1V6dTc2c2FJcWpJUnhYRzVocXE5QkhxbnVhZ0k2WUF3bWVrTk5UVXplcEZ4UXJfTGI2aW4ya0drd2FKVlZtN0xRQkxVZGExVjdKNWRib0hkNFBFYkJUbDlWQ2RuanFLVlFhRU94bHJHalgzZkRxR181SHp5WElNS0dSQzlxdEIyNmkzc01XS3VmQTNkQThmNU9lb051NUhKX2JDSUJRb3p5dXRKc2NySXo0enVxR09PODhkVjkxRUt",
+        "sentiment_score": null,
+        "source": "Google News RSS",
+        "_source_type": "live_feed",
+        "_source_confidence": 0.8,
+        "_source_provider": "Google News RSS"
+      },
+      {
+        "date_time": "05-03-2026 14:01:56 IST",
+        "headline": "India Becomes First to Produce Bio-Bitumen Commercially - Jagran Josh",
+        "publisher": "Jagran Josh",
+        "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNTVpIeXVGM0swUGd1YmFhVTZQelQ0MFZrMFlYQkQ1MjFFV0Y4MV94dnA1dXFQNmF3Yy1aVGU3UzFDZnV1NE4ydkNlZ3ZJeHBxV241YW82dUZiVUJQWjV6R2N2UEZOZi0tZC1PUkhLX3lsbFdVLXhWZG5oakFWaFJvX3Q2dGt2V2ptRnFVRFBKUmk1X19iX0pwNzduTDN2OWszWjQxdENsMkU4U1AtQzAw?oc=5",
+        "sentiment_score": null,
+        "source": "Google News RSS",
+        "_source_type": "live_feed",
+        "_source_confidence": 0.8,
+        "_source_provider": "Google News RSS"
+      },
+      {
+        "date_time": "05-03-2026 14:01:56 IST",
+        "headline": "India Becomes First Country to Commercially Produce Bio-Bitumen - Adda247",
+        "publisher": "Adda247",
+        "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOa05uMTdYR0ZuY0NZSGk1Z1Npaml1dkRPZXR3bFdtY1dTdUlqVVRSV3dNcHZObzhOUTR3blNVdFduaXNvczBicklvYmh1SV9yU0Z2YXowMEZLRG13YVpTVExxYlVZclRubW5wSUwyZHdILTB0aWZPYlBHWm54eVJOOFZ1X18tREkyM1VRZUhaTjlhejJUa085TXBqUVhlY2dH?oc=5",
+        "sentiment_score": null,
+        "source": "Google News RSS",
+        "_source_type": "live_feed",
+        "_source_confidence": 0.8,
+        "_source_provider": "Google News RSS"
+      },
+      {
+        "date_time": "05-03-2026 14:01:56 IST",
+        "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+        "publisher": "APAC Media",
+        "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPUG5NaXVCRXByUjFDNGJhcEJQazZRc25QbnZsN1JxNkZWcWxaYzZCUkVlZXhubldyYWpCdlFTZDVVdGpjaUpuR3AyaHo3VWlNcGVLSWctTDhSX0NPbWNRQWlkelQ3QXZUb2JKdlBJYndYSElXMGI5cEFMWjJTQmpaVnRidVJSTFpSX1ItVTRyM0tDa09JR01lVGJiNUFtZ1ExdTdBMGVMbS0tMmdmUFVVNXlRUjk3bGFkdnVRSVZmd9I",
+        "sentiment_score": null,
+        "source": "Google News RSS",
+        "_source_type": "live_feed",
+        "_source_confidence": 0.8,
+        "_source_provider": "Google News RSS"
+      },
+      {
+        "date_time": "05-03-2026 14:01:56 IST",
+        "headline": "India’s crude oil and petroleum product output, refinery throughput fall in April 2025 - The New Indian Express",
+        "publisher": "The New Indian Express",
+        "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOZ21Gd1AzbzFMc0hPYWM3N1RpNlVnVC1rNnNGQWpXTVVmU245MDVVZXRHZXItVzNidmFpSVQ3ZEg2Z0hRb25uM204akllUVFVbjNrVVpEdUpmbUpPWGRCZG9JdE5iVHJUR0cxMUZGc2h5WTBVQ2VnYmZSdHZUalBCU3FVR2ozLWFoTnlXalU2UEthazhDVHg4OGZPSjA1UGx6RDcwcmFTdlZyb2hOWjFPTzNtOXBUWlJxR2ZvV3FBWUl",
+        "sentiment_score": null,
+        "source": "Google News RSS",
+        "_source_type": "live_feed",
+        "_source_confidence": 0.8,
+        "_source_provider": "Google News RSS"
+      },
+      {
+        "date_time": "05-03-2026 14:01:56 IST",
+        "headline": "Iraq's Oil Exports to India Topped $29 Billion in 2024 - Crude Oil Prices Today | OilPrice.com",
+        "publisher": "Crude Oil Prices Today | OilPrice.com",
+        "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPS3FhOTVkV0xwNm1KUmxVRzA3TGxVTkpfSW0yWUhtekVEdWdaSC0ycENfZ0ZSU05MN0JvZDVsenE3OW9ZM3NKWW16aVhoaTRyV3hhM1JnZGlDUEw4dl9DcUpQTE0zMWZnWjRaQzdwc1N6b3F5U1pYNmh5WmJkT2ZUZ2l6eDVBMU93dzU0ZFBPdTQzZ0luMzFaQU9Tck1obmtfZnFmVDVDOVAtWENu0gGyAUFVX3lxTE9lYTR4NXk5Ymp",
+        "sentiment_score": null,
+        "source": "Google News RSS",
+        "_source_type": "live_feed",
+        "_source_confidence": 0.8,
+        "_source_provider": "Google News RSS"
+      },
+      {
+        "date_time": "05-03-2026 14:01:56 IST",
+        "headline": "India must rein in imports, push exports: Gadkari - ET Auto",
+        "publisher": "ET Auto",
+        "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxQYkhBQnNibnlTdWFKOHMtcWlBMjE0Y19iUnczbXAzcHVZTHJYVVhKWVF2N29sVEEtdnR6Yjc1bzlhaThJQ0I1MDB1Rk9iMXFwazZBeVAyMXBwUUZkQTFjMk04b0R5WlFGQzZQWGxjemNWamVZX182bUtCejRuRFpRZUFmdl9DZ3hJaEFIZThCSVBPVTE1SUNYZl9UdVlwZVRYaWhxSXd4MHkzOWw4bzFkMlVHeGVKYXFMU0FDak9KZ21",
+        "sentiment_score": null,
+        "source": "Google News RSS",
+        "_source_type": "live_feed",
+        "_source_confidence": 0.8,
+        "_source_provider": "Google News RSS"
+      },
+      {
+        "date_time": "05-03-2026 14:01:56 IST",
+        "headline": "India's 2023 bitumen imports surge 31% on year as demand set to grow - S&P Global",
+        "publisher": "S&P Global",
+        "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPWXpPbTJ3T1BBVVVXN281dkxtOElmV3FyVnVkaGpKZVZNSU9NMlpTUmdMS2NQUUlaclZUUHNMZTRHYXpuYy10VHA5NHNtLTZ2LXlpR1hjaXJTME9WVmd3VDBGWkI0TkFDQVpKTEhoWGhxZ2lqTHFxc3phYkhOSHhCWm5peHYzOTc1WnoyQndLNHJpWDhEd1I2cFd2WDZnZDczem56OE5EWmI0Ym5JRWp5N1J2LUhXUXFUQXlZR2ktdnB",
+        "sentiment_score": null,
+        "source": "Google News RSS",
+        "_source_type": "live_feed",
+        "_source_confidence": 0.8,
+        "_source_provider": "Google News RSS"
+      },
+      {
+        "date_time": "05-03-2026 14:01:56 IST",
+        "headline": "India - Monthly Refined Petroleum Consumption (YoY % Change) | Crude Oil (Other) | Collection - MacroMicro",
+        "publisher": "MacroMicro",
+        "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQbHhWQnVYbHZ3OTNTMXl5anpFSC1iZW9vanRvclRBcFpKbUFDbDZ2T2xndHNZbnI2XzIyVDV0N2J4aVNEWFBhMkVQV2d4czA2Y2p5UXpoVkVMZDBIa2kxelI1WXFLYzlHbmpERWs1RTdSczI4WjFMMTRuT0J4QWtMUG5CZy1iUllkWXhRZ1pxRGpSQURFMi1BY0JMS1JINXRxdF9kSUVIYzhpN1pTTG0xWEFsVQ?oc=5",
+        "sentiment_score": null,
+        "source": "Google News RSS",
+        "_source_type": "live_feed",
+        "_source_confidence": 0.8,
+        "_source_provider": "Google News RSS"
+      },
+      {
+        "date_time": "05-03-2026 14:01:56 IST",
+        "headline": "India Becomes First to Produce Bio-Bitumen for Roads - Construction World",
+        "publisher": "Construction World",
+        "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxONFAwRV90N3c5NER1RDNCcVFJRlR3a3VXa2hjWEZhdXkwOU9NaWR0Y285cDQ2ZVRqTWdqUmJpU2JHQmNQcTdRY3lmSlZzVE1GX01lTVN4eTBneDV5Ymhpdi1ZQVctTGFqN19vZzlLSmVNUmJmeV9VUFhWVzc0VmhMQUk5UzNQWVQ0aHh5QTFVVkVlY1JnQWtJRE45WUxNUXByS0NtY3llYzNibk1ITmgtMEFSTnZ2WmxxX2stMkZBZHB",
+        "sentiment_score": null,
+        "source": "Google News RSS",
+        "_source_type": "live_feed",
+        "_source_confidence": 0.8,
+        "_source_provider": "Google News RSS"
+      },
+      {
+        "date_time": "05-03-2026 14:01:56 IST",
+        "headline": "CSIR hands bio-bitumen production licences to Indian manufacturers: Officials | India News - Hindustan Times",
+        "publisher": "Hindustan Times",
+        "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOWWNmWkJqc3Zub25TeC16MVdNeHp3RjY2cTUwV0hOZkRjU2ZSQnBLRUhlS012T0pYTG1qczRjMlJGZDgtTzVUbVhldHVOYWIzRGZSbllKSkIxeWdQSTQ3OWJvTWVWU1M3ZVJ3MWRNRVNEelRUZFhyaE94Z2had2FwM3dBMjk5blQydHZrMUh3MGxVZTFfWjJqQkNJeHdmdklLVE8zNS01RG9xSkNGaDRmTTMteTFMRDc3R1lDa1RHRnd",
+        "sentiment_score": null,
+        "source": "Google News RSS",
+        "_source_type": "live_feed",
+        "_source_confidence": 0.8,
+        "_source_provider": "Google News RSS"
+      },
+      {
+        "date_time": "05-03-2026 14:01:56 IST",
         "headline": "Bio-Bitumen: Paving India’s Roads with Low-Carbon Innovation - Sanskriti IAS",
         "publisher": "Sanskriti IAS",
         "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNbXM3b2taYWZsaW9xaUlWRUh0MFdNYWJtbGRGaThWSlc3UnE1aU11N3ltMmNMRGtwQkVZOHNtUll2dms0cXNDcTlyUHVnRlBpc2tDVmFCSXJnZzFTZzlxbVFyOC1fVHcyZmh0NDNWZUR5cHJZMTRmdWlueW41aXE4TlE5V1hBT2piMnZBSDg1Qjg3UnhqU1phU0lVVlRIMTZGanI0a2FB?oc=5",
@@ -324,7 +324,7 @@
         "_source_provider": "Google News RSS"
       },
       {
-        "date_time": "05-03-2026 13:48:43 IST",
+        "date_time": "05-03-2026 14:01:56 IST",
         "headline": "OPEC Approves Modest Output Hike as Iran War Jolts Oil Markets - Crude Oil Prices Today | OilPrice.com",
         "publisher": "Crude Oil Prices Today | OilPrice.com",
         "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQNThvdHBnZU9DSFcyZEdVMHpsR0FOUnpzWHQ1SDlwSTJZeEJ2YmRfQ0NUSTZhSVZGa3NDeEJQNlVLbW9xR1lyaDhEano3WVR0b3JXYjh4U0hiMEVOMEJ6WVBtbHNCQU9xR0RDYzlpbXAtblNQVWdvdjBEQ3VyZW96ZVYtTlJtWW5KMENIS0VlUElFTmxubHN2WWkxS3Z3RnZRUnFRV2NDc1I4TTlRQzhvVDI4Q2luXzFQbEHSAb8BQVV",
@@ -335,7 +335,7 @@
         "_source_provider": "Google News RSS"
       },
       {
-        "date_time": "05-03-2026 13:48:43 IST",
+        "date_time": "05-03-2026 14:01:56 IST",
         "headline": "OPEC Plus to Boost Oil Production as Iran Strikes Threaten Price Spike - The New York Times",
         "publisher": "The New York Times",
         "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNNFFncldPdER5SlZ1VDN0bHBydDJielNBc2RUbjRpVkVFcW11Y0w5OHUzeEotdGR5WkNZc1I3WjAxd2ROYmNXUWxDVHdKS3AyU0piOFJnMlN0NWgyMVZkNjI3VDdndm95Y3NjMi02Q2hyV3JJSVU3YldVaUxYOE9KQm5RVlpMWHhFc2VPeUhiMEUtUQ?oc=5",
@@ -346,7 +346,7 @@
         "_source_provider": "Google News RSS"
       },
       {
-        "date_time": "05-03-2026 13:48:43 IST",
+        "date_time": "05-03-2026 14:01:56 IST",
         "headline": "OPEC Weighs Shock Output Surge as Iran Conflict Rattles Oil Markets - Crude Oil Prices Today | OilPrice.com",
         "publisher": "Crude Oil Prices Today | OilPrice.com",
         "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNN05SM1o5d2hMa2Z5Q1cxNVJCYVR5Z3I4Nlk5VkhZcUJTY3Voamh0YjJQLUlSbFZRNU5TajdzS0RrRVZmby14WWVycktlM3kwZkFHSzBEeVJvV1RfNHhoazRreGViN3lXV3VrdDZHbmxCdmtVZFlqSkI3Wk56c29xM0RLYmgxWmw4SEpYbTVfOUVBVzE2dnhuNHBVVW9la2tDSThkbzFPZTBQN1EwTS1pQlBxRW9HbVRUQXRnY1JGNHT",
@@ -357,7 +357,7 @@
         "_source_provider": "Google News RSS"
       },
       {
-        "date_time": "05-03-2026 13:48:43 IST",
+        "date_time": "05-03-2026 14:01:56 IST",
         "headline": "Oil prices forecast to jump despite Opec+ pledge to raise output - Financial Times",
         "publisher": "Financial Times",
         "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE15R3RFaGFUaEktUGRSa05sTk9SY05pak8tSzJVYnY4ckRDeXd4a1J3SWdIYkRyUV9QbUZhWEl3RWtQaFVRdkxyNlFBUFAzbzBud1BCaDN3eFZhSFZUbU5INmhLcVl0Mk8tVlpRTGxuczk?oc=5",
@@ -368,7 +368,7 @@
         "_source_provider": "Google News RSS"
       },
       {
-        "date_time": "05-03-2026 13:48:43 IST",
+        "date_time": "05-03-2026 14:01:56 IST",
         "headline": "OPEC+ agrees modest oil output boost even as US war on Iran disrupts shipments - CNBC Africa",
         "publisher": "CNBC Africa",
         "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQc3ZsSDlXR3RpN1hkNUZaXy00Q3drclFXaUdpTDVYelBCczg2WkRlOXpPa1puWDRWVnlpaVFvVEVEal9mQXNhd3JONUM0WTZxRHlMb3lUZk5IVFpGSjJTX2QzSWxSdXc3S0RGTkVwdUx4NHkyRkZUbkVDR00wbkhOSHQzSVNUY3E4Qlc2OFF1ZTZFbDVZUE9NeWM3S0Y3cWlsVU1zakxnallRR3ZkYkg0?oc=5",
@@ -379,7 +379,7 @@
         "_source_provider": "Google News RSS"
       },
       {
-        "date_time": "05-03-2026 13:48:43 IST",
+        "date_time": "05-03-2026 14:01:56 IST",
         "headline": "Oil prices fallout: OPEC producers boost output after Iran strikes - Axios",
         "publisher": "Axios",
         "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFB6VjRraXp0a196MlpoVUJtZ1puTzhvRnJNT21TZk9GWjVlNlBINnN1ejZGdklXMnREd3NQWDc4NE5yQ2xJaGJpRU5PVndiQjMxM09FVW8zaElVZUlvcmZHNW5ablpPS2pCVFM3VEh3?oc=5",
@@ -390,9 +390,9 @@
         "_source_provider": "Google News RSS"
       },
       {
-        "date_time": "05-03-2026 13:48:43 IST",
-        "headline": "Will Iran war send oil prices above $100 a barrel? - DW.com",
-        "publisher": "DW.com",
+        "date_time": "05-03-2026 14:01:56 IST",
+        "headline": "Will Iran war send oil prices above $100 a barrel? - dw.com",
+        "publisher": "dw.com",
         "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOcmY0QTlYY3hqbExiR0REMHNFNldYbWZfODVVRlZ2eTBGQmQ1SmFFbndFOWxvZDcxSlZzc1VsZ2VUaXRvVTg2R0t6WTg2Vmd6V0g0NnJtRUUtYUxyT09IZ3BwQTV2NkpDUllMVF9NRFFDaldlTzA1YUNldnlpa3lITG1uYTItZ3o2Nm440gGLAUFVX3lxTE9kbzZUZXZtdmJmTzRVMTFKMm5fcDdoZk1nSzhHeDBiaVh1d3Y3TEVKS0h",
         "sentiment_score": null,
         "source": "Google News RSS",
@@ -401,7 +401,7 @@
         "_source_provider": "Google News RSS"
       },
       {
-        "date_time": "05-03-2026 13:48:43 IST",
+        "date_time": "05-03-2026 14:01:56 IST",
         "headline": "OPEC to raise output as Iran war threatens to bolster rally in crude oil prices | Business News - Hindustan Times",
         "publisher": "Hindustan Times",
         "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQN2g3RDZ1UHFpc2FPMzRpUnFmN0lCSUU1LUM3cTdRY1NSR3ZDVENySlFLdC1URW1aanYtTnJnYWlGWExTYjNDVldFbkJURlk1UE93V2UxdHBSd3RvTU5RbEs2eUpKb0FmQzNBVFE5UGVnZVVuVHBaOXRQZk16R0JEMHkxLWVRTm1RcDNoZEl1cU1NYkM1c29hWlkweE84RWMtckdHVEdQSFNXOXYwTUZFMGtFcmIyei16MUxkS3Z4U0p",
@@ -412,7 +412,7 @@
         "_source_provider": "Google News RSS"
       },
       {
-        "date_time": "05-03-2026 13:48:43 IST",
+        "date_time": "05-03-2026 14:01:56 IST",
         "headline": "Iraqi Supply Loss Could Expose the Real Limits of OPEC Spare Capacity - Crude Oil Prices Today | OilPrice.com",
         "publisher": "Crude Oil Prices Today | OilPrice.com",
         "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOeDFIRVFCRVduMHRGa0lOQ3dNb0NtWnFVcWU0UUNyUWpsTTlpS1hncmVEMVlmaGNQTEcwTV9oUkNmZ1dRTmxVdVRGazBablNEVEhJVEctOWFjVjRFRGh5dDRJMXNLTk5aa1BOYU9PMUVVVGdfcXY0Z2Z3ZkxYY2NDUlEtZ1MyLVZSdEpiOTNqQjBHYUZ2SmtBYXh3LXpSRG5sZFRIWUpxWlN2WVNZT1N4Z3NR0gG3AUFVX3lxTE9MMVd",
@@ -423,7 +423,7 @@
         "_source_provider": "Google News RSS"
       },
       {
-        "date_time": "05-03-2026 13:48:43 IST",
+        "date_time": "05-03-2026 14:01:56 IST",
         "headline": "OPEC Oil Production Falls by 439,9000 Bpd - Crude Oil Prices Today | OilPrice.com",
         "publisher": "Crude Oil Prices Today | OilPrice.com",
         "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPU3U5ZVd0bXRJYUIwR1o0TTl2MUd2TkliS05BNXZUVmtlYzhxclM2bnU1U1l2NEVwUUhnTDYxNTVJc2R0SVplVW8yOXVQUlhLXzQxam51bjA0ZkhrYV8tZG9YZ0RnYldoVXFIenNiNVdTU1UzQ2M2N01KM1FYLUNhUURIV01zXy1SQ0pR0gGQAUFVX3lxTE1FeHRpVXVUQXpfb1pSbjlVLVFMZmhCXzBVZ1NPa3VLSjUzbU1jWW9tcnV",
@@ -474,12 +474,12 @@
     }
   },
   "eia_crude": {
-    "ts": 1772698721.858768,
+    "ts": 1772699516.171625,
     "data": [
       {
-        "date_time": "05-03-2026 13:48:41 IST",
+        "date_time": "05-03-2026 14:01:56 IST",
         "benchmark": "Brent",
-        "price": 84.34,
+        "price": 84.01,
         "currency": "USD/bbl",
         "source": "yfinance (EIA fallback)",
         "_source_type": "live_api",
@@ -487,9 +487,9 @@
         "_source_provider": "Yahoo Finance (yfinance library)"
       },
       {
-        "date_time": "05-03-2026 13:48:41 IST",
+        "date_time": "05-03-2026 14:01:56 IST",
         "benchmark": "WTI",
-        "price": 77.56,
+        "price": 77.44,
         "currency": "USD/bbl",
         "source": "yfinance (EIA fallback)",
         "_source_type": "live_api",

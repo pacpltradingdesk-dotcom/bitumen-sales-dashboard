@@ -298,5 +298,19 @@
     "sources": [
       "tbl_maritime_intel"
     ]
+  },
+  {
+    "id": "63f70fb0cd07",
+    "severity": "P1",
+    "category": "logistics",
+    "message": "7 vessel(s) delayed on bitumen import routes",
+    "impact": "Import deliveries may be delayed; spot market could tighten",
+    "action": "Check alternative suppliers; domestic procurement as backup",
+    "confidence": 65,
+    "created_at": "05-03-2026 14:02 IST",
+    "expires_at": "06-03-2026 14:02 IST",
+    "sources": [
+      "tbl_maritime_intel"
+    ]
   }
 ]

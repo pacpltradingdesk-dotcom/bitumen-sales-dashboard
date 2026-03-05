@@ -50,14 +50,14 @@
       "reasons": [
         "Purchase urgency index: 58/100 (HOLD)",
         "Crude prices forecast to RISE -- lock in current rates",
-        "Market composite: SIDEWAYS (61% confidence)",
+        "Market composite: SIDEWAYS (60% confidence)",
         "Market action: High risk detected -- secure supply from reliable sources",
         "Season: Peak (Month 3)"
       ],
       "confidence": 0.58,
       "crude_forecast_direction": "UP",
       "season": "Peak",
-      "generated_at": "05-03-2026 13:49 IST"
+      "generated_at": "05-03-2026 14:02 IST"
     },
     "sell_advisory": {
       "targets": [
@@ -102,7 +102,7 @@
       "timing": "Peak season -- push aggressively. Customers need supply for active road construction projects.",
       "total_targets": 3,
       "high_priority_count": 0,
-      "generated_at": "05-03-2026 13:49 IST"
+      "generated_at": "05-03-2026 14:02 IST"
     },
     "timing_advisory": {
       "next_revision_date": "16-03-2026",
@@ -113,13 +113,13 @@
       "order_window": "Order within 5 days -- prices trending UP before 16-03-2026 revision",
       "confidence": 0.78,
       "season": "Peak",
-      "generated_at": "05-03-2026 13:49 IST"
+      "generated_at": "05-03-2026 14:02 IST"
     },
     "risk_summary": {
       "risks": {
         "supply": {
           "level": "high",
-          "description": "Supply risk: HIGH. Geopolitical tensions affecting crude supply. Key headline: OPEC+ to raise oil output slightly even as U.S.-Israel strikes on Iran disrupt s",
+          "description": "Supply risk: HIGH. Geopolitical tensions affecting crude supply. Key headline: Oil prices fallout: OPEC producers boost output after Iran strikes - Axios",
           "mitigation": "Diversify suppliers and maintain 15-day safety stock"
         },
         "fx": {
@@ -145,10 +145,10 @@
       },
       "overall_level": "high",
       "high_risk_count": 2,
-      "generated_at": "05-03-2026 13:49 IST"
+      "generated_at": "05-03-2026 14:02 IST"
     },
-    "generated_at": "05-03-2026 13:49 IST",
-    "natural_language_brief": " Today I recommend a balanced buy stance on VG-30 bitumen, purchasing at Rs.65/MT to capitalize before the fiscal rush in February and March peaks demand with limited supply due to monsoon season slowdown from June - August. Aim for 10 MT given your role as a commission agent; this quantity aligns well within our credit policy of advance payment only, ensuring compliance without risking financial exposure."
+    "generated_at": "05-03-2026 14:02 IST",
+    "natural_language_brief": " Today I recommend a pre-buy strategy targeting VG-30 bitumen, considering the upcoming fiscal rush and peak season starting October with expected price trends going UP before our next revision on March 16th. Secure an estimated quantity of Rs.25 million worth at market rates for aggressive bidders to capitalize early in this window."
   },
   "history": [
     {
@@ -370,6 +370,20 @@
     },
     {
       "timestamp": "05-03-2026 13:49 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "05-03-2026 13:59 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "05-03-2026 14:02 IST",
       "buy_urgency": "PRE-BUY",
       "sell_targets": 3,
       "expected_direction": "UP",

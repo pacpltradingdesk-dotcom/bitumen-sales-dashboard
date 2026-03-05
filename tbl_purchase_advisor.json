@@ -21,40 +21,10 @@
       "supply_risk": 0.1
     },
     "stock_recommendation": "Stock 10-15 days — peak season but costs manageable",
-    "timestamp": "05-03-2026 13:49 IST",
+    "timestamp": "05-03-2026 14:02 IST",
     "has_live_data": true
   },
   "history": [
-    {
-      "timestamp": "04-03-2026 21:03 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:03 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:03 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:04 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:04 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
-    {
-      "timestamp": "04-03-2026 21:04 IST",
-      "urgency_index": 58,
-      "recommendation": "HOLD"
-    },
     {
       "timestamp": "04-03-2026 21:12 IST",
       "urgency_index": 58,
@@ -472,6 +442,36 @@
     },
     {
       "timestamp": "05-03-2026 13:49 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 13:59 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 13:59 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 13:59 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 14:02 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 14:02 IST",
+      "urgency_index": 58,
+      "recommendation": "HOLD"
+    },
+    {
+      "timestamp": "05-03-2026 14:02 IST",
       "urgency_index": 58,
       "recommendation": "HOLD"
     }

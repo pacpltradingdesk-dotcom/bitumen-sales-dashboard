@@ -28213,5 +28213,457 @@
     "errors": [
       "intelligence_refresh: Timeout after 120s"
     ]
+  },
+  {
+    "started_at": "05-03-2026 13:58:43 IST",
+    "completed_at": "05-03-2026 14:06:10 IST",
+    "status": "partial",
+    "steps": [
+      {
+        "name": "News Feeds",
+        "status": "done",
+        "started_at": "05-03-2026 13:58:43 IST",
+        "details": [
+          "News: 30 articles"
+        ],
+        "completed_at": "05-03-2026 13:58:46 IST"
+      },
+      {
+        "name": "Trade Data",
+        "status": "done",
+        "started_at": "05-03-2026 13:58:43 IST",
+        "details": [],
+        "completed_at": "05-03-2026 13:58:46 IST"
+      },
+      {
+        "name": "Market Data",
+        "status": "done",
+        "started_at": "05-03-2026 13:58:43 IST",
+        "details": [
+          "Crude: 2 records from yfinance fallback",
+          "FX: 0 records",
+          "Weather: 5 records",
+          "World Bank: 6 indicators"
+        ],
+        "completed_at": "05-03-2026 13:58:47 IST"
+      },
+      {
+        "name": "Validation",
+        "status": "done",
+        "started_at": "05-03-2026 13:58:47 IST",
+        "details": [
+          "Health check: 44 entities, 3 issues",
+          "  errors/error_log: WARN — 12 P1 open errors (threshold ≥5)",
+          "  resource/system_resources: WARN — CPU=42.6% Mem=73.4% Disk=54.4% MemUsed=11832MB",
+          "  data/price_anomalies: WARN — 4 price anomalies detected"
+        ],
+        "completed_at": "05-03-2026 13:58:47 IST"
+      },
+      {
+        "name": "Calculations",
+        "status": "done",
+        "started_at": "05-03-2026 13:58:47 IST",
+        "details": [
+          "Correlation: 0 results"
+        ],
+        "completed_at": "05-03-2026 13:58:47 IST"
+      },
+      {
+        "name": "Opportunities",
+        "status": "done",
+        "started_at": "05-03-2026 13:58:47 IST",
+        "details": [
+          "Found 3 new opportunities",
+          "  cheapest_route_change: Route Optimization: Bhopal — Save ₹2,753.44/MT",
+          "  cheapest_route_change: Route Optimization: Hyderabad — Save ₹1,218.41/MT",
+          "  cheapest_route_change: Route Optimization: Pune — Save ₹2,000.46/MT"
+        ],
+        "completed_at": "05-03-2026 13:58:47 IST"
+      },
+      {
+        "name": "Alerts",
+        "status": "done",
+        "started_at": "05-03-2026 13:58:47 IST",
+        "details": [],
+        "completed_at": "05-03-2026 13:58:47 IST"
+      },
+      {
+        "name": "Daily Rotation",
+        "status": "done",
+        "started_at": "05-03-2026 13:58:47 IST",
+        "details": [
+          "Rotation: disabled in settings"
+        ],
+        "completed_at": "05-03-2026 13:58:47 IST"
+      },
+      {
+        "name": "Festival Broadcasts",
+        "status": "done",
+        "started_at": "05-03-2026 13:58:47 IST",
+        "details": [
+          "Festival broadcasts: disabled"
+        ],
+        "completed_at": "05-03-2026 13:58:47 IST"
+      },
+      {
+        "name": "Price Watch",
+        "status": "done",
+        "started_at": "05-03-2026 13:58:47 IST",
+        "details": [
+          "Price broadcast: disabled"
+        ],
+        "completed_at": "05-03-2026 13:58:47 IST"
+      },
+      {
+        "name": "AI Auto-Replies",
+        "status": "done",
+        "started_at": "05-03-2026 13:58:47 IST",
+        "details": [
+          "AI auto-reply: disabled"
+        ],
+        "completed_at": "05-03-2026 13:58:47 IST"
+      },
+      {
+        "name": "CRM Updates",
+        "status": "done",
+        "started_at": "05-03-2026 13:58:47 IST",
+        "details": [
+          "CRM: 0 profiles updated via database"
+        ],
+        "completed_at": "05-03-2026 13:58:47 IST"
+      },
+      {
+        "name": "Communication Triggers",
+        "status": "done",
+        "started_at": "05-03-2026 13:58:47 IST",
+        "details": [
+          "No communication triggers fired"
+        ],
+        "completed_at": "05-03-2026 13:58:47 IST"
+      },
+      {
+        "name": "Director Briefing",
+        "status": "done",
+        "started_at": "05-03-2026 13:58:47 IST",
+        "details": [
+          "Briefing generated for 2026-03-05"
+        ],
+        "completed_at": "05-03-2026 13:58:50 IST"
+      },
+      {
+        "name": "AI Learning",
+        "status": "done",
+        "started_at": "05-03-2026 13:58:50 IST",
+        "details": [
+          "Daily learn: accuracy=90.0%"
+        ],
+        "completed_at": "05-03-2026 13:58:50 IST"
+      },
+      {
+        "name": "Source Registry Health",
+        "status": "done",
+        "started_at": "05-03-2026 13:58:50 IST",
+        "details": [
+          "Updated 0 source health records"
+        ],
+        "completed_at": "05-03-2026 13:58:50 IST"
+      },
+      {
+        "name": "Auto Daily Insights",
+        "status": "done",
+        "started_at": "05-03-2026 13:58:50 IST",
+        "details": [
+          "Daily insights generated"
+        ],
+        "completed_at": "05-03-2026 13:58:50 IST"
+      },
+      {
+        "name": "ML Boost Training",
+        "status": "done",
+        "started_at": "05-03-2026 13:58:50 IST",
+        "details": [
+          "Boost models trained: 0"
+        ],
+        "completed_at": "05-03-2026 13:58:50 IST"
+      },
+      {
+        "name": "Smart Alerts",
+        "status": "done",
+        "started_at": "05-03-2026 13:58:50 IST",
+        "details": [
+          "Alert scan: 0 new alerts generated"
+        ],
+        "completed_at": "05-03-2026 13:58:50 IST"
+      },
+      {
+        "name": "RAG Index Refresh",
+        "status": "done",
+        "started_at": "05-03-2026 13:58:50 IST",
+        "details": [
+          "RAG index: 178 docs (tfidf)"
+        ],
+        "completed_at": "05-03-2026 13:58:50 IST"
+      },
+      {
+        "name": "Market Intelligence Signals",
+        "status": "done",
+        "started_at": "05-03-2026 13:58:50 IST",
+        "details": [
+          "Master signal: SIDEWAYS (confidence 61%)",
+          "10 signals computed, 9 OK"
+        ],
+        "completed_at": "05-03-2026 13:58:53 IST"
+      },
+      {
+        "name": "Infra Demand Intelligence",
+        "status": "done",
+        "started_at": "05-03-2026 13:58:50 IST",
+        "details": [
+          "GDELT: 0 new articles, 102 scores, 1 alerts"
+        ],
+        "completed_at": "05-03-2026 13:59:16 IST"
+      },
+      {
+        "name": "Market Pulse",
+        "status": "done",
+        "started_at": "05-03-2026 13:59:16 IST",
+        "details": [
+          "Market pulse: 1 alerts generated"
+        ],
+        "completed_at": "05-03-2026 13:59:18 IST"
+      },
+      {
+        "name": "Recommendations",
+        "status": "done",
+        "started_at": "05-03-2026 13:59:16 IST",
+        "details": [
+          "Recommendations generated: buy action=BUY NOW"
+        ],
+        "completed_at": "05-03-2026 13:59:22 IST"
+      },
+      {
+        "name": "Intelligence Refresh",
+        "status": "done",
+        "started_at": "05-03-2026 13:59:16 IST",
+        "details": [
+          "Intelligence refresh: 3/5 engines OK"
+        ],
+        "completed_at": "05-03-2026 14:06:10 IST"
+      }
+    ],
+    "apis_called": 6,
+    "apis_succeeded": 5,
+    "records_updated": 43,
+    "errors": [
+      "intelligence_refresh: Timeout after 120s"
+    ]
+  },
+  {
+    "started_at": "05-03-2026 14:01:55 IST",
+    "completed_at": "05-03-2026 14:08:25 IST",
+    "status": "partial",
+    "steps": [
+      {
+        "name": "News Feeds",
+        "status": "done",
+        "started_at": "05-03-2026 14:01:55 IST",
+        "details": [
+          "News: 30 articles"
+        ],
+        "completed_at": "05-03-2026 14:01:56 IST"
+      },
+      {
+        "name": "Trade Data",
+        "status": "done",
+        "started_at": "05-03-2026 14:01:55 IST",
+        "details": [],
+        "completed_at": "05-03-2026 14:01:57 IST"
+      },
+      {
+        "name": "Market Data",
+        "status": "done",
+        "started_at": "05-03-2026 14:01:55 IST",
+        "details": [
+          "Crude: 2 records from yfinance fallback",
+          "FX: 0 records",
+          "Weather: 5 records",
+          "World Bank: 6 indicators"
+        ],
+        "completed_at": "05-03-2026 14:01:59 IST"
+      },
+      {
+        "name": "Validation",
+        "status": "done",
+        "started_at": "05-03-2026 14:01:59 IST",
+        "details": [
+          "Health check: 44 entities, 3 issues",
+          "  errors/error_log: WARN — 12 P1 open errors (threshold ≥5)",
+          "  resource/system_resources: FAIL — CPU=100.0% Mem=87.6% Disk=54.4% MemUsed=14134MB",
+          "  data/price_anomalies: WARN — 4 price anomalies detected"
+        ],
+        "completed_at": "05-03-2026 14:01:59 IST"
+      },
+      {
+        "name": "Calculations",
+        "status": "done",
+        "started_at": "05-03-2026 14:01:59 IST",
+        "details": [
+          "Correlation: 0 results"
+        ],
+        "completed_at": "05-03-2026 14:01:59 IST"
+      },
+      {
+        "name": "Opportunities",
+        "status": "done",
+        "started_at": "05-03-2026 14:01:59 IST",
+        "details": [
+          "Found 3 new opportunities",
+          "  cheapest_route_change: Route Optimization: Bhopal — Save ₹2,753.44/MT",
+          "  cheapest_route_change: Route Optimization: Hyderabad — Save ₹1,218.41/MT",
+          "  cheapest_route_change: Route Optimization: Pune — Save ₹2,000.46/MT"
+        ],
+        "completed_at": "05-03-2026 14:01:59 IST"
+      },
+      {
+        "name": "CRM Updates",
+        "status": "done",
+        "started_at": "05-03-2026 14:01:59 IST",
+        "details": [
+          "CRM: 0 profiles updated via database"
+        ],
+        "completed_at": "05-03-2026 14:01:59 IST"
+      },
+      {
+        "name": "Alerts",
+        "status": "done",
+        "started_at": "05-03-2026 14:01:59 IST",
+        "details": [],
+        "completed_at": "05-03-2026 14:01:59 IST"
+      },
+      {
+        "name": "Communication Triggers",
+        "status": "done",
+        "started_at": "05-03-2026 14:01:59 IST",
+        "details": [
+          "No communication triggers fired"
+        ],
+        "completed_at": "05-03-2026 14:01:59 IST"
+      },
+      {
+        "name": "Director Briefing",
+        "status": "done",
+        "started_at": "05-03-2026 14:01:59 IST",
+        "details": [
+          "Briefing generated for 2026-03-05"
+        ],
+        "completed_at": "05-03-2026 14:02:03 IST"
+      },
+      {
+        "name": "Source Registry Health",
+        "status": "done",
+        "started_at": "05-03-2026 14:02:03 IST",
+        "details": [
+          "Updated 0 source health records"
+        ],
+        "completed_at": "05-03-2026 14:02:03 IST"
+      },
+      {
+        "name": "Auto Daily Insights",
+        "status": "done",
+        "started_at": "05-03-2026 14:02:03 IST",
+        "details": [
+          "Daily insights generated"
+        ],
+        "completed_at": "05-03-2026 14:02:03 IST"
+      },
+      {
+        "name": "AI Learning",
+        "status": "done",
+        "started_at": "05-03-2026 14:02:03 IST",
+        "details": [
+          "Daily learn: accuracy=89.9%"
+        ],
+        "completed_at": "05-03-2026 14:02:03 IST"
+      },
+      {
+        "name": "ML Boost Training",
+        "status": "done",
+        "started_at": "05-03-2026 14:02:03 IST",
+        "details": [
+          "Boost models trained: 0"
+        ],
+        "completed_at": "05-03-2026 14:02:03 IST"
+      },
+      {
+        "name": "Smart Alerts",
+        "status": "done",
+        "started_at": "05-03-2026 14:02:03 IST",
+        "details": [
+          "Alert scan: 0 new alerts generated"
+        ],
+        "completed_at": "05-03-2026 14:02:03 IST"
+      },
+      {
+        "name": "RAG Index Refresh",
+        "status": "done",
+        "started_at": "05-03-2026 14:02:03 IST",
+        "details": [
+          "RAG index: 178 docs (tfidf)"
+        ],
+        "completed_at": "05-03-2026 14:02:03 IST"
+      },
+      {
+        "name": "Market Intelligence Signals",
+        "status": "done",
+        "started_at": "05-03-2026 14:02:03 IST",
+        "details": [
+          "Master signal: SIDEWAYS (confidence 60%)",
+          "10 signals computed, 9 OK"
+        ],
+        "completed_at": "05-03-2026 14:02:08 IST"
+      },
+      {
+        "name": "Infra Demand Intelligence",
+        "status": "done",
+        "started_at": "05-03-2026 14:02:03 IST",
+        "details": [
+          "GDELT: 0 new articles, 102 scores, 1 alerts"
+        ],
+        "completed_at": "05-03-2026 14:02:13 IST"
+      },
+      {
+        "name": "Market Pulse",
+        "status": "done",
+        "started_at": "05-03-2026 14:02:13 IST",
+        "details": [
+          "Market pulse: 1 alerts generated"
+        ],
+        "completed_at": "05-03-2026 14:02:19 IST"
+      },
+      {
+        "name": "Recommendations",
+        "status": "done",
+        "started_at": "05-03-2026 14:02:13 IST",
+        "details": [
+          "Recommendations generated: buy action=BUY NOW"
+        ],
+        "completed_at": "05-03-2026 14:02:22 IST"
+      },
+      {
+        "name": "Intelligence Refresh",
+        "status": "done",
+        "started_at": "05-03-2026 14:02:13 IST",
+        "details": [
+          "Intelligence refresh: 3/5 engines OK"
+        ],
+        "completed_at": "05-03-2026 14:08:25 IST"
+      }
+    ],
+    "apis_called": 6,
+    "apis_succeeded": 5,
+    "records_updated": 43,
+    "errors": [
+      "intelligence_refresh: Timeout after 120s"
+    ]
   }
 ]

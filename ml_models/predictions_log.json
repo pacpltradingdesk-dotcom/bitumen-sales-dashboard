@@ -778,5 +778,53 @@
   "target_date": "2026-03-05",
   "logged_at": "2026-03-05 13:49:11",
   "evaluated": false
+ },
+ {
+  "model": "recommendation_engine",
+  "prediction": 70,
+  "confidence": 70,
+  "features": {
+   "action": "BUY NOW"
+  },
+  "actual": null,
+  "target_date": "2026-03-05",
+  "logged_at": "2026-03-05 13:59:22",
+  "evaluated": false
+ },
+ {
+  "model": "recommendation_engine",
+  "prediction": 70,
+  "confidence": 70,
+  "features": {
+   "action": "BUY NOW"
+  },
+  "actual": null,
+  "target_date": "2026-03-05",
+  "logged_at": "2026-03-05 13:59:22",
+  "evaluated": false
+ },
+ {
+  "model": "recommendation_engine",
+  "prediction": 70,
+  "confidence": 70,
+  "features": {
+   "action": "BUY NOW"
+  },
+  "actual": null,
+  "target_date": "2026-03-05",
+  "logged_at": "2026-03-05 14:02:22",
+  "evaluated": false
+ },
+ {
+  "model": "recommendation_engine",
+  "prediction": 70,
+  "confidence": 70,
+  "features": {
+   "action": "BUY NOW"
+  },
+  "actual": null,
+  "target_date": "2026-03-05",
+  "logged_at": "2026-03-05 14:02:23",
+  "evaluated": false
  }
 ]

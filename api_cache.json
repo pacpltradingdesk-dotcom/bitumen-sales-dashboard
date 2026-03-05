@@ -1,14 +1,14 @@
 {
   "weather_mumbai": {
-    "timestamp": 1772698916.4936516,
+    "timestamp": 1772699998.8003292,
     "data": {
-      "current": 29.1,
-      "history_7d": 29.1
+      "current": 29.0,
+      "history_7d": 29.0
     },
     "source": "Primary fetch"
   },
   "weather_mangalore": {
-    "timestamp": 1772698919.9080703,
+    "timestamp": 1772700004.684814,
     "data": {
       "current": 28.4,
       "history_7d": 28.4
@@ -16,23 +16,23 @@
     "source": "Primary fetch"
   },
   "weather_delhi": {
-    "timestamp": 1772698921.4568477,
+    "timestamp": 1772700007.716013,
     "data": {
-      "current": 31.9,
-      "history_7d": 31.9
+      "current": 32.1,
+      "history_7d": 32.1
     },
     "source": "Primary fetch"
   },
   "brent": {
-    "timestamp": 1772698911.2289248,
+    "timestamp": 1772699990.8751926,
     "data": {
-      "current": 83.98999786376953,
+      "current": 84.18000030517578,
       "history_7d": 70.75
     },
     "source": "Primary fetch"
   },
   "usdinr": {
-    "timestamp": 1772698907.8071492,
+    "timestamp": 1772699989.1307673,
     "data": {
       "current": 92.10340058,
       "history_7d": 90.91799926757812
@@ -40,15 +40,15 @@
     "source": "Primary fetch"
   },
   "india_vix": {
-    "timestamp": 1772698914.5198944,
+    "timestamp": 1772699997.0050836,
     "data": {
-      "current": 18.770000457763672,
+      "current": 18.985000610351562,
       "history_7d": 14.149999618530273
     },
     "source": "Primary fetch"
   },
   "usdinr_frankfurter": {
-    "timestamp": 1772698909.3925238,
+    "timestamp": 1772699990.415817,
     "data": {
       "current": 92.09,
       "history_7d": 92.09
@@ -56,47 +56,47 @@
     "source": "Primary fetch"
   },
   "wti": {
-    "timestamp": 1772698911.6668413,
+    "timestamp": 1772699991.6880174,
     "data": {
-      "current": 77.30000305175781,
+      "current": 77.62999725341797,
       "history_7d": 65.20999908447266
     },
     "source": "Primary fetch"
   },
   "natural_gas": {
-    "timestamp": 1772698912.136275,
+    "timestamp": 1772699992.4643369,
     "data": {
-      "current": 2.9839999675750732,
+      "current": 2.989000082015991,
       "history_7d": 2.8269999027252197
     },
     "source": "Primary fetch"
   },
   "dxy": {
-    "timestamp": 1772698913.0844996,
+    "timestamp": 1772699994.7732964,
     "data": {
-      "current": 99.14299774169922,
+      "current": 99.1969985961914,
       "history_7d": 97.79000091552734
     },
     "source": "Primary fetch"
   },
   "nifty50": {
-    "timestamp": 1772698913.5510707,
+    "timestamp": 1772699995.5150526,
     "data": {
-      "current": 24606.69921875,
+      "current": 24553.69921875,
       "history_7d": 25424.650390625
     },
     "source": "Primary fetch"
   },
   "sensex": {
-    "timestamp": 1772698914.043675,
+    "timestamp": 1772699996.2660115,
     "data": {
-      "current": 79482.9296875,
+      "current": 79383.8203125,
       "history_7d": 82225.921875
     },
     "source": "Primary fetch"
   },
   "gold_xau": {
-    "timestamp": 1772698914.9559443,
+    "timestamp": 1772699997.777291,
     "data": {
       "current": 5174.22387935,
       "history_7d": 5176.5
@@ -104,15 +104,15 @@
     "source": "Primary fetch"
   },
   "weather_kandla": {
-    "timestamp": 1772698918.2589731,
+    "timestamp": 1772699999.6806908,
     "data": {
-      "current": 32.0,
-      "history_7d": 32.0
+      "current": 31.9,
+      "history_7d": 31.9
     },
     "source": "Primary fetch"
   },
   "world_bank_india_gdp": {
-    "timestamp": 1772698924.5021038,
+    "timestamp": 1772700010.5802813,
     "data": {
       "current": 6.49476552383821,
       "year": "2024",
@@ -121,7 +121,7 @@
     "source": "Primary fetch"
   },
   "world_bank_india_infra": {
-    "timestamp": 1772698925.894362,
+    "timestamp": 1772700011.3307261,
     "data": {
       "current": 7.06298735847362,
       "year": "2024",
@@ -130,7 +130,7 @@
     "source": "Primary fetch"
   },
   "world_bank_cpi_india": {
-    "timestamp": 1772698927.1875412,
+    "timestamp": 1772700012.1505077,
     "data": {
       "current": 4.95303550973656,
       "year": "2024",
@@ -139,15 +139,15 @@
     "source": "Primary fetch"
   },
   "opec_basket": {
-    "timestamp": 1772698928.507901,
+    "timestamp": 1772700012.8326705,
     "data": {
-      "current": 84.04000091552734,
+      "current": 84.19999694824219,
       "history_7d": 70.75
     },
     "source": "Primary fetch"
   },
   "shipping_freight": {
-    "timestamp": 1772698928.9482949,
+    "timestamp": 1772700013.1850731,
     "data": {
       "current": 11.90999984741211,
       "history_7d": 11.869999885559082
@@ -155,15 +155,15 @@
     "source": "Primary fetch"
   },
   "nse_infrastructure": {
-    "timestamp": 1772698929.4082026,
+    "timestamp": 1772700013.5416565,
     "data": {
-      "current": 1299.199951171875,
+      "current": 1298.800048828125,
       "history_7d": 1275.5
     },
     "source": "Primary fetch"
   },
   "open_meteo_forecast_vadodara": {
-    "timestamp": 1772698929.8741927,
+    "timestamp": 1772700013.9142075,
     "data": {
       "current": 38.7,
       "forecast_7d": [
@@ -207,7 +207,7 @@
     "source": "Primary fetch"
   },
   "govt_holiday_api": {
-    "timestamp": 1772698931.335055,
+    "timestamp": 1772700014.8808577,
     "data": {
       "current": 18,
       "holidays": [
@@ -288,7 +288,7 @@
     "source": "Primary fetch"
   },
   "rest_countries_india": {
-    "timestamp": 1772698931.4721937,
+    "timestamp": 1772700014.9842772,
     "data": {
       "current": 1417492000,
       "name": "India",
@@ -302,16 +302,16 @@
     "source": "Primary fetch"
   },
   "current_time": {
-    "timestamp": 1772698933.1855953,
+    "timestamp": 1772700016.108227,
     "data": {
-      "current": "13:52"
+      "current": "14:10"
     },
     "source": "Primary fetch"
   },
   "fuel_oil": {
-    "timestamp": 1772698912.5969436,
+    "timestamp": 1772699993.416729,
     "data": {
-      "current": 3.4939000606536865,
+      "current": 3.5244998931884766,
       "history_7d": 2.612499952316284
     },
     "source": "Primary fetch"

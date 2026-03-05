@@ -2308,5 +2308,89 @@
     "status": "FAIL",
     "message": "Scheduler exception: 'list' object has no attribute 'get'",
     "records_written": 0
+  },
+  {
+    "timestamp_ist": "05-03-2026 13:58:44 IST",
+    "connector_id": "eia_crude",
+    "status": "Fallback",
+    "message": "yfinance fallback: 2 records",
+    "records_written": 2
+  },
+  {
+    "timestamp_ist": "05-03-2026 13:58:46 IST",
+    "connector_id": "newsapi",
+    "status": "Fallback",
+    "message": "Google News RSS: 30 articles",
+    "records_written": 30
+  },
+  {
+    "timestamp_ist": "05-03-2026 13:58:46 IST",
+    "connector_id": "openweather",
+    "status": "OK",
+    "message": "Weather: 5 city records",
+    "records_written": 5
+  },
+  {
+    "timestamp_ist": "05-03-2026 13:58:47 IST",
+    "connector_id": "world_bank_india",
+    "status": "OK",
+    "message": "World Bank: 6 indicators",
+    "records_written": 6
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:00:51 IST",
+    "connector_id": "hub_scheduler",
+    "status": "FAIL",
+    "message": "Scheduler exception: 'list' object has no attribute 'get'",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:01:56 IST",
+    "connector_id": "eia_crude",
+    "status": "Fallback",
+    "message": "yfinance fallback: 2 records",
+    "records_written": 2
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:01:56 IST",
+    "connector_id": "newsapi",
+    "status": "Fallback",
+    "message": "Google News RSS: 30 articles",
+    "records_written": 30
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:01:57 IST",
+    "connector_id": "un_comtrade",
+    "status": "Fallback",
+    "message": "Comtrade unavailable: Empty Comtrade response. Static cache used.",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:01:58 IST",
+    "connector_id": "openweather",
+    "status": "OK",
+    "message": "Weather: 5 city records",
+    "records_written": 5
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:01:59 IST",
+    "connector_id": "world_bank_india",
+    "status": "OK",
+    "message": "World Bank: 6 indicators",
+    "records_written": 6
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:02:46 IST",
+    "connector_id": "hub_scheduler",
+    "status": "FAIL",
+    "message": "Scheduler exception: 'list' object has no attribute 'get'",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:03:59 IST",
+    "connector_id": "hub_scheduler",
+    "status": "FAIL",
+    "message": "Scheduler exception: 'list' object has no attribute 'get'",
+    "records_written": 0
   }
 ]

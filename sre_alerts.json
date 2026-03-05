@@ -463,5 +463,35 @@
     "auto_fix_result": "",
     "action_needed": "Review data freshness",
     "details_json": "{\"entity\": \"price_anomalies\", \"where\": \"Data Layer\", \"why\": \"4 price anomalies detected\"}"
+  },
+  {
+    "alert_id": "ALT-20260305-141027-94FF",
+    "severity": "P1",
+    "entity": "weather_kandla",
+    "message": "API weather_kandla degraded performance",
+    "what_happened": "API weather_kandla degraded performance",
+    "where": "API Layer / weather_kandla",
+    "why": "Latency 3190ms  Error rate 0.0%  ConsecFail 0",
+    "triggered_on_ist": "05-03-2026 14:10:27 IST",
+    "resolved_on_ist": null,
+    "status": "Open",
+    "auto_fix_result": "",
+    "action_needed": "Monitor latency, consider fallback if worsens",
+    "details_json": "{\"entity\": \"weather_kandla\", \"where\": \"API Layer / weather_kandla\", \"why\": \"Latency 3190ms  Error rate 0.0%  ConsecFail 0\"}"
+  },
+  {
+    "alert_id": "ALT-20260305-141028-FF0D",
+    "severity": "P2",
+    "entity": "price_anomalies",
+    "message": "Data quality WARN: price_anomalies",
+    "what_happened": "Data quality WARN: price_anomalies",
+    "where": "Data Layer",
+    "why": "4 price anomalies detected",
+    "triggered_on_ist": "05-03-2026 14:10:28 IST",
+    "resolved_on_ist": null,
+    "status": "Open",
+    "auto_fix_result": "",
+    "action_needed": "Review data freshness",
+    "details_json": "{\"entity\": \"price_anomalies\", \"where\": \"Data Layer\", \"why\": \"4 price anomalies detected\"}"
   }
 ]
