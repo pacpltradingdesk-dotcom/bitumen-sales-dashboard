@@ -3,37 +3,37 @@
     "entity_type": "api",
     "entity_name": "weather_mangalore",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:26 IST",
-    "last_ok_ist": "05-03-2026 14:10:26 IST",
+    "last_checked_ist": "05-03-2026 14:14:40 IST",
+    "last_ok_ist": "05-03-2026 14:14:40 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "calls=75 failures=0 latency=2153ms"
+    "details": "calls=76 failures=0 latency=1513ms"
   },
   {
     "entity_type": "scheduler",
     "entity_name": "auto_health_check",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:27 IST",
-    "last_ok_ist": "05-03-2026 14:10:27 IST",
+    "last_checked_ist": "05-03-2026 14:14:42 IST",
+    "last_ok_ist": "05-03-2026 14:14:42 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "Last run 0.2 min ago — on schedule"
+    "details": "Last run 2.7 min ago — on schedule"
   },
   {
     "entity_type": "api",
     "entity_name": "world_bank_india_gdp",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:26 IST",
-    "last_ok_ist": "05-03-2026 14:10:26 IST",
+    "last_checked_ist": "05-03-2026 14:14:40 IST",
+    "last_ok_ist": "05-03-2026 14:14:40 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "calls=75 failures=0 latency=1124ms"
+    "details": "calls=76 failures=0 latency=1293ms"
   },
   {
     "entity_type": "errors",
     "entity_name": "error_log",
     "status": "WARN",
-    "last_checked_ist": "05-03-2026 14:10:27 IST",
+    "last_checked_ist": "05-03-2026 14:14:42 IST",
     "last_ok_ist": "",
     "error_code": "",
     "auto_fix_attempted": "N",
@@ -43,98 +43,98 @@
     "entity_type": "api",
     "entity_name": "world_bank_cpi_india",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:26 IST",
-    "last_ok_ist": "05-03-2026 14:10:26 IST",
+    "last_checked_ist": "05-03-2026 14:14:40 IST",
+    "last_ok_ist": "05-03-2026 14:14:40 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "calls=75 failures=0 latency=865ms"
+    "details": "calls=76 failures=0 latency=927ms"
   },
   {
     "entity_type": "api",
     "entity_name": "opec_basket",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:26 IST",
-    "last_ok_ist": "05-03-2026 14:10:26 IST",
+    "last_checked_ist": "05-03-2026 14:14:40 IST",
+    "last_ok_ist": "05-03-2026 14:14:40 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "calls=75 failures=0 latency=308ms"
+    "details": "calls=76 failures=0 latency=320ms"
   },
   {
     "entity_type": "api",
     "entity_name": "shipping_freight",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:26 IST",
-    "last_ok_ist": "05-03-2026 14:10:26 IST",
+    "last_checked_ist": "05-03-2026 14:14:40 IST",
+    "last_ok_ist": "05-03-2026 14:14:40 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "calls=75 failures=0 latency=302ms"
+    "details": "calls=76 failures=0 latency=309ms"
   },
   {
     "entity_type": "api",
     "entity_name": "nse_infrastructure",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:26 IST",
-    "last_ok_ist": "05-03-2026 14:10:26 IST",
+    "last_checked_ist": "05-03-2026 14:14:40 IST",
+    "last_ok_ist": "05-03-2026 14:14:40 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "calls=75 failures=0 latency=334ms"
+    "details": "calls=76 failures=0 latency=327ms"
   },
   {
     "entity_type": "api",
     "entity_name": "open_meteo_forecast_vadodara",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:26 IST",
-    "last_ok_ist": "05-03-2026 14:10:26 IST",
+    "last_checked_ist": "05-03-2026 14:14:40 IST",
+    "last_ok_ist": "05-03-2026 14:14:40 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "calls=74 failures=0 latency=1230ms"
+    "details": "calls=75 failures=0 latency=1577ms"
   },
   {
     "entity_type": "api",
     "entity_name": "govt_holiday_api",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:26 IST",
-    "last_ok_ist": "05-03-2026 14:10:26 IST",
+    "last_checked_ist": "05-03-2026 14:14:40 IST",
+    "last_ok_ist": "05-03-2026 14:14:40 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "calls=74 failures=0 latency=2ms"
+    "details": "calls=75 failures=0 latency=2ms"
   },
   {
     "entity_type": "api",
     "entity_name": "rest_countries_india",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:26 IST",
-    "last_ok_ist": "05-03-2026 14:10:26 IST",
+    "last_checked_ist": "05-03-2026 14:14:40 IST",
+    "last_ok_ist": "05-03-2026 14:14:40 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "calls=73 failures=0 latency=1268ms"
+    "details": "calls=74 failures=0 latency=1200ms"
   },
   {
     "entity_type": "api",
     "entity_name": "current_time",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:26 IST",
-    "last_ok_ist": "05-03-2026 14:10:26 IST",
+    "last_checked_ist": "05-03-2026 14:14:40 IST",
+    "last_ok_ist": "05-03-2026 14:14:40 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "calls=81 failures=0 latency=1283ms"
+    "details": "calls=82 failures=0 latency=1175ms"
   },
   {
     "entity_type": "api",
     "entity_name": "fuel_oil",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:26 IST",
-    "last_ok_ist": "05-03-2026 14:10:26 IST",
+    "last_checked_ist": "05-03-2026 14:14:40 IST",
+    "last_ok_ist": "05-03-2026 14:14:40 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "calls=74 failures=0 latency=790ms"
+    "details": "calls=75 failures=0 latency=546ms"
   },
   {
     "entity_type": "data",
     "entity_name": "live_prices",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:26 IST",
-    "last_ok_ist": "05-03-2026 14:10:26 IST",
+    "last_checked_ist": "05-03-2026 14:14:41 IST",
+    "last_ok_ist": "05-03-2026 14:14:41 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
     "details": "7 price keys OK"
@@ -143,8 +143,8 @@
     "entity_type": "data",
     "entity_name": "api_cache_freshness",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:26 IST",
-    "last_ok_ist": "05-03-2026 14:10:26 IST",
+    "last_checked_ist": "05-03-2026 14:14:41 IST",
+    "last_ok_ist": "05-03-2026 14:14:41 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
     "details": "25 cached entries fresh"
@@ -153,38 +153,38 @@
     "entity_type": "resource",
     "entity_name": "system_resources",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:27 IST",
-    "last_ok_ist": "05-03-2026 14:10:27 IST",
+    "last_checked_ist": "05-03-2026 14:14:42 IST",
+    "last_ok_ist": "05-03-2026 14:14:42 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "CPU=53.2% Mem=64.6% Disk=54.5% MemUsed=10426MB"
+    "details": "CPU=64.5% Mem=66.0% Disk=54.5% MemUsed=10645MB"
   },
   {
     "entity_type": "calculation",
     "entity_name": "brent",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:27 IST",
-    "last_ok_ist": "05-03-2026 14:10:27 IST",
+    "last_checked_ist": "05-03-2026 14:14:42 IST",
+    "last_ok_ist": "05-03-2026 14:14:42 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "brent=84.18 USD/bbl OK"
+    "details": "brent=83.81 USD/bbl OK"
   },
   {
     "entity_type": "calculation",
     "entity_name": "wti",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:27 IST",
-    "last_ok_ist": "05-03-2026 14:10:27 IST",
+    "last_checked_ist": "05-03-2026 14:14:42 IST",
+    "last_ok_ist": "05-03-2026 14:14:42 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "wti=77.63 USD/bbl OK"
+    "details": "wti=77.28 USD/bbl OK"
   },
   {
     "entity_type": "calculation",
     "entity_name": "usdinr",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:27 IST",
-    "last_ok_ist": "05-03-2026 14:10:27 IST",
+    "last_checked_ist": "05-03-2026 14:14:42 IST",
+    "last_ok_ist": "05-03-2026 14:14:42 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
     "details": "usdinr=92.10 ₹/USD OK"
@@ -193,8 +193,8 @@
     "entity_type": "export",
     "entity_name": "pdf_export",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:27 IST",
-    "last_ok_ist": "05-03-2026 14:10:27 IST",
+    "last_checked_ist": "05-03-2026 14:14:42 IST",
+    "last_ok_ist": "05-03-2026 14:14:42 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
     "details": "18 PDFs found, all ≥1024B"
@@ -203,147 +203,147 @@
     "entity_type": "api",
     "entity_name": "brent",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:26 IST",
-    "last_ok_ist": "05-03-2026 14:10:26 IST",
+    "last_checked_ist": "05-03-2026 14:14:40 IST",
+    "last_ok_ist": "05-03-2026 14:14:40 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "calls=78 failures=0 latency=505ms"
+    "details": "calls=79 failures=0 latency=384ms"
   },
   {
     "entity_type": "api",
     "entity_name": "usdinr",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:26 IST",
-    "last_ok_ist": "05-03-2026 14:10:26 IST",
+    "last_checked_ist": "05-03-2026 14:14:40 IST",
+    "last_ok_ist": "05-03-2026 14:14:40 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "calls=77 failures=0 latency=1187ms"
+    "details": "calls=78 failures=0 latency=1058ms"
   },
   {
     "entity_type": "api",
     "entity_name": "india_vix",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:26 IST",
-    "last_ok_ist": "05-03-2026 14:10:26 IST",
+    "last_checked_ist": "05-03-2026 14:14:40 IST",
+    "last_ok_ist": "05-03-2026 14:14:40 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "calls=77 failures=0 latency=486ms"
+    "details": "calls=78 failures=0 latency=387ms"
   },
   {
     "entity_type": "api",
     "entity_name": "usdinr_frankfurter",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:26 IST",
-    "last_ok_ist": "05-03-2026 14:10:26 IST",
+    "last_checked_ist": "05-03-2026 14:14:40 IST",
+    "last_ok_ist": "05-03-2026 14:14:40 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "calls=75 failures=0 latency=648ms"
+    "details": "calls=76 failures=0 latency=530ms"
   },
   {
     "entity_type": "api",
     "entity_name": "wti",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:26 IST",
-    "last_ok_ist": "05-03-2026 14:10:26 IST",
+    "last_checked_ist": "05-03-2026 14:14:40 IST",
+    "last_ok_ist": "05-03-2026 14:14:40 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "calls=77 failures=0 latency=507ms"
+    "details": "calls=78 failures=0 latency=392ms"
   },
   {
     "entity_type": "api",
     "entity_name": "natural_gas",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:26 IST",
-    "last_ok_ist": "05-03-2026 14:10:26 IST",
+    "last_checked_ist": "05-03-2026 14:14:40 IST",
+    "last_ok_ist": "05-03-2026 14:14:40 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "calls=76 failures=0 latency=614ms"
+    "details": "calls=77 failures=0 latency=436ms"
   },
   {
     "entity_type": "api",
     "entity_name": "dxy",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:26 IST",
-    "last_ok_ist": "05-03-2026 14:10:26 IST",
+    "last_checked_ist": "05-03-2026 14:14:40 IST",
+    "last_ok_ist": "05-03-2026 14:14:40 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "calls=76 failures=0 latency=486ms"
+    "details": "calls=77 failures=0 latency=386ms"
   },
   {
     "entity_type": "api",
     "entity_name": "nifty50",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:26 IST",
-    "last_ok_ist": "05-03-2026 14:10:26 IST",
+    "last_checked_ist": "05-03-2026 14:14:40 IST",
+    "last_ok_ist": "05-03-2026 14:14:40 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "calls=76 failures=0 latency=494ms"
+    "details": "calls=77 failures=0 latency=396ms"
   },
   {
     "entity_type": "api",
     "entity_name": "sensex",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:26 IST",
-    "last_ok_ist": "05-03-2026 14:10:26 IST",
+    "last_checked_ist": "05-03-2026 14:14:40 IST",
+    "last_ok_ist": "05-03-2026 14:14:40 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "calls=75 failures=0 latency=478ms"
+    "details": "calls=76 failures=0 latency=371ms"
   },
   {
     "entity_type": "api",
     "entity_name": "gold_xau",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:26 IST",
-    "last_ok_ist": "05-03-2026 14:10:26 IST",
+    "last_checked_ist": "05-03-2026 14:14:40 IST",
+    "last_ok_ist": "05-03-2026 14:14:40 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "calls=76 failures=0 latency=1015ms"
+    "details": "calls=77 failures=0 latency=815ms"
   },
   {
     "entity_type": "api",
     "entity_name": "weather_mumbai",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:26 IST",
-    "last_ok_ist": "05-03-2026 14:10:26 IST",
+    "last_checked_ist": "05-03-2026 14:14:40 IST",
+    "last_ok_ist": "05-03-2026 14:14:40 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "calls=75 failures=0 latency=1126ms"
+    "details": "calls=76 failures=0 latency=1106ms"
   },
   {
     "entity_type": "api",
     "entity_name": "weather_kandla",
-    "status": "WARN",
-    "last_checked_ist": "05-03-2026 14:10:26 IST",
-    "last_ok_ist": "05-03-2026 14:09:40 IST",
-    "error_code": "Latency 3190ms  Error rate 0.0%  ConsecFail 0",
+    "status": "OK",
+    "last_checked_ist": "05-03-2026 14:14:40 IST",
+    "last_ok_ist": "05-03-2026 14:14:40 IST",
+    "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "calls=75 failures=0 latency=3190ms"
+    "details": "calls=76 failures=0 latency=2010ms"
   },
   {
     "entity_type": "api",
     "entity_name": "weather_delhi",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:26 IST",
-    "last_ok_ist": "05-03-2026 14:10:26 IST",
+    "last_checked_ist": "05-03-2026 14:14:40 IST",
+    "last_ok_ist": "05-03-2026 14:14:40 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "calls=75 failures=0 latency=2080ms"
+    "details": "calls=76 failures=0 latency=1589ms"
   },
   {
     "entity_type": "api",
     "entity_name": "world_bank_india_infra",
     "status": "OK",
-    "last_checked_ist": "05-03-2026 14:10:26 IST",
-    "last_ok_ist": "05-03-2026 14:10:26 IST",
+    "last_checked_ist": "05-03-2026 14:14:40 IST",
+    "last_ok_ist": "05-03-2026 14:14:40 IST",
     "error_code": "",
     "auto_fix_attempted": "N",
-    "details": "calls=75 failures=0 latency=934ms"
+    "details": "calls=76 failures=0 latency=898ms"
   },
   {
     "entity_type": "data",
     "entity_name": "price_anomalies",
     "status": "WARN",
-    "last_checked_ist": "05-03-2026 14:10:27 IST",
+    "last_checked_ist": "05-03-2026 14:14:42 IST",
     "last_ok_ist": "",
     "error_code": "",
     "auto_fix_attempted": "N",

@@ -2392,5 +2392,19 @@
     "status": "FAIL",
     "message": "Scheduler exception: 'list' object has no attribute 'get'",
     "records_written": 0
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:13:09 IST",
+    "connector_id": "hub_scheduler",
+    "status": "FAIL",
+    "message": "Scheduler exception: 'list' object has no attribute 'get'",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:14:50 IST",
+    "connector_id": "hub_scheduler",
+    "status": "FAIL",
+    "message": "Scheduler exception: 'list' object has no attribute 'get'",
+    "records_written": 0
   }
 ]
