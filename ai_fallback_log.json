@@ -844,5 +844,23 @@
     "event": "success",
     "provider": "gpt4all",
     "message": "Answered: You are a bitumen trading advisor for PPS Anantam Capital Pv"
+  },
+  {
+    "ts": "05-03-2026 14:32:32 IST",
+    "event": "fallback",
+    "provider": "ollama",
+    "message": "Failed — Ollama daemon not running (start the Ollama app first)"
+  },
+  {
+    "ts": "05-03-2026 14:32:34 IST",
+    "event": "fallback",
+    "provider": "huggingface",
+    "message": "Failed — You must provide an api_key to work with featherless-ai API or log in with `hf auth login`."
+  },
+  {
+    "ts": "05-03-2026 14:38:09 IST",
+    "event": "success",
+    "provider": "gpt4all",
+    "message": "Answered: You are a bitumen trading advisor for PPS Anantam Capital Pv"
   }
 ]

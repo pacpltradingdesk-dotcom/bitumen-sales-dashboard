@@ -57,7 +57,7 @@
       "confidence": 0.58,
       "crude_forecast_direction": "UP",
       "season": "Peak",
-      "generated_at": "05-03-2026 14:02 IST"
+      "generated_at": "05-03-2026 14:32 IST"
     },
     "sell_advisory": {
       "targets": [
@@ -102,7 +102,7 @@
       "timing": "Peak season -- push aggressively. Customers need supply for active road construction projects.",
       "total_targets": 3,
       "high_priority_count": 0,
-      "generated_at": "05-03-2026 14:02 IST"
+      "generated_at": "05-03-2026 14:32 IST"
     },
     "timing_advisory": {
       "next_revision_date": "16-03-2026",
@@ -113,13 +113,13 @@
       "order_window": "Order within 5 days -- prices trending UP before 16-03-2026 revision",
       "confidence": 0.78,
       "season": "Peak",
-      "generated_at": "05-03-2026 14:02 IST"
+      "generated_at": "05-03-2026 14:32 IST"
     },
     "risk_summary": {
       "risks": {
         "supply": {
           "level": "high",
-          "description": "Supply risk: HIGH. Geopolitical tensions affecting crude supply. Key headline: Oil prices fallout: OPEC producers boost output after Iran strikes - Axios",
+          "description": "Supply risk: HIGH. Geopolitical tensions affecting crude supply. Key headline: OPEC Plus to Boost Oil Production as Iran Strikes Threaten Price Spike - The New",
           "mitigation": "Diversify suppliers and maintain 15-day safety stock"
         },
         "fx": {
@@ -145,10 +145,10 @@
       },
       "overall_level": "high",
       "high_risk_count": 2,
-      "generated_at": "05-03-2026 14:02 IST"
+      "generated_at": "05-03-2026 14:32 IST"
     },
-    "generated_at": "05-03-2026 14:02 IST",
-    "natural_language_brief": " Today I recommend a pre-buy strategy targeting VG-30 bitumen, considering the upcoming fiscal rush and peak season starting October with expected price trends going UP before our next revision on March 16th. Secure an estimated quantity of Rs.25 million worth at market rates for aggressive bidders to capitalize early in this window."
+    "generated_at": "05-03-2026 14:32 IST",
+    "natural_language_brief": " Today I recommend a pre-buy strategy targeting VG-30 bitumen, considering the upcoming fiscal rush and peak season demand; aim to secure approximately Rs.75 lakh worth of stock at an aggressive price point before prices potentially rise further by March 16th. Focus on acquiring CRMB-55/60 modified for bridges due to a projected surge in infrastructure projects, with quantities around 2,400 MT based on current contracts and market trends. Hold off on SS-1 emulsion purchases until the monsoon season eases; however, maintain RS-1 surface dressing stock at moderate levels to meet steady demand during this period."
   },
   "history": [
     {
@@ -384,6 +384,13 @@
     },
     {
       "timestamp": "05-03-2026 14:02 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "05-03-2026 14:32 IST",
       "buy_urgency": "PRE-BUY",
       "sell_targets": 3,
       "expected_direction": "UP",

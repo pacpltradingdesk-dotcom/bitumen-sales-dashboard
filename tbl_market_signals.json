@@ -96282,5 +96282,4568 @@
         "status": "OK"
       }
     }
+  },
+  {
+    "computed_at": "05-03-2026 14:31:47 IST",
+    "signals": {
+      "crude_market": {
+        "signal_id": "crude_market",
+        "signal_name": "Crude Market Analysis",
+        "direction": "SIDEWAYS",
+        "confidence": 60,
+        "impact": "Prices stable -- normal procurement timing",
+        "momentum": 0.26,
+        "volatility": "LOW",
+        "trend_slope": 0.047,
+        "support": 83.34,
+        "resistance": 84.34,
+        "latest_brent": 83.91,
+        "latest_wti": 77.22,
+        "data_points": 14,
+        "computed_at": "05-03-2026 14:31:42 IST",
+        "status": "OK"
+      },
+      "currency": {
+        "signal_id": "currency",
+        "signal_name": "Currency Impact Analysis",
+        "pressure": "LOW",
+        "trend": "Stable",
+        "advice": "Normal timing",
+        "confidence": 61,
+        "fx_momentum": -0.04,
+        "fx_volatility": "LOW",
+        "latest_usdinr": 86.45,
+        "crude_cross_direction": "SIDEWAYS",
+        "computed_at": "05-03-2026 14:31:43 IST",
+        "status": "OK"
+      },
+      "weather": {
+        "signal_id": "weather",
+        "signal_name": "Weather & Logistics Impact",
+        "road_condition": "GOOD",
+        "logistics_risk": "LOW",
+        "affected_cities": [],
+        "construction_probability": 100,
+        "monsoon_factor": "DRY",
+        "city_details": {
+          "Mumbai": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 29.0
+          },
+          "Mangalore": {
+            "condition": "GOOD",
+            "rain_mm": 0.1,
+            "temp": 28.3
+          },
+          "Kandla": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 27.9
+          },
+          "Delhi": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 23.3
+          },
+          "Vadodara": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 31.5
+          }
+        },
+        "cities_tracked": 5,
+        "computed_at": "05-03-2026 14:31:43 IST",
+        "status": "OK"
+      },
+      "news": {
+        "signal_id": "news",
+        "signal_name": "News & Event Analysis",
+        "supply_risk": "HIGH",
+        "events": [
+          {
+            "type": "geopolitics",
+            "headline": "OPEC Plus to Boost Oil Production as Iran Strikes Threaten Price Spike - The New York Times",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "OPEC Weighs Shock Output Surge as Iran Conflict Rattles Oil Markets - Crude Oil Prices Today | OilPrice.com",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Oil prices forecast to jump despite Opec+ pledge to raise output - Financial Times",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Tanker rate index hits highest level since 1973 Opec oil embargo as Aramco diverts cargoes to Red Sea - Tradewinds News",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Will Iran war send oil prices above $100 a barrel? - DW.com",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Crude oil prices in focus: OPEC+ increases output by 206,000 bpd amid Middle East tensions - The Times of India",
+            "impact_days": 7
+          },
+          {
+            "type": "port_disruption",
+            "headline": "Opinion | Bitumen: A Crude Item's Curious Link To Trump's Venezuela Strike - And India - NDTV",
+            "impact_days": 5
+          },
+          {
+            "type": "infrastructure",
+            "headline": "Bio-Bitumen: Paving India’s Roads with Low-Carbon Innovation - Sanskriti IAS",
+            "impact_days": 30
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Pune-based company imported $8 million worth of Iranian-origin bitumen in 9 months - theweek.in",
+            "impact_days": 7
+          },
+          {
+            "type": "infrastructure",
+            "headline": "Bio-Bitumen: A Sustainable Revolution in Road Construction - Sanskriti IAS",
+            "impact_days": 30
+          }
+        ],
+        "sentiment": "NEGATIVE",
+        "avg_sentiment_score": -0.467,
+        "category_counts": {
+          "refinery_shutdown": 0,
+          "infrastructure": 3,
+          "geopolitics": 38,
+          "port_disruption": 44
+        },
+        "articles_analyzed": 100,
+        "computed_at": "05-03-2026 14:31:43 IST",
+        "status": "OK"
+      },
+      "govt_infra": {
+        "signal_id": "govt_infra",
+        "signal_name": "Government Infrastructure",
+        "top_states": [
+          {
+            "state": "Uttar Pradesh",
+            "score": 87,
+            "demand_mt": 28500,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Rajasthan",
+            "score": 74,
+            "demand_mt": 22000,
+            "completion_pct": 68.2
+          },
+          {
+            "state": "Madhya Pradesh",
+            "score": 65,
+            "demand_mt": 18000,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Maharashtra",
+            "score": 62,
+            "demand_mt": 17000,
+            "completion_pct": 64.7
+          },
+          {
+            "state": "Gujarat",
+            "score": 60,
+            "demand_mt": 15000,
+            "completion_pct": 70.0
+          },
+          {
+            "state": "Karnataka",
+            "score": 55,
+            "demand_mt": 14000,
+            "completion_pct": 64.3
+          },
+          {
+            "state": "Tamil Nadu",
+            "score": 52,
+            "demand_mt": 12000,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Andhra Pradesh",
+            "score": 50,
+            "demand_mt": 11000,
+            "completion_pct": 68.2
+          },
+          {
+            "state": "Telangana",
+            "score": 46,
+            "demand_mt": 8500,
+            "completion_pct": 70.6
+          },
+          {
+            "state": "Bihar",
+            "score": 45,
+            "demand_mt": 10000,
+            "completion_pct": 60.0
+          }
+        ],
+        "demand_trend": "FALLING",
+        "total_demand_mt": 220800.0,
+        "states_analyzed": 22,
+        "computed_at": "05-03-2026 14:31:43 IST",
+        "status": "OK"
+      },
+      "tenders": {
+        "signal_id": "tenders",
+        "signal_name": "Tender Demand Signal",
+        "new_tenders": 4,
+        "top_state": "N/A",
+        "top_city": "N/A",
+        "demand_level": "MEDIUM",
+        "state_breakdown": {},
+        "recent_tenders": [
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:56 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:57 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:59 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:13:14 IST"
+          }
+        ],
+        "computed_at": "05-03-2026 14:31:43 IST",
+        "status": "OK"
+      },
+      "economic": {
+        "signal_id": "economic",
+        "signal_name": "Global Economic Signal",
+        "economic_trend": "GROWING",
+        "construction_outlook": "POSITIVE",
+        "gdp_growth": 6.49476552383821,
+        "cpi": 4.95303550973656,
+        "source": "World Bank API",
+        "computed_at": "05-03-2026 14:31:43 IST",
+        "status": "OK"
+      },
+      "search": {
+        "signal_id": "search",
+        "signal_name": "Search Demand Signal",
+        "demand_interest": "STABLE",
+        "signal_strength": "MEDIUM",
+        "trending_terms": [],
+        "interest_score": 50,
+        "source": "Neutral fallback (The request failed: Google returned a response wit)",
+        "computed_at": "05-03-2026 14:31:47 IST",
+        "status": "FALLBACK"
+      },
+      "ports": {
+        "signal_id": "ports",
+        "signal_name": "Port & Shipping Signal",
+        "port_risk": "HIGH",
+        "freight_delay": "MAJOR",
+        "congested_ports": [],
+        "volume_trend": "UP",
+        "port_volumes": {
+          "Kandla (KPCT)": 40464.0,
+          "Mumbai (JNPT)": 20810.0,
+          "Mangalore (NMPT)": 13873.0,
+          "Chennai (CCTPL)": 9249.0,
+          "Paradip (PPT)": 6937.0
+        },
+        "total_volume_mt": 91333.0,
+        "computed_at": "05-03-2026 14:31:47 IST",
+        "status": "OK"
+      },
+      "master": {
+        "signal_id": "master",
+        "signal_name": "Master Composite Signal",
+        "market_direction": "SIDEWAYS",
+        "confidence": 60,
+        "demand_outlook": "MODERATE",
+        "risk_level": "HIGH",
+        "recommended_action": "High risk detected -- secure supply from reliable sources",
+        "weighted_score": -0.05,
+        "signals_summary": [
+          {
+            "signal": "Crude Market Analysis",
+            "value": 0.0,
+            "weight_pct": 25,
+            "status": "OK"
+          },
+          {
+            "signal": "Currency Impact Analysis",
+            "value": -1.0,
+            "weight_pct": 15,
+            "status": "OK"
+          },
+          {
+            "signal": "Weather & Logistics Impact",
+            "value": 1.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "News & Event Analysis",
+            "value": 0.0,
+            "weight_pct": 15,
+            "status": "OK"
+          },
+          {
+            "signal": "Government Infrastructure",
+            "value": -1.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "Tender Demand Signal",
+            "value": 0.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "Global Economic Signal",
+            "value": 1.0,
+            "weight_pct": 5,
+            "status": "OK"
+          },
+          {
+            "signal": "Search Demand Signal",
+            "value": 0.0,
+            "weight_pct": 5,
+            "status": "FALLBACK"
+          },
+          {
+            "signal": "Port & Shipping Signal",
+            "value": 1.0,
+            "weight_pct": 5,
+            "status": "OK"
+          }
+        ],
+        "computed_at": "05-03-2026 14:31:47 IST",
+        "status": "OK"
+      }
+    }
+  },
+  {
+    "computed_at": "05-03-2026 14:31:52 IST",
+    "signals": {
+      "crude_market": {
+        "signal_id": "crude_market",
+        "signal_name": "Crude Market Analysis",
+        "direction": "SIDEWAYS",
+        "confidence": 60,
+        "impact": "Prices stable -- normal procurement timing",
+        "momentum": 0.26,
+        "volatility": "LOW",
+        "trend_slope": 0.047,
+        "support": 83.34,
+        "resistance": 84.34,
+        "latest_brent": 83.91,
+        "latest_wti": 77.22,
+        "data_points": 14,
+        "computed_at": "05-03-2026 14:31:48 IST",
+        "status": "OK"
+      },
+      "currency": {
+        "signal_id": "currency",
+        "signal_name": "Currency Impact Analysis",
+        "pressure": "LOW",
+        "trend": "Stable",
+        "advice": "Normal timing",
+        "confidence": 61,
+        "fx_momentum": -0.04,
+        "fx_volatility": "LOW",
+        "latest_usdinr": 86.45,
+        "crude_cross_direction": "SIDEWAYS",
+        "computed_at": "05-03-2026 14:31:48 IST",
+        "status": "OK"
+      },
+      "weather": {
+        "signal_id": "weather",
+        "signal_name": "Weather & Logistics Impact",
+        "road_condition": "GOOD",
+        "logistics_risk": "LOW",
+        "affected_cities": [],
+        "construction_probability": 100,
+        "monsoon_factor": "DRY",
+        "city_details": {
+          "Mumbai": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 28.8
+          },
+          "Mangalore": {
+            "condition": "GOOD",
+            "rain_mm": 0.1,
+            "temp": 28.3
+          },
+          "Kandla": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 27.9
+          },
+          "Delhi": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 23.3
+          },
+          "Vadodara": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 31.5
+          }
+        },
+        "cities_tracked": 5,
+        "computed_at": "05-03-2026 14:31:48 IST",
+        "status": "OK"
+      },
+      "news": {
+        "signal_id": "news",
+        "signal_name": "News & Event Analysis",
+        "supply_risk": "HIGH",
+        "events": [
+          {
+            "type": "geopolitics",
+            "headline": "OPEC Plus to Boost Oil Production as Iran Strikes Threaten Price Spike - The New York Times",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "OPEC Weighs Shock Output Surge as Iran Conflict Rattles Oil Markets - Crude Oil Prices Today | OilPrice.com",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Oil prices forecast to jump despite Opec+ pledge to raise output - Financial Times",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Tanker rate index hits highest level since 1973 Opec oil embargo as Aramco diverts cargoes to Red Sea - Tradewinds News",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Will Iran war send oil prices above $100 a barrel? - DW.com",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Crude oil prices in focus: OPEC+ increases output by 206,000 bpd amid Middle East tensions - The Times of India",
+            "impact_days": 7
+          },
+          {
+            "type": "port_disruption",
+            "headline": "Opinion | Bitumen: A Crude Item's Curious Link To Trump's Venezuela Strike - And India - NDTV",
+            "impact_days": 5
+          },
+          {
+            "type": "infrastructure",
+            "headline": "Bio-Bitumen: Paving India’s Roads with Low-Carbon Innovation - Sanskriti IAS",
+            "impact_days": 30
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Pune-based company imported $8 million worth of Iranian-origin bitumen in 9 months - theweek.in",
+            "impact_days": 7
+          },
+          {
+            "type": "infrastructure",
+            "headline": "Bio-Bitumen: A Sustainable Revolution in Road Construction - Sanskriti IAS",
+            "impact_days": 30
+          }
+        ],
+        "sentiment": "NEGATIVE",
+        "avg_sentiment_score": -0.467,
+        "category_counts": {
+          "refinery_shutdown": 0,
+          "infrastructure": 3,
+          "geopolitics": 38,
+          "port_disruption": 44
+        },
+        "articles_analyzed": 100,
+        "computed_at": "05-03-2026 14:31:48 IST",
+        "status": "OK"
+      },
+      "govt_infra": {
+        "signal_id": "govt_infra",
+        "signal_name": "Government Infrastructure",
+        "top_states": [
+          {
+            "state": "Uttar Pradesh",
+            "score": 87,
+            "demand_mt": 28500,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Rajasthan",
+            "score": 74,
+            "demand_mt": 22000,
+            "completion_pct": 68.2
+          },
+          {
+            "state": "Madhya Pradesh",
+            "score": 65,
+            "demand_mt": 18000,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Maharashtra",
+            "score": 62,
+            "demand_mt": 17000,
+            "completion_pct": 64.7
+          },
+          {
+            "state": "Gujarat",
+            "score": 60,
+            "demand_mt": 15000,
+            "completion_pct": 70.0
+          },
+          {
+            "state": "Karnataka",
+            "score": 55,
+            "demand_mt": 14000,
+            "completion_pct": 64.3
+          },
+          {
+            "state": "Tamil Nadu",
+            "score": 52,
+            "demand_mt": 12000,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Andhra Pradesh",
+            "score": 50,
+            "demand_mt": 11000,
+            "completion_pct": 68.2
+          },
+          {
+            "state": "Telangana",
+            "score": 46,
+            "demand_mt": 8500,
+            "completion_pct": 70.6
+          },
+          {
+            "state": "Bihar",
+            "score": 45,
+            "demand_mt": 10000,
+            "completion_pct": 60.0
+          }
+        ],
+        "demand_trend": "FALLING",
+        "total_demand_mt": 220800.0,
+        "states_analyzed": 22,
+        "computed_at": "05-03-2026 14:31:48 IST",
+        "status": "OK"
+      },
+      "tenders": {
+        "signal_id": "tenders",
+        "signal_name": "Tender Demand Signal",
+        "new_tenders": 4,
+        "top_state": "N/A",
+        "top_city": "N/A",
+        "demand_level": "MEDIUM",
+        "state_breakdown": {},
+        "recent_tenders": [
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:56 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:57 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:59 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:13:14 IST"
+          }
+        ],
+        "computed_at": "05-03-2026 14:31:48 IST",
+        "status": "OK"
+      },
+      "economic": {
+        "signal_id": "economic",
+        "signal_name": "Global Economic Signal",
+        "economic_trend": "GROWING",
+        "construction_outlook": "POSITIVE",
+        "gdp_growth": 6.49476552383821,
+        "cpi": 4.95303550973656,
+        "source": "World Bank API",
+        "computed_at": "05-03-2026 14:31:48 IST",
+        "status": "OK"
+      },
+      "search": {
+        "signal_id": "search",
+        "signal_name": "Search Demand Signal",
+        "demand_interest": "STABLE",
+        "signal_strength": "MEDIUM",
+        "trending_terms": [],
+        "interest_score": 50,
+        "source": "Neutral fallback (The request failed: Google returned a response wit)",
+        "computed_at": "05-03-2026 14:31:51 IST",
+        "status": "FALLBACK"
+      },
+      "ports": {
+        "signal_id": "ports",
+        "signal_name": "Port & Shipping Signal",
+        "port_risk": "HIGH",
+        "freight_delay": "MAJOR",
+        "congested_ports": [],
+        "volume_trend": "UP",
+        "port_volumes": {
+          "Kandla (KPCT)": 40464.0,
+          "Mumbai (JNPT)": 20810.0,
+          "Mangalore (NMPT)": 13873.0,
+          "Chennai (CCTPL)": 9249.0,
+          "Paradip (PPT)": 6937.0
+        },
+        "total_volume_mt": 91333.0,
+        "computed_at": "05-03-2026 14:31:51 IST",
+        "status": "OK"
+      },
+      "master": {
+        "signal_id": "master",
+        "signal_name": "Master Composite Signal",
+        "market_direction": "SIDEWAYS",
+        "confidence": 60,
+        "demand_outlook": "MODERATE",
+        "risk_level": "HIGH",
+        "recommended_action": "High risk detected -- secure supply from reliable sources",
+        "weighted_score": -0.05,
+        "signals_summary": [
+          {
+            "signal": "Crude Market Analysis",
+            "value": 0.0,
+            "weight_pct": 25,
+            "status": "OK"
+          },
+          {
+            "signal": "Currency Impact Analysis",
+            "value": -1.0,
+            "weight_pct": 15,
+            "status": "OK"
+          },
+          {
+            "signal": "Weather & Logistics Impact",
+            "value": 1.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "News & Event Analysis",
+            "value": 0.0,
+            "weight_pct": 15,
+            "status": "OK"
+          },
+          {
+            "signal": "Government Infrastructure",
+            "value": -1.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "Tender Demand Signal",
+            "value": 0.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "Global Economic Signal",
+            "value": 1.0,
+            "weight_pct": 5,
+            "status": "OK"
+          },
+          {
+            "signal": "Search Demand Signal",
+            "value": 0.0,
+            "weight_pct": 5,
+            "status": "FALLBACK"
+          },
+          {
+            "signal": "Port & Shipping Signal",
+            "value": 1.0,
+            "weight_pct": 5,
+            "status": "OK"
+          }
+        ],
+        "computed_at": "05-03-2026 14:31:51 IST",
+        "status": "OK"
+      }
+    }
+  },
+  {
+    "computed_at": "05-03-2026 14:31:56 IST",
+    "signals": {
+      "crude_market": {
+        "signal_id": "crude_market",
+        "signal_name": "Crude Market Analysis",
+        "direction": "SIDEWAYS",
+        "confidence": 60,
+        "impact": "Prices stable -- normal procurement timing",
+        "momentum": 0.26,
+        "volatility": "LOW",
+        "trend_slope": 0.047,
+        "support": 83.34,
+        "resistance": 84.34,
+        "latest_brent": 83.91,
+        "latest_wti": 77.22,
+        "data_points": 14,
+        "computed_at": "05-03-2026 14:31:52 IST",
+        "status": "OK"
+      },
+      "currency": {
+        "signal_id": "currency",
+        "signal_name": "Currency Impact Analysis",
+        "pressure": "LOW",
+        "trend": "Stable",
+        "advice": "Normal timing",
+        "confidence": 61,
+        "fx_momentum": -0.04,
+        "fx_volatility": "LOW",
+        "latest_usdinr": 86.45,
+        "crude_cross_direction": "SIDEWAYS",
+        "computed_at": "05-03-2026 14:31:52 IST",
+        "status": "OK"
+      },
+      "weather": {
+        "signal_id": "weather",
+        "signal_name": "Weather & Logistics Impact",
+        "road_condition": "GOOD",
+        "logistics_risk": "LOW",
+        "affected_cities": [],
+        "construction_probability": 100,
+        "monsoon_factor": "DRY",
+        "city_details": {
+          "Mumbai": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 28.8
+          },
+          "Mangalore": {
+            "condition": "GOOD",
+            "rain_mm": 0.1,
+            "temp": 28.3
+          },
+          "Kandla": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 27.9
+          },
+          "Delhi": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 23.3
+          },
+          "Vadodara": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 31.5
+          }
+        },
+        "cities_tracked": 5,
+        "computed_at": "05-03-2026 14:31:52 IST",
+        "status": "OK"
+      },
+      "news": {
+        "signal_id": "news",
+        "signal_name": "News & Event Analysis",
+        "supply_risk": "HIGH",
+        "events": [
+          {
+            "type": "geopolitics",
+            "headline": "OPEC Plus to Boost Oil Production as Iran Strikes Threaten Price Spike - The New York Times",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "OPEC Weighs Shock Output Surge as Iran Conflict Rattles Oil Markets - Crude Oil Prices Today | OilPrice.com",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Oil prices forecast to jump despite Opec+ pledge to raise output - Financial Times",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Tanker rate index hits highest level since 1973 Opec oil embargo as Aramco diverts cargoes to Red Sea - Tradewinds News",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Will Iran war send oil prices above $100 a barrel? - DW.com",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Crude oil prices in focus: OPEC+ increases output by 206,000 bpd amid Middle East tensions - The Times of India",
+            "impact_days": 7
+          },
+          {
+            "type": "port_disruption",
+            "headline": "Opinion | Bitumen: A Crude Item's Curious Link To Trump's Venezuela Strike - And India - NDTV",
+            "impact_days": 5
+          },
+          {
+            "type": "infrastructure",
+            "headline": "Bio-Bitumen: Paving India’s Roads with Low-Carbon Innovation - Sanskriti IAS",
+            "impact_days": 30
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Pune-based company imported $8 million worth of Iranian-origin bitumen in 9 months - theweek.in",
+            "impact_days": 7
+          },
+          {
+            "type": "infrastructure",
+            "headline": "Bio-Bitumen: A Sustainable Revolution in Road Construction - Sanskriti IAS",
+            "impact_days": 30
+          }
+        ],
+        "sentiment": "NEGATIVE",
+        "avg_sentiment_score": -0.467,
+        "category_counts": {
+          "refinery_shutdown": 0,
+          "infrastructure": 3,
+          "geopolitics": 38,
+          "port_disruption": 44
+        },
+        "articles_analyzed": 100,
+        "computed_at": "05-03-2026 14:31:52 IST",
+        "status": "OK"
+      },
+      "govt_infra": {
+        "signal_id": "govt_infra",
+        "signal_name": "Government Infrastructure",
+        "top_states": [
+          {
+            "state": "Uttar Pradesh",
+            "score": 87,
+            "demand_mt": 28500,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Rajasthan",
+            "score": 74,
+            "demand_mt": 22000,
+            "completion_pct": 68.2
+          },
+          {
+            "state": "Madhya Pradesh",
+            "score": 65,
+            "demand_mt": 18000,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Maharashtra",
+            "score": 62,
+            "demand_mt": 17000,
+            "completion_pct": 64.7
+          },
+          {
+            "state": "Gujarat",
+            "score": 60,
+            "demand_mt": 15000,
+            "completion_pct": 70.0
+          },
+          {
+            "state": "Karnataka",
+            "score": 55,
+            "demand_mt": 14000,
+            "completion_pct": 64.3
+          },
+          {
+            "state": "Tamil Nadu",
+            "score": 52,
+            "demand_mt": 12000,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Andhra Pradesh",
+            "score": 50,
+            "demand_mt": 11000,
+            "completion_pct": 68.2
+          },
+          {
+            "state": "Telangana",
+            "score": 46,
+            "demand_mt": 8500,
+            "completion_pct": 70.6
+          },
+          {
+            "state": "Bihar",
+            "score": 45,
+            "demand_mt": 10000,
+            "completion_pct": 60.0
+          }
+        ],
+        "demand_trend": "FALLING",
+        "total_demand_mt": 220800.0,
+        "states_analyzed": 22,
+        "computed_at": "05-03-2026 14:31:52 IST",
+        "status": "OK"
+      },
+      "tenders": {
+        "signal_id": "tenders",
+        "signal_name": "Tender Demand Signal",
+        "new_tenders": 4,
+        "top_state": "N/A",
+        "top_city": "N/A",
+        "demand_level": "MEDIUM",
+        "state_breakdown": {},
+        "recent_tenders": [
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:56 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:57 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:59 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:13:14 IST"
+          }
+        ],
+        "computed_at": "05-03-2026 14:31:52 IST",
+        "status": "OK"
+      },
+      "economic": {
+        "signal_id": "economic",
+        "signal_name": "Global Economic Signal",
+        "economic_trend": "GROWING",
+        "construction_outlook": "POSITIVE",
+        "gdp_growth": 6.49476552383821,
+        "cpi": 4.95303550973656,
+        "source": "World Bank API",
+        "computed_at": "05-03-2026 14:31:52 IST",
+        "status": "OK"
+      },
+      "search": {
+        "signal_id": "search",
+        "signal_name": "Search Demand Signal",
+        "demand_interest": "STABLE",
+        "signal_strength": "MEDIUM",
+        "trending_terms": [],
+        "interest_score": 50,
+        "source": "Neutral fallback (The request failed: Google returned a response wit)",
+        "computed_at": "05-03-2026 14:31:56 IST",
+        "status": "FALLBACK"
+      },
+      "ports": {
+        "signal_id": "ports",
+        "signal_name": "Port & Shipping Signal",
+        "port_risk": "HIGH",
+        "freight_delay": "MAJOR",
+        "congested_ports": [],
+        "volume_trend": "UP",
+        "port_volumes": {
+          "Kandla (KPCT)": 40464.0,
+          "Mumbai (JNPT)": 20810.0,
+          "Mangalore (NMPT)": 13873.0,
+          "Chennai (CCTPL)": 9249.0,
+          "Paradip (PPT)": 6937.0
+        },
+        "total_volume_mt": 91333.0,
+        "computed_at": "05-03-2026 14:31:56 IST",
+        "status": "OK"
+      },
+      "master": {
+        "signal_id": "master",
+        "signal_name": "Master Composite Signal",
+        "market_direction": "SIDEWAYS",
+        "confidence": 60,
+        "demand_outlook": "MODERATE",
+        "risk_level": "HIGH",
+        "recommended_action": "High risk detected -- secure supply from reliable sources",
+        "weighted_score": -0.05,
+        "signals_summary": [
+          {
+            "signal": "Crude Market Analysis",
+            "value": 0.0,
+            "weight_pct": 25,
+            "status": "OK"
+          },
+          {
+            "signal": "Currency Impact Analysis",
+            "value": -1.0,
+            "weight_pct": 15,
+            "status": "OK"
+          },
+          {
+            "signal": "Weather & Logistics Impact",
+            "value": 1.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "News & Event Analysis",
+            "value": 0.0,
+            "weight_pct": 15,
+            "status": "OK"
+          },
+          {
+            "signal": "Government Infrastructure",
+            "value": -1.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "Tender Demand Signal",
+            "value": 0.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "Global Economic Signal",
+            "value": 1.0,
+            "weight_pct": 5,
+            "status": "OK"
+          },
+          {
+            "signal": "Search Demand Signal",
+            "value": 0.0,
+            "weight_pct": 5,
+            "status": "FALLBACK"
+          },
+          {
+            "signal": "Port & Shipping Signal",
+            "value": 1.0,
+            "weight_pct": 5,
+            "status": "OK"
+          }
+        ],
+        "computed_at": "05-03-2026 14:31:56 IST",
+        "status": "OK"
+      }
+    }
+  },
+  {
+    "computed_at": "05-03-2026 14:32:10 IST",
+    "signals": {
+      "crude_market": {
+        "signal_id": "crude_market",
+        "signal_name": "Crude Market Analysis",
+        "direction": "SIDEWAYS",
+        "confidence": 60,
+        "impact": "Prices stable -- normal procurement timing",
+        "momentum": 0.26,
+        "volatility": "LOW",
+        "trend_slope": 0.047,
+        "support": 83.34,
+        "resistance": 84.34,
+        "latest_brent": 83.91,
+        "latest_wti": 77.22,
+        "data_points": 14,
+        "computed_at": "05-03-2026 14:32:05 IST",
+        "status": "OK"
+      },
+      "currency": {
+        "signal_id": "currency",
+        "signal_name": "Currency Impact Analysis",
+        "pressure": "LOW",
+        "trend": "Stable",
+        "advice": "Normal timing",
+        "confidence": 61,
+        "fx_momentum": -0.04,
+        "fx_volatility": "LOW",
+        "latest_usdinr": 86.45,
+        "crude_cross_direction": "SIDEWAYS",
+        "computed_at": "05-03-2026 14:32:05 IST",
+        "status": "OK"
+      },
+      "weather": {
+        "signal_id": "weather",
+        "signal_name": "Weather & Logistics Impact",
+        "road_condition": "GOOD",
+        "logistics_risk": "LOW",
+        "affected_cities": [],
+        "construction_probability": 100,
+        "monsoon_factor": "DRY",
+        "city_details": {
+          "Mumbai": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 28.8
+          },
+          "Mangalore": {
+            "condition": "GOOD",
+            "rain_mm": 0.1,
+            "temp": 28.3
+          },
+          "Kandla": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 27.9
+          },
+          "Delhi": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 23.3
+          },
+          "Vadodara": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 31.5
+          }
+        },
+        "cities_tracked": 5,
+        "computed_at": "05-03-2026 14:32:05 IST",
+        "status": "OK"
+      },
+      "news": {
+        "signal_id": "news",
+        "signal_name": "News & Event Analysis",
+        "supply_risk": "HIGH",
+        "events": [
+          {
+            "type": "geopolitics",
+            "headline": "OPEC Plus to Boost Oil Production as Iran Strikes Threaten Price Spike - The New York Times",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "OPEC Weighs Shock Output Surge as Iran Conflict Rattles Oil Markets - Crude Oil Prices Today | OilPrice.com",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Oil prices forecast to jump despite Opec+ pledge to raise output - Financial Times",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Tanker rate index hits highest level since 1973 Opec oil embargo as Aramco diverts cargoes to Red Sea - Tradewinds News",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Will Iran war send oil prices above $100 a barrel? - DW.com",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Crude oil prices in focus: OPEC+ increases output by 206,000 bpd amid Middle East tensions - The Times of India",
+            "impact_days": 7
+          },
+          {
+            "type": "port_disruption",
+            "headline": "Opinion | Bitumen: A Crude Item's Curious Link To Trump's Venezuela Strike - And India - NDTV",
+            "impact_days": 5
+          },
+          {
+            "type": "infrastructure",
+            "headline": "Bio-Bitumen: Paving India’s Roads with Low-Carbon Innovation - Sanskriti IAS",
+            "impact_days": 30
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Pune-based company imported $8 million worth of Iranian-origin bitumen in 9 months - theweek.in",
+            "impact_days": 7
+          },
+          {
+            "type": "infrastructure",
+            "headline": "Bio-Bitumen: A Sustainable Revolution in Road Construction - Sanskriti IAS",
+            "impact_days": 30
+          }
+        ],
+        "sentiment": "NEGATIVE",
+        "avg_sentiment_score": -0.467,
+        "category_counts": {
+          "refinery_shutdown": 0,
+          "infrastructure": 3,
+          "geopolitics": 38,
+          "port_disruption": 44
+        },
+        "articles_analyzed": 100,
+        "computed_at": "05-03-2026 14:32:05 IST",
+        "status": "OK"
+      },
+      "govt_infra": {
+        "signal_id": "govt_infra",
+        "signal_name": "Government Infrastructure",
+        "top_states": [
+          {
+            "state": "Uttar Pradesh",
+            "score": 87,
+            "demand_mt": 28500,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Rajasthan",
+            "score": 74,
+            "demand_mt": 22000,
+            "completion_pct": 68.2
+          },
+          {
+            "state": "Madhya Pradesh",
+            "score": 65,
+            "demand_mt": 18000,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Maharashtra",
+            "score": 62,
+            "demand_mt": 17000,
+            "completion_pct": 64.7
+          },
+          {
+            "state": "Gujarat",
+            "score": 60,
+            "demand_mt": 15000,
+            "completion_pct": 70.0
+          },
+          {
+            "state": "Karnataka",
+            "score": 55,
+            "demand_mt": 14000,
+            "completion_pct": 64.3
+          },
+          {
+            "state": "Tamil Nadu",
+            "score": 52,
+            "demand_mt": 12000,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Andhra Pradesh",
+            "score": 50,
+            "demand_mt": 11000,
+            "completion_pct": 68.2
+          },
+          {
+            "state": "Telangana",
+            "score": 46,
+            "demand_mt": 8500,
+            "completion_pct": 70.6
+          },
+          {
+            "state": "Bihar",
+            "score": 45,
+            "demand_mt": 10000,
+            "completion_pct": 60.0
+          }
+        ],
+        "demand_trend": "FALLING",
+        "total_demand_mt": 220800.0,
+        "states_analyzed": 22,
+        "computed_at": "05-03-2026 14:32:05 IST",
+        "status": "OK"
+      },
+      "tenders": {
+        "signal_id": "tenders",
+        "signal_name": "Tender Demand Signal",
+        "new_tenders": 4,
+        "top_state": "N/A",
+        "top_city": "N/A",
+        "demand_level": "MEDIUM",
+        "state_breakdown": {},
+        "recent_tenders": [
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:56 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:57 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:59 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:13:14 IST"
+          }
+        ],
+        "computed_at": "05-03-2026 14:32:05 IST",
+        "status": "OK"
+      },
+      "economic": {
+        "signal_id": "economic",
+        "signal_name": "Global Economic Signal",
+        "economic_trend": "GROWING",
+        "construction_outlook": "POSITIVE",
+        "gdp_growth": 6.49476552383821,
+        "cpi": 4.95303550973656,
+        "source": "World Bank API",
+        "computed_at": "05-03-2026 14:32:05 IST",
+        "status": "OK"
+      },
+      "search": {
+        "signal_id": "search",
+        "signal_name": "Search Demand Signal",
+        "demand_interest": "STABLE",
+        "signal_strength": "MEDIUM",
+        "trending_terms": [],
+        "interest_score": 50,
+        "source": "Neutral fallback (The request failed: Google returned a response wit)",
+        "computed_at": "05-03-2026 14:32:10 IST",
+        "status": "FALLBACK"
+      },
+      "ports": {
+        "signal_id": "ports",
+        "signal_name": "Port & Shipping Signal",
+        "port_risk": "HIGH",
+        "freight_delay": "MAJOR",
+        "congested_ports": [],
+        "volume_trend": "UP",
+        "port_volumes": {
+          "Kandla (KPCT)": 40464.0,
+          "Mumbai (JNPT)": 20810.0,
+          "Mangalore (NMPT)": 13873.0,
+          "Chennai (CCTPL)": 9249.0,
+          "Paradip (PPT)": 6937.0
+        },
+        "total_volume_mt": 91333.0,
+        "computed_at": "05-03-2026 14:32:10 IST",
+        "status": "OK"
+      },
+      "master": {
+        "signal_id": "master",
+        "signal_name": "Master Composite Signal",
+        "market_direction": "SIDEWAYS",
+        "confidence": 60,
+        "demand_outlook": "MODERATE",
+        "risk_level": "HIGH",
+        "recommended_action": "High risk detected -- secure supply from reliable sources",
+        "weighted_score": -0.05,
+        "signals_summary": [
+          {
+            "signal": "Crude Market Analysis",
+            "value": 0.0,
+            "weight_pct": 25,
+            "status": "OK"
+          },
+          {
+            "signal": "Currency Impact Analysis",
+            "value": -1.0,
+            "weight_pct": 15,
+            "status": "OK"
+          },
+          {
+            "signal": "Weather & Logistics Impact",
+            "value": 1.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "News & Event Analysis",
+            "value": 0.0,
+            "weight_pct": 15,
+            "status": "OK"
+          },
+          {
+            "signal": "Government Infrastructure",
+            "value": -1.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "Tender Demand Signal",
+            "value": 0.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "Global Economic Signal",
+            "value": 1.0,
+            "weight_pct": 5,
+            "status": "OK"
+          },
+          {
+            "signal": "Search Demand Signal",
+            "value": 0.0,
+            "weight_pct": 5,
+            "status": "FALLBACK"
+          },
+          {
+            "signal": "Port & Shipping Signal",
+            "value": 1.0,
+            "weight_pct": 5,
+            "status": "OK"
+          }
+        ],
+        "computed_at": "05-03-2026 14:32:10 IST",
+        "status": "OK"
+      }
+    }
+  },
+  {
+    "computed_at": "05-03-2026 14:32:11 IST",
+    "signals": {
+      "crude_market": {
+        "signal_id": "crude_market",
+        "signal_name": "Crude Market Analysis",
+        "direction": "SIDEWAYS",
+        "confidence": 60,
+        "impact": "Prices stable -- normal procurement timing",
+        "momentum": 0.26,
+        "volatility": "LOW",
+        "trend_slope": 0.047,
+        "support": 83.34,
+        "resistance": 84.34,
+        "latest_brent": 83.91,
+        "latest_wti": 77.22,
+        "data_points": 14,
+        "computed_at": "05-03-2026 14:32:05 IST",
+        "status": "OK"
+      },
+      "currency": {
+        "signal_id": "currency",
+        "signal_name": "Currency Impact Analysis",
+        "pressure": "LOW",
+        "trend": "Stable",
+        "advice": "Normal timing",
+        "confidence": 61,
+        "fx_momentum": -0.04,
+        "fx_volatility": "LOW",
+        "latest_usdinr": 86.45,
+        "crude_cross_direction": "SIDEWAYS",
+        "computed_at": "05-03-2026 14:32:05 IST",
+        "status": "OK"
+      },
+      "weather": {
+        "signal_id": "weather",
+        "signal_name": "Weather & Logistics Impact",
+        "road_condition": "GOOD",
+        "logistics_risk": "LOW",
+        "affected_cities": [],
+        "construction_probability": 100,
+        "monsoon_factor": "DRY",
+        "city_details": {
+          "Mumbai": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 28.8
+          },
+          "Mangalore": {
+            "condition": "GOOD",
+            "rain_mm": 0.1,
+            "temp": 28.3
+          },
+          "Kandla": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 27.9
+          },
+          "Delhi": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 23.3
+          },
+          "Vadodara": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 31.5
+          }
+        },
+        "cities_tracked": 5,
+        "computed_at": "05-03-2026 14:32:05 IST",
+        "status": "OK"
+      },
+      "news": {
+        "signal_id": "news",
+        "signal_name": "News & Event Analysis",
+        "supply_risk": "HIGH",
+        "events": [
+          {
+            "type": "geopolitics",
+            "headline": "OPEC Plus to Boost Oil Production as Iran Strikes Threaten Price Spike - The New York Times",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "OPEC Weighs Shock Output Surge as Iran Conflict Rattles Oil Markets - Crude Oil Prices Today | OilPrice.com",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Oil prices forecast to jump despite Opec+ pledge to raise output - Financial Times",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Tanker rate index hits highest level since 1973 Opec oil embargo as Aramco diverts cargoes to Red Sea - Tradewinds News",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Will Iran war send oil prices above $100 a barrel? - DW.com",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Crude oil prices in focus: OPEC+ increases output by 206,000 bpd amid Middle East tensions - The Times of India",
+            "impact_days": 7
+          },
+          {
+            "type": "port_disruption",
+            "headline": "Opinion | Bitumen: A Crude Item's Curious Link To Trump's Venezuela Strike - And India - NDTV",
+            "impact_days": 5
+          },
+          {
+            "type": "infrastructure",
+            "headline": "Bio-Bitumen: Paving India’s Roads with Low-Carbon Innovation - Sanskriti IAS",
+            "impact_days": 30
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Pune-based company imported $8 million worth of Iranian-origin bitumen in 9 months - theweek.in",
+            "impact_days": 7
+          },
+          {
+            "type": "infrastructure",
+            "headline": "Bio-Bitumen: A Sustainable Revolution in Road Construction - Sanskriti IAS",
+            "impact_days": 30
+          }
+        ],
+        "sentiment": "NEGATIVE",
+        "avg_sentiment_score": -0.467,
+        "category_counts": {
+          "refinery_shutdown": 0,
+          "infrastructure": 3,
+          "geopolitics": 38,
+          "port_disruption": 44
+        },
+        "articles_analyzed": 100,
+        "computed_at": "05-03-2026 14:32:05 IST",
+        "status": "OK"
+      },
+      "govt_infra": {
+        "signal_id": "govt_infra",
+        "signal_name": "Government Infrastructure",
+        "top_states": [
+          {
+            "state": "Uttar Pradesh",
+            "score": 87,
+            "demand_mt": 28500,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Rajasthan",
+            "score": 74,
+            "demand_mt": 22000,
+            "completion_pct": 68.2
+          },
+          {
+            "state": "Madhya Pradesh",
+            "score": 65,
+            "demand_mt": 18000,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Maharashtra",
+            "score": 62,
+            "demand_mt": 17000,
+            "completion_pct": 64.7
+          },
+          {
+            "state": "Gujarat",
+            "score": 60,
+            "demand_mt": 15000,
+            "completion_pct": 70.0
+          },
+          {
+            "state": "Karnataka",
+            "score": 55,
+            "demand_mt": 14000,
+            "completion_pct": 64.3
+          },
+          {
+            "state": "Tamil Nadu",
+            "score": 52,
+            "demand_mt": 12000,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Andhra Pradesh",
+            "score": 50,
+            "demand_mt": 11000,
+            "completion_pct": 68.2
+          },
+          {
+            "state": "Telangana",
+            "score": 46,
+            "demand_mt": 8500,
+            "completion_pct": 70.6
+          },
+          {
+            "state": "Bihar",
+            "score": 45,
+            "demand_mt": 10000,
+            "completion_pct": 60.0
+          }
+        ],
+        "demand_trend": "FALLING",
+        "total_demand_mt": 220800.0,
+        "states_analyzed": 22,
+        "computed_at": "05-03-2026 14:32:05 IST",
+        "status": "OK"
+      },
+      "tenders": {
+        "signal_id": "tenders",
+        "signal_name": "Tender Demand Signal",
+        "new_tenders": 4,
+        "top_state": "N/A",
+        "top_city": "N/A",
+        "demand_level": "MEDIUM",
+        "state_breakdown": {},
+        "recent_tenders": [
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:56 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:57 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:59 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:13:14 IST"
+          }
+        ],
+        "computed_at": "05-03-2026 14:32:05 IST",
+        "status": "OK"
+      },
+      "economic": {
+        "signal_id": "economic",
+        "signal_name": "Global Economic Signal",
+        "economic_trend": "GROWING",
+        "construction_outlook": "POSITIVE",
+        "gdp_growth": 6.49476552383821,
+        "cpi": 4.95303550973656,
+        "source": "World Bank API",
+        "computed_at": "05-03-2026 14:32:05 IST",
+        "status": "OK"
+      },
+      "search": {
+        "signal_id": "search",
+        "signal_name": "Search Demand Signal",
+        "demand_interest": "STABLE",
+        "signal_strength": "MEDIUM",
+        "trending_terms": [],
+        "interest_score": 50,
+        "source": "Neutral fallback (The request failed: Google returned a response wit)",
+        "computed_at": "05-03-2026 14:32:11 IST",
+        "status": "FALLBACK"
+      },
+      "ports": {
+        "signal_id": "ports",
+        "signal_name": "Port & Shipping Signal",
+        "port_risk": "HIGH",
+        "freight_delay": "MAJOR",
+        "congested_ports": [],
+        "volume_trend": "UP",
+        "port_volumes": {
+          "Kandla (KPCT)": 40464.0,
+          "Mumbai (JNPT)": 20810.0,
+          "Mangalore (NMPT)": 13873.0,
+          "Chennai (CCTPL)": 9249.0,
+          "Paradip (PPT)": 6937.0
+        },
+        "total_volume_mt": 91333.0,
+        "computed_at": "05-03-2026 14:32:11 IST",
+        "status": "OK"
+      },
+      "master": {
+        "signal_id": "master",
+        "signal_name": "Master Composite Signal",
+        "market_direction": "SIDEWAYS",
+        "confidence": 60,
+        "demand_outlook": "MODERATE",
+        "risk_level": "HIGH",
+        "recommended_action": "High risk detected -- secure supply from reliable sources",
+        "weighted_score": -0.05,
+        "signals_summary": [
+          {
+            "signal": "Crude Market Analysis",
+            "value": 0.0,
+            "weight_pct": 25,
+            "status": "OK"
+          },
+          {
+            "signal": "Currency Impact Analysis",
+            "value": -1.0,
+            "weight_pct": 15,
+            "status": "OK"
+          },
+          {
+            "signal": "Weather & Logistics Impact",
+            "value": 1.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "News & Event Analysis",
+            "value": 0.0,
+            "weight_pct": 15,
+            "status": "OK"
+          },
+          {
+            "signal": "Government Infrastructure",
+            "value": -1.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "Tender Demand Signal",
+            "value": 0.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "Global Economic Signal",
+            "value": 1.0,
+            "weight_pct": 5,
+            "status": "OK"
+          },
+          {
+            "signal": "Search Demand Signal",
+            "value": 0.0,
+            "weight_pct": 5,
+            "status": "FALLBACK"
+          },
+          {
+            "signal": "Port & Shipping Signal",
+            "value": 1.0,
+            "weight_pct": 5,
+            "status": "OK"
+          }
+        ],
+        "computed_at": "05-03-2026 14:32:11 IST",
+        "status": "OK"
+      }
+    }
+  },
+  {
+    "computed_at": "05-03-2026 14:32:12 IST",
+    "signals": {
+      "crude_market": {
+        "signal_id": "crude_market",
+        "signal_name": "Crude Market Analysis",
+        "direction": "SIDEWAYS",
+        "confidence": 60,
+        "impact": "Prices stable -- normal procurement timing",
+        "momentum": 0.26,
+        "volatility": "LOW",
+        "trend_slope": 0.047,
+        "support": 83.34,
+        "resistance": 84.34,
+        "latest_brent": 83.91,
+        "latest_wti": 77.22,
+        "data_points": 14,
+        "computed_at": "05-03-2026 14:32:05 IST",
+        "status": "OK"
+      },
+      "currency": {
+        "signal_id": "currency",
+        "signal_name": "Currency Impact Analysis",
+        "pressure": "LOW",
+        "trend": "Stable",
+        "advice": "Normal timing",
+        "confidence": 61,
+        "fx_momentum": -0.04,
+        "fx_volatility": "LOW",
+        "latest_usdinr": 86.45,
+        "crude_cross_direction": "SIDEWAYS",
+        "computed_at": "05-03-2026 14:32:05 IST",
+        "status": "OK"
+      },
+      "weather": {
+        "signal_id": "weather",
+        "signal_name": "Weather & Logistics Impact",
+        "road_condition": "GOOD",
+        "logistics_risk": "LOW",
+        "affected_cities": [],
+        "construction_probability": 100,
+        "monsoon_factor": "DRY",
+        "city_details": {
+          "Mumbai": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 28.8
+          },
+          "Mangalore": {
+            "condition": "GOOD",
+            "rain_mm": 0.1,
+            "temp": 28.3
+          },
+          "Kandla": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 27.9
+          },
+          "Delhi": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 23.3
+          },
+          "Vadodara": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 31.5
+          }
+        },
+        "cities_tracked": 5,
+        "computed_at": "05-03-2026 14:32:05 IST",
+        "status": "OK"
+      },
+      "news": {
+        "signal_id": "news",
+        "signal_name": "News & Event Analysis",
+        "supply_risk": "HIGH",
+        "events": [
+          {
+            "type": "geopolitics",
+            "headline": "OPEC Plus to Boost Oil Production as Iran Strikes Threaten Price Spike - The New York Times",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "OPEC Weighs Shock Output Surge as Iran Conflict Rattles Oil Markets - Crude Oil Prices Today | OilPrice.com",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Oil prices forecast to jump despite Opec+ pledge to raise output - Financial Times",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Tanker rate index hits highest level since 1973 Opec oil embargo as Aramco diverts cargoes to Red Sea - Tradewinds News",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Will Iran war send oil prices above $100 a barrel? - DW.com",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Crude oil prices in focus: OPEC+ increases output by 206,000 bpd amid Middle East tensions - The Times of India",
+            "impact_days": 7
+          },
+          {
+            "type": "port_disruption",
+            "headline": "Opinion | Bitumen: A Crude Item's Curious Link To Trump's Venezuela Strike - And India - NDTV",
+            "impact_days": 5
+          },
+          {
+            "type": "infrastructure",
+            "headline": "Bio-Bitumen: Paving India’s Roads with Low-Carbon Innovation - Sanskriti IAS",
+            "impact_days": 30
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Pune-based company imported $8 million worth of Iranian-origin bitumen in 9 months - theweek.in",
+            "impact_days": 7
+          },
+          {
+            "type": "infrastructure",
+            "headline": "Bio-Bitumen: A Sustainable Revolution in Road Construction - Sanskriti IAS",
+            "impact_days": 30
+          }
+        ],
+        "sentiment": "NEGATIVE",
+        "avg_sentiment_score": -0.467,
+        "category_counts": {
+          "refinery_shutdown": 0,
+          "infrastructure": 3,
+          "geopolitics": 38,
+          "port_disruption": 44
+        },
+        "articles_analyzed": 100,
+        "computed_at": "05-03-2026 14:32:05 IST",
+        "status": "OK"
+      },
+      "govt_infra": {
+        "signal_id": "govt_infra",
+        "signal_name": "Government Infrastructure",
+        "top_states": [
+          {
+            "state": "Uttar Pradesh",
+            "score": 87,
+            "demand_mt": 28500,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Rajasthan",
+            "score": 74,
+            "demand_mt": 22000,
+            "completion_pct": 68.2
+          },
+          {
+            "state": "Madhya Pradesh",
+            "score": 65,
+            "demand_mt": 18000,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Maharashtra",
+            "score": 62,
+            "demand_mt": 17000,
+            "completion_pct": 64.7
+          },
+          {
+            "state": "Gujarat",
+            "score": 60,
+            "demand_mt": 15000,
+            "completion_pct": 70.0
+          },
+          {
+            "state": "Karnataka",
+            "score": 55,
+            "demand_mt": 14000,
+            "completion_pct": 64.3
+          },
+          {
+            "state": "Tamil Nadu",
+            "score": 52,
+            "demand_mt": 12000,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Andhra Pradesh",
+            "score": 50,
+            "demand_mt": 11000,
+            "completion_pct": 68.2
+          },
+          {
+            "state": "Telangana",
+            "score": 46,
+            "demand_mt": 8500,
+            "completion_pct": 70.6
+          },
+          {
+            "state": "Bihar",
+            "score": 45,
+            "demand_mt": 10000,
+            "completion_pct": 60.0
+          }
+        ],
+        "demand_trend": "FALLING",
+        "total_demand_mt": 220800.0,
+        "states_analyzed": 22,
+        "computed_at": "05-03-2026 14:32:05 IST",
+        "status": "OK"
+      },
+      "tenders": {
+        "signal_id": "tenders",
+        "signal_name": "Tender Demand Signal",
+        "new_tenders": 4,
+        "top_state": "N/A",
+        "top_city": "N/A",
+        "demand_level": "MEDIUM",
+        "state_breakdown": {},
+        "recent_tenders": [
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:56 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:57 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:59 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:13:14 IST"
+          }
+        ],
+        "computed_at": "05-03-2026 14:32:05 IST",
+        "status": "OK"
+      },
+      "economic": {
+        "signal_id": "economic",
+        "signal_name": "Global Economic Signal",
+        "economic_trend": "GROWING",
+        "construction_outlook": "POSITIVE",
+        "gdp_growth": 6.49476552383821,
+        "cpi": 4.95303550973656,
+        "source": "World Bank API",
+        "computed_at": "05-03-2026 14:32:05 IST",
+        "status": "OK"
+      },
+      "search": {
+        "signal_id": "search",
+        "signal_name": "Search Demand Signal",
+        "demand_interest": "STABLE",
+        "signal_strength": "MEDIUM",
+        "trending_terms": [],
+        "interest_score": 50,
+        "source": "Neutral fallback (The request failed: Google returned a response wit)",
+        "computed_at": "05-03-2026 14:32:11 IST",
+        "status": "FALLBACK"
+      },
+      "ports": {
+        "signal_id": "ports",
+        "signal_name": "Port & Shipping Signal",
+        "port_risk": "HIGH",
+        "freight_delay": "MAJOR",
+        "congested_ports": [],
+        "volume_trend": "UP",
+        "port_volumes": {
+          "Kandla (KPCT)": 40464.0,
+          "Mumbai (JNPT)": 20810.0,
+          "Mangalore (NMPT)": 13873.0,
+          "Chennai (CCTPL)": 9249.0,
+          "Paradip (PPT)": 6937.0
+        },
+        "total_volume_mt": 91333.0,
+        "computed_at": "05-03-2026 14:32:11 IST",
+        "status": "OK"
+      },
+      "master": {
+        "signal_id": "master",
+        "signal_name": "Master Composite Signal",
+        "market_direction": "SIDEWAYS",
+        "confidence": 60,
+        "demand_outlook": "MODERATE",
+        "risk_level": "HIGH",
+        "recommended_action": "High risk detected -- secure supply from reliable sources",
+        "weighted_score": -0.05,
+        "signals_summary": [
+          {
+            "signal": "Crude Market Analysis",
+            "value": 0.0,
+            "weight_pct": 25,
+            "status": "OK"
+          },
+          {
+            "signal": "Currency Impact Analysis",
+            "value": -1.0,
+            "weight_pct": 15,
+            "status": "OK"
+          },
+          {
+            "signal": "Weather & Logistics Impact",
+            "value": 1.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "News & Event Analysis",
+            "value": 0.0,
+            "weight_pct": 15,
+            "status": "OK"
+          },
+          {
+            "signal": "Government Infrastructure",
+            "value": -1.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "Tender Demand Signal",
+            "value": 0.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "Global Economic Signal",
+            "value": 1.0,
+            "weight_pct": 5,
+            "status": "OK"
+          },
+          {
+            "signal": "Search Demand Signal",
+            "value": 0.0,
+            "weight_pct": 5,
+            "status": "FALLBACK"
+          },
+          {
+            "signal": "Port & Shipping Signal",
+            "value": 1.0,
+            "weight_pct": 5,
+            "status": "OK"
+          }
+        ],
+        "computed_at": "05-03-2026 14:32:11 IST",
+        "status": "OK"
+      }
+    }
+  },
+  {
+    "computed_at": "05-03-2026 14:32:16 IST",
+    "signals": {
+      "crude_market": {
+        "signal_id": "crude_market",
+        "signal_name": "Crude Market Analysis",
+        "direction": "SIDEWAYS",
+        "confidence": 60,
+        "impact": "Prices stable -- normal procurement timing",
+        "momentum": 0.26,
+        "volatility": "LOW",
+        "trend_slope": 0.047,
+        "support": 83.34,
+        "resistance": 84.34,
+        "latest_brent": 83.91,
+        "latest_wti": 77.22,
+        "data_points": 14,
+        "computed_at": "05-03-2026 14:32:12 IST",
+        "status": "OK"
+      },
+      "currency": {
+        "signal_id": "currency",
+        "signal_name": "Currency Impact Analysis",
+        "pressure": "LOW",
+        "trend": "Stable",
+        "advice": "Normal timing",
+        "confidence": 61,
+        "fx_momentum": -0.04,
+        "fx_volatility": "LOW",
+        "latest_usdinr": 86.45,
+        "crude_cross_direction": "SIDEWAYS",
+        "computed_at": "05-03-2026 14:32:12 IST",
+        "status": "OK"
+      },
+      "weather": {
+        "signal_id": "weather",
+        "signal_name": "Weather & Logistics Impact",
+        "road_condition": "GOOD",
+        "logistics_risk": "LOW",
+        "affected_cities": [],
+        "construction_probability": 100,
+        "monsoon_factor": "DRY",
+        "city_details": {
+          "Mumbai": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 28.8
+          },
+          "Mangalore": {
+            "condition": "GOOD",
+            "rain_mm": 0.1,
+            "temp": 28.3
+          },
+          "Kandla": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 27.9
+          },
+          "Delhi": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 23.3
+          },
+          "Vadodara": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 31.5
+          }
+        },
+        "cities_tracked": 5,
+        "computed_at": "05-03-2026 14:32:12 IST",
+        "status": "OK"
+      },
+      "news": {
+        "signal_id": "news",
+        "signal_name": "News & Event Analysis",
+        "supply_risk": "HIGH",
+        "events": [
+          {
+            "type": "geopolitics",
+            "headline": "OPEC Plus to Boost Oil Production as Iran Strikes Threaten Price Spike - The New York Times",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "OPEC Weighs Shock Output Surge as Iran Conflict Rattles Oil Markets - Crude Oil Prices Today | OilPrice.com",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Oil prices forecast to jump despite Opec+ pledge to raise output - Financial Times",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Tanker rate index hits highest level since 1973 Opec oil embargo as Aramco diverts cargoes to Red Sea - Tradewinds News",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Will Iran war send oil prices above $100 a barrel? - DW.com",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Crude oil prices in focus: OPEC+ increases output by 206,000 bpd amid Middle East tensions - The Times of India",
+            "impact_days": 7
+          },
+          {
+            "type": "port_disruption",
+            "headline": "Opinion | Bitumen: A Crude Item's Curious Link To Trump's Venezuela Strike - And India - NDTV",
+            "impact_days": 5
+          },
+          {
+            "type": "infrastructure",
+            "headline": "Bio-Bitumen: Paving India’s Roads with Low-Carbon Innovation - Sanskriti IAS",
+            "impact_days": 30
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Pune-based company imported $8 million worth of Iranian-origin bitumen in 9 months - theweek.in",
+            "impact_days": 7
+          },
+          {
+            "type": "infrastructure",
+            "headline": "Bio-Bitumen: A Sustainable Revolution in Road Construction - Sanskriti IAS",
+            "impact_days": 30
+          }
+        ],
+        "sentiment": "NEGATIVE",
+        "avg_sentiment_score": -0.467,
+        "category_counts": {
+          "refinery_shutdown": 0,
+          "infrastructure": 3,
+          "geopolitics": 38,
+          "port_disruption": 44
+        },
+        "articles_analyzed": 100,
+        "computed_at": "05-03-2026 14:32:12 IST",
+        "status": "OK"
+      },
+      "govt_infra": {
+        "signal_id": "govt_infra",
+        "signal_name": "Government Infrastructure",
+        "top_states": [
+          {
+            "state": "Uttar Pradesh",
+            "score": 87,
+            "demand_mt": 28500,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Rajasthan",
+            "score": 74,
+            "demand_mt": 22000,
+            "completion_pct": 68.2
+          },
+          {
+            "state": "Madhya Pradesh",
+            "score": 65,
+            "demand_mt": 18000,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Maharashtra",
+            "score": 62,
+            "demand_mt": 17000,
+            "completion_pct": 64.7
+          },
+          {
+            "state": "Gujarat",
+            "score": 60,
+            "demand_mt": 15000,
+            "completion_pct": 70.0
+          },
+          {
+            "state": "Karnataka",
+            "score": 55,
+            "demand_mt": 14000,
+            "completion_pct": 64.3
+          },
+          {
+            "state": "Tamil Nadu",
+            "score": 52,
+            "demand_mt": 12000,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Andhra Pradesh",
+            "score": 50,
+            "demand_mt": 11000,
+            "completion_pct": 68.2
+          },
+          {
+            "state": "Telangana",
+            "score": 46,
+            "demand_mt": 8500,
+            "completion_pct": 70.6
+          },
+          {
+            "state": "Bihar",
+            "score": 45,
+            "demand_mt": 10000,
+            "completion_pct": 60.0
+          }
+        ],
+        "demand_trend": "FALLING",
+        "total_demand_mt": 220800.0,
+        "states_analyzed": 22,
+        "computed_at": "05-03-2026 14:32:12 IST",
+        "status": "OK"
+      },
+      "tenders": {
+        "signal_id": "tenders",
+        "signal_name": "Tender Demand Signal",
+        "new_tenders": 4,
+        "top_state": "N/A",
+        "top_city": "N/A",
+        "demand_level": "MEDIUM",
+        "state_breakdown": {},
+        "recent_tenders": [
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:56 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:57 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:59 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:13:14 IST"
+          }
+        ],
+        "computed_at": "05-03-2026 14:32:12 IST",
+        "status": "OK"
+      },
+      "economic": {
+        "signal_id": "economic",
+        "signal_name": "Global Economic Signal",
+        "economic_trend": "GROWING",
+        "construction_outlook": "POSITIVE",
+        "gdp_growth": 6.49476552383821,
+        "cpi": 4.95303550973656,
+        "source": "World Bank API",
+        "computed_at": "05-03-2026 14:32:12 IST",
+        "status": "OK"
+      },
+      "search": {
+        "signal_id": "search",
+        "signal_name": "Search Demand Signal",
+        "demand_interest": "STABLE",
+        "signal_strength": "MEDIUM",
+        "trending_terms": [],
+        "interest_score": 50,
+        "source": "Neutral fallback (The request failed: Google returned a response wit)",
+        "computed_at": "05-03-2026 14:32:15 IST",
+        "status": "FALLBACK"
+      },
+      "ports": {
+        "signal_id": "ports",
+        "signal_name": "Port & Shipping Signal",
+        "port_risk": "HIGH",
+        "freight_delay": "MAJOR",
+        "congested_ports": [],
+        "volume_trend": "UP",
+        "port_volumes": {
+          "Kandla (KPCT)": 40464.0,
+          "Mumbai (JNPT)": 20810.0,
+          "Mangalore (NMPT)": 13873.0,
+          "Chennai (CCTPL)": 9249.0,
+          "Paradip (PPT)": 6937.0
+        },
+        "total_volume_mt": 91333.0,
+        "computed_at": "05-03-2026 14:32:15 IST",
+        "status": "OK"
+      },
+      "master": {
+        "signal_id": "master",
+        "signal_name": "Master Composite Signal",
+        "market_direction": "SIDEWAYS",
+        "confidence": 60,
+        "demand_outlook": "MODERATE",
+        "risk_level": "HIGH",
+        "recommended_action": "High risk detected -- secure supply from reliable sources",
+        "weighted_score": -0.05,
+        "signals_summary": [
+          {
+            "signal": "Crude Market Analysis",
+            "value": 0.0,
+            "weight_pct": 25,
+            "status": "OK"
+          },
+          {
+            "signal": "Currency Impact Analysis",
+            "value": -1.0,
+            "weight_pct": 15,
+            "status": "OK"
+          },
+          {
+            "signal": "Weather & Logistics Impact",
+            "value": 1.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "News & Event Analysis",
+            "value": 0.0,
+            "weight_pct": 15,
+            "status": "OK"
+          },
+          {
+            "signal": "Government Infrastructure",
+            "value": -1.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "Tender Demand Signal",
+            "value": 0.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "Global Economic Signal",
+            "value": 1.0,
+            "weight_pct": 5,
+            "status": "OK"
+          },
+          {
+            "signal": "Search Demand Signal",
+            "value": 0.0,
+            "weight_pct": 5,
+            "status": "FALLBACK"
+          },
+          {
+            "signal": "Port & Shipping Signal",
+            "value": 1.0,
+            "weight_pct": 5,
+            "status": "OK"
+          }
+        ],
+        "computed_at": "05-03-2026 14:32:15 IST",
+        "status": "OK"
+      }
+    }
+  },
+  {
+    "computed_at": "05-03-2026 14:32:16 IST",
+    "signals": {
+      "crude_market": {
+        "signal_id": "crude_market",
+        "signal_name": "Crude Market Analysis",
+        "direction": "SIDEWAYS",
+        "confidence": 60,
+        "impact": "Prices stable -- normal procurement timing",
+        "momentum": 0.26,
+        "volatility": "LOW",
+        "trend_slope": 0.047,
+        "support": 83.34,
+        "resistance": 84.34,
+        "latest_brent": 83.91,
+        "latest_wti": 77.22,
+        "data_points": 14,
+        "computed_at": "05-03-2026 14:32:12 IST",
+        "status": "OK"
+      },
+      "currency": {
+        "signal_id": "currency",
+        "signal_name": "Currency Impact Analysis",
+        "pressure": "LOW",
+        "trend": "Stable",
+        "advice": "Normal timing",
+        "confidence": 61,
+        "fx_momentum": -0.04,
+        "fx_volatility": "LOW",
+        "latest_usdinr": 86.45,
+        "crude_cross_direction": "SIDEWAYS",
+        "computed_at": "05-03-2026 14:32:12 IST",
+        "status": "OK"
+      },
+      "weather": {
+        "signal_id": "weather",
+        "signal_name": "Weather & Logistics Impact",
+        "road_condition": "GOOD",
+        "logistics_risk": "LOW",
+        "affected_cities": [],
+        "construction_probability": 100,
+        "monsoon_factor": "DRY",
+        "city_details": {
+          "Mumbai": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 28.8
+          },
+          "Mangalore": {
+            "condition": "GOOD",
+            "rain_mm": 0.1,
+            "temp": 28.3
+          },
+          "Kandla": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 27.9
+          },
+          "Delhi": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 23.3
+          },
+          "Vadodara": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 31.5
+          }
+        },
+        "cities_tracked": 5,
+        "computed_at": "05-03-2026 14:32:12 IST",
+        "status": "OK"
+      },
+      "news": {
+        "signal_id": "news",
+        "signal_name": "News & Event Analysis",
+        "supply_risk": "HIGH",
+        "events": [
+          {
+            "type": "geopolitics",
+            "headline": "OPEC Plus to Boost Oil Production as Iran Strikes Threaten Price Spike - The New York Times",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "OPEC Weighs Shock Output Surge as Iran Conflict Rattles Oil Markets - Crude Oil Prices Today | OilPrice.com",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Oil prices forecast to jump despite Opec+ pledge to raise output - Financial Times",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Tanker rate index hits highest level since 1973 Opec oil embargo as Aramco diverts cargoes to Red Sea - Tradewinds News",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Will Iran war send oil prices above $100 a barrel? - DW.com",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Crude oil prices in focus: OPEC+ increases output by 206,000 bpd amid Middle East tensions - The Times of India",
+            "impact_days": 7
+          },
+          {
+            "type": "port_disruption",
+            "headline": "Opinion | Bitumen: A Crude Item's Curious Link To Trump's Venezuela Strike - And India - NDTV",
+            "impact_days": 5
+          },
+          {
+            "type": "infrastructure",
+            "headline": "Bio-Bitumen: Paving India’s Roads with Low-Carbon Innovation - Sanskriti IAS",
+            "impact_days": 30
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Pune-based company imported $8 million worth of Iranian-origin bitumen in 9 months - theweek.in",
+            "impact_days": 7
+          },
+          {
+            "type": "infrastructure",
+            "headline": "Bio-Bitumen: A Sustainable Revolution in Road Construction - Sanskriti IAS",
+            "impact_days": 30
+          }
+        ],
+        "sentiment": "NEGATIVE",
+        "avg_sentiment_score": -0.467,
+        "category_counts": {
+          "refinery_shutdown": 0,
+          "infrastructure": 3,
+          "geopolitics": 38,
+          "port_disruption": 44
+        },
+        "articles_analyzed": 100,
+        "computed_at": "05-03-2026 14:32:12 IST",
+        "status": "OK"
+      },
+      "govt_infra": {
+        "signal_id": "govt_infra",
+        "signal_name": "Government Infrastructure",
+        "top_states": [
+          {
+            "state": "Uttar Pradesh",
+            "score": 87,
+            "demand_mt": 28500,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Rajasthan",
+            "score": 74,
+            "demand_mt": 22000,
+            "completion_pct": 68.2
+          },
+          {
+            "state": "Madhya Pradesh",
+            "score": 65,
+            "demand_mt": 18000,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Maharashtra",
+            "score": 62,
+            "demand_mt": 17000,
+            "completion_pct": 64.7
+          },
+          {
+            "state": "Gujarat",
+            "score": 60,
+            "demand_mt": 15000,
+            "completion_pct": 70.0
+          },
+          {
+            "state": "Karnataka",
+            "score": 55,
+            "demand_mt": 14000,
+            "completion_pct": 64.3
+          },
+          {
+            "state": "Tamil Nadu",
+            "score": 52,
+            "demand_mt": 12000,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Andhra Pradesh",
+            "score": 50,
+            "demand_mt": 11000,
+            "completion_pct": 68.2
+          },
+          {
+            "state": "Telangana",
+            "score": 46,
+            "demand_mt": 8500,
+            "completion_pct": 70.6
+          },
+          {
+            "state": "Bihar",
+            "score": 45,
+            "demand_mt": 10000,
+            "completion_pct": 60.0
+          }
+        ],
+        "demand_trend": "FALLING",
+        "total_demand_mt": 220800.0,
+        "states_analyzed": 22,
+        "computed_at": "05-03-2026 14:32:12 IST",
+        "status": "OK"
+      },
+      "tenders": {
+        "signal_id": "tenders",
+        "signal_name": "Tender Demand Signal",
+        "new_tenders": 4,
+        "top_state": "N/A",
+        "top_city": "N/A",
+        "demand_level": "MEDIUM",
+        "state_breakdown": {},
+        "recent_tenders": [
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:56 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:57 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:59 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:13:14 IST"
+          }
+        ],
+        "computed_at": "05-03-2026 14:32:12 IST",
+        "status": "OK"
+      },
+      "economic": {
+        "signal_id": "economic",
+        "signal_name": "Global Economic Signal",
+        "economic_trend": "GROWING",
+        "construction_outlook": "POSITIVE",
+        "gdp_growth": 6.49476552383821,
+        "cpi": 4.95303550973656,
+        "source": "World Bank API",
+        "computed_at": "05-03-2026 14:32:12 IST",
+        "status": "OK"
+      },
+      "search": {
+        "signal_id": "search",
+        "signal_name": "Search Demand Signal",
+        "demand_interest": "STABLE",
+        "signal_strength": "MEDIUM",
+        "trending_terms": [],
+        "interest_score": 50,
+        "source": "Neutral fallback (The request failed: Google returned a response wit)",
+        "computed_at": "05-03-2026 14:32:16 IST",
+        "status": "FALLBACK"
+      },
+      "ports": {
+        "signal_id": "ports",
+        "signal_name": "Port & Shipping Signal",
+        "port_risk": "HIGH",
+        "freight_delay": "MAJOR",
+        "congested_ports": [],
+        "volume_trend": "UP",
+        "port_volumes": {
+          "Kandla (KPCT)": 40464.0,
+          "Mumbai (JNPT)": 20810.0,
+          "Mangalore (NMPT)": 13873.0,
+          "Chennai (CCTPL)": 9249.0,
+          "Paradip (PPT)": 6937.0
+        },
+        "total_volume_mt": 91333.0,
+        "computed_at": "05-03-2026 14:32:16 IST",
+        "status": "OK"
+      },
+      "master": {
+        "signal_id": "master",
+        "signal_name": "Master Composite Signal",
+        "market_direction": "SIDEWAYS",
+        "confidence": 60,
+        "demand_outlook": "MODERATE",
+        "risk_level": "HIGH",
+        "recommended_action": "High risk detected -- secure supply from reliable sources",
+        "weighted_score": -0.05,
+        "signals_summary": [
+          {
+            "signal": "Crude Market Analysis",
+            "value": 0.0,
+            "weight_pct": 25,
+            "status": "OK"
+          },
+          {
+            "signal": "Currency Impact Analysis",
+            "value": -1.0,
+            "weight_pct": 15,
+            "status": "OK"
+          },
+          {
+            "signal": "Weather & Logistics Impact",
+            "value": 1.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "News & Event Analysis",
+            "value": 0.0,
+            "weight_pct": 15,
+            "status": "OK"
+          },
+          {
+            "signal": "Government Infrastructure",
+            "value": -1.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "Tender Demand Signal",
+            "value": 0.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "Global Economic Signal",
+            "value": 1.0,
+            "weight_pct": 5,
+            "status": "OK"
+          },
+          {
+            "signal": "Search Demand Signal",
+            "value": 0.0,
+            "weight_pct": 5,
+            "status": "FALLBACK"
+          },
+          {
+            "signal": "Port & Shipping Signal",
+            "value": 1.0,
+            "weight_pct": 5,
+            "status": "OK"
+          }
+        ],
+        "computed_at": "05-03-2026 14:32:16 IST",
+        "status": "OK"
+      }
+    }
+  },
+  {
+    "computed_at": "05-03-2026 14:32:21 IST",
+    "signals": {
+      "crude_market": {
+        "signal_id": "crude_market",
+        "signal_name": "Crude Market Analysis",
+        "direction": "SIDEWAYS",
+        "confidence": 60,
+        "impact": "Prices stable -- normal procurement timing",
+        "momentum": 0.26,
+        "volatility": "LOW",
+        "trend_slope": 0.047,
+        "support": 83.34,
+        "resistance": 84.34,
+        "latest_brent": 83.91,
+        "latest_wti": 77.22,
+        "data_points": 14,
+        "computed_at": "05-03-2026 14:32:17 IST",
+        "status": "OK"
+      },
+      "currency": {
+        "signal_id": "currency",
+        "signal_name": "Currency Impact Analysis",
+        "pressure": "LOW",
+        "trend": "Stable",
+        "advice": "Normal timing",
+        "confidence": 61,
+        "fx_momentum": -0.04,
+        "fx_volatility": "LOW",
+        "latest_usdinr": 86.45,
+        "crude_cross_direction": "SIDEWAYS",
+        "computed_at": "05-03-2026 14:32:17 IST",
+        "status": "OK"
+      },
+      "weather": {
+        "signal_id": "weather",
+        "signal_name": "Weather & Logistics Impact",
+        "road_condition": "GOOD",
+        "logistics_risk": "LOW",
+        "affected_cities": [],
+        "construction_probability": 100,
+        "monsoon_factor": "DRY",
+        "city_details": {
+          "Mumbai": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 28.8
+          },
+          "Mangalore": {
+            "condition": "GOOD",
+            "rain_mm": 0.1,
+            "temp": 28.3
+          },
+          "Kandla": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 27.9
+          },
+          "Delhi": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 23.3
+          },
+          "Vadodara": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 31.5
+          }
+        },
+        "cities_tracked": 5,
+        "computed_at": "05-03-2026 14:32:17 IST",
+        "status": "OK"
+      },
+      "news": {
+        "signal_id": "news",
+        "signal_name": "News & Event Analysis",
+        "supply_risk": "HIGH",
+        "events": [
+          {
+            "type": "geopolitics",
+            "headline": "OPEC Plus to Boost Oil Production as Iran Strikes Threaten Price Spike - The New York Times",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "OPEC Weighs Shock Output Surge as Iran Conflict Rattles Oil Markets - Crude Oil Prices Today | OilPrice.com",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Oil prices forecast to jump despite Opec+ pledge to raise output - Financial Times",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Tanker rate index hits highest level since 1973 Opec oil embargo as Aramco diverts cargoes to Red Sea - Tradewinds News",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Will Iran war send oil prices above $100 a barrel? - DW.com",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Crude oil prices in focus: OPEC+ increases output by 206,000 bpd amid Middle East tensions - The Times of India",
+            "impact_days": 7
+          },
+          {
+            "type": "port_disruption",
+            "headline": "Opinion | Bitumen: A Crude Item's Curious Link To Trump's Venezuela Strike - And India - NDTV",
+            "impact_days": 5
+          },
+          {
+            "type": "infrastructure",
+            "headline": "Bio-Bitumen: Paving India’s Roads with Low-Carbon Innovation - Sanskriti IAS",
+            "impact_days": 30
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Pune-based company imported $8 million worth of Iranian-origin bitumen in 9 months - theweek.in",
+            "impact_days": 7
+          },
+          {
+            "type": "infrastructure",
+            "headline": "Bio-Bitumen: A Sustainable Revolution in Road Construction - Sanskriti IAS",
+            "impact_days": 30
+          }
+        ],
+        "sentiment": "NEGATIVE",
+        "avg_sentiment_score": -0.467,
+        "category_counts": {
+          "refinery_shutdown": 0,
+          "infrastructure": 3,
+          "geopolitics": 38,
+          "port_disruption": 44
+        },
+        "articles_analyzed": 100,
+        "computed_at": "05-03-2026 14:32:17 IST",
+        "status": "OK"
+      },
+      "govt_infra": {
+        "signal_id": "govt_infra",
+        "signal_name": "Government Infrastructure",
+        "top_states": [
+          {
+            "state": "Uttar Pradesh",
+            "score": 87,
+            "demand_mt": 28500,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Rajasthan",
+            "score": 74,
+            "demand_mt": 22000,
+            "completion_pct": 68.2
+          },
+          {
+            "state": "Madhya Pradesh",
+            "score": 65,
+            "demand_mt": 18000,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Maharashtra",
+            "score": 62,
+            "demand_mt": 17000,
+            "completion_pct": 64.7
+          },
+          {
+            "state": "Gujarat",
+            "score": 60,
+            "demand_mt": 15000,
+            "completion_pct": 70.0
+          },
+          {
+            "state": "Karnataka",
+            "score": 55,
+            "demand_mt": 14000,
+            "completion_pct": 64.3
+          },
+          {
+            "state": "Tamil Nadu",
+            "score": 52,
+            "demand_mt": 12000,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Andhra Pradesh",
+            "score": 50,
+            "demand_mt": 11000,
+            "completion_pct": 68.2
+          },
+          {
+            "state": "Telangana",
+            "score": 46,
+            "demand_mt": 8500,
+            "completion_pct": 70.6
+          },
+          {
+            "state": "Bihar",
+            "score": 45,
+            "demand_mt": 10000,
+            "completion_pct": 60.0
+          }
+        ],
+        "demand_trend": "FALLING",
+        "total_demand_mt": 220800.0,
+        "states_analyzed": 22,
+        "computed_at": "05-03-2026 14:32:17 IST",
+        "status": "OK"
+      },
+      "tenders": {
+        "signal_id": "tenders",
+        "signal_name": "Tender Demand Signal",
+        "new_tenders": 4,
+        "top_state": "N/A",
+        "top_city": "N/A",
+        "demand_level": "MEDIUM",
+        "state_breakdown": {},
+        "recent_tenders": [
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:56 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:57 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:59 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:13:14 IST"
+          }
+        ],
+        "computed_at": "05-03-2026 14:32:17 IST",
+        "status": "OK"
+      },
+      "economic": {
+        "signal_id": "economic",
+        "signal_name": "Global Economic Signal",
+        "economic_trend": "GROWING",
+        "construction_outlook": "POSITIVE",
+        "gdp_growth": 6.49476552383821,
+        "cpi": 4.95303550973656,
+        "source": "World Bank API",
+        "computed_at": "05-03-2026 14:32:17 IST",
+        "status": "OK"
+      },
+      "search": {
+        "signal_id": "search",
+        "signal_name": "Search Demand Signal",
+        "demand_interest": "STABLE",
+        "signal_strength": "MEDIUM",
+        "trending_terms": [],
+        "interest_score": 50,
+        "source": "Neutral fallback (The request failed: Google returned a response wit)",
+        "computed_at": "05-03-2026 14:32:21 IST",
+        "status": "FALLBACK"
+      },
+      "ports": {
+        "signal_id": "ports",
+        "signal_name": "Port & Shipping Signal",
+        "port_risk": "HIGH",
+        "freight_delay": "MAJOR",
+        "congested_ports": [],
+        "volume_trend": "UP",
+        "port_volumes": {
+          "Kandla (KPCT)": 40464.0,
+          "Mumbai (JNPT)": 20810.0,
+          "Mangalore (NMPT)": 13873.0,
+          "Chennai (CCTPL)": 9249.0,
+          "Paradip (PPT)": 6937.0
+        },
+        "total_volume_mt": 91333.0,
+        "computed_at": "05-03-2026 14:32:21 IST",
+        "status": "OK"
+      },
+      "master": {
+        "signal_id": "master",
+        "signal_name": "Master Composite Signal",
+        "market_direction": "SIDEWAYS",
+        "confidence": 60,
+        "demand_outlook": "MODERATE",
+        "risk_level": "HIGH",
+        "recommended_action": "High risk detected -- secure supply from reliable sources",
+        "weighted_score": -0.05,
+        "signals_summary": [
+          {
+            "signal": "Crude Market Analysis",
+            "value": 0.0,
+            "weight_pct": 25,
+            "status": "OK"
+          },
+          {
+            "signal": "Currency Impact Analysis",
+            "value": -1.0,
+            "weight_pct": 15,
+            "status": "OK"
+          },
+          {
+            "signal": "Weather & Logistics Impact",
+            "value": 1.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "News & Event Analysis",
+            "value": 0.0,
+            "weight_pct": 15,
+            "status": "OK"
+          },
+          {
+            "signal": "Government Infrastructure",
+            "value": -1.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "Tender Demand Signal",
+            "value": 0.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "Global Economic Signal",
+            "value": 1.0,
+            "weight_pct": 5,
+            "status": "OK"
+          },
+          {
+            "signal": "Search Demand Signal",
+            "value": 0.0,
+            "weight_pct": 5,
+            "status": "FALLBACK"
+          },
+          {
+            "signal": "Port & Shipping Signal",
+            "value": 1.0,
+            "weight_pct": 5,
+            "status": "OK"
+          }
+        ],
+        "computed_at": "05-03-2026 14:32:21 IST",
+        "status": "OK"
+      }
+    }
+  },
+  {
+    "computed_at": "05-03-2026 14:32:25 IST",
+    "signals": {
+      "crude_market": {
+        "signal_id": "crude_market",
+        "signal_name": "Crude Market Analysis",
+        "direction": "SIDEWAYS",
+        "confidence": 60,
+        "impact": "Prices stable -- normal procurement timing",
+        "momentum": 0.26,
+        "volatility": "LOW",
+        "trend_slope": 0.047,
+        "support": 83.34,
+        "resistance": 84.34,
+        "latest_brent": 83.91,
+        "latest_wti": 77.22,
+        "data_points": 14,
+        "computed_at": "05-03-2026 14:32:21 IST",
+        "status": "OK"
+      },
+      "currency": {
+        "signal_id": "currency",
+        "signal_name": "Currency Impact Analysis",
+        "pressure": "LOW",
+        "trend": "Stable",
+        "advice": "Normal timing",
+        "confidence": 61,
+        "fx_momentum": -0.04,
+        "fx_volatility": "LOW",
+        "latest_usdinr": 86.45,
+        "crude_cross_direction": "SIDEWAYS",
+        "computed_at": "05-03-2026 14:32:21 IST",
+        "status": "OK"
+      },
+      "weather": {
+        "signal_id": "weather",
+        "signal_name": "Weather & Logistics Impact",
+        "road_condition": "GOOD",
+        "logistics_risk": "LOW",
+        "affected_cities": [],
+        "construction_probability": 100,
+        "monsoon_factor": "DRY",
+        "city_details": {
+          "Mumbai": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 28.8
+          },
+          "Mangalore": {
+            "condition": "GOOD",
+            "rain_mm": 0.1,
+            "temp": 28.3
+          },
+          "Kandla": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 27.9
+          },
+          "Delhi": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 23.3
+          },
+          "Vadodara": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 31.5
+          }
+        },
+        "cities_tracked": 5,
+        "computed_at": "05-03-2026 14:32:21 IST",
+        "status": "OK"
+      },
+      "news": {
+        "signal_id": "news",
+        "signal_name": "News & Event Analysis",
+        "supply_risk": "HIGH",
+        "events": [
+          {
+            "type": "geopolitics",
+            "headline": "OPEC Plus to Boost Oil Production as Iran Strikes Threaten Price Spike - The New York Times",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "OPEC Weighs Shock Output Surge as Iran Conflict Rattles Oil Markets - Crude Oil Prices Today | OilPrice.com",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Oil prices forecast to jump despite Opec+ pledge to raise output - Financial Times",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Tanker rate index hits highest level since 1973 Opec oil embargo as Aramco diverts cargoes to Red Sea - Tradewinds News",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Will Iran war send oil prices above $100 a barrel? - DW.com",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Crude oil prices in focus: OPEC+ increases output by 206,000 bpd amid Middle East tensions - The Times of India",
+            "impact_days": 7
+          },
+          {
+            "type": "port_disruption",
+            "headline": "Opinion | Bitumen: A Crude Item's Curious Link To Trump's Venezuela Strike - And India - NDTV",
+            "impact_days": 5
+          },
+          {
+            "type": "infrastructure",
+            "headline": "Bio-Bitumen: Paving India’s Roads with Low-Carbon Innovation - Sanskriti IAS",
+            "impact_days": 30
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Pune-based company imported $8 million worth of Iranian-origin bitumen in 9 months - theweek.in",
+            "impact_days": 7
+          },
+          {
+            "type": "infrastructure",
+            "headline": "Bio-Bitumen: A Sustainable Revolution in Road Construction - Sanskriti IAS",
+            "impact_days": 30
+          }
+        ],
+        "sentiment": "NEGATIVE",
+        "avg_sentiment_score": -0.467,
+        "category_counts": {
+          "refinery_shutdown": 0,
+          "infrastructure": 3,
+          "geopolitics": 38,
+          "port_disruption": 44
+        },
+        "articles_analyzed": 100,
+        "computed_at": "05-03-2026 14:32:21 IST",
+        "status": "OK"
+      },
+      "govt_infra": {
+        "signal_id": "govt_infra",
+        "signal_name": "Government Infrastructure",
+        "top_states": [
+          {
+            "state": "Uttar Pradesh",
+            "score": 87,
+            "demand_mt": 28500,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Rajasthan",
+            "score": 74,
+            "demand_mt": 22000,
+            "completion_pct": 68.2
+          },
+          {
+            "state": "Madhya Pradesh",
+            "score": 65,
+            "demand_mt": 18000,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Maharashtra",
+            "score": 62,
+            "demand_mt": 17000,
+            "completion_pct": 64.7
+          },
+          {
+            "state": "Gujarat",
+            "score": 60,
+            "demand_mt": 15000,
+            "completion_pct": 70.0
+          },
+          {
+            "state": "Karnataka",
+            "score": 55,
+            "demand_mt": 14000,
+            "completion_pct": 64.3
+          },
+          {
+            "state": "Tamil Nadu",
+            "score": 52,
+            "demand_mt": 12000,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Andhra Pradesh",
+            "score": 50,
+            "demand_mt": 11000,
+            "completion_pct": 68.2
+          },
+          {
+            "state": "Telangana",
+            "score": 46,
+            "demand_mt": 8500,
+            "completion_pct": 70.6
+          },
+          {
+            "state": "Bihar",
+            "score": 45,
+            "demand_mt": 10000,
+            "completion_pct": 60.0
+          }
+        ],
+        "demand_trend": "FALLING",
+        "total_demand_mt": 220800.0,
+        "states_analyzed": 22,
+        "computed_at": "05-03-2026 14:32:21 IST",
+        "status": "OK"
+      },
+      "tenders": {
+        "signal_id": "tenders",
+        "signal_name": "Tender Demand Signal",
+        "new_tenders": 4,
+        "top_state": "N/A",
+        "top_city": "N/A",
+        "demand_level": "MEDIUM",
+        "state_breakdown": {},
+        "recent_tenders": [
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:56 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:57 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:59 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:13:14 IST"
+          }
+        ],
+        "computed_at": "05-03-2026 14:32:21 IST",
+        "status": "OK"
+      },
+      "economic": {
+        "signal_id": "economic",
+        "signal_name": "Global Economic Signal",
+        "economic_trend": "GROWING",
+        "construction_outlook": "POSITIVE",
+        "gdp_growth": 6.49476552383821,
+        "cpi": 4.95303550973656,
+        "source": "World Bank API",
+        "computed_at": "05-03-2026 14:32:21 IST",
+        "status": "OK"
+      },
+      "search": {
+        "signal_id": "search",
+        "signal_name": "Search Demand Signal",
+        "demand_interest": "STABLE",
+        "signal_strength": "MEDIUM",
+        "trending_terms": [],
+        "interest_score": 50,
+        "source": "Neutral fallback (The request failed: Google returned a response wit)",
+        "computed_at": "05-03-2026 14:32:25 IST",
+        "status": "FALLBACK"
+      },
+      "ports": {
+        "signal_id": "ports",
+        "signal_name": "Port & Shipping Signal",
+        "port_risk": "HIGH",
+        "freight_delay": "MAJOR",
+        "congested_ports": [],
+        "volume_trend": "UP",
+        "port_volumes": {
+          "Kandla (KPCT)": 40464.0,
+          "Mumbai (JNPT)": 20810.0,
+          "Mangalore (NMPT)": 13873.0,
+          "Chennai (CCTPL)": 9249.0,
+          "Paradip (PPT)": 6937.0
+        },
+        "total_volume_mt": 91333.0,
+        "computed_at": "05-03-2026 14:32:25 IST",
+        "status": "OK"
+      },
+      "master": {
+        "signal_id": "master",
+        "signal_name": "Master Composite Signal",
+        "market_direction": "SIDEWAYS",
+        "confidence": 60,
+        "demand_outlook": "MODERATE",
+        "risk_level": "HIGH",
+        "recommended_action": "High risk detected -- secure supply from reliable sources",
+        "weighted_score": -0.05,
+        "signals_summary": [
+          {
+            "signal": "Crude Market Analysis",
+            "value": 0.0,
+            "weight_pct": 25,
+            "status": "OK"
+          },
+          {
+            "signal": "Currency Impact Analysis",
+            "value": -1.0,
+            "weight_pct": 15,
+            "status": "OK"
+          },
+          {
+            "signal": "Weather & Logistics Impact",
+            "value": 1.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "News & Event Analysis",
+            "value": 0.0,
+            "weight_pct": 15,
+            "status": "OK"
+          },
+          {
+            "signal": "Government Infrastructure",
+            "value": -1.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "Tender Demand Signal",
+            "value": 0.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "Global Economic Signal",
+            "value": 1.0,
+            "weight_pct": 5,
+            "status": "OK"
+          },
+          {
+            "signal": "Search Demand Signal",
+            "value": 0.0,
+            "weight_pct": 5,
+            "status": "FALLBACK"
+          },
+          {
+            "signal": "Port & Shipping Signal",
+            "value": 1.0,
+            "weight_pct": 5,
+            "status": "OK"
+          }
+        ],
+        "computed_at": "05-03-2026 14:32:25 IST",
+        "status": "OK"
+      }
+    }
+  },
+  {
+    "computed_at": "05-03-2026 14:33:27 IST",
+    "signals": {
+      "crude_market": {
+        "signal_id": "crude_market",
+        "signal_name": "Crude Market Analysis",
+        "direction": "SIDEWAYS",
+        "confidence": 60,
+        "impact": "Prices stable -- normal procurement timing",
+        "momentum": 0.26,
+        "volatility": "LOW",
+        "trend_slope": 0.047,
+        "support": 83.34,
+        "resistance": 84.34,
+        "latest_brent": 83.91,
+        "latest_wti": 77.22,
+        "data_points": 14,
+        "computed_at": "05-03-2026 14:33:22 IST",
+        "status": "OK"
+      },
+      "currency": {
+        "signal_id": "currency",
+        "signal_name": "Currency Impact Analysis",
+        "pressure": "LOW",
+        "trend": "Stable",
+        "advice": "Normal timing",
+        "confidence": 61,
+        "fx_momentum": -0.04,
+        "fx_volatility": "LOW",
+        "latest_usdinr": 86.45,
+        "crude_cross_direction": "SIDEWAYS",
+        "computed_at": "05-03-2026 14:33:22 IST",
+        "status": "OK"
+      },
+      "weather": {
+        "signal_id": "weather",
+        "signal_name": "Weather & Logistics Impact",
+        "road_condition": "GOOD",
+        "logistics_risk": "LOW",
+        "affected_cities": [],
+        "construction_probability": 100,
+        "monsoon_factor": "DRY",
+        "city_details": {
+          "Mumbai": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 28.8
+          },
+          "Mangalore": {
+            "condition": "GOOD",
+            "rain_mm": 0.1,
+            "temp": 28.3
+          },
+          "Kandla": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 27.9
+          },
+          "Delhi": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 23.3
+          },
+          "Vadodara": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 31.5
+          }
+        },
+        "cities_tracked": 5,
+        "computed_at": "05-03-2026 14:33:22 IST",
+        "status": "OK"
+      },
+      "news": {
+        "signal_id": "news",
+        "signal_name": "News & Event Analysis",
+        "supply_risk": "HIGH",
+        "events": [
+          {
+            "type": "geopolitics",
+            "headline": "OPEC Plus to Boost Oil Production as Iran Strikes Threaten Price Spike - The New York Times",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "OPEC Weighs Shock Output Surge as Iran Conflict Rattles Oil Markets - Crude Oil Prices Today | OilPrice.com",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Oil prices forecast to jump despite Opec+ pledge to raise output - Financial Times",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Tanker rate index hits highest level since 1973 Opec oil embargo as Aramco diverts cargoes to Red Sea - Tradewinds News",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Will Iran war send oil prices above $100 a barrel? - DW.com",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Crude oil prices in focus: OPEC+ increases output by 206,000 bpd amid Middle East tensions - The Times of India",
+            "impact_days": 7
+          },
+          {
+            "type": "port_disruption",
+            "headline": "Opinion | Bitumen: A Crude Item's Curious Link To Trump's Venezuela Strike - And India - NDTV",
+            "impact_days": 5
+          },
+          {
+            "type": "infrastructure",
+            "headline": "Bio-Bitumen: Paving India’s Roads with Low-Carbon Innovation - Sanskriti IAS",
+            "impact_days": 30
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Pune-based company imported $8 million worth of Iranian-origin bitumen in 9 months - theweek.in",
+            "impact_days": 7
+          },
+          {
+            "type": "infrastructure",
+            "headline": "Bio-Bitumen: A Sustainable Revolution in Road Construction - Sanskriti IAS",
+            "impact_days": 30
+          }
+        ],
+        "sentiment": "NEGATIVE",
+        "avg_sentiment_score": -0.467,
+        "category_counts": {
+          "refinery_shutdown": 0,
+          "infrastructure": 3,
+          "geopolitics": 38,
+          "port_disruption": 44
+        },
+        "articles_analyzed": 100,
+        "computed_at": "05-03-2026 14:33:22 IST",
+        "status": "OK"
+      },
+      "govt_infra": {
+        "signal_id": "govt_infra",
+        "signal_name": "Government Infrastructure",
+        "top_states": [
+          {
+            "state": "Uttar Pradesh",
+            "score": 87,
+            "demand_mt": 28500,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Rajasthan",
+            "score": 74,
+            "demand_mt": 22000,
+            "completion_pct": 68.2
+          },
+          {
+            "state": "Madhya Pradesh",
+            "score": 65,
+            "demand_mt": 18000,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Maharashtra",
+            "score": 62,
+            "demand_mt": 17000,
+            "completion_pct": 64.7
+          },
+          {
+            "state": "Gujarat",
+            "score": 60,
+            "demand_mt": 15000,
+            "completion_pct": 70.0
+          },
+          {
+            "state": "Karnataka",
+            "score": 55,
+            "demand_mt": 14000,
+            "completion_pct": 64.3
+          },
+          {
+            "state": "Tamil Nadu",
+            "score": 52,
+            "demand_mt": 12000,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Andhra Pradesh",
+            "score": 50,
+            "demand_mt": 11000,
+            "completion_pct": 68.2
+          },
+          {
+            "state": "Telangana",
+            "score": 46,
+            "demand_mt": 8500,
+            "completion_pct": 70.6
+          },
+          {
+            "state": "Bihar",
+            "score": 45,
+            "demand_mt": 10000,
+            "completion_pct": 60.0
+          }
+        ],
+        "demand_trend": "FALLING",
+        "total_demand_mt": 220800.0,
+        "states_analyzed": 22,
+        "computed_at": "05-03-2026 14:33:22 IST",
+        "status": "OK"
+      },
+      "tenders": {
+        "signal_id": "tenders",
+        "signal_name": "Tender Demand Signal",
+        "new_tenders": 4,
+        "top_state": "N/A",
+        "top_city": "N/A",
+        "demand_level": "MEDIUM",
+        "state_breakdown": {},
+        "recent_tenders": [
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:56 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:57 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:59 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:13:14 IST"
+          }
+        ],
+        "computed_at": "05-03-2026 14:33:22 IST",
+        "status": "OK"
+      },
+      "economic": {
+        "signal_id": "economic",
+        "signal_name": "Global Economic Signal",
+        "economic_trend": "GROWING",
+        "construction_outlook": "POSITIVE",
+        "gdp_growth": 6.49476552383821,
+        "cpi": 4.95303550973656,
+        "source": "World Bank API",
+        "computed_at": "05-03-2026 14:33:22 IST",
+        "status": "OK"
+      },
+      "search": {
+        "signal_id": "search",
+        "signal_name": "Search Demand Signal",
+        "demand_interest": "STABLE",
+        "signal_strength": "MEDIUM",
+        "trending_terms": [],
+        "interest_score": 50,
+        "source": "Neutral fallback (The request failed: Google returned a response wit)",
+        "computed_at": "05-03-2026 14:33:27 IST",
+        "status": "FALLBACK"
+      },
+      "ports": {
+        "signal_id": "ports",
+        "signal_name": "Port & Shipping Signal",
+        "port_risk": "HIGH",
+        "freight_delay": "MAJOR",
+        "congested_ports": [],
+        "volume_trend": "UP",
+        "port_volumes": {
+          "Kandla (KPCT)": 40464.0,
+          "Mumbai (JNPT)": 20810.0,
+          "Mangalore (NMPT)": 13873.0,
+          "Chennai (CCTPL)": 9249.0,
+          "Paradip (PPT)": 6937.0
+        },
+        "total_volume_mt": 91333.0,
+        "computed_at": "05-03-2026 14:33:27 IST",
+        "status": "OK"
+      },
+      "master": {
+        "signal_id": "master",
+        "signal_name": "Master Composite Signal",
+        "market_direction": "SIDEWAYS",
+        "confidence": 60,
+        "demand_outlook": "MODERATE",
+        "risk_level": "HIGH",
+        "recommended_action": "High risk detected -- secure supply from reliable sources",
+        "weighted_score": -0.05,
+        "signals_summary": [
+          {
+            "signal": "Crude Market Analysis",
+            "value": 0.0,
+            "weight_pct": 25,
+            "status": "OK"
+          },
+          {
+            "signal": "Currency Impact Analysis",
+            "value": -1.0,
+            "weight_pct": 15,
+            "status": "OK"
+          },
+          {
+            "signal": "Weather & Logistics Impact",
+            "value": 1.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "News & Event Analysis",
+            "value": 0.0,
+            "weight_pct": 15,
+            "status": "OK"
+          },
+          {
+            "signal": "Government Infrastructure",
+            "value": -1.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "Tender Demand Signal",
+            "value": 0.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "Global Economic Signal",
+            "value": 1.0,
+            "weight_pct": 5,
+            "status": "OK"
+          },
+          {
+            "signal": "Search Demand Signal",
+            "value": 0.0,
+            "weight_pct": 5,
+            "status": "FALLBACK"
+          },
+          {
+            "signal": "Port & Shipping Signal",
+            "value": 1.0,
+            "weight_pct": 5,
+            "status": "OK"
+          }
+        ],
+        "computed_at": "05-03-2026 14:33:27 IST",
+        "status": "OK"
+      }
+    }
+  },
+  {
+    "computed_at": "05-03-2026 14:38:11 IST",
+    "signals": {
+      "crude_market": {
+        "signal_id": "crude_market",
+        "signal_name": "Crude Market Analysis",
+        "direction": "SIDEWAYS",
+        "confidence": 60,
+        "impact": "Prices stable -- normal procurement timing",
+        "momentum": 0.26,
+        "volatility": "LOW",
+        "trend_slope": 0.047,
+        "support": 83.34,
+        "resistance": 84.34,
+        "latest_brent": 83.91,
+        "latest_wti": 77.22,
+        "data_points": 14,
+        "computed_at": "05-03-2026 14:38:09 IST",
+        "status": "OK"
+      },
+      "currency": {
+        "signal_id": "currency",
+        "signal_name": "Currency Impact Analysis",
+        "pressure": "LOW",
+        "trend": "Stable",
+        "advice": "Normal timing",
+        "confidence": 61,
+        "fx_momentum": -0.04,
+        "fx_volatility": "LOW",
+        "latest_usdinr": 86.45,
+        "crude_cross_direction": "SIDEWAYS",
+        "computed_at": "05-03-2026 14:38:09 IST",
+        "status": "OK"
+      },
+      "weather": {
+        "signal_id": "weather",
+        "signal_name": "Weather & Logistics Impact",
+        "road_condition": "GOOD",
+        "logistics_risk": "LOW",
+        "affected_cities": [],
+        "construction_probability": 100,
+        "monsoon_factor": "DRY",
+        "city_details": {
+          "Mumbai": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 28.8
+          },
+          "Mangalore": {
+            "condition": "GOOD",
+            "rain_mm": 0.1,
+            "temp": 28.3
+          },
+          "Kandla": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 27.9
+          },
+          "Delhi": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 23.3
+          },
+          "Vadodara": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 31.5
+          }
+        },
+        "cities_tracked": 5,
+        "computed_at": "05-03-2026 14:38:09 IST",
+        "status": "OK"
+      },
+      "news": {
+        "signal_id": "news",
+        "signal_name": "News & Event Analysis",
+        "supply_risk": "HIGH",
+        "events": [
+          {
+            "type": "geopolitics",
+            "headline": "OPEC Plus to Boost Oil Production as Iran Strikes Threaten Price Spike - The New York Times",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "OPEC Weighs Shock Output Surge as Iran Conflict Rattles Oil Markets - Crude Oil Prices Today | OilPrice.com",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Oil prices forecast to jump despite Opec+ pledge to raise output - Financial Times",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Tanker rate index hits highest level since 1973 Opec oil embargo as Aramco diverts cargoes to Red Sea - Tradewinds News",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Will Iran war send oil prices above $100 a barrel? - DW.com",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Crude oil prices in focus: OPEC+ increases output by 206,000 bpd amid Middle East tensions - The Times of India",
+            "impact_days": 7
+          },
+          {
+            "type": "port_disruption",
+            "headline": "Opinion | Bitumen: A Crude Item's Curious Link To Trump's Venezuela Strike - And India - NDTV",
+            "impact_days": 5
+          },
+          {
+            "type": "infrastructure",
+            "headline": "Bio-Bitumen: Paving India’s Roads with Low-Carbon Innovation - Sanskriti IAS",
+            "impact_days": 30
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Pune-based company imported $8 million worth of Iranian-origin bitumen in 9 months - theweek.in",
+            "impact_days": 7
+          },
+          {
+            "type": "infrastructure",
+            "headline": "Bio-Bitumen: A Sustainable Revolution in Road Construction - Sanskriti IAS",
+            "impact_days": 30
+          }
+        ],
+        "sentiment": "NEGATIVE",
+        "avg_sentiment_score": -0.467,
+        "category_counts": {
+          "refinery_shutdown": 0,
+          "infrastructure": 3,
+          "geopolitics": 38,
+          "port_disruption": 44
+        },
+        "articles_analyzed": 100,
+        "computed_at": "05-03-2026 14:38:09 IST",
+        "status": "OK"
+      },
+      "govt_infra": {
+        "signal_id": "govt_infra",
+        "signal_name": "Government Infrastructure",
+        "top_states": [
+          {
+            "state": "Uttar Pradesh",
+            "score": 87,
+            "demand_mt": 28500,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Rajasthan",
+            "score": 74,
+            "demand_mt": 22000,
+            "completion_pct": 68.2
+          },
+          {
+            "state": "Madhya Pradesh",
+            "score": 65,
+            "demand_mt": 18000,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Maharashtra",
+            "score": 62,
+            "demand_mt": 17000,
+            "completion_pct": 64.7
+          },
+          {
+            "state": "Gujarat",
+            "score": 60,
+            "demand_mt": 15000,
+            "completion_pct": 70.0
+          },
+          {
+            "state": "Karnataka",
+            "score": 55,
+            "demand_mt": 14000,
+            "completion_pct": 64.3
+          },
+          {
+            "state": "Tamil Nadu",
+            "score": 52,
+            "demand_mt": 12000,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Andhra Pradesh",
+            "score": 50,
+            "demand_mt": 11000,
+            "completion_pct": 68.2
+          },
+          {
+            "state": "Telangana",
+            "score": 46,
+            "demand_mt": 8500,
+            "completion_pct": 70.6
+          },
+          {
+            "state": "Bihar",
+            "score": 45,
+            "demand_mt": 10000,
+            "completion_pct": 60.0
+          }
+        ],
+        "demand_trend": "FALLING",
+        "total_demand_mt": 220800.0,
+        "states_analyzed": 22,
+        "computed_at": "05-03-2026 14:38:09 IST",
+        "status": "OK"
+      },
+      "tenders": {
+        "signal_id": "tenders",
+        "signal_name": "Tender Demand Signal",
+        "new_tenders": 4,
+        "top_state": "N/A",
+        "top_city": "N/A",
+        "demand_level": "MEDIUM",
+        "state_breakdown": {},
+        "recent_tenders": [
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:56 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:57 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:59 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:13:14 IST"
+          }
+        ],
+        "computed_at": "05-03-2026 14:38:09 IST",
+        "status": "OK"
+      },
+      "economic": {
+        "signal_id": "economic",
+        "signal_name": "Global Economic Signal",
+        "economic_trend": "GROWING",
+        "construction_outlook": "POSITIVE",
+        "gdp_growth": 6.49476552383821,
+        "cpi": 4.95303550973656,
+        "source": "World Bank API",
+        "computed_at": "05-03-2026 14:38:09 IST",
+        "status": "OK"
+      },
+      "search": {
+        "signal_id": "search",
+        "signal_name": "Search Demand Signal",
+        "demand_interest": "STABLE",
+        "signal_strength": "MEDIUM",
+        "trending_terms": [],
+        "interest_score": 50,
+        "source": "Neutral fallback (The request failed: Google returned a response wit)",
+        "computed_at": "05-03-2026 14:38:11 IST",
+        "status": "FALLBACK"
+      },
+      "ports": {
+        "signal_id": "ports",
+        "signal_name": "Port & Shipping Signal",
+        "port_risk": "HIGH",
+        "freight_delay": "MAJOR",
+        "congested_ports": [],
+        "volume_trend": "UP",
+        "port_volumes": {
+          "Kandla (KPCT)": 40464.0,
+          "Mumbai (JNPT)": 20810.0,
+          "Mangalore (NMPT)": 13873.0,
+          "Chennai (CCTPL)": 9249.0,
+          "Paradip (PPT)": 6937.0
+        },
+        "total_volume_mt": 91333.0,
+        "computed_at": "05-03-2026 14:38:11 IST",
+        "status": "OK"
+      },
+      "master": {
+        "signal_id": "master",
+        "signal_name": "Master Composite Signal",
+        "market_direction": "SIDEWAYS",
+        "confidence": 60,
+        "demand_outlook": "MODERATE",
+        "risk_level": "HIGH",
+        "recommended_action": "High risk detected -- secure supply from reliable sources",
+        "weighted_score": -0.05,
+        "signals_summary": [
+          {
+            "signal": "Crude Market Analysis",
+            "value": 0.0,
+            "weight_pct": 25,
+            "status": "OK"
+          },
+          {
+            "signal": "Currency Impact Analysis",
+            "value": -1.0,
+            "weight_pct": 15,
+            "status": "OK"
+          },
+          {
+            "signal": "Weather & Logistics Impact",
+            "value": 1.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "News & Event Analysis",
+            "value": 0.0,
+            "weight_pct": 15,
+            "status": "OK"
+          },
+          {
+            "signal": "Government Infrastructure",
+            "value": -1.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "Tender Demand Signal",
+            "value": 0.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "Global Economic Signal",
+            "value": 1.0,
+            "weight_pct": 5,
+            "status": "OK"
+          },
+          {
+            "signal": "Search Demand Signal",
+            "value": 0.0,
+            "weight_pct": 5,
+            "status": "FALLBACK"
+          },
+          {
+            "signal": "Port & Shipping Signal",
+            "value": 1.0,
+            "weight_pct": 5,
+            "status": "OK"
+          }
+        ],
+        "computed_at": "05-03-2026 14:38:11 IST",
+        "status": "OK"
+      }
+    }
+  },
+  {
+    "computed_at": "05-03-2026 14:38:13 IST",
+    "signals": {
+      "crude_market": {
+        "signal_id": "crude_market",
+        "signal_name": "Crude Market Analysis",
+        "direction": "SIDEWAYS",
+        "confidence": 60,
+        "impact": "Prices stable -- normal procurement timing",
+        "momentum": 0.26,
+        "volatility": "LOW",
+        "trend_slope": 0.047,
+        "support": 83.34,
+        "resistance": 84.34,
+        "latest_brent": 83.91,
+        "latest_wti": 77.22,
+        "data_points": 14,
+        "computed_at": "05-03-2026 14:38:11 IST",
+        "status": "OK"
+      },
+      "currency": {
+        "signal_id": "currency",
+        "signal_name": "Currency Impact Analysis",
+        "pressure": "LOW",
+        "trend": "Stable",
+        "advice": "Normal timing",
+        "confidence": 61,
+        "fx_momentum": -0.04,
+        "fx_volatility": "LOW",
+        "latest_usdinr": 86.45,
+        "crude_cross_direction": "SIDEWAYS",
+        "computed_at": "05-03-2026 14:38:11 IST",
+        "status": "OK"
+      },
+      "weather": {
+        "signal_id": "weather",
+        "signal_name": "Weather & Logistics Impact",
+        "road_condition": "GOOD",
+        "logistics_risk": "LOW",
+        "affected_cities": [],
+        "construction_probability": 100,
+        "monsoon_factor": "DRY",
+        "city_details": {
+          "Mumbai": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 28.8
+          },
+          "Mangalore": {
+            "condition": "GOOD",
+            "rain_mm": 0.1,
+            "temp": 28.3
+          },
+          "Kandla": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 27.9
+          },
+          "Delhi": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 23.3
+          },
+          "Vadodara": {
+            "condition": "GOOD",
+            "rain_mm": 0.0,
+            "temp": 31.5
+          }
+        },
+        "cities_tracked": 5,
+        "computed_at": "05-03-2026 14:38:11 IST",
+        "status": "OK"
+      },
+      "news": {
+        "signal_id": "news",
+        "signal_name": "News & Event Analysis",
+        "supply_risk": "HIGH",
+        "events": [
+          {
+            "type": "geopolitics",
+            "headline": "OPEC Plus to Boost Oil Production as Iran Strikes Threaten Price Spike - The New York Times",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "OPEC Weighs Shock Output Surge as Iran Conflict Rattles Oil Markets - Crude Oil Prices Today | OilPrice.com",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Oil prices forecast to jump despite Opec+ pledge to raise output - Financial Times",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Tanker rate index hits highest level since 1973 Opec oil embargo as Aramco diverts cargoes to Red Sea - Tradewinds News",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Will Iran war send oil prices above $100 a barrel? - DW.com",
+            "impact_days": 7
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Crude oil prices in focus: OPEC+ increases output by 206,000 bpd amid Middle East tensions - The Times of India",
+            "impact_days": 7
+          },
+          {
+            "type": "port_disruption",
+            "headline": "Opinion | Bitumen: A Crude Item's Curious Link To Trump's Venezuela Strike - And India - NDTV",
+            "impact_days": 5
+          },
+          {
+            "type": "infrastructure",
+            "headline": "Bio-Bitumen: Paving India’s Roads with Low-Carbon Innovation - Sanskriti IAS",
+            "impact_days": 30
+          },
+          {
+            "type": "geopolitics",
+            "headline": "Pune-based company imported $8 million worth of Iranian-origin bitumen in 9 months - theweek.in",
+            "impact_days": 7
+          },
+          {
+            "type": "infrastructure",
+            "headline": "Bio-Bitumen: A Sustainable Revolution in Road Construction - Sanskriti IAS",
+            "impact_days": 30
+          }
+        ],
+        "sentiment": "NEGATIVE",
+        "avg_sentiment_score": -0.467,
+        "category_counts": {
+          "refinery_shutdown": 0,
+          "infrastructure": 3,
+          "geopolitics": 38,
+          "port_disruption": 44
+        },
+        "articles_analyzed": 100,
+        "computed_at": "05-03-2026 14:38:11 IST",
+        "status": "OK"
+      },
+      "govt_infra": {
+        "signal_id": "govt_infra",
+        "signal_name": "Government Infrastructure",
+        "top_states": [
+          {
+            "state": "Uttar Pradesh",
+            "score": 87,
+            "demand_mt": 28500,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Rajasthan",
+            "score": 74,
+            "demand_mt": 22000,
+            "completion_pct": 68.2
+          },
+          {
+            "state": "Madhya Pradesh",
+            "score": 65,
+            "demand_mt": 18000,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Maharashtra",
+            "score": 62,
+            "demand_mt": 17000,
+            "completion_pct": 64.7
+          },
+          {
+            "state": "Gujarat",
+            "score": 60,
+            "demand_mt": 15000,
+            "completion_pct": 70.0
+          },
+          {
+            "state": "Karnataka",
+            "score": 55,
+            "demand_mt": 14000,
+            "completion_pct": 64.3
+          },
+          {
+            "state": "Tamil Nadu",
+            "score": 52,
+            "demand_mt": 12000,
+            "completion_pct": 66.7
+          },
+          {
+            "state": "Andhra Pradesh",
+            "score": 50,
+            "demand_mt": 11000,
+            "completion_pct": 68.2
+          },
+          {
+            "state": "Telangana",
+            "score": 46,
+            "demand_mt": 8500,
+            "completion_pct": 70.6
+          },
+          {
+            "state": "Bihar",
+            "score": 45,
+            "demand_mt": 10000,
+            "completion_pct": 60.0
+          }
+        ],
+        "demand_trend": "FALLING",
+        "total_demand_mt": 220800.0,
+        "states_analyzed": 22,
+        "computed_at": "05-03-2026 14:38:11 IST",
+        "status": "OK"
+      },
+      "tenders": {
+        "signal_id": "tenders",
+        "signal_name": "Tender Demand Signal",
+        "new_tenders": 4,
+        "top_state": "N/A",
+        "top_city": "N/A",
+        "demand_level": "MEDIUM",
+        "state_breakdown": {},
+        "recent_tenders": [
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:56 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:57 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:12:59 IST"
+          },
+          {
+            "headline": "India Becomes First to Commercially Produce Bio-Bitumen from Agro-Waste: Nitin Gadkari - APAC Media",
+            "date": "04-03-2026 19:13:14 IST"
+          }
+        ],
+        "computed_at": "05-03-2026 14:38:11 IST",
+        "status": "OK"
+      },
+      "economic": {
+        "signal_id": "economic",
+        "signal_name": "Global Economic Signal",
+        "economic_trend": "GROWING",
+        "construction_outlook": "POSITIVE",
+        "gdp_growth": 6.49476552383821,
+        "cpi": 4.95303550973656,
+        "source": "World Bank API",
+        "computed_at": "05-03-2026 14:38:11 IST",
+        "status": "OK"
+      },
+      "search": {
+        "signal_id": "search",
+        "signal_name": "Search Demand Signal",
+        "demand_interest": "STABLE",
+        "signal_strength": "MEDIUM",
+        "trending_terms": [],
+        "interest_score": 50,
+        "source": "Neutral fallback (The request failed: Google returned a response wit)",
+        "computed_at": "05-03-2026 14:38:13 IST",
+        "status": "FALLBACK"
+      },
+      "ports": {
+        "signal_id": "ports",
+        "signal_name": "Port & Shipping Signal",
+        "port_risk": "HIGH",
+        "freight_delay": "MAJOR",
+        "congested_ports": [],
+        "volume_trend": "UP",
+        "port_volumes": {
+          "Kandla (KPCT)": 40464.0,
+          "Mumbai (JNPT)": 20810.0,
+          "Mangalore (NMPT)": 13873.0,
+          "Chennai (CCTPL)": 9249.0,
+          "Paradip (PPT)": 6937.0
+        },
+        "total_volume_mt": 91333.0,
+        "computed_at": "05-03-2026 14:38:13 IST",
+        "status": "OK"
+      },
+      "master": {
+        "signal_id": "master",
+        "signal_name": "Master Composite Signal",
+        "market_direction": "SIDEWAYS",
+        "confidence": 60,
+        "demand_outlook": "MODERATE",
+        "risk_level": "HIGH",
+        "recommended_action": "High risk detected -- secure supply from reliable sources",
+        "weighted_score": -0.05,
+        "signals_summary": [
+          {
+            "signal": "Crude Market Analysis",
+            "value": 0.0,
+            "weight_pct": 25,
+            "status": "OK"
+          },
+          {
+            "signal": "Currency Impact Analysis",
+            "value": -1.0,
+            "weight_pct": 15,
+            "status": "OK"
+          },
+          {
+            "signal": "Weather & Logistics Impact",
+            "value": 1.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "News & Event Analysis",
+            "value": 0.0,
+            "weight_pct": 15,
+            "status": "OK"
+          },
+          {
+            "signal": "Government Infrastructure",
+            "value": -1.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "Tender Demand Signal",
+            "value": 0.0,
+            "weight_pct": 10,
+            "status": "OK"
+          },
+          {
+            "signal": "Global Economic Signal",
+            "value": 1.0,
+            "weight_pct": 5,
+            "status": "OK"
+          },
+          {
+            "signal": "Search Demand Signal",
+            "value": 0.0,
+            "weight_pct": 5,
+            "status": "FALLBACK"
+          },
+          {
+            "signal": "Port & Shipping Signal",
+            "value": 1.0,
+            "weight_pct": 5,
+            "status": "OK"
+          }
+        ],
+        "computed_at": "05-03-2026 14:38:13 IST",
+        "status": "OK"
+      }
+    }
   }
 ]

@@ -1,820 +1,6 @@
 [
   {
     "date": "2026-03-05",
-    "generated_at": "05-03-2026 11:50 IST",
-    "recommendations": {
-      "buy_timing": {
-        "action": "BUY NOW",
-        "confidence": 70,
-        "window": "next 48 hours",
-        "best_sources": [
-          {
-            "source": "Local Decanter (Ahmedabad)",
-            "landed_cost": 44433.0,
-            "category": ""
-          },
-          {
-            "source": "Kandla Port Import",
-            "landed_cost": 46871.37,
-            "category": ""
-          },
-          {
-            "source": "Mundra Port Import",
-            "landed_cost": 47070.2,
-            "category": ""
-          }
-        ],
-        "quantity_suggestion_mt": 200,
-        "reasons": [
-          "Urgency index: 58/100 (HOLD)",
-          "Crude forecast: UP (heuristic, conf 67%)",
-          "USD/INR forecast: UP (conf 60%)",
-          "15-day strategy: HOLD (demand 80/100)",
-          "  - Prices stable — no urgency",
-          "  - Demand: 80/100 (STRONG)",
-          "  - Best source: Local Decanter (Ahmedabad) at 44433.0/MT",
-          "Peak construction season (month 3, index 100)"
-        ],
-        "risks": [
-          "Crude prices rising -- procurement costs may increase",
-          "INR weakening -- import costs rising"
-        ],
-        "supporting_signals": [
-          "purchase_advisor",
-          "crude_forecast",
-          "fx_forecast",
-          "forward_strategy",
-          "seasonal"
-        ],
-        "risk_assessment": "Crude prices rising -- procurement costs may increase; INR weakening -- import costs rising",
-        "alternative_action": "If cash flow tight, buy 50% now and 50% within 5 days",
-        "expires_at": "06-03-2026 11:50 IST",
-        "natural_language": "Recommendation: BUY NOW. Overall confidence 70%. Window: next 48 hours. Peak season boosts urgency. Crude rising -- lock in prices early. Suggested quantity: 200 MT."
-      },
-      "sell_timing": {
-        "targets": [],
-        "pricing": {
-          "aggressive": {
-            "margin_per_mt": 500,
-            "label": "Aggressive"
-          },
-          "balanced": {
-            "margin_per_mt": 800,
-            "label": "Balanced"
-          },
-          "premium": {
-            "margin_per_mt": 1200,
-            "label": "Premium"
-          }
-        },
-        "timing": "Sell aggressively -- peak demand covers volume",
-        "confidence": 65,
-        "priority_customers": [],
-        "reasons": [
-          "Price direction: STABLE (85% confidence)",
-          "High-demand season (index 100)"
-        ],
-        "supporting_signals": [
-          "crm_hot_leads",
-          "price_direction",
-          "seasonal_demand"
-        ],
-        "risk_assessment": "No hot leads -- focus on outbound prospecting",
-        "alternative_action": "Offer volume discounts to warm leads if hot leads are exhausted",
-        "expires_at": "06-03-2026 11:50 IST",
-        "natural_language": "Sell timing: Sell aggressively -- peak demand covers volume. 0 priority customers identified. "
-      },
-      "demand_forecast": {
-        "overall_direction": "STABLE",
-        "state_forecasts": [
-          {
-            "state": "Gujarat",
-            "direction": "STABLE",
-            "confidence": 52.0,
-            "avg_demand_score": 65.3,
-            "model": "heuristic_state",
-            "monsoon_factor": 0.7
-          },
-          {
-            "state": "Maharashtra",
-            "direction": "STABLE",
-            "confidence": 52.0,
-            "avg_demand_score": 65.3,
-            "model": "heuristic_state",
-            "monsoon_factor": 0.65
-          },
-          {
-            "state": "Rajasthan",
-            "direction": "STABLE",
-            "confidence": 52.0,
-            "avg_demand_score": 65.3,
-            "model": "heuristic_state",
-            "monsoon_factor": 0.75
-          },
-          {
-            "state": "Madhya Pradesh",
-            "direction": "STABLE",
-            "confidence": 52.0,
-            "avg_demand_score": 65.3,
-            "model": "heuristic_state",
-            "monsoon_factor": 0.68
-          },
-          {
-            "state": "Uttar Pradesh",
-            "direction": "STABLE",
-            "confidence": 52.0,
-            "avg_demand_score": 65.3,
-            "model": "heuristic_state",
-            "monsoon_factor": 0.72
-          },
-          {
-            "state": "Karnataka",
-            "direction": "STABLE",
-            "confidence": 52.0,
-            "avg_demand_score": 65.3,
-            "model": "heuristic_state",
-            "monsoon_factor": 0.6
-          },
-          {
-            "state": "Tamil Nadu",
-            "direction": "STABLE",
-            "confidence": 52.0,
-            "avg_demand_score": 65.3,
-            "model": "heuristic_state",
-            "monsoon_factor": 0.55
-          },
-          {
-            "state": "Andhra Pradesh",
-            "direction": "STABLE",
-            "confidence": 52.0,
-            "avg_demand_score": 65.3,
-            "model": "heuristic_state",
-            "monsoon_factor": 0.6
-          },
-          {
-            "state": "Telangana",
-            "direction": "STABLE",
-            "confidence": 52.0,
-            "avg_demand_score": 65.3,
-            "model": "heuristic_state",
-            "monsoon_factor": 0.62
-          },
-          {
-            "state": "West Bengal",
-            "direction": "STABLE",
-            "confidence": 52.0,
-            "avg_demand_score": 65.3,
-            "model": "heuristic_state",
-            "monsoon_factor": 0.5
-          }
-        ],
-        "top_demand_states": [
-          "Gujarat",
-          "Maharashtra",
-          "Rajasthan"
-        ],
-        "forecast_horizon": "15-60 days",
-        "natural_language": "Demand outlook: STABLE. Top demand states: Gujarat, Maharashtra, Rajasthan. 10 states analyzed.",
-        "generated_at": "05-03-2026 11:50 IST"
-      },
-      "price_forecast": {
-        "crude": {
-          "direction": "UP",
-          "confidence": 67.0,
-          "current_price_usd": 77.5,
-          "model": "heuristic",
-          "forecast_15d": [
-            77.9,
-            78.02,
-            78.15,
-            78.3,
-            80.07,
-            80.16,
-            81.12,
-            81.69,
-            79.71,
-            79.18,
-            79.37,
-            79.14,
-            79.06,
-            80.53,
-            81.33
-          ],
-          "lower_band": [
-            75.9,
-            75.97,
-            76.05,
-            76.15,
-            77.87,
-            77.91,
-            78.82,
-            79.34,
-            77.31,
-            76.73,
-            76.87,
-            76.59,
-            76.46,
-            77.88,
-            78.63
-          ],
-          "upper_band": [
-            79.9,
-            80.07,
-            80.25,
-            80.45,
-            82.27,
-            82.41,
-            83.42,
-            84.04,
-            82.11,
-            81.63,
-            81.87,
-            81.69,
-            81.66,
-            83.18,
-            84.03
-          ]
-        },
-        "fx": {
-          "direction": "UP",
-          "confidence": 60.5,
-          "current_rate": 0.85844,
-          "model": "heuristic",
-          "forecast_15d": [
-            60,
-            60.04,
-            60.08,
-            60.12,
-            60.47,
-            60.51,
-            60.71,
-            60.84,
-            60.49,
-            60.41,
-            60.46,
-            60.43,
-            60.44,
-            60.73,
-            60.9
-          ],
-          "lower_band": [
-            59.5,
-            59.51,
-            59.52,
-            59.53,
-            59.85,
-            59.86,
-            60.03,
-            60.13,
-            59.75,
-            59.64,
-            59.66,
-            59.6,
-            59.58,
-            59.84,
-            59.98
-          ],
-          "upper_band": [
-            60.5,
-            60.57,
-            60.64,
-            60.71,
-            61.09,
-            61.16,
-            61.39,
-            61.55,
-            61.23,
-            61.18,
-            61.26,
-            61.26,
-            61.3,
-            61.62,
-            61.82
-          ]
-        },
-        "bitumen": {
-          "direction": "UP",
-          "confidence": 80,
-          "drivers": "Crude UP, FX UP"
-        },
-        "natural_language": "Crude: UP (current $77.5). FX: UP (current 0.85844). Bitumen price outlook: UP.",
-        "generated_at": "05-03-2026 11:50 IST"
-      },
-      "trade_specific": [
-        {
-          "trade_type": "import",
-          "action": "HOLD",
-          "confidence": 70,
-          "timing": "Defer import -- both crude and INR adverse",
-          "top_sources": [],
-          "supporting_signals": [
-            "Crude UP",
-            "FX UP"
-          ],
-          "risk_assessment": "Vessel booking lead time 15-20 days; FX lock recommended",
-          "alternative_action": "Partial hedge via forward FX contract",
-          "natural_language": "Import: HOLD. Defer import -- both crude and INR adverse. 0 import sources ranked.",
-          "expires_at": "06-03-2026 11:50 IST"
-        },
-        {
-          "trade_type": "domestic_buy",
-          "action": "BUY NOW",
-          "confidence": 70,
-          "timing": "Lock refinery prices before next revision",
-          "top_sources": [],
-          "supporting_signals": [
-            "Crude UP",
-            "Refinery revision cycle"
-          ],
-          "risk_assessment": "Refinery supply allocation may limit availability",
-          "alternative_action": "Diversify across 2-3 refineries to reduce allocation risk",
-          "natural_language": "Domestic: BUY NOW. Lock refinery prices before next revision. 0 refinery sources available.",
-          "expires_at": "06-03-2026 11:50 IST"
-        },
-        {
-          "trade_type": "local_sell",
-          "action": "SELL",
-          "confidence": 75,
-          "timing": "Maximize volume -- peak demand period",
-          "top_territories": [
-            {
-              "city": "Pune",
-              "best_landed": 45255.0,
-              "best_source": "Local Decanter (Pune)"
-            },
-            {
-              "city": "Bhopal",
-              "best_landed": 48291.0,
-              "best_source": "Local Decanter (Bhopal)"
-            },
-            {
-              "city": "Hyderabad",
-              "best_landed": 49167.0,
-              "best_source": "Local Decanter (Hyderabad)"
-            }
-          ],
-          "customer_count": 3,
-          "supporting_signals": [
-            "Season index: 100",
-            "3 active customers"
-          ],
-          "risk_assessment": "Credit risk on new customers; stick to advance payment",
-          "alternative_action": "Offer early-bird discounts for bulk pre-orders",
-          "natural_language": "Local sell: SELL. Maximize volume -- peak demand period. 3 territories analyzed.",
-          "expires_at": "06-03-2026 11:50 IST"
-        }
-      ],
-      "risk_warnings": [
-        {
-          "type": "supply_chain",
-          "severity": "HIGH",
-          "title": "Supply chain disruption risk",
-          "description": "News sentiment indicates high supply risk. Events: 10 flagged.",
-          "recommended_action": "Secure 2-week buffer stock from reliable sources",
-          "confidence": 75,
-          "expires_at": "07-03-2026 11:50 IST"
-        },
-        {
-          "type": "port_disruption",
-          "severity": "HIGH",
-          "title": "Port congestion alert",
-          "description": "Congested ports: multiple. Freight delays: MAJOR.",
-          "recommended_action": "Shift to domestic sources or alternate ports",
-          "confidence": 70,
-          "expires_at": "08-03-2026 11:50 IST"
-        },
-        {
-          "type": "composite_risk",
-          "severity": "HIGH",
-          "title": "Overall market risk elevated",
-          "description": "High risk detected -- secure supply from reliable sources",
-          "recommended_action": "Review all open positions; reduce exposure",
-          "confidence": 60,
-          "expires_at": "06-03-2026 11:50 IST"
-        },
-        {
-          "type": "fx_risk",
-          "severity": "MEDIUM",
-          "title": "INR depreciation risk",
-          "description": "USD/INR forecast trending UP (conf 60%). Current rate: 0.85844.",
-          "recommended_action": "Consider FX hedging for upcoming import payments",
-          "confidence": 60,
-          "expires_at": "07-03-2026 11:50 IST"
-        }
-      ],
-      "generated_at": "05-03-2026 11:50 IST",
-      "expires_at": "06-03-2026 05:50 IST"
-    }
-  },
-  {
-    "date": "2026-03-05",
-    "generated_at": "05-03-2026 11:50 IST",
-    "recommendations": {
-      "buy_timing": {
-        "action": "BUY NOW",
-        "confidence": 70,
-        "window": "next 48 hours",
-        "best_sources": [
-          {
-            "source": "Local Decanter (Ahmedabad)",
-            "landed_cost": 44433.0,
-            "category": ""
-          },
-          {
-            "source": "Kandla Port Import",
-            "landed_cost": 46871.37,
-            "category": ""
-          },
-          {
-            "source": "Mundra Port Import",
-            "landed_cost": 47070.2,
-            "category": ""
-          }
-        ],
-        "quantity_suggestion_mt": 200,
-        "reasons": [
-          "Urgency index: 58/100 (HOLD)",
-          "Crude forecast: UP (heuristic, conf 67%)",
-          "USD/INR forecast: UP (conf 60%)",
-          "15-day strategy: HOLD (demand 80/100)",
-          "  - Prices stable — no urgency",
-          "  - Demand: 80/100 (STRONG)",
-          "  - Best source: Local Decanter (Ahmedabad) at 44433.0/MT",
-          "Peak construction season (month 3, index 100)"
-        ],
-        "risks": [
-          "Crude prices rising -- procurement costs may increase",
-          "INR weakening -- import costs rising"
-        ],
-        "supporting_signals": [
-          "purchase_advisor",
-          "crude_forecast",
-          "fx_forecast",
-          "forward_strategy",
-          "seasonal"
-        ],
-        "risk_assessment": "Crude prices rising -- procurement costs may increase; INR weakening -- import costs rising",
-        "alternative_action": "If cash flow tight, buy 50% now and 50% within 5 days",
-        "expires_at": "06-03-2026 11:50 IST",
-        "natural_language": "Recommendation: BUY NOW. Overall confidence 70%. Window: next 48 hours. Peak season boosts urgency. Crude rising -- lock in prices early. Suggested quantity: 200 MT."
-      },
-      "sell_timing": {
-        "targets": [],
-        "pricing": {
-          "aggressive": {
-            "margin_per_mt": 500,
-            "label": "Aggressive"
-          },
-          "balanced": {
-            "margin_per_mt": 800,
-            "label": "Balanced"
-          },
-          "premium": {
-            "margin_per_mt": 1200,
-            "label": "Premium"
-          }
-        },
-        "timing": "Sell aggressively -- peak demand covers volume",
-        "confidence": 65,
-        "priority_customers": [],
-        "reasons": [
-          "Price direction: STABLE (85% confidence)",
-          "High-demand season (index 100)"
-        ],
-        "supporting_signals": [
-          "crm_hot_leads",
-          "price_direction",
-          "seasonal_demand"
-        ],
-        "risk_assessment": "No hot leads -- focus on outbound prospecting",
-        "alternative_action": "Offer volume discounts to warm leads if hot leads are exhausted",
-        "expires_at": "06-03-2026 11:50 IST",
-        "natural_language": "Sell timing: Sell aggressively -- peak demand covers volume. 0 priority customers identified. "
-      },
-      "demand_forecast": {
-        "overall_direction": "STABLE",
-        "state_forecasts": [
-          {
-            "state": "Gujarat",
-            "direction": "STABLE",
-            "confidence": 52.0,
-            "avg_demand_score": 65.3,
-            "model": "heuristic_state",
-            "monsoon_factor": 0.7
-          },
-          {
-            "state": "Maharashtra",
-            "direction": "STABLE",
-            "confidence": 52.0,
-            "avg_demand_score": 65.3,
-            "model": "heuristic_state",
-            "monsoon_factor": 0.65
-          },
-          {
-            "state": "Rajasthan",
-            "direction": "STABLE",
-            "confidence": 52.0,
-            "avg_demand_score": 65.3,
-            "model": "heuristic_state",
-            "monsoon_factor": 0.75
-          },
-          {
-            "state": "Madhya Pradesh",
-            "direction": "STABLE",
-            "confidence": 52.0,
-            "avg_demand_score": 65.3,
-            "model": "heuristic_state",
-            "monsoon_factor": 0.68
-          },
-          {
-            "state": "Uttar Pradesh",
-            "direction": "STABLE",
-            "confidence": 52.0,
-            "avg_demand_score": 65.3,
-            "model": "heuristic_state",
-            "monsoon_factor": 0.72
-          },
-          {
-            "state": "Karnataka",
-            "direction": "STABLE",
-            "confidence": 52.0,
-            "avg_demand_score": 65.3,
-            "model": "heuristic_state",
-            "monsoon_factor": 0.6
-          },
-          {
-            "state": "Tamil Nadu",
-            "direction": "STABLE",
-            "confidence": 52.0,
-            "avg_demand_score": 65.3,
-            "model": "heuristic_state",
-            "monsoon_factor": 0.55
-          },
-          {
-            "state": "Andhra Pradesh",
-            "direction": "STABLE",
-            "confidence": 52.0,
-            "avg_demand_score": 65.3,
-            "model": "heuristic_state",
-            "monsoon_factor": 0.6
-          },
-          {
-            "state": "Telangana",
-            "direction": "STABLE",
-            "confidence": 52.0,
-            "avg_demand_score": 65.3,
-            "model": "heuristic_state",
-            "monsoon_factor": 0.62
-          },
-          {
-            "state": "West Bengal",
-            "direction": "STABLE",
-            "confidence": 52.0,
-            "avg_demand_score": 65.3,
-            "model": "heuristic_state",
-            "monsoon_factor": 0.5
-          }
-        ],
-        "top_demand_states": [
-          "Gujarat",
-          "Maharashtra",
-          "Rajasthan"
-        ],
-        "forecast_horizon": "15-60 days",
-        "natural_language": "Demand outlook: STABLE. Top demand states: Gujarat, Maharashtra, Rajasthan. 10 states analyzed.",
-        "generated_at": "05-03-2026 11:50 IST"
-      },
-      "price_forecast": {
-        "crude": {
-          "direction": "UP",
-          "confidence": 67.0,
-          "current_price_usd": 77.5,
-          "model": "heuristic",
-          "forecast_15d": [
-            77.9,
-            78.02,
-            78.15,
-            78.3,
-            80.07,
-            80.16,
-            81.12,
-            81.69,
-            79.71,
-            79.18,
-            79.37,
-            79.14,
-            79.06,
-            80.53,
-            81.33
-          ],
-          "lower_band": [
-            75.9,
-            75.97,
-            76.05,
-            76.15,
-            77.87,
-            77.91,
-            78.82,
-            79.34,
-            77.31,
-            76.73,
-            76.87,
-            76.59,
-            76.46,
-            77.88,
-            78.63
-          ],
-          "upper_band": [
-            79.9,
-            80.07,
-            80.25,
-            80.45,
-            82.27,
-            82.41,
-            83.42,
-            84.04,
-            82.11,
-            81.63,
-            81.87,
-            81.69,
-            81.66,
-            83.18,
-            84.03
-          ]
-        },
-        "fx": {
-          "direction": "UP",
-          "confidence": 60.5,
-          "current_rate": 0.85844,
-          "model": "heuristic",
-          "forecast_15d": [
-            60,
-            60.04,
-            60.08,
-            60.12,
-            60.47,
-            60.51,
-            60.71,
-            60.84,
-            60.49,
-            60.41,
-            60.46,
-            60.43,
-            60.44,
-            60.73,
-            60.9
-          ],
-          "lower_band": [
-            59.5,
-            59.51,
-            59.52,
-            59.53,
-            59.85,
-            59.86,
-            60.03,
-            60.13,
-            59.75,
-            59.64,
-            59.66,
-            59.6,
-            59.58,
-            59.84,
-            59.98
-          ],
-          "upper_band": [
-            60.5,
-            60.57,
-            60.64,
-            60.71,
-            61.09,
-            61.16,
-            61.39,
-            61.55,
-            61.23,
-            61.18,
-            61.26,
-            61.26,
-            61.3,
-            61.62,
-            61.82
-          ]
-        },
-        "bitumen": {
-          "direction": "UP",
-          "confidence": 80,
-          "drivers": "Crude UP, FX UP"
-        },
-        "natural_language": "Crude: UP (current $77.5). FX: UP (current 0.85844). Bitumen price outlook: UP.",
-        "generated_at": "05-03-2026 11:50 IST"
-      },
-      "trade_specific": [
-        {
-          "trade_type": "import",
-          "action": "HOLD",
-          "confidence": 70,
-          "timing": "Defer import -- both crude and INR adverse",
-          "top_sources": [],
-          "supporting_signals": [
-            "Crude UP",
-            "FX UP"
-          ],
-          "risk_assessment": "Vessel booking lead time 15-20 days; FX lock recommended",
-          "alternative_action": "Partial hedge via forward FX contract",
-          "natural_language": "Import: HOLD. Defer import -- both crude and INR adverse. 0 import sources ranked.",
-          "expires_at": "06-03-2026 11:50 IST"
-        },
-        {
-          "trade_type": "domestic_buy",
-          "action": "BUY NOW",
-          "confidence": 70,
-          "timing": "Lock refinery prices before next revision",
-          "top_sources": [],
-          "supporting_signals": [
-            "Crude UP",
-            "Refinery revision cycle"
-          ],
-          "risk_assessment": "Refinery supply allocation may limit availability",
-          "alternative_action": "Diversify across 2-3 refineries to reduce allocation risk",
-          "natural_language": "Domestic: BUY NOW. Lock refinery prices before next revision. 0 refinery sources available.",
-          "expires_at": "06-03-2026 11:50 IST"
-        },
-        {
-          "trade_type": "local_sell",
-          "action": "SELL",
-          "confidence": 75,
-          "timing": "Maximize volume -- peak demand period",
-          "top_territories": [
-            {
-              "city": "Pune",
-              "best_landed": 45255.0,
-              "best_source": "Local Decanter (Pune)"
-            },
-            {
-              "city": "Bhopal",
-              "best_landed": 48291.0,
-              "best_source": "Local Decanter (Bhopal)"
-            },
-            {
-              "city": "Hyderabad",
-              "best_landed": 49167.0,
-              "best_source": "Local Decanter (Hyderabad)"
-            }
-          ],
-          "customer_count": 3,
-          "supporting_signals": [
-            "Season index: 100",
-            "3 active customers"
-          ],
-          "risk_assessment": "Credit risk on new customers; stick to advance payment",
-          "alternative_action": "Offer early-bird discounts for bulk pre-orders",
-          "natural_language": "Local sell: SELL. Maximize volume -- peak demand period. 3 territories analyzed.",
-          "expires_at": "06-03-2026 11:50 IST"
-        }
-      ],
-      "risk_warnings": [
-        {
-          "type": "supply_chain",
-          "severity": "HIGH",
-          "title": "Supply chain disruption risk",
-          "description": "News sentiment indicates high supply risk. Events: 10 flagged.",
-          "recommended_action": "Secure 2-week buffer stock from reliable sources",
-          "confidence": 75,
-          "expires_at": "07-03-2026 11:50 IST"
-        },
-        {
-          "type": "port_disruption",
-          "severity": "HIGH",
-          "title": "Port congestion alert",
-          "description": "Congested ports: multiple. Freight delays: MAJOR.",
-          "recommended_action": "Shift to domestic sources or alternate ports",
-          "confidence": 70,
-          "expires_at": "08-03-2026 11:50 IST"
-        },
-        {
-          "type": "composite_risk",
-          "severity": "HIGH",
-          "title": "Overall market risk elevated",
-          "description": "High risk detected -- secure supply from reliable sources",
-          "recommended_action": "Review all open positions; reduce exposure",
-          "confidence": 60,
-          "expires_at": "06-03-2026 11:50 IST"
-        },
-        {
-          "type": "fx_risk",
-          "severity": "MEDIUM",
-          "title": "INR depreciation risk",
-          "description": "USD/INR forecast trending UP (conf 60%). Current rate: 0.85844.",
-          "recommended_action": "Consider FX hedging for upcoming import payments",
-          "confidence": 60,
-          "expires_at": "07-03-2026 11:50 IST"
-        }
-      ],
-      "generated_at": "05-03-2026 11:50 IST",
-      "expires_at": "06-03-2026 05:50 IST"
-    }
-  },
-  {
-    "date": "2026-03-05",
     "generated_at": "05-03-2026 12:12 IST",
     "recommendations": {
       "buy_timing": {
@@ -12207,6 +11393,820 @@
       ],
       "generated_at": "05-03-2026 14:02 IST",
       "expires_at": "06-03-2026 08:02 IST"
+    }
+  },
+  {
+    "date": "2026-03-05",
+    "generated_at": "05-03-2026 14:32 IST",
+    "recommendations": {
+      "buy_timing": {
+        "action": "BUY NOW",
+        "confidence": 70,
+        "window": "next 48 hours",
+        "best_sources": [
+          {
+            "source": "Local Decanter (Ahmedabad)",
+            "landed_cost": 44433.0,
+            "category": ""
+          },
+          {
+            "source": "Kandla Port Import",
+            "landed_cost": 46871.37,
+            "category": ""
+          },
+          {
+            "source": "Mundra Port Import",
+            "landed_cost": 47070.2,
+            "category": ""
+          }
+        ],
+        "quantity_suggestion_mt": 200,
+        "reasons": [
+          "Urgency index: 58/100 (HOLD)",
+          "Crude forecast: UP (heuristic, conf 67%)",
+          "USD/INR forecast: UP (conf 60%)",
+          "15-day strategy: HOLD (demand 80/100)",
+          "  - Prices stable — no urgency",
+          "  - Demand: 80/100 (STRONG)",
+          "  - Best source: Local Decanter (Ahmedabad) at 44433.0/MT",
+          "Peak construction season (month 3, index 100)"
+        ],
+        "risks": [
+          "Crude prices rising -- procurement costs may increase",
+          "INR weakening -- import costs rising"
+        ],
+        "supporting_signals": [
+          "purchase_advisor",
+          "crude_forecast",
+          "fx_forecast",
+          "forward_strategy",
+          "seasonal"
+        ],
+        "risk_assessment": "Crude prices rising -- procurement costs may increase; INR weakening -- import costs rising",
+        "alternative_action": "If cash flow tight, buy 50% now and 50% within 5 days",
+        "expires_at": "06-03-2026 14:32 IST",
+        "natural_language": "Recommendation: BUY NOW. Overall confidence 70%. Window: next 48 hours. Peak season boosts urgency. Crude rising -- lock in prices early. Suggested quantity: 200 MT."
+      },
+      "sell_timing": {
+        "targets": [],
+        "pricing": {
+          "aggressive": {
+            "margin_per_mt": 500,
+            "label": "Aggressive"
+          },
+          "balanced": {
+            "margin_per_mt": 800,
+            "label": "Balanced"
+          },
+          "premium": {
+            "margin_per_mt": 1200,
+            "label": "Premium"
+          }
+        },
+        "timing": "Sell aggressively -- peak demand covers volume",
+        "confidence": 65,
+        "priority_customers": [],
+        "reasons": [
+          "Price direction: STABLE (85% confidence)",
+          "High-demand season (index 100)"
+        ],
+        "supporting_signals": [
+          "crm_hot_leads",
+          "price_direction",
+          "seasonal_demand"
+        ],
+        "risk_assessment": "No hot leads -- focus on outbound prospecting",
+        "alternative_action": "Offer volume discounts to warm leads if hot leads are exhausted",
+        "expires_at": "06-03-2026 14:32 IST",
+        "natural_language": "Sell timing: Sell aggressively -- peak demand covers volume. 0 priority customers identified. "
+      },
+      "demand_forecast": {
+        "overall_direction": "STABLE",
+        "state_forecasts": [
+          {
+            "state": "Gujarat",
+            "direction": "STABLE",
+            "confidence": 52.0,
+            "avg_demand_score": 65.3,
+            "model": "heuristic_state",
+            "monsoon_factor": 0.7
+          },
+          {
+            "state": "Maharashtra",
+            "direction": "STABLE",
+            "confidence": 52.0,
+            "avg_demand_score": 65.3,
+            "model": "heuristic_state",
+            "monsoon_factor": 0.65
+          },
+          {
+            "state": "Rajasthan",
+            "direction": "STABLE",
+            "confidence": 52.0,
+            "avg_demand_score": 65.3,
+            "model": "heuristic_state",
+            "monsoon_factor": 0.75
+          },
+          {
+            "state": "Madhya Pradesh",
+            "direction": "STABLE",
+            "confidence": 52.0,
+            "avg_demand_score": 65.3,
+            "model": "heuristic_state",
+            "monsoon_factor": 0.68
+          },
+          {
+            "state": "Uttar Pradesh",
+            "direction": "STABLE",
+            "confidence": 52.0,
+            "avg_demand_score": 65.3,
+            "model": "heuristic_state",
+            "monsoon_factor": 0.72
+          },
+          {
+            "state": "Karnataka",
+            "direction": "STABLE",
+            "confidence": 52.0,
+            "avg_demand_score": 65.3,
+            "model": "heuristic_state",
+            "monsoon_factor": 0.6
+          },
+          {
+            "state": "Tamil Nadu",
+            "direction": "STABLE",
+            "confidence": 52.0,
+            "avg_demand_score": 65.3,
+            "model": "heuristic_state",
+            "monsoon_factor": 0.55
+          },
+          {
+            "state": "Andhra Pradesh",
+            "direction": "STABLE",
+            "confidence": 52.0,
+            "avg_demand_score": 65.3,
+            "model": "heuristic_state",
+            "monsoon_factor": 0.6
+          },
+          {
+            "state": "Telangana",
+            "direction": "STABLE",
+            "confidence": 52.0,
+            "avg_demand_score": 65.3,
+            "model": "heuristic_state",
+            "monsoon_factor": 0.62
+          },
+          {
+            "state": "West Bengal",
+            "direction": "STABLE",
+            "confidence": 52.0,
+            "avg_demand_score": 65.3,
+            "model": "heuristic_state",
+            "monsoon_factor": 0.5
+          }
+        ],
+        "top_demand_states": [
+          "Gujarat",
+          "Maharashtra",
+          "Rajasthan"
+        ],
+        "forecast_horizon": "15-60 days",
+        "natural_language": "Demand outlook: STABLE. Top demand states: Gujarat, Maharashtra, Rajasthan. 10 states analyzed.",
+        "generated_at": "05-03-2026 14:32 IST"
+      },
+      "price_forecast": {
+        "crude": {
+          "direction": "UP",
+          "confidence": 67.0,
+          "current_price_usd": 77.22,
+          "model": "heuristic",
+          "forecast_15d": [
+            77.62,
+            77.74,
+            77.87,
+            78.03,
+            79.81,
+            79.9,
+            80.86,
+            81.44,
+            79.46,
+            78.93,
+            79.12,
+            78.89,
+            78.81,
+            80.28,
+            81.09
+          ],
+          "lower_band": [
+            75.62,
+            75.69,
+            75.77,
+            75.88,
+            77.61,
+            77.65,
+            78.56,
+            79.09,
+            77.06,
+            76.48,
+            76.62,
+            76.34,
+            76.21,
+            77.63,
+            78.39
+          ],
+          "upper_band": [
+            79.62,
+            79.79,
+            79.97,
+            80.18,
+            82.01,
+            82.15,
+            83.16,
+            83.79,
+            81.86,
+            81.38,
+            81.62,
+            81.44,
+            81.41,
+            82.93,
+            83.79
+          ]
+        },
+        "fx": {
+          "direction": "UP",
+          "confidence": 60.5,
+          "current_rate": 0.85844,
+          "model": "heuristic",
+          "forecast_15d": [
+            60,
+            60.04,
+            60.08,
+            60.12,
+            60.47,
+            60.51,
+            60.71,
+            60.84,
+            60.49,
+            60.41,
+            60.46,
+            60.43,
+            60.44,
+            60.73,
+            60.9
+          ],
+          "lower_band": [
+            59.5,
+            59.51,
+            59.52,
+            59.53,
+            59.85,
+            59.86,
+            60.03,
+            60.13,
+            59.75,
+            59.64,
+            59.66,
+            59.6,
+            59.58,
+            59.84,
+            59.98
+          ],
+          "upper_band": [
+            60.5,
+            60.57,
+            60.64,
+            60.71,
+            61.09,
+            61.16,
+            61.39,
+            61.55,
+            61.23,
+            61.18,
+            61.26,
+            61.26,
+            61.3,
+            61.62,
+            61.82
+          ]
+        },
+        "bitumen": {
+          "direction": "UP",
+          "confidence": 80,
+          "drivers": "Crude UP, FX UP"
+        },
+        "natural_language": "Crude: UP (current $77.22). FX: UP (current 0.85844). Bitumen price outlook: UP.",
+        "generated_at": "05-03-2026 14:32 IST"
+      },
+      "trade_specific": [
+        {
+          "trade_type": "import",
+          "action": "HOLD",
+          "confidence": 70,
+          "timing": "Defer import -- both crude and INR adverse",
+          "top_sources": [],
+          "supporting_signals": [
+            "Crude UP",
+            "FX UP"
+          ],
+          "risk_assessment": "Vessel booking lead time 15-20 days; FX lock recommended",
+          "alternative_action": "Partial hedge via forward FX contract",
+          "natural_language": "Import: HOLD. Defer import -- both crude and INR adverse. 0 import sources ranked.",
+          "expires_at": "06-03-2026 14:32 IST"
+        },
+        {
+          "trade_type": "domestic_buy",
+          "action": "BUY NOW",
+          "confidence": 70,
+          "timing": "Lock refinery prices before next revision",
+          "top_sources": [],
+          "supporting_signals": [
+            "Crude UP",
+            "Refinery revision cycle"
+          ],
+          "risk_assessment": "Refinery supply allocation may limit availability",
+          "alternative_action": "Diversify across 2-3 refineries to reduce allocation risk",
+          "natural_language": "Domestic: BUY NOW. Lock refinery prices before next revision. 0 refinery sources available.",
+          "expires_at": "06-03-2026 14:32 IST"
+        },
+        {
+          "trade_type": "local_sell",
+          "action": "SELL",
+          "confidence": 75,
+          "timing": "Maximize volume -- peak demand period",
+          "top_territories": [
+            {
+              "city": "Pune",
+              "best_landed": 45255.0,
+              "best_source": "Local Decanter (Pune)"
+            },
+            {
+              "city": "Bhopal",
+              "best_landed": 48291.0,
+              "best_source": "Local Decanter (Bhopal)"
+            },
+            {
+              "city": "Hyderabad",
+              "best_landed": 49167.0,
+              "best_source": "Local Decanter (Hyderabad)"
+            }
+          ],
+          "customer_count": 3,
+          "supporting_signals": [
+            "Season index: 100",
+            "3 active customers"
+          ],
+          "risk_assessment": "Credit risk on new customers; stick to advance payment",
+          "alternative_action": "Offer early-bird discounts for bulk pre-orders",
+          "natural_language": "Local sell: SELL. Maximize volume -- peak demand period. 3 territories analyzed.",
+          "expires_at": "06-03-2026 14:32 IST"
+        }
+      ],
+      "risk_warnings": [
+        {
+          "type": "supply_chain",
+          "severity": "HIGH",
+          "title": "Supply chain disruption risk",
+          "description": "News sentiment indicates high supply risk. Events: 10 flagged.",
+          "recommended_action": "Secure 2-week buffer stock from reliable sources",
+          "confidence": 75,
+          "expires_at": "07-03-2026 14:32 IST"
+        },
+        {
+          "type": "port_disruption",
+          "severity": "HIGH",
+          "title": "Port congestion alert",
+          "description": "Congested ports: multiple. Freight delays: MAJOR.",
+          "recommended_action": "Shift to domestic sources or alternate ports",
+          "confidence": 70,
+          "expires_at": "08-03-2026 14:32 IST"
+        },
+        {
+          "type": "composite_risk",
+          "severity": "HIGH",
+          "title": "Overall market risk elevated",
+          "description": "High risk detected -- secure supply from reliable sources",
+          "recommended_action": "Review all open positions; reduce exposure",
+          "confidence": 60,
+          "expires_at": "06-03-2026 14:32 IST"
+        },
+        {
+          "type": "fx_risk",
+          "severity": "MEDIUM",
+          "title": "INR depreciation risk",
+          "description": "USD/INR forecast trending UP (conf 60%). Current rate: 0.85844.",
+          "recommended_action": "Consider FX hedging for upcoming import payments",
+          "confidence": 60,
+          "expires_at": "07-03-2026 14:32 IST"
+        }
+      ],
+      "generated_at": "05-03-2026 14:32 IST",
+      "expires_at": "06-03-2026 08:32 IST"
+    }
+  },
+  {
+    "date": "2026-03-05",
+    "generated_at": "05-03-2026 14:32 IST",
+    "recommendations": {
+      "buy_timing": {
+        "action": "BUY NOW",
+        "confidence": 70,
+        "window": "next 48 hours",
+        "best_sources": [
+          {
+            "source": "Local Decanter (Ahmedabad)",
+            "landed_cost": 44433.0,
+            "category": ""
+          },
+          {
+            "source": "Kandla Port Import",
+            "landed_cost": 46871.37,
+            "category": ""
+          },
+          {
+            "source": "Mundra Port Import",
+            "landed_cost": 47070.2,
+            "category": ""
+          }
+        ],
+        "quantity_suggestion_mt": 200,
+        "reasons": [
+          "Urgency index: 58/100 (HOLD)",
+          "Crude forecast: UP (heuristic, conf 67%)",
+          "USD/INR forecast: UP (conf 60%)",
+          "15-day strategy: HOLD (demand 80/100)",
+          "  - Prices stable — no urgency",
+          "  - Demand: 80/100 (STRONG)",
+          "  - Best source: Local Decanter (Ahmedabad) at 44433.0/MT",
+          "Peak construction season (month 3, index 100)"
+        ],
+        "risks": [
+          "Crude prices rising -- procurement costs may increase",
+          "INR weakening -- import costs rising"
+        ],
+        "supporting_signals": [
+          "purchase_advisor",
+          "crude_forecast",
+          "fx_forecast",
+          "forward_strategy",
+          "seasonal"
+        ],
+        "risk_assessment": "Crude prices rising -- procurement costs may increase; INR weakening -- import costs rising",
+        "alternative_action": "If cash flow tight, buy 50% now and 50% within 5 days",
+        "expires_at": "06-03-2026 14:32 IST",
+        "natural_language": "Recommendation: BUY NOW. Overall confidence 70%. Window: next 48 hours. Peak season boosts urgency. Crude rising -- lock in prices early. Suggested quantity: 200 MT."
+      },
+      "sell_timing": {
+        "targets": [],
+        "pricing": {
+          "aggressive": {
+            "margin_per_mt": 500,
+            "label": "Aggressive"
+          },
+          "balanced": {
+            "margin_per_mt": 800,
+            "label": "Balanced"
+          },
+          "premium": {
+            "margin_per_mt": 1200,
+            "label": "Premium"
+          }
+        },
+        "timing": "Sell aggressively -- peak demand covers volume",
+        "confidence": 65,
+        "priority_customers": [],
+        "reasons": [
+          "Price direction: STABLE (85% confidence)",
+          "High-demand season (index 100)"
+        ],
+        "supporting_signals": [
+          "crm_hot_leads",
+          "price_direction",
+          "seasonal_demand"
+        ],
+        "risk_assessment": "No hot leads -- focus on outbound prospecting",
+        "alternative_action": "Offer volume discounts to warm leads if hot leads are exhausted",
+        "expires_at": "06-03-2026 14:32 IST",
+        "natural_language": "Sell timing: Sell aggressively -- peak demand covers volume. 0 priority customers identified. "
+      },
+      "demand_forecast": {
+        "overall_direction": "STABLE",
+        "state_forecasts": [
+          {
+            "state": "Gujarat",
+            "direction": "STABLE",
+            "confidence": 52.0,
+            "avg_demand_score": 65.3,
+            "model": "heuristic_state",
+            "monsoon_factor": 0.7
+          },
+          {
+            "state": "Maharashtra",
+            "direction": "STABLE",
+            "confidence": 52.0,
+            "avg_demand_score": 65.3,
+            "model": "heuristic_state",
+            "monsoon_factor": 0.65
+          },
+          {
+            "state": "Rajasthan",
+            "direction": "STABLE",
+            "confidence": 52.0,
+            "avg_demand_score": 65.3,
+            "model": "heuristic_state",
+            "monsoon_factor": 0.75
+          },
+          {
+            "state": "Madhya Pradesh",
+            "direction": "STABLE",
+            "confidence": 52.0,
+            "avg_demand_score": 65.3,
+            "model": "heuristic_state",
+            "monsoon_factor": 0.68
+          },
+          {
+            "state": "Uttar Pradesh",
+            "direction": "STABLE",
+            "confidence": 52.0,
+            "avg_demand_score": 65.3,
+            "model": "heuristic_state",
+            "monsoon_factor": 0.72
+          },
+          {
+            "state": "Karnataka",
+            "direction": "STABLE",
+            "confidence": 52.0,
+            "avg_demand_score": 65.3,
+            "model": "heuristic_state",
+            "monsoon_factor": 0.6
+          },
+          {
+            "state": "Tamil Nadu",
+            "direction": "STABLE",
+            "confidence": 52.0,
+            "avg_demand_score": 65.3,
+            "model": "heuristic_state",
+            "monsoon_factor": 0.55
+          },
+          {
+            "state": "Andhra Pradesh",
+            "direction": "STABLE",
+            "confidence": 52.0,
+            "avg_demand_score": 65.3,
+            "model": "heuristic_state",
+            "monsoon_factor": 0.6
+          },
+          {
+            "state": "Telangana",
+            "direction": "STABLE",
+            "confidence": 52.0,
+            "avg_demand_score": 65.3,
+            "model": "heuristic_state",
+            "monsoon_factor": 0.62
+          },
+          {
+            "state": "West Bengal",
+            "direction": "STABLE",
+            "confidence": 52.0,
+            "avg_demand_score": 65.3,
+            "model": "heuristic_state",
+            "monsoon_factor": 0.5
+          }
+        ],
+        "top_demand_states": [
+          "Gujarat",
+          "Maharashtra",
+          "Rajasthan"
+        ],
+        "forecast_horizon": "15-60 days",
+        "natural_language": "Demand outlook: STABLE. Top demand states: Gujarat, Maharashtra, Rajasthan. 10 states analyzed.",
+        "generated_at": "05-03-2026 14:32 IST"
+      },
+      "price_forecast": {
+        "crude": {
+          "direction": "UP",
+          "confidence": 67.0,
+          "current_price_usd": 77.22,
+          "model": "heuristic",
+          "forecast_15d": [
+            77.62,
+            77.74,
+            77.87,
+            78.03,
+            79.81,
+            79.9,
+            80.86,
+            81.44,
+            79.46,
+            78.93,
+            79.12,
+            78.89,
+            78.81,
+            80.28,
+            81.09
+          ],
+          "lower_band": [
+            75.62,
+            75.69,
+            75.77,
+            75.88,
+            77.61,
+            77.65,
+            78.56,
+            79.09,
+            77.06,
+            76.48,
+            76.62,
+            76.34,
+            76.21,
+            77.63,
+            78.39
+          ],
+          "upper_band": [
+            79.62,
+            79.79,
+            79.97,
+            80.18,
+            82.01,
+            82.15,
+            83.16,
+            83.79,
+            81.86,
+            81.38,
+            81.62,
+            81.44,
+            81.41,
+            82.93,
+            83.79
+          ]
+        },
+        "fx": {
+          "direction": "UP",
+          "confidence": 60.5,
+          "current_rate": 0.85844,
+          "model": "heuristic",
+          "forecast_15d": [
+            60,
+            60.04,
+            60.08,
+            60.12,
+            60.47,
+            60.51,
+            60.71,
+            60.84,
+            60.49,
+            60.41,
+            60.46,
+            60.43,
+            60.44,
+            60.73,
+            60.9
+          ],
+          "lower_band": [
+            59.5,
+            59.51,
+            59.52,
+            59.53,
+            59.85,
+            59.86,
+            60.03,
+            60.13,
+            59.75,
+            59.64,
+            59.66,
+            59.6,
+            59.58,
+            59.84,
+            59.98
+          ],
+          "upper_band": [
+            60.5,
+            60.57,
+            60.64,
+            60.71,
+            61.09,
+            61.16,
+            61.39,
+            61.55,
+            61.23,
+            61.18,
+            61.26,
+            61.26,
+            61.3,
+            61.62,
+            61.82
+          ]
+        },
+        "bitumen": {
+          "direction": "UP",
+          "confidence": 80,
+          "drivers": "Crude UP, FX UP"
+        },
+        "natural_language": "Crude: UP (current $77.22). FX: UP (current 0.85844). Bitumen price outlook: UP.",
+        "generated_at": "05-03-2026 14:32 IST"
+      },
+      "trade_specific": [
+        {
+          "trade_type": "import",
+          "action": "HOLD",
+          "confidence": 70,
+          "timing": "Defer import -- both crude and INR adverse",
+          "top_sources": [],
+          "supporting_signals": [
+            "Crude UP",
+            "FX UP"
+          ],
+          "risk_assessment": "Vessel booking lead time 15-20 days; FX lock recommended",
+          "alternative_action": "Partial hedge via forward FX contract",
+          "natural_language": "Import: HOLD. Defer import -- both crude and INR adverse. 0 import sources ranked.",
+          "expires_at": "06-03-2026 14:32 IST"
+        },
+        {
+          "trade_type": "domestic_buy",
+          "action": "BUY NOW",
+          "confidence": 70,
+          "timing": "Lock refinery prices before next revision",
+          "top_sources": [],
+          "supporting_signals": [
+            "Crude UP",
+            "Refinery revision cycle"
+          ],
+          "risk_assessment": "Refinery supply allocation may limit availability",
+          "alternative_action": "Diversify across 2-3 refineries to reduce allocation risk",
+          "natural_language": "Domestic: BUY NOW. Lock refinery prices before next revision. 0 refinery sources available.",
+          "expires_at": "06-03-2026 14:32 IST"
+        },
+        {
+          "trade_type": "local_sell",
+          "action": "SELL",
+          "confidence": 75,
+          "timing": "Maximize volume -- peak demand period",
+          "top_territories": [
+            {
+              "city": "Pune",
+              "best_landed": 45255.0,
+              "best_source": "Local Decanter (Pune)"
+            },
+            {
+              "city": "Bhopal",
+              "best_landed": 48291.0,
+              "best_source": "Local Decanter (Bhopal)"
+            },
+            {
+              "city": "Hyderabad",
+              "best_landed": 49167.0,
+              "best_source": "Local Decanter (Hyderabad)"
+            }
+          ],
+          "customer_count": 3,
+          "supporting_signals": [
+            "Season index: 100",
+            "3 active customers"
+          ],
+          "risk_assessment": "Credit risk on new customers; stick to advance payment",
+          "alternative_action": "Offer early-bird discounts for bulk pre-orders",
+          "natural_language": "Local sell: SELL. Maximize volume -- peak demand period. 3 territories analyzed.",
+          "expires_at": "06-03-2026 14:32 IST"
+        }
+      ],
+      "risk_warnings": [
+        {
+          "type": "supply_chain",
+          "severity": "HIGH",
+          "title": "Supply chain disruption risk",
+          "description": "News sentiment indicates high supply risk. Events: 10 flagged.",
+          "recommended_action": "Secure 2-week buffer stock from reliable sources",
+          "confidence": 75,
+          "expires_at": "07-03-2026 14:32 IST"
+        },
+        {
+          "type": "port_disruption",
+          "severity": "HIGH",
+          "title": "Port congestion alert",
+          "description": "Congested ports: multiple. Freight delays: MAJOR.",
+          "recommended_action": "Shift to domestic sources or alternate ports",
+          "confidence": 70,
+          "expires_at": "08-03-2026 14:32 IST"
+        },
+        {
+          "type": "composite_risk",
+          "severity": "HIGH",
+          "title": "Overall market risk elevated",
+          "description": "High risk detected -- secure supply from reliable sources",
+          "recommended_action": "Review all open positions; reduce exposure",
+          "confidence": 60,
+          "expires_at": "06-03-2026 14:32 IST"
+        },
+        {
+          "type": "fx_risk",
+          "severity": "MEDIUM",
+          "title": "INR depreciation risk",
+          "description": "USD/INR forecast trending UP (conf 60%). Current rate: 0.85844.",
+          "recommended_action": "Consider FX hedging for upcoming import payments",
+          "confidence": 60,
+          "expires_at": "07-03-2026 14:32 IST"
+        }
+      ],
+      "generated_at": "05-03-2026 14:32 IST",
+      "expires_at": "06-03-2026 08:32 IST"
     }
   }
 ]

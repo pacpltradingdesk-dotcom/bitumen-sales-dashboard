@@ -2406,5 +2406,131 @@
     "status": "FAIL",
     "message": "Scheduler exception: 'list' object has no attribute 'get'",
     "records_written": 0
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:28:06 IST",
+    "connector_id": "hub_init",
+    "status": "INFO",
+    "message": "API HUB Engine v3.2.3 initialised (+ govt tables + directory)",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:28:06 IST",
+    "connector_id": "hub_scheduler",
+    "status": "INFO",
+    "message": "Hub scheduler started (interval=60min)",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:29:36 IST",
+    "connector_id": "hub_scheduler",
+    "status": "FAIL",
+    "message": "Scheduler exception: 'list' object has no attribute 'get'",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:31:37 IST",
+    "connector_id": "hub_init",
+    "status": "INFO",
+    "message": "API HUB Engine v3.2.3 initialised (+ govt tables + directory)",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:31:39 IST",
+    "connector_id": "eia_crude",
+    "status": "Fallback",
+    "message": "yfinance fallback: 2 records",
+    "records_written": 2
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:31:40 IST",
+    "connector_id": "newsapi",
+    "status": "Fallback",
+    "message": "Google News RSS: 30 articles",
+    "records_written": 30
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:31:41 IST",
+    "connector_id": "un_comtrade",
+    "status": "Fallback",
+    "message": "Comtrade unavailable: Empty Comtrade response. Static cache used.",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:31:43 IST",
+    "connector_id": "frankfurter_fx",
+    "status": "OK",
+    "message": "Frankfurter: 4 FX pairs",
+    "records_written": 4
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:31:45 IST",
+    "connector_id": "openweather",
+    "status": "OK",
+    "message": "Weather: 5 city records",
+    "records_written": 5
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:31:47 IST",
+    "connector_id": "world_bank_india",
+    "status": "OK",
+    "message": "World Bank: 6 indicators",
+    "records_written": 6
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:33:22 IST",
+    "connector_id": "hub_init",
+    "status": "INFO",
+    "message": "API HUB Engine v3.2.3 initialised (+ govt tables + directory)",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:34:12 IST",
+    "connector_id": "hub_init",
+    "status": "INFO",
+    "message": "API HUB Engine v3.2.3 initialised (+ govt tables + directory)",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:34:12 IST",
+    "connector_id": "hub_init",
+    "status": "INFO",
+    "message": "API HUB Engine v3.2.3 initialised (+ govt tables + directory)",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:34:33 IST",
+    "connector_id": "hub_init",
+    "status": "INFO",
+    "message": "API HUB Engine v3.2.3 initialised (+ govt tables + directory)",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:34:40 IST",
+    "connector_id": "hub_init",
+    "status": "INFO",
+    "message": "API HUB Engine v3.2.3 initialised (+ govt tables + directory)",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:34:40 IST",
+    "connector_id": "hub_init",
+    "status": "INFO",
+    "message": "API HUB Engine v3.2.3 initialised (+ govt tables + directory)",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:34:50 IST",
+    "connector_id": "hub_init",
+    "status": "INFO",
+    "message": "API HUB Engine v3.2.3 initialised (+ govt tables + directory)",
+    "records_written": 0
+  },
+  {
+    "timestamp_ist": "05-03-2026 14:34:50 IST",
+    "connector_id": "hub_init",
+    "status": "INFO",
+    "message": "API HUB Engine v3.2.3 initialised (+ govt tables + directory)",
+    "records_written": 0
   }
 ]

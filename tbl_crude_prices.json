@@ -688,5 +688,25 @@
     "_source_type": "live_api",
     "_source_confidence": 0.9,
     "_source_provider": "Yahoo Finance (yfinance library)"
+  },
+  {
+    "date_time": "05-03-2026 14:31:39 IST",
+    "benchmark": "Brent",
+    "price": 83.91,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)",
+    "_source_type": "live_api",
+    "_source_confidence": 0.9,
+    "_source_provider": "Yahoo Finance (yfinance library)"
+  },
+  {
+    "date_time": "05-03-2026 14:31:39 IST",
+    "benchmark": "WTI",
+    "price": 77.22,
+    "currency": "USD/bbl",
+    "source": "yfinance (EIA fallback)",
+    "_source_type": "live_api",
+    "_source_confidence": 0.9,
+    "_source_provider": "Yahoo Finance (yfinance library)"
   }
 ]

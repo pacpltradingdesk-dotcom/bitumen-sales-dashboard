@@ -96,7 +96,7 @@
     "status": "Live",
     "refresh_frequency": "1h",
     "cache_ttl_sec": 3600,
-    "last_success_time": "05-03-2026 13:22:46 IST",
+    "last_success_time": "05-03-2026 14:31:43 IST",
     "last_error_message": "",
     "fallback_api": "fawazahmed0_fx",
     "data_output_tables": [
@@ -117,7 +117,7 @@
     "status": "Live",
     "refresh_frequency": "1h",
     "cache_ttl_sec": 3600,
-    "last_success_time": "05-03-2026 14:01:58 IST",
+    "last_success_time": "05-03-2026 14:31:45 IST",
     "last_error_message": "",
     "fallback_api": "",
     "data_output_tables": [
@@ -138,7 +138,7 @@
     "status": "Live",
     "refresh_frequency": "1h",
     "cache_ttl_sec": 3600,
-    "last_success_time": "05-03-2026 14:01:56 IST",
+    "last_success_time": "05-03-2026 14:31:40 IST",
     "last_error_message": "",
     "fallback_api": "",
     "data_output_tables": [
@@ -285,7 +285,7 @@
     "status": "Live",
     "refresh_frequency": "1d",
     "cache_ttl_sec": 86400,
-    "last_success_time": "05-03-2026 14:01:59 IST",
+    "last_success_time": "05-03-2026 14:31:47 IST",
     "last_error_message": "",
     "fallback_api": "",
     "data_output_tables": [
