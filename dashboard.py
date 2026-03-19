@@ -331,11 +331,24 @@ st.markdown("""
         button > div > p { color: #2d3142 !important; }
    ─────────────────────────────────────────────────────────────────────────── */
 
-/* ── 1-X. Hide stExpanderToggleIcon element ─────────────────────────────── */
+/* ── 1-X. GLOBAL _arrow_right text fix ──────────────────────────────────── */
+/* Hide the toggle icon element */
 [data-testid="stExpanderToggleIcon"] {
   display: none !important;
   width: 0 !important;
   height: 0 !important;
+}
+/* Push raw text nodes off-screen via text-indent */
+details > summary,
+div[data-testid="stExpander"] summary {
+  text-indent: -9999px !important;
+  overflow: hidden !important;
+}
+/* Restore child elements back to normal indent */
+details > summary > *,
+div[data-testid="stExpander"] summary > * {
+  text-indent: 0 !important;
+  display: inline-block !important;
 }
 /* Add a CSS arrow indicator for open/close */
 div[data-testid="stExpander"] details > summary::after {
@@ -1127,35 +1140,6 @@ section[data-testid="stSidebar"] .stButton > button[kind="primary"] p {
 </style>
 """, unsafe_allow_html=True)
 
-# ── JavaScript: Remove _arrow_right raw text nodes from ALL expander summaries ──
-# Streamlit blocks <script> in st.markdown, so use components.html to inject JS
-# into the parent frame. height=0 makes it invisible.
-import streamlit.components.v1 as _components
-_components.html("""
-<script>
-function cleanArrowText() {
-    var doc = window.parent.document;
-    doc.querySelectorAll('details > summary, [data-testid="stExpander"] summary').forEach(function(s) {
-        for (var i = s.childNodes.length - 1; i >= 0; i--) {
-            var n = s.childNodes[i];
-            if (n.nodeType === 3) {
-                var t = n.textContent.trim();
-                if (t.match(/arrow|_right|expand_|chevron|more/i) || t === '') {
-                    n.textContent = '';
-                }
-            }
-        }
-        s.querySelectorAll('[data-testid="stExpanderToggleIcon"]').forEach(function(el) {
-            el.style.display = 'none';
-        });
-    });
-}
-cleanArrowText();
-setInterval(cleanArrowText, 500);
-var obs = new MutationObserver(cleanArrowText);
-obs.observe(window.parent.document.body, {childList: true, subtree: true});
-</script>
-""", height=0)
 
 # Import Sales Calendar Helper Functions
 from sales_calendar import (
