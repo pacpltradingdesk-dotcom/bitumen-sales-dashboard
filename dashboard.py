@@ -2011,15 +2011,8 @@ if selected_page == "🏠 Home":
             _alert_rows_html = '<div style="font-size:0.78rem;color:#64748b;padding:8px;">No active alerts. System healthy.</div>'
         st.markdown(f'<div class="zoho-card">{_alert_rows_html}</div>', unsafe_allow_html=True)
 
-        # Missing inputs notification
-        if _missing_count > 0:
-            st.markdown(f"""
-<div style="background:#fffbeb;border:1px solid #f59e0b;border-radius:8px;padding:8px 12px;margin-top:8px;">
-  <span style="font-size:0.78rem;color:#92400e;font-weight:600;">
-    {_missing_count} data gaps detected
-  </span>
-  <span style="font-size:0.72rem;color:#92400e;"> - update for better accuracy</span>
-</div>""", unsafe_allow_html=True)
+        # Daily input prompts — hidden on home page (shown in Settings > Data Manager)
+        # These are standing questions, not errors
         if st.button("Alert System", key="_home_alert_btn", use_container_width=True):
             st.session_state["_nav_goto"] = "🔔 Alert System"
             st.rerun()
