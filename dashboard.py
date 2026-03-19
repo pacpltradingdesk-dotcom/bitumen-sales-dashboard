@@ -332,34 +332,55 @@ st.markdown("""
    ─────────────────────────────────────────────────────────────────────────── */
 
 /* ── 1-X. GLOBAL _arrow_right / icon text bleed fix ─────────────────────── */
-/* Streamlit renders Material icon names as raw text in expanders.
-   Strategy: hide the toggle-icon element + use text-indent trick on summary
-   to push raw text offscreen, then restore child elements normally.         */
+/* Streamlit renders Material icon names ("_arrow_right") as raw text nodes
+   inside <summary>. These are NOT inside any child element, so we cannot
+   target them with CSS selectors. The ONLY way to hide raw text nodes is
+   font-size:0 + color:transparent on the parent, then restore on children. */
 
-/* Hide the toggle icon element completely */
+/* Kill the toggle icon element */
 [data-testid="stExpanderToggleIcon"] {
   display: none !important;
   width: 0 !important;
   height: 0 !important;
   overflow: hidden !important;
+  position: absolute !important;
 }
-/* Summary: collapse raw text nodes (icon names) via color + indent */
-details > summary {
+/* Summary: nuke ALL text (raw nodes + children) */
+details > summary,
+div[data-testid="stExpander"] summary {
+  font-size: 0 !important;
   color: transparent !important;
+  line-height: 0 !important;
   overflow: hidden !important;
-  line-height: 1.4 !important;
 }
-/* Restore ONLY the real label elements inside summary */
-details > summary > span,
-details > summary > div,
-details > summary > p,
-details > summary [data-testid="stMarkdownContainer"],
-details > summary [data-testid="stMarkdownContainer"] p,
-details > summary [data-testid="stMarkdownContainer"] span {
-  color: #1e293b !important;
+/* Restore ONLY actual label children — target every possible wrapper */
+details > summary > *,
+div[data-testid="stExpander"] summary > * {
   font-size: 0.85rem !important;
+  color: #1e293b !important;
   font-weight: 600 !important;
+  line-height: 1.5 !important;
   visibility: visible !important;
+  display: inline !important;
+}
+/* Specifically restore markdown containers and their children */
+details > summary [data-testid="stMarkdownContainer"],
+details > summary [data-testid="stMarkdownContainer"] *,
+div[data-testid="stExpander"] summary [data-testid="stMarkdownContainer"],
+div[data-testid="stExpander"] summary [data-testid="stMarkdownContainer"] * {
+  font-size: 0.85rem !important;
+  color: #1e293b !important;
+  font-weight: 600 !important;
+  line-height: 1.5 !important;
+  visibility: visible !important;
+}
+/* But re-hide the toggle icon even if matched by > * */
+details > summary > [data-testid="stExpanderToggleIcon"],
+div[data-testid="stExpander"] summary > [data-testid="stExpanderToggleIcon"] {
+  display: none !important;
+  font-size: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 /* Add a CSS arrow indicator for open/close */
 div[data-testid="stExpander"] details > summary::after {
