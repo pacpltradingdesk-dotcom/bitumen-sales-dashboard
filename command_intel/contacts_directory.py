@@ -1,6 +1,7 @@
 """
 Contacts Directory — View all imported contacts (Suppliers, Customers, All)
 with search, filter, and export capabilities.
+Default sort: GST/PAN filled records first.
 """
 import streamlit as st
 import sqlite3
@@ -16,22 +17,11 @@ def _get_conn():
     return conn
 
 
-def _fmt_phone(phone):
-    """Format 10-digit phone as +91 XXXXX XXXXX."""
-    if not phone:
-        return ""
-    phone = str(phone).strip()
-    if len(phone) == 10:
-        return f"+91 {phone[:5]} {phone[5:]}"
-    return phone
-
-
 def render_contacts_directory():
     """Main render function for Contacts Directory page."""
 
     # ── Determine initial tab from session state ──────────────────────────────
     filter_mode = st.session_state.pop("_contacts_filter", "all")
-    tab_index = {"suppliers": 1, "customers": 2, "all": 0}.get(filter_mode, 0)
 
     # ── Header ────────────────────────────────────────────────────────────────
     st.markdown("""
@@ -53,13 +43,17 @@ def render_contacts_directory():
     total_contacts = cursor.execute("SELECT COUNT(*) FROM contacts").fetchone()[0]
     total_customers = cursor.execute("SELECT COUNT(*) FROM customers").fetchone()[0]
     total_suppliers = cursor.execute("SELECT COUNT(*) FROM suppliers").fetchone()[0]
+    with_gst = cursor.execute(
+        "SELECT COUNT(*) FROM contacts WHERE gstin IS NOT NULL AND gstin != ''").fetchone()[0]
+    with_pan = cursor.execute(
+        "SELECT COUNT(*) FROM contacts WHERE pan IS NOT NULL AND pan != ''").fetchone()[0]
 
-    s1, s2, s3, s4 = st.columns(4)
+    s1, s2, s3, s4, s5 = st.columns(5)
     s1.metric("All Contacts", f"{total_contacts:,}")
     s2.metric("Suppliers", f"{total_suppliers:,}")
     s3.metric("Customers", f"{total_customers:,}")
-    s4.metric("With GST", cursor.execute(
-        "SELECT COUNT(*) FROM contacts WHERE gstin IS NOT NULL AND gstin != ''").fetchone()[0])
+    s4.metric("With GST", f"{with_gst:,}")
+    s5.metric("With PAN", f"{with_pan:,}")
 
     # ── Tabs ──────────────────────────────────────────────────────────────────
     tab_all, tab_supp, tab_cust = st.tabs([
@@ -69,7 +63,7 @@ def render_contacts_directory():
     ])
 
     # ── Helper: render a searchable table ─────────────────────────────────────
-    def _render_table(query, table_name, columns_config):
+    def _render_table(query, table_name, columns_config, gst_col="gst", pan_col="pan"):
         """Generic searchable data table renderer."""
         df = pd.read_sql_query(query, conn)
 
@@ -77,8 +71,12 @@ def render_contacts_directory():
             st.info("No records found.")
             return
 
-        # Search bar
-        col_search, col_state, col_cat = st.columns([2, 1, 1])
+        # Replace None/NaN with empty string for display
+        df = df.fillna("")
+        df = df.replace("None", "")
+
+        # Filters row
+        col_search, col_state, col_cat, col_gst = st.columns([2, 1, 1, 1])
         with col_search:
             search = st.text_input(
                 "Search by name, phone, city, GST...",
@@ -86,11 +84,21 @@ def render_contacts_directory():
                 placeholder="Type to search..."
             )
         with col_state:
-            states = ["All States"] + sorted(df['state'].dropna().unique().tolist()) if 'state' in df.columns else ["All States"]
+            states_list = sorted([s for s in df['state'].unique().tolist() if s]) if 'state' in df.columns else []
+            states = ["All States"] + states_list
             sel_state = st.selectbox("State", states, key=f"state_{table_name}")
         with col_cat:
-            cats = ["All Categories"] + sorted(df['category'].dropna().unique().tolist()) if 'category' in df.columns else ["All Categories"]
+            cats_list = sorted([c for c in df['category'].unique().tolist() if c]) if 'category' in df.columns else []
+            cats = ["All Categories"] + cats_list
             sel_cat = st.selectbox("Category", cats, key=f"cat_{table_name}")
+        with col_gst:
+            gst_filter = st.selectbox("Data Filter", [
+                "GST+PAN filled first",
+                "Only with GST",
+                "Only with PAN",
+                "Only with GST & PAN",
+                "Show All"
+            ], key=f"gst_{table_name}")
 
         # Apply filters
         filtered = df.copy()
@@ -104,6 +112,29 @@ def render_contacts_directory():
             filtered = filtered[filtered['state'] == sel_state]
         if sel_cat != "All Categories" and 'category' in filtered.columns:
             filtered = filtered[filtered['category'] == sel_cat]
+
+        # GST/PAN filter & sorting
+        if gst_col in filtered.columns and pan_col in filtered.columns:
+            if gst_filter == "Only with GST":
+                filtered = filtered[filtered[gst_col] != ""]
+            elif gst_filter == "Only with PAN":
+                filtered = filtered[filtered[pan_col] != ""]
+            elif gst_filter == "Only with GST & PAN":
+                filtered = filtered[(filtered[gst_col] != "") & (filtered[pan_col] != "")]
+            # Default sort: GST+PAN filled first
+            if gst_filter in ("GST+PAN filled first", "Show All"):
+                filtered['_has_gst'] = (filtered[gst_col] != "").astype(int)
+                filtered['_has_pan'] = (filtered[pan_col] != "").astype(int)
+                filtered['_sort_score'] = filtered['_has_gst'] + filtered['_has_pan']
+                filtered = filtered.sort_values('_sort_score', ascending=False)
+                filtered = filtered.drop(columns=['_has_gst', '_has_pan', '_sort_score'])
+        elif gst_col in filtered.columns:
+            if gst_filter == "Only with GST":
+                filtered = filtered[filtered[gst_col] != ""]
+            if gst_filter in ("GST+PAN filled first", "Show All"):
+                filtered['_has_gst'] = (filtered[gst_col] != "").astype(int)
+                filtered = filtered.sort_values('_has_gst', ascending=False)
+                filtered = filtered.drop(columns=['_has_gst'])
 
         # Results count
         st.markdown(f"""
@@ -138,7 +169,10 @@ def render_contacts_directory():
             """SELECT name, company_name as company, category, mobile1 as phone,
                       mobile2 as phone_2, email, city, state, gstin as gst,
                       pan, buyer_seller_tag as type, source
-               FROM contacts ORDER BY state, city, name""",
+               FROM contacts
+               ORDER BY (CASE WHEN gstin IS NOT NULL AND gstin != '' THEN 0 ELSE 1 END),
+                        (CASE WHEN pan IS NOT NULL AND pan != '' THEN 0 ELSE 1 END),
+                        state, city, name""",
             "all_contacts",
             {
                 "name": st.column_config.TextColumn("Name", width="medium"),
@@ -163,7 +197,10 @@ def render_contacts_directory():
                       email, whatsapp_number as whatsapp, gstin as gst, pan,
                       preferred_grades as grades, relationship_stage as stage,
                       notes
-               FROM suppliers ORDER BY state, city, name""",
+               FROM suppliers
+               ORDER BY (CASE WHEN gstin IS NOT NULL AND gstin != '' THEN 0 ELSE 1 END),
+                        (CASE WHEN pan IS NOT NULL AND pan != '' THEN 0 ELSE 1 END),
+                        state, city, name""",
             "suppliers",
             {
                 "name": st.column_config.TextColumn("Name", width="medium"),
@@ -188,7 +225,9 @@ def render_contacts_directory():
                       email, whatsapp_number as whatsapp, gstin as gst,
                       preferred_grades as grades, relationship_stage as stage,
                       address, notes
-               FROM customers ORDER BY state, city, name""",
+               FROM customers
+               ORDER BY (CASE WHEN gstin IS NOT NULL AND gstin != '' THEN 0 ELSE 1 END),
+                        state, city, name""",
             "customers",
             {
                 "name": st.column_config.TextColumn("Name", width="medium"),
@@ -203,7 +242,8 @@ def render_contacts_directory():
                 "stage": st.column_config.TextColumn("Stage", width="small"),
                 "address": st.column_config.TextColumn("Address", width="medium"),
                 "notes": st.column_config.TextColumn("Notes", width="medium"),
-            }
+            },
+            pan_col="_no_pan_col"  # customers table has no pan column
         )
 
     # ── Category breakdown chart ──────────────────────────────────────────────

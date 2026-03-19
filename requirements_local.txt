@@ -1,6 +1,3 @@
-# Cloud-optimized requirements (Streamlit Cloud / Render / Railway)
-# Heavy ML packages (torch, transformers, prophet) removed — all have graceful fallbacks
-
 # Core Framework
 streamlit>=1.31.0
 
@@ -33,21 +30,30 @@ requests>=2.31.0
 # Market Intelligence (Google Trends)
 pytrends>=4.9.0
 
-# ML & Forecasting (lightweight — no torch/prophet)
+# ML & Forecasting (unlock existing ml_forecast_engine, correlation_engine)
+prophet>=1.1.5
 scikit-learn>=1.4.0
 statsmodels>=0.14.1
 scipy>=1.12.0
 joblib>=1.3.2
 
-# Gradient Boosting
+# Gradient Boosting (unlock existing ml_boost_engine)
 xgboost>=2.0.3
 lightgbm>=4.2.0
 
-# VADER Sentiment (lightweight — no transformers/torch)
+# NLP & Sentiment (unlock existing finbert_engine)
+transformers>=4.37.0
+torch>=2.1.0
+
+# VADER Sentiment (lightweight fallback — no model download needed)
 vaderSentiment>=3.3.2
 
-# Encryption
+# RAG — Semantic Search (unlock hybrid search in rag_engine)
+faiss-cpu>=1.7.4
+sentence-transformers>=2.3.0
+
+# Encryption (vault_engine credential storage)
 cryptography>=42.0.0
 
-# System Monitoring
+# System Monitoring (sre_engine resource checks)
 psutil>=5.9.0
