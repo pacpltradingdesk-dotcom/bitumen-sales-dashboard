@@ -1140,27 +1140,6 @@ section[data-testid="stSidebar"] .stButton > button[kind="primary"] p {
 </style>
 """, unsafe_allow_html=True)
 
-# ── Fix _arrow_right text: inject JS via img onerror trick ────────────────────
-# Streamlit blocks <script> tags but allows <img> with onerror handlers.
-# This removes raw text nodes ("_arrow_right", "expand_more") from all summaries.
-st.markdown("""
-<img src="" onerror="
-var d=window.parent.document;
-function fix(){
-  d.querySelectorAll('summary').forEach(function(s){
-    Array.from(s.childNodes).forEach(function(n){
-      if(n.nodeType===3 && n.textContent.match(/(arrow|expand|chevron|_right|_down|_more|_less)/i)){
-        n.textContent='';
-      }
-    });
-  });
-}
-fix();
-setInterval(fix,800);
-new MutationObserver(fix).observe(d.body,{childList:true,subtree:true});
-this.remove();
-" style="display:none;">
-""", unsafe_allow_html=True)
 
 # Import Sales Calendar Helper Functions
 from sales_calendar import (
