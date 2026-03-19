@@ -613,5 +613,20 @@
     "status": "exhausted",
     "last_error": "Timeout after 120s",
     "archived_at": "05-03-2026 14:14:42 IST"
+  },
+  {
+    "job_id": "DLQ-20260305-143813-4912",
+    "job_type": "sync_step",
+    "payload": {
+      "step_name": "intelligence_refresh"
+    },
+    "error": "Timeout after 120s",
+    "attempt": 3,
+    "max_retries": 3,
+    "created_at": "05-03-2026 14:38:13 IST",
+    "next_retry_at": "19-03-2026 12:42:15 IST",
+    "status": "exhausted",
+    "last_error": "Timeout after 120s",
+    "archived_at": "19-03-2026 10:57:16 IST"
   }
 ]

@@ -850,5 +850,197 @@
   "target_date": "2026-03-05",
   "logged_at": "2026-03-05 14:32:17",
   "evaluated": false
+ },
+ {
+  "model": "recommendation_engine",
+  "prediction": 76,
+  "confidence": 76,
+  "features": {
+   "action": "BUY NOW"
+  },
+  "actual": null,
+  "target_date": "2026-03-19",
+  "logged_at": "2026-03-19 10:34:10",
+  "evaluated": false
+ },
+ {
+  "model": "recommendation_engine",
+  "prediction": 76,
+  "confidence": 76,
+  "features": {
+   "action": "BUY NOW"
+  },
+  "actual": null,
+  "target_date": "2026-03-19",
+  "logged_at": "2026-03-19 10:34:12",
+  "evaluated": false
+ },
+ {
+  "model": "recommendation_engine",
+  "prediction": 76,
+  "confidence": 76,
+  "features": {
+   "action": "BUY NOW"
+  },
+  "actual": null,
+  "target_date": "2026-03-19",
+  "logged_at": "2026-03-19 10:42:04",
+  "evaluated": false
+ },
+ {
+  "model": "recommendation_engine",
+  "prediction": 76,
+  "confidence": 76,
+  "features": {
+   "action": "BUY NOW"
+  },
+  "actual": null,
+  "target_date": "2026-03-19",
+  "logged_at": "2026-03-19 10:42:05",
+  "evaluated": false
+ },
+ {
+  "model": "recommendation_engine",
+  "prediction": 76,
+  "confidence": 76,
+  "features": {
+   "action": "BUY NOW"
+  },
+  "actual": null,
+  "target_date": "2026-03-19",
+  "logged_at": "2026-03-19 11:30:18",
+  "evaluated": false
+ },
+ {
+  "model": "recommendation_engine",
+  "prediction": 76,
+  "confidence": 76,
+  "features": {
+   "action": "BUY NOW"
+  },
+  "actual": null,
+  "target_date": "2026-03-19",
+  "logged_at": "2026-03-19 11:30:20",
+  "evaluated": false
+ },
+ {
+  "model": "recommendation_engine",
+  "prediction": 76,
+  "confidence": 76,
+  "features": {
+   "action": "BUY NOW"
+  },
+  "actual": null,
+  "target_date": "2026-03-19",
+  "logged_at": "2026-03-19 11:43:30",
+  "evaluated": false
+ },
+ {
+  "model": "recommendation_engine",
+  "prediction": 76,
+  "confidence": 76,
+  "features": {
+   "action": "BUY NOW"
+  },
+  "actual": null,
+  "target_date": "2026-03-19",
+  "logged_at": "2026-03-19 11:43:36",
+  "evaluated": false
+ },
+ {
+  "model": "recommendation_engine",
+  "prediction": 76,
+  "confidence": 76,
+  "features": {
+   "action": "BUY NOW"
+  },
+  "actual": null,
+  "target_date": "2026-03-19",
+  "logged_at": "2026-03-19 11:44:43",
+  "evaluated": false
+ },
+ {
+  "model": "recommendation_engine",
+  "prediction": 76,
+  "confidence": 76,
+  "features": {
+   "action": "BUY NOW"
+  },
+  "actual": null,
+  "target_date": "2026-03-19",
+  "logged_at": "2026-03-19 11:44:45",
+  "evaluated": false
+ },
+ {
+  "model": "recommendation_engine",
+  "prediction": 76,
+  "confidence": 76,
+  "features": {
+   "action": "BUY NOW"
+  },
+  "actual": null,
+  "target_date": "2026-03-19",
+  "logged_at": "2026-03-19 11:48:25",
+  "evaluated": false
+ },
+ {
+  "model": "recommendation_engine",
+  "prediction": 76,
+  "confidence": 76,
+  "features": {
+   "action": "BUY NOW"
+  },
+  "actual": null,
+  "target_date": "2026-03-19",
+  "logged_at": "2026-03-19 11:48:25",
+  "evaluated": false
+ },
+ {
+  "model": "recommendation_engine",
+  "prediction": 76,
+  "confidence": 76,
+  "features": {
+   "action": "BUY NOW"
+  },
+  "actual": null,
+  "target_date": "2026-03-19",
+  "logged_at": "2026-03-19 11:59:55",
+  "evaluated": false
+ },
+ {
+  "model": "recommendation_engine",
+  "prediction": 76,
+  "confidence": 76,
+  "features": {
+   "action": "BUY NOW"
+  },
+  "actual": null,
+  "target_date": "2026-03-19",
+  "logged_at": "2026-03-19 11:59:56",
+  "evaluated": false
+ },
+ {
+  "model": "recommendation_engine",
+  "prediction": 71,
+  "confidence": 71,
+  "features": {
+   "action": "BUY NOW"
+  },
+  "actual": null,
+  "target_date": "2026-03-19",
+  "logged_at": "2026-03-19 12:03:26",
+  "evaluated": false
+ },
+ {
+  "model": "recommendation_engine",
+  "prediction": 71,
+  "confidence": 71,
+  "features": {
+   "action": "BUY NOW"
+  },
+  "actual": null,
+  "target_date": "2026-03-19",
+  "logged_at": "2026-03-19 12:03:27",
+  "evaluated": false
  }
 ]

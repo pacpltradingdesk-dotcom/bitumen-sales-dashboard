@@ -331,6 +331,50 @@ st.markdown("""
         button > div > p { color: #2d3142 !important; }
    ─────────────────────────────────────────────────────────────────────────── */
 
+/* ── 1-X. GLOBAL _arrow_right / icon text bleed fix ─────────────────────── */
+/* Streamlit renders Material icon names as raw text in expanders.
+   Strategy: hide the toggle-icon element + use text-indent trick on summary
+   to push raw text offscreen, then restore child elements normally.         */
+
+/* Hide the toggle icon element completely */
+[data-testid="stExpanderToggleIcon"] {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+/* Summary: collapse raw text nodes (icon names) via color + indent */
+details > summary {
+  color: transparent !important;
+  overflow: hidden !important;
+  line-height: 1.4 !important;
+}
+/* Restore ONLY the real label elements inside summary */
+details > summary > span,
+details > summary > div,
+details > summary > p,
+details > summary [data-testid="stMarkdownContainer"],
+details > summary [data-testid="stMarkdownContainer"] p,
+details > summary [data-testid="stMarkdownContainer"] span {
+  color: #1e293b !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  visibility: visible !important;
+}
+/* Add a CSS arrow indicator for open/close */
+div[data-testid="stExpander"] details > summary::after {
+  content: '>' !important;
+  color: #64748b !important;
+  font-size: 0.9rem !important;
+  margin-left: auto !important;
+  padding-left: 8px !important;
+  transition: transform 0.2s ease !important;
+  display: inline-block !important;
+}
+div[data-testid="stExpander"] details[open] > summary::after {
+  transform: rotate(90deg) !important;
+}
+
 /* ── 2. Global Typography ────────────────────────────────────────────────── */
 *, *::before, *::after {
   font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif !important;
@@ -1032,6 +1076,7 @@ section[data-testid="stSidebar"] .stButton > button[kind="primary"] p {
 .kpi-bar div[data-testid="stMetricValue"] { font-size: 1.0rem !important; }
 .kpi-bar div[data-testid="stMetricLabel"] { font-size: 0.6rem !important; }
 .kpi-bar div[data-testid="stMetricDelta"] { font-size: 0.65rem !important; }
+
 
 /* Zoho section row header */
 .zoho-row-header {
@@ -5157,6 +5202,16 @@ elif selected_page == "👥 Party Master":
         render_party_master()
     except Exception as _e:
         st.error(f"Party Master failed to load: {_e}")
+
+elif selected_page == "📇 Contacts Directory":
+    _render_page_header("📇 Contacts Directory", "Sales", badge="Contacts")
+    try:
+        from command_intel.contacts_directory import render_contacts_directory
+        render_contacts_directory()
+    except Exception as _e:
+        st.error(f"Contacts Directory failed to load: {_e}")
+        import traceback
+        st.code(traceback.format_exc())
 
 
 # ══════════════════════════════════════════════════════════════════════════════

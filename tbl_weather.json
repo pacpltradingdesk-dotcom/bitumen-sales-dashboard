@@ -616,5 +616,82 @@
     "_source_type": "live_api",
     "_source_confidence": 0.88,
     "_source_provider": "Open-Meteo.com"
+  },
+  {
+    "date_time": "19-03-2026 10:32:48 IST",
+    "location": "Mumbai",
+    "temp": 26.9,
+    "rain_mm": 0.0,
+    "humidity": 80,
+    "source": "Open-Meteo (OpenWeather fallback)",
+    "_source_type": "live_api",
+    "_source_confidence": 0.88,
+    "_source_provider": "Open-Meteo.com"
+  },
+  {
+    "date_time": "19-03-2026 10:41:15 IST",
+    "location": "Mumbai",
+    "temp": 26.9,
+    "rain_mm": 0.0,
+    "humidity": 80,
+    "source": "Open-Meteo (OpenWeather fallback)",
+    "_source_type": "live_api",
+    "_source_confidence": 0.88,
+    "_source_provider": "Open-Meteo.com"
+  },
+  {
+    "date_time": "19-03-2026 11:29:22 IST",
+    "location": "Mumbai",
+    "temp": 27.1,
+    "rain_mm": 0.0,
+    "humidity": 80,
+    "source": "Open-Meteo (OpenWeather fallback)",
+    "_source_type": "live_api",
+    "_source_confidence": 0.88,
+    "_source_provider": "Open-Meteo.com"
+  },
+  {
+    "date_time": "19-03-2026 11:42:03 IST",
+    "location": "Mumbai",
+    "temp": 27.1,
+    "rain_mm": 0.0,
+    "humidity": 80,
+    "source": "Open-Meteo (OpenWeather fallback)",
+    "_source_type": "live_api",
+    "_source_confidence": 0.88,
+    "_source_provider": "Open-Meteo.com"
+  },
+  {
+    "date_time": "19-03-2026 11:47:02 IST",
+    "location": "Mumbai",
+    "temp": 27.1,
+    "rain_mm": 0.0,
+    "humidity": 80,
+    "source": "Open-Meteo (OpenWeather fallback)",
+    "_source_type": "live_api",
+    "_source_confidence": 0.88,
+    "_source_provider": "Open-Meteo.com"
+  },
+  {
+    "date_time": "19-03-2026 11:58:23 IST",
+    "location": "Mumbai",
+    "temp": 27.1,
+    "rain_mm": 0.0,
+    "humidity": 80,
+    "source": "Open-Meteo (OpenWeather fallback)",
+    "_source_type": "live_api",
+    "_source_confidence": 0.88,
+    "_source_provider": "Open-Meteo.com"
+  },
+  {
+    "date_time": "19-03-2026 12:01:58 IST",
+    "location": "Mumbai",
+    "temp": 27.1,
+    "rain_mm": 0.0,
+    "humidity": 80,
+    "source": "Open-Meteo (OpenWeather fallback)",
+    "_source_type": "live_api",
+    "_source_confidence": 0.88,
+    "_source_provider": "Open-Meteo.com"
   }
 ]

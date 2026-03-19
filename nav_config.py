@@ -46,6 +46,7 @@ MODULE_NAV: dict[str, dict] = {
     "🧾 Sales": {
         "icon": "🧾", "label": "Sales",
         "tabs": [
+            {"label": "Contacts Directory", "page": "📇 Contacts Directory"},
             {"label": "Buyer CRM",          "page": "🎯 CRM & Tasks",
              "also": ["💼 Sales Workspace"]},
             {"label": "Quotations & Deals",  "page": "🤝 Negotiation Assistant"},

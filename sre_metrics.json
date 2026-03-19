@@ -1411,5 +1411,419 @@
     "fail": 0,
     "health_pct": 88,
     "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 10:33:48 IST",
+    "total": 44,
+    "ok": 39,
+    "warn": 4,
+    "fail": 1,
+    "health_pct": 88,
+    "overall": "FAIL"
+  },
+  {
+    "timestamp_ist": "19-03-2026 10:42:15 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 3,
+    "fail": 0,
+    "health_pct": 93,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 10:57:16 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 3,
+    "fail": 0,
+    "health_pct": 93,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 11:12:17 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 3,
+    "fail": 0,
+    "health_pct": 93,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 11:27:18 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 3,
+    "fail": 0,
+    "health_pct": 93,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 11:30:23 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 2,
+    "fail": 1,
+    "health_pct": 93,
+    "overall": "FAIL"
+  },
+  {
+    "timestamp_ist": "19-03-2026 11:42:20 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 3,
+    "fail": 0,
+    "health_pct": 93,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 11:43:01 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 3,
+    "fail": 0,
+    "health_pct": 93,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 11:45:24 IST",
+    "total": 43,
+    "ok": 40,
+    "warn": 3,
+    "fail": 0,
+    "health_pct": 93,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 11:46:57 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 3,
+    "fail": 0,
+    "health_pct": 93,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 11:47:21 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 3,
+    "fail": 0,
+    "health_pct": 93,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 11:57:21 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 3,
+    "fail": 0,
+    "health_pct": 93,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 11:58:02 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 3,
+    "fail": 0,
+    "health_pct": 93,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 11:59:23 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 2,
+    "fail": 1,
+    "health_pct": 93,
+    "overall": "FAIL"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:00:26 IST",
+    "total": 44,
+    "ok": 40,
+    "warn": 4,
+    "fail": 0,
+    "health_pct": 90,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:01:58 IST",
+    "total": 44,
+    "ok": 40,
+    "warn": 4,
+    "fail": 0,
+    "health_pct": 90,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:02:22 IST",
+    "total": 44,
+    "ok": 40,
+    "warn": 4,
+    "fail": 0,
+    "health_pct": 90,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:02:58 IST",
+    "total": 44,
+    "ok": 40,
+    "warn": 3,
+    "fail": 1,
+    "health_pct": 90,
+    "overall": "FAIL"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:12:22 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 2,
+    "fail": 1,
+    "health_pct": 93,
+    "overall": "FAIL"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:13:03 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 2,
+    "fail": 1,
+    "health_pct": 93,
+    "overall": "FAIL"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:14:25 IST",
+    "total": 33,
+    "ok": 30,
+    "warn": 2,
+    "fail": 1,
+    "health_pct": 90,
+    "overall": "FAIL"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:15:27 IST",
+    "total": 33,
+    "ok": 30,
+    "warn": 2,
+    "fail": 1,
+    "health_pct": 90,
+    "overall": "FAIL"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:16:59 IST",
+    "total": 33,
+    "ok": 30,
+    "warn": 2,
+    "fail": 1,
+    "health_pct": 90,
+    "overall": "FAIL"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:17:23 IST",
+    "total": 33,
+    "ok": 30,
+    "warn": 2,
+    "fail": 1,
+    "health_pct": 90,
+    "overall": "FAIL"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:17:59 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 2,
+    "fail": 1,
+    "health_pct": 93,
+    "overall": "FAIL"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:27:24 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 3,
+    "fail": 0,
+    "health_pct": 93,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:28:04 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 3,
+    "fail": 0,
+    "health_pct": 93,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:29:26 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 3,
+    "fail": 0,
+    "health_pct": 93,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:30:28 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 3,
+    "fail": 0,
+    "health_pct": 93,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:32:00 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 3,
+    "fail": 0,
+    "health_pct": 93,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:32:24 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 3,
+    "fail": 0,
+    "health_pct": 93,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:33:00 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 3,
+    "fail": 0,
+    "health_pct": 93,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:42:25 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 3,
+    "fail": 0,
+    "health_pct": 93,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:43:06 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 3,
+    "fail": 0,
+    "health_pct": 93,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:44:27 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 3,
+    "fail": 0,
+    "health_pct": 93,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:45:29 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 3,
+    "fail": 0,
+    "health_pct": 93,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:47:01 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 3,
+    "fail": 0,
+    "health_pct": 93,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:47:25 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 3,
+    "fail": 0,
+    "health_pct": 93,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:48:01 IST",
+    "total": 44,
+    "ok": 41,
+    "warn": 3,
+    "fail": 0,
+    "health_pct": 93,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:57:26 IST",
+    "total": 44,
+    "ok": 40,
+    "warn": 4,
+    "fail": 0,
+    "health_pct": 90,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:58:07 IST",
+    "total": 44,
+    "ok": 40,
+    "warn": 4,
+    "fail": 0,
+    "health_pct": 90,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 12:59:28 IST",
+    "total": 44,
+    "ok": 40,
+    "warn": 4,
+    "fail": 0,
+    "health_pct": 90,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 13:00:30 IST",
+    "total": 44,
+    "ok": 40,
+    "warn": 4,
+    "fail": 0,
+    "health_pct": 90,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 13:02:02 IST",
+    "total": 44,
+    "ok": 40,
+    "warn": 4,
+    "fail": 0,
+    "health_pct": 90,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 13:02:27 IST",
+    "total": 44,
+    "ok": 40,
+    "warn": 4,
+    "fail": 0,
+    "health_pct": 90,
+    "overall": "WARN"
+  },
+  {
+    "timestamp_ist": "19-03-2026 13:03:02 IST",
+    "total": 44,
+    "ok": 40,
+    "warn": 4,
+    "fail": 0,
+    "health_pct": 90,
+    "overall": "WARN"
   }
 ]

@@ -43,21 +43,21 @@
           "savings_vs_avg": 0
         }
       ],
-      "timing": "Within 5 days -- favorable window, crude trending UP",
+      "timing": "Within 5 days -- favorable window, crude trending STABLE",
       "quantity_mt": 500,
       "urgency": "PRE-BUY",
-      "urgency_index": 58,
+      "urgency_index": 77,
       "reasons": [
-        "Purchase urgency index: 58/100 (HOLD)",
-        "Crude prices forecast to RISE -- lock in current rates",
-        "Market composite: SIDEWAYS (60% confidence)",
+        "Purchase urgency index: 77/100 (PRE-BUY)",
+        "Crude prices forecast STABLE",
+        "Market composite: UP (68% confidence)",
         "Market action: High risk detected -- secure supply from reliable sources",
         "Season: Peak (Month 3)"
       ],
-      "confidence": 0.58,
-      "crude_forecast_direction": "UP",
+      "confidence": 0.77,
+      "crude_forecast_direction": "STABLE",
       "season": "Peak",
-      "generated_at": "05-03-2026 14:32 IST"
+      "generated_at": "19-03-2026 10:42 IST"
     },
     "sell_advisory": {
       "targets": [
@@ -102,29 +102,29 @@
       "timing": "Peak season -- push aggressively. Customers need supply for active road construction projects.",
       "total_targets": 3,
       "high_priority_count": 0,
-      "generated_at": "05-03-2026 14:32 IST"
+      "generated_at": "19-03-2026 10:42 IST"
     },
     "timing_advisory": {
-      "next_revision_date": "16-03-2026",
-      "days_to_revision": 11,
+      "next_revision_date": "01-04-2026",
+      "days_to_revision": 13,
       "expected_direction": "UP",
-      "forward_strategy_direction": "STABLE",
-      "crude_forecast_direction": "UP",
-      "order_window": "Order within 5 days -- prices trending UP before 16-03-2026 revision",
-      "confidence": 0.78,
+      "forward_strategy_direction": "UP",
+      "crude_forecast_direction": "STABLE",
+      "order_window": "Order within 5 days -- prices trending UP before 01-04-2026 revision",
+      "confidence": 0.57,
       "season": "Peak",
-      "generated_at": "05-03-2026 14:32 IST"
+      "generated_at": "19-03-2026 10:42 IST"
     },
     "risk_summary": {
       "risks": {
         "supply": {
           "level": "high",
-          "description": "Supply risk: HIGH. Geopolitical tensions affecting crude supply. Key headline: OPEC Plus to Boost Oil Production as Iran Strikes Threaten Price Spike - The New",
+          "description": "Supply risk: HIGH. Geopolitical tensions affecting crude supply. Key headline: Oil prices forecast to jump despite Opec+ pledge to raise output - Financial Tim",
           "mitigation": "Diversify suppliers and maintain 15-day safety stock"
         },
         "fx": {
-          "level": "low",
-          "description": "USD/INR pressure: LOW. FX forecast: UP. Latest rate: 86.45",
+          "level": "medium",
+          "description": "USD/INR pressure: MEDIUM. FX forecast: UP. Latest rate: 86.45",
           "mitigation": "Monitor USD/INR; no hedging needed currently"
         },
         "credit": {
@@ -145,10 +145,10 @@
       },
       "overall_level": "high",
       "high_risk_count": 2,
-      "generated_at": "05-03-2026 14:32 IST"
+      "generated_at": "19-03-2026 10:42 IST"
     },
-    "generated_at": "05-03-2026 14:32 IST",
-    "natural_language_brief": " Today I recommend a pre-buy strategy targeting VG-30 bitumen, considering the upcoming fiscal rush and peak season demand; aim to secure approximately Rs.75 lakh worth of stock at an aggressive price point before prices potentially rise further by March 16th. Focus on acquiring CRMB-55/60 modified for bridges due to a projected surge in infrastructure projects, with quantities around 2,400 MT based on current contracts and market trends. Hold off on SS-1 emulsion purchases until the monsoon season eases; however, maintain RS-1 surface dressing stock at moderate levels to meet steady demand during this period."
+    "generated_at": "19-03-2026 10:42 IST",
+    "natural_language_brief": "⚠️ All AI providers are currently unavailable.\n\n**To activate a provider:**\n• OpenAI: enter API key in sidebar\n• Ollama: install from ollama.com then run `ollama pull llama3`\n• HuggingFace: `pip install huggingface-hub`\n• GPT4All: `pip install gpt4all`\n• Claude: enter Anthropic API key in sidebar"
   },
   "history": [
     {
@@ -391,6 +391,20 @@
     },
     {
       "timestamp": "05-03-2026 14:32 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "19-03-2026 10:34 IST",
+      "buy_urgency": "PRE-BUY",
+      "sell_targets": 3,
+      "expected_direction": "UP",
+      "overall_risk": "high"
+    },
+    {
+      "timestamp": "19-03-2026 10:42 IST",
       "buy_urgency": "PRE-BUY",
       "sell_targets": 3,
       "expected_direction": "UP",

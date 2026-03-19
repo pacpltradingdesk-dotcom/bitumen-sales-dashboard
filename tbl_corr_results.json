@@ -1,6 +1,6 @@
 [
   {
-    "run_date_ist": "05-03-2026 14:31:47 IST",
+    "run_date_ist": "19-03-2026 12:02:01 IST",
     "lag_months": 0,
     "correlation": 0.0,
     "p_value": 1.0,
@@ -10,7 +10,7 @@
     "notes": "Insufficient data — run connectors to populate tables"
   },
   {
-    "run_date_ist": "05-03-2026 14:31:47 IST",
+    "run_date_ist": "19-03-2026 12:02:01 IST",
     "lag_months": 1,
     "correlation": 0.0,
     "p_value": 1.0,
@@ -20,7 +20,7 @@
     "notes": "Insufficient data — run connectors to populate tables"
   },
   {
-    "run_date_ist": "05-03-2026 14:31:47 IST",
+    "run_date_ist": "19-03-2026 12:02:01 IST",
     "lag_months": 2,
     "correlation": 0.0,
     "p_value": 1.0,
@@ -30,7 +30,7 @@
     "notes": "Insufficient data — run connectors to populate tables"
   },
   {
-    "run_date_ist": "05-03-2026 14:31:47 IST",
+    "run_date_ist": "19-03-2026 12:02:01 IST",
     "lag_months": 3,
     "correlation": 0.0,
     "p_value": 1.0,
@@ -40,7 +40,7 @@
     "notes": "Insufficient data — run connectors to populate tables"
   },
   {
-    "run_date_ist": "05-03-2026 14:31:47 IST",
+    "run_date_ist": "19-03-2026 12:02:01 IST",
     "lag_months": 4,
     "correlation": 0.0,
     "p_value": 1.0,
@@ -50,7 +50,7 @@
     "notes": "Insufficient data — run connectors to populate tables"
   },
   {
-    "run_date_ist": "05-03-2026 14:31:47 IST",
+    "run_date_ist": "19-03-2026 12:02:01 IST",
     "lag_months": 5,
     "correlation": 0.0,
     "p_value": 1.0,
@@ -60,7 +60,7 @@
     "notes": "Insufficient data — run connectors to populate tables"
   },
   {
-    "run_date_ist": "05-03-2026 14:31:47 IST",
+    "run_date_ist": "19-03-2026 12:02:01 IST",
     "lag_months": 6,
     "correlation": 0.0,
     "p_value": 1.0,

@@ -5,7 +5,7 @@ import os
 
 class CostOptimizer:
     def __init__(self, data_path=None):
-        self.data_path = data_path or r"C:\Users\HP\.gemini\antigravity\scratch\logistics_data.parquet"
+        self.data_path = data_path or os.path.join(os.path.dirname(os.path.abspath(__file__)), "logistics_data.parquet")
         self.df = None
 
     def load_data(self):

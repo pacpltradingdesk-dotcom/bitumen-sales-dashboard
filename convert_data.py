@@ -4,7 +4,7 @@ import sys
 
 # Configuration
 SOURCE_FILE = r"C:\Users\HP\Desktop\Sales VG30 Dashboard all india prising.xlsx"
-OUTPUT_FILE = r"C:\Users\HP\.gemini\antigravity\scratch\logistics_data.parquet"
+OUTPUT_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logistics_data.parquet")
 
 def convert_excel_to_parquet():
     print("="*60)
