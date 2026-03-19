@@ -331,54 +331,9 @@ st.markdown("""
         button > div > p { color: #2d3142 !important; }
    ─────────────────────────────────────────────────────────────────────────── */
 
-/* ── 1-X. GLOBAL _arrow_right / icon text bleed fix ─────────────────────── */
-/* Streamlit renders Material icon names ("_arrow_right") as raw text nodes
-   inside <summary>. These are NOT inside any child element, so we cannot
-   target them with CSS selectors. The ONLY way to hide raw text nodes is
-   font-size:0 + color:transparent on the parent, then restore on children. */
-
-/* Kill the toggle icon element */
+/* ── 1-X. Hide stExpanderToggleIcon element ─────────────────────────────── */
 [data-testid="stExpanderToggleIcon"] {
   display: none !important;
-  width: 0 !important;
-  height: 0 !important;
-  overflow: hidden !important;
-  position: absolute !important;
-}
-/* Summary: nuke ALL text (raw nodes + children) */
-details > summary,
-div[data-testid="stExpander"] summary {
-  font-size: 0 !important;
-  color: transparent !important;
-  line-height: 0 !important;
-  overflow: hidden !important;
-}
-/* Restore ONLY actual label children — target every possible wrapper */
-details > summary > *,
-div[data-testid="stExpander"] summary > * {
-  font-size: 0.85rem !important;
-  color: #1e293b !important;
-  font-weight: 600 !important;
-  line-height: 1.5 !important;
-  visibility: visible !important;
-  display: inline !important;
-}
-/* Specifically restore markdown containers and their children */
-details > summary [data-testid="stMarkdownContainer"],
-details > summary [data-testid="stMarkdownContainer"] *,
-div[data-testid="stExpander"] summary [data-testid="stMarkdownContainer"],
-div[data-testid="stExpander"] summary [data-testid="stMarkdownContainer"] * {
-  font-size: 0.85rem !important;
-  color: #1e293b !important;
-  font-weight: 600 !important;
-  line-height: 1.5 !important;
-  visibility: visible !important;
-}
-/* But re-hide the toggle icon even if matched by > * */
-details > summary > [data-testid="stExpanderToggleIcon"],
-div[data-testid="stExpander"] summary > [data-testid="stExpanderToggleIcon"] {
-  display: none !important;
-  font-size: 0 !important;
   width: 0 !important;
   height: 0 !important;
 }
@@ -1171,6 +1126,36 @@ section[data-testid="stSidebar"] .stButton > button[kind="primary"] p {
 .density-compact section[data-testid="stSidebar"] .stButton > button { min-height: 24px !important; padding: 2px 8px !important; }
 </style>
 """, unsafe_allow_html=True)
+
+# ── JavaScript: Remove _arrow_right raw text nodes from ALL expander summaries ──
+# Streamlit blocks <script> in st.markdown, so use components.html to inject JS
+# into the parent frame. height=0 makes it invisible.
+import streamlit.components.v1 as _components
+_components.html("""
+<script>
+function cleanArrowText() {
+    var doc = window.parent.document;
+    doc.querySelectorAll('details > summary, [data-testid="stExpander"] summary').forEach(function(s) {
+        for (var i = s.childNodes.length - 1; i >= 0; i--) {
+            var n = s.childNodes[i];
+            if (n.nodeType === 3) {
+                var t = n.textContent.trim();
+                if (t.match(/arrow|_right|expand_|chevron|more/i) || t === '') {
+                    n.textContent = '';
+                }
+            }
+        }
+        s.querySelectorAll('[data-testid="stExpanderToggleIcon"]').forEach(function(el) {
+            el.style.display = 'none';
+        });
+    });
+}
+cleanArrowText();
+setInterval(cleanArrowText, 500);
+var obs = new MutationObserver(cleanArrowText);
+obs.observe(window.parent.document.body, {childList: true, subtree: true});
+</script>
+""", height=0)
 
 # Import Sales Calendar Helper Functions
 from sales_calendar import (
