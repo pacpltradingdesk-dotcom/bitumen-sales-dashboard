@@ -331,24 +331,14 @@ st.markdown("""
         button > div > p { color: #2d3142 !important; }
    ─────────────────────────────────────────────────────────────────────────── */
 
-/* ── 1-X. GLOBAL _arrow_right text fix ──────────────────────────────────── */
-/* Hide the toggle icon element */
+/* ── 1-X. GLOBAL _arrow_right text fix (Streamlit 1.54+ bug) ───────────── */
+/* Root cause: stIconMaterial renders icon NAME as text instead of icon.
+   Fix: hide stIconMaterial completely. Confirmed fix from Streamlit forums. */
+[data-testid="stIconMaterial"] {
+  display: none !important;
+}
 [data-testid="stExpanderToggleIcon"] {
   display: none !important;
-  width: 0 !important;
-  height: 0 !important;
-}
-/* Push raw text nodes off-screen via text-indent */
-details > summary,
-div[data-testid="stExpander"] summary {
-  text-indent: -9999px !important;
-  overflow: hidden !important;
-}
-/* Restore child elements back to normal indent */
-details > summary > *,
-div[data-testid="stExpander"] summary > * {
-  text-indent: 0 !important;
-  display: inline-block !important;
 }
 /* Add a CSS arrow indicator for open/close */
 div[data-testid="stExpander"] details > summary::after {
